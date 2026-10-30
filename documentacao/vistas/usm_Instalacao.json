@@ -1,0 +1,209 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo USM Instalacao",
+  "nivel": "USM",
+  "nome": "Instalacao",
+  "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "USM",
+    "nome": "Instalacao",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+    "propriedades": [
+      {
+        "chave": "USM:Instalacao.ambiente",
+        "nome": "ambiente",
+        "dono": "Instalacao",
+        "nivelDono": "USM",
+        "tipo": "texto",
+        "descricao": "Ambiente onde o dispositivo está instalado",
+        "caminho": "ambiente",
+        "nomesAlternativos": [
+          "environment"
+        ],
+        "discriminante": true
+      }
+    ],
+    "filhos": [],
+    "usadoPor": [
+      "Dispositivo"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "USM",
+    "nome": "Instalacao",
+    "caminho": "",
+    "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+    "regras": [],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Instalacao",
+      "nivel": "USM",
+      "proprio": true,
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "ambiente",
+          "caminho": "ambiente",
+          "descricao": "Ambiente onde o dispositivo está instalado",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "environment"
+          ],
+          "chave": "USM:Instalacao.ambiente",
+          "dono": "Instalacao",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-AMBIENTE",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+              "alcance": "USM Instalacao.ambiente",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "ambiente",
+                "chave": "Propriedade:USM:Instalacao.ambiente",
+                "dono": "Instalacao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+                "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+                "caminho": "ambiente",
+                "propriedade": "USM:Instalacao.ambiente",
+                "valor": [
+                  "REFRIGERACAO",
+                  "ESTUFA",
+                  "ARMAZEM",
+                  "SERVIDORES",
+                  "EXTERIOR",
+                  "INCINERADORA",
+                  "LABORATORIO"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Instalacao.ambiente",
+                "nome": "ambiente",
+                "dono": "Instalacao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "ambiente"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "ambiente"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Dispositivo"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Dispositivo",
+            "papel": "Leitura",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Leitura",
+            "papel": "Instalacao",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "USM",
+            "nome": "Instalacao"
+          }
+        ],
+        "texto": "Dispositivo › Leitura › Instalacao"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-AMBIENTE",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+      "alcance": "USM Instalacao.ambiente",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "ambiente",
+        "chave": "Propriedade:USM:Instalacao.ambiente",
+        "dono": "Instalacao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+        "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+        "caminho": "ambiente",
+        "propriedade": "USM:Instalacao.ambiente",
+        "valor": [
+          "REFRIGERACAO",
+          "ESTUFA",
+          "ARMAZEM",
+          "SERVIDORES",
+          "EXTERIOR",
+          "INCINERADORA",
+          "LABORATORIO"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Instalacao.ambiente",
+        "nome": "ambiente",
+        "dono": "Instalacao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "ambiente"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 1,
+    "RIR": 0,
+    "RIC": 0,
+    "FN": 0
+  },
+  "funcoes": [],
+  "contextos": [],
+  "parametros": {
+    "nivel": "USM",
+    "nome": "Instalacao",
+    "regras": true
+  }
+}

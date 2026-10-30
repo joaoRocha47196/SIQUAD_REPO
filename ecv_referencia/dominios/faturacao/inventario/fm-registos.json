@@ -1,0 +1,2428 @@
+{
+ "fonte": {
+  "id": "fm-registos",
+  "nome": "Desenho dos registos de exportação FM",
+  "tipo": "formato de ficheiro (registos de largura fixa)",
+  "ficheiro": "Campos Exportaç╞o.xlsx",
+  "adaptador": "fm.registos",
+  "papel": "desenho dos registos de exportação FM (VDM, CLI, YCL, STK, AUX, PRV): campos, comprimentos e tipos",
+  "caminho": "data/FM/Campos Exporta*.xlsx",
+  "extraido": "2026-10-29T19:09:50"
+ },
+ "contagens": {
+  "grupos": 6,
+  "elementos": 109,
+  "regras": 50,
+  "regrasPorCategoria": {
+   "formato": 50
+  }
+ },
+ "grupos": [
+  {
+   "id": "VDM",
+   "nome": "Vendedores e Numerações",
+   "descricao": "Registo VDM: Vendedores e Numerações",
+   "nomeOrigem": "VDM",
+   "pai": null,
+   "cardinalidade": null,
+   "elementos": [
+    "VDM.Codigo Vendedor",
+    "VDM.Nome Vendedor",
+    "VDM.Morada Vendedor",
+    "VDM.Localidade Vendedor",
+    "VDM.Codigo Postal vendedor",
+    "VDM.Telfone Vendedor",
+    "VDM.Telemovel Vendedor",
+    "VDM.NIF Vendedor",
+    "VDM.Nº Ultimo Cliente",
+    "VDM.Serie Numerações",
+    "VDM.Data Inicio Serie",
+    "VDM.Comissao Venda Pronto",
+    "VDM.Comissao Venda Prestacao",
+    "VDM.Comissao Cobranca",
+    "VDM.Matricula",
+    "VDM.Veiculo",
+    "VDM.Modelo",
+    "VDM.Nº Ult. Encomenda",
+    "VDM.Nº ult. Fatura",
+    "VDM.Nº Ult. Fatura Recibo",
+    "VDM.Nº Ult. Nota Credito",
+    "VDM.Nº Ult. Alteração enc.",
+    "VDM.Nº Ult Recebimento",
+    "VDM.Prefixo ATCUD",
+    "VDM.Data ULt Enomenda",
+    "VDM.Data Ult. Fatura",
+    "VDM.Data Ult. Fatura Recibo",
+    "VDM.Data Ult. Nota Credito",
+    "VDM.Data Ult Alteração  Encomenda",
+    "VDM.Data Ult . Recebimento",
+    "VDM.Numero Guia Transporte",
+    "VDM.Numero Guia Transporte Extra",
+    "VDM.Codigo Familia Extra",
+    "VDM.Trata Recebimentos",
+    "VDM.Num Ult. Recibo",
+    "VDM.Data Ult Recibo",
+    "VDM.Numero Digitos Serie",
+    "VDM.Prefixo ATCUD Fatura",
+    "VDM.Prefixo ATCUD Fatura/ Recibo",
+    "VDM.Prefixo ATCUD Nota Credito",
+    "VDM.Prefixo ATCUD Encomenda",
+    "VDM.Prefixo ATCUD Recibo",
+    "VDM.Contribuinte do Emissor",
+    "VDM.Num Ult Entrada em CC",
+    "VDM.Data Ult. Entrada CC"
+   ],
+   "origem": "Campos Exportaç╞o.xlsx"
+  },
+  {
+   "id": "CLI",
+   "nome": "Clientes",
+   "descricao": "Registo CLI: Clientes",
+   "nomeOrigem": "CLI",
+   "pai": null,
+   "cardinalidade": null,
+   "elementos": [
+    "CLI.Codigo Cliente",
+    "CLI.Nome Cliente",
+    "CLI.Morada Cliente",
+    "CLI.Localidade Cliente",
+    "CLI.Codigo Postal cliente",
+    "CLI.Zona",
+    "CLI.Telefone Cliente",
+    "CLI.Telemovel Cliente",
+    "CLI.Data Abertura Ficha",
+    "CLI.Contribuinte Cliente",
+    "CLI.Codigo Vendedor",
+    "CLI.Numero Ordem",
+    "CLI.Email Cliente",
+    "CLI.Data Nascimento Cliente",
+    "CLI.Local Cobrança",
+    "CLI.Nome 2 Titular",
+    "CLI.Morada 2 Titular",
+    "CLI.Localidade 2 Titular",
+    "CLI.Cod Postal 2 Titular",
+    "CLI.Nº CC 2 Titular",
+    "CLI.Nº CC Cliente",
+    "CLI.Data Validade CC",
+    "CLI.Data Validade CC 2 Titular",
+    "CLI.Telefone 2 Titular",
+    "CLI.Contribuinte 2 Titular",
+    "CLI.Dia Recebimento"
+   ],
+   "origem": "Campos Exportaç╞o.xlsx"
+  },
+  {
+   "id": "YCL",
+   "nome": "Clientes",
+   "descricao": "Registo YCL: Clientes",
+   "nomeOrigem": "YCL",
+   "pai": null,
+   "cardinalidade": null,
+   "elementos": [
+    "YCL.Codigo Cliente",
+    "YCL.Saldo",
+    "YCL.Valor Total Vendas",
+    "YCL.Valor Saldo Inicial",
+    "YCL.Valor Pago Saldo Inicial",
+    "YCL.Data Saldo Inicial"
+   ],
+   "origem": "Campos Exportaç╞o.xlsx"
+  },
+  {
+   "id": "STK",
+   "nome": "Stocks",
+   "descricao": "Registo STK: Stocks",
+   "nomeOrigem": "STK",
+   "pai": null,
+   "cardinalidade": null,
+   "elementos": [
+    "STK.Codigo Artigo",
+    "STK.Codigo Axiliar",
+    "STK.Codigp EAN",
+    "STK.Descricao",
+    "STK.Referencia",
+    "STK.Unidade Medida",
+    "STK.Data Criação ficha",
+    "STK.Preço Venda com Iva",
+    "STK.% Desconto1",
+    "STK.% Desconto2",
+    "STK.Taxa de Iva",
+    "STK.Quantidade em stock",
+    "STK.Quantidade em stock Out",
+    "STK.Peso",
+    "STK.Preço Venda 1 sem Iva",
+    "STK.Codigo Familia",
+    "STK.Preço Custo sem Iva",
+    "STK.Preço Custo com Iva",
+    "STK.Codigo Fornecedor",
+    "STK.Nome Fornecedor",
+    "STK.Descricção Familia",
+    "STK.Preço Venda 2 com IVA",
+    "STK.Preço Venda 2 sem IVA",
+    "STK.Serviço",
+    "STK.Exporta OBS"
+   ],
+   "origem": "Campos Exportaç╞o.xlsx"
+  },
+  {
+   "id": "AUX",
+   "nome": "Auxiliar",
+   "descricao": "Registo AUX: Auxiliar",
+   "nomeOrigem": "AUX",
+   "pai": null,
+   "cardinalidade": null,
+   "elementos": [
+    "AUX.ID",
+    "AUX.Texto"
+   ],
+   "origem": "Campos Exportaç╞o.xlsx"
+  },
+  {
+   "id": "PRV",
+   "nome": "Produtos no veiculo",
+   "descricao": "Registo PRV: Produtos no veiculo",
+   "nomeOrigem": "PRV",
+   "pai": null,
+   "cardinalidade": null,
+   "elementos": [
+    "PRV.Matricula",
+    "PRV.Codigo Artigo",
+    "PRV.Quantidade Total",
+    "PRV.Quantidade Normal",
+    "PRV.Quantidade Fora"
+   ],
+   "origem": "Campos Exportaç╞o.xlsx"
+  }
+ ],
+ "elementos": [
+  {
+   "id": "VDM.Codigo Vendedor",
+   "nome": "Codigo Vendedor",
+   "descricao": "Codigo Vendedor",
+   "tipo": "inteiro",
+   "tipoOrigem": "N",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nome Vendedor",
+   "nome": "Nome Vendedor",
+   "descricao": "Nome Vendedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Morada Vendedor",
+   "nome": "Morada Vendedor",
+   "descricao": "Morada Vendedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Localidade Vendedor",
+   "nome": "Localidade Vendedor",
+   "descricao": "Localidade Vendedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Codigo Postal vendedor",
+   "nome": "Codigo Postal vendedor",
+   "descricao": "Codigo Postal vendedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Telfone Vendedor",
+   "nome": "Telfone Vendedor",
+   "descricao": "Telfone Vendedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Telemovel Vendedor",
+   "nome": "Telemovel Vendedor",
+   "descricao": "Telemovel Vendedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.NIF Vendedor",
+   "nome": "NIF Vendedor",
+   "descricao": "NIF Vendedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nº Ultimo Cliente",
+   "nome": "Nº Ultimo Cliente",
+   "descricao": "Nº Ultimo Cliente",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Serie Numerações",
+   "nome": "Serie Numerações",
+   "descricao": "Serie Numerações",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 3; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Inicio Serie",
+   "nome": "Data Inicio Serie",
+   "descricao": "Data Inicio Serie",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Comissao Venda Pronto",
+   "nome": "Comissao Venda Pronto",
+   "descricao": "Comissao Venda Pronto",
+   "tipo": "decimal",
+   "tipoOrigem": "N(2.2)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Comissao Venda Prestacao",
+   "nome": "Comissao Venda Prestacao",
+   "descricao": "Comissao Venda Prestacao",
+   "tipo": "decimal",
+   "tipoOrigem": "N(2.2)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Comissao Cobranca",
+   "nome": "Comissao Cobranca",
+   "descricao": "Comissao Cobranca",
+   "tipo": "decimal",
+   "tipoOrigem": "N(2.2)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Matricula",
+   "nome": "Matricula",
+   "descricao": "Matricula",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Veiculo",
+   "nome": "Veiculo",
+   "descricao": "Veiculo",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 25; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Modelo",
+   "nome": "Modelo",
+   "descricao": "Modelo",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 20; ficheiro VDM; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nº Ult. Encomenda",
+   "nome": "Nº Ult. Encomenda",
+   "descricao": "Nº Ult. Encomenda",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nº ult. Fatura",
+   "nome": "Nº ult. Fatura",
+   "descricao": "Nº ult. Fatura",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nº Ult. Fatura Recibo",
+   "nome": "Nº Ult. Fatura Recibo",
+   "descricao": "Nº Ult. Fatura Recibo",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nº Ult. Nota Credito",
+   "nome": "Nº Ult. Nota Credito",
+   "descricao": "Nº Ult. Nota Credito",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nº Ult. Alteração enc.",
+   "nome": "Nº Ult. Alteração enc.",
+   "descricao": "Nº Ult. Alteração enc.",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Nº Ult Recebimento",
+   "nome": "Nº Ult Recebimento",
+   "descricao": "Nº Ult Recebimento",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Prefixo ATCUD",
+   "nome": "Prefixo ATCUD",
+   "descricao": "Prefixo ATCUD",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data ULt Enomenda",
+   "nome": "Data ULt Enomenda",
+   "descricao": "Data ULt Enomenda",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Ult. Fatura",
+   "nome": "Data Ult. Fatura",
+   "descricao": "Data Ult. Fatura",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Ult. Fatura Recibo",
+   "nome": "Data Ult. Fatura Recibo",
+   "descricao": "Data Ult. Fatura Recibo",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Ult. Nota Credito",
+   "nome": "Data Ult. Nota Credito",
+   "descricao": "Data Ult. Nota Credito",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Ult Alteração  Encomenda",
+   "nome": "Data Ult Alteração  Encomenda",
+   "descricao": "Data Ult Alteração  Encomenda",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Ult . Recebimento",
+   "nome": "Data Ult . Recebimento",
+   "descricao": "Data Ult . Recebimento",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Numero Guia Transporte",
+   "nome": "Numero Guia Transporte",
+   "descricao": "Numero Guia Transporte",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Numero Guia Transporte Extra",
+   "nome": "Numero Guia Transporte Extra",
+   "descricao": "Numero Guia Transporte Extra",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Codigo Familia Extra",
+   "nome": "Codigo Familia Extra",
+   "descricao": "Codigo Familia Extra",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 7; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Trata Recebimentos",
+   "nome": "Trata Recebimentos",
+   "descricao": "Trata Recebimentos",
+   "tipo": "booleano",
+   "tipoOrigem": "L",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 1; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Num Ult. Recibo",
+   "nome": "Num Ult. Recibo",
+   "descricao": "Num Ult. Recibo",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Ult Recibo",
+   "nome": "Data Ult Recibo",
+   "descricao": "Data Ult Recibo",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Numero Digitos Serie",
+   "nome": "Numero Digitos Serie",
+   "descricao": "Numero Digitos Serie",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 4; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Prefixo ATCUD Fatura",
+   "nome": "Prefixo ATCUD Fatura",
+   "descricao": "Prefixo ATCUD Fatura",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Prefixo ATCUD Fatura/ Recibo",
+   "nome": "Prefixo ATCUD Fatura/ Recibo",
+   "descricao": "Prefixo ATCUD Fatura/ Recibo",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Prefixo ATCUD Nota Credito",
+   "nome": "Prefixo ATCUD Nota Credito",
+   "descricao": "Prefixo ATCUD Nota Credito",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Prefixo ATCUD Encomenda",
+   "nome": "Prefixo ATCUD Encomenda",
+   "descricao": "Prefixo ATCUD Encomenda",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Prefixo ATCUD Recibo",
+   "nome": "Prefixo ATCUD Recibo",
+   "descricao": "Prefixo ATCUD Recibo",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Contribuinte do Emissor",
+   "nome": "Contribuinte do Emissor",
+   "descricao": "Contribuinte do Emissor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro VDM",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Num Ult Entrada em CC",
+   "nome": "Num Ult Entrada em CC",
+   "descricao": "Num Ult Entrada em CC",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM.Data Ult. Entrada CC",
+   "nome": "Data Ult. Entrada CC",
+   "descricao": "Data Ult. Entrada CC",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "VDM",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro NRD",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "CLI.Codigo Cliente",
+   "nome": "Codigo Cliente",
+   "descricao": "Codigo Cliente",
+   "tipo": "inteiro",
+   "tipoOrigem": "N",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI; IMUTAVEL (Automatico)",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Nome Cliente",
+   "nome": "Nome Cliente",
+   "descricao": "Nome Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Morada Cliente",
+   "nome": "Morada Cliente",
+   "descricao": "Morada Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "address"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Localidade Cliente",
+   "nome": "Localidade Cliente",
+   "descricao": "Localidade Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "city"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI; OK",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Codigo Postal cliente",
+   "nome": "Codigo Postal cliente",
+   "descricao": "Codigo Postal cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "zipCode",
+    "zipCodeLoc"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI; Passa para 10 pq dividido em 2 campos",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Zona",
+   "nome": "Zona",
+   "descricao": "Zona",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "zone"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI; Nao tem texto mas sim  -> Referencia para Zona",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Telefone Cliente",
+   "nome": "Telefone Cliente",
+   "descricao": "Telefone Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "fixePhoneNumber"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Telemovel Cliente",
+   "nome": "Telemovel Cliente",
+   "descricao": "Telemovel Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "phoneNumber"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro CLI; Ok",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Data Abertura Ficha",
+   "nome": "Data Abertura Ficha",
+   "descricao": "Data Abertura Ficha",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "registrationDate"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI; Parametro DATE",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Contribuinte Cliente",
+   "nome": "Contribuinte Cliente",
+   "descricao": "Contribuinte Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "nif"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro CLI; Ok",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Codigo Vendedor",
+   "nome": "Codigo Vendedor",
+   "descricao": "Codigo Vendedor",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "sellerCode"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Numero Ordem",
+   "nome": "Numero Ordem",
+   "descricao": "Numero Ordem",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(6)",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "orderNumber"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Email Cliente",
+   "nome": "Email Cliente",
+   "descricao": "Email Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "email"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 60; ficheiro CLI; 60? Usei 35",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Data Nascimento Cliente",
+   "nome": "Data Nascimento Cliente",
+   "descricao": "Data Nascimento Cliente",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "dateOfBirth"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Local Cobrança",
+   "nome": "Local Cobrança",
+   "descricao": "Local Cobrança",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "chargeLocation"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI; Usei 5",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Nome 2 Titular",
+   "nome": "Nome 2 Titular",
+   "descricao": "Nome 2 Titular",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "name2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Morada 2 Titular",
+   "nome": "Morada 2 Titular",
+   "descricao": "Morada 2 Titular",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "address2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Localidade 2 Titular",
+   "nome": "Localidade 2 Titular",
+   "descricao": "Localidade 2 Titular",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "city2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Cod Postal 2 Titular",
+   "nome": "Cod Postal 2 Titular",
+   "descricao": "Cod Postal 2 Titular",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "zipCode2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Nº CC 2 Titular",
+   "nome": "Nº CC 2 Titular",
+   "descricao": "Nº CC 2 Titular",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "citizenCard2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Nº CC Cliente",
+   "nome": "Nº CC Cliente",
+   "descricao": "Nº CC Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "citizenCard"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Data Validade CC",
+   "nome": "Data Validade CC",
+   "descricao": "Data Validade CC",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "citizenCardExpirationDate"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Data Validade CC 2 Titular",
+   "nome": "Data Validade CC 2 Titular",
+   "descricao": "Data Validade CC 2 Titular",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "citizenCardExpirationDate2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Telefone 2 Titular",
+   "nome": "Telefone 2 Titular",
+   "descricao": "Telefone 2 Titular",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "fixePhoneNumber2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Contribuinte 2 Titular",
+   "nome": "Contribuinte 2 Titular",
+   "descricao": "Contribuinte 2 Titular",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [
+    "nif2"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI.Dia Recebimento",
+   "nome": "Dia Recebimento",
+   "descricao": "Dia Recebimento",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(2)",
+   "cardinalidade": null,
+   "grupo": "CLI",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 2; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "YCL.Codigo Cliente",
+   "nome": "Codigo Cliente",
+   "descricao": "Codigo Cliente",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "YCL",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo YCL"
+  },
+  {
+   "id": "YCL.Saldo",
+   "nome": "Saldo",
+   "descricao": "Saldo",
+   "tipo": "decimal",
+   "tipoOrigem": "N(8.2)",
+   "cardinalidade": null,
+   "grupo": "YCL",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo YCL"
+  },
+  {
+   "id": "YCL.Valor Total Vendas",
+   "nome": "Valor Total Vendas",
+   "descricao": "Valor Total Vendas",
+   "tipo": "decimal",
+   "tipoOrigem": "N(8.2)",
+   "cardinalidade": null,
+   "grupo": "YCL",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo YCL"
+  },
+  {
+   "id": "YCL.Valor Saldo Inicial",
+   "nome": "Valor Saldo Inicial",
+   "descricao": "Valor Saldo Inicial",
+   "tipo": "decimal",
+   "tipoOrigem": "N(8.2)",
+   "cardinalidade": null,
+   "grupo": "YCL",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo YCL"
+  },
+  {
+   "id": "YCL.Valor Pago Saldo Inicial",
+   "nome": "Valor Pago Saldo Inicial",
+   "descricao": "Valor Pago Saldo Inicial",
+   "tipo": "decimal",
+   "tipoOrigem": "N(8.2)",
+   "cardinalidade": null,
+   "grupo": "YCL",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo YCL"
+  },
+  {
+   "id": "YCL.Data Saldo Inicial",
+   "nome": "Data Saldo Inicial",
+   "descricao": "Data Saldo Inicial",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "YCL",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro CLI",
+   "origem": "Campos Exportaç╞o.xlsx: registo YCL"
+  },
+  {
+   "id": "STK.Codigo Artigo",
+   "nome": "Codigo Artigo",
+   "descricao": "Codigo Artigo",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Codigo Axiliar",
+   "nome": "Codigo Axiliar",
+   "descricao": "Codigo Axiliar",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Codigp EAN",
+   "nome": "Codigp EAN",
+   "descricao": "Codigp EAN",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Descricao",
+   "nome": "Descricao",
+   "descricao": "Descricao",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 50; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Referencia",
+   "nome": "Referencia",
+   "descricao": "Referencia",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 20; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Unidade Medida",
+   "nome": "Unidade Medida",
+   "descricao": "Unidade Medida",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Data Criação ficha",
+   "nome": "Data Criação ficha",
+   "descricao": "Data Criação ficha",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Preço Venda com Iva",
+   "nome": "Preço Venda com Iva",
+   "descricao": "Preço Venda com Iva",
+   "tipo": "decimal",
+   "tipoOrigem": "N(8.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.% Desconto1",
+   "nome": "% Desconto1",
+   "descricao": "% Desconto1",
+   "tipo": "decimal",
+   "tipoOrigem": "N(2.2)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.% Desconto2",
+   "nome": "% Desconto2",
+   "descricao": "% Desconto2",
+   "tipo": "decimal",
+   "tipoOrigem": "N(2.2)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 6; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Taxa de Iva",
+   "nome": "Taxa de Iva",
+   "descricao": "Taxa de Iva",
+   "tipo": "decimal",
+   "tipoOrigem": "N(2.2)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 5; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Quantidade em stock",
+   "nome": "Quantidade em stock",
+   "descricao": "Quantidade em stock",
+   "tipo": "decimal",
+   "tipoOrigem": "N(6.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Quantidade em stock Out",
+   "nome": "Quantidade em stock Out",
+   "descricao": "Quantidade em stock Out",
+   "tipo": "decimal",
+   "tipoOrigem": "N(6.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Peso",
+   "nome": "Peso",
+   "descricao": "Peso",
+   "tipo": "decimal",
+   "tipoOrigem": "N(3.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Preço Venda 1 sem Iva",
+   "nome": "Preço Venda 1 sem Iva",
+   "descricao": "Preço Venda 1 sem Iva",
+   "tipo": "decimal",
+   "tipoOrigem": "N(10.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Codigo Familia",
+   "nome": "Codigo Familia",
+   "descricao": "Codigo Familia",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 7; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Preço Custo sem Iva",
+   "nome": "Preço Custo sem Iva",
+   "descricao": "Preço Custo sem Iva",
+   "tipo": "decimal",
+   "tipoOrigem": "N(10.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Preço Custo com Iva",
+   "nome": "Preço Custo com Iva",
+   "descricao": "Preço Custo com Iva",
+   "tipo": "decimal",
+   "tipoOrigem": "N(10.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Codigo Fornecedor",
+   "nome": "Codigo Fornecedor",
+   "descricao": "Codigo Fornecedor",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(10)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Nome Fornecedor",
+   "nome": "Nome Fornecedor",
+   "descricao": "Nome Fornecedor",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Descricção Familia",
+   "nome": "Descricção Familia",
+   "descricao": "Descricção Familia",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 35; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Preço Venda 2 com IVA",
+   "nome": "Preço Venda 2 com IVA",
+   "descricao": "Preço Venda 2 com IVA",
+   "tipo": "decimal",
+   "tipoOrigem": "N(10.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Preço Venda 2 sem IVA",
+   "nome": "Preço Venda 2 sem IVA",
+   "descricao": "Preço Venda 2 sem IVA",
+   "tipo": "decimal",
+   "tipoOrigem": "N(10.3)",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 13; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Serviço",
+   "nome": "Serviço",
+   "descricao": "Serviço",
+   "tipo": "booleano",
+   "tipoOrigem": "L",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 1; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK.Exporta OBS",
+   "nome": "Exporta OBS",
+   "descricao": "Exporta OBS",
+   "tipo": "booleano",
+   "tipoOrigem": "L",
+   "cardinalidade": null,
+   "grupo": "STK",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 1; ficheiro STK",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "AUX.ID",
+   "nome": "ID",
+   "descricao": "ID",
+   "tipo": "inteiro",
+   "tipoOrigem": "N(3)",
+   "cardinalidade": null,
+   "grupo": "AUX",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 3; ficheiro AUX",
+   "origem": "Campos Exportaç╞o.xlsx: registo AUX"
+  },
+  {
+   "id": "AUX.Texto",
+   "nome": "Texto",
+   "descricao": "Texto",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "AUX",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 40; ficheiro AUX",
+   "origem": "Campos Exportaç╞o.xlsx: registo AUX"
+  },
+  {
+   "id": "PRV.Matricula",
+   "nome": "Matricula",
+   "descricao": "Matricula",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "PRV",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 15",
+   "origem": "Campos Exportaç╞o.xlsx: registo PRV"
+  },
+  {
+   "id": "PRV.Codigo Artigo",
+   "nome": "Codigo Artigo",
+   "descricao": "Codigo Artigo",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": null,
+   "grupo": "PRV",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 7",
+   "origem": "Campos Exportaç╞o.xlsx: registo PRV"
+  },
+  {
+   "id": "PRV.Quantidade Total",
+   "nome": "Quantidade Total",
+   "descricao": "Quantidade Total",
+   "tipo": "decimal",
+   "tipoOrigem": "N(7.2)",
+   "cardinalidade": null,
+   "grupo": "PRV",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10",
+   "origem": "Campos Exportaç╞o.xlsx: registo PRV"
+  },
+  {
+   "id": "PRV.Quantidade Normal",
+   "nome": "Quantidade Normal",
+   "descricao": "Quantidade Normal",
+   "tipo": "decimal",
+   "tipoOrigem": "N(7.2)",
+   "cardinalidade": null,
+   "grupo": "PRV",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10",
+   "origem": "Campos Exportaç╞o.xlsx: registo PRV"
+  },
+  {
+   "id": "PRV.Quantidade Fora",
+   "nome": "Quantidade Fora",
+   "descricao": "Quantidade Fora",
+   "tipo": "decimal",
+   "tipoOrigem": "N(7.2)",
+   "cardinalidade": null,
+   "grupo": "PRV",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "comprimento 10",
+   "origem": "Campos Exportaç╞o.xlsx: registo PRV"
+  }
+ ],
+ "regras": [
+  {
+   "id": "VDM-2-COMPRIMENTO",
+   "texto": "Nome Vendedor tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Nome Vendedor"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-3-COMPRIMENTO",
+   "texto": "Morada Vendedor tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Morada Vendedor"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-4-COMPRIMENTO",
+   "texto": "Localidade Vendedor tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Localidade Vendedor"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-5-COMPRIMENTO",
+   "texto": "Codigo Postal vendedor tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Codigo Postal vendedor"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-6-COMPRIMENTO",
+   "texto": "Telfone Vendedor tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Telfone Vendedor"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-7-COMPRIMENTO",
+   "texto": "Telemovel Vendedor tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Telemovel Vendedor"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-8-COMPRIMENTO",
+   "texto": "NIF Vendedor tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.NIF Vendedor"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-10-COMPRIMENTO",
+   "texto": "Serie Numerações tem no máximo 3 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Serie Numerações"
+   ],
+   "expressao": "LENGTH [0, 3]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-15-COMPRIMENTO",
+   "texto": "Matricula tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Matricula"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-16-COMPRIMENTO",
+   "texto": "Veiculo tem no máximo 25 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Veiculo"
+   ],
+   "expressao": "LENGTH [0, 25]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-17-COMPRIMENTO",
+   "texto": "Modelo tem no máximo 20 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Modelo"
+   ],
+   "expressao": "LENGTH [0, 20]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-24-COMPRIMENTO",
+   "texto": "Prefixo ATCUD tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Prefixo ATCUD"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-33-COMPRIMENTO",
+   "texto": "Codigo Familia Extra tem no máximo 7 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Codigo Familia Extra"
+   ],
+   "expressao": "LENGTH [0, 7]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-37-COMPRIMENTO",
+   "texto": "Numero Digitos Serie tem no máximo 4 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Numero Digitos Serie"
+   ],
+   "expressao": "LENGTH [0, 4]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-38-COMPRIMENTO",
+   "texto": "Prefixo ATCUD Fatura tem no máximo 10 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Prefixo ATCUD Fatura"
+   ],
+   "expressao": "LENGTH [0, 10]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-39-COMPRIMENTO",
+   "texto": "Prefixo ATCUD Fatura/ Recibo tem no máximo 10 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Prefixo ATCUD Fatura/ Recibo"
+   ],
+   "expressao": "LENGTH [0, 10]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-40-COMPRIMENTO",
+   "texto": "Prefixo ATCUD Nota Credito tem no máximo 10 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Prefixo ATCUD Nota Credito"
+   ],
+   "expressao": "LENGTH [0, 10]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-41-COMPRIMENTO",
+   "texto": "Prefixo ATCUD Encomenda tem no máximo 10 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Prefixo ATCUD Encomenda"
+   ],
+   "expressao": "LENGTH [0, 10]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-42-COMPRIMENTO",
+   "texto": "Prefixo ATCUD Recibo tem no máximo 10 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Prefixo ATCUD Recibo"
+   ],
+   "expressao": "LENGTH [0, 10]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "VDM-43-COMPRIMENTO",
+   "texto": "Contribuinte do Emissor tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "VDM",
+   "elementos": [
+    "VDM.Contribuinte do Emissor"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo VDM"
+  },
+  {
+   "id": "CLI-2-COMPRIMENTO",
+   "texto": "Nome Cliente tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Nome Cliente"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-3-COMPRIMENTO",
+   "texto": "Morada Cliente tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Morada Cliente"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-4-COMPRIMENTO",
+   "texto": "Localidade Cliente tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Localidade Cliente"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-5-COMPRIMENTO",
+   "texto": "Codigo Postal cliente tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Codigo Postal cliente"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-6-COMPRIMENTO",
+   "texto": "Zona tem no máximo 10 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Zona"
+   ],
+   "expressao": "LENGTH [0, 10]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-7-COMPRIMENTO",
+   "texto": "Telefone Cliente tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Telefone Cliente"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-8-COMPRIMENTO",
+   "texto": "Telemovel Cliente tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Telemovel Cliente"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-10-COMPRIMENTO",
+   "texto": "Contribuinte Cliente tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Contribuinte Cliente"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-13-COMPRIMENTO",
+   "texto": "Email Cliente tem no máximo 60 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Email Cliente"
+   ],
+   "expressao": "LENGTH [0, 60]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-15-COMPRIMENTO",
+   "texto": "Local Cobrança tem no máximo 10 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Local Cobrança"
+   ],
+   "expressao": "LENGTH [0, 10]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-16-COMPRIMENTO",
+   "texto": "Nome 2 Titular tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Nome 2 Titular"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-17-COMPRIMENTO",
+   "texto": "Morada 2 Titular tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Morada 2 Titular"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-18-COMPRIMENTO",
+   "texto": "Localidade 2 Titular tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Localidade 2 Titular"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-19-COMPRIMENTO",
+   "texto": "Cod Postal 2 Titular tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Cod Postal 2 Titular"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-20-COMPRIMENTO",
+   "texto": "Nº CC 2 Titular tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Nº CC 2 Titular"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-21-COMPRIMENTO",
+   "texto": "Nº CC Cliente tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Nº CC Cliente"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-24-COMPRIMENTO",
+   "texto": "Telefone 2 Titular tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Telefone 2 Titular"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "CLI-25-COMPRIMENTO",
+   "texto": "Contribuinte 2 Titular tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "CLI",
+   "elementos": [
+    "CLI.Contribuinte 2 Titular"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo CLI"
+  },
+  {
+   "id": "STK-1-COMPRIMENTO",
+   "texto": "Codigo Artigo tem no máximo 6 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Codigo Artigo"
+   ],
+   "expressao": "LENGTH [0, 6]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-2-COMPRIMENTO",
+   "texto": "Codigo Axiliar tem no máximo 13 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Codigo Axiliar"
+   ],
+   "expressao": "LENGTH [0, 13]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-3-COMPRIMENTO",
+   "texto": "Codigp EAN tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Codigp EAN"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-4-COMPRIMENTO",
+   "texto": "Descricao tem no máximo 50 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Descricao"
+   ],
+   "expressao": "LENGTH [0, 50]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-5-COMPRIMENTO",
+   "texto": "Referencia tem no máximo 20 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Referencia"
+   ],
+   "expressao": "LENGTH [0, 20]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-6-COMPRIMENTO",
+   "texto": "Unidade Medida tem no máximo 6 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Unidade Medida"
+   ],
+   "expressao": "LENGTH [0, 6]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-16-COMPRIMENTO",
+   "texto": "Codigo Familia tem no máximo 7 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Codigo Familia"
+   ],
+   "expressao": "LENGTH [0, 7]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-20-COMPRIMENTO",
+   "texto": "Nome Fornecedor tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Nome Fornecedor"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "STK-21-COMPRIMENTO",
+   "texto": "Descricção Familia tem no máximo 35 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "STK",
+   "elementos": [
+    "STK.Descricção Familia"
+   ],
+   "expressao": "LENGTH [0, 35]",
+   "origem": "Campos Exportaç╞o.xlsx: registo STK"
+  },
+  {
+   "id": "AUX-2-COMPRIMENTO",
+   "texto": "Texto tem no máximo 40 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "AUX",
+   "elementos": [
+    "AUX.Texto"
+   ],
+   "expressao": "LENGTH [0, 40]",
+   "origem": "Campos Exportaç╞o.xlsx: registo AUX"
+  },
+  {
+   "id": "PRV-1-COMPRIMENTO",
+   "texto": "Matricula tem no máximo 15 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "PRV",
+   "elementos": [
+    "PRV.Matricula"
+   ],
+   "expressao": "LENGTH [0, 15]",
+   "origem": "Campos Exportaç╞o.xlsx: registo PRV"
+  },
+  {
+   "id": "PRV-2-COMPRIMENTO",
+   "texto": "Codigo Artigo tem no máximo 7 caracteres.",
+   "categoria": "formato",
+   "natureza": "RP",
+   "gravidade": null,
+   "contexto": "PRV",
+   "elementos": [
+    "PRV.Codigo Artigo"
+   ],
+   "expressao": "LENGTH [0, 7]",
+   "origem": "Campos Exportaç╞o.xlsx: registo PRV"
+  }
+ ]
+}

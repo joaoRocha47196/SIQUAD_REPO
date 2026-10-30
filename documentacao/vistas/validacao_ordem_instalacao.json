@@ -1,0 +1,2409 @@
+{
+  "vista": "validacao",
+  "titulo": "Validação de ordem_instalacao: inválida",
+  "instancia": "ordem_instalacao",
+  "descricaoInstancia": "Ordem de instalação com duas localizações: uma em Lisboa, outra fora da área de serviço e com o código postal errado.",
+  "hlm": "OrdemInstalacao",
+  "perfil": "OrdensCorrentes",
+  "projecao": "OrdemCompleta",
+  "valida": false,
+  "fixados": [],
+  "contextos": [
+    {
+      "nome": "dataDeHoje",
+      "valor": "2026-09-30",
+      "origem": "indicado no pedido"
+    }
+  ],
+  "resumo": {
+    "não conforme": 4,
+    "conforme": 26,
+    "não aplicável": 77
+  },
+  "estrutura": [],
+  "resumoEstrutura": {},
+  "conclusoes": [],
+  "regras": [
+    {
+      "regra": "RIR-CP-PT",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não conforme",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "4000",
+      "detalhe": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "mensagem": "O código postal português tem de ter o formato 0000-000, sem começar por zero."
+    },
+    {
+      "regra": "RP-AREA",
+      "tipo": "RP",
+      "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+      "vive": "USM InformacaoGeografica",
+      "ocorrencia": "Localizacao[1].InformacaoGeografica",
+      "estado": "não conforme",
+      "termos": [],
+      "valor": [
+        41.15,
+        -8.61,
+        [
+          [
+            38.8,
+            -9.25
+          ],
+          [
+            38.8,
+            -9.05
+          ],
+          [
+            38.68,
+            -9.05
+          ],
+          [
+            38.68,
+            -9.25
+          ]
+        ]
+      ],
+      "detalhe": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)]) → falsa",
+      "mensagem": "O dispositivo está fora da área onde foi autorizado."
+    },
+    {
+      "regra": "RP-CP",
+      "tipo": "RP",
+      "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "vive": "Propriedade USM:Morada.codigoPostal",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não conforme",
+      "termos": [],
+      "valor": "4000",
+      "detalhe": "codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "mensagem": "O código postal não tem nenhum dos formatos possíveis (português, espanhol ou britânico)."
+    },
+    {
+      "regra": "RP-FREGUESIA",
+      "tipo": "RP",
+      "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "vive": "Propriedade USM:Morada.freguesia",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não conforme",
+      "termos": [],
+      "valor": "BONFIM",
+      "detalhe": "freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "mensagem": "A freguesia não pertence às freguesias de Lisboa conhecidas."
+    },
+    {
+      "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AVENIDAS_NOVAS",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "1050-185",
+      "detalhe": "codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AVENIDAS_NOVAS",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "1050-185",
+      "detalhe": "codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-PT",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "1050-185",
+      "detalhe": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-PT",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "1050-185",
+      "detalhe": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-LX-LOCALIDADE",
+      "tipo": "RIR",
+      "descricao": "Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA",
+      "vive": "SM Localizacao",
+      "ocorrencia": "Localizacao[0]",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)])",
+          "valor": [
+            38.735,
+            -9.145,
+            [
+              [
+                38.796,
+                -9.23
+              ],
+              [
+                38.796,
+                -9.09
+              ],
+              [
+                38.69,
+                -9.09
+              ],
+              [
+                38.69,
+                -9.23
+              ]
+            ]
+          ],
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "LISBOA",
+      "detalhe": "localidade = LISBOA"
+    },
+    {
+      "regra": "RP-ALT",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.altitude entre -500 e 9000",
+      "vive": "Propriedade USM:InformacaoGeografica.altitude",
+      "ocorrencia": "Localizacao[0].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 95,
+      "detalhe": "altitude entre -500 e 9000"
+    },
+    {
+      "regra": "RP-ALT",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.altitude entre -500 e 9000",
+      "vive": "Propriedade USM:InformacaoGeografica.altitude",
+      "ocorrencia": "Localizacao[1].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 100,
+      "detalhe": "altitude entre -500 e 9000"
+    },
+    {
+      "regra": "RP-AREA",
+      "tipo": "RP",
+      "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+      "vive": "USM InformacaoGeografica",
+      "ocorrencia": "Localizacao[0].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        38.735,
+        -9.145,
+        [
+          [
+            38.8,
+            -9.25
+          ],
+          [
+            38.8,
+            -9.05
+          ],
+          [
+            38.68,
+            -9.05
+          ],
+          [
+            38.68,
+            -9.25
+          ]
+        ]
+      ],
+      "detalhe": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)]) → verdadeira"
+    },
+    {
+      "regra": "RP-CP",
+      "tipo": "RP",
+      "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "vive": "Propriedade USM:Morada.codigoPostal",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "1050-185",
+      "detalhe": "codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$"
+    },
+    {
+      "regra": "RP-CP",
+      "tipo": "RP",
+      "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "vive": "Propriedade USM:Morada.codigoPostal",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "1050-185",
+      "detalhe": "codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$"
+    },
+    {
+      "regra": "RP-FREGUESIA",
+      "tipo": "RP",
+      "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "vive": "Propriedade USM:Morada.freguesia",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "AVENIDAS_NOVAS",
+      "detalhe": "freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}"
+    },
+    {
+      "regra": "RP-FREGUESIA",
+      "tipo": "RP",
+      "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "vive": "Propriedade USM:Morada.freguesia",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "AVENIDAS_NOVAS",
+      "detalhe": "freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}"
+    },
+    {
+      "regra": "RP-LAT",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.latitude entre -90 e 90",
+      "vive": "Propriedade USM:InformacaoGeografica.latitude",
+      "ocorrencia": "Localizacao[0].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 38.735,
+      "detalhe": "latitude entre -90 e 90"
+    },
+    {
+      "regra": "RP-LAT",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.latitude entre -90 e 90",
+      "vive": "Propriedade USM:InformacaoGeografica.latitude",
+      "ocorrencia": "Localizacao[1].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 41.15,
+      "detalhe": "latitude entre -90 e 90"
+    },
+    {
+      "regra": "RP-LON",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+      "vive": "Propriedade USM:InformacaoGeografica.longitude",
+      "ocorrencia": "Localizacao[0].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": -9.145,
+      "detalhe": "longitude entre -180 e 180"
+    },
+    {
+      "regra": "RP-LON",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+      "vive": "Propriedade USM:InformacaoGeografica.longitude",
+      "ocorrencia": "Localizacao[1].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": -8.61,
+      "detalhe": "longitude entre -180 e 180"
+    },
+    {
+      "regra": "RP-NIF",
+      "tipo": "RP",
+      "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+      "vive": "Propriedade USM:Entidade.nif",
+      "ocorrencia": "Requerente.Entidade",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "512345678",
+      "detalhe": "nif segue o padrão ^[0-9]{9}$"
+    },
+    {
+      "regra": "RP-NIF-DC",
+      "tipo": "RP",
+      "descricao": "digitoControloValido(Entidade.nif)",
+      "vive": "Propriedade USM:Entidade.nif",
+      "ocorrencia": "Requerente.Entidade",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        "512345678"
+      ],
+      "detalhe": "digitoControloValido(nif) → verdadeira"
+    },
+    {
+      "regra": "RP-ORDEM-DATA",
+      "tipo": "RP",
+      "descricao": "naoPosteriorAHoje(Pedido.dataPedido)",
+      "vive": "Propriedade SM:Pedido.dataPedido",
+      "ocorrencia": "Pedido",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        "2026-09-28"
+      ],
+      "detalhe": "naoPosteriorAHoje(dataPedido) → verdadeira"
+    },
+    {
+      "regra": "RP-ORDEM-MAX",
+      "tipo": "RP",
+      "descricao": "contagemInferiorA(Localizacao, 21)",
+      "vive": "HLM OrdemInstalacao",
+      "ocorrencia": "(HLM)",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        [
+          {
+            "indicacaoAcesso": "Portaria",
+            "InformacaoGeografica": {
+              "latitude": 38.735,
+              "longitude": -9.145,
+              "altitude": 95,
+              "sistemaReferencia": "WGS84"
+            },
+            "Morada": {
+              "rua": "Avenida da República 1",
+              "codigoPostal": "1050-185",
+              "localidade": "LISBOA",
+              "freguesia": "AVENIDAS_NOVAS",
+              "pais": "PT"
+            }
+          },
+          {
+            "InformacaoGeografica": {
+              "latitude": 41.15,
+              "longitude": -8.61,
+              "altitude": 100,
+              "sistemaReferencia": "WGS84"
+            },
+            "Morada": {
+              "rua": "Rua de Santa Catarina 1",
+              "codigoPostal": "4000",
+              "localidade": "PORTO",
+              "freguesia": "BONFIM",
+              "pais": "PT"
+            }
+          }
+        ],
+        21
+      ],
+      "detalhe": "contagemInferiorA(Localizacao, 21) → verdadeira"
+    },
+    {
+      "regra": "RP-ORDEM-NUM",
+      "tipo": "RP",
+      "descricao": "Pedido.numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+      "vive": "Propriedade SM:Pedido.numeroOrdem",
+      "ocorrencia": "Pedido",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "OI-2026-00042",
+      "detalhe": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$"
+    },
+    {
+      "regra": "RP-PAIS",
+      "tipo": "RP",
+      "descricao": "Morada.pais ∈ {PT, ES, GB}",
+      "vive": "Propriedade USM:Morada.pais",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "PT",
+      "detalhe": "pais ∈ {PT, ES, GB}"
+    },
+    {
+      "regra": "RP-PAIS",
+      "tipo": "RP",
+      "descricao": "Morada.pais ∈ {PT, ES, GB}",
+      "vive": "Propriedade USM:Morada.pais",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "PT",
+      "detalhe": "pais ∈ {PT, ES, GB}"
+    },
+    {
+      "regra": "RP-PAIS",
+      "tipo": "RP",
+      "descricao": "Morada.pais ∈ {PT, ES, GB}",
+      "vive": "Propriedade USM:Morada.pais",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "PT",
+      "detalhe": "pais ∈ {PT, ES, GB}"
+    },
+    {
+      "regra": "RP-SRC",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+      "vive": "Propriedade USM:InformacaoGeografica.sistemaReferencia",
+      "ocorrencia": "Localizacao[0].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "WGS84",
+      "detalhe": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}"
+    },
+    {
+      "regra": "RP-SRC",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+      "vive": "Propriedade USM:InformacaoGeografica.sistemaReferencia",
+      "ocorrencia": "Localizacao[1].InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "WGS84",
+      "detalhe": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}"
+    },
+    {
+      "regra": "RIR-CP-ES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = ES",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-ES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = ES",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-ES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = ES",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-GB",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = GB",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-GB",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = GB",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-GB",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = GB",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AJUDA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AJUDA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ALCANTARA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ALCANTARA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ALVALADE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ALVALADE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AREEIRO",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AREEIRO",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ARROIOS",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ARROIOS",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BEATO",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BEATO",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BELEM",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BELEM",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BENFICA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BENFICA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CAMPO_DE_OURIQUE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CAMPO_DE_OURIQUE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CAMPOLIDE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CAMPOLIDE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CARNIDE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CARNIDE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ESTRELA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ESTRELA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = LUMIAR",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = LUMIAR",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = MARVILA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = MARVILA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = MISERICORDIA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = MISERICORDIA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = OLIVAIS",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = OLIVAIS",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = PARQUE_DAS_NACOES",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = PARQUE_DAS_NACOES",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = PENHA_DE_FRANCA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = PENHA_DE_FRANCA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTA_CLARA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTA_CLARA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTA_MARIA_MAIOR",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTA_MARIA_MAIOR",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTO_ANTONIO",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTO_ANTONIO",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[0].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SAO_VICENTE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao[1].Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "PORTO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Requerente.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SAO_VICENTE",
+          "valor": "AVENIDAS_NOVAS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-LX-LOCALIDADE",
+      "tipo": "RIR",
+      "descricao": "Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA",
+      "vive": "SM Localizacao",
+      "ocorrencia": "Localizacao[1]",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)])",
+          "valor": [
+            41.15,
+            -8.61,
+            [
+              [
+                38.796,
+                -9.23
+              ],
+              [
+                38.796,
+                -9.09
+              ],
+              [
+                38.69,
+                -9.09
+              ],
+              [
+                38.69,
+                -9.23
+              ]
+            ]
+          ],
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    }
+  ],
+  "instanciaAvaliada": {
+    "Pedido": {
+      "numeroOrdem": "OI-2026-00042",
+      "dataPedido": "2026-09-28"
+    },
+    "Requerente": {
+      "consentimentoComercial": false,
+      "Entidade": {
+        "nif": "512345678",
+        "nome": "Condomínio Exemplo"
+      },
+      "Morada": {
+        "rua": "Avenida da República 1",
+        "codigoPostal": "1050-185",
+        "localidade": "LISBOA",
+        "freguesia": "AVENIDAS_NOVAS",
+        "pais": "PT"
+      }
+    },
+    "Localizacao": [
+      {
+        "indicacaoAcesso": "Portaria",
+        "InformacaoGeografica": {
+          "latitude": 38.735,
+          "longitude": -9.145,
+          "altitude": 95,
+          "sistemaReferencia": "WGS84"
+        },
+        "Morada": {
+          "rua": "Avenida da República 1",
+          "codigoPostal": "1050-185",
+          "localidade": "LISBOA",
+          "freguesia": "AVENIDAS_NOVAS",
+          "pais": "PT"
+        }
+      },
+      {
+        "InformacaoGeografica": {
+          "latitude": 41.15,
+          "longitude": -8.61,
+          "altitude": 100,
+          "sistemaReferencia": "WGS84"
+        },
+        "Morada": {
+          "rua": "Rua de Santa Catarina 1",
+          "codigoPostal": "4000",
+          "localidade": "PORTO",
+          "freguesia": "BONFIM",
+          "pais": "PT"
+        }
+      }
+    ]
+  },
+  "parametros": {
+    "exemplo": "ordem_instalacao"
+  }
+}

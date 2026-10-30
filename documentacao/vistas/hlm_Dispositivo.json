@@ -1,0 +1,997 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo HLM Dispositivo",
+  "nivel": "HLM",
+  "nome": "Dispositivo",
+  "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+  "comRegras": false,
+  "especifico": false,
+  "arvore": {
+    "nivel": "HLM",
+    "nome": "Dispositivo",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+    "propriedades": [],
+    "filhos": [
+      {
+        "nivel": "SM",
+        "nome": "Identificacao",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1",
+        "caminho": "Identificacao",
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "propriedades": [
+          {
+            "chave": "SM:Identificacao.identificador",
+            "nome": "identificador",
+            "dono": "Identificacao",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Identificador do dispositivo",
+            "caminho": "Identificacao.identificador",
+            "nomesAlternativos": [
+              "deviceId"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Identificacao.fabricante",
+            "nome": "fabricante",
+            "dono": "Identificacao",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Fabricante do dispositivo",
+            "caminho": "Identificacao.fabricante",
+            "nomesAlternativos": [
+              "manufacturer"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Identificacao.estado",
+            "nome": "estado",
+            "dono": "Identificacao",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Estado operacional do dispositivo",
+            "caminho": "Identificacao.estado",
+            "nomesAlternativos": [
+              "status"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Identificacao.tipoDispositivo",
+            "nome": "tipoDispositivo",
+            "dono": "Identificacao",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Grandeza medida pelo dispositivo",
+            "caminho": "Identificacao.tipoDispositivo",
+            "nomesAlternativos": [
+              "deviceType"
+            ],
+            "discriminante": true
+          }
+        ],
+        "filhos": []
+      },
+      {
+        "nivel": "SM",
+        "nome": "Leitura",
+        "papel": "Leitura",
+        "cardinalidade": "1..1",
+        "caminho": "Leitura",
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "propriedades": [],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "Medicao",
+            "papel": "Medicao",
+            "cardinalidade": "1..1",
+            "caminho": "Leitura.Medicao",
+            "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+            "propriedades": [
+              {
+                "chave": "USM:Medicao.unidadeMedida",
+                "nome": "unidadeMedida",
+                "dono": "Medicao",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Unidade de medida associada ao valor medido",
+                "caminho": "Leitura.Medicao.unidadeMedida",
+                "nomesAlternativos": [
+                  "unit"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Medicao.valor",
+                "nome": "valor",
+                "dono": "Medicao",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Valor medido, na unidade indicada",
+                "caminho": "Leitura.Medicao.valor",
+                "nomesAlternativos": [
+                  "value",
+                  "reading"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Medicao.dataMedicao",
+                "nome": "dataMedicao",
+                "dono": "Medicao",
+                "nivelDono": "USM",
+                "tipo": "data",
+                "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+                "caminho": "Leitura.Medicao.dataMedicao",
+                "nomesAlternativos": [
+                  "timestamp",
+                  "measuredAt"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Instalacao",
+            "papel": "Instalacao",
+            "cardinalidade": "1..1",
+            "caminho": "Leitura.Instalacao",
+            "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+            "propriedades": [
+              {
+                "chave": "USM:Instalacao.ambiente",
+                "nome": "ambiente",
+                "dono": "Instalacao",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Ambiente onde o dispositivo está instalado",
+                "caminho": "Leitura.Instalacao.ambiente",
+                "nomesAlternativos": [
+                  "environment"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Assinatura",
+            "papel": "Assinatura",
+            "cardinalidade": "0..1",
+            "caminho": "Leitura.Assinatura",
+            "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+            "propriedades": [
+              {
+                "chave": "USM:Assinatura.mensagem",
+                "nome": "mensagem",
+                "dono": "Assinatura",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Conteúdo assinado, tal como enviado pelo dispositivo",
+                "caminho": "Leitura.Assinatura.mensagem",
+                "nomesAlternativos": [
+                  "payload"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Assinatura.assinatura",
+                "nome": "assinatura",
+                "dono": "Assinatura",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+                "caminho": "Leitura.Assinatura.assinatura",
+                "nomesAlternativos": [
+                  "signature"
+                ],
+                "discriminante": false
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      },
+      {
+        "nivel": "SM",
+        "nome": "Localizacao",
+        "papel": "Localizacao",
+        "cardinalidade": "1..1",
+        "caminho": "Localizacao",
+        "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso.",
+        "propriedades": [
+          {
+            "chave": "SM:Localizacao.indicacaoAcesso",
+            "nome": "indicacaoAcesso",
+            "dono": "Localizacao",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Indicação de acesso ao local (texto livre, ex.: portão lateral, chave no cofre)",
+            "caminho": "Localizacao.indicacaoAcesso",
+            "nomesAlternativos": [
+              "accessNotes"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "InformacaoGeografica",
+            "papel": "InformacaoGeografica",
+            "cardinalidade": "1..1",
+            "caminho": "Localizacao.InformacaoGeografica",
+            "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+            "propriedades": [
+              {
+                "chave": "USM:InformacaoGeografica.latitude",
+                "nome": "latitude",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Latitude, em graus decimais",
+                "caminho": "Localizacao.InformacaoGeografica.latitude",
+                "nomesAlternativos": [
+                  "lat"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:InformacaoGeografica.longitude",
+                "nome": "longitude",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Longitude, em graus decimais",
+                "caminho": "Localizacao.InformacaoGeografica.longitude",
+                "nomesAlternativos": [
+                  "lon",
+                  "lng"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:InformacaoGeografica.altitude",
+                "nome": "altitude",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Altitude, em metros",
+                "caminho": "Localizacao.InformacaoGeografica.altitude",
+                "nomesAlternativos": [
+                  "alt",
+                  "elevation"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:InformacaoGeografica.sistemaReferencia",
+                "nome": "sistemaReferencia",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Sistema de referência das coordenadas",
+                "caminho": "Localizacao.InformacaoGeografica.sistemaReferencia",
+                "nomesAlternativos": [
+                  "crs",
+                  "datum"
+                ],
+                "discriminante": false
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Morada",
+            "papel": "Morada",
+            "cardinalidade": "1..1",
+            "caminho": "Localizacao.Morada",
+            "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+            "propriedades": [
+              {
+                "chave": "USM:Morada.rua",
+                "nome": "rua",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Arruamento e número de porta",
+                "caminho": "Localizacao.Morada.rua",
+                "nomesAlternativos": [],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.codigoPostal",
+                "nome": "codigoPostal",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Código postal da morada",
+                "caminho": "Localizacao.Morada.codigoPostal",
+                "nomesAlternativos": [
+                  "zipCode",
+                  "postalCode",
+                  "CP"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.localidade",
+                "nome": "localidade",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+                "caminho": "Localizacao.Morada.localidade",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.freguesia",
+                "nome": "freguesia",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+                "caminho": "Localizacao.Morada.freguesia",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.pais",
+                "nome": "pais",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "País da morada (código ISO de duas letras)",
+                "caminho": "Localizacao.Morada.pais",
+                "nomesAlternativos": [
+                  "country",
+                  "countryCode"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      },
+      {
+        "nivel": "SM",
+        "nome": "Diagnostico",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1",
+        "caminho": "Diagnostico",
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "propriedades": [],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "Diagnostico",
+            "papel": "Diagnostico",
+            "cardinalidade": "1..1",
+            "caminho": "Diagnostico.Diagnostico",
+            "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+            "propriedades": [
+              {
+                "chave": "USM:Diagnostico.nivelBateria",
+                "nome": "nivelBateria",
+                "dono": "Diagnostico",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Nível de bateria (%)",
+                "caminho": "Diagnostico.Diagnostico.nivelBateria",
+                "nomesAlternativos": [
+                  "battery"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Diagnostico.dataUltimaManutencao",
+                "nome": "dataUltimaManutencao",
+                "dono": "Diagnostico",
+                "nivelDono": "USM",
+                "tipo": "data",
+                "descricao": "Data da última manutenção",
+                "caminho": "Diagnostico.Diagnostico.dataUltimaManutencao",
+                "nomesAlternativos": [
+                  "lastMaintenance"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Diagnostico.sinalRede",
+                "nome": "sinalRede",
+                "dono": "Diagnostico",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Intensidade do sinal de rede (dBm)",
+                "caminho": "Diagnostico.Diagnostico.sinalRede",
+                "nomesAlternativos": [
+                  "rssi"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Diagnostico.latencia",
+                "nome": "latencia",
+                "dono": "Diagnostico",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Latência da comunicação (ms)",
+                "caminho": "Diagnostico.Diagnostico.latencia",
+                "nomesAlternativos": [
+                  "latency"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Diagnostico.taxaRececao",
+                "nome": "taxaRececao",
+                "dono": "Diagnostico",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Taxa de receção de mensagens (%)",
+                "caminho": "Diagnostico.Diagnostico.taxaRececao",
+                "nomesAlternativos": [
+                  "receptionRate"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      }
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "HLM",
+    "nome": "Dispositivo",
+    "caminho": "",
+    "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico."
+  },
+  "blocos": [
+    {
+      "nome": "Identificacao",
+      "nivel": "SM",
+      "papel": "Identificacao",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Identificacao",
+          "papel": "Identificacao",
+          "caminho": "Identificacao",
+          "cardinalidade": "1..1",
+          "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "identificador",
+          "caminho": "Identificacao.identificador",
+          "descricao": "Identificador do dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "deviceId"
+          ],
+          "chave": "SM:Identificacao.identificador",
+          "dono": "Identificacao",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "fabricante",
+          "caminho": "Identificacao.fabricante",
+          "descricao": "Fabricante do dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "manufacturer"
+          ],
+          "chave": "SM:Identificacao.fabricante",
+          "dono": "Identificacao",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "estado",
+          "caminho": "Identificacao.estado",
+          "descricao": "Estado operacional do dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "status"
+          ],
+          "chave": "SM:Identificacao.estado",
+          "dono": "Identificacao",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "tipoDispositivo",
+          "caminho": "Identificacao.tipoDispositivo",
+          "descricao": "Grandeza medida pelo dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "deviceType"
+          ],
+          "chave": "SM:Identificacao.tipoDispositivo",
+          "dono": "Identificacao",
+          "discriminante": true
+        }
+      ],
+      "resumoPropriedades": [
+        "identificador",
+        "fabricante",
+        "estado",
+        "tipoDispositivo"
+      ]
+    },
+    {
+      "nome": "Leitura",
+      "nivel": "SM",
+      "papel": "Leitura",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Leitura",
+          "papel": "Leitura",
+          "caminho": "Leitura",
+          "cardinalidade": "1..1",
+          "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Medicao",
+          "papel": "Medicao",
+          "caminho": "Leitura.Medicao",
+          "cardinalidade": "1..1",
+          "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "unidadeMedida",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "descricao": "Unidade de medida associada ao valor medido",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "unit"
+          ],
+          "chave": "USM:Medicao.unidadeMedida",
+          "dono": "Medicao",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor",
+          "descricao": "Valor medido, na unidade indicada",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "value",
+            "reading"
+          ],
+          "chave": "USM:Medicao.valor",
+          "dono": "Medicao",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "dataMedicao",
+          "caminho": "Leitura.Medicao.dataMedicao",
+          "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "timestamp",
+            "measuredAt"
+          ],
+          "chave": "USM:Medicao.dataMedicao",
+          "dono": "Medicao",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Instalacao",
+          "papel": "Instalacao",
+          "caminho": "Leitura.Instalacao",
+          "cardinalidade": "1..1",
+          "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "ambiente",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "descricao": "Ambiente onde o dispositivo está instalado",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "environment"
+          ],
+          "chave": "USM:Instalacao.ambiente",
+          "dono": "Instalacao",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Assinatura",
+          "papel": "Assinatura",
+          "caminho": "Leitura.Assinatura",
+          "cardinalidade": "0..1",
+          "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "mensagem",
+          "caminho": "Leitura.Assinatura.mensagem",
+          "descricao": "Conteúdo assinado, tal como enviado pelo dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "payload"
+          ],
+          "chave": "USM:Assinatura.mensagem",
+          "dono": "Assinatura",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "assinatura",
+          "caminho": "Leitura.Assinatura.assinatura",
+          "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "signature"
+          ],
+          "chave": "USM:Assinatura.assinatura",
+          "dono": "Assinatura",
+          "discriminante": false
+        }
+      ],
+      "resumoPropriedades": [
+        "unidadeMedida",
+        "valor",
+        "dataMedicao",
+        "ambiente",
+        "mensagem",
+        "assinatura"
+      ]
+    },
+    {
+      "nome": "Localizacao",
+      "nivel": "SM",
+      "papel": "Localizacao",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Localizacao",
+          "papel": "Localizacao",
+          "caminho": "Localizacao",
+          "cardinalidade": "1..1",
+          "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "indicacaoAcesso",
+          "caminho": "Localizacao.indicacaoAcesso",
+          "descricao": "Indicação de acesso ao local (texto livre, ex.: portão lateral, chave no cofre)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "accessNotes"
+          ],
+          "chave": "SM:Localizacao.indicacaoAcesso",
+          "dono": "Localizacao",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "InformacaoGeografica",
+          "papel": "InformacaoGeografica",
+          "caminho": "Localizacao.InformacaoGeografica",
+          "cardinalidade": "1..1",
+          "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "latitude",
+          "caminho": "Localizacao.InformacaoGeografica.latitude",
+          "descricao": "Latitude, em graus decimais",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "lat"
+          ],
+          "chave": "USM:InformacaoGeografica.latitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "longitude",
+          "caminho": "Localizacao.InformacaoGeografica.longitude",
+          "descricao": "Longitude, em graus decimais",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "lon",
+            "lng"
+          ],
+          "chave": "USM:InformacaoGeografica.longitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "altitude",
+          "caminho": "Localizacao.InformacaoGeografica.altitude",
+          "descricao": "Altitude, em metros",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "alt",
+            "elevation"
+          ],
+          "chave": "USM:InformacaoGeografica.altitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "sistemaReferencia",
+          "caminho": "Localizacao.InformacaoGeografica.sistemaReferencia",
+          "descricao": "Sistema de referência das coordenadas",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "crs",
+            "datum"
+          ],
+          "chave": "USM:InformacaoGeografica.sistemaReferencia",
+          "dono": "InformacaoGeografica",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Morada",
+          "papel": "Morada",
+          "caminho": "Localizacao.Morada",
+          "cardinalidade": "1..1",
+          "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "rua",
+          "caminho": "Localizacao.Morada.rua",
+          "descricao": "Arruamento e número de porta",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.rua",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "codigoPostal",
+          "caminho": "Localizacao.Morada.codigoPostal",
+          "descricao": "Código postal da morada",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "zipCode",
+            "postalCode",
+            "CP"
+          ],
+          "chave": "USM:Morada.codigoPostal",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "localidade",
+          "caminho": "Localizacao.Morada.localidade",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.localidade",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "freguesia",
+          "caminho": "Localizacao.Morada.freguesia",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.freguesia",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "pais",
+          "caminho": "Localizacao.Morada.pais",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "country",
+            "countryCode"
+          ],
+          "chave": "USM:Morada.pais",
+          "dono": "Morada",
+          "discriminante": true
+        }
+      ],
+      "resumoPropriedades": [
+        "indicacaoAcesso",
+        "latitude",
+        "longitude",
+        "altitude",
+        "sistemaReferencia",
+        "rua",
+        "codigoPostal",
+        "localidade",
+        "freguesia",
+        "pais"
+      ]
+    },
+    {
+      "nome": "Diagnostico",
+      "nivel": "SM",
+      "papel": "Diagnostico",
+      "cardinalidade": "0..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Diagnostico",
+          "papel": "Diagnostico",
+          "caminho": "Diagnostico",
+          "cardinalidade": "0..1",
+          "descricao": "Diagnóstico técnico do dispositivo."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Diagnostico",
+          "papel": "Diagnostico",
+          "caminho": "Diagnostico.Diagnostico",
+          "cardinalidade": "1..1",
+          "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "nivelBateria",
+          "caminho": "Diagnostico.Diagnostico.nivelBateria",
+          "descricao": "Nível de bateria (%)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "battery"
+          ],
+          "chave": "USM:Diagnostico.nivelBateria",
+          "dono": "Diagnostico",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "dataUltimaManutencao",
+          "caminho": "Diagnostico.Diagnostico.dataUltimaManutencao",
+          "descricao": "Data da última manutenção",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "lastMaintenance"
+          ],
+          "chave": "USM:Diagnostico.dataUltimaManutencao",
+          "dono": "Diagnostico",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "sinalRede",
+          "caminho": "Diagnostico.Diagnostico.sinalRede",
+          "descricao": "Intensidade do sinal de rede (dBm)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "rssi"
+          ],
+          "chave": "USM:Diagnostico.sinalRede",
+          "dono": "Diagnostico",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "latencia",
+          "caminho": "Diagnostico.Diagnostico.latencia",
+          "descricao": "Latência da comunicação (ms)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "latency"
+          ],
+          "chave": "USM:Diagnostico.latencia",
+          "dono": "Diagnostico",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "taxaRececao",
+          "caminho": "Diagnostico.Diagnostico.taxaRececao",
+          "descricao": "Taxa de receção de mensagens (%)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "receptionRate"
+          ],
+          "chave": "USM:Diagnostico.taxaRececao",
+          "dono": "Diagnostico",
+          "discriminante": true
+        }
+      ],
+      "resumoPropriedades": [
+        "nivelBateria",
+        "dataUltimaManutencao",
+        "sinalRede",
+        "latencia",
+        "taxaRececao"
+      ]
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "DispositivoProducao",
+      "descricao": "Equipamento em produção: identificação completa, leitura, localização e diagnóstico.",
+      "perfis": [
+        "Estufas",
+        "LeiturasIndustriais",
+        "RefrigeracaoLote"
+      ]
+    },
+    {
+      "nome": "DispositivoTeste",
+      "descricao": "Equipamento em testes: identificação mínima e medição; coordenadas opcionais.",
+      "perfis": [
+        "TesteLaboratorio",
+        "TesteRefrigeracao"
+      ]
+    }
+  ],
+  "parametros": {
+    "nivel": "HLM",
+    "nome": "Dispositivo"
+  }
+}

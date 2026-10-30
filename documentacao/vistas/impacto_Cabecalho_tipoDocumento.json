@@ -1,0 +1,68 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de tipoDocumento (Cabecalho)",
+  "propriedade": "SM:Cabecalho.tipoDocumento",
+  "nome": "tipoDocumento",
+  "regras": [
+    {
+      "id": "RP-TIPODOC",
+      "tipo": "RP",
+      "descricao": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIR-FS",
+      "tipo": "RIR",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.totalFatura ≤ 1000",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-FS-LIN",
+      "tipo": "RIR",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → contagemInferiorA(Linhas.Linha, 11)",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-FS-NUM",
+      "tipo": "RIR",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\"",
+      "papeis": [
+        "termo da condição"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 1,
+    "RIR": 3,
+    "RIC": 0
+  },
+  "projecoes": [
+    {
+      "projecao": "FaturaAT",
+      "tipo": "obrigatoria",
+      "caminho": "Cabecalho.tipoDocumento"
+    },
+    {
+      "projecao": "FaturaSimplificada",
+      "tipo": "obrigatoria",
+      "caminho": "Cabecalho.tipoDocumento"
+    }
+  ],
+  "perfis": [
+    {
+      "perfil": "EmissaoSimplificada",
+      "caminho": "Cabecalho.tipoDocumento",
+      "valor": "FS"
+    }
+  ],
+  "parametros": {
+    "propriedade": "SM:Cabecalho.tipoDocumento"
+  }
+}

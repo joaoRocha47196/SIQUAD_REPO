@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://exemplo.local/ecv/ecv.schema.json",
+  "title": "Declaração ECV",
+  "description": "Forma (sintaxe) de uma Declaração ECV. As regras que dependem de várias entidades (caminhos, tipos, invariantes I1–I13) são verificadas por ecv/3_ingestion/verification/; ver specs/declaracao/README.md. Os enumerados (tipos base, cardinalidades, operadores) coincidem com ecv/config/ecv.config.json (há um teste que o confirma).",
+  "type": "object",
+  "required": ["usm"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"type": "string"},
+    "declaracao": {"$ref": "#/$defs/cabecalho"},
+    "contextosExternos": {"type": "array", "items": {"$ref": "#/$defs/contextoExterno"}},
+    "funcoes": {"type": "array", "items": {"$ref": "#/$defs/funcao"}},
+    "usm": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/usm"}},
+    "sm": {"type": "array", "items": {"$ref": "#/$defs/sm"}},
+    "hlm": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"$ref": "#/$defs/hlm"},
+            "description": "Exatamente um HLM: uma declaração é a exportação completa de um HLM, com todos os modelos, funções e contextos de que depende."},
+    "projecoes": {"type": "array", "items": {"$ref": "#/$defs/projecao"}},
+    "perfis": {"type": "array", "items": {"$ref": "#/$defs/perfil"}}
+  },
+  "$defs": {
+    "nomeModelo": {"type": "string", "pattern": "^[A-Z][A-Za-z0-9]*$", "description": "PascalCase, sem acentos."},
+    "nomePropriedade": {"type": "string", "pattern": "^[a-z][A-Za-z0-9]*$", "description": "camelCase, sem acentos."},
+    "nomeFuncao": {"type": "string", "pattern": "^[a-z][A-Za-z0-9]*$"},
+    "tipoBase": {"enum": ["texto", "inteiro", "decimal", "data", "booleano"]},
+    "cardinalidade": {"enum": ["0..1", "1..1", "0..*", "1..*"]},
+    "notas": {"type": "string", "description": "Comentário livre; não é conhecimento de validação."},
+    "valorSimples": {"type": ["string", "number", "boolean"]},
+    "operadorTipificado": {"enum": ["EQUALS", "NOT_EQUALS", "IN", "RANGE", "LT", "LTE", "GT", "GTE", "PATTERN",
+                                    "CONTAINS", "STARTS_WITH", "ENDS_WITH", "LENGTH"]},
+    "operadorFuncao": {"enum": ["FUNCTION", "EXT_FUNCTION"]},
+
+    "cabecalho": {
+      "type": "object",
+      "required": ["nome", "hlm"],
+      "properties": {
+        "nome": {"type": "string"}, "versao": {"type": "string"}, "descricao": {"type": "string"},
+        "dominios": {"type": "array", "items": {"type": "string"}},
+        "hlm": {"$ref": "#/$defs/nomeModelo", "description": "O HLM que a declaração descreve."}
+      },
+      "additionalProperties": false
+    },
+    "contextoExterno": {
+      "type": "object",
+      "required": ["nome", "tipo", "descricao"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomeFuncao"}, "tipo": {"$ref": "#/$defs/tipoBase"},
+        "descricao": {"type": "string", "minLength": 10}, "fonte": {"type": "string"}, "notas": {"$ref": "#/$defs/notas"}
+      }
+    },
+    "funcao": {
+      "type": "object",
+      "required": ["nome", "descricao", "parametros", "contextosExternos", "retorno"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomeFuncao"},
+        "descricao": {"type": "string", "minLength": 10},
+        "parametros": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "required": ["nome", "tipo", "papel"], "additionalProperties": false,
+            "properties": {
+              "nome": {"type": "string"},
+              "tipo": {"type": "string", "description": "tipo base, 'lista<tipo>', 'modelo' (instâncias de uma coleção) ou outro (ex.: 'poligono')."},
+              "papel": {"enum": ["alvo", "parametro"], "description": "alvo: recebe um caminho do modelo; parametro: recebe um literal da regra."},
+              "colecao": {"type": "boolean"},
+              "descricao": {"type": "string"}
+            }
+          }
+        },
+        "contextosExternos": {"type": "array", "items": {"type": "string"}},
+        "retorno": {"const": "booleano"},
+        "notas": {"$ref": "#/$defs/notas"}
+      }
+    },
+    "propriedade": {
+      "type": "object",
+      "required": ["nome", "tipo", "descricao"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomePropriedade"}, "tipo": {"$ref": "#/$defs/tipoBase"},
+        "descricao": {"type": "string", "minLength": 5},
+        "nomesAlternativos": {"type": "array", "items": {"type": "string"}},
+        "regras": {"type": "array", "items": {"$ref": "#/$defs/regra"}},
+        "notas": {"$ref": "#/$defs/notas"}
+      }
+    },
+    "composicaoUSM": {
+      "type": "object", "required": ["usm", "cardinalidade"], "additionalProperties": false,
+      "properties": {"usm": {"$ref": "#/$defs/nomeModelo"}, "papel": {"$ref": "#/$defs/nomeModelo"},
+                     "cardinalidade": {"$ref": "#/$defs/cardinalidade"}}
+    },
+    "composicaoSM": {
+      "type": "object", "required": ["sm", "cardinalidade"], "additionalProperties": false,
+      "properties": {"sm": {"$ref": "#/$defs/nomeModelo"}, "papel": {"$ref": "#/$defs/nomeModelo"},
+                     "cardinalidade": {"$ref": "#/$defs/cardinalidade"}}
+    },
+    "usm": {
+      "type": "object",
+      "required": ["nome", "descricao", "propriedades"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomeModelo"}, "descricao": {"type": "string", "minLength": 10},
+        "propriedades": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/propriedade"}},
+        "regras": {"type": "array", "items": {"$ref": "#/$defs/regra"}},
+        "notas": {"$ref": "#/$defs/notas"}
+      }
+    },
+    "sm": {
+      "type": "object",
+      "required": ["nome", "descricao"],
+      "anyOf": [{"required": ["composicao"]}, {"required": ["propriedades"]}],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomeModelo"}, "descricao": {"type": "string", "minLength": 10},
+        "composicao": {"type": "array", "items": {"$ref": "#/$defs/composicaoUSM"}},
+        "propriedades": {"type": "array", "items": {"$ref": "#/$defs/propriedade"}, "description": "propriedades residuais"},
+        "regras": {"type": "array", "items": {"$ref": "#/$defs/regra"}},
+        "notas": {"$ref": "#/$defs/notas"}
+      }
+    },
+    "hlm": {
+      "type": "object",
+      "required": ["nome", "descricao", "composicao"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomeModelo"}, "descricao": {"type": "string", "minLength": 10},
+        "composicao": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/composicaoSM"}},
+        "regras": {"type": "array", "items": {"$ref": "#/$defs/regra"}},
+        "notas": {"$ref": "#/$defs/notas"}
+      }
+    },
+    "argumento": {
+      "oneOf": [
+        {"type": "object", "required": ["caminho"], "additionalProperties": false, "properties": {"caminho": {"type": "string"}}},
+        {"type": "object", "required": ["literal"], "additionalProperties": false, "properties": {"literal": {}}}
+      ]
+    },
+    "chamada": {
+      "type": "object", "required": ["funcao", "argumentos"], "additionalProperties": false,
+      "properties": {"funcao": {"$ref": "#/$defs/nomeFuncao"}, "argumentos": {"type": "array", "items": {"$ref": "#/$defs/argumento"}}}
+    },
+    "restricao": {
+      "oneOf": [
+        {
+          "type": "object", "required": ["propriedade", "operador", "valor", "mensagem"], "additionalProperties": false,
+          "properties": {"propriedade": {"type": "string"}, "operador": {"$ref": "#/$defs/operadorTipificado"},
+                         "valor": {}, "mensagem": {"type": "string", "minLength": 10}}
+        },
+        {
+          "type": "object", "required": ["operador", "chamada", "mensagem"], "additionalProperties": false,
+          "properties": {"operador": {"$ref": "#/$defs/operadorFuncao"}, "chamada": {"$ref": "#/$defs/chamada"},
+                         "mensagem": {"type": "string", "minLength": 10}}
+        }
+      ]
+    },
+    "termo": {
+      "oneOf": [
+        {
+          "type": "object", "required": ["propriedade", "operador", "valor"], "additionalProperties": false,
+          "properties": {"propriedade": {"type": "string"}, "operador": {"$ref": "#/$defs/operadorTipificado"}, "valor": {}}
+        },
+        {
+          "type": "object", "required": ["propriedade", "operador", "contexto"], "additionalProperties": false,
+          "properties": {"propriedade": {"type": "string"}, "operador": {"enum": ["EQUALS", "NOT_EQUALS", "LT", "LTE", "GT", "GTE"]},
+                         "contexto": {"type": "string"}}
+        },
+        {
+          "type": "object", "required": ["operador", "chamada"], "additionalProperties": false,
+          "properties": {"operador": {"$ref": "#/$defs/operadorFuncao"}, "chamada": {"$ref": "#/$defs/chamada"}}
+        }
+      ]
+    },
+    "regra": {
+      "type": "object",
+      "required": ["id", "natureza", "descricao"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^(RP|RIR|RIC)-[A-Z0-9]+(-[A-Z0-9]+)*$"},
+        "natureza": {"enum": ["plausibilidade", "inferencia_restritiva", "inferencia_conclusiva"]},
+        "descricao": {"type": "string"},
+        "condicao": {"type": "array", "items": {"$ref": "#/$defs/termo"}},
+        "restricao": {"$ref": "#/$defs/restricao"},
+        "mensagem": {"type": "string", "minLength": 10, "description": "só numa RIC: mensagem de conclusão"},
+        "conclusao": {"type": "object", "required": ["tipo", "valor"], "additionalProperties": false,
+                      "properties": {"tipo": {"enum": ["ACAO", "ESTADO"]}, "valor": {"type": "string"}}},
+        "contextosExternos": {"type": "array", "items": {"type": "string"}, "description": "derivado; se presente, tem de coincidir"},
+        "notas": {"$ref": "#/$defs/notas"}
+      },
+      "allOf": [
+        {"if": {"properties": {"natureza": {"const": "plausibilidade"}}},
+         "then": {"required": ["restricao"], "not": {"anyOf": [{"required": ["mensagem"]}, {"required": ["conclusao"]}]},
+                  "properties": {"condicao": {"maxItems": 0}}}},
+        {"if": {"properties": {"natureza": {"const": "inferencia_restritiva"}}},
+         "then": {"required": ["condicao", "restricao"], "properties": {"condicao": {"minItems": 1}},
+                  "not": {"anyOf": [{"required": ["mensagem"]}, {"required": ["conclusao"]}]}}},
+        {"if": {"properties": {"natureza": {"const": "inferencia_conclusiva"}}},
+         "then": {"required": ["condicao", "mensagem"], "properties": {"condicao": {"minItems": 1}},
+                  "not": {"required": ["restricao"]}}}
+      ]
+    },
+    "projecao": {
+      "type": "object",
+      "required": ["nome", "hlm", "obrigatorias", "permitidas"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomeModelo"}, "hlm": {"$ref": "#/$defs/nomeModelo"}, "descricao": {"type": "string"},
+        "obrigatorias": {"type": "array", "items": {"type": "string"}},
+        "permitidas": {"type": "array", "items": {"type": "string"}},
+        "notas": {"$ref": "#/$defs/notas"}
+      }
+    },
+    "perfil": {
+      "type": "object",
+      "required": ["nome", "projecao", "fixa"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": {"$ref": "#/$defs/nomeModelo"}, "projecao": {"$ref": "#/$defs/nomeModelo"},
+        "hlm": {"$ref": "#/$defs/nomeModelo"}, "descricao": {"type": "string"},
+        "fixa": {"type": "array", "items": {"oneOf": [
+          {"type": "object", "required": ["propriedade", "valor"], "additionalProperties": false,
+           "properties": {"propriedade": {"type": "string"}, "valor": {}}},
+          {"type": "object", "required": ["contexto", "valor"], "additionalProperties": false,
+           "properties": {"contexto": {"type": "string"}, "valor": {}}}
+        ]}},
+        "notas": {"$ref": "#/$defs/notas"}
+      }
+    }
+  }
+}

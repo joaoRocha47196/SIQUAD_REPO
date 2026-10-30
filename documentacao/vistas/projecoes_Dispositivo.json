@@ -1,0 +1,292 @@
+{
+  "vista": "projecoes",
+  "titulo": "Matriz de projeções do HLM Dispositivo",
+  "hlm": "Dispositivo",
+  "projecoes": [
+    {
+      "nome": "DispositivoProducao",
+      "descricao": "Equipamento em produção: identificação completa, leitura, localização e diagnóstico."
+    },
+    {
+      "nome": "DispositivoTeste",
+      "descricao": "Equipamento em testes: identificação mínima e medição; coordenadas opcionais."
+    }
+  ],
+  "linhas": [
+    {
+      "caminho": "Identificacao.identificador",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Identificacao.fabricante",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Identificacao.estado",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Identificacao.tipoDispositivo",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Leitura.Medicao.unidadeMedida",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Leitura.Medicao.valor",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Leitura.Medicao.dataMedicao",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Leitura.Instalacao.ambiente",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Leitura.Assinatura.mensagem",
+      "celulas": {
+        "DispositivoProducao": "P",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Leitura.Assinatura.assinatura",
+      "celulas": {
+        "DispositivoProducao": "P",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.indicacaoAcesso",
+      "celulas": {
+        "DispositivoProducao": "P",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.latitude",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "P"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.longitude",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "P"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.altitude",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "P"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.sistemaReferencia",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "P"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.Morada.rua",
+      "celulas": {
+        "DispositivoProducao": "P",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.Morada.codigoPostal",
+      "celulas": {
+        "DispositivoProducao": "P",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.Morada.localidade",
+      "celulas": {
+        "DispositivoProducao": "P",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.Morada.freguesia",
+      "celulas": {
+        "DispositivoProducao": "P",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Localizacao.Morada.pais",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Diagnostico.Diagnostico.nivelBateria",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Diagnostico.Diagnostico.dataUltimaManutencao",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Diagnostico.Diagnostico.sinalRede",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Diagnostico.Diagnostico.latencia",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Diagnostico.Diagnostico.taxaRececao",
+      "celulas": {
+        "DispositivoProducao": "O",
+        "DispositivoTeste": "-"
+      },
+      "difere": true
+    }
+  ],
+  "perfis": [
+    {
+      "perfil": "Estufas",
+      "projecao": "DispositivoProducao",
+      "descricao": "Sensores instalados em estufas agrícolas.",
+      "fixa": [
+        {
+          "caminho": "Leitura.Instalacao.ambiente",
+          "valor": "ESTUFA",
+          "projetada": true
+        }
+      ]
+    },
+    {
+      "perfil": "LeiturasIndustriais",
+      "projecao": "DispositivoProducao",
+      "descricao": "Plataforma com leituras de várias fontes: nenhum valor fixado.",
+      "fixa": []
+    },
+    {
+      "perfil": "RefrigeracaoLote",
+      "projecao": "DispositivoProducao",
+      "descricao": "Lote de sensores de temperatura em câmaras de refrigeração, em °C.",
+      "fixa": [
+        {
+          "caminho": "Identificacao.tipoDispositivo",
+          "valor": "TEMPERATURA",
+          "projetada": true
+        },
+        {
+          "caminho": "Leitura.Instalacao.ambiente",
+          "valor": "REFRIGERACAO",
+          "projetada": true
+        },
+        {
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "valor": "°C",
+          "projetada": true
+        }
+      ]
+    },
+    {
+      "perfil": "TesteLaboratorio",
+      "projecao": "DispositivoTeste",
+      "descricao": "Testes de bancada: o ambiente não é projetado nem fixado.",
+      "fixa": []
+    },
+    {
+      "perfil": "TesteRefrigeracao",
+      "projecao": "DispositivoTeste",
+      "descricao": "Testes de sensores de refrigeração, com contextos externos fixados.",
+      "fixa": [
+        {
+          "caminho": "Leitura.Instalacao.ambiente",
+          "valor": "REFRIGERACAO",
+          "projetada": false
+        },
+        {
+          "contexto": "chaveDispositivo",
+          "valor": "chave-de-teste-0001"
+        },
+        {
+          "contexto": "dataDeHoje",
+          "valor": "2026-09-30"
+        },
+        {
+          "contexto": "relogioServidor",
+          "valor": "2026-09-30T12:00:00Z"
+        }
+      ]
+    }
+  ],
+  "parametros": {
+    "hlm": "Dispositivo"
+  }
+}

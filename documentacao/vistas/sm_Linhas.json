@@ -1,0 +1,1596 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo SM Linhas",
+  "nivel": "SM",
+  "nome": "Linhas",
+  "descricao": "Coleção das linhas do documento.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "SM",
+    "nome": "Linhas",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Coleção das linhas do documento.",
+    "propriedades": [],
+    "filhos": [
+      {
+        "nivel": "USM",
+        "nome": "Linha",
+        "papel": "Linha",
+        "cardinalidade": "1..*",
+        "caminho": "Linha",
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "propriedades": [
+          {
+            "chave": "USM:Linha.numero",
+            "nome": "numero",
+            "dono": "Linha",
+            "nivelDono": "USM",
+            "tipo": "inteiro",
+            "descricao": "Número da linha no documento",
+            "caminho": "Linha.numero",
+            "nomesAlternativos": [
+              "lineNumber"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "USM:Linha.descricao",
+            "nome": "descricao",
+            "dono": "Linha",
+            "nivelDono": "USM",
+            "tipo": "texto",
+            "descricao": "Descrição do bem ou serviço",
+            "caminho": "Linha.descricao",
+            "nomesAlternativos": [
+              "description"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "USM:Linha.valor",
+            "nome": "valor",
+            "dono": "Linha",
+            "nivelDono": "USM",
+            "tipo": "decimal",
+            "descricao": "Valor da linha, em euros",
+            "caminho": "Linha.valor",
+            "nomesAlternativos": [
+              "amount"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "USM:Linha.tipoIVA",
+            "nome": "tipoIVA",
+            "dono": "Linha",
+            "nivelDono": "USM",
+            "tipo": "texto",
+            "descricao": "Tipo de taxa de IVA aplicada à linha",
+            "caminho": "Linha.tipoIVA",
+            "nomesAlternativos": [
+              "taxType"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "USM:Linha.taxaIVA",
+            "nome": "taxaIVA",
+            "dono": "Linha",
+            "nivelDono": "USM",
+            "tipo": "decimal",
+            "descricao": "Taxa de IVA aplicada à linha (%)",
+            "caminho": "Linha.taxaIVA",
+            "nomesAlternativos": [
+              "taxPercentage"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": [],
+        "usadoPor": [
+          "Fatura"
+        ]
+      }
+    ],
+    "usadoPor": [
+      "Fatura"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "SM",
+    "nome": "Linhas",
+    "caminho": "",
+    "descricao": "Coleção das linhas do documento.",
+    "regras": [
+      {
+        "id": "RP-LIN-MAX",
+        "tipo": "RP",
+        "natureza": "plausibilidade",
+        "descricao": "contagemInferiorA(Linhas.Linha, 100)",
+        "alcance": "SM Linhas",
+        "notas": null,
+        "contextosExternos": [],
+        "viveEm": {
+          "rotulo": "SM",
+          "nome": "Linhas",
+          "chave": "SM:Linhas",
+          "dono": null
+        },
+        "restricao": {
+          "forma": "funcao",
+          "operador": "FUNCTION",
+          "mensagem": "A fatura tem 100 ou mais linhas.",
+          "texto": "contagemInferiorA(Linha, 100)",
+          "chamada": {
+            "funcao": "contagemInferiorA",
+            "chamada": "contagemInferiorA(Linha, 100)",
+            "operador": "FUNCTION",
+            "termo": null,
+            "descricaoFuncao": "Verdadeira quando a coleção tem menos de n instâncias.",
+            "argumentos": [
+              {
+                "caminho": "Linha",
+                "alvo": "Linha",
+                "nomeAlvo": "Linha",
+                "rotuloAlvo": "USM",
+                "colecao": true
+              }
+            ],
+            "contextos": []
+          }
+        },
+        "mensagem": "A fatura tem 100 ou mais linhas.",
+        "funcao": true,
+        "categoria": "FN",
+        "alvo": {
+          "chave": "Linha",
+          "nome": "Linha",
+          "funcao": "contagemInferiorA"
+        },
+        "funcoes": [
+          "contagemInferiorA"
+        ],
+        "ocorrencias": [
+          "Linhas"
+        ]
+      },
+      {
+        "id": "RP-LIN-NUM",
+        "tipo": "RP",
+        "natureza": "plausibilidade",
+        "descricao": "valoresUnicos(Linhas.Linha.numero)",
+        "alcance": "SM Linhas",
+        "notas": null,
+        "contextosExternos": [],
+        "viveEm": {
+          "rotulo": "SM",
+          "nome": "Linhas",
+          "chave": "SM:Linhas",
+          "dono": null
+        },
+        "restricao": {
+          "forma": "funcao",
+          "operador": "FUNCTION",
+          "mensagem": "Existem linhas com o mesmo número.",
+          "texto": "valoresUnicos(Linha.numero)",
+          "chamada": {
+            "funcao": "valoresUnicos",
+            "chamada": "valoresUnicos(Linha.numero)",
+            "operador": "FUNCTION",
+            "termo": null,
+            "descricaoFuncao": "Verdadeira quando nenhum valor da coleção se repete.",
+            "argumentos": [
+              {
+                "caminho": "Linha.numero",
+                "alvo": "USM:Linha.numero",
+                "nomeAlvo": "numero",
+                "rotuloAlvo": "Propriedade",
+                "colecao": true
+              }
+            ],
+            "contextos": []
+          }
+        },
+        "mensagem": "Existem linhas com o mesmo número.",
+        "funcao": true,
+        "categoria": "FN",
+        "alvo": {
+          "chave": "USM:Linha.numero",
+          "nome": "numero",
+          "funcao": "valoresUnicos"
+        },
+        "funcoes": [
+          "valoresUnicos"
+        ],
+        "ocorrencias": [
+          "Linhas"
+        ]
+      },
+      {
+        "id": "RP-LIN-SEQ",
+        "tipo": "RP",
+        "natureza": "plausibilidade",
+        "descricao": "valoresConsecutivos(Linhas.Linha.numero)",
+        "alcance": "SM Linhas",
+        "notas": null,
+        "contextosExternos": [],
+        "viveEm": {
+          "rotulo": "SM",
+          "nome": "Linhas",
+          "chave": "SM:Linhas",
+          "dono": null
+        },
+        "restricao": {
+          "forma": "funcao",
+          "operador": "FUNCTION",
+          "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas.",
+          "texto": "valoresConsecutivos(Linha.numero)",
+          "chamada": {
+            "funcao": "valoresConsecutivos",
+            "chamada": "valoresConsecutivos(Linha.numero)",
+            "operador": "FUNCTION",
+            "termo": null,
+            "descricaoFuncao": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas.",
+            "argumentos": [
+              {
+                "caminho": "Linha.numero",
+                "alvo": "USM:Linha.numero",
+                "nomeAlvo": "numero",
+                "rotuloAlvo": "Propriedade",
+                "colecao": true
+              }
+            ],
+            "contextos": []
+          }
+        },
+        "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas.",
+        "funcao": true,
+        "categoria": "FN",
+        "alvo": {
+          "chave": "USM:Linha.numero",
+          "nome": "numero",
+          "funcao": "valoresConsecutivos"
+        },
+        "funcoes": [
+          "valoresConsecutivos"
+        ],
+        "ocorrencias": [
+          "Linhas"
+        ]
+      }
+    ],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Linha",
+      "nivel": "USM",
+      "papel": "Linha",
+      "cardinalidade": "1..*",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "USM",
+          "nome": "Linha",
+          "papel": "Linha",
+          "caminho": "Linha",
+          "cardinalidade": "1..*",
+          "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+          "regras": [],
+          "rir": [
+            {
+              "alvo": "USM:Linha.taxaIVA",
+              "nome": "taxaIVA",
+              "regras": [
+                {
+                  "id": "RIR-IVA-INT",
+                  "tipo": "RIR",
+                  "natureza": "inferencia_restritiva",
+                  "descricao": "Se Linha.tipoIVA = INTERMEDIA → Linha.taxaIVA = 13",
+                  "alcance": "USM Linha",
+                  "notas": null,
+                  "contextosExternos": [],
+                  "viveEm": {
+                    "rotulo": "USM",
+                    "nome": "Linha",
+                    "chave": "USM:Linha",
+                    "dono": null
+                  },
+                  "restricao": {
+                    "forma": "tipificada",
+                    "operador": "EQUALS",
+                    "mensagem": "Uma linha com taxa intermédia tem de ter taxa de IVA 13.",
+                    "texto": "taxaIVA = 13",
+                    "caminho": "taxaIVA",
+                    "propriedade": "USM:Linha.taxaIVA",
+                    "valor": 13,
+                    "minimo": null,
+                    "maximo": null
+                  },
+                  "condicao": [
+                    {
+                      "ordem": 0,
+                      "forma": "tipificado",
+                      "caminho": "tipoIVA",
+                      "propriedade": "USM:Linha.tipoIVA",
+                      "operador": "EQUALS",
+                      "valor": "INTERMEDIA",
+                      "contexto": null,
+                      "texto": "tipoIVA = INTERMEDIA",
+                      "nome": "tipoIVA"
+                    }
+                  ],
+                  "mensagem": "Uma linha com taxa intermédia tem de ter taxa de IVA 13.",
+                  "funcao": false,
+                  "categoria": "RIR",
+                  "alvo": {
+                    "chave": "USM:Linha.taxaIVA",
+                    "nome": "taxaIVA",
+                    "dono": "Linha"
+                  },
+                  "funcoes": [],
+                  "ocorrencias": [
+                    "Linha"
+                  ]
+                },
+                {
+                  "id": "RIR-IVA-ISE",
+                  "tipo": "RIR",
+                  "natureza": "inferencia_restritiva",
+                  "descricao": "Se Linha.tipoIVA = ISENTA → Linha.taxaIVA = 0",
+                  "alcance": "USM Linha",
+                  "notas": null,
+                  "contextosExternos": [],
+                  "viveEm": {
+                    "rotulo": "USM",
+                    "nome": "Linha",
+                    "chave": "USM:Linha",
+                    "dono": null
+                  },
+                  "restricao": {
+                    "forma": "tipificada",
+                    "operador": "EQUALS",
+                    "mensagem": "Uma linha isenta tem de ter taxa de IVA 0.",
+                    "texto": "taxaIVA = 0",
+                    "caminho": "taxaIVA",
+                    "propriedade": "USM:Linha.taxaIVA",
+                    "valor": 0,
+                    "minimo": null,
+                    "maximo": null
+                  },
+                  "condicao": [
+                    {
+                      "ordem": 0,
+                      "forma": "tipificado",
+                      "caminho": "tipoIVA",
+                      "propriedade": "USM:Linha.tipoIVA",
+                      "operador": "EQUALS",
+                      "valor": "ISENTA",
+                      "contexto": null,
+                      "texto": "tipoIVA = ISENTA",
+                      "nome": "tipoIVA"
+                    }
+                  ],
+                  "mensagem": "Uma linha isenta tem de ter taxa de IVA 0.",
+                  "funcao": false,
+                  "categoria": "RIR",
+                  "alvo": {
+                    "chave": "USM:Linha.taxaIVA",
+                    "nome": "taxaIVA",
+                    "dono": "Linha"
+                  },
+                  "funcoes": [],
+                  "ocorrencias": [
+                    "Linha"
+                  ]
+                },
+                {
+                  "id": "RIR-IVA-NOR",
+                  "tipo": "RIR",
+                  "natureza": "inferencia_restritiva",
+                  "descricao": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23",
+                  "alcance": "USM Linha",
+                  "notas": null,
+                  "contextosExternos": [],
+                  "viveEm": {
+                    "rotulo": "USM",
+                    "nome": "Linha",
+                    "chave": "USM:Linha",
+                    "dono": null
+                  },
+                  "restricao": {
+                    "forma": "tipificada",
+                    "operador": "EQUALS",
+                    "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+                    "texto": "taxaIVA = 23",
+                    "caminho": "taxaIVA",
+                    "propriedade": "USM:Linha.taxaIVA",
+                    "valor": 23,
+                    "minimo": null,
+                    "maximo": null
+                  },
+                  "condicao": [
+                    {
+                      "ordem": 0,
+                      "forma": "tipificado",
+                      "caminho": "tipoIVA",
+                      "propriedade": "USM:Linha.tipoIVA",
+                      "operador": "EQUALS",
+                      "valor": "NORMAL",
+                      "contexto": null,
+                      "texto": "tipoIVA = NORMAL",
+                      "nome": "tipoIVA"
+                    }
+                  ],
+                  "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+                  "funcao": false,
+                  "categoria": "RIR",
+                  "alvo": {
+                    "chave": "USM:Linha.taxaIVA",
+                    "nome": "taxaIVA",
+                    "dono": "Linha"
+                  },
+                  "funcoes": [],
+                  "ocorrencias": [
+                    "Linha"
+                  ]
+                },
+                {
+                  "id": "RIR-IVA-RED",
+                  "tipo": "RIR",
+                  "natureza": "inferencia_restritiva",
+                  "descricao": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6",
+                  "alcance": "USM Linha",
+                  "notas": null,
+                  "contextosExternos": [],
+                  "viveEm": {
+                    "rotulo": "USM",
+                    "nome": "Linha",
+                    "chave": "USM:Linha",
+                    "dono": null
+                  },
+                  "restricao": {
+                    "forma": "tipificada",
+                    "operador": "EQUALS",
+                    "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+                    "texto": "taxaIVA = 6",
+                    "caminho": "taxaIVA",
+                    "propriedade": "USM:Linha.taxaIVA",
+                    "valor": 6,
+                    "minimo": null,
+                    "maximo": null
+                  },
+                  "condicao": [
+                    {
+                      "ordem": 0,
+                      "forma": "tipificado",
+                      "caminho": "tipoIVA",
+                      "propriedade": "USM:Linha.tipoIVA",
+                      "operador": "EQUALS",
+                      "valor": "REDUZIDA",
+                      "contexto": null,
+                      "texto": "tipoIVA = REDUZIDA",
+                      "nome": "tipoIVA"
+                    }
+                  ],
+                  "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+                  "funcao": false,
+                  "categoria": "RIR",
+                  "alvo": {
+                    "chave": "USM:Linha.taxaIVA",
+                    "nome": "taxaIVA",
+                    "dono": "Linha"
+                  },
+                  "funcoes": [],
+                  "ocorrencias": [
+                    "Linha"
+                  ]
+                }
+              ],
+              "decisao": true
+            }
+          ]
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "numero",
+          "caminho": "Linha.numero",
+          "descricao": "Número da linha no documento",
+          "tipoBase": "inteiro",
+          "nomesAlternativos": [
+            "lineNumber"
+          ],
+          "chave": "USM:Linha.numero",
+          "dono": "Linha",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-LIN-NUMPOS",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.numero ≥ 1",
+              "alcance": "USM Linha.numero",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "numero",
+                "chave": "Propriedade:USM:Linha.numero",
+                "dono": "Linha"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "GTE",
+                "mensagem": "O número da linha tem de ser igual ou superior a 1.",
+                "texto": "numero ≥ 1",
+                "caminho": "numero",
+                "propriedade": "USM:Linha.numero",
+                "valor": 1,
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O número da linha tem de ser igual ou superior a 1.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Linha.numero",
+                "nome": "numero",
+                "dono": "Linha"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Linha.numero"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "descricao",
+          "caminho": "Linha.descricao",
+          "descricao": "Descrição do bem ou serviço",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "description"
+          ],
+          "chave": "USM:Linha.descricao",
+          "dono": "Linha",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-LIN-DESC",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.descricao segue o padrão ^.{1,200}$",
+              "alcance": "USM Linha.descricao",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "descricao",
+                "chave": "Propriedade:USM:Linha.descricao",
+                "dono": "Linha"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres.",
+                "texto": "descricao segue o padrão ^.{1,200}$",
+                "caminho": "descricao",
+                "propriedade": "USM:Linha.descricao",
+                "valor": "^.{1,200}$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Linha.descricao",
+                "nome": "descricao",
+                "dono": "Linha"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Linha.descricao"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "valor",
+          "caminho": "Linha.valor",
+          "descricao": "Valor da linha, em euros",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "amount"
+          ],
+          "chave": "USM:Linha.valor",
+          "dono": "Linha",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-VALOR",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.valor ≥ 0",
+              "alcance": "USM Linha.valor",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "valor",
+                "chave": "Propriedade:USM:Linha.valor",
+                "dono": "Linha"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "GTE",
+                "mensagem": "O valor da linha não pode ser negativo.",
+                "texto": "valor ≥ 0",
+                "caminho": "valor",
+                "propriedade": "USM:Linha.valor",
+                "valor": 0,
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O valor da linha não pode ser negativo.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Linha.valor",
+                "nome": "valor",
+                "dono": "Linha"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Linha.valor"
+              ]
+            },
+            {
+              "id": "RP-VALOR-DEC",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+              "alcance": "USM Linha.valor",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "valor",
+                "chave": "Propriedade:USM:Linha.valor",
+                "dono": "Linha"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "O valor da linha tem no máximo duas casas decimais.",
+                "texto": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+                "caminho": "valor",
+                "propriedade": "USM:Linha.valor",
+                "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O valor da linha tem no máximo duas casas decimais.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Linha.valor",
+                "nome": "valor",
+                "dono": "Linha"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Linha.valor"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "tipoIVA",
+          "caminho": "Linha.tipoIVA",
+          "descricao": "Tipo de taxa de IVA aplicada à linha",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "taxType"
+          ],
+          "chave": "USM:Linha.tipoIVA",
+          "dono": "Linha",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-TIPOIVA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+              "alcance": "USM Linha.tipoIVA",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "tipoIVA",
+                "chave": "Propriedade:USM:Linha.tipoIVA",
+                "dono": "Linha"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.",
+                "texto": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+                "caminho": "tipoIVA",
+                "propriedade": "USM:Linha.tipoIVA",
+                "valor": [
+                  "ISENTA",
+                  "REDUZIDA",
+                  "INTERMEDIA",
+                  "NORMAL"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Linha.tipoIVA",
+                "nome": "tipoIVA",
+                "dono": "Linha"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Linha.tipoIVA"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "taxaIVA",
+          "caminho": "Linha.taxaIVA",
+          "descricao": "Taxa de IVA aplicada à linha (%)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "taxPercentage"
+          ],
+          "chave": "USM:Linha.taxaIVA",
+          "dono": "Linha",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-TAXAIVA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.taxaIVA entre 0 e 100",
+              "alcance": "USM Linha.taxaIVA",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "taxaIVA",
+                "chave": "Propriedade:USM:Linha.taxaIVA",
+                "dono": "Linha"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "A taxa de IVA tem de estar entre 0 e 100.",
+                "texto": "taxaIVA entre 0 e 100",
+                "caminho": "taxaIVA",
+                "propriedade": "USM:Linha.taxaIVA",
+                "valor": [
+                  0,
+                  100
+                ],
+                "minimo": 0,
+                "maximo": 100
+              },
+              "mensagem": "A taxa de IVA tem de estar entre 0 e 100.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Linha.taxaIVA",
+                "nome": "taxaIVA",
+                "dono": "Linha"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Linha.taxaIVA"
+              ]
+            },
+            {
+              "id": "RP-TAXAIVA-DEC",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+              "alcance": "USM Linha.taxaIVA",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "taxaIVA",
+                "chave": "Propriedade:USM:Linha.taxaIVA",
+                "dono": "Linha"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "A taxa de IVA tem no máximo duas casas decimais.",
+                "texto": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+                "caminho": "taxaIVA",
+                "propriedade": "USM:Linha.taxaIVA",
+                "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "A taxa de IVA tem no máximo duas casas decimais.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Linha.taxaIVA",
+                "nome": "taxaIVA",
+                "dono": "Linha"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Linha.taxaIVA"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "numero",
+        "descricao",
+        "valor",
+        "tipoIVA",
+        "taxaIVA"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Fatura"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Fatura",
+            "papel": "Linhas",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Linhas"
+          }
+        ],
+        "texto": "Fatura › Linhas"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-LIN-DESC",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Linha.descricao segue o padrão ^.{1,200}$",
+      "alcance": "USM Linha.descricao",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "descricao",
+        "chave": "Propriedade:USM:Linha.descricao",
+        "dono": "Linha"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres.",
+        "texto": "descricao segue o padrão ^.{1,200}$",
+        "caminho": "descricao",
+        "propriedade": "USM:Linha.descricao",
+        "valor": "^.{1,200}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Linha.descricao",
+        "nome": "descricao",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha.descricao"
+      ]
+    },
+    {
+      "id": "RP-LIN-MAX",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "contagemInferiorA(Linhas.Linha, 100)",
+      "alcance": "SM Linhas",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "chave": "SM:Linhas",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "FUNCTION",
+        "mensagem": "A fatura tem 100 ou mais linhas.",
+        "texto": "contagemInferiorA(Linha, 100)",
+        "chamada": {
+          "funcao": "contagemInferiorA",
+          "chamada": "contagemInferiorA(Linha, 100)",
+          "operador": "FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando a coleção tem menos de n instâncias.",
+          "argumentos": [
+            {
+              "caminho": "Linha",
+              "alvo": "Linha",
+              "nomeAlvo": "Linha",
+              "rotuloAlvo": "USM",
+              "colecao": true
+            }
+          ],
+          "contextos": []
+        }
+      },
+      "mensagem": "A fatura tem 100 ou mais linhas.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "Linha",
+        "nome": "Linha",
+        "funcao": "contagemInferiorA"
+      },
+      "funcoes": [
+        "contagemInferiorA"
+      ],
+      "ocorrencias": [
+        "Linhas"
+      ]
+    },
+    {
+      "id": "RP-LIN-NUM",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "valoresUnicos(Linhas.Linha.numero)",
+      "alcance": "SM Linhas",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "chave": "SM:Linhas",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "FUNCTION",
+        "mensagem": "Existem linhas com o mesmo número.",
+        "texto": "valoresUnicos(Linha.numero)",
+        "chamada": {
+          "funcao": "valoresUnicos",
+          "chamada": "valoresUnicos(Linha.numero)",
+          "operador": "FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando nenhum valor da coleção se repete.",
+          "argumentos": [
+            {
+              "caminho": "Linha.numero",
+              "alvo": "USM:Linha.numero",
+              "nomeAlvo": "numero",
+              "rotuloAlvo": "Propriedade",
+              "colecao": true
+            }
+          ],
+          "contextos": []
+        }
+      },
+      "mensagem": "Existem linhas com o mesmo número.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:Linha.numero",
+        "nome": "numero",
+        "funcao": "valoresUnicos"
+      },
+      "funcoes": [
+        "valoresUnicos"
+      ],
+      "ocorrencias": [
+        "Linhas"
+      ]
+    },
+    {
+      "id": "RP-LIN-NUMPOS",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Linha.numero ≥ 1",
+      "alcance": "USM Linha.numero",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "numero",
+        "chave": "Propriedade:USM:Linha.numero",
+        "dono": "Linha"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "GTE",
+        "mensagem": "O número da linha tem de ser igual ou superior a 1.",
+        "texto": "numero ≥ 1",
+        "caminho": "numero",
+        "propriedade": "USM:Linha.numero",
+        "valor": 1,
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O número da linha tem de ser igual ou superior a 1.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Linha.numero",
+        "nome": "numero",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha.numero"
+      ]
+    },
+    {
+      "id": "RP-LIN-SEQ",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "valoresConsecutivos(Linhas.Linha.numero)",
+      "alcance": "SM Linhas",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "chave": "SM:Linhas",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "FUNCTION",
+        "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas.",
+        "texto": "valoresConsecutivos(Linha.numero)",
+        "chamada": {
+          "funcao": "valoresConsecutivos",
+          "chamada": "valoresConsecutivos(Linha.numero)",
+          "operador": "FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas.",
+          "argumentos": [
+            {
+              "caminho": "Linha.numero",
+              "alvo": "USM:Linha.numero",
+              "nomeAlvo": "numero",
+              "rotuloAlvo": "Propriedade",
+              "colecao": true
+            }
+          ],
+          "contextos": []
+        }
+      },
+      "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:Linha.numero",
+        "nome": "numero",
+        "funcao": "valoresConsecutivos"
+      },
+      "funcoes": [
+        "valoresConsecutivos"
+      ],
+      "ocorrencias": [
+        "Linhas"
+      ]
+    },
+    {
+      "id": "RP-TAXAIVA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Linha.taxaIVA entre 0 e 100",
+      "alcance": "USM Linha.taxaIVA",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "taxaIVA",
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "dono": "Linha"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "A taxa de IVA tem de estar entre 0 e 100.",
+        "texto": "taxaIVA entre 0 e 100",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": [
+          0,
+          100
+        ],
+        "minimo": 0,
+        "maximo": 100
+      },
+      "mensagem": "A taxa de IVA tem de estar entre 0 e 100.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha.taxaIVA"
+      ]
+    },
+    {
+      "id": "RP-TAXAIVA-DEC",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Linha.taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+      "alcance": "USM Linha.taxaIVA",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "taxaIVA",
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "dono": "Linha"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "A taxa de IVA tem no máximo duas casas decimais.",
+        "texto": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "A taxa de IVA tem no máximo duas casas decimais.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha.taxaIVA"
+      ]
+    },
+    {
+      "id": "RP-TIPOIVA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+      "alcance": "USM Linha.tipoIVA",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "tipoIVA",
+        "chave": "Propriedade:USM:Linha.tipoIVA",
+        "dono": "Linha"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.",
+        "texto": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+        "caminho": "tipoIVA",
+        "propriedade": "USM:Linha.tipoIVA",
+        "valor": [
+          "ISENTA",
+          "REDUZIDA",
+          "INTERMEDIA",
+          "NORMAL"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Linha.tipoIVA",
+        "nome": "tipoIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha.tipoIVA"
+      ]
+    },
+    {
+      "id": "RP-VALOR",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Linha.valor ≥ 0",
+      "alcance": "USM Linha.valor",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "chave": "Propriedade:USM:Linha.valor",
+        "dono": "Linha"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "GTE",
+        "mensagem": "O valor da linha não pode ser negativo.",
+        "texto": "valor ≥ 0",
+        "caminho": "valor",
+        "propriedade": "USM:Linha.valor",
+        "valor": 0,
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O valor da linha não pode ser negativo.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Linha.valor",
+        "nome": "valor",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha.valor"
+      ]
+    },
+    {
+      "id": "RP-VALOR-DEC",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Linha.valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+      "alcance": "USM Linha.valor",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "chave": "Propriedade:USM:Linha.valor",
+        "dono": "Linha"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O valor da linha tem no máximo duas casas decimais.",
+        "texto": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+        "caminho": "valor",
+        "propriedade": "USM:Linha.valor",
+        "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O valor da linha tem no máximo duas casas decimais.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Linha.valor",
+        "nome": "valor",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha.valor"
+      ]
+    },
+    {
+      "id": "RIR-IVA-INT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = INTERMEDIA → Linha.taxaIVA = 13",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha com taxa intermédia tem de ter taxa de IVA 13.",
+        "texto": "taxaIVA = 13",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 13,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "INTERMEDIA",
+          "contexto": null,
+          "texto": "tipoIVA = INTERMEDIA",
+          "nome": "tipoIVA"
+        }
+      ],
+      "mensagem": "Uma linha com taxa intermédia tem de ter taxa de IVA 13.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha"
+      ]
+    },
+    {
+      "id": "RIR-IVA-ISE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = ISENTA → Linha.taxaIVA = 0",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha isenta tem de ter taxa de IVA 0.",
+        "texto": "taxaIVA = 0",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 0,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "ISENTA",
+          "contexto": null,
+          "texto": "tipoIVA = ISENTA",
+          "nome": "tipoIVA"
+        }
+      ],
+      "mensagem": "Uma linha isenta tem de ter taxa de IVA 0.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha"
+      ]
+    },
+    {
+      "id": "RIR-IVA-NOR",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+        "texto": "taxaIVA = 23",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 23,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "NORMAL",
+          "contexto": null,
+          "texto": "tipoIVA = NORMAL",
+          "nome": "tipoIVA"
+        }
+      ],
+      "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha"
+      ]
+    },
+    {
+      "id": "RIR-IVA-RED",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+        "texto": "taxaIVA = 6",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 6,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "REDUZIDA",
+          "contexto": null,
+          "texto": "tipoIVA = REDUZIDA",
+          "nome": "tipoIVA"
+        }
+      ],
+      "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Linha"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 10,
+    "RIR": 4,
+    "RIC": 0,
+    "FN": 3
+  },
+  "funcoes": [
+    {
+      "nome": "contagemInferiorA",
+      "descricao": "Verdadeira quando a coleção tem menos de n instâncias.",
+      "parametros": [
+        {
+          "nome": "instancias",
+          "tipo": "modelo",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Instâncias de um modelo composto com cardinalidade repetível."
+        },
+        {
+          "nome": "n",
+          "tipo": "inteiro",
+          "papel": "parametro",
+          "descricao": "Limite exclusivo do número de instâncias."
+        }
+      ],
+      "contextos": [],
+      "regras": [
+        "RP-LIN-MAX"
+      ]
+    },
+    {
+      "nome": "valoresConsecutivos",
+      "descricao": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<inteiro>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores de uma propriedade em todas as instâncias da coleção."
+        }
+      ],
+      "contextos": [],
+      "regras": [
+        "RP-LIN-SEQ"
+      ]
+    },
+    {
+      "nome": "valoresUnicos",
+      "descricao": "Verdadeira quando nenhum valor da coleção se repete.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<inteiro>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores de uma propriedade em todas as instâncias da coleção."
+        }
+      ],
+      "contextos": [],
+      "regras": [
+        "RP-LIN-NUM"
+      ]
+    }
+  ],
+  "contextos": [],
+  "parametros": {
+    "nivel": "SM",
+    "nome": "Linhas",
+    "regras": true
+  }
+}

@@ -1,0 +1,1182 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo SM Cabecalho",
+  "nivel": "SM",
+  "nome": "Cabecalho",
+  "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "SM",
+    "nome": "Cabecalho",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+    "propriedades": [
+      {
+        "chave": "SM:Cabecalho.numero",
+        "nome": "numero",
+        "dono": "Cabecalho",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Número do documento (série/sequência)",
+        "caminho": "numero",
+        "nomesAlternativos": [
+          "invoiceNo"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Cabecalho.serie",
+        "nome": "serie",
+        "dono": "Cabecalho",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Série do documento, comunicada à AT",
+        "caminho": "serie",
+        "nomesAlternativos": [
+          "series"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Cabecalho.atcud",
+        "nome": "atcud",
+        "dono": "Cabecalho",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Código único do documento (ATCUD)",
+        "caminho": "atcud",
+        "nomesAlternativos": [
+          "ATCUD"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Cabecalho.tipoDocumento",
+        "nome": "tipoDocumento",
+        "dono": "Cabecalho",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Tipo de documento fiscal",
+        "caminho": "tipoDocumento",
+        "nomesAlternativos": [
+          "invoiceType"
+        ],
+        "discriminante": true
+      },
+      {
+        "chave": "SM:Cabecalho.dataEmissao",
+        "nome": "dataEmissao",
+        "dono": "Cabecalho",
+        "nivelDono": "SM",
+        "tipo": "data",
+        "descricao": "Data de emissão do documento",
+        "caminho": "dataEmissao",
+        "nomesAlternativos": [
+          "invoiceDate"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Cabecalho.totalFatura",
+        "nome": "totalFatura",
+        "dono": "Cabecalho",
+        "nivelDono": "SM",
+        "tipo": "decimal",
+        "descricao": "Total do documento, em euros",
+        "caminho": "totalFatura",
+        "nomesAlternativos": [
+          "grossTotal"
+        ],
+        "discriminante": true
+      },
+      {
+        "chave": "SM:Cabecalho.hash",
+        "nome": "hash",
+        "dono": "Cabecalho",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Hash do documento, encadeado com o anterior da série",
+        "caminho": "hash",
+        "nomesAlternativos": [
+          "hashDocumento"
+        ],
+        "discriminante": false
+      }
+    ],
+    "filhos": [],
+    "usadoPor": [
+      "Fatura"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "SM",
+    "nome": "Cabecalho",
+    "caminho": "",
+    "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+    "regras": [
+      {
+        "id": "RP-ATCUD",
+        "tipo": "RP",
+        "natureza": "plausibilidade",
+        "descricao": "atcudValido(Cabecalho.atcud, Cabecalho.serie)",
+        "alcance": "SM Cabecalho",
+        "notas": null,
+        "contextosExternos": [
+          "seriesComunicadasAT"
+        ],
+        "viveEm": {
+          "rotulo": "SM",
+          "nome": "Cabecalho",
+          "chave": "SM:Cabecalho",
+          "dono": null
+        },
+        "restricao": {
+          "forma": "funcao",
+          "operador": "EXT_FUNCTION",
+          "mensagem": "O ATCUD não pertence a uma série comunicada à AT.",
+          "texto": "atcudValido(atcud, serie)",
+          "chamada": {
+            "funcao": "atcudValido",
+            "chamada": "atcudValido(atcud, serie)",
+            "operador": "EXT_FUNCTION",
+            "termo": null,
+            "descricaoFuncao": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.",
+            "argumentos": [
+              {
+                "caminho": "atcud",
+                "alvo": "SM:Cabecalho.atcud",
+                "nomeAlvo": "atcud",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              },
+              {
+                "caminho": "serie",
+                "alvo": "SM:Cabecalho.serie",
+                "nomeAlvo": "serie",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              }
+            ],
+            "contextos": [
+              "seriesComunicadasAT"
+            ]
+          }
+        },
+        "mensagem": "O ATCUD não pertence a uma série comunicada à AT.",
+        "funcao": true,
+        "categoria": "FN",
+        "alvo": {
+          "chave": "SM:Cabecalho.atcud",
+          "nome": "atcud, serie",
+          "funcao": "atcudValido"
+        },
+        "funcoes": [
+          "atcudValido"
+        ],
+        "ocorrencias": [
+          "Cabecalho"
+        ]
+      },
+      {
+        "id": "RP-HASH",
+        "tipo": "RP",
+        "natureza": "plausibilidade",
+        "descricao": "hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)",
+        "alcance": "SM Cabecalho",
+        "notas": null,
+        "contextosExternos": [
+          "hashAnterior"
+        ],
+        "viveEm": {
+          "rotulo": "SM",
+          "nome": "Cabecalho",
+          "chave": "SM:Cabecalho",
+          "dono": null
+        },
+        "restricao": {
+          "forma": "funcao",
+          "operador": "EXT_FUNCTION",
+          "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior.",
+          "texto": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+          "chamada": {
+            "funcao": "hashEncadeadoValido",
+            "chamada": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+            "operador": "EXT_FUNCTION",
+            "termo": null,
+            "descricaoFuncao": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.",
+            "argumentos": [
+              {
+                "caminho": "numero",
+                "alvo": "SM:Cabecalho.numero",
+                "nomeAlvo": "numero",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              },
+              {
+                "caminho": "dataEmissao",
+                "alvo": "SM:Cabecalho.dataEmissao",
+                "nomeAlvo": "dataEmissao",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              },
+              {
+                "caminho": "totalFatura",
+                "alvo": "SM:Cabecalho.totalFatura",
+                "nomeAlvo": "totalFatura",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              },
+              {
+                "caminho": "hash",
+                "alvo": "SM:Cabecalho.hash",
+                "nomeAlvo": "hash",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              }
+            ],
+            "contextos": [
+              "hashAnterior"
+            ]
+          }
+        },
+        "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior.",
+        "funcao": true,
+        "categoria": "FN",
+        "alvo": {
+          "chave": "SM:Cabecalho.numero",
+          "nome": "numero, dataEmissao, totalFatura, hash",
+          "funcao": "hashEncadeadoValido"
+        },
+        "funcoes": [
+          "hashEncadeadoValido"
+        ],
+        "ocorrencias": [
+          "Cabecalho"
+        ]
+      }
+    ],
+    "rir": [
+      {
+        "alvo": "SM:Cabecalho.totalFatura",
+        "nome": "totalFatura",
+        "regras": [
+          {
+            "id": "RIR-FS",
+            "tipo": "RIR",
+            "natureza": "inferencia_restritiva",
+            "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.totalFatura ≤ 1000",
+            "alcance": "SM Cabecalho",
+            "notas": null,
+            "contextosExternos": [],
+            "viveEm": {
+              "rotulo": "SM",
+              "nome": "Cabecalho",
+              "chave": "SM:Cabecalho",
+              "dono": null
+            },
+            "restricao": {
+              "forma": "tipificada",
+              "operador": "LTE",
+              "mensagem": "Uma fatura simplificada não pode ultrapassar 1000 euros.",
+              "texto": "totalFatura ≤ 1000",
+              "caminho": "totalFatura",
+              "propriedade": "SM:Cabecalho.totalFatura",
+              "valor": 1000,
+              "minimo": null,
+              "maximo": null
+            },
+            "condicao": [
+              {
+                "ordem": 0,
+                "forma": "tipificado",
+                "caminho": "tipoDocumento",
+                "propriedade": "SM:Cabecalho.tipoDocumento",
+                "operador": "EQUALS",
+                "valor": "FS",
+                "contexto": null,
+                "texto": "tipoDocumento = FS",
+                "nome": "tipoDocumento"
+              }
+            ],
+            "mensagem": "Uma fatura simplificada não pode ultrapassar 1000 euros.",
+            "funcao": false,
+            "categoria": "RIR",
+            "alvo": {
+              "chave": "SM:Cabecalho.totalFatura",
+              "nome": "totalFatura",
+              "dono": "Cabecalho"
+            },
+            "funcoes": [],
+            "ocorrencias": [
+              "Cabecalho"
+            ]
+          }
+        ],
+        "decisao": false
+      },
+      {
+        "alvo": "SM:Cabecalho.numero",
+        "nome": "numero",
+        "regras": [
+          {
+            "id": "RIR-FS-NUM",
+            "tipo": "RIR",
+            "natureza": "inferencia_restritiva",
+            "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\"",
+            "alcance": "SM Cabecalho",
+            "notas": null,
+            "contextosExternos": [],
+            "viveEm": {
+              "rotulo": "SM",
+              "nome": "Cabecalho",
+              "chave": "SM:Cabecalho",
+              "dono": null
+            },
+            "restricao": {
+              "forma": "tipificada",
+              "operador": "STARTS_WITH",
+              "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+              "texto": "numero começa por \"FS\"",
+              "caminho": "numero",
+              "propriedade": "SM:Cabecalho.numero",
+              "valor": "FS",
+              "minimo": null,
+              "maximo": null
+            },
+            "condicao": [
+              {
+                "ordem": 0,
+                "forma": "tipificado",
+                "caminho": "tipoDocumento",
+                "propriedade": "SM:Cabecalho.tipoDocumento",
+                "operador": "EQUALS",
+                "valor": "FS",
+                "contexto": null,
+                "texto": "tipoDocumento = FS",
+                "nome": "tipoDocumento"
+              }
+            ],
+            "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+            "funcao": false,
+            "categoria": "RIR",
+            "alvo": {
+              "chave": "SM:Cabecalho.numero",
+              "nome": "numero",
+              "dono": "Cabecalho"
+            },
+            "funcoes": [],
+            "ocorrencias": [
+              "Cabecalho"
+            ]
+          }
+        ],
+        "decisao": false
+      }
+    ]
+  },
+  "blocos": [
+    {
+      "nome": "Cabecalho",
+      "nivel": "SM",
+      "proprio": true,
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "numero",
+          "caminho": "numero",
+          "descricao": "Número do documento (série/sequência)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "invoiceNo"
+          ],
+          "chave": "SM:Cabecalho.numero",
+          "dono": "Cabecalho",
+          "discriminante": false,
+          "regras": [],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "serie",
+          "caminho": "serie",
+          "descricao": "Série do documento, comunicada à AT",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "series"
+          ],
+          "chave": "SM:Cabecalho.serie",
+          "dono": "Cabecalho",
+          "discriminante": false,
+          "regras": [],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "atcud",
+          "caminho": "atcud",
+          "descricao": "Código único do documento (ATCUD)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "ATCUD"
+          ],
+          "chave": "SM:Cabecalho.atcud",
+          "dono": "Cabecalho",
+          "discriminante": false,
+          "regras": [],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "tipoDocumento",
+          "caminho": "tipoDocumento",
+          "descricao": "Tipo de documento fiscal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "invoiceType"
+          ],
+          "chave": "SM:Cabecalho.tipoDocumento",
+          "dono": "Cabecalho",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-TIPODOC",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+              "alcance": "SM Cabecalho.tipoDocumento",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "tipoDocumento",
+                "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+                "dono": "Cabecalho"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND.",
+                "texto": "tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+                "caminho": "tipoDocumento",
+                "propriedade": "SM:Cabecalho.tipoDocumento",
+                "valor": [
+                  "FT",
+                  "FS",
+                  "FR",
+                  "NC",
+                  "ND"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "SM:Cabecalho.tipoDocumento",
+                "nome": "tipoDocumento",
+                "dono": "Cabecalho"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "tipoDocumento"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "dataEmissao",
+          "caminho": "dataEmissao",
+          "descricao": "Data de emissão do documento",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "invoiceDate"
+          ],
+          "chave": "SM:Cabecalho.dataEmissao",
+          "dono": "Cabecalho",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-DATAEMISSAO",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "naoPosteriorAHoje(Cabecalho.dataEmissao)",
+              "alcance": "SM Cabecalho.dataEmissao",
+              "notas": null,
+              "contextosExternos": [
+                "dataDeHoje"
+              ],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "dataEmissao",
+                "chave": "Propriedade:SM:Cabecalho.dataEmissao",
+                "dono": "Cabecalho"
+              },
+              "restricao": {
+                "forma": "funcao",
+                "operador": "EXT_FUNCTION",
+                "mensagem": "A data de emissão não pode ser posterior à data de hoje.",
+                "texto": "naoPosteriorAHoje(dataEmissao)",
+                "chamada": {
+                  "funcao": "naoPosteriorAHoje",
+                  "chamada": "naoPosteriorAHoje(dataEmissao)",
+                  "operador": "EXT_FUNCTION",
+                  "termo": null,
+                  "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+                  "argumentos": [
+                    {
+                      "caminho": "dataEmissao",
+                      "alvo": "SM:Cabecalho.dataEmissao",
+                      "nomeAlvo": "dataEmissao",
+                      "rotuloAlvo": "Propriedade",
+                      "colecao": false
+                    }
+                  ],
+                  "contextos": [
+                    "dataDeHoje"
+                  ]
+                }
+              },
+              "mensagem": "A data de emissão não pode ser posterior à data de hoje.",
+              "funcao": true,
+              "categoria": "FN",
+              "alvo": {
+                "chave": "SM:Cabecalho.dataEmissao",
+                "nome": "dataEmissao",
+                "funcao": "naoPosteriorAHoje"
+              },
+              "funcoes": [
+                "naoPosteriorAHoje"
+              ],
+              "ocorrencias": [
+                "dataEmissao"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "totalFatura",
+          "caminho": "totalFatura",
+          "descricao": "Total do documento, em euros",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "grossTotal"
+          ],
+          "chave": "SM:Cabecalho.totalFatura",
+          "dono": "Cabecalho",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-TOTAL",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Cabecalho.totalFatura ≥ 0",
+              "alcance": "SM Cabecalho.totalFatura",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "totalFatura",
+                "chave": "Propriedade:SM:Cabecalho.totalFatura",
+                "dono": "Cabecalho"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "GTE",
+                "mensagem": "O total da fatura não pode ser negativo.",
+                "texto": "totalFatura ≥ 0",
+                "caminho": "totalFatura",
+                "propriedade": "SM:Cabecalho.totalFatura",
+                "valor": 0,
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O total da fatura não pode ser negativo.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "SM:Cabecalho.totalFatura",
+                "nome": "totalFatura",
+                "dono": "Cabecalho"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "totalFatura"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "hash",
+          "caminho": "hash",
+          "descricao": "Hash do documento, encadeado com o anterior da série",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "hashDocumento"
+          ],
+          "chave": "SM:Cabecalho.hash",
+          "dono": "Cabecalho",
+          "discriminante": false,
+          "regras": [],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "numero",
+        "serie",
+        "atcud",
+        "tipoDocumento",
+        "dataEmissao",
+        "totalFatura",
+        "hash"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Fatura"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Fatura",
+            "papel": "Cabecalho",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Cabecalho"
+          }
+        ],
+        "texto": "Fatura › Cabecalho"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-ATCUD",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "atcudValido(Cabecalho.atcud, Cabecalho.serie)",
+      "alcance": "SM Cabecalho",
+      "notas": null,
+      "contextosExternos": [
+        "seriesComunicadasAT"
+      ],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "chave": "SM:Cabecalho",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "O ATCUD não pertence a uma série comunicada à AT.",
+        "texto": "atcudValido(atcud, serie)",
+        "chamada": {
+          "funcao": "atcudValido",
+          "chamada": "atcudValido(atcud, serie)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.",
+          "argumentos": [
+            {
+              "caminho": "atcud",
+              "alvo": "SM:Cabecalho.atcud",
+              "nomeAlvo": "atcud",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            },
+            {
+              "caminho": "serie",
+              "alvo": "SM:Cabecalho.serie",
+              "nomeAlvo": "serie",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "seriesComunicadasAT"
+          ]
+        }
+      },
+      "mensagem": "O ATCUD não pertence a uma série comunicada à AT.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "SM:Cabecalho.atcud",
+        "nome": "atcud, serie",
+        "funcao": "atcudValido"
+      },
+      "funcoes": [
+        "atcudValido"
+      ],
+      "ocorrencias": [
+        "Cabecalho"
+      ]
+    },
+    {
+      "id": "RP-DATAEMISSAO",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "naoPosteriorAHoje(Cabecalho.dataEmissao)",
+      "alcance": "SM Cabecalho.dataEmissao",
+      "notas": null,
+      "contextosExternos": [
+        "dataDeHoje"
+      ],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "dataEmissao",
+        "chave": "Propriedade:SM:Cabecalho.dataEmissao",
+        "dono": "Cabecalho"
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "A data de emissão não pode ser posterior à data de hoje.",
+        "texto": "naoPosteriorAHoje(dataEmissao)",
+        "chamada": {
+          "funcao": "naoPosteriorAHoje",
+          "chamada": "naoPosteriorAHoje(dataEmissao)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+          "argumentos": [
+            {
+              "caminho": "dataEmissao",
+              "alvo": "SM:Cabecalho.dataEmissao",
+              "nomeAlvo": "dataEmissao",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "dataDeHoje"
+          ]
+        }
+      },
+      "mensagem": "A data de emissão não pode ser posterior à data de hoje.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "SM:Cabecalho.dataEmissao",
+        "nome": "dataEmissao",
+        "funcao": "naoPosteriorAHoje"
+      },
+      "funcoes": [
+        "naoPosteriorAHoje"
+      ],
+      "ocorrencias": [
+        "dataEmissao"
+      ]
+    },
+    {
+      "id": "RP-HASH",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)",
+      "alcance": "SM Cabecalho",
+      "notas": null,
+      "contextosExternos": [
+        "hashAnterior"
+      ],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "chave": "SM:Cabecalho",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior.",
+        "texto": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+        "chamada": {
+          "funcao": "hashEncadeadoValido",
+          "chamada": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.",
+          "argumentos": [
+            {
+              "caminho": "numero",
+              "alvo": "SM:Cabecalho.numero",
+              "nomeAlvo": "numero",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            },
+            {
+              "caminho": "dataEmissao",
+              "alvo": "SM:Cabecalho.dataEmissao",
+              "nomeAlvo": "dataEmissao",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            },
+            {
+              "caminho": "totalFatura",
+              "alvo": "SM:Cabecalho.totalFatura",
+              "nomeAlvo": "totalFatura",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            },
+            {
+              "caminho": "hash",
+              "alvo": "SM:Cabecalho.hash",
+              "nomeAlvo": "hash",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "hashAnterior"
+          ]
+        }
+      },
+      "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "SM:Cabecalho.numero",
+        "nome": "numero, dataEmissao, totalFatura, hash",
+        "funcao": "hashEncadeadoValido"
+      },
+      "funcoes": [
+        "hashEncadeadoValido"
+      ],
+      "ocorrencias": [
+        "Cabecalho"
+      ]
+    },
+    {
+      "id": "RP-TIPODOC",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+      "alcance": "SM Cabecalho.tipoDocumento",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "tipoDocumento",
+        "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "dono": "Cabecalho"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND.",
+        "texto": "tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+        "caminho": "tipoDocumento",
+        "propriedade": "SM:Cabecalho.tipoDocumento",
+        "valor": [
+          "FT",
+          "FS",
+          "FR",
+          "NC",
+          "ND"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "SM:Cabecalho.tipoDocumento",
+        "nome": "tipoDocumento",
+        "dono": "Cabecalho"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "tipoDocumento"
+      ]
+    },
+    {
+      "id": "RP-TOTAL",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Cabecalho.totalFatura ≥ 0",
+      "alcance": "SM Cabecalho.totalFatura",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "totalFatura",
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "dono": "Cabecalho"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "GTE",
+        "mensagem": "O total da fatura não pode ser negativo.",
+        "texto": "totalFatura ≥ 0",
+        "caminho": "totalFatura",
+        "propriedade": "SM:Cabecalho.totalFatura",
+        "valor": 0,
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O total da fatura não pode ser negativo.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "SM:Cabecalho.totalFatura",
+        "nome": "totalFatura",
+        "dono": "Cabecalho"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "totalFatura"
+      ]
+    },
+    {
+      "id": "RIR-FS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.totalFatura ≤ 1000",
+      "alcance": "SM Cabecalho",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "chave": "SM:Cabecalho",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "LTE",
+        "mensagem": "Uma fatura simplificada não pode ultrapassar 1000 euros.",
+        "texto": "totalFatura ≤ 1000",
+        "caminho": "totalFatura",
+        "propriedade": "SM:Cabecalho.totalFatura",
+        "valor": 1000,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoDocumento",
+          "propriedade": "SM:Cabecalho.tipoDocumento",
+          "operador": "EQUALS",
+          "valor": "FS",
+          "contexto": null,
+          "texto": "tipoDocumento = FS",
+          "nome": "tipoDocumento"
+        }
+      ],
+      "mensagem": "Uma fatura simplificada não pode ultrapassar 1000 euros.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "SM:Cabecalho.totalFatura",
+        "nome": "totalFatura",
+        "dono": "Cabecalho"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Cabecalho"
+      ]
+    },
+    {
+      "id": "RIR-FS-NUM",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\"",
+      "alcance": "SM Cabecalho",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "chave": "SM:Cabecalho",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "STARTS_WITH",
+        "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+        "texto": "numero começa por \"FS\"",
+        "caminho": "numero",
+        "propriedade": "SM:Cabecalho.numero",
+        "valor": "FS",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoDocumento",
+          "propriedade": "SM:Cabecalho.tipoDocumento",
+          "operador": "EQUALS",
+          "valor": "FS",
+          "contexto": null,
+          "texto": "tipoDocumento = FS",
+          "nome": "tipoDocumento"
+        }
+      ],
+      "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "SM:Cabecalho.numero",
+        "nome": "numero",
+        "dono": "Cabecalho"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Cabecalho"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 5,
+    "RIR": 2,
+    "RIC": 0,
+    "FN": 3
+  },
+  "funcoes": [
+    {
+      "nome": "atcudValido",
+      "descricao": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.",
+      "parametros": [
+        {
+          "nome": "atcud",
+          "tipo": "texto",
+          "papel": "alvo"
+        },
+        {
+          "nome": "serie",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "contextos": [
+        "seriesComunicadasAT"
+      ],
+      "regras": [
+        "RP-ATCUD"
+      ]
+    },
+    {
+      "nome": "hashEncadeadoValido",
+      "descricao": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.",
+      "parametros": [
+        {
+          "nome": "numero",
+          "tipo": "texto",
+          "papel": "alvo"
+        },
+        {
+          "nome": "dataEmissao",
+          "tipo": "data",
+          "papel": "alvo"
+        },
+        {
+          "nome": "totalFatura",
+          "tipo": "decimal",
+          "papel": "alvo"
+        },
+        {
+          "nome": "hash",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "contextos": [
+        "hashAnterior"
+      ],
+      "regras": [
+        "RP-HASH"
+      ]
+    },
+    {
+      "nome": "naoPosteriorAHoje",
+      "descricao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "parametros": [
+        {
+          "nome": "data",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Data que não pode estar no futuro."
+        }
+      ],
+      "contextos": [
+        "dataDeHoje"
+      ],
+      "regras": [
+        "RP-DATAEMISSAO"
+      ]
+    }
+  ],
+  "contextos": [
+    {
+      "nome": "dataDeHoje",
+      "tipo": "data",
+      "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+      "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível.",
+      "regras": [
+        "RP-DATAEMISSAO"
+      ],
+      "fixadoPor": [
+        {
+          "perfil": "AuditoriaSetembro2026",
+          "valor": "2026-09-30"
+        },
+        {
+          "perfil": "TesteRefrigeracao",
+          "valor": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "nome": "hashAnterior",
+      "tipo": "texto",
+      "descricao": "Hash do último documento emitido na mesma série, que encadeia o documento atual.",
+      "fonte": "Sistema de faturação do emitente.",
+      "regras": [
+        "RP-HASH"
+      ],
+      "fixadoPor": []
+    },
+    {
+      "nome": "seriesComunicadasAT",
+      "tipo": "texto",
+      "descricao": "Séries de documentos comunicadas à AT, cada uma com o respetivo código de validação.",
+      "fonte": "Portal das Finanças (AT), sincronizado pelo sistema de faturação.",
+      "regras": [
+        "RP-ATCUD"
+      ],
+      "fixadoPor": []
+    }
+  ],
+  "parametros": {
+    "nivel": "SM",
+    "nome": "Cabecalho",
+    "regras": true
+  }
+}

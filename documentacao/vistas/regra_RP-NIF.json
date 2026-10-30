@@ -1,0 +1,214 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-NIF",
+  "regra": {
+    "id": "RP-NIF",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+    "alcance": "USM Entidade.nif",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "nif",
+      "chave": "Propriedade:USM:Entidade.nif",
+      "dono": "Entidade"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "O NIF tem de ter nove algarismos.",
+      "texto": "nif segue o padrão ^[0-9]{9}$",
+      "caminho": "nif",
+      "propriedade": "USM:Entidade.nif",
+      "valor": "^[0-9]{9}$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O NIF tem de ter nove algarismos.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Entidade.nif",
+      "nome": "nif",
+      "dono": "Entidade"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "O NIF tem de ter nove algarismos.",
+    "texto": "nif segue o padrão ^[0-9]{9}$",
+    "caminho": "nif",
+    "propriedade": "USM:Entidade.nif",
+    "valor": "^[0-9]{9}$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "nif segue o padrão ^[0-9]{9}$",
+    "alvo": {
+      "chave": "USM:Entidade.nif",
+      "nome": "nif",
+      "dono": "Entidade",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Número de identificação fiscal"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Entidade.nif",
+    "nome": "nif",
+    "dono": "Entidade",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Número de identificação fiscal",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura",
+      "OrdemInstalacao"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-NIF",
+        "rotulo": "RP",
+        "texto": "RP-NIF",
+        "detalhe": "Entidade.nif segue o padrão ^[0-9]{9}$"
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nif",
+        "rotulo": "Propriedade",
+        "texto": "USM:Entidade.nif",
+        "detalhe": "Número de identificação fiscal"
+      },
+      {
+        "chave": "Restricao:RP-NIF",
+        "rotulo": "Restricao",
+        "texto": "RP-NIF#restricao",
+        "detalhe": "nif segue o padrão ^[0-9]{9}$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-NIF",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-NIF",
+        "para": "Restricao:RP-NIF",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-NIF",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "RESTRINGE",
+        "texto": "nif segue o padrão ^[0-9]{9}$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Entidade.nif",
+        "rotulo": "Propriedade",
+        "nome": "nif",
+        "dono": "Entidade",
+        "descricao": "Número de identificação fiscal",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Entidade",
+        "rotulo": "USM",
+        "nome": "Entidade",
+        "dono": null,
+        "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cliente",
+        "rotulo": "SM",
+        "nome": "Cliente",
+        "dono": null,
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "dono": null,
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Entidade",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cliente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cliente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Requerente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Emitente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Emitente",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-NIF"
+  }
+}

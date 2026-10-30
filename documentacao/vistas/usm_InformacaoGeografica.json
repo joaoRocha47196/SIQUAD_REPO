@@ -1,0 +1,715 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo USM InformacaoGeografica",
+  "nivel": "USM",
+  "nome": "InformacaoGeografica",
+  "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "USM",
+    "nome": "InformacaoGeografica",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+    "propriedades": [
+      {
+        "chave": "USM:InformacaoGeografica.latitude",
+        "nome": "latitude",
+        "dono": "InformacaoGeografica",
+        "nivelDono": "USM",
+        "tipo": "decimal",
+        "descricao": "Latitude, em graus decimais",
+        "caminho": "latitude",
+        "nomesAlternativos": [
+          "lat"
+        ],
+        "discriminante": true
+      },
+      {
+        "chave": "USM:InformacaoGeografica.longitude",
+        "nome": "longitude",
+        "dono": "InformacaoGeografica",
+        "nivelDono": "USM",
+        "tipo": "decimal",
+        "descricao": "Longitude, em graus decimais",
+        "caminho": "longitude",
+        "nomesAlternativos": [
+          "lon",
+          "lng"
+        ],
+        "discriminante": true
+      },
+      {
+        "chave": "USM:InformacaoGeografica.altitude",
+        "nome": "altitude",
+        "dono": "InformacaoGeografica",
+        "nivelDono": "USM",
+        "tipo": "decimal",
+        "descricao": "Altitude, em metros",
+        "caminho": "altitude",
+        "nomesAlternativos": [
+          "alt",
+          "elevation"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "USM:InformacaoGeografica.sistemaReferencia",
+        "nome": "sistemaReferencia",
+        "dono": "InformacaoGeografica",
+        "nivelDono": "USM",
+        "tipo": "texto",
+        "descricao": "Sistema de referência das coordenadas",
+        "caminho": "sistemaReferencia",
+        "nomesAlternativos": [
+          "crs",
+          "datum"
+        ],
+        "discriminante": false
+      }
+    ],
+    "filhos": [],
+    "usadoPor": [
+      "Dispositivo",
+      "OrdemInstalacao"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "USM",
+    "nome": "InformacaoGeografica",
+    "caminho": "",
+    "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+    "regras": [
+      {
+        "id": "RP-AREA",
+        "tipo": "RP",
+        "natureza": "plausibilidade",
+        "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+        "alcance": "USM InformacaoGeografica",
+        "notas": "A área autorizada é informação da própria regra (parâmetro literal), não contexto externo.",
+        "contextosExternos": [],
+        "viveEm": {
+          "rotulo": "USM",
+          "nome": "InformacaoGeografica",
+          "chave": "USM:InformacaoGeografica",
+          "dono": null
+        },
+        "restricao": {
+          "forma": "funcao",
+          "operador": "FUNCTION",
+          "mensagem": "O dispositivo está fora da área onde foi autorizado.",
+          "texto": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+          "chamada": {
+            "funcao": "dentroDe",
+            "chamada": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+            "operador": "FUNCTION",
+            "termo": null,
+            "descricaoFuncao": "Verdadeira quando o ponto (latitude, longitude) está dentro da área, um polígono de vértices (latitude, longitude).",
+            "argumentos": [
+              {
+                "caminho": "latitude",
+                "alvo": "USM:InformacaoGeografica.latitude",
+                "nomeAlvo": "latitude",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              },
+              {
+                "caminho": "longitude",
+                "alvo": "USM:InformacaoGeografica.longitude",
+                "nomeAlvo": "longitude",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              }
+            ],
+            "contextos": []
+          }
+        },
+        "mensagem": "O dispositivo está fora da área onde foi autorizado.",
+        "funcao": true,
+        "categoria": "FN",
+        "alvo": {
+          "chave": "USM:InformacaoGeografica.latitude",
+          "nome": "latitude, longitude",
+          "funcao": "dentroDe"
+        },
+        "funcoes": [
+          "dentroDe"
+        ],
+        "ocorrencias": [
+          "InformacaoGeografica"
+        ]
+      }
+    ],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "InformacaoGeografica",
+      "nivel": "USM",
+      "proprio": true,
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "latitude",
+          "caminho": "latitude",
+          "descricao": "Latitude, em graus decimais",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "lat"
+          ],
+          "chave": "USM:InformacaoGeografica.latitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-LAT",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.latitude entre -90 e 90",
+              "alcance": "USM InformacaoGeografica.latitude",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "latitude",
+                "chave": "Propriedade:USM:InformacaoGeografica.latitude",
+                "dono": "InformacaoGeografica"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "A latitude tem de estar entre -90 e 90.",
+                "texto": "latitude entre -90 e 90",
+                "caminho": "latitude",
+                "propriedade": "USM:InformacaoGeografica.latitude",
+                "valor": [
+                  -90,
+                  90
+                ],
+                "minimo": -90,
+                "maximo": 90
+              },
+              "mensagem": "A latitude tem de estar entre -90 e 90.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:InformacaoGeografica.latitude",
+                "nome": "latitude",
+                "dono": "InformacaoGeografica"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "latitude"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "longitude",
+          "caminho": "longitude",
+          "descricao": "Longitude, em graus decimais",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "lon",
+            "lng"
+          ],
+          "chave": "USM:InformacaoGeografica.longitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-LON",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+              "alcance": "USM InformacaoGeografica.longitude",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "longitude",
+                "chave": "Propriedade:USM:InformacaoGeografica.longitude",
+                "dono": "InformacaoGeografica"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "A longitude tem de estar entre -180 e 180.",
+                "texto": "longitude entre -180 e 180",
+                "caminho": "longitude",
+                "propriedade": "USM:InformacaoGeografica.longitude",
+                "valor": [
+                  -180,
+                  180
+                ],
+                "minimo": -180,
+                "maximo": 180
+              },
+              "mensagem": "A longitude tem de estar entre -180 e 180.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:InformacaoGeografica.longitude",
+                "nome": "longitude",
+                "dono": "InformacaoGeografica"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "longitude"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "altitude",
+          "caminho": "altitude",
+          "descricao": "Altitude, em metros",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "alt",
+            "elevation"
+          ],
+          "chave": "USM:InformacaoGeografica.altitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-ALT",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.altitude entre -500 e 9000",
+              "alcance": "USM InformacaoGeografica.altitude",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "altitude",
+                "chave": "Propriedade:USM:InformacaoGeografica.altitude",
+                "dono": "InformacaoGeografica"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "A altitude (m) tem de estar entre -500 e 9000.",
+                "texto": "altitude entre -500 e 9000",
+                "caminho": "altitude",
+                "propriedade": "USM:InformacaoGeografica.altitude",
+                "valor": [
+                  -500,
+                  9000
+                ],
+                "minimo": -500,
+                "maximo": 9000
+              },
+              "mensagem": "A altitude (m) tem de estar entre -500 e 9000.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:InformacaoGeografica.altitude",
+                "nome": "altitude",
+                "dono": "InformacaoGeografica"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "altitude"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "sistemaReferencia",
+          "caminho": "sistemaReferencia",
+          "descricao": "Sistema de referência das coordenadas",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "crs",
+            "datum"
+          ],
+          "chave": "USM:InformacaoGeografica.sistemaReferencia",
+          "dono": "InformacaoGeografica",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-SRC",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+              "alcance": "USM InformacaoGeografica.sistemaReferencia",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "sistemaReferencia",
+                "chave": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+                "dono": "InformacaoGeografica"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.",
+                "texto": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+                "caminho": "sistemaReferencia",
+                "propriedade": "USM:InformacaoGeografica.sistemaReferencia",
+                "valor": [
+                  "WGS84",
+                  "ETRS89",
+                  "PT-TM06"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:InformacaoGeografica.sistemaReferencia",
+                "nome": "sistemaReferencia",
+                "dono": "InformacaoGeografica"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "sistemaReferencia"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "latitude",
+        "longitude",
+        "altitude",
+        "sistemaReferencia"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Dispositivo",
+      "OrdemInstalacao"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Dispositivo",
+            "papel": "Localizacao",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Localizacao",
+            "papel": "InformacaoGeografica",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "USM",
+            "nome": "InformacaoGeografica"
+          }
+        ],
+        "texto": "Dispositivo › Localizacao › InformacaoGeografica"
+      },
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "OrdemInstalacao",
+            "papel": "Localizacao",
+            "cardinalidade": "1..*"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Localizacao",
+            "papel": "InformacaoGeografica",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "USM",
+            "nome": "InformacaoGeografica"
+          }
+        ],
+        "texto": "OrdemInstalacao › Localizacao › InformacaoGeografica"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-ALT",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "InformacaoGeografica.altitude entre -500 e 9000",
+      "alcance": "USM InformacaoGeografica.altitude",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "altitude",
+        "chave": "Propriedade:USM:InformacaoGeografica.altitude",
+        "dono": "InformacaoGeografica"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "A altitude (m) tem de estar entre -500 e 9000.",
+        "texto": "altitude entre -500 e 9000",
+        "caminho": "altitude",
+        "propriedade": "USM:InformacaoGeografica.altitude",
+        "valor": [
+          -500,
+          9000
+        ],
+        "minimo": -500,
+        "maximo": 9000
+      },
+      "mensagem": "A altitude (m) tem de estar entre -500 e 9000.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:InformacaoGeografica.altitude",
+        "nome": "altitude",
+        "dono": "InformacaoGeografica"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "altitude"
+      ]
+    },
+    {
+      "id": "RP-AREA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+      "alcance": "USM InformacaoGeografica",
+      "notas": "A área autorizada é informação da própria regra (parâmetro literal), não contexto externo.",
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "InformacaoGeografica",
+        "chave": "USM:InformacaoGeografica",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "FUNCTION",
+        "mensagem": "O dispositivo está fora da área onde foi autorizado.",
+        "texto": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+        "chamada": {
+          "funcao": "dentroDe",
+          "chamada": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+          "operador": "FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando o ponto (latitude, longitude) está dentro da área, um polígono de vértices (latitude, longitude).",
+          "argumentos": [
+            {
+              "caminho": "latitude",
+              "alvo": "USM:InformacaoGeografica.latitude",
+              "nomeAlvo": "latitude",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            },
+            {
+              "caminho": "longitude",
+              "alvo": "USM:InformacaoGeografica.longitude",
+              "nomeAlvo": "longitude",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": []
+        }
+      },
+      "mensagem": "O dispositivo está fora da área onde foi autorizado.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:InformacaoGeografica.latitude",
+        "nome": "latitude, longitude",
+        "funcao": "dentroDe"
+      },
+      "funcoes": [
+        "dentroDe"
+      ],
+      "ocorrencias": [
+        "InformacaoGeografica"
+      ]
+    },
+    {
+      "id": "RP-LAT",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "InformacaoGeografica.latitude entre -90 e 90",
+      "alcance": "USM InformacaoGeografica.latitude",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "latitude",
+        "chave": "Propriedade:USM:InformacaoGeografica.latitude",
+        "dono": "InformacaoGeografica"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "A latitude tem de estar entre -90 e 90.",
+        "texto": "latitude entre -90 e 90",
+        "caminho": "latitude",
+        "propriedade": "USM:InformacaoGeografica.latitude",
+        "valor": [
+          -90,
+          90
+        ],
+        "minimo": -90,
+        "maximo": 90
+      },
+      "mensagem": "A latitude tem de estar entre -90 e 90.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:InformacaoGeografica.latitude",
+        "nome": "latitude",
+        "dono": "InformacaoGeografica"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "latitude"
+      ]
+    },
+    {
+      "id": "RP-LON",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+      "alcance": "USM InformacaoGeografica.longitude",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "longitude",
+        "chave": "Propriedade:USM:InformacaoGeografica.longitude",
+        "dono": "InformacaoGeografica"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "A longitude tem de estar entre -180 e 180.",
+        "texto": "longitude entre -180 e 180",
+        "caminho": "longitude",
+        "propriedade": "USM:InformacaoGeografica.longitude",
+        "valor": [
+          -180,
+          180
+        ],
+        "minimo": -180,
+        "maximo": 180
+      },
+      "mensagem": "A longitude tem de estar entre -180 e 180.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:InformacaoGeografica.longitude",
+        "nome": "longitude",
+        "dono": "InformacaoGeografica"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "longitude"
+      ]
+    },
+    {
+      "id": "RP-SRC",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+      "alcance": "USM InformacaoGeografica.sistemaReferencia",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "sistemaReferencia",
+        "chave": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+        "dono": "InformacaoGeografica"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.",
+        "texto": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+        "caminho": "sistemaReferencia",
+        "propriedade": "USM:InformacaoGeografica.sistemaReferencia",
+        "valor": [
+          "WGS84",
+          "ETRS89",
+          "PT-TM06"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:InformacaoGeografica.sistemaReferencia",
+        "nome": "sistemaReferencia",
+        "dono": "InformacaoGeografica"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "sistemaReferencia"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 5,
+    "RIR": 0,
+    "RIC": 0,
+    "FN": 1
+  },
+  "funcoes": [
+    {
+      "nome": "dentroDe",
+      "descricao": "Verdadeira quando o ponto (latitude, longitude) está dentro da área, um polígono de vértices (latitude, longitude).",
+      "parametros": [
+        {
+          "nome": "latitude",
+          "tipo": "decimal",
+          "papel": "alvo"
+        },
+        {
+          "nome": "longitude",
+          "tipo": "decimal",
+          "papel": "alvo"
+        },
+        {
+          "nome": "area",
+          "tipo": "poligono",
+          "papel": "parametro",
+          "descricao": "Lista de vértices [latitude, longitude], declarada na regra."
+        }
+      ],
+      "contextos": [],
+      "regras": [
+        "RP-AREA"
+      ]
+    }
+  ],
+  "contextos": [],
+  "parametros": {
+    "nivel": "USM",
+    "nome": "InformacaoGeografica",
+    "regras": true
+  }
+}

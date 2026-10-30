@@ -1,0 +1,1115 @@
+{
+ "descricao": "Catálogo das vistas: para cada tipo de vista, o que representa, os dados que agrega, para que serve, como se usa, as entidades do grafo que percorre, as ligações (arestas) que segue e para onde se pode navegar a partir dela. É lido pela geração das vistas (cabeçalho 'Sobre esta vista' e esquemas) e pelo índice (esquema global de navegação).",
+ "vistas": {
+  "indice": {
+   "titulo": "Índice das vistas",
+   "ficheiro": "index",
+   "viewmodel": null,
+   "representa": "O ponto de entrada: todas as vistas geradas a partir do grafo, organizadas por HLM e por tipo, e o esquema global de navegação entre tipos de vista.",
+   "dados": [
+    "as declarações ingeridas (nós Declaracao) e o HLM que cada uma descreve",
+    "os HLM, SM e USM existentes",
+    "as propriedades com decisão (≥ 2 RIR) e as propriedades discriminantes",
+    "os perfis e todas as regras"
+   ],
+   "serve": "Encontrar a vista certa para uma pergunta e perceber como as vistas se ligam entre si.",
+   "uso": [
+    "Começar pela vista do modelo de um HLM e descer daí.",
+    "Usar o esquema global para saber de que vista se chega a qual.",
+    "As fichas das regras estão no fim, coloridas pela categoria."
+   ],
+   "entidades": [
+    "Declaracao",
+    "HLM",
+    "SM",
+    "USM",
+    "Propriedade",
+    "Regra",
+    "Perfil"
+   ],
+   "ligacoes": [
+    [
+     "Declaracao",
+     "DESCREVE",
+     "HLM"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "modelo_hlm",
+     "por": "cada HLM"
+    },
+    {
+     "para": "modelo_regras",
+     "por": "cada HLM"
+    },
+    {
+     "para": "modelo_especifico",
+     "por": "cada SM e USM"
+    },
+    {
+     "para": "projecoes",
+     "por": "cada HLM"
+    },
+    {
+     "para": "decisao",
+     "por": "cada propriedade com RIR"
+    },
+    {
+     "para": "dependencias",
+     "por": "cada propriedade discriminante"
+    },
+    {
+     "para": "impacto",
+     "por": "cada propriedade discriminante"
+    },
+    {
+     "para": "perfil",
+     "por": "cada perfil"
+    },
+    {
+     "para": "regra",
+     "por": "cada regra"
+    },
+    {
+     "para": "coerencia",
+     "por": "ligação direta"
+    },
+    {
+     "para": "lacunas",
+     "por": "cada HLM"
+    },
+    {
+     "para": "operadores",
+     "por": "ligação direta"
+    },
+    {
+     "para": "candidatos_perfil",
+     "por": "ligação direta"
+    },
+    {
+     "para": "validacao",
+     "por": "cada instância de exemplo"
+    }
+   ]
+  },
+  "modelo_hlm": {
+   "titulo": "Vista do modelo (HLM)",
+   "ficheiro": "hlm_<HLM>",
+   "viewmodel": "modelo (nivel=HLM, regras=false)",
+   "representa": "A estrutura completa de um HLM, só desse HLM: a árvore de composição (HLM → SM → USM, e SM dentro de SM) em cima e, em baixo, a tabela com cada modelo e cada propriedade, pela ordem da composição, com a descrição. Junta numa só vista o que antes eram a vista ECM e a vista estrutural.",
+   "dados": [
+    "o HLM e os modelos que o compõem, com papel e cardinalidade de cada composição",
+    "as propriedades de cada USM e as propriedades residuais de cada SM, com tipo base, descrição e nomes alternativos",
+    "quais propriedades são fatores discriminantes (lidas em condições)",
+    "as projeções que incidem sobre o HLM e os perfis que as usam"
+   ],
+   "serve": "Ler e rever a estrutura de um HLM: o que tem, onde está cada propriedade, que partes se repetem (coleções) e que partes são opcionais.",
+   "uso": [
+    "Desligar 'Propriedades na árvore' para ver só os modelos.",
+    "Clicar no nome de um SM ou USM (na árvore ou na tabela) para abrir a vista desse modelo.",
+    "Cada bloco da tabela (uma composição direta do HLM) expande-se ou recolhe-se: recolhido, mostra o modelo e todas as propriedades numa linha.",
+    "◆ junto a uma propriedade: é um fator discriminante; abre a análise de dependências.",
+    "Seguir para as projeções ou para a mesma vista com as regras."
+   ],
+   "entidades": [
+    "HLM",
+    "SM",
+    "USM",
+    "Propriedade",
+    "Projecao"
+   ],
+   "ligacoes": [
+    [
+     "HLM",
+     "COMPOSTO_POR",
+     "SM"
+    ],
+    [
+     "SM",
+     "COMPOSTO_POR",
+     "SM"
+    ],
+    [
+     "SM",
+     "COMPOSTO_POR",
+     "USM"
+    ],
+    [
+     "USM",
+     "CONTEM",
+     "Propriedade"
+    ],
+    [
+     "SM",
+     "CONTEM",
+     "Propriedade"
+    ],
+    [
+     "Projecao",
+     "PROJETA",
+     "HLM"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "modelo_especifico",
+     "por": "clicar num SM ou USM"
+    },
+    {
+     "para": "modelo_regras",
+     "por": "'ver com regras'"
+    },
+    {
+     "para": "projecoes",
+     "por": "ligação às projeções"
+    },
+    {
+     "para": "dependencias",
+     "por": "◆ numa propriedade discriminante"
+    },
+    {
+     "para": "lacunas",
+     "por": "ligação às lacunas"
+    }
+   ]
+  },
+  "modelo_regras": {
+   "titulo": "Vista do modelo com regras",
+   "ficheiro": "regras_<HLM>",
+   "viewmodel": "modelo (nivel=HLM, regras=true)",
+   "representa": "A vista do modelo do HLM com mais uma coluna: as regras que vivem em cada modelo e em cada propriedade (o seu alcance). Cada regra mostra, em campos separados, a condição de aplicabilidade, a restrição, a mensagem e, numa RIC, a conclusão. As RIR aparecem agrupadas pela propriedade que restringem, com o número de regras e a ligação à vista de decisão; quando são poucas, aparecem também por extenso. A mesma informação pode agrupar-se pela propriedade restringida (alvo) ou pela natureza da regra, com as funções e os contextos externos.",
+   "dados": [
+    "tudo o da vista do modelo",
+    "cada regra (RP, RIR, RIC) com o nó onde vive, a condição (termos), a restrição (alvo, operador, valor ou chamada de função), a mensagem e a conclusão",
+    "as funções chamadas pelas regras do HLM, com parâmetros, contextos externos e regras que as usam",
+    "os contextos externos, com fonte, regras que dependem deles e perfis que os fixam"
+   ],
+   "serve": "Rever o conhecimento de validação de um HLM no sítio onde está definido; perceber que regras vivem em cada nível e porquê; encontrar as regras de uma propriedade ou de uma natureza.",
+   "uso": [
+    "Escolher 'Agrupar por': modelo (a tabela), alvo (por propriedade restringida) ou natureza (RP, RIR, RIC, funções e contextos).",
+    "Escolher 'Atributos das regras' para mostrar ou esconder identificador, descrição, condição, restrição, mensagem, conclusão, contextos e onde vive.",
+    "Seguir a ligação de um grupo de RIR para a vista de decisão dessa propriedade.",
+    "Clicar num identificador para abrir a ficha da regra."
+   ],
+   "entidades": [
+    "HLM",
+    "SM",
+    "USM",
+    "Propriedade",
+    "RP",
+    "RIR",
+    "RIC",
+    "Restricao",
+    "CondicaoAplicabilidade",
+    "Funcao",
+    "ContextoExterno"
+   ],
+   "ligacoes": [
+    [
+     "HLM",
+     "COMPOSTO_POR",
+     "SM"
+    ],
+    [
+     "SM",
+     "COMPOSTO_POR",
+     "USM"
+    ],
+    [
+     "USM",
+     "CONTEM",
+     "Propriedade"
+    ],
+    [
+     "RP",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ],
+    [
+     "RIR",
+     "ASSOCIADA_A",
+     "SM"
+    ],
+    [
+     "RIC",
+     "ASSOCIADA_A",
+     "SM"
+    ],
+    [
+     "RIR",
+     "RESTRITA_POR",
+     "Restricao"
+    ],
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "RIR",
+     "CONDICIONADA_POR",
+     "CondicaoAplicabilidade"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ],
+    [
+     "Restricao",
+     "CHAMA",
+     "Funcao"
+    ],
+    [
+     "Funcao",
+     "DEPENDE_DE",
+     "ContextoExterno"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "identificador da regra"
+    },
+    {
+     "para": "decisao",
+     "por": "grupo de RIR"
+    },
+    {
+     "para": "modelo_especifico",
+     "por": "clicar num SM ou USM"
+    },
+    {
+     "para": "modelo_hlm",
+     "por": "'ver sem regras'"
+    },
+    {
+     "para": "dependencias",
+     "por": "◆ numa propriedade discriminante"
+    }
+   ]
+  },
+  "modelo_especifico": {
+   "titulo": "Vista de um modelo específico (SM ou USM)",
+   "ficheiro": "sm_<SM> | usm_<USM>",
+   "viewmodel": "modelo (nivel=SM|USM, regras=true)",
+   "representa": "Um SM ou um USM visto por si: primeiro, por quem é usado (os caminhos de composição desde cada HLM); depois, a sua árvore de dependências até às folhas, em que cada SM ou USM indica que HLM o usam; por fim, a tabela com a estrutura, a descrição das propriedades e as regras que vivem no modelo e nas suas propriedades.",
+   "dados": [
+    "os caminhos de composição de cada HLM até ao modelo (com papel e cardinalidade)",
+    "a subárvore do modelo até às propriedades",
+    "os HLM que usam cada SM e USM da subárvore",
+    "as regras que vivem no modelo e abaixo dele (definidas uma vez, válidas em todos os HLM que o usam)"
+   ],
+   "serve": "Perceber o efeito de mexer num modelo partilhado: em que HLM aparece, por que papéis, e que regras leva consigo.",
+   "uso": [
+    "Clicar em qualquer modelo (no topo, na árvore ou na tabela) para navegar para ele.",
+    "Abrir 'usado por' numa caixa da árvore para ver os HLM que usam esse SM ou USM.",
+    "Usar os mesmos controlos da vista com regras (atributos e agrupamento)."
+   ],
+   "entidades": [
+    "HLM",
+    "SM",
+    "USM",
+    "Propriedade",
+    "RP",
+    "RIR",
+    "RIC",
+    "Restricao",
+    "CondicaoAplicabilidade"
+   ],
+   "ligacoes": [
+    [
+     "HLM",
+     "COMPOSTO_POR",
+     "SM"
+    ],
+    [
+     "SM",
+     "COMPOSTO_POR",
+     "USM"
+    ],
+    [
+     "USM",
+     "CONTEM",
+     "Propriedade"
+    ],
+    [
+     "RP",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ],
+    [
+     "RIR",
+     "RESTRITA_POR",
+     "Restricao"
+    ],
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "modelo_hlm",
+     "por": "cada HLM que o usa"
+    },
+    {
+     "para": "modelo_especifico",
+     "por": "cada SM ou USM da árvore"
+    },
+    {
+     "para": "regra",
+     "por": "identificador da regra"
+    },
+    {
+     "para": "decisao",
+     "por": "grupo de RIR"
+    },
+    {
+     "para": "dependencias",
+     "por": "◆ numa propriedade"
+    }
+   ]
+  },
+  "projecoes": {
+   "titulo": "Matriz de projeções",
+   "ficheiro": "projecoes_<HLM>",
+   "viewmodel": "projecoes",
+   "representa": "As regras estruturais (RE) de um HLM: para cada propriedade (em cada caminho) e cada projeção, se é obrigatória, permitida ou excluída; e, para cada perfil que usa as projeções, os valores fixados.",
+   "dados": [
+    "as projeções do HLM e as propriedades obrigatórias e permitidas de cada uma (com '*' já expandido)",
+    "os perfis que usam cada projeção e o que fixam (propriedades e contextos externos)"
+   ],
+   "serve": "Comparar utilizações do mesmo HLM (ex.: fatura simplificada vs. comunicação à AT) e ver onde diferem.",
+   "uso": [
+    "As linhas sombreadas são as propriedades em que as projeções diferem.",
+    "Seguir para a vista de cada perfil."
+   ],
+   "entidades": [
+    "Projecao",
+    "HLM",
+    "Propriedade",
+    "Perfil",
+    "ContextoExterno"
+   ],
+   "ligacoes": [
+    [
+     "Projecao",
+     "PROJETA",
+     "HLM"
+    ],
+    [
+     "Projecao",
+     "OBRIGATORIA",
+     "Propriedade"
+    ],
+    [
+     "Projecao",
+     "PERMITIDA",
+     "Propriedade"
+    ],
+    [
+     "Perfil",
+     "USA",
+     "Projecao"
+    ],
+    [
+     "Perfil",
+     "FIXA",
+     "Propriedade"
+    ],
+    [
+     "Perfil",
+     "FIXA",
+     "ContextoExterno"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "perfil",
+     "por": "cada perfil"
+    },
+    {
+     "para": "modelo_hlm",
+     "por": "o HLM"
+    }
+   ]
+  },
+  "decisao": {
+   "titulo": "Vista de decisão (matriz e árvore)",
+   "ficheiro": "decisao_<Dono>_<propriedade>",
+   "viewmodel": "decisao",
+   "representa": "Que valor é exigido a uma propriedade em cada combinação dos fatores discriminantes, segundo as RIR que a restringem. Os mesmos dados mostram-se em tabela (uma dimensão nas linhas, as restantes nas colunas) ou em árvore (uma dimensão por nível, até às restrições). No topo, as RP do alvo e de cada fator discriminante: os valores que cada um pode tomar, antes do mapeamento.",
+   "dados": [
+    "a propriedade restringida e as suas RP",
+    "os fatores discriminantes (propriedades lidas nos termos de seleção), os seus valores plausíveis e as RP que os definem",
+    "cada RIR: a combinação de valores, o valor exigido, a mensagem, a descrição e onde vive",
+    "assinalados: combinações sem regra, gamas incoerentes, conflitos, valores fora dos plausíveis e gamas por cobrir"
+   ],
+   "serve": "Rever e completar um conjunto de RIR como uma tabela de decisão: ver lacunas, conflitos e valores impossíveis.",
+   "uso": [
+    "Escolher 'Tabela' ou 'Árvore'.",
+    "A tabela mostra só os valores; 'Mais informação' acrescenta, em cada célula, a regra, a mensagem, a descrição e onde vive.",
+    "Clicar numa regra para a ficha; num fator discriminante para a sua análise de dependências."
+   ],
+   "entidades": [
+    "Propriedade",
+    "RP",
+    "RIR",
+    "Restricao",
+    "CondicaoAplicabilidade"
+   ],
+   "ligacoes": [
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "RIR",
+     "RESTRITA_POR",
+     "Restricao"
+    ],
+    [
+     "RIR",
+     "CONDICIONADA_POR",
+     "CondicaoAplicabilidade"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ],
+    [
+     "RP",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "cada regra"
+    },
+    {
+     "para": "dependencias",
+     "por": "cada fator discriminante"
+    },
+    {
+     "para": "modelo_especifico",
+     "por": "o modelo da propriedade"
+    }
+   ]
+  },
+  "dependencias": {
+   "titulo": "Análise de dependência de validade",
+   "ficheiro": "dependencias_<Dono>_<propriedade>",
+   "viewmodel": "dependencias",
+   "representa": "O que muda na validação quando uma propriedade toma cada um dos seus valores: para cada valor (dos plausíveis e dos usados nos termos), as regras cuja condição de aplicabilidade passa a verificar-se, a condição completa com o termo sobre esta propriedade em destaque, a restrição ou conclusão de cada regra e as propriedades afetadas. Lê-se como um fluxo: propriedade → valor → condição → regras → propriedades afetadas.",
+   "dados": [
+    "a propriedade, a sua descrição e as RP com os valores plausíveis",
+    "para cada valor: as regras que se aplicam e as propriedades que elas restringem",
+    "para cada regra: todos os termos da condição (o desta propriedade em destaque), a restrição, a mensagem e a conclusão",
+    "as regras cujo termo sobre a propriedade não é de seleção (gamas, contextos, funções)"
+   ],
+   "serve": "Perceber de que depende a validade das outras propriedades; prever o efeito de um valor antes de o fixar num perfil.",
+   "uso": [
+    "Escolher um valor (ou todos) no seletor.",
+    "Expandir um valor para ver as regras; expandir uma regra para ver a condição completa.",
+    "Seguir para as propriedades afetadas, para as fichas das regras e para a vista de decisão."
+   ],
+   "entidades": [
+    "Propriedade",
+    "RP",
+    "RIR",
+    "RIC",
+    "CondicaoAplicabilidade",
+    "Restricao",
+    "Funcao"
+   ],
+   "ligacoes": [
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ],
+    [
+     "RIR",
+     "CONDICIONADA_POR",
+     "CondicaoAplicabilidade"
+    ],
+    [
+     "RIR",
+     "RESTRITA_POR",
+     "Restricao"
+    ],
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "Funcao",
+     "LE",
+     "Propriedade"
+    ],
+    [
+     "RP",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "cada regra"
+    },
+    {
+     "para": "decisao",
+     "por": "cada propriedade afetada com RIR"
+    },
+    {
+     "para": "modelo_especifico",
+     "por": "o modelo da propriedade"
+    },
+    {
+     "para": "impacto",
+     "por": "ligação ao impacto"
+    }
+   ]
+  },
+  "impacto": {
+   "titulo": "Impacto de uma alteração",
+   "ficheiro": "impacto_<Dono>_<propriedade>",
+   "viewmodel": "impacto",
+   "representa": "Tudo o que é afetado se uma propriedade mudar (nome, valores plausíveis ou posição): as regras em que é alvo, termo, argumento de uma função ou onde vive, as projeções que a usam e os perfis que a fixam.",
+   "dados": [
+    "as regras que a referem, com o papel da propriedade em cada uma",
+    "as projeções e os caminhos onde aparece",
+    "os perfis que a fixam e o valor"
+   ],
+   "serve": "Avaliar o custo de uma alteração antes de a fazer.",
+   "uso": [
+    "Ler o resumo no topo e seguir para as regras."
+   ],
+   "entidades": [
+    "Propriedade",
+    "Regra",
+    "Restricao",
+    "CondicaoAplicabilidade",
+    "Funcao",
+    "Projecao",
+    "Perfil"
+   ],
+   "ligacoes": [
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ],
+    [
+     "Funcao",
+     "LE",
+     "Propriedade"
+    ],
+    [
+     "Regra",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ],
+    [
+     "Projecao",
+     "OBRIGATORIA",
+     "Propriedade"
+    ],
+    [
+     "Perfil",
+     "FIXA",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "cada regra"
+    },
+    {
+     "para": "dependencias",
+     "por": "ligação às dependências"
+    },
+    {
+     "para": "perfil",
+     "por": "cada perfil"
+    }
+   ]
+  },
+  "regra": {
+   "titulo": "Ficha de uma regra",
+   "ficheiro": "regra_<ID>",
+   "viewmodel": "regra",
+   "representa": "Tudo o que uma regra declara e todas as suas ligações, sem omissões: cada elemento (restrição, condição e termos, funções, contextos externos, propriedades) com a sua informação completa, e o subgrafo em duas partes: o da regra, na horizontal, e o dos modelos, na vertical, desde cada propriedade envolvida até ao modelo que a contém e a todos os HLM que a usam.",
+   "dados": [
+    "a regra: tipo, natureza, descrição, onde vive, mensagem, conclusão, notas",
+    "a restrição: forma, operador, valor, alvo (com descrição) ou a função chamada (descrição, parâmetros, argumentos, contextos)",
+    "a condição: cada termo com a propriedade (e descrição), o operador e o valor ou o contexto externo",
+    "a cadeia de modelos: propriedade → USM/SM → … → HLM, para todas as propriedades envolvidas"
+   ],
+   "serve": "Compreender e rever uma regra por completo; ver em que HLM ela tem efeito.",
+   "uso": [
+    "Passar o rato sobre um nó do subgrafo para ver a descrição.",
+    "A tabela de ligações dá o texto completo de cada aresta.",
+    "Clicar nos modelos e propriedades para as vistas respetivas."
+   ],
+   "entidades": [
+    "RP",
+    "RIR",
+    "RIC",
+    "Restricao",
+    "CondicaoAplicabilidade",
+    "Propriedade",
+    "Funcao",
+    "ContextoExterno",
+    "USM",
+    "SM",
+    "HLM"
+   ],
+   "ligacoes": [
+    [
+     "RIR",
+     "ASSOCIADA_A",
+     "SM"
+    ],
+    [
+     "RIR",
+     "RESTRITA_POR",
+     "Restricao"
+    ],
+    [
+     "RIR",
+     "CONDICIONADA_POR",
+     "CondicaoAplicabilidade"
+    ],
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ],
+    [
+     "Restricao",
+     "CHAMA",
+     "Funcao"
+    ],
+    [
+     "Funcao",
+     "LE",
+     "Propriedade"
+    ],
+    [
+     "Funcao",
+     "DEPENDE_DE",
+     "ContextoExterno"
+    ],
+    [
+     "USM",
+     "CONTEM",
+     "Propriedade"
+    ],
+    [
+     "SM",
+     "COMPOSTO_POR",
+     "USM"
+    ],
+    [
+     "HLM",
+     "COMPOSTO_POR",
+     "SM"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "modelo_especifico",
+     "por": "cada modelo"
+    },
+    {
+     "para": "modelo_hlm",
+     "por": "cada HLM"
+    },
+    {
+     "para": "decisao",
+     "por": "o alvo (RIR)"
+    },
+    {
+     "para": "dependencias",
+     "por": "cada termo"
+    }
+   ]
+  },
+  "perfil": {
+   "titulo": "Perfil de execução: seleção estática",
+   "ficheiro": "perfil_<Perfil>",
+   "viewmodel": "perfil",
+   "representa": "O que um perfil resolve antes da execução: com a projeção e os valores fixados (propriedades e contextos externos), cada regra do HLM fica sempre aplicável, nunca aplicável, dinâmica ou não avaliável.",
+   "dados": [
+    "a projeção, as propriedades e os contextos fixados",
+    "cada regra (em cada ocorrência), o estado de cada termo e o estado da regra"
+   ],
+   "serve": "Confirmar que um perfil faz o que se pretende e encontrar regras que não podem ser avaliadas.",
+   "uso": [
+    "Ler as regras por estado; seguir para a ficha de cada uma."
+   ],
+   "entidades": [
+    "Perfil",
+    "Projecao",
+    "HLM",
+    "Propriedade",
+    "ContextoExterno",
+    "Regra",
+    "CondicaoAplicabilidade"
+   ],
+   "ligacoes": [
+    [
+     "Perfil",
+     "USA",
+     "Projecao"
+    ],
+    [
+     "Projecao",
+     "PROJETA",
+     "HLM"
+    ],
+    [
+     "Perfil",
+     "FIXA",
+     "Propriedade"
+    ],
+    [
+     "Perfil",
+     "FIXA",
+     "ContextoExterno"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "cada regra"
+    },
+    {
+     "para": "projecoes",
+     "por": "a projeção"
+    },
+    {
+     "para": "validacao",
+     "por": "validar uma instância no cenário do perfil (aplicação web)"
+    }
+   ]
+  },
+  "candidatos_perfil": {
+   "titulo": "Propriedades candidatas a fixar num perfil",
+   "ficheiro": "candidatos_perfil",
+   "viewmodel": "candidatos_perfil",
+   "representa": "Para as propriedades restringidas por muitas RIR, as propriedades lidas nas condições: as candidatas a fixar num perfil para tornar a seleção estática.",
+   "dados": [
+    "os alvos e as RIR que os restringem",
+    "as propriedades que aparecem nas suas condições"
+   ],
+   "serve": "Desenhar perfis.",
+   "uso": [
+    "Ler as candidatas no fim."
+   ],
+   "entidades": [
+    "Propriedade",
+    "RIR",
+    "Restricao",
+    "CondicaoAplicabilidade"
+   ],
+   "ligacoes": [
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "RIR",
+     "CONDICIONADA_POR",
+     "CondicaoAplicabilidade"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "decisao",
+     "por": "cada alvo"
+    },
+    {
+     "para": "dependencias",
+     "por": "cada candidata"
+    }
+   ]
+  },
+  "coerencia": {
+   "titulo": "Coerência entre regras",
+   "ficheiro": "coerencia",
+   "viewmodel": "coerencia",
+   "representa": "Problemas detetáveis sem executar nada: termos com valores fora dos plausíveis, regras incompatíveis (aplicam-se à mesma situação e exigem gamas sem valor comum) e regras com a mesma condição.",
+   "dados": [
+    "termos (TERMO) comparados com as RP IN da propriedade",
+    "pares de restrições RANGE sobre a mesma propriedade com condições compatíveis",
+    "condições com os mesmos termos e chamadas"
+   ],
+   "serve": "Encontrar erros e duplicações no conjunto de regras.",
+   "uso": [
+    "Seguir para a ficha de cada regra apontada."
+   ],
+   "entidades": [
+    "CondicaoAplicabilidade",
+    "Propriedade",
+    "RP",
+    "RIR",
+    "Restricao"
+   ],
+   "ligacoes": [
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ],
+    [
+     "RP",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ],
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "cada regra"
+    }
+   ]
+  },
+  "lacunas": {
+   "titulo": "Lacunas de um HLM",
+   "ficheiro": "lacunas_<HLM>",
+   "viewmodel": "lacunas",
+   "representa": "Propriedades do HLM sem nenhuma regra e propriedades que nenhuma projeção usa.",
+   "dados": [
+    "propriedades sem RESTRINGE, ASSOCIADA_A nem LE a chegar (e as que só são lidas em termos)",
+    "caminhos sem OBRIGATORIA nem PERMITIDA"
+   ],
+   "serve": "Completar a declaração.",
+   "uso": [
+    "Seguir para a propriedade na vista do modelo."
+   ],
+   "entidades": [
+    "HLM",
+    "Propriedade",
+    "Projecao",
+    "Regra"
+   ],
+   "ligacoes": [
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "Regra",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ],
+    [
+     "Projecao",
+     "OBRIGATORIA",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "modelo_especifico",
+     "por": "cada propriedade"
+    },
+    {
+     "para": "modelo_hlm",
+     "por": "o HLM"
+    }
+   ]
+  },
+  "operadores": {
+   "titulo": "Verificações por operador e enumerados",
+   "ficheiro": "operadores",
+   "viewmodel": "operadores",
+   "representa": "As restrições e os termos de todas as regras agrupados pelo operador do catálogo, e as propriedades tratadas como enumerados (com uma RP IN).",
+   "dados": [
+    "operador de cada Restricao, TERMO e CHAMA",
+    "os valores plausíveis das propriedades enumeradas"
+   ],
+   "serve": "Rever as verificações por tipo e confirmar que os operadores são usados de forma consistente.",
+   "uso": [
+    "Seguir para a ficha de cada regra."
+   ],
+   "entidades": [
+    "Restricao",
+    "CondicaoAplicabilidade",
+    "Propriedade",
+    "RP"
+   ],
+   "ligacoes": [
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ],
+    [
+     "RP",
+     "ASSOCIADA_A",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "cada regra"
+    }
+   ]
+  },
+  "validacao": {
+   "titulo": "Validação de uma instância",
+   "ficheiro": "validacao_<exemplo> (na aplicação web: separador Validação)",
+   "viewmodel": "validacao",
+   "representa": "O resultado de validar uma instância concreta de um HLM contra as regras do grafo, no cenário de um perfil: a projeção diz que propriedades são obrigatórias ou permitidas, o perfil fixa valores e contextos externos, e cada regra é avaliada em cada ocorrência do nó onde vive.",
+   "dados": [
+    "o cenário: HLM, perfil, projeção, valores fixados e contextos externos (com a origem de cada um: perfil, pedido ou omissão)",
+    "os problemas estruturais da instância: obrigatórias em falta, propriedades excluídas pela projeção, chaves desconhecidas, tipos e cardinalidades errados, valores que contradizem o perfil",
+    "cada regra em cada ocorrência concreta (uma linha de fatura, a morada do emitente e a do cliente), com o estado, os termos da condição avaliados, o valor lido e a mensagem",
+    "as conclusões das RIC que se aplicam",
+    "a instância avaliada, já com os valores fixados pelo perfil"
+   ],
+   "serve": "Confirmar que as regras declaradas fazem o que se pretende com dados reais, e ver porque uma instância é rejeitada: que regra falha, em que ocorrência e com que valor.",
+   "uso": [
+    "Na aplicação web, no separador Validação: escolher um exemplo ou colar a instância (JSON com a forma do HLM: papéis das composições e nomes das propriedades; as composições repetíveis são listas), escolher o perfil (ou só o HLM) e indicar os contextos externos.",
+    "Ler primeiro o resultado e a estrutura; depois as regras não conformes, as conclusões e as não avaliáveis.",
+    "As caixas no topo das regras mostram ou escondem cada estado (por omissão, os conformes, os não aplicáveis, os ausentes e os fora da projeção estão escondidos).",
+    "Pela linha de comandos: python -m ecv validar <instancia.json | exemplo> [--perfil P | --hlm H] [--contexto k=v ...]; termina com 1 se a instância for inválida."
+   ],
+   "entidades": [
+    "Perfil",
+    "Projecao",
+    "HLM",
+    "SM",
+    "USM",
+    "Propriedade",
+    "ContextoExterno",
+    "Regra",
+    "Restricao",
+    "CondicaoAplicabilidade",
+    "Funcao"
+   ],
+   "ligacoes": [
+    [
+     "Perfil",
+     "USA",
+     "Projecao"
+    ],
+    [
+     "Projecao",
+     "PROJETA",
+     "HLM"
+    ],
+    [
+     "Projecao",
+     "OBRIGATORIA",
+     "Propriedade"
+    ],
+    [
+     "Projecao",
+     "PERMITIDA",
+     "Propriedade"
+    ],
+    [
+     "Perfil",
+     "FIXA",
+     "Propriedade"
+    ],
+    [
+     "Perfil",
+     "FIXA",
+     "ContextoExterno"
+    ],
+    [
+     "Regra",
+     "ASSOCIADA_A",
+     "USM"
+    ],
+    [
+     "Regra",
+     "RESTRITA_POR",
+     "Restricao"
+    ],
+    [
+     "Restricao",
+     "RESTRINGE",
+     "Propriedade"
+    ],
+    [
+     "Restricao",
+     "CHAMA",
+     "Funcao"
+    ],
+    [
+     "Regra",
+     "CONDICIONADA_POR",
+     "CondicaoAplicabilidade"
+    ],
+    [
+     "CondicaoAplicabilidade",
+     "TERMO",
+     "Propriedade"
+    ]
+   ],
+   "navegacao": [
+    {
+     "para": "regra",
+     "por": "cada regra"
+    },
+    {
+     "para": "perfil",
+     "por": "o perfil"
+    },
+    {
+     "para": "modelo_hlm",
+     "por": "o HLM"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,70 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de tipoIVA (Linha)",
+  "propriedade": "USM:Linha.tipoIVA",
+  "nome": "tipoIVA",
+  "regras": [
+    {
+      "id": "RP-TIPOIVA",
+      "tipo": "RP",
+      "descricao": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIR-IVA-INT",
+      "tipo": "RIR",
+      "descricao": "Se Linha.tipoIVA = INTERMEDIA → Linha.taxaIVA = 13",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-IVA-ISE",
+      "tipo": "RIR",
+      "descricao": "Se Linha.tipoIVA = ISENTA → Linha.taxaIVA = 0",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-IVA-NOR",
+      "tipo": "RIR",
+      "descricao": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-IVA-RED",
+      "tipo": "RIR",
+      "descricao": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6",
+      "papeis": [
+        "termo da condição"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 1,
+    "RIR": 4,
+    "RIC": 0
+  },
+  "projecoes": [
+    {
+      "projecao": "FaturaAT",
+      "tipo": "obrigatoria",
+      "caminho": "Linhas.Linha.tipoIVA"
+    },
+    {
+      "projecao": "FaturaSimplificada",
+      "tipo": "obrigatoria",
+      "caminho": "Linhas.Linha.tipoIVA"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "USM:Linha.tipoIVA"
+  }
+}

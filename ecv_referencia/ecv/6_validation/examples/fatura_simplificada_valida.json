@@ -1,0 +1,56 @@
+{
+  "descricao": "Fatura simplificada correta, emitida no perfil EmissaoSimplificada (o tipo de documento vem do perfil).",
+  "perfil": "EmissaoSimplificada",
+  "contextos": {
+    "dataDeHoje": "2026-09-30",
+    "hashAnterior": "0000000000000000000000000000000000000000000000000000000000000000",
+    "seriesComunicadasAT": {
+      "FS2026": "JFKL3M7Q",
+      "FT2026": "AB12CD34"
+    }
+  },
+  "instancia": {
+    "Cabecalho": {
+      "numero": "FS2026/17",
+      "serie": "FS2026",
+      "atcud": "JFKL3M7Q-17",
+      "dataEmissao": "2026-09-29",
+      "totalFatura": 20.0,
+      "hash": "50e915cfa95e903e6faae692b1c612d1d8c7fad107c3e20e0ea1b61598265d7d"
+    },
+    "Emitente": {
+      "Entidade": {
+        "nif": "500000000",
+        "nome": "Companhia X"
+      },
+      "Morada": {
+        "rua": "Rua da Junqueira 10",
+        "codigoPostal": "1300-343",
+        "localidade": "LISBOA",
+        "freguesia": "AJUDA",
+        "pais": "PT"
+      },
+      "Contacto": {
+        "email": "faturacao@companhiax.com"
+      }
+    },
+    "Linhas": {
+      "Linha": [
+        {
+          "numero": 1,
+          "descricao": "Café",
+          "valor": 12.5,
+          "tipoIVA": "INTERMEDIA",
+          "taxaIVA": 13
+        },
+        {
+          "numero": 2,
+          "descricao": "Pastelaria",
+          "valor": 7.5,
+          "tipoIVA": "REDUZIDA",
+          "taxaIVA": 6
+        }
+      ]
+    }
+  }
+}

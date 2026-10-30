@@ -1,0 +1,1073 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo HLM Fatura",
+  "nivel": "HLM",
+  "nome": "Fatura",
+  "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+  "comRegras": false,
+  "especifico": false,
+  "arvore": {
+    "nivel": "HLM",
+    "nome": "Fatura",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+    "propriedades": [],
+    "filhos": [
+      {
+        "nivel": "SM",
+        "nome": "Cabecalho",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1",
+        "caminho": "Cabecalho",
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "propriedades": [
+          {
+            "chave": "SM:Cabecalho.numero",
+            "nome": "numero",
+            "dono": "Cabecalho",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Número do documento (série/sequência)",
+            "caminho": "Cabecalho.numero",
+            "nomesAlternativos": [
+              "invoiceNo"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Cabecalho.serie",
+            "nome": "serie",
+            "dono": "Cabecalho",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Série do documento, comunicada à AT",
+            "caminho": "Cabecalho.serie",
+            "nomesAlternativos": [
+              "series"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Cabecalho.atcud",
+            "nome": "atcud",
+            "dono": "Cabecalho",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Código único do documento (ATCUD)",
+            "caminho": "Cabecalho.atcud",
+            "nomesAlternativos": [
+              "ATCUD"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Cabecalho.tipoDocumento",
+            "nome": "tipoDocumento",
+            "dono": "Cabecalho",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Tipo de documento fiscal",
+            "caminho": "Cabecalho.tipoDocumento",
+            "nomesAlternativos": [
+              "invoiceType"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "SM:Cabecalho.dataEmissao",
+            "nome": "dataEmissao",
+            "dono": "Cabecalho",
+            "nivelDono": "SM",
+            "tipo": "data",
+            "descricao": "Data de emissão do documento",
+            "caminho": "Cabecalho.dataEmissao",
+            "nomesAlternativos": [
+              "invoiceDate"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Cabecalho.totalFatura",
+            "nome": "totalFatura",
+            "dono": "Cabecalho",
+            "nivelDono": "SM",
+            "tipo": "decimal",
+            "descricao": "Total do documento, em euros",
+            "caminho": "Cabecalho.totalFatura",
+            "nomesAlternativos": [
+              "grossTotal"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "SM:Cabecalho.hash",
+            "nome": "hash",
+            "dono": "Cabecalho",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Hash do documento, encadeado com o anterior da série",
+            "caminho": "Cabecalho.hash",
+            "nomesAlternativos": [
+              "hashDocumento"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": []
+      },
+      {
+        "nivel": "SM",
+        "nome": "Emitente",
+        "papel": "Emitente",
+        "cardinalidade": "1..1",
+        "caminho": "Emitente",
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "propriedades": [],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "Entidade",
+            "papel": "Entidade",
+            "cardinalidade": "1..1",
+            "caminho": "Emitente.Entidade",
+            "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+            "propriedades": [
+              {
+                "chave": "USM:Entidade.nif",
+                "nome": "nif",
+                "dono": "Entidade",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Número de identificação fiscal",
+                "caminho": "Emitente.Entidade.nif",
+                "nomesAlternativos": [
+                  "taxId",
+                  "VATNumber"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Entidade.nome",
+                "nome": "nome",
+                "dono": "Entidade",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Nome ou denominação social",
+                "caminho": "Emitente.Entidade.nome",
+                "nomesAlternativos": [
+                  "name",
+                  "denominacao"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Morada",
+            "papel": "Morada",
+            "cardinalidade": "1..1",
+            "caminho": "Emitente.Morada",
+            "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+            "propriedades": [
+              {
+                "chave": "USM:Morada.rua",
+                "nome": "rua",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Arruamento e número de porta",
+                "caminho": "Emitente.Morada.rua",
+                "nomesAlternativos": [],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.codigoPostal",
+                "nome": "codigoPostal",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Código postal da morada",
+                "caminho": "Emitente.Morada.codigoPostal",
+                "nomesAlternativos": [
+                  "zipCode",
+                  "postalCode",
+                  "CP"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.localidade",
+                "nome": "localidade",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+                "caminho": "Emitente.Morada.localidade",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.freguesia",
+                "nome": "freguesia",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+                "caminho": "Emitente.Morada.freguesia",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.pais",
+                "nome": "pais",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "País da morada (código ISO de duas letras)",
+                "caminho": "Emitente.Morada.pais",
+                "nomesAlternativos": [
+                  "country",
+                  "countryCode"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Contacto",
+            "papel": "Contacto",
+            "cardinalidade": "1..1",
+            "caminho": "Emitente.Contacto",
+            "descricao": "Contacto eletrónico de uma entidade.",
+            "propriedades": [
+              {
+                "chave": "USM:Contacto.email",
+                "nome": "email",
+                "dono": "Contacto",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Endereço de correio eletrónico",
+                "caminho": "Emitente.Contacto.email",
+                "nomesAlternativos": [
+                  "eMail",
+                  "correioEletronico"
+                ],
+                "discriminante": false
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      },
+      {
+        "nivel": "SM",
+        "nome": "Cliente",
+        "papel": "Cliente",
+        "cardinalidade": "1..1",
+        "caminho": "Cliente",
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "propriedades": [
+          {
+            "chave": "SM:Cliente.consentimentoComercial",
+            "nome": "consentimentoComercial",
+            "dono": "Cliente",
+            "nivelDono": "SM",
+            "tipo": "booleano",
+            "descricao": "Consentimento do cliente para comunicações comerciais",
+            "caminho": "Cliente.consentimentoComercial",
+            "nomesAlternativos": [
+              "marketingConsent"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "Entidade",
+            "papel": "Entidade",
+            "cardinalidade": "1..1",
+            "caminho": "Cliente.Entidade",
+            "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+            "propriedades": [
+              {
+                "chave": "USM:Entidade.nif",
+                "nome": "nif",
+                "dono": "Entidade",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Número de identificação fiscal",
+                "caminho": "Cliente.Entidade.nif",
+                "nomesAlternativos": [
+                  "taxId",
+                  "VATNumber"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Entidade.nome",
+                "nome": "nome",
+                "dono": "Entidade",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Nome ou denominação social",
+                "caminho": "Cliente.Entidade.nome",
+                "nomesAlternativos": [
+                  "name",
+                  "denominacao"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Morada",
+            "papel": "Morada",
+            "cardinalidade": "1..1",
+            "caminho": "Cliente.Morada",
+            "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+            "propriedades": [
+              {
+                "chave": "USM:Morada.rua",
+                "nome": "rua",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Arruamento e número de porta",
+                "caminho": "Cliente.Morada.rua",
+                "nomesAlternativos": [],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.codigoPostal",
+                "nome": "codigoPostal",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Código postal da morada",
+                "caminho": "Cliente.Morada.codigoPostal",
+                "nomesAlternativos": [
+                  "zipCode",
+                  "postalCode",
+                  "CP"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.localidade",
+                "nome": "localidade",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+                "caminho": "Cliente.Morada.localidade",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.freguesia",
+                "nome": "freguesia",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+                "caminho": "Cliente.Morada.freguesia",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.pais",
+                "nome": "pais",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "País da morada (código ISO de duas letras)",
+                "caminho": "Cliente.Morada.pais",
+                "nomesAlternativos": [
+                  "country",
+                  "countryCode"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      },
+      {
+        "nivel": "SM",
+        "nome": "Linhas",
+        "papel": "Linhas",
+        "cardinalidade": "1..1",
+        "caminho": "Linhas",
+        "descricao": "Coleção das linhas do documento.",
+        "propriedades": [],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "Linha",
+            "papel": "Linha",
+            "cardinalidade": "1..*",
+            "caminho": "Linhas.Linha",
+            "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+            "propriedades": [
+              {
+                "chave": "USM:Linha.numero",
+                "nome": "numero",
+                "dono": "Linha",
+                "nivelDono": "USM",
+                "tipo": "inteiro",
+                "descricao": "Número da linha no documento",
+                "caminho": "Linhas.Linha.numero",
+                "nomesAlternativos": [
+                  "lineNumber"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Linha.descricao",
+                "nome": "descricao",
+                "dono": "Linha",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Descrição do bem ou serviço",
+                "caminho": "Linhas.Linha.descricao",
+                "nomesAlternativos": [
+                  "description"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Linha.valor",
+                "nome": "valor",
+                "dono": "Linha",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Valor da linha, em euros",
+                "caminho": "Linhas.Linha.valor",
+                "nomesAlternativos": [
+                  "amount"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Linha.tipoIVA",
+                "nome": "tipoIVA",
+                "dono": "Linha",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Tipo de taxa de IVA aplicada à linha",
+                "caminho": "Linhas.Linha.tipoIVA",
+                "nomesAlternativos": [
+                  "taxType"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Linha.taxaIVA",
+                "nome": "taxaIVA",
+                "dono": "Linha",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Taxa de IVA aplicada à linha (%)",
+                "caminho": "Linhas.Linha.taxaIVA",
+                "nomesAlternativos": [
+                  "taxPercentage"
+                ],
+                "discriminante": false
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      }
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "HLM",
+    "nome": "Fatura",
+    "caminho": "",
+    "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas."
+  },
+  "blocos": [
+    {
+      "nome": "Cabecalho",
+      "nivel": "SM",
+      "papel": "Cabecalho",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Cabecalho",
+          "papel": "Cabecalho",
+          "caminho": "Cabecalho",
+          "cardinalidade": "1..1",
+          "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "numero",
+          "caminho": "Cabecalho.numero",
+          "descricao": "Número do documento (série/sequência)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "invoiceNo"
+          ],
+          "chave": "SM:Cabecalho.numero",
+          "dono": "Cabecalho",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "serie",
+          "caminho": "Cabecalho.serie",
+          "descricao": "Série do documento, comunicada à AT",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "series"
+          ],
+          "chave": "SM:Cabecalho.serie",
+          "dono": "Cabecalho",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "atcud",
+          "caminho": "Cabecalho.atcud",
+          "descricao": "Código único do documento (ATCUD)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "ATCUD"
+          ],
+          "chave": "SM:Cabecalho.atcud",
+          "dono": "Cabecalho",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "tipoDocumento",
+          "caminho": "Cabecalho.tipoDocumento",
+          "descricao": "Tipo de documento fiscal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "invoiceType"
+          ],
+          "chave": "SM:Cabecalho.tipoDocumento",
+          "dono": "Cabecalho",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "dataEmissao",
+          "caminho": "Cabecalho.dataEmissao",
+          "descricao": "Data de emissão do documento",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "invoiceDate"
+          ],
+          "chave": "SM:Cabecalho.dataEmissao",
+          "dono": "Cabecalho",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "totalFatura",
+          "caminho": "Cabecalho.totalFatura",
+          "descricao": "Total do documento, em euros",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "grossTotal"
+          ],
+          "chave": "SM:Cabecalho.totalFatura",
+          "dono": "Cabecalho",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "hash",
+          "caminho": "Cabecalho.hash",
+          "descricao": "Hash do documento, encadeado com o anterior da série",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "hashDocumento"
+          ],
+          "chave": "SM:Cabecalho.hash",
+          "dono": "Cabecalho",
+          "discriminante": false
+        }
+      ],
+      "resumoPropriedades": [
+        "numero",
+        "serie",
+        "atcud",
+        "tipoDocumento",
+        "dataEmissao",
+        "totalFatura",
+        "hash"
+      ]
+    },
+    {
+      "nome": "Emitente",
+      "nivel": "SM",
+      "papel": "Emitente",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Emitente",
+          "papel": "Emitente",
+          "caminho": "Emitente",
+          "cardinalidade": "1..1",
+          "descricao": "Quem emite o documento: identificação, morada e contacto."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Entidade",
+          "papel": "Entidade",
+          "caminho": "Emitente.Entidade",
+          "cardinalidade": "1..1",
+          "descricao": "Pessoa singular ou coletiva identificada pelo NIF."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "nif",
+          "caminho": "Emitente.Entidade.nif",
+          "descricao": "Número de identificação fiscal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "taxId",
+            "VATNumber"
+          ],
+          "chave": "USM:Entidade.nif",
+          "dono": "Entidade",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "nome",
+          "caminho": "Emitente.Entidade.nome",
+          "descricao": "Nome ou denominação social",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "name",
+            "denominacao"
+          ],
+          "chave": "USM:Entidade.nome",
+          "dono": "Entidade",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Morada",
+          "papel": "Morada",
+          "caminho": "Emitente.Morada",
+          "cardinalidade": "1..1",
+          "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "rua",
+          "caminho": "Emitente.Morada.rua",
+          "descricao": "Arruamento e número de porta",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.rua",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "codigoPostal",
+          "caminho": "Emitente.Morada.codigoPostal",
+          "descricao": "Código postal da morada",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "zipCode",
+            "postalCode",
+            "CP"
+          ],
+          "chave": "USM:Morada.codigoPostal",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "localidade",
+          "caminho": "Emitente.Morada.localidade",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.localidade",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "freguesia",
+          "caminho": "Emitente.Morada.freguesia",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.freguesia",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "pais",
+          "caminho": "Emitente.Morada.pais",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "country",
+            "countryCode"
+          ],
+          "chave": "USM:Morada.pais",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Contacto",
+          "papel": "Contacto",
+          "caminho": "Emitente.Contacto",
+          "cardinalidade": "1..1",
+          "descricao": "Contacto eletrónico de uma entidade."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "email",
+          "caminho": "Emitente.Contacto.email",
+          "descricao": "Endereço de correio eletrónico",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "eMail",
+            "correioEletronico"
+          ],
+          "chave": "USM:Contacto.email",
+          "dono": "Contacto",
+          "discriminante": false
+        }
+      ],
+      "resumoPropriedades": [
+        "nif",
+        "nome",
+        "rua",
+        "codigoPostal",
+        "localidade",
+        "freguesia",
+        "pais",
+        "email"
+      ]
+    },
+    {
+      "nome": "Cliente",
+      "nivel": "SM",
+      "papel": "Cliente",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Cliente",
+          "papel": "Cliente",
+          "caminho": "Cliente",
+          "cardinalidade": "1..1",
+          "descricao": "Quem adquire os bens ou serviços (cliente comprador)."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "consentimentoComercial",
+          "caminho": "Cliente.consentimentoComercial",
+          "descricao": "Consentimento do cliente para comunicações comerciais",
+          "tipoBase": "booleano",
+          "nomesAlternativos": [
+            "marketingConsent"
+          ],
+          "chave": "SM:Cliente.consentimentoComercial",
+          "dono": "Cliente",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Entidade",
+          "papel": "Entidade",
+          "caminho": "Cliente.Entidade",
+          "cardinalidade": "1..1",
+          "descricao": "Pessoa singular ou coletiva identificada pelo NIF."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "nif",
+          "caminho": "Cliente.Entidade.nif",
+          "descricao": "Número de identificação fiscal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "taxId",
+            "VATNumber"
+          ],
+          "chave": "USM:Entidade.nif",
+          "dono": "Entidade",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "nome",
+          "caminho": "Cliente.Entidade.nome",
+          "descricao": "Nome ou denominação social",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "name",
+            "denominacao"
+          ],
+          "chave": "USM:Entidade.nome",
+          "dono": "Entidade",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Morada",
+          "papel": "Morada",
+          "caminho": "Cliente.Morada",
+          "cardinalidade": "1..1",
+          "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "rua",
+          "caminho": "Cliente.Morada.rua",
+          "descricao": "Arruamento e número de porta",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.rua",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "codigoPostal",
+          "caminho": "Cliente.Morada.codigoPostal",
+          "descricao": "Código postal da morada",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "zipCode",
+            "postalCode",
+            "CP"
+          ],
+          "chave": "USM:Morada.codigoPostal",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "localidade",
+          "caminho": "Cliente.Morada.localidade",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.localidade",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "freguesia",
+          "caminho": "Cliente.Morada.freguesia",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.freguesia",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "pais",
+          "caminho": "Cliente.Morada.pais",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "country",
+            "countryCode"
+          ],
+          "chave": "USM:Morada.pais",
+          "dono": "Morada",
+          "discriminante": true
+        }
+      ],
+      "resumoPropriedades": [
+        "consentimentoComercial",
+        "nif",
+        "nome",
+        "rua",
+        "codigoPostal",
+        "localidade",
+        "freguesia",
+        "pais"
+      ]
+    },
+    {
+      "nome": "Linhas",
+      "nivel": "SM",
+      "papel": "Linhas",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Linhas",
+          "papel": "Linhas",
+          "caminho": "Linhas",
+          "cardinalidade": "1..1",
+          "descricao": "Coleção das linhas do documento."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Linha",
+          "papel": "Linha",
+          "caminho": "Linhas.Linha",
+          "cardinalidade": "1..*",
+          "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "numero",
+          "caminho": "Linhas.Linha.numero",
+          "descricao": "Número da linha no documento",
+          "tipoBase": "inteiro",
+          "nomesAlternativos": [
+            "lineNumber"
+          ],
+          "chave": "USM:Linha.numero",
+          "dono": "Linha",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "descricao",
+          "caminho": "Linhas.Linha.descricao",
+          "descricao": "Descrição do bem ou serviço",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "description"
+          ],
+          "chave": "USM:Linha.descricao",
+          "dono": "Linha",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "valor",
+          "caminho": "Linhas.Linha.valor",
+          "descricao": "Valor da linha, em euros",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "amount"
+          ],
+          "chave": "USM:Linha.valor",
+          "dono": "Linha",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "tipoIVA",
+          "caminho": "Linhas.Linha.tipoIVA",
+          "descricao": "Tipo de taxa de IVA aplicada à linha",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "taxType"
+          ],
+          "chave": "USM:Linha.tipoIVA",
+          "dono": "Linha",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "taxaIVA",
+          "caminho": "Linhas.Linha.taxaIVA",
+          "descricao": "Taxa de IVA aplicada à linha (%)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "taxPercentage"
+          ],
+          "chave": "USM:Linha.taxaIVA",
+          "dono": "Linha",
+          "discriminante": false
+        }
+      ],
+      "resumoPropriedades": [
+        "numero",
+        "descricao",
+        "valor",
+        "tipoIVA",
+        "taxaIVA"
+      ]
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "FaturaAT",
+      "descricao": "Fatura para submissão à AT: exige o cliente.",
+      "perfis": [
+        "AuditoriaSetembro2026",
+        "SubmissaoAT"
+      ]
+    },
+    {
+      "nome": "FaturaSimplificada",
+      "descricao": "Fatura simplificada: dispensa a identificação do cliente.",
+      "perfis": [
+        "EmissaoSimplificada"
+      ]
+    }
+  ],
+  "parametros": {
+    "nivel": "HLM",
+    "nome": "Fatura"
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "vista": "projecoes",
+  "titulo": "Matriz de projeções do HLM Fatura",
+  "hlm": "Fatura",
+  "projecoes": [
+    {
+      "nome": "FaturaAT",
+      "descricao": "Fatura para submissão à AT: exige o cliente."
+    },
+    {
+      "nome": "FaturaSimplificada",
+      "descricao": "Fatura simplificada: dispensa a identificação do cliente."
+    }
+  ],
+  "linhas": [
+    {
+      "caminho": "Cabecalho.numero",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Cabecalho.serie",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Cabecalho.atcud",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Cabecalho.tipoDocumento",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Cabecalho.dataEmissao",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Cabecalho.totalFatura",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Cabecalho.hash",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Entidade.nif",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Entidade.nome",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Morada.rua",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Morada.codigoPostal",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Morada.localidade",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Morada.freguesia",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Morada.pais",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Emitente.Contacto.email",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Cliente.consentimentoComercial",
+      "celulas": {
+        "FaturaAT": "P",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Cliente.Entidade.nif",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Cliente.Entidade.nome",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Cliente.Morada.rua",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Cliente.Morada.codigoPostal",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Cliente.Morada.localidade",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Cliente.Morada.freguesia",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Cliente.Morada.pais",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "-"
+      },
+      "difere": true
+    },
+    {
+      "caminho": "Linhas.Linha.numero",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Linhas.Linha.descricao",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Linhas.Linha.valor",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Linhas.Linha.tipoIVA",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Linhas.Linha.taxaIVA",
+      "celulas": {
+        "FaturaAT": "O",
+        "FaturaSimplificada": "O"
+      },
+      "difere": false
+    }
+  ],
+  "perfis": [
+    {
+      "perfil": "AuditoriaSetembro2026",
+      "projecao": "FaturaAT",
+      "descricao": "Auditoria reprodutível: a data de hoje é fixada.",
+      "fixa": [
+        {
+          "contexto": "dataDeHoje",
+          "valor": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "perfil": "SubmissaoAT",
+      "projecao": "FaturaAT",
+      "descricao": "Submissão à AT: nenhum valor conhecido à partida (seleção dinâmica).",
+      "fixa": []
+    },
+    {
+      "perfil": "EmissaoSimplificada",
+      "projecao": "FaturaSimplificada",
+      "descricao": "Emissão de faturas simplificadas: o tipo de documento é conhecido.",
+      "fixa": [
+        {
+          "caminho": "Cabecalho.tipoDocumento",
+          "valor": "FS",
+          "projetada": true
+        }
+      ]
+    }
+  ],
+  "parametros": {
+    "hlm": "Fatura"
+  }
+}

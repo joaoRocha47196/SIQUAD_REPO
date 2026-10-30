@@ -1,0 +1,275 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-PRES-UN",
+  "regra": {
+    "id": "RIR-PRES-UN",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Identificacao.tipoDispositivo = PRESSAO → Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+    "alcance": "HLM Dispositivo",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "HLM",
+      "nome": "Dispositivo",
+      "chave": "HLM:Dispositivo",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "Uma pressão tem de ser medida em hPa ou bar.",
+      "texto": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+      "caminho": "Leitura.Medicao.unidadeMedida",
+      "propriedade": "USM:Medicao.unidadeMedida",
+      "valor": [
+        "hPa",
+        "bar"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "PRESSAO",
+        "contexto": null,
+        "texto": "tipoDispositivo = PRESSAO",
+        "nome": "tipoDispositivo"
+      }
+    ],
+    "mensagem": "Uma pressão tem de ser medida em hPa ou bar.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Medicao.unidadeMedida",
+      "nome": "unidadeMedida",
+      "dono": "Medicao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "Uma pressão tem de ser medida em hPa ou bar.",
+    "texto": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+    "caminho": "Leitura.Medicao.unidadeMedida",
+    "propriedade": "USM:Medicao.unidadeMedida",
+    "valor": [
+      "hPa",
+      "bar"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+    "alvo": {
+      "chave": "USM:Medicao.unidadeMedida",
+      "nome": "unidadeMedida",
+      "dono": "Medicao",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Unidade de medida associada ao valor medido"
+    }
+  },
+  "condicao": {
+    "descricao": "Identificacao.tipoDispositivo = PRESSAO",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "PRESSAO",
+        "contexto": null,
+        "texto": "tipoDispositivo = PRESSAO",
+        "nome": "tipoDispositivo",
+        "alvo": {
+          "chave": "SM:Identificacao.tipoDispositivo",
+          "nome": "tipoDispositivo",
+          "dono": "Identificacao",
+          "nivelDono": "SM",
+          "tipo": "texto",
+          "descricao": "Grandeza medida pelo dispositivo"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "HLM",
+    "nome": "Dispositivo",
+    "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+    "chave": "HLM:Dispositivo",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-PRES-UN",
+        "rotulo": "RIR",
+        "texto": "RIR-PRES-UN",
+        "detalhe": "Se Identificacao.tipoDispositivo = PRESSAO → Leitura.Medicao.unidadeMedida ∈ {hPa, bar}"
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "texto": "Dispositivo",
+        "detalhe": "Dispositivo IoT: identificação, leitura, localização e diagnóstico."
+      },
+      {
+        "chave": "Restricao:RIR-PRES-UN",
+        "rotulo": "Restricao",
+        "texto": "RIR-PRES-UN#restricao",
+        "detalhe": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.unidadeMedida",
+        "detalhe": "Unidade de medida associada ao valor medido"
+      },
+      {
+        "chave": "Condicao:RIR-PRES-UN",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-PRES-UN#condicao",
+        "detalhe": "Identificacao.tipoDispositivo = PRESSAO"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.tipoDispositivo",
+        "detalhe": "Grandeza medida pelo dispositivo"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-PRES-UN",
+        "para": "HLM:Dispositivo",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-PRES-UN",
+        "para": "Restricao:RIR-PRES-UN",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-PRES-UN",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "RESTRINGE",
+        "texto": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}"
+      },
+      {
+        "de": "R:RIR-PRES-UN",
+        "para": "Condicao:RIR-PRES-UN",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-PRES-UN",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoDispositivo = PRESSAO"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "nome": "unidadeMedida",
+        "dono": "Medicao",
+        "descricao": "Unidade de medida associada ao valor medido",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "nome": "tipoDispositivo",
+        "dono": "Identificacao",
+        "descricao": "Grandeza medida pelo dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-PRES-UN"
+  }
+}

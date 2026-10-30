@@ -1,0 +1,109 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de Diagnostico.nivelBateria",
+  "propriedade": {
+    "chave": "USM:Diagnostico.nivelBateria",
+    "nome": "nivelBateria",
+    "dono": "Diagnostico",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Nível de bateria (%)"
+  },
+  "plausiveis": [],
+  "rp": [
+    {
+      "id": "RP-BATERIA",
+      "texto": "Diagnostico.nivelBateria entre 0 e 100"
+    }
+  ],
+  "valores": [],
+  "outrosTermos": [
+    "RIC-MANUT"
+  ],
+  "regras": [
+    {
+      "id": "RIC-MANUT",
+      "tipo": "RIC",
+      "natureza": "inferencia_conclusiva",
+      "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+      "alcance": "USM Diagnostico",
+      "notas": null,
+      "contextosExternos": [
+        "dataDeHoje"
+      ],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "chave": "USM:Diagnostico",
+        "dono": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "nivelBateria",
+          "propriedade": "USM:Diagnostico.nivelBateria",
+          "operador": "RANGE",
+          "valor": [
+            0,
+            10
+          ],
+          "contexto": null,
+          "texto": "nivelBateria entre 0 e 10",
+          "nome": "nivelBateria",
+          "foco": true
+        },
+        {
+          "ordem": 1,
+          "forma": "funcao",
+          "operador": "EXT_FUNCTION",
+          "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+          "chamada": {
+            "funcao": "excedeDiasDesdeHoje",
+            "chamada": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+            "operador": "EXT_FUNCTION",
+            "termo": 1,
+            "descricaoFuncao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+            "argumentos": [
+              {
+                "caminho": "dataUltimaManutencao",
+                "alvo": "USM:Diagnostico.dataUltimaManutencao",
+                "nomeAlvo": "dataUltimaManutencao",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              }
+            ],
+            "contextos": [
+              "dataDeHoje"
+            ]
+          },
+          "foco": false
+        }
+      ],
+      "mensagem": "Ação MANUTENCAO: o nível de bateria está baixo e o dispositivo não recebe manutenção há mais de 7 dias.",
+      "conclusao": {
+        "tipo": "ACAO",
+        "valor": "MANUTENCAO"
+      },
+      "funcao": false,
+      "categoria": "RIC",
+      "alvo": null,
+      "funcoes": [
+        "excedeDiasDesdeHoje"
+      ],
+      "alvos": []
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": null,
+      "nome": "(conclusão)",
+      "regras": [
+        "RIC-MANUT"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "USM:Diagnostico.nivelBateria"
+  }
+}

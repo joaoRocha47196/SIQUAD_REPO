@@ -1,0 +1,305 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-FS-LIN",
+  "regra": {
+    "id": "RIR-FS-LIN",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Cabecalho.tipoDocumento = FS → contagemInferiorA(Linhas.Linha, 11)",
+    "alcance": "HLM Fatura",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "HLM",
+      "nome": "Fatura",
+      "chave": "HLM:Fatura",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "FUNCTION",
+      "mensagem": "Uma fatura simplificada não pode ter mais de 10 linhas.",
+      "texto": "contagemInferiorA(Linhas.Linha, 11)",
+      "chamada": {
+        "funcao": "contagemInferiorA",
+        "chamada": "contagemInferiorA(Linhas.Linha, 11)",
+        "operador": "FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando a coleção tem menos de n instâncias.",
+        "argumentos": [
+          {
+            "caminho": "Linhas.Linha",
+            "alvo": "Linha",
+            "nomeAlvo": "Linha",
+            "rotuloAlvo": "USM",
+            "colecao": true
+          }
+        ],
+        "contextos": []
+      }
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Cabecalho.tipoDocumento",
+        "propriedade": "SM:Cabecalho.tipoDocumento",
+        "operador": "EQUALS",
+        "valor": "FS",
+        "contexto": null,
+        "texto": "tipoDocumento = FS",
+        "nome": "tipoDocumento"
+      }
+    ],
+    "mensagem": "Uma fatura simplificada não pode ter mais de 10 linhas.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "Linha",
+      "nome": "Linha",
+      "funcao": "contagemInferiorA"
+    },
+    "funcoes": [
+      "contagemInferiorA"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "FUNCTION",
+    "mensagem": "Uma fatura simplificada não pode ter mais de 10 linhas.",
+    "texto": "contagemInferiorA(Linhas.Linha, 11)",
+    "chamada": {
+      "funcao": "contagemInferiorA",
+      "chamada": "contagemInferiorA(Linhas.Linha, 11)",
+      "operador": "FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando a coleção tem menos de n instâncias.",
+      "argumentos": [
+        {
+          "caminho": "Linhas.Linha",
+          "alvo": "Linha",
+          "nomeAlvo": "Linha",
+          "rotuloAlvo": "USM",
+          "colecao": true
+        }
+      ],
+      "contextos": []
+    },
+    "descricao": "contagemInferiorA(Linhas.Linha, 11)",
+    "funcao": {
+      "nome": "contagemInferiorA",
+      "descricao": "Verdadeira quando a coleção tem menos de n instâncias.",
+      "parametros": [
+        {
+          "nome": "instancias",
+          "tipo": "modelo",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Instâncias de um modelo composto com cardinalidade repetível."
+        },
+        {
+          "nome": "n",
+          "tipo": "inteiro",
+          "papel": "parametro",
+          "descricao": "Limite exclusivo do número de instâncias."
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": []
+    }
+  },
+  "condicao": {
+    "descricao": "Cabecalho.tipoDocumento = FS",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Cabecalho.tipoDocumento",
+        "propriedade": "SM:Cabecalho.tipoDocumento",
+        "operador": "EQUALS",
+        "valor": "FS",
+        "contexto": null,
+        "texto": "tipoDocumento = FS",
+        "nome": "tipoDocumento",
+        "alvo": {
+          "chave": "SM:Cabecalho.tipoDocumento",
+          "nome": "tipoDocumento",
+          "dono": "Cabecalho",
+          "nivelDono": "SM",
+          "tipo": "texto",
+          "descricao": "Tipo de documento fiscal"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "HLM",
+    "nome": "Fatura",
+    "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+    "chave": "HLM:Fatura",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-FS-LIN",
+        "rotulo": "RIR",
+        "texto": "RIR-FS-LIN",
+        "detalhe": "Se Cabecalho.tipoDocumento = FS → contagemInferiorA(Linhas.Linha, 11)"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "texto": "Fatura",
+        "detalhe": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas."
+      },
+      {
+        "chave": "Restricao:RIR-FS-LIN",
+        "rotulo": "Restricao",
+        "texto": "RIR-FS-LIN#restricao",
+        "detalhe": "contagemInferiorA(Linhas.Linha, 11)"
+      },
+      {
+        "chave": "Funcao:contagemInferiorA",
+        "rotulo": "Funcao",
+        "texto": "contagemInferiorA",
+        "detalhe": "Verdadeira quando a coleção tem menos de n instâncias."
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "texto": "Linha",
+        "detalhe": "Linha de um documento: um bem ou serviço, com valor e IVA."
+      },
+      {
+        "chave": "Condicao:RIR-FS-LIN",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-FS-LIN#condicao",
+        "detalhe": "Cabecalho.tipoDocumento = FS"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.tipoDocumento",
+        "detalhe": "Tipo de documento fiscal"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-FS-LIN",
+        "para": "HLM:Fatura",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-FS-LIN",
+        "para": "Restricao:RIR-FS-LIN",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-FS-LIN",
+        "para": "Funcao:contagemInferiorA",
+        "tipo": "CHAMA",
+        "texto": "contagemInferiorA(Linhas.Linha, 11)"
+      },
+      {
+        "de": "Funcao:contagemInferiorA",
+        "para": "USM:Linha",
+        "tipo": "LE",
+        "texto": "argumento: Linhas.Linha (coleção)"
+      },
+      {
+        "de": "R:RIR-FS-LIN",
+        "para": "Condicao:RIR-FS-LIN",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-FS-LIN",
+        "para": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoDocumento = FS"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "rotulo": "Propriedade",
+        "nome": "tipoDocumento",
+        "dono": "Cabecalho",
+        "descricao": "Tipo de documento fiscal",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-FS-LIN"
+  }
+}

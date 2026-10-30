@@ -1,0 +1,25 @@
+{
+  "descricao": "Instância de teste positiva para validar o tipo de documento, a moeda, o país do fornecedor e a estrutura dos encargos. Deve passar RP-DOC-TIPO, RP-DOC-MOEDA e RP-PAIS.",
+  "perfil": "PERFILTESTE",
+  "contextos": {},
+  "instancia": {
+    "CabecalhoDocumento": {
+      "tipoDocumento": "381",
+      "moeda": "EUR"
+    },
+    "Fornecedor": {
+      "Morada": {
+        "pais": "PT"
+      }
+    },
+    "LinhaDocumento": [
+      {
+        "Encargo": []
+      }
+    ],
+    "Metainformacao": {
+      "origemModelo": "EN16931",
+      "referenciaOrigem": "BG-0 Invoice"
+    }
+  }
+}

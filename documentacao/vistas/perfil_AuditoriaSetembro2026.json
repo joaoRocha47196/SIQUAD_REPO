@@ -1,0 +1,2549 @@
+{
+  "vista": "perfil",
+  "titulo": "Perfil AuditoriaSetembro2026: seleção estática e dinâmica",
+  "perfil": "AuditoriaSetembro2026",
+  "descricao": "Auditoria reprodutível: a data de hoje é fixada.",
+  "projecao": "FaturaAT",
+  "hlm": "Fatura",
+  "fixados": [],
+  "contextos": [
+    {
+      "nome": "dataDeHoje",
+      "valor": "2026-09-30"
+    }
+  ],
+  "resumo": {
+    "dinâmica": 63,
+    "alvo fora da projeção": 1,
+    "avaliada": 26,
+    "fora da projeção": 1
+  },
+  "regras": [
+    {
+      "regra": "RP-SOMA",
+      "tipo": "RP",
+      "ocorrencia": "",
+      "descricao": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.valor",
+        "Cabecalho.totalFatura"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RIR-FS-LIN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → contagemInferiorA(Linhas.Linha, 11)",
+      "estado": "alvo fora da projeção",
+      "termos": [
+        {
+          "texto": "tipoDocumento = FS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cabecalho.tipoDocumento"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Linhas.Linha"
+      ],
+      "contextos": [],
+      "restricao": "contagemInferiorA(Linhas.Linha, 11)"
+    },
+    {
+      "regra": "RIR-FT-NIF",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Cabecalho.totalFatura > 1000 → Cliente.Entidade.nif ≠ 999999990",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "totalFatura > 1000",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cabecalho.totalFatura"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Entidade.nif"
+      ],
+      "contextos": [],
+      "restricao": "Cliente.Entidade.nif ≠ 999999990"
+    },
+    {
+      "regra": "RP-ATCUD",
+      "tipo": "RP",
+      "ocorrencia": "Cabecalho",
+      "descricao": "atcudValido(Cabecalho.atcud, Cabecalho.serie)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cabecalho.atcud",
+        "Cabecalho.serie"
+      ],
+      "contextos": [
+        {
+          "nome": "seriesComunicadasAT",
+          "origem": "obtido pelo motor",
+          "valor": null
+        }
+      ]
+    },
+    {
+      "regra": "RP-HASH",
+      "tipo": "RP",
+      "ocorrencia": "Cabecalho",
+      "descricao": "hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cabecalho.numero",
+        "Cabecalho.dataEmissao",
+        "Cabecalho.totalFatura",
+        "Cabecalho.hash"
+      ],
+      "contextos": [
+        {
+          "nome": "hashAnterior",
+          "origem": "obtido pelo motor",
+          "valor": null
+        }
+      ]
+    },
+    {
+      "regra": "RIR-FS",
+      "tipo": "RIR",
+      "ocorrencia": "Cabecalho",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.totalFatura ≤ 1000",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDocumento = FS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cabecalho.tipoDocumento"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cabecalho.totalFatura"
+      ],
+      "contextos": [],
+      "restricao": "totalFatura ≤ 1000"
+    },
+    {
+      "regra": "RIR-FS-NUM",
+      "tipo": "RIR",
+      "ocorrencia": "Cabecalho",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\"",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDocumento = FS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cabecalho.tipoDocumento"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cabecalho.numero"
+      ],
+      "contextos": [],
+      "restricao": "numero começa por \"FS\""
+    },
+    {
+      "regra": "RP-TIPODOC",
+      "tipo": "RP",
+      "ocorrencia": "Cabecalho",
+      "descricao": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cabecalho.tipoDocumento"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-DATAEMISSAO",
+      "tipo": "RP",
+      "ocorrencia": "Cabecalho",
+      "descricao": "naoPosteriorAHoje(Cabecalho.dataEmissao)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cabecalho.dataEmissao"
+      ],
+      "contextos": [
+        {
+          "nome": "dataDeHoje",
+          "origem": "fixado no perfil",
+          "valor": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "regra": "RP-TOTAL",
+      "tipo": "RP",
+      "ocorrencia": "Cabecalho",
+      "descricao": "Cabecalho.totalFatura ≥ 0",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cabecalho.totalFatura"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RIR-EMAIL-CX",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente",
+      "descricao": "Se Emitente.Entidade.nome = Companhia X → Emitente.Contacto.email termina em \"@companhiax.com\"",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "nome = Companhia X",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Entidade.nome"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Contacto.email"
+      ],
+      "contextos": [],
+      "restricao": "Contacto.email termina em \"@companhiax.com\""
+    },
+    {
+      "regra": "RIR-EMAIL-CY",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente",
+      "descricao": "Se Emitente.Entidade.nome = Companhia Y → Emitente.Contacto.email termina em \"@companhia-y.pt\"",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "nome = Companhia Y",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Entidade.nome"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Contacto.email"
+      ],
+      "contextos": [],
+      "restricao": "Contacto.email termina em \"@companhia-y.pt\""
+    },
+    {
+      "regra": "RP-NIF",
+      "tipo": "RP",
+      "ocorrencia": "Emitente.Entidade",
+      "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Emitente.Entidade.nif"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-NIF",
+      "tipo": "RP",
+      "ocorrencia": "Cliente.Entidade",
+      "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cliente.Entidade.nif"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-NIF-DC",
+      "tipo": "RP",
+      "ocorrencia": "Emitente.Entidade",
+      "descricao": "digitoControloValido(Entidade.nif)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Emitente.Entidade.nif"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-NIF-DC",
+      "tipo": "RP",
+      "ocorrencia": "Cliente.Entidade",
+      "descricao": "digitoControloValido(Entidade.nif)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cliente.Entidade.nif"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RIR-CP-ES",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = ES",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[0-5][0-9]{4}$"
+    },
+    {
+      "regra": "RIR-CP-ES",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = ES",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[0-5][0-9]{4}$"
+    },
+    {
+      "regra": "RIR-CP-GB",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = GB",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$"
+    },
+    {
+      "regra": "RIR-CP-GB",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = GB",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AJUDA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AJUDA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ALCANTARA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ALCANTARA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ALVALADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ALVALADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AREEIRO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AREEIRO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ARROIOS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ARROIOS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AVENIDAS_NOVAS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AVENIDAS_NOVAS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BEATO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BEATO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BELEM",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BELEM",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BENFICA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BENFICA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CAMPO_DE_OURIQUE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CAMPO_DE_OURIQUE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CAMPOLIDE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CAMPOLIDE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CARNIDE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CARNIDE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ESTRELA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ESTRELA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = LUMIAR",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = LUMIAR",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = MARVILA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = MARVILA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = MISERICORDIA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = MISERICORDIA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = OLIVAIS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = OLIVAIS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = PARQUE_DAS_NACOES",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = PARQUE_DAS_NACOES",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = PENHA_DE_FRANCA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = PENHA_DE_FRANCA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTA_CLARA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTA_CLARA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTA_MARIA_MAIOR",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTA_MARIA_MAIOR",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTO_ANTONIO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTO_ANTONIO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SAO_VICENTE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SAO_VICENTE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-PT",
+      "tipo": "RIR",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Emitente.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-PT",
+      "tipo": "RIR",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Cliente.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$"
+    },
+    {
+      "regra": "RP-CP",
+      "tipo": "RP",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Emitente.Morada.codigoPostal"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-CP",
+      "tipo": "RP",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cliente.Morada.codigoPostal"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-FREGUESIA",
+      "tipo": "RP",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Emitente.Morada.freguesia"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-FREGUESIA",
+      "tipo": "RP",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cliente.Morada.freguesia"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-PAIS",
+      "tipo": "RP",
+      "ocorrencia": "Emitente.Morada",
+      "descricao": "Morada.pais ∈ {PT, ES, GB}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Emitente.Morada.pais"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-PAIS",
+      "tipo": "RP",
+      "ocorrencia": "Cliente.Morada",
+      "descricao": "Morada.pais ∈ {PT, ES, GB}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Cliente.Morada.pais"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-EMAIL",
+      "tipo": "RP",
+      "ocorrencia": "Emitente.Contacto",
+      "descricao": "Contacto.email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Emitente.Contacto.email"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-LIN-MAX",
+      "tipo": "RP",
+      "ocorrencia": "Linhas",
+      "descricao": "contagemInferiorA(Linhas.Linha, 100)",
+      "estado": "fora da projeção",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-LIN-NUM",
+      "tipo": "RP",
+      "ocorrencia": "Linhas",
+      "descricao": "valoresUnicos(Linhas.Linha.numero)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.numero"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-LIN-SEQ",
+      "tipo": "RP",
+      "ocorrencia": "Linhas",
+      "descricao": "valoresConsecutivos(Linhas.Linha.numero)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.numero"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RIR-IVA-INT",
+      "tipo": "RIR",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Se Linha.tipoIVA = INTERMEDIA → Linha.taxaIVA = 13",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoIVA = INTERMEDIA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Linhas.Linha.tipoIVA"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Linhas.Linha.taxaIVA"
+      ],
+      "contextos": [],
+      "restricao": "taxaIVA = 13"
+    },
+    {
+      "regra": "RIR-IVA-ISE",
+      "tipo": "RIR",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Se Linha.tipoIVA = ISENTA → Linha.taxaIVA = 0",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoIVA = ISENTA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Linhas.Linha.tipoIVA"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Linhas.Linha.taxaIVA"
+      ],
+      "contextos": [],
+      "restricao": "taxaIVA = 0"
+    },
+    {
+      "regra": "RIR-IVA-NOR",
+      "tipo": "RIR",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoIVA = NORMAL",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Linhas.Linha.tipoIVA"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Linhas.Linha.taxaIVA"
+      ],
+      "contextos": [],
+      "restricao": "taxaIVA = 23"
+    },
+    {
+      "regra": "RIR-IVA-RED",
+      "tipo": "RIR",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoIVA = REDUZIDA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Linhas.Linha.tipoIVA"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Linhas.Linha.taxaIVA"
+      ],
+      "contextos": [],
+      "restricao": "taxaIVA = 6"
+    },
+    {
+      "regra": "RP-LIN-NUMPOS",
+      "tipo": "RP",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Linha.numero ≥ 1",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.numero"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-LIN-DESC",
+      "tipo": "RP",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Linha.descricao segue o padrão ^.{1,200}$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.descricao"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-VALOR",
+      "tipo": "RP",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Linha.valor ≥ 0",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.valor"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-VALOR-DEC",
+      "tipo": "RP",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Linha.valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.valor"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-TIPOIVA",
+      "tipo": "RP",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.tipoIVA"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-TAXAIVA",
+      "tipo": "RP",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Linha.taxaIVA entre 0 e 100",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.taxaIVA"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-TAXAIVA-DEC",
+      "tipo": "RP",
+      "ocorrencia": "Linhas.Linha",
+      "descricao": "Linha.taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Linhas.Linha.taxaIVA"
+      ],
+      "contextos": []
+    }
+  ],
+  "parametros": {
+    "perfil": "AuditoriaSetembro2026"
+  }
+}

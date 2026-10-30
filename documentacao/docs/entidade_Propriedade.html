@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Propriedade · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="current sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="entidades.html">Entidades</a></div><h1>Propriedade</h1><h3 id="descricao">Descrição</h3>
+<p>A propriedade é a informação atómica de um modelo. Tem uma única definição, no modelo que a contém, e é reutilizada em todas as ocorrências desse modelo. Além do nome, tem informação complementar que não altera o que a propriedade representa, mas condiciona a forma como é reconhecida e interpretada (tese, Secção ECM):</p>
+<ul><li><b>Tipo base:</b> a natureza do valor (texto, inteiro, decimal, data, booleano). Determina o que pode ser guardado e que verificações fazem sentido.</li><li><b>Nomes alternativos:</b> as formas sob as quais a mesma propriedade aparece nas fontes (<code>zipCode</code>, <code>postalCode</code>, <code>CP</code> para <code>codigoPostal</code>). Permitem reconhecer a propriedade na ingestão sem um mapeamento por fonte.</li><li><b>Descrição:</b> o significado e as particularidades da interpretação. Tem de ser precisa: uma descrição vaga (por exemplo, só "Valor") aparece como tal nas vistas.</li></ul>
+<h3 id="diagrama">Diagrama</h3>
+<p>Todos os atributos da entidade e todas as ligações a outras entidades. <b>LIGAÇÃO</b> marca os atributos que ligam a outra entidade; cada seta indica o atributo da declaração e a aresta correspondente no grafo.</p>
+<pre class="mermaid">classDiagram
+  direction LR
+  class Propriedade {
+    nome : texto · camelCase · único no modelo
+    tipo : texto, inteiro, decimal, data ou booleano
+    descricao : texto
+    nomesAlternativos : lista de texto
+    regras : lista de RP ou RIC · LIGAÇÃO
+    notas : texto
+  }
+  USM_ou_SM &quot;1&quot; --&gt; &quot;0..*&quot; Propriedade : propriedades · CONTEM
+  RP_RIC &quot;0..*&quot; --&gt; &quot;1&quot; Propriedade : regras · ASSOCIADA_A
+  Restricao &quot;0..*&quot; --&gt; &quot;1&quot; Propriedade : alvo · RESTRINGE
+  CondicaoAplicabilidade &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade : termo · TERMO
+  Funcao &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade : argumento · LE
+  Projecao &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade : obrigatorias, permitidas · OBRIGATORIA, PERMITIDA
+  Perfil &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade : fixa · FIXA</pre>
+<h3 id="atributos">Atributos</h3>
+<table><thead><tr><th>Atributo</th><th>Tipo</th><th>Obrigatório</th><th>Descrição</th></tr></thead><tbody><tr><td><code>nome</code></td><td>texto, camelCase</td><td>sim</td><td>Único no modelo.</td></tr><tr><td><code>tipo</code></td><td><code>texto</code> · <code>inteiro</code> · <code>decimal</code> · <code>data</code> · <code>booleano</code></td><td>sim</td><td>Tipo base. Limita os operadores possíveis (<a href="transversal_Catalogo.html">Catalogo.md</a>).</td></tr><tr><td><code>descricao</code></td><td>texto (≥ 5)</td><td>sim</td><td>Significado e particularidades.</td></tr><tr><td><code>nomesAlternativos</code></td><td>lista de texto</td><td>não</td><td>Nomes nas fontes.</td></tr><tr><td><code>regras</code></td><td>lista</td><td>não</td><td>RP (ou RIC) que vivem na propriedade.</td></tr><tr><td><code>notas</code></td><td>texto</td><td>não</td><td>Comentário livre.</td></tr></tbody></table>
+<p>Tipos base e o que admitem:</p>
+<table><thead><tr><th>Tipo</th><th>Valores</th><th>Exemplo</th></tr></thead><tbody><tr><td><code>texto</code></td><td>cadeia de caracteres</td><td><code>&quot;PT&quot;</code>, <code>&quot;1000-001&quot;</code></td></tr><tr><td><code>inteiro</code></td><td>número inteiro</td><td><code>3</code></td></tr><tr><td><code>decimal</code></td><td>número</td><td><code>-12.5</code></td></tr><tr><td><code>data</code></td><td><code>AAAA-MM-DD</code> (ou data e hora ISO 8601)</td><td><code>&quot;2026-09-01&quot;</code>, <code>&quot;2026-09-30T12:00:00Z&quot;</code></td></tr><tr><td><code>booleano</code></td><td><code>true</code> / <code>false</code></td><td><code>true</code></td></tr></tbody></table>
+<p>Um enumerado não é um tipo próprio: é uma propriedade <code>texto</code> cujo Conjunto de Regras de Plausibilidade é uma lista fechada (uma RP com <code>IN</code>). Ver <a href="entidade_RP.html">RP.md</a>.</p>
+<h4 id="ligacoes-no-grafo">Ligações no grafo</h4>
+<table><thead><tr><th>Aresta</th><th>Sentido</th><th>Outro extremo</th><th>Significado</th></tr></thead><tbody><tr><td><code>CONTEM</code></td><td>←</td><td>USM ou SM</td><td>O modelo dono da propriedade.</td></tr><tr><td><code>ASSOCIADA_A</code></td><td>←</td><td>RP, RIC</td><td>A regra vive na propriedade.</td></tr><tr><td><code>RESTRINGE</code></td><td>←</td><td>Restricao</td><td>A propriedade é o alvo de uma restrição tipificada.</td></tr><tr><td><code>TERMO</code></td><td>←</td><td>CondicaoAplicabilidade</td><td>A propriedade é lida num termo de uma condição (fator discriminante).</td></tr><tr><td><code>LE</code></td><td>←</td><td>Funcao</td><td>A propriedade é argumento de uma chamada (com a regra na aresta).</td></tr><tr><td><code>OBRIGATORIA</code> / <code>PERMITIDA</code></td><td>←</td><td>Projecao</td><td>A propriedade, naquele caminho, é exigida ou admitida.</td></tr><tr><td><code>FIXA</code></td><td>←</td><td>Perfil</td><td>Valor conhecido antes da execução.</td></tr></tbody></table>
+<p>No grafo: nó <code>Propriedade</code> (chave <code>chave</code>). O modelo completo do grafo está em <a href="../../ecv/4_graph/graph_model.json">ecv/4_graph/graph_model.json</a>.</p>
+<h3 id="exemplos">Exemplos</h3>
+<h4 id="esboco-na-declaracao">Esboço na declaração</h4>
+<p>Na lista <code>propriedades</code> de um USM (ou de um SM, para as residuais):</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;codigoPostal&quot;,
+  &quot;tipo&quot;: &quot;texto&quot;,
+  &quot;descricao&quot;: &quot;Código postal da morada&quot;,
+  &quot;nomesAlternativos&quot;: [&quot;zipCode&quot;, &quot;postalCode&quot;, &quot;CP&quot;],
+  &quot;regras&quot;: [ { &quot;id&quot;: &quot;RP-…&quot;, &quot;natureza&quot;: &quot;plausibilidade&quot;, &quot;descricao&quot;: &quot;…&quot;, &quot;restricao&quot;: { … } } ]
+}</code></pre>
+<h4 id="exemplos-das-declaracoes-de-exemplo">Exemplos das declarações de exemplo</h4>
+<p>Todas as propriedades:</p>
+<table><thead><tr><th>Chave</th><th>Tipo</th><th>Descrição</th><th>Nomes alternativos</th><th>Regras na propriedade</th></tr></thead><tbody><tr><td><code>SM:Identificacao.identificador</code></td><td>texto</td><td>Identificador do dispositivo</td><td>deviceId</td><td>1</td></tr><tr><td><code>SM:Identificacao.fabricante</code></td><td>texto</td><td>Fabricante do dispositivo</td><td>manufacturer</td><td>1</td></tr><tr><td><code>SM:Identificacao.estado</code></td><td>texto</td><td>Estado operacional do dispositivo</td><td>status</td><td>1</td></tr><tr><td><code>SM:Identificacao.tipoDispositivo</code></td><td>texto</td><td>Grandeza medida pelo dispositivo</td><td>deviceType</td><td>1</td></tr><tr><td><code>SM:Localizacao.indicacaoAcesso</code></td><td>texto</td><td>Indicação de acesso ao local (texto livre, ex.: portão lateral, chave no cofre)</td><td>accessNotes</td><td>0</td></tr><tr><td><code>SM:Cabecalho.numero</code></td><td>texto</td><td>Número do documento (série/sequência)</td><td>invoiceNo</td><td>0</td></tr><tr><td><code>SM:Cabecalho.serie</code></td><td>texto</td><td>Série do documento, comunicada à AT</td><td>series</td><td>0</td></tr><tr><td><code>SM:Cabecalho.atcud</code></td><td>texto</td><td>Código único do documento (ATCUD)</td><td>ATCUD</td><td>0</td></tr><tr><td><code>SM:Cabecalho.tipoDocumento</code></td><td>texto</td><td>Tipo de documento fiscal</td><td>invoiceType</td><td>1</td></tr><tr><td><code>SM:Cabecalho.dataEmissao</code></td><td>data</td><td>Data de emissão do documento</td><td>invoiceDate</td><td>1</td></tr><tr><td><code>SM:Cabecalho.totalFatura</code></td><td>decimal</td><td>Total do documento, em euros</td><td>grossTotal</td><td>1</td></tr><tr><td><code>SM:Cabecalho.hash</code></td><td>texto</td><td>Hash do documento, encadeado com o anterior da série</td><td>hashDocumento</td><td>0</td></tr><tr><td><code>SM:Cliente.consentimentoComercial</code></td><td>booleano</td><td>Consentimento do cliente para comunicações comerciais</td><td>marketingConsent</td><td>0</td></tr><tr><td><code>SM:Pedido.numeroOrdem</code></td><td>texto</td><td>Número da ordem de instalação</td><td>orderId</td><td>1</td></tr><tr><td><code>SM:Pedido.dataPedido</code></td><td>data</td><td>Data em que a instalação foi pedida</td><td>requestDate</td><td>1</td></tr><tr><td><code>USM:Morada.rua</code></td><td>texto</td><td>Arruamento e número de porta</td><td>—</td><td>0</td></tr><tr><td><code>USM:Morada.codigoPostal</code></td><td>texto</td><td>Código postal da morada</td><td>zipCode, postalCode, CP</td><td>1</td></tr><tr><td><code>USM:Morada.localidade</code></td><td>texto</td><td>Localidade da morada (em maiúsculas, sem acentos)</td><td>—</td><td>0</td></tr><tr><td><code>USM:Morada.freguesia</code></td><td>texto</td><td>Freguesia da morada (só para moradas em Lisboa)</td><td>—</td><td>1</td></tr><tr><td><code>USM:Morada.pais</code></td><td>texto</td><td>País da morada (código ISO de duas letras)</td><td>country, countryCode</td><td>1</td></tr><tr><td><code>USM:Medicao.unidadeMedida</code></td><td>texto</td><td>Unidade de medida associada ao valor medido</td><td>unit</td><td>1</td></tr><tr><td><code>USM:Medicao.valor</code></td><td>decimal</td><td>Valor medido, na unidade indicada</td><td>value, reading</td><td>1</td></tr><tr><td><code>USM:Medicao.dataMedicao</code></td><td>data</td><td>Instante em que a medição foi feita (data e hora ISO 8601)</td><td>timestamp, measuredAt</td><td>2</td></tr><tr><td><code>USM:Instalacao.ambiente</code></td><td>texto</td><td>Ambiente onde o dispositivo está instalado</td><td>environment</td><td>1</td></tr><tr><td><code>USM:Assinatura.mensagem</code></td><td>texto</td><td>Conteúdo assinado, tal como enviado pelo dispositivo</td><td>payload</td><td>0</td></tr><tr><td><code>USM:Assinatura.assinatura</code></td><td>texto</td><td>Assinatura HMAC-SHA256 da mensagem, em hexadecimal</td><td>signature</td><td>1</td></tr><tr><td><code>USM:Diagnostico.nivelBateria</code></td><td>decimal</td><td>Nível de bateria (%)</td><td>battery</td><td>1</td></tr><tr><td><code>USM:Diagnostico.dataUltimaManutencao</code></td><td>data</td><td>Data da última manutenção</td><td>lastMaintenance</td><td>2</td></tr><tr><td><code>USM:Diagnostico.sinalRede</code></td><td>decimal</td><td>Intensidade do sinal de rede (dBm)</td><td>rssi</td><td>1</td></tr><tr><td><code>USM:Diagnostico.latencia</code></td><td>decimal</td><td>Latência da comunicação (ms)</td><td>latency</td><td>1</td></tr><tr><td><code>USM:Diagnostico.taxaRececao</code></td><td>decimal</td><td>Taxa de receção de mensagens (%)</td><td>receptionRate</td><td>1</td></tr><tr><td><code>USM:InformacaoGeografica.latitude</code></td><td>decimal</td><td>Latitude, em graus decimais</td><td>lat</td><td>1</td></tr><tr><td><code>USM:InformacaoGeografica.longitude</code></td><td>decimal</td><td>Longitude, em graus decimais</td><td>lon, lng</td><td>1</td></tr><tr><td><code>USM:InformacaoGeografica.altitude</code></td><td>decimal</td><td>Altitude, em metros</td><td>alt, elevation</td><td>1</td></tr><tr><td><code>USM:InformacaoGeografica.sistemaReferencia</code></td><td>texto</td><td>Sistema de referência das coordenadas</td><td>crs, datum</td><td>1</td></tr><tr><td><code>USM:Entidade.nif</code></td><td>texto</td><td>Número de identificação fiscal</td><td>taxId, VATNumber</td><td>2</td></tr><tr><td><code>USM:Entidade.nome</code></td><td>texto</td><td>Nome ou denominação social</td><td>name, denominacao</td><td>0</td></tr><tr><td><code>USM:Contacto.email</code></td><td>texto</td><td>Endereço de correio eletrónico</td><td>eMail, correioEletronico</td><td>1</td></tr><tr><td><code>USM:Linha.numero</code></td><td>inteiro</td><td>Número da linha no documento</td><td>lineNumber</td><td>1</td></tr><tr><td><code>USM:Linha.descricao</code></td><td>texto</td><td>Descrição do bem ou serviço</td><td>description</td><td>1</td></tr><tr><td><code>USM:Linha.valor</code></td><td>decimal</td><td>Valor da linha, em euros</td><td>amount</td><td>2</td></tr><tr><td><code>USM:Linha.tipoIVA</code></td><td>texto</td><td>Tipo de taxa de IVA aplicada à linha</td><td>taxType</td><td>1</td></tr><tr><td><code>USM:Linha.taxaIVA</code></td><td>decimal</td><td>Taxa de IVA aplicada à linha (%)</td><td>taxPercentage</td><td>2</td></tr></tbody></table>
+<p>Uma propriedade com duas RP, uma tipificada e uma função:</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;nif&quot;,
+  &quot;tipo&quot;: &quot;texto&quot;,
+  &quot;descricao&quot;: &quot;Número de identificação fiscal&quot;,
+  &quot;nomesAlternativos&quot;: [&quot;taxId&quot;, &quot;VATNumber&quot;],
+  &quot;regras&quot;: [
+    {
+      &quot;id&quot;: &quot;RP-NIF&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;Entidade.nif segue o padrão ^[0-9]{9}$&quot;,
+      &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;nif&quot;,
+        &quot;operador&quot;: &quot;PATTERN&quot;,
+        &quot;valor&quot;: &quot;^[0-9]{9}$&quot;,
+        &quot;mensagem&quot;: &quot;O NIF tem de ter nove algarismos.&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;RP-NIF-DC&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;digitoControloValido(Entidade.nif)&quot;,
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;digitoControloValido&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;nif&quot;}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;O dígito de controlo do NIF não está correto.&quot;
+      }
+    }
+  ]
+}</code></pre>
+<p>Uma propriedade com uma RP função com contexto externo e uma RIC que compara a propriedade com um contexto externo:</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;dataMedicao&quot;,
+  &quot;tipo&quot;: &quot;data&quot;,
+  &quot;descricao&quot;: &quot;Instante em que a medição foi feita (data e hora ISO 8601)&quot;,
+  &quot;nomesAlternativos&quot;: [&quot;timestamp&quot;, &quot;measuredAt&quot;],
+  &quot;regras&quot;: [
+    {
+      &quot;id&quot;: &quot;RP-RELOGIO&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;desfasamentoInferiorA(Medicao.dataMedicao, 300)&quot;,
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;EXT_FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;desfasamentoInferiorA&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;dataMedicao&quot;},
+            {&quot;literal&quot;: 300}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).&quot;
+      },
+      &quot;contextosExternos&quot;: [&quot;relogioServidor&quot;]
+    },
+    {
+      &quot;id&quot;: &quot;RIC-MED-DIFERIDA&quot;,
+      &quot;natureza&quot;: &quot;inferencia_conclusiva&quot;,
+      &quot;descricao&quot;: &quot;Se Medicao.dataMedicao &lt; dataDeHoje (contexto externo) → informa Estado DIFERIDA&quot;,
+      &quot;condicao&quot;: [
+        {&quot;propriedade&quot;: &quot;dataMedicao&quot;, &quot;operador&quot;: &quot;LT&quot;, &quot;contexto&quot;: &quot;dataDeHoje&quot;}
+      ],
+      &quot;mensagem&quot;: &quot;Estado DIFERIDA: a leitura foi medida antes de hoje e chega com atraso; deve ser tratada como dado histórico.&quot;,
+      &quot;conclusao&quot;: {&quot;tipo&quot;: &quot;ESTADO&quot;, &quot;valor&quot;: &quot;DIFERIDA&quot;},
+      &quot;contextosExternos&quot;: [&quot;dataDeHoje&quot;],
+      &quot;notas&quot;: &quot;Contexto externo usado diretamente num termo da condição (sem função): dataMedicao &lt; dataDeHoje.&quot;
+    }
+  ]
+}</code></pre>
+<p>Uma propriedade residual sem regras:</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;consentimentoComercial&quot;,
+  &quot;tipo&quot;: &quot;booleano&quot;,
+  &quot;descricao&quot;: &quot;Consentimento do cliente para comunicações comerciais&quot;,
+  &quot;nomesAlternativos&quot;: [&quot;marketingConsent&quot;],
+  &quot;notas&quot;: &quot;Propriedade residual: não é canónica (uma pessoa existe sem consentimento) nem é do HLM (é de quem compra).&quot;
+}</code></pre>
+<h3 id="pode-e-nao-pode">Pode e não pode</h3>
+<table><thead><tr><th>Pode</th><th>Não pode</th></tr></thead><tbody><tr><td>Ter regras de plausibilidade (RP) que só leem a própria propriedade</td><td>Ter uma RIR (a condição não pode ler o alvo da restrição, I6)</td></tr><tr><td>Ter uma RP cuja restrição é uma função com a propriedade como único alvo (RP-NIF-DC, RP-RELOGIO)</td><td>Ter regras que leem outras propriedades (I3: vão para o modelo)</td></tr><tr><td>Ter uma RIC cuja condição só lê a propriedade (RIC-MED-DIFERIDA)</td><td>Ter um tipo fora dos cinco tipos base</td></tr><tr><td>Ser alvo de restrições, termos e argumentos de funções de regras que vivem acima</td><td>Ter o mesmo nome que outra propriedade ou papel do mesmo modelo</td></tr><tr><td>Ter vários nomes alternativos</td><td>—</td></tr></tbody></table>
+<h3 id="detalhes">Detalhes</h3>
+<h4 id="onde-pode-viver">Onde pode viver</h4>
+<table><thead><tr><th>Onde</th><th>Quando</th><th>Exemplo</th></tr></thead><tbody><tr><td>Num USM</td><td>Quase sempre: informação canónica</td><td><code>Morada.codigoPostal</code>, <code>Medicao.valor</code></td></tr><tr><td>Num SM (residual)</td><td>Só faz sentido naquele agrupamento</td><td><code>Cliente.consentimentoComercial</code>, <code>Cabecalho.totalFatura</code></td></tr><tr><td>Num HLM</td><td>Nunca</td><td>—</td></tr></tbody></table>
+<h4 id="contextos-de-utilizacao">Contextos de utilização</h4>
+<ul><li><b>Identidade partilhada.</b> Há uma só definição de <code>codigoPostal</code>, com as suas regras, em todas as moradas.</li><li><b>Reconhecimento na ingestão.</b> <code>reading</code> é reconhecido como <code>valor</code> pelos nomes alternativos.</li><li><b>Fator discriminante.</b> <code>tipoDispositivo</code>, <code>unidadeMedida</code> e <code>ambiente</code> decidem que gama se aplica a <code>valor</code>.</li></ul>
+<h3 id="verificacoes">Verificações</h3>
+<ul><li><b>S-PROP:</b> camelCase; tipo válido; descrição ≥ 5; <code>nomesAlternativos</code> é uma lista; sem repetidos.</li><li><b>I3:</b> uma regra declarada na propriedade só lê essa propriedade.</li><li><b>I5:</b> os operadores das regras que a usam são admissíveis para o tipo.</li></ul><p class="note">Fonte: <a href="../../specs/entidades/ecm/Propriedade.md">specs/entidades/ecm/Propriedade.md</a></p></main><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,securityLevel:"loose"});}</script></body></html>

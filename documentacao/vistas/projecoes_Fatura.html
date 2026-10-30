@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Matriz de projeções do HLM Fatura</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--fn:#6A3D9A;
+--condition:#CC79A7;--projection:#7F7F7F;--external:#8C6D1F;--yellow:#F0E442;--error:#C0392B;
+--text:#1b1b1b;--soft:#666;--line:#dcdcdc;--bg:#fff;--zebra:#f7f8fa}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",Geneva,sans-serif;font-size:13px;color:var(--text);background:var(--bg);line-height:1.45}
+main{max-width:1500px;margin:0 auto;padding:22px 26px 60px}
+h1{font-size:20px;margin:0 0 4px;color:#5a1a2f}
+h2{font-size:15px;margin:26px 0 8px;color:#5a1a2f;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:13px;margin:16px 0 6px}
+a{color:#0b5c8f}
+code,.mono{font-family:"DejaVu Sans Mono",Menlo,Consolas,monospace;font-size:12px}
+.subtitle{color:var(--soft);margin:0 0 14px}
+.note{color:var(--soft);font-size:11.5px}
+.ok{color:var(--rp);font-weight:bold}
+nav.top{font-size:12px;margin-bottom:10px}
+/* ---------- tables */
+table{border-collapse:collapse;width:100%;margin:6px 0 10px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;vertical-align:top;text-align:left}
+thead th{border-bottom:2px solid #444;background:#fff;position:sticky;top:0;z-index:1}
+table.matrix{width:auto;min-width:50%}
+table.matrix td,table.matrix th{text-align:center;border:1px solid var(--line)}
+table.matrix td.row-label,table.matrix th.row-label{text-align:left}
+/* ---------- ECM levels */
+.n-HLM{color:var(--hlm);font-weight:bold}.n-SM{color:var(--sm);font-weight:bold}.n-USM{color:var(--usm);font-weight:bold}
+.tag{display:inline-block;font-size:10px;border-radius:3px;padding:0 4px;color:#fff;margin-right:4px;vertical-align:1px}
+.tag.HLM{background:var(--hlm)}.tag.SM{background:var(--sm)}.tag.USM{background:var(--usm)}
+.meta{color:var(--soft);font-size:11px;margin-left:6px}
+.prop{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px}
+.alt{color:var(--soft)}
+.disc{color:var(--condition);font-weight:bold;text-decoration:none}
+/* ---------- tree (organisation chart) */
+.tree-wrap{overflow-x:auto;padding:8px 0 14px;border:1px solid #eee;border-radius:6px;background:#fcfcfc}
+.org,.org ul{display:flex;justify-content:center;list-style:none;margin:0;padding:0}
+.org ul{padding-top:16px;position:relative}
+.org li{position:relative;padding:16px 5px 0;text-align:center}
+.org>li{padding-top:0}
+.org{width:max-content;min-width:100%;box-sizing:border-box;padding:0 8px}
+.org li::before,.org li::after{content:"";position:absolute;top:0;right:50%;width:50%;height:16px;border-top:1.5px solid #999}
+.org li::after{right:auto;left:50%;border-left:1.5px solid #999}
+.org li:only-child::before,.org li:only-child::after{display:none}
+.org li:only-child{padding-top:16px}.org>li:only-child{padding-top:0}
+.org li:first-child::before,.org li:last-child::after{border:0}
+.org li:last-child::before{border-right:1.5px solid #999;border-radius:0 4px 0 0}
+.org li:first-child::after{border-radius:4px 0 0 0}
+.org ul::before{content:"";position:absolute;top:0;left:50%;height:16px;border-left:1.5px solid #999}
+.node-box{display:inline-block;border:2px solid #999;border-radius:6px;background:#fff;padding:4px 8px;min-width:110px;text-align:left;font-size:12px}
+.node-box.HLM{border-color:var(--hlm);background:#f8edf1;border-width:3px}.node-box.SM{border-color:var(--sm);background:#eef5fb}.node-box.USM{border-color:var(--usm);background:#ecf7f6}
+.node-box .title{font-weight:bold;white-space:nowrap}.node-box.HLM .title{color:var(--hlm)}.node-box.SM .title{color:var(--sm)}.node-box.USM .title{color:var(--usm)}
+.node-box .title a{color:inherit;text-decoration:none}.node-box .title a:hover{text-decoration:underline}
+.node-box .caption{font-size:10.5px;color:var(--soft);white-space:nowrap}
+.node-box ul.props{display:block;list-style:none;margin:4px 0 0;padding:3px 0 0;border-top:1px dashed #ccc}
+.node-box ul.props li{display:block;padding:0;text-align:left;font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:11px;white-space:nowrap}
+.node-box ul.props li::before,.node-box ul.props li::after,.node-box ul.props::before{display:none}
+.node-box details{font-size:10.5px;margin-top:3px}.node-box details summary{cursor:pointer;color:var(--soft)}
+body.hide-props .node-box ul.props{display:none}
+.current{outline:3px solid #f0c000;outline-offset:2px}
+/* ---------- model table by blocks */
+table.model>tbody.block{border-top:4px solid #333}
+table.model>tbody.block tr.head td{background:#f1f3f5}
+table.model .toggle{cursor:pointer;user-select:none;font-weight:bold;color:#333;margin-right:6px;display:inline-block;width:14px}
+tbody.block tr.summary-row{display:none}
+tbody.block:not(.open) tr.detail-row{display:none}
+tbody.block:not(.open) tr.summary-row{display:table-row}
+tbody.block:not(.open) tr.head td.rules>*{display:none}
+a.edit{text-decoration:none;color:#0b5c8f;font-size:12px;margin-left:3px}
+tbody.block:not(.open) .toggle::before{content:"▸"}
+tbody.block.open .toggle::before{content:"▾"}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;border:1px solid #e3e3e3;background:#fafafa;border-radius:6px;padding:7px 12px;margin:8px 0}
+.toolbar button{font:inherit;font-size:12px;padding:2px 8px;cursor:pointer}
+.toolbar details{position:relative}
+.toolbar details>div{position:absolute;z-index:5;background:#fff;border:1px solid #bbb;border-radius:6px;padding:6px 10px;box-shadow:0 2px 8px #0002;min-width:240px}
+.toolbar details label{display:block;white-space:nowrap}
+/* ---------- rules */
+.square{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:baseline;border-radius:2px}
+.square.RP{background:var(--rp)}.square.RIR{background:var(--rir)}.square.RIC{background:var(--ric)}.square.FN{background:var(--fn)}
+.chip{display:inline-block;border-radius:4px;padding:0 6px;margin:1px 2px;font-size:11.5px;border:1px solid;text-decoration:none;white-space:nowrap}
+.chip.RP{background:#e6f5f0;border-color:var(--rp);color:#00553e}
+.chip.RIR{background:#fdf3dc;border-color:var(--rir);color:#6b4700;border-style:dashed}
+.chip.RIC{background:#fbe9de;border-color:var(--ric);color:#7a2e00}
+.chip.FN{background:#efe9f5;border-color:var(--fn);color:#3d2160}
+.chip.neutral{background:#f3f3f3;border-color:#bbb;color:#333}
+.rule-card{border-left:4px solid #bbb;padding:2px 0 4px 8px;margin:2px 0 7px}
+.rule-card.RP{border-color:var(--rp)}.rule-card.RIR{border-color:var(--rir)}.rule-card.RIC{border-color:var(--ric)}.rule-card.FN{border-color:var(--fn)}
+.rule-field{display:block;margin:1px 0}
+.rule-field>.key{color:var(--soft);font-size:11px;margin-right:4px}
+.rir-group{border:1.5px dashed var(--rir);border-radius:5px;background:#fffaf0;padding:3px 8px;margin:3px 0 6px}
+body.hide-id .attr-id,body.hide-desc .attr-desc,body.hide-cond .attr-cond,body.hide-restr .attr-restr,body.hide-msg .attr-msg,
+body.hide-concl .attr-concl,body.hide-ctx .attr-ctx,body.hide-home .attr-home{display:none!important}
+.legend{font-size:11.5px;color:#333;margin:6px 0 12px}
+.legend span{margin-right:14px}
+.rule-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:#444;margin:8px 0 12px}
+[data-group],[data-value]{display:none}[data-group].visible,[data-value].visible{display:block}
+/* ---------- decision */
+td.c-empty{background:#ececec;color:#aaa}
+td.c-incoherent{background:#f9d6c7}
+td.c-conflict{background:#fde3a7}
+table.matrix hr{border:0;border-top:1px dashed #bbb;margin:2px 0}
+tr.implausible-row td.row-label{color:var(--error);font-weight:bold}
+.extra{display:none;font-size:10.5px;color:#444;text-align:left}
+body.show-id .x-id,body.show-msg .x-msg,body.show-desc .x-desc,body.show-home .x-home{display:block}
+[data-mode]{display:none}[data-mode].visible{display:block}
+ul.tree,ul.tree ul{list-style:none;margin:0;padding-left:22px;position:relative}
+ul.tree{padding-left:0}
+ul.tree li{position:relative;padding:3px 0 3px 18px}
+ul.tree ul li::before{content:"";position:absolute;left:0;top:13px;width:14px;border-top:1px solid #999}
+ul.tree ul{border-left:1px solid #999;margin-left:8px}
+.dim{display:inline-block;border:1.5px solid var(--condition);color:#8a2f63;border-radius:3px;padding:0 6px;font-weight:bold}
+.value{display:inline-block;border:1.5px solid #555;color:#222;border-radius:3px;padding:0 6px;background:#fff}
+.value.any{border-color:#aaa;color:#777}
+.value.implausible{background:#fbe0d2;border-color:var(--error);border-width:2px}
+.value.large{font-size:14px;font-weight:bold;border-width:2.5px;border-color:var(--condition);background:#fbeef5;padding:2px 10px}
+.leaf{display:inline-block;border:1.5px dashed var(--rir);background:#fdf3dc;border-radius:4px;padding:0 6px;margin:1px 0}
+/* ---------- dependencies */
+details.step{border:1px solid #ddd;border-radius:6px;margin:6px 0;padding:4px 10px;background:#fff}
+details.step>summary{cursor:pointer;padding:3px 0}
+details.step details.step{margin-left:14px;background:#fcfcfc}
+.flow{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
+.flow .arrow{color:#888}
+.term{display:block;padding:1px 6px;margin:1px 0;border-radius:3px}
+.term.focus{background:#fbeef5;border:1.5px solid var(--condition);font-weight:bold}
+/* ---------- cards */
+.box{border:1px solid #999;border-radius:6px;padding:10px 14px;margin:10px 0}
+.box h3{margin:0 0 6px}
+.fields{display:grid;grid-template-columns:220px 1fr;gap:5px 12px;margin:2px 0}
+.fields>.key{color:var(--soft)}
+.element{border:1px solid #ddd;border-left:5px solid #999;border-radius:5px;padding:6px 10px;margin:6px 0}
+.element.Restricao{border-left-color:var(--fn)}.element.CondicaoAplicabilidade{border-left-color:var(--condition)}
+.element.Funcao,.element.ContextoExterno{border-left-color:var(--external)}.element.Propriedade{border-left-color:#555}
+.element.HLM{border-left-color:var(--hlm)}.element.SM{border-left-color:var(--sm)}.element.USM{border-left-color:var(--usm)}
+.element h4{margin:0 0 4px;font-size:12.5px}
+.svg-wrap{overflow-x:auto;border:1px solid #eee;border-radius:6px;background:#fff;margin:6px 0}
+/* ---------- profiles and states */
+.badge{display:inline-block;border-radius:10px;padding:0 8px;font-size:11px;border:1px solid #999;margin:1px}
+.b-always,.b-evaluated,.b-true{background:#e6f5f0;border-color:var(--rp)}
+.b-never,.b-false{background:#eee;color:#888;border-color:#bbb}
+.b-dynamic{background:#fdf3dc;border-color:var(--rir)}
+.b-not-evaluable,.b-unavailable{background:#fbe0d2;border-color:var(--error)}
+.b-outside{background:#f3f3f3;border-color:#bbb;color:#777}
+/* ---------- validation */
+.b-nonconforming{background:#fbe0d2;border-color:var(--error);color:#7a1d00;font-weight:bold}
+.b-conforming{background:#e6f5f0;border-color:var(--rp)}
+.b-conclusion{background:#fbe9de;border-color:var(--ric)}
+.b-not-applicable,.b-absent{background:#eee;color:#777;border-color:#bbb}
+.b-no-value{background:#fdf3dc;border-color:var(--rir)}
+.result{font-size:15px;font-weight:bold;padding:4px 12px;border-radius:5px;display:inline-block;margin:4px 0}
+.result.valid{background:#e6f5f0;color:#00553e;border:1px solid var(--rp)}
+.result.invalid{background:#fbe0d2;color:#7a1d00;border:1px solid var(--error)}
+pre.json{background:#f7f8fa;border:1px solid #e3e3e3;border-radius:5px;padding:8px 10px;overflow-x:auto;font-size:11.5px}
+.mandatory{color:var(--sm);font-weight:bold}.permitted{color:var(--condition)}.excluded{color:#bbb}
+tr.differs td{background:#f0f0f0}
+.warning{border-left:4px solid var(--error);background:#fdf1ea;padding:6px 10px;margin:6px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13px}
+svg text{font-family:Verdana,"DejaVu Sans",sans-serif}
+@media print{thead th{position:static}.toolbar{display:none}tbody.block tr.detail-row{display:table-row!important}tbody.block tr.summary-row{display:none!important}}
+</style></head><body><main><nav class="top"><a href="index.html">← índice das vistas</a></nav><h1>Matriz de projeções do HLM Fatura</h1><table class="matrix"><thead><tr><th class="row-label">Propriedade</th><th>FaturaAT</th><th>FaturaSimplificada</th></tr></thead><tbody><tr class=""><td class="row-label"><code>Cabecalho.numero</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Cabecalho.serie</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Cabecalho.atcud</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Cabecalho.tipoDocumento</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Cabecalho.dataEmissao</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Cabecalho.totalFatura</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Cabecalho.hash</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Entidade.nif</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Entidade.nome</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Morada.rua</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Morada.codigoPostal</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Morada.localidade</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Morada.freguesia</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Morada.pais</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Emitente.Contacto.email</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.consentimentoComercial</code></td><td><span class="permitted">permitida</span></td><td><span class="excluded">—</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.Entidade.nif</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="excluded">—</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.Entidade.nome</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="excluded">—</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.Morada.rua</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="excluded">—</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.Morada.codigoPostal</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="excluded">—</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.Morada.localidade</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="excluded">—</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.Morada.freguesia</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="excluded">—</span></td></tr><tr class="differs"><td class="row-label"><code>Cliente.Morada.pais</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="excluded">—</span></td></tr><tr class=""><td class="row-label"><code>Linhas.Linha.numero</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Linhas.Linha.descricao</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Linhas.Linha.valor</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Linhas.Linha.tipoIVA</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr><tr class=""><td class="row-label"><code>Linhas.Linha.taxaIVA</code></td><td><span class="mandatory">obrigatória</span></td><td><span class="mandatory">obrigatória</span></td></tr></tbody></table><div class="legend">Sombreado: propriedades em que as projeções diferem. — : excluída (proibida) nessa projeção.</div><h2>Projeções</h2><table class=""><thead><tr><th>Projeção</th><th>Descrição</th></tr></thead><tbody><tr><td>FaturaAT</td><td>Fatura para submissão à AT: exige o cliente.</td></tr><tr><td>FaturaSimplificada</td><td>Fatura simplificada: dispensa a identificação do cliente.</td></tr></tbody></table><h2>Perfis de execução e valores fixados</h2><table class=""><thead><tr><th>Perfil</th><th>Projeção</th><th>Descrição</th><th>Fixa</th></tr></thead><tbody><tr><td><a href="perfil_AuditoriaSetembro2026.html">AuditoriaSetembro2026</a></td><td>FaturaAT</td><td>Auditoria reprodutível: a data de hoje é fixada.</td><td>contexto <b>dataDeHoje</b> = 2026-09-30</td></tr><tr><td><a href="perfil_SubmissaoAT.html">SubmissaoAT</a></td><td>FaturaAT</td><td>Submissão à AT: nenhum valor conhecido à partida (seleção dinâmica).</td><td><span class="note">nenhum valor fixado (seleção dinâmica)</span></td></tr><tr><td><a href="perfil_EmissaoSimplificada.html">EmissaoSimplificada</a></td><td>FaturaSimplificada</td><td>Emissão de faturas simplificadas: o tipo de documento é conhecido.</td><td><code>Cabecalho.tipoDocumento</code> = FS</td></tr></tbody></table><p class="note footer">Dados desta vista: <a href="projecoes_Fatura.json">projecoes_Fatura.json</a></p></main><script>
+(function(){
+  var b=document.body;
+  function toggleClass(cb){var on=cb.getAttribute('data-on'),off=cb.getAttribute('data-off');
+    if(on){b.classList.toggle(on,cb.checked)} if(off){b.classList.toggle(off,!cb.checked)}}
+  document.querySelectorAll('input[data-on],input[data-off]').forEach(function(cb){toggleClass(cb);cb.addEventListener('change',function(){toggleClass(cb)})});
+  document.querySelectorAll('.toggle').forEach(function(x){x.addEventListener('click',function(){x.closest('tbody').classList.toggle('open')})});
+  document.querySelectorAll('button[data-blocks]').forEach(function(bt){bt.addEventListener('click',function(){
+    var open=bt.getAttribute('data-blocks')==='open';
+    document.querySelectorAll('tbody.block').forEach(function(t){t.classList.toggle('open',open)});
+    document.querySelectorAll('details.step').forEach(function(d){d.open=open})})});
+  function show(sel){var a=sel.getAttribute('data-show'),v=sel.value;
+    document.querySelectorAll('['+a+']').forEach(function(e){var vs=e.getAttribute(a).split(' ');
+      e.classList.toggle('visible',v==='*'||vs.indexOf(v)>=0)})}
+  document.querySelectorAll('select[data-show]').forEach(function(s){show(s);s.addEventListener('change',function(){show(s)})});
+  document.querySelectorAll('input[type=radio][data-show]').forEach(function(r){if(r.checked){show(r)}
+    r.addEventListener('change',function(){show(r)})});
+  if(location.hash){var e=document.getElementById(location.hash.slice(1));if(e){e.classList.add('current');
+    var t=e.closest('tbody.block');if(t){t.classList.add('open')}}}
+})();
+</script></body></html>

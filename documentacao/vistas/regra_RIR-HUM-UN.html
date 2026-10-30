@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Regra RIR-HUM-UN</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--fn:#6A3D9A;
+--condition:#CC79A7;--projection:#7F7F7F;--external:#8C6D1F;--yellow:#F0E442;--error:#C0392B;
+--text:#1b1b1b;--soft:#666;--line:#dcdcdc;--bg:#fff;--zebra:#f7f8fa}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",Geneva,sans-serif;font-size:13px;color:var(--text);background:var(--bg);line-height:1.45}
+main{max-width:1500px;margin:0 auto;padding:22px 26px 60px}
+h1{font-size:20px;margin:0 0 4px;color:#5a1a2f}
+h2{font-size:15px;margin:26px 0 8px;color:#5a1a2f;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:13px;margin:16px 0 6px}
+a{color:#0b5c8f}
+code,.mono{font-family:"DejaVu Sans Mono",Menlo,Consolas,monospace;font-size:12px}
+.subtitle{color:var(--soft);margin:0 0 14px}
+.note{color:var(--soft);font-size:11.5px}
+.ok{color:var(--rp);font-weight:bold}
+nav.top{font-size:12px;margin-bottom:10px}
+/* ---------- tables */
+table{border-collapse:collapse;width:100%;margin:6px 0 10px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;vertical-align:top;text-align:left}
+thead th{border-bottom:2px solid #444;background:#fff;position:sticky;top:0;z-index:1}
+table.matrix{width:auto;min-width:50%}
+table.matrix td,table.matrix th{text-align:center;border:1px solid var(--line)}
+table.matrix td.row-label,table.matrix th.row-label{text-align:left}
+/* ---------- ECM levels */
+.n-HLM{color:var(--hlm);font-weight:bold}.n-SM{color:var(--sm);font-weight:bold}.n-USM{color:var(--usm);font-weight:bold}
+.tag{display:inline-block;font-size:10px;border-radius:3px;padding:0 4px;color:#fff;margin-right:4px;vertical-align:1px}
+.tag.HLM{background:var(--hlm)}.tag.SM{background:var(--sm)}.tag.USM{background:var(--usm)}
+.meta{color:var(--soft);font-size:11px;margin-left:6px}
+.prop{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px}
+.alt{color:var(--soft)}
+.disc{color:var(--condition);font-weight:bold;text-decoration:none}
+/* ---------- tree (organisation chart) */
+.tree-wrap{overflow-x:auto;padding:8px 0 14px;border:1px solid #eee;border-radius:6px;background:#fcfcfc}
+.org,.org ul{display:flex;justify-content:center;list-style:none;margin:0;padding:0}
+.org ul{padding-top:16px;position:relative}
+.org li{position:relative;padding:16px 5px 0;text-align:center}
+.org>li{padding-top:0}
+.org{width:max-content;min-width:100%;box-sizing:border-box;padding:0 8px}
+.org li::before,.org li::after{content:"";position:absolute;top:0;right:50%;width:50%;height:16px;border-top:1.5px solid #999}
+.org li::after{right:auto;left:50%;border-left:1.5px solid #999}
+.org li:only-child::before,.org li:only-child::after{display:none}
+.org li:only-child{padding-top:16px}.org>li:only-child{padding-top:0}
+.org li:first-child::before,.org li:last-child::after{border:0}
+.org li:last-child::before{border-right:1.5px solid #999;border-radius:0 4px 0 0}
+.org li:first-child::after{border-radius:4px 0 0 0}
+.org ul::before{content:"";position:absolute;top:0;left:50%;height:16px;border-left:1.5px solid #999}
+.node-box{display:inline-block;border:2px solid #999;border-radius:6px;background:#fff;padding:4px 8px;min-width:110px;text-align:left;font-size:12px}
+.node-box.HLM{border-color:var(--hlm);background:#f8edf1;border-width:3px}.node-box.SM{border-color:var(--sm);background:#eef5fb}.node-box.USM{border-color:var(--usm);background:#ecf7f6}
+.node-box .title{font-weight:bold;white-space:nowrap}.node-box.HLM .title{color:var(--hlm)}.node-box.SM .title{color:var(--sm)}.node-box.USM .title{color:var(--usm)}
+.node-box .title a{color:inherit;text-decoration:none}.node-box .title a:hover{text-decoration:underline}
+.node-box .caption{font-size:10.5px;color:var(--soft);white-space:nowrap}
+.node-box ul.props{display:block;list-style:none;margin:4px 0 0;padding:3px 0 0;border-top:1px dashed #ccc}
+.node-box ul.props li{display:block;padding:0;text-align:left;font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:11px;white-space:nowrap}
+.node-box ul.props li::before,.node-box ul.props li::after,.node-box ul.props::before{display:none}
+.node-box details{font-size:10.5px;margin-top:3px}.node-box details summary{cursor:pointer;color:var(--soft)}
+body.hide-props .node-box ul.props{display:none}
+.current{outline:3px solid #f0c000;outline-offset:2px}
+/* ---------- model table by blocks */
+table.model>tbody.block{border-top:4px solid #333}
+table.model>tbody.block tr.head td{background:#f1f3f5}
+table.model .toggle{cursor:pointer;user-select:none;font-weight:bold;color:#333;margin-right:6px;display:inline-block;width:14px}
+tbody.block tr.summary-row{display:none}
+tbody.block:not(.open) tr.detail-row{display:none}
+tbody.block:not(.open) tr.summary-row{display:table-row}
+tbody.block:not(.open) tr.head td.rules>*{display:none}
+a.edit{text-decoration:none;color:#0b5c8f;font-size:12px;margin-left:3px}
+tbody.block:not(.open) .toggle::before{content:"▸"}
+tbody.block.open .toggle::before{content:"▾"}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;border:1px solid #e3e3e3;background:#fafafa;border-radius:6px;padding:7px 12px;margin:8px 0}
+.toolbar button{font:inherit;font-size:12px;padding:2px 8px;cursor:pointer}
+.toolbar details{position:relative}
+.toolbar details>div{position:absolute;z-index:5;background:#fff;border:1px solid #bbb;border-radius:6px;padding:6px 10px;box-shadow:0 2px 8px #0002;min-width:240px}
+.toolbar details label{display:block;white-space:nowrap}
+/* ---------- rules */
+.square{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:baseline;border-radius:2px}
+.square.RP{background:var(--rp)}.square.RIR{background:var(--rir)}.square.RIC{background:var(--ric)}.square.FN{background:var(--fn)}
+.chip{display:inline-block;border-radius:4px;padding:0 6px;margin:1px 2px;font-size:11.5px;border:1px solid;text-decoration:none;white-space:nowrap}
+.chip.RP{background:#e6f5f0;border-color:var(--rp);color:#00553e}
+.chip.RIR{background:#fdf3dc;border-color:var(--rir);color:#6b4700;border-style:dashed}
+.chip.RIC{background:#fbe9de;border-color:var(--ric);color:#7a2e00}
+.chip.FN{background:#efe9f5;border-color:var(--fn);color:#3d2160}
+.chip.neutral{background:#f3f3f3;border-color:#bbb;color:#333}
+.rule-card{border-left:4px solid #bbb;padding:2px 0 4px 8px;margin:2px 0 7px}
+.rule-card.RP{border-color:var(--rp)}.rule-card.RIR{border-color:var(--rir)}.rule-card.RIC{border-color:var(--ric)}.rule-card.FN{border-color:var(--fn)}
+.rule-field{display:block;margin:1px 0}
+.rule-field>.key{color:var(--soft);font-size:11px;margin-right:4px}
+.rir-group{border:1.5px dashed var(--rir);border-radius:5px;background:#fffaf0;padding:3px 8px;margin:3px 0 6px}
+body.hide-id .attr-id,body.hide-desc .attr-desc,body.hide-cond .attr-cond,body.hide-restr .attr-restr,body.hide-msg .attr-msg,
+body.hide-concl .attr-concl,body.hide-ctx .attr-ctx,body.hide-home .attr-home{display:none!important}
+.legend{font-size:11.5px;color:#333;margin:6px 0 12px}
+.legend span{margin-right:14px}
+.rule-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:#444;margin:8px 0 12px}
+[data-group],[data-value]{display:none}[data-group].visible,[data-value].visible{display:block}
+/* ---------- decision */
+td.c-empty{background:#ececec;color:#aaa}
+td.c-incoherent{background:#f9d6c7}
+td.c-conflict{background:#fde3a7}
+table.matrix hr{border:0;border-top:1px dashed #bbb;margin:2px 0}
+tr.implausible-row td.row-label{color:var(--error);font-weight:bold}
+.extra{display:none;font-size:10.5px;color:#444;text-align:left}
+body.show-id .x-id,body.show-msg .x-msg,body.show-desc .x-desc,body.show-home .x-home{display:block}
+[data-mode]{display:none}[data-mode].visible{display:block}
+ul.tree,ul.tree ul{list-style:none;margin:0;padding-left:22px;position:relative}
+ul.tree{padding-left:0}
+ul.tree li{position:relative;padding:3px 0 3px 18px}
+ul.tree ul li::before{content:"";position:absolute;left:0;top:13px;width:14px;border-top:1px solid #999}
+ul.tree ul{border-left:1px solid #999;margin-left:8px}
+.dim{display:inline-block;border:1.5px solid var(--condition);color:#8a2f63;border-radius:3px;padding:0 6px;font-weight:bold}
+.value{display:inline-block;border:1.5px solid #555;color:#222;border-radius:3px;padding:0 6px;background:#fff}
+.value.any{border-color:#aaa;color:#777}
+.value.implausible{background:#fbe0d2;border-color:var(--error);border-width:2px}
+.value.large{font-size:14px;font-weight:bold;border-width:2.5px;border-color:var(--condition);background:#fbeef5;padding:2px 10px}
+.leaf{display:inline-block;border:1.5px dashed var(--rir);background:#fdf3dc;border-radius:4px;padding:0 6px;margin:1px 0}
+/* ---------- dependencies */
+details.step{border:1px solid #ddd;border-radius:6px;margin:6px 0;padding:4px 10px;background:#fff}
+details.step>summary{cursor:pointer;padding:3px 0}
+details.step details.step{margin-left:14px;background:#fcfcfc}
+.flow{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
+.flow .arrow{color:#888}
+.term{display:block;padding:1px 6px;margin:1px 0;border-radius:3px}
+.term.focus{background:#fbeef5;border:1.5px solid var(--condition);font-weight:bold}
+/* ---------- cards */
+.box{border:1px solid #999;border-radius:6px;padding:10px 14px;margin:10px 0}
+.box h3{margin:0 0 6px}
+.fields{display:grid;grid-template-columns:220px 1fr;gap:5px 12px;margin:2px 0}
+.fields>.key{color:var(--soft)}
+.element{border:1px solid #ddd;border-left:5px solid #999;border-radius:5px;padding:6px 10px;margin:6px 0}
+.element.Restricao{border-left-color:var(--fn)}.element.CondicaoAplicabilidade{border-left-color:var(--condition)}
+.element.Funcao,.element.ContextoExterno{border-left-color:var(--external)}.element.Propriedade{border-left-color:#555}
+.element.HLM{border-left-color:var(--hlm)}.element.SM{border-left-color:var(--sm)}.element.USM{border-left-color:var(--usm)}
+.element h4{margin:0 0 4px;font-size:12.5px}
+.svg-wrap{overflow-x:auto;border:1px solid #eee;border-radius:6px;background:#fff;margin:6px 0}
+/* ---------- profiles and states */
+.badge{display:inline-block;border-radius:10px;padding:0 8px;font-size:11px;border:1px solid #999;margin:1px}
+.b-always,.b-evaluated,.b-true{background:#e6f5f0;border-color:var(--rp)}
+.b-never,.b-false{background:#eee;color:#888;border-color:#bbb}
+.b-dynamic{background:#fdf3dc;border-color:var(--rir)}
+.b-not-evaluable,.b-unavailable{background:#fbe0d2;border-color:var(--error)}
+.b-outside{background:#f3f3f3;border-color:#bbb;color:#777}
+/* ---------- validation */
+.b-nonconforming{background:#fbe0d2;border-color:var(--error);color:#7a1d00;font-weight:bold}
+.b-conforming{background:#e6f5f0;border-color:var(--rp)}
+.b-conclusion{background:#fbe9de;border-color:var(--ric)}
+.b-not-applicable,.b-absent{background:#eee;color:#777;border-color:#bbb}
+.b-no-value{background:#fdf3dc;border-color:var(--rir)}
+.result{font-size:15px;font-weight:bold;padding:4px 12px;border-radius:5px;display:inline-block;margin:4px 0}
+.result.valid{background:#e6f5f0;color:#00553e;border:1px solid var(--rp)}
+.result.invalid{background:#fbe0d2;color:#7a1d00;border:1px solid var(--error)}
+pre.json{background:#f7f8fa;border:1px solid #e3e3e3;border-radius:5px;padding:8px 10px;overflow-x:auto;font-size:11.5px}
+.mandatory{color:var(--sm);font-weight:bold}.permitted{color:var(--condition)}.excluded{color:#bbb}
+tr.differs td{background:#f0f0f0}
+.warning{border-left:4px solid var(--error);background:#fdf1ea;padding:6px 10px;margin:6px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13px}
+svg text{font-family:Verdana,"DejaVu Sans",sans-serif}
+@media print{thead th{position:static}.toolbar{display:none}tbody.block tr.detail-row{display:table-row!important}tbody.block tr.summary-row{display:none!important}}
+</style></head><body><main><nav class="top"><a href="index.html">← índice das vistas</a></nav><h1>Regra RIR-HUM-UN</h1><div class="box"><h3>Regra</h3><div class="fields"><span class="key">Identificador</span><span>RIR-HUM-UN</span><span class="key">Tipo</span><span><span class="chip RIR">RIR</span> regra de inferência restritiva</span><span class="key">Natureza</span><span>inferencia_restritiva</span><span class="key">Descrição (derivada)</span><span>Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}</span><span class="key">Vive em (alcance)</span><span><a href="hlm_Dispositivo.html" class="n-HLM">HLM Dispositivo</a> — Dispositivo IoT: identificação, leitura, localização e diagnóstico.</span><span class="key">Tem efeito nos HLM</span><span><a href="hlm_Dispositivo.html" class="n-HLM">Dispositivo</a></span><span class="key">Mensagem de não conformidade</span><span>Uma humidade tem de ser medida em %.</span></div></div><div class="element CondicaoAplicabilidade"><h4>Condição de aplicabilidade (1 termo(s), todos com E)</h4><div class="fields"><span class="key">Descrição</span><span><code>Identificacao.tipoDispositivo = HUMIDADE</code></span></div><div class="element Propriedade"><h4>Termo 1: <code>tipoDispositivo = HUMIDADE</code> <a class="note" href="dependencias_Identificacao_tipoDispositivo.html">dependências</a></h4><div class="fields"><span class="key">Propriedade lida</span><span><a href="sm_Identificacao.html#p-SM_Identificacao_tipoDispositivo" class="prop" title="SM:Identificacao.tipoDispositivo">SM:Identificacao.tipoDispositivo</a> <span class="meta">texto</span> — Grandeza medida pelo dispositivo</span><span class="key">Caminho (a partir de onde a regra vive)</span><span><code>Identificacao.tipoDispositivo</code></span><span class="key">Operador</span><span><code>EQUALS</code> <span class="note">(o valor é igual ao esperado)</span></span><span class="key">Compara com</span><span><code>HUMIDADE</code></span></div></div></div><div class="element Restricao"><h4>Restrição</h4><div class="fields"><span class="key">Forma</span><span>tipificada <span class="note">(um alvo, um operador do catálogo e os valores esperados)</span></span><span class="key">Restringe (alvo)</span><span><a href="usm_Medicao.html#p-USM_Medicao_unidadeMedida" class="prop" title="USM:Medicao.unidadeMedida">USM:Medicao.unidadeMedida</a> <span class="meta">texto</span> — Unidade de medida associada ao valor medido</span><span class="key">Caminho</span><span><code>Leitura.Medicao.unidadeMedida</code></span><span class="key">Operador</span><span><code>IN</code> <span class="note">(o valor é um dos da lista)</span></span><span class="key">Valor esperado</span><span><code>[%]</code></span><span class="key">Descrição</span><span><code>Leitura.Medicao.unidadeMedida ∈ {%}</code></span><span class="key">Mensagem de não conformidade</span><span>Uma humidade tem de ser medida em %.</span><span class="key">Vista de decisão do alvo</span><span><a href="decisao_Medicao_unidadeMedida.html">unidadeMedida</a></span></div></div><h2>Subgrafo da regra e dos modelos</h2><div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="559" height="559" viewBox="0 0 559 559" style="max-width:100%;height:auto;background:#fff"><defs><marker id="saaa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#aaa"/></marker><marker id="s666" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#666"/></marker><marker id="sCC79A7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#CC79A7"/></marker><marker id="s6A3D9A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6A3D9A"/></marker><marker id="sE69F00" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E69F00"/></marker></defs><rect x="4" y="4" width="551.0" height="158.0" fill="#fbfbfb" stroke="#e3e3e3"/><line x1="71.5" y1="100.0" x2="271.9" y2="496.0" stroke="#E69F00" stroke-width="1.3" marker-end="url(#sE69F00)" stroke-dasharray="4,3"/><line x1="113.0" y1="87.0" x2="263.0" y2="58.5" stroke="#666" stroke-width="1.3" marker-end="url(#s666)"/><line x1="336.0" y1="71.5" x2="399.7" y2="211.0" stroke="#6A3D9A" stroke-width="1.3" marker-end="url(#s6A3D9A)"/><line x1="113.0" y1="87.0" x2="266.1" y2="115.5" stroke="#666" stroke-width="1.3" marker-end="url(#s666)"/><line x1="336.0" y1="128.5" x2="144.2" y2="211.0" stroke="#CC79A7" stroke-width="1.3" marker-end="url(#sCC79A7)" stroke-dasharray="4,3"/><line x1="399.7" y1="306.0" x2="399.7" y2="237.0" stroke="#aaa" stroke-width="1.3" marker-end="url(#saaa)"/><line x1="144.2" y1="306.0" x2="144.2" y2="237.0" stroke="#aaa" stroke-width="1.3" marker-end="url(#saaa)"/><line x1="399.7" y1="401.0" x2="399.7" y2="332.0" stroke="#aaa" stroke-width="1.3" marker-end="url(#saaa)"/><line x1="271.9" y1="496.0" x2="144.2" y2="332.0" stroke="#aaa" stroke-width="1.3" marker-end="url(#saaa)"/><line x1="271.9" y1="496.0" x2="399.7" y2="427.0" stroke="#aaa" stroke-width="1.3" marker-end="url(#saaa)"/><rect x="268.0" y="454.5" width="135.6" height="13" fill="#fff" opacity="0.9"/><text x="335.8" y="464.5" font-size="8" fill="#444" text-anchor="middle">COMPOSTO_POR Leitura [1..1]</text><rect x="125.8" y="407.0" width="164.4" height="13" fill="#fff" opacity="0.9"/><text x="208.0" y="417.0" font-size="8" fill="#444" text-anchor="middle">COMPOSTO_POR Identificacao [1..1]</text><rect x="331.9" y="359.5" width="135.6" height="13" fill="#fff" opacity="0.9"/><text x="399.7" y="369.5" font-size="8" fill="#444" text-anchor="middle">COMPOSTO_POR Medicao [1..1]</text><rect x="126.8" y="264.5" width="34.8" height="13" fill="#fff" opacity="0.9"/><text x="144.2" y="274.5" font-size="8" fill="#444" text-anchor="middle">CONTEM</text><rect x="382.3" y="264.5" width="34.8" height="13" fill="#fff" opacity="0.9"/><text x="399.7" y="274.5" font-size="8" fill="#444" text-anchor="middle">CONTEM</text><rect x="214.1" y="162.8" width="51.9" height="13" fill="#fff" opacity="0.9"/><text x="240.1" y="172.8" font-size="8.5" fill="#444" text-anchor="middle">[3] TERMO</text><rect x="145.8" y="94.2" width="87.6" height="13" fill="#fff" opacity="0.9"/><text x="189.6" y="104.2" font-size="8.5" fill="#444" text-anchor="middle">CONDICIONADA_POR</text><rect x="331.7" y="134.2" width="72.3" height="13" fill="#fff" opacity="0.9"/><text x="367.8" y="144.2" font-size="8.5" fill="#444" text-anchor="middle">[2] RESTRINGE</text><rect x="154.4" y="65.8" width="67.2" height="13" fill="#fff" opacity="0.9"/><text x="188.0" y="75.8" font-size="8.5" fill="#444" text-anchor="middle">RESTRITA_POR</text><rect x="130.5" y="291.0" width="82.5" height="13" fill="#fff" opacity="0.9"/><text x="171.7" y="301.0" font-size="8.5" fill="#444" text-anchor="middle">[1] ASSOCIADA_A</text><text x="10.0" y="16.0" font-size="9" fill="#999" text-anchor="start">subgrafo da regra</text><text x="10.0" y="190.0" font-size="9" fill="#999" text-anchor="start">subgrafo dos modelos (propriedade → modelo que a contém → … → HLM)</text><g><title>RIR: RIR-HUM-UN — Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}</title><rect x="30.0" y="74.0" width="83.0" height="26" rx="4" fill="#fff" stroke="#E69F00" stroke-width="2" stroke-dasharray="5,3"/><text x="71.5" y="90.8" font-size="10.5" fill="#1b1b1b" text-anchor="middle">RIR-HUM-UN</text></g><text x="33.0" y="71.0" font-size="8.5" fill="#E69F00" text-anchor="start">RIR</text><g><title>Restricao: RIR-HUM-UN#restricao — Leitura.Medicao.unidadeMedida ∈ {%}</title><rect x="263.0" y="45.5" width="146.0" height="26" rx="4" fill="#fff" stroke="#6A3D9A" stroke-width="2"/><text x="336.0" y="62.3" font-size="10.5" fill="#1b1b1b" text-anchor="middle">RIR-HUM-UN#restricao</text></g><text x="266.0" y="42.5" font-size="8.5" fill="#6A3D9A" text-anchor="start">Restricao</text><g><title>CondicaoAplicabilidade: RIR-HUM-UN#condicao — Identificacao.tipoDispositivo = HUMIDADE</title><rect x="266.1" y="102.5" width="139.7" height="26" rx="4" fill="#fff" stroke="#CC79A7" stroke-width="2" stroke-dasharray="5,3"/><text x="336.0" y="119.3" font-size="10.5" fill="#1b1b1b" text-anchor="middle">RIR-HUM-UN#condicao</text></g><text x="269.1" y="99.5" font-size="8.5" fill="#CC79A7" text-anchor="start">CondicaoAplicabilidade</text><a href="hlm_Dispositivo.html"><g><title>HLM Dispositivo: Dispositivo IoT: identificação, leitura, localização e diagnóstico.</title><rect x="214.7" y="496.0" width="114.5" height="26" rx="4" fill="#fff" stroke="#8B1E3F" stroke-width="2.5"/><text x="271.9" y="512.8" font-size="10.5" fill="#1b1b1b" text-anchor="middle">HLM Dispositivo</text></g></a><text x="217.7" y="493.0" font-size="8.5" fill="#8B1E3F" text-anchor="start">HLM</text><a href="usm_Medicao.html#p-USM_Medicao_unidadeMedida"><g><title>USM:Medicao.unidadeMedida: Unidade de medida associada ao valor medido</title><rect x="308.3" y="211.0" width="182.8" height="26" rx="4" fill="#fff" stroke="#555555" stroke-width="1.6"/><text x="399.7" y="227.8" font-size="10.5" fill="#1b1b1b" text-anchor="middle" font-family="DejaVu Sans Mono, Menlo, monospace">USM:Medicao.unidadeMedida</text></g></a><text x="311.3" y="208.0" font-size="8.5" fill="#555555" text-anchor="start">Propriedade</text><a href="sm_Identificacao.html#p-SM_Identificacao_tipoDispositivo"><g><title>SM:Identificacao.tipoDispositivo: Grandeza medida pelo dispositivo</title><rect x="30.0" y="211.0" width="228.3" height="26" rx="4" fill="#fff" stroke="#555555" stroke-width="1.6"/><text x="144.2" y="227.8" font-size="10.5" fill="#1b1b1b" text-anchor="middle" font-family="DejaVu Sans Mono, Menlo, monospace">SM:Identificacao.tipoDispositivo</text></g></a><text x="33.0" y="208.0" font-size="8.5" fill="#555555" text-anchor="start">Propriedade</text><a href="usm_Medicao.html"><g><title>USM Medicao: Leitura de um sensor: unidade, valor medido e instante da medição.</title><rect x="355.0" y="306.0" width="89.3" height="26" rx="4" fill="#fff" stroke="#0E7C7B" stroke-width="1.6"/><text x="399.7" y="322.8" font-size="10.5" fill="#1b1b1b" text-anchor="middle">USM Medicao</text></g></a><text x="358.0" y="303.0" font-size="8.5" fill="#0E7C7B" text-anchor="start">USM</text><a href="sm_Identificacao.html"><g><title>SM Identificacao: Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.</title><rect x="83.8" y="306.0" width="120.8" height="26" rx="4" fill="#fff" stroke="#0072B2" stroke-width="1.6"/><text x="144.2" y="322.8" font-size="10.5" fill="#1b1b1b" text-anchor="middle">SM Identificacao</text></g></a><text x="86.8" y="303.0" font-size="8.5" fill="#0072B2" text-anchor="start">SM</text><a href="sm_Leitura.html"><g><title>SM Leitura: Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.</title><rect x="358.2" y="401.0" width="83.0" height="26" rx="4" fill="#fff" stroke="#0072B2" stroke-width="1.6"/><text x="399.7" y="417.8" font-size="10.5" fill="#1b1b1b" text-anchor="middle">SM Leitura</text></g></a><text x="361.2" y="398.0" font-size="8.5" fill="#0072B2" text-anchor="start">SM</text></svg></div><h3>Todas as ligações (texto completo)</h3><table class=""><thead><tr><th>N.º</th><th>Aresta</th><th>De</th><th>Para</th><th>Texto / atributos</th></tr></thead><tbody><tr><td>[1]</td><td>ASSOCIADA_A</td><td>R:RIR-HUM-UN</td><td>HLM:Dispositivo</td><td>vive em (alcance)</td></tr><tr><td>[2]</td><td>RESTRINGE</td><td>Restricao:RIR-HUM-UN</td><td>Propriedade:USM:Medicao.unidadeMedida</td><td>Leitura.Medicao.unidadeMedida ∈ {%}</td></tr><tr><td>[3]</td><td>TERMO</td><td>Condicao:RIR-HUM-UN</td><td>Propriedade:SM:Identificacao.tipoDispositivo</td><td>termo 1: tipoDispositivo = HUMIDADE</td></tr><tr><td></td><td>RESTRITA_POR</td><td>R:RIR-HUM-UN</td><td>Restricao:RIR-HUM-UN</td><td></td></tr><tr><td></td><td>CONDICIONADA_POR</td><td>R:RIR-HUM-UN</td><td>Condicao:RIR-HUM-UN</td><td></td></tr><tr><td></td><td>CONTEM</td><td>USM:Medicao</td><td>Propriedade:USM:Medicao.unidadeMedida</td><td></td></tr><tr><td></td><td>CONTEM</td><td>SM:Identificacao</td><td>Propriedade:SM:Identificacao.tipoDispositivo</td><td></td></tr><tr><td></td><td>COMPOSTO_POR</td><td>SM:Leitura</td><td>USM:Medicao</td><td>Medicao 1..1</td></tr><tr><td></td><td>COMPOSTO_POR</td><td>HLM:Dispositivo</td><td>SM:Identificacao</td><td>Identificacao 1..1</td></tr><tr><td></td><td>COMPOSTO_POR</td><td>HLM:Dispositivo</td><td>SM:Leitura</td><td>Leitura 1..1</td></tr></tbody></table><p class="note footer">Dados desta vista: <a href="regra_RIR-HUM-UN.json">regra_RIR-HUM-UN.json</a></p></main><script>
+(function(){
+  var b=document.body;
+  function toggleClass(cb){var on=cb.getAttribute('data-on'),off=cb.getAttribute('data-off');
+    if(on){b.classList.toggle(on,cb.checked)} if(off){b.classList.toggle(off,!cb.checked)}}
+  document.querySelectorAll('input[data-on],input[data-off]').forEach(function(cb){toggleClass(cb);cb.addEventListener('change',function(){toggleClass(cb)})});
+  document.querySelectorAll('.toggle').forEach(function(x){x.addEventListener('click',function(){x.closest('tbody').classList.toggle('open')})});
+  document.querySelectorAll('button[data-blocks]').forEach(function(bt){bt.addEventListener('click',function(){
+    var open=bt.getAttribute('data-blocks')==='open';
+    document.querySelectorAll('tbody.block').forEach(function(t){t.classList.toggle('open',open)});
+    document.querySelectorAll('details.step').forEach(function(d){d.open=open})})});
+  function show(sel){var a=sel.getAttribute('data-show'),v=sel.value;
+    document.querySelectorAll('['+a+']').forEach(function(e){var vs=e.getAttribute(a).split(' ');
+      e.classList.toggle('visible',v==='*'||vs.indexOf(v)>=0)})}
+  document.querySelectorAll('select[data-show]').forEach(function(s){show(s);s.addEventListener('change',function(){show(s)})});
+  document.querySelectorAll('input[type=radio][data-show]').forEach(function(r){if(r.checked){show(r)}
+    r.addEventListener('change',function(){show(r)})});
+  if(location.hash){var e=document.getElementById(location.hash.slice(1));if(e){e.classList.add('current');
+    var t=e.closest('tbody.block');if(t){t.classList.add('open')}}}
+})();
+</script></body></html>

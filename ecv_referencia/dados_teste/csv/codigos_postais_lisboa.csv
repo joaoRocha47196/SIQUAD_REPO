@@ -1,0 +1,16 @@
+pais;localidade;freguesia;codigoPostal;mensagem
+PT;LISBOA;AJUDA;^(1300|1349)-[0-9]{3}$;O código postal não pertence à freguesia da Ajuda
+PT;LISBOA;ALCANTARA;^(1300|1350)-[0-9]{3}$;O código postal não pertence à freguesia de Alcântara
+PT;LISBOA;ALVALADE;^(1700|1749)-[0-9]{3}$;O código postal não pertence à freguesia de Alvalade
+PT;LISBOA;AREEIRO;^(1000|1049|1700)-[0-9]{3}$;O código postal não pertence à freguesia do Areeiro
+PT;LISBOA;ARROIOS;^(1000|1049|1150|1169|1170)-[0-9]{3}$;O código postal não pertence à freguesia de Arroios
+PT;LISBOA;AVENIDAS NOVAS;^(1000|1050|1069|1600)-[0-9]{3}$;O código postal não pertence à freguesia das Avenidas Novas
+PT;LISBOA;BELEM;^(1400|1449)-[0-9]{3}$;O código postal não pertence à freguesia de Belém
+PT;LISBOA;BENFICA;^(1500|1549|1600)-[0-9]{3}$;O código postal não pertence à freguesia de Benfica
+PT;LISBOA;CAMPO DE OURIQUE;^(1250|1350)-[0-9]{3}$;O código postal não pertence à freguesia de Campo de Ourique
+PT;LISBOA;ESTRELA;^(1200|1249|1350)-[0-9]{3}$;O código postal não pertence à freguesia da Estrela
+PT;LISBOA;LUMIAR;^(1600|1649|1750)-[0-9]{3}$;O código postal não pertence à freguesia do Lumiar
+PT;LISBOA;MISERICORDIA;^(1200|1249)-[0-9]{3}$;O código postal não pertence à freguesia da Misericórdia
+PT;LISBOA;OLIVAIS;^(1800|1849|1885|1990)-[0-9]{3}$;O código postal não pertence à freguesia dos Olivais
+PT;LISBOA;PARQUE DAS NACOES;^(1990|1998)-[0-9]{3}$;O código postal não pertence à freguesia do Parque das Nações
+PT;LISBOA;SANTA MARIA MAIOR;^(1100|1149)-[0-9]{3}$;O código postal não pertence à freguesia de Santa Maria Maior

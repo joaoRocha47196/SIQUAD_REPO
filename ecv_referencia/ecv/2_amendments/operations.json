@@ -1,0 +1,132 @@
+{
+  "descricao": "Vocabulário fechado de operações sobre as declarações de um domínio. Uma operação sobre um modelo partilhado aplica-se a todas as declarações que o contêm, para que continue igual em todas. Depois de cada lote, recalculam-se as descrições e verifica-se. As operações são o único meio de alterar as declarações de um domínio depois do Passo A: chegam de uma resposta do LLM (passos B a F ou pedido de alterações), de um ficheiro, do formulário da aplicação web ou da importação de um CSV.",
+  "versao": "2.0.0",
+  "grupos": {
+    "modelos": "Modelos (HLM, SM, USM)",
+    "propriedades": "Propriedades",
+    "composicoes": "Composições",
+    "regras": "Regras (RP, RIR, RIC)",
+    "projecoesEPerfis": "Projeções e perfis",
+    "funcoesEContextos": "Funções e contextos externos",
+    "mapeamento": "Mapeamento das fontes"
+  },
+  "operacoes": {
+    "criar_modelo": {
+      "campos": ["nivel", "nome", "descricao", "propriedades?", "composicao?", "declaracoes?"],
+      "descricao": "Cria um USM ou SM (nas declarações indicadas, ou nas que o vierem a compor).",
+      "grupo": "modelos"
+    },
+    "remover_modelo": {
+      "campos": ["nivel", "nome"],
+      "descricao": "Remove o modelo e as composições que o referem.",
+      "grupo": "modelos"
+    },
+    "renomear_modelo": {
+      "campos": ["nivel", "de", "para"],
+      "descricao": "Muda o nome e atualiza as composições que o referem (o papel por omissão muda com ele).",
+      "grupo": "modelos"
+    },
+    "alterar_modelo": {
+      "campos": ["nivel", "nome", "descricao?", "notas?"],
+      "descricao": "Muda a descrição ou as notas.",
+      "grupo": "modelos"
+    },
+    "fundir_modelos": {
+      "campos": ["nivel", "de: [nomes]", "para"],
+      "descricao": "Junta vários modelos num só: as propriedades unem-se (pelo nome) e as composições passam a apontar para o modelo resultante.",
+      "grupo": "modelos"
+    },
+    "extrair_usm": {
+      "campos": ["de: {nivel, modelo}", "propriedades: [nomes]", "novo: {nome, descricao}", "papel?", "cardinalidade?"],
+      "descricao": "Cria um USM com as propriedades indicadas, retira-as do modelo de origem e compõe o novo USM nele.",
+      "grupo": "modelos"
+    },
+    "criar_hlm": {
+      "campos": ["nome", "descricao", "composicao", "declaracao?"],
+      "descricao": "Cria um HLM e a sua declaração.",
+      "grupo": "modelos"
+    },
+    "remover_hlm": {"campos": ["nome"], "descricao": "Remove a declaração do HLM.", "grupo": "modelos"},
+    "adicionar_propriedade": {
+      "campos": ["nivel", "modelo", "propriedade"],
+      "descricao": "Acrescenta uma propriedade ao modelo.",
+      "grupo": "propriedades"
+    },
+    "remover_propriedade": {
+      "campos": ["nivel", "modelo", "nome"],
+      "descricao": "Remove a propriedade (e as regras que vivem nela).",
+      "grupo": "propriedades"
+    },
+    "mover_propriedade": {
+      "campos": ["de: {nivel, modelo}", "para: {nivel, modelo}", "nome"],
+      "descricao": "Move a propriedade, com as regras que vivem nela, para outro modelo.",
+      "grupo": "propriedades"
+    },
+    "renomear_propriedade": {
+      "campos": ["nivel", "modelo", "de", "para"],
+      "descricao": "Muda o nome; o nome antigo passa a nome alternativo.",
+      "grupo": "propriedades"
+    },
+    "alterar_propriedade": {
+      "campos": ["nivel", "modelo", "nome", "tipo?", "descricao?", "nomesAlternativos?"],
+      "descricao": "Muda o tipo, a descrição ou os nomes alternativos.",
+      "grupo": "propriedades"
+    },
+    "compor": {
+      "campos": ["pai: {nivel, nome}", "filho: {nivel, nome}", "cardinalidade", "papel?"],
+      "descricao": "Acrescenta uma composição; o filho é copiado para as declarações do pai que ainda não o têm.",
+      "grupo": "composicoes"
+    },
+    "remover_composicao": {"campos": ["pai", "filho", "papel?"], "descricao": "Remove uma composição.", "grupo": "composicoes"},
+    "alterar_composicao": {
+      "campos": ["pai", "filho", "papel?", "cardinalidade?", "novoPapel?"],
+      "descricao": "Muda a cardinalidade ou o papel.",
+      "grupo": "composicoes"
+    },
+    "adicionar_regra": {
+      "campos": ["onde: {nivel, modelo, propriedade?}", "regra"],
+      "descricao": "Acrescenta uma regra (RP, RIR ou RIC) no nó indicado.",
+      "grupo": "regras"
+    },
+    "substituir_regra": {
+      "campos": ["id", "regra"],
+      "descricao": "Substitui a regra com esse id (onde quer que viva).",
+      "grupo": "regras"
+    },
+    "remover_regra": {"campos": ["id"], "descricao": "Remove a regra.", "grupo": "regras"},
+    "mover_regra": {
+      "campos": ["id", "para: {nivel, modelo, propriedade?}"],
+      "descricao": "Move a regra para outro nó (os caminhos têm de ser revistos: a verificação aponta-os).",
+      "grupo": "regras"
+    },
+    "definir_projecao": {
+      "campos": ["projecao"],
+      "descricao": "Cria ou substitui uma projeção (na declaração do seu HLM).",
+      "grupo": "projecoesEPerfis"
+    },
+    "remover_projecao": {"campos": ["nome"], "descricao": "Remove a projeção.", "grupo": "projecoesEPerfis"},
+    "definir_perfil": {
+      "campos": ["perfil"],
+      "descricao": "Cria ou substitui um perfil (na declaração do HLM da sua projeção).",
+      "grupo": "projecoesEPerfis"
+    },
+    "remover_perfil": {"campos": ["nome"], "descricao": "Remove o perfil.", "grupo": "projecoesEPerfis"},
+    "definir_funcao": {
+      "campos": ["funcao", "declaracoes?"],
+      "descricao": "Cria ou substitui uma função (em todas as declarações que a têm, ou nas indicadas).",
+      "grupo": "funcoesEContextos"
+    },
+    "remover_funcao": {"campos": ["nome"], "descricao": "Remove a função.", "grupo": "funcoesEContextos"},
+    "definir_contexto": {
+      "campos": ["contexto", "declaracoes?"],
+      "descricao": "Cria ou substitui um contexto externo.",
+      "grupo": "funcoesEContextos"
+    },
+    "remover_contexto": {"campos": ["nome"], "descricao": "Remove o contexto externo.", "grupo": "funcoesEContextos"},
+    "mapear": {
+      "campos": ["fonte", "origem", "decisao", "destino?", "motivo?"],
+      "descricao": "Regista ou corrige uma entrada do mapeamento.",
+      "grupo": "mapeamento"
+    }
+  }
+}

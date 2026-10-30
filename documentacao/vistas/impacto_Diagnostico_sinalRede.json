@@ -1,0 +1,41 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de sinalRede (Diagnostico)",
+  "propriedade": "USM:Diagnostico.sinalRede",
+  "nome": "sinalRede",
+  "regras": [
+    {
+      "id": "RP-SINAL",
+      "tipo": "RP",
+      "descricao": "Diagnostico.sinalRede entre -140 e 0",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIC-REDE",
+      "tipo": "RIC",
+      "descricao": "Se Diagnostico.sinalRede entre -120 e -100 e Diagnostico.latencia entre 500 e 10000 e Diagnostico.taxaRececao entre 0 e 50 → informa Estado NAO_FIAVEL",
+      "papeis": [
+        "termo da condição"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 1,
+    "RIR": 0,
+    "RIC": 1
+  },
+  "projecoes": [
+    {
+      "projecao": "DispositivoProducao",
+      "tipo": "obrigatoria",
+      "caminho": "Diagnostico.Diagnostico.sinalRede"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "USM:Diagnostico.sinalRede"
+  }
+}

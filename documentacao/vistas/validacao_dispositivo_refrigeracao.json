@@ -1,0 +1,1983 @@
+{
+  "vista": "validacao",
+  "titulo": "Validação de dispositivo_refrigeracao: inválida",
+  "instancia": "dispositivo_refrigeracao",
+  "descricaoInstancia": "Leitura de um sensor de temperatura numa câmara de refrigeração, no perfil RefrigeracaoLote (tipo, ambiente e unidade vêm do perfil). A temperatura está acima do intervalo de refrigeração.",
+  "hlm": "Dispositivo",
+  "perfil": "RefrigeracaoLote",
+  "projecao": "DispositivoProducao",
+  "valida": false,
+  "fixados": [
+    {
+      "caminho": "Identificacao.tipoDispositivo",
+      "valor": "TEMPERATURA"
+    },
+    {
+      "caminho": "Leitura.Instalacao.ambiente",
+      "valor": "REFRIGERACAO"
+    },
+    {
+      "caminho": "Leitura.Medicao.unidadeMedida",
+      "valor": "°C"
+    }
+  ],
+  "contextos": [
+    {
+      "nome": "chaveDispositivo",
+      "valor": "chave-de-teste-0001",
+      "origem": "indicado no pedido"
+    },
+    {
+      "nome": "dataDeHoje",
+      "valor": "2026-09-30",
+      "origem": "indicado no pedido"
+    },
+    {
+      "nome": "relogioServidor",
+      "valor": "2026-09-30T12:00:00Z",
+      "origem": "indicado no pedido"
+    }
+  ],
+  "resumo": {
+    "não conforme": 1,
+    "conforme": 29,
+    "conclusão": 1,
+    "não aplicável": 64
+  },
+  "estrutura": [],
+  "resumoEstrutura": {},
+  "conclusoes": [
+    {
+      "regra": "RIC-MANUT",
+      "tipo": "RIC",
+      "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+      "vive": "USM Diagnostico",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conclusão",
+      "termos": [
+        {
+          "texto": "nivelBateria entre 0 e 10",
+          "valor": 8,
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+          "valor": [
+            "2026-08-01",
+            7
+          ],
+          "resultado": "verdadeiro"
+        }
+      ],
+      "mensagem": "Ação MANUTENCAO: o nível de bateria está baixo e o dispositivo não recebe manutenção há mais de 7 dias.",
+      "conclusao": {
+        "tipo": "ACAO",
+        "valor": "MANUTENCAO"
+      }
+    }
+  ],
+  "regras": [
+    {
+      "regra": "RIR-TEMP-REFRIG-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -30 e 0",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não conforme",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "ambiente = REFRIGERACAO",
+          "valor": "REFRIGERACAO",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": 3.5,
+      "detalhe": "valor entre -30 e 0",
+      "mensagem": "Temperatura fora da gama de refrigeração (-30 a 0 °C)."
+    },
+    {
+      "regra": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ARROIOS",
+          "valor": "ARROIOS",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "1150-100",
+      "detalhe": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-PT",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "1150-100",
+      "detalhe": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-LX-LOCALIDADE",
+      "tipo": "RIR",
+      "descricao": "Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA",
+      "vive": "SM Localizacao",
+      "ocorrencia": "Localizacao",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)])",
+          "valor": [
+            38.72,
+            -9.14,
+            [
+              [
+                38.796,
+                -9.23
+              ],
+              [
+                38.796,
+                -9.09
+              ],
+              [
+                38.69,
+                -9.09
+              ],
+              [
+                38.69,
+                -9.23
+              ]
+            ]
+          ],
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "LISBOA",
+      "detalhe": "localidade = LISBOA"
+    },
+    {
+      "regra": "RIR-TEMP-C",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C → Leitura.Medicao.valor entre -60 e 1300",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": 3.5,
+      "detalhe": "valor entre -60 e 1300"
+    },
+    {
+      "regra": "RIR-TEMP-UN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA → Leitura.Medicao.unidadeMedida ∈ {°C, K, °F}",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "conforme",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        }
+      ],
+      "valor": "°C",
+      "detalhe": "unidadeMedida ∈ {°C, K, °F}"
+    },
+    {
+      "regra": "RP-ALT",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.altitude entre -500 e 9000",
+      "vive": "Propriedade USM:InformacaoGeografica.altitude",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 80,
+      "detalhe": "altitude entre -500 e 9000"
+    },
+    {
+      "regra": "RP-AMBIENTE",
+      "tipo": "RP",
+      "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+      "vive": "Propriedade USM:Instalacao.ambiente",
+      "ocorrencia": "Leitura.Instalacao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "REFRIGERACAO",
+      "detalhe": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}"
+    },
+    {
+      "regra": "RP-AREA",
+      "tipo": "RP",
+      "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+      "vive": "USM InformacaoGeografica",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        38.72,
+        -9.14,
+        [
+          [
+            38.8,
+            -9.25
+          ],
+          [
+            38.8,
+            -9.05
+          ],
+          [
+            38.68,
+            -9.05
+          ],
+          [
+            38.68,
+            -9.25
+          ]
+        ]
+      ],
+      "detalhe": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)]) → verdadeira"
+    },
+    {
+      "regra": "RP-ASSIN-FORMA",
+      "tipo": "RP",
+      "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+      "vive": "Propriedade USM:Assinatura.assinatura",
+      "ocorrencia": "Leitura.Assinatura",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "9e4db5d6fe9d23f8aee3b01ead415c60a9006bb1e2a2cfeab3851de4b6367abc",
+      "detalhe": "assinatura segue o padrão ^[0-9a-f]{64}$"
+    },
+    {
+      "regra": "RP-ASSINATURA",
+      "tipo": "RP",
+      "descricao": "assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)",
+      "vive": "USM Assinatura",
+      "ocorrencia": "Leitura.Assinatura",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        "TMP-0042;2026-09-30T11:58:00Z;-3.5",
+        "9e4db5d6fe9d23f8aee3b01ead415c60a9006bb1e2a2cfeab3851de4b6367abc"
+      ],
+      "detalhe": "assinaturaValida(mensagem, assinatura) → verdadeira"
+    },
+    {
+      "regra": "RP-BATERIA",
+      "tipo": "RP",
+      "descricao": "Diagnostico.nivelBateria entre 0 e 100",
+      "vive": "Propriedade USM:Diagnostico.nivelBateria",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 8,
+      "detalhe": "nivelBateria entre 0 e 100"
+    },
+    {
+      "regra": "RP-CP",
+      "tipo": "RP",
+      "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "vive": "Propriedade USM:Morada.codigoPostal",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "1150-100",
+      "detalhe": "codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$"
+    },
+    {
+      "regra": "RP-ESTADO",
+      "tipo": "RP",
+      "descricao": "Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+      "vive": "Propriedade SM:Identificacao.estado",
+      "ocorrencia": "Identificacao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "ATIVO",
+      "detalhe": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}"
+    },
+    {
+      "regra": "RP-FABRICANTE",
+      "tipo": "RP",
+      "descricao": "Identificacao.fabricante tem entre 2 e 50 caracteres",
+      "vive": "Propriedade SM:Identificacao.fabricante",
+      "ocorrencia": "Identificacao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "Sensores Lda",
+      "detalhe": "fabricante tem entre 2 e 50 caracteres"
+    },
+    {
+      "regra": "RP-FREGUESIA",
+      "tipo": "RP",
+      "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "vive": "Propriedade USM:Morada.freguesia",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "ARROIOS",
+      "detalhe": "freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}"
+    },
+    {
+      "regra": "RP-IDENT",
+      "tipo": "RP",
+      "descricao": "Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+      "vive": "Propriedade SM:Identificacao.identificador",
+      "ocorrencia": "Identificacao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "TMP-0042",
+      "detalhe": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$"
+    },
+    {
+      "regra": "RP-LAT",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.latitude entre -90 e 90",
+      "vive": "Propriedade USM:InformacaoGeografica.latitude",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 38.72,
+      "detalhe": "latitude entre -90 e 90"
+    },
+    {
+      "regra": "RP-LATENCIA",
+      "tipo": "RP",
+      "descricao": "Diagnostico.latencia entre 0 e 60000",
+      "vive": "Propriedade USM:Diagnostico.latencia",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 120,
+      "detalhe": "latencia entre 0 e 60000"
+    },
+    {
+      "regra": "RP-LON",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+      "vive": "Propriedade USM:InformacaoGeografica.longitude",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": -9.14,
+      "detalhe": "longitude entre -180 e 180"
+    },
+    {
+      "regra": "RP-MANUT-DATA",
+      "tipo": "RP",
+      "descricao": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01",
+      "vive": "Propriedade USM:Diagnostico.dataUltimaManutencao",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "2026-08-01",
+      "detalhe": "dataUltimaManutencao ≥ 2000-01-01"
+    },
+    {
+      "regra": "RP-MANUT-FUTURA",
+      "tipo": "RP",
+      "descricao": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)",
+      "vive": "Propriedade USM:Diagnostico.dataUltimaManutencao",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        "2026-08-01"
+      ],
+      "detalhe": "naoPosteriorAHoje(dataUltimaManutencao) → verdadeira"
+    },
+    {
+      "regra": "RP-PAIS",
+      "tipo": "RP",
+      "descricao": "Morada.pais ∈ {PT, ES, GB}",
+      "vive": "Propriedade USM:Morada.pais",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "PT",
+      "detalhe": "pais ∈ {PT, ES, GB}"
+    },
+    {
+      "regra": "RP-RECECAO",
+      "tipo": "RP",
+      "descricao": "Diagnostico.taxaRececao entre 0 e 100",
+      "vive": "Propriedade USM:Diagnostico.taxaRececao",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 98,
+      "detalhe": "taxaRececao entre 0 e 100"
+    },
+    {
+      "regra": "RP-RELOGIO",
+      "tipo": "RP",
+      "descricao": "desfasamentoInferiorA(Medicao.dataMedicao, 300)",
+      "vive": "Propriedade USM:Medicao.dataMedicao",
+      "ocorrencia": "Leitura.Medicao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": [
+        "2026-09-30T11:58:00Z",
+        300
+      ],
+      "detalhe": "desfasamentoInferiorA(dataMedicao, 300) → verdadeira"
+    },
+    {
+      "regra": "RP-SINAL",
+      "tipo": "RP",
+      "descricao": "Diagnostico.sinalRede entre -140 e 0",
+      "vive": "Propriedade USM:Diagnostico.sinalRede",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conforme",
+      "termos": [],
+      "valor": -85,
+      "detalhe": "sinalRede entre -140 e 0"
+    },
+    {
+      "regra": "RP-SRC",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+      "vive": "Propriedade USM:InformacaoGeografica.sistemaReferencia",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "WGS84",
+      "detalhe": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}"
+    },
+    {
+      "regra": "RP-TIPODISP",
+      "tipo": "RP",
+      "descricao": "Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+      "vive": "Propriedade SM:Identificacao.tipoDispositivo",
+      "ocorrencia": "Identificacao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "TEMPERATURA",
+      "detalhe": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}"
+    },
+    {
+      "regra": "RP-UNIDADE",
+      "tipo": "RP",
+      "descricao": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+      "vive": "Propriedade USM:Medicao.unidadeMedida",
+      "ocorrencia": "Leitura.Medicao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": "°C",
+      "detalhe": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}"
+    },
+    {
+      "regra": "RP-VALOR-FISICO",
+      "tipo": "RP",
+      "descricao": "Medicao.valor entre -273.15 e 2400",
+      "vive": "Propriedade USM:Medicao.valor",
+      "ocorrencia": "Leitura.Medicao",
+      "estado": "conforme",
+      "termos": [],
+      "valor": 3.5,
+      "detalhe": "valor entre -273.15 e 2400"
+    },
+    {
+      "regra": "RIC-MANUT",
+      "tipo": "RIC",
+      "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+      "vive": "USM Diagnostico",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "conclusão",
+      "termos": [
+        {
+          "texto": "nivelBateria entre 0 e 10",
+          "valor": 8,
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+          "valor": [
+            "2026-08-01",
+            7
+          ],
+          "resultado": "verdadeiro"
+        }
+      ],
+      "mensagem": "Ação MANUTENCAO: o nível de bateria está baixo e o dispositivo não recebe manutenção há mais de 7 dias.",
+      "conclusao": {
+        "tipo": "ACAO",
+        "valor": "MANUTENCAO"
+      }
+    },
+    {
+      "regra": "RIC-MED-DIFERIDA",
+      "tipo": "RIC",
+      "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+      "vive": "Propriedade USM:Medicao.dataMedicao",
+      "ocorrencia": "Leitura.Medicao",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "dataMedicao < dataDeHoje (contexto externo)",
+          "valor": "2026-09-30T11:58:00Z",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIC-REDE",
+      "tipo": "RIC",
+      "descricao": "Se Diagnostico.sinalRede entre -120 e -100 e Diagnostico.latencia entre 500 e 10000 e Diagnostico.taxaRececao entre 0 e 50 → informa Estado NAO_FIAVEL",
+      "vive": "USM Diagnostico",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "sinalRede entre -120 e -100",
+          "valor": -85,
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-ES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = ES",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-GB",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = GB",
+          "valor": "PT",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AJUDA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ALCANTARA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ALVALADE",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AREEIRO",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = AVENIDAS_NOVAS",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BEATO",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BELEM",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = BENFICA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CAMPO_DE_OURIQUE",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CAMPOLIDE",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = CARNIDE",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = ESTRELA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = LUMIAR",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = MARVILA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = MISERICORDIA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = OLIVAIS",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = PARQUE_DAS_NACOES",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = PENHA_DE_FRANCA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTA_CLARA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTA_MARIA_MAIOR",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SANTO_ANTONIO",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "vive": "USM Morada",
+      "ocorrencia": "Localizacao.Morada",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "valor": "PT",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "valor": "LISBOA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "freguesia = SAO_VICENTE",
+          "valor": "ARROIOS",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-HUM",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % → Leitura.Medicao.valor entre 0 e 100",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-HUM-ARMAZEM",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 30 e 60",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-HUM-ESTUFA",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 60 e 90",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-HUM-EXTERIOR",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 100",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-HUM-REFRIG",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 80 e 95",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-HUM-SERVIDORES",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 40 e 60",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-HUM-UN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-PRES-BAR",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar → Leitura.Medicao.valor entre 0.3 e 1.1",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-PRES-EXTERIOR-BAR",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-PRES-EXTERIOR-HPA",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-PRES-HPA",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa → Leitura.Medicao.valor entre 300 e 1100",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-PRES-UN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO → Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-ARMAZEM-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 5 e 30",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "ambiente = ARMAZEM",
+          "valor": "REFRIGERACAO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 41 e 86",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-ARMAZEM-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 278.15 e 303.15",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-CAMARA-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = CAMARA_FRIGORIFICA → Leitura.Medicao.valor entre -25 e -18",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "ambiente = CAMARA_FRIGORIFICA",
+          "valor": "REFRIGERACAO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-ESTUFA-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 15 e 45",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "ambiente = ESTUFA",
+          "valor": "REFRIGERACAO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 59 e 113",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-ESTUFA-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 288.15 e 318.15",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-EXTERIOR-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -20 e 50",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "valor": "REFRIGERACAO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -4 e 122",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-EXTERIOR-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 253.15 e 323.15",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-F",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F → Leitura.Medicao.valor entre -76 e 2372",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-INCIN-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 200 e 1200",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "ambiente = INCINERADORA",
+          "valor": "REFRIGERACAO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-INCIN-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 392 e 2192",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-INCIN-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 473.15 e 1473.15",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-K",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K → Leitura.Medicao.valor entre 213.15 e 1573.15",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-REFRIG-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -22 e 32",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-REFRIG-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 243.15 e 273.15",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-SERVIDORES-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 18 e 27",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "valor": "°C",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "ambiente = SERVIDORES",
+          "valor": "REFRIGERACAO",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 64.4 e 80.6",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-TEMP-SERVIDORES-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 291.15 e 300.15",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "valor": "TEMPERATURA",
+          "resultado": "verdadeiro"
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "valor": "°C",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-VEL-EXTERIOR-KMH",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 144",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-VEL-EXTERIOR-MS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 40",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-VEL-KMH",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h → Leitura.Medicao.valor entre 0 e 270",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-VEL-MS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s → Leitura.Medicao.valor entre 0 e 75",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    },
+    {
+      "regra": "RIR-VEL-UN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE → Leitura.Medicao.unidadeMedida ∈ {m/s, km/h}",
+      "vive": "HLM Dispositivo",
+      "ocorrencia": "(HLM)",
+      "estado": "não aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "valor": "TEMPERATURA",
+          "resultado": "falso"
+        }
+      ],
+      "detalhe": "a condição não se verifica"
+    }
+  ],
+  "instanciaAvaliada": {
+    "Identificacao": {
+      "identificador": "TMP-0042",
+      "fabricante": "Sensores Lda",
+      "estado": "ATIVO",
+      "tipoDispositivo": "TEMPERATURA"
+    },
+    "Leitura": {
+      "Medicao": {
+        "valor": 3.5,
+        "dataMedicao": "2026-09-30T11:58:00Z",
+        "unidadeMedida": "°C"
+      },
+      "Assinatura": {
+        "mensagem": "TMP-0042;2026-09-30T11:58:00Z;-3.5",
+        "assinatura": "9e4db5d6fe9d23f8aee3b01ead415c60a9006bb1e2a2cfeab3851de4b6367abc"
+      },
+      "Instalacao": {
+        "ambiente": "REFRIGERACAO"
+      }
+    },
+    "Localizacao": {
+      "InformacaoGeografica": {
+        "latitude": 38.72,
+        "longitude": -9.14,
+        "altitude": 80,
+        "sistemaReferencia": "WGS84"
+      },
+      "Morada": {
+        "pais": "PT",
+        "localidade": "LISBOA",
+        "freguesia": "ARROIOS",
+        "codigoPostal": "1150-100"
+      }
+    },
+    "Diagnostico": {
+      "Diagnostico": {
+        "nivelBateria": 8,
+        "dataUltimaManutencao": "2026-08-01",
+        "sinalRede": -85,
+        "latencia": 120,
+        "taxaRececao": 98
+      }
+    }
+  },
+  "parametros": {
+    "exemplo": "dispositivo_refrigeracao"
+  }
+}

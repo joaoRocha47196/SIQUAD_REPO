@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SM: Sub Model (submodelo) · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="current sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="entidades.html">Entidades</a></div><h1>SM: Sub Model (submodelo)</h1><h3 id="descricao">Descrição</h3>
+<p>O SM é o nível intermédio da ECM. Agrupa informação canónica (USM) com uma finalidade determinada: é aqui que um conjunto de USM deixa de ser matéria-prima e passa a representar algo que o negócio reconhece, como o cliente, a leitura ou as linhas do documento. Um SM compõe USM e pode declarar propriedades residuais, as que só fazem sentido naquele agrupamento.</p>
+<p>Um SM pode ser reutilizado por vários HLM quando a finalidade se repete noutro domínio. Por exemplo, <code>Cliente</code> é usado pela Fatura e pela OrdemInstalacao.</p>
+<h3 id="diagrama">Diagrama</h3>
+<p>Todos os atributos da entidade e todas as ligações a outras entidades. <b>LIGAÇÃO</b> marca os atributos que ligam a outra entidade; cada seta indica o atributo da declaração e a aresta correspondente no grafo.</p>
+<pre class="mermaid">classDiagram
+  direction LR
+  class SM {
+    nome : texto · chave · PascalCase
+    descricao : texto
+    composicao : lista de Composicao · LIGAÇÃO
+    propriedades : lista de Propriedade residual · LIGAÇÃO
+    regras : lista de Regra · LIGAÇÃO
+    notas : texto
+  }
+  HLM &quot;0..*&quot; --&gt; &quot;0..*&quot; SM : composicao · COMPOSTO_POR
+  SM &quot;0..*&quot; --&gt; &quot;0..*&quot; SM : composicao · COMPOSTO_POR
+  SM &quot;1&quot; --&gt; &quot;0..*&quot; USM : composicao · COMPOSTO_POR
+  SM &quot;1&quot; --&gt; &quot;0..*&quot; Propriedade : propriedades · CONTEM · residuais
+  RP_RIR_RIC &quot;0..*&quot; --&gt; &quot;1&quot; SM : regras · ASSOCIADA_A</pre>
+<h3 id="atributos">Atributos</h3>
+<table><thead><tr><th>Atributo</th><th>Tipo</th><th>Obrigatório</th><th>Descrição</th></tr></thead><tbody><tr><td><code>nome</code></td><td>texto, PascalCase</td><td>sim</td><td>Único entre os SM. Plural se reúne uma coleção.</td></tr><tr><td><code>descricao</code></td><td>texto (≥ 10)</td><td>sim</td><td>A finalidade do agrupamento.</td></tr><tr><td><code>composicao</code></td><td>lista de <code>{usm, papel?, cardinalidade}</code></td><td>sim, ou <code>propriedades</code></td><td>Os USM que compõe.</td></tr><tr><td><code>propriedades</code></td><td>lista de propriedades</td><td>sim, ou <code>composicao</code></td><td>Propriedades residuais.</td></tr><tr><td><code>regras</code></td><td>lista de regras</td><td>não</td><td>Regras que vivem no SM.</td></tr><tr><td><code>notas</code></td><td>texto</td><td>não</td><td>Comentário livre.</td></tr></tbody></table>
+<h4 id="ligacoes-no-grafo">Ligações no grafo</h4>
+<table><thead><tr><th>Aresta</th><th>Sentido</th><th>Outro extremo</th><th>Significado</th></tr></thead><tbody><tr><td><code>COMPOSTO_POR</code></td><td>←</td><td>HLM</td><td>Um HLM compõe este SM (cardinalidade e papel na aresta).</td></tr><tr><td><code>COMPOSTO_POR</code></td><td>SM →</td><td>USM</td><td>O SM compõe o USM.</td></tr><tr><td><code>CONTEM</code></td><td>SM →</td><td>Propriedade</td><td>Propriedade residual.</td></tr><tr><td><code>ASSOCIADA_A</code></td><td>←</td><td>RP, RIR, RIC</td><td>Regra que vive no SM.</td></tr><tr><td><code>LE</code></td><td>←</td><td>Funcao</td><td>Um argumento de função que termina no SM (instâncias de um SM repetível, como <code>contagemInferiorA(Localizacao, 21)</code>).</td></tr></tbody></table>
+<p>No grafo: nó <code>SM</code> (chave <code>nome</code>). O modelo completo do grafo está em <a href="../../ecv/4_graph/graph_model.json">ecv/4_graph/graph_model.json</a>.</p>
+<h3 id="exemplos">Exemplos</h3>
+<h4 id="esboco-na-declaracao">Esboço na declaração</h4>
+<pre class="code"><code>&quot;sm&quot;: [
+  {
+    &quot;nome&quot;: &quot;NomeDoSM&quot;,
+    &quot;descricao&quot;: &quot;Finalidade do agrupamento.&quot;,
+    &quot;composicao&quot;: [
+      {&quot;usm&quot;: &quot;UsmCanonico&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+      {&quot;usm&quot;: &quot;OutroUsm&quot;, &quot;papel&quot;: &quot;PapelEspecifico&quot;, &quot;cardinalidade&quot;: &quot;0..1&quot;}
+    ],
+    &quot;propriedades&quot;: [ /* residuais */ ],
+    &quot;regras&quot;: [ /* regras que leem mais de um USM deste SM, ou a coleção */ ]
+  }
+]</code></pre>
+<h4 id="exemplos-das-declaracoes-de-exemplo">Exemplos das declarações de exemplo</h4>
+<table><thead><tr><th>SM</th><th>Descrição</th><th>Compõe (USM)</th><th>Propriedades residuais</th><th>Composto por</th><th>Regras no SM</th></tr></thead><tbody><tr><td>Identificacao</td><td>Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.</td><td>—</td><td>identificador, fabricante, estado, tipoDispositivo</td><td>HLM Dispositivo</td><td>—</td></tr><tr><td>Leitura</td><td>Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.</td><td>Medicao [1..1], Instalacao [1..1], Assinatura [0..1]</td><td>—</td><td>HLM Dispositivo</td><td>—</td></tr><tr><td>Localizacao</td><td>Localização de um equipamento: coordenadas, morada e indicação de acesso.</td><td>InformacaoGeografica [1..1], Morada [1..1]</td><td>indicacaoAcesso</td><td>HLM Dispositivo, HLM OrdemInstalacao</td><td>RIR-LX-LOCALIDADE</td></tr><tr><td>Diagnostico</td><td>Diagnóstico técnico do dispositivo.</td><td>Diagnostico [1..1]</td><td>—</td><td>HLM Dispositivo</td><td>—</td></tr><tr><td>Cabecalho</td><td>Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.</td><td>—</td><td>numero, serie, atcud, tipoDocumento, dataEmissao, totalFatura, hash</td><td>HLM Fatura</td><td>RIR-FS, RIR-FS-NUM, RP-HASH, RP-ATCUD</td></tr><tr><td>Emitente</td><td>Quem emite o documento: identificação, morada e contacto.</td><td>Entidade [1..1], Morada [1..1], Contacto [1..1]</td><td>—</td><td>HLM Fatura</td><td>RIR-EMAIL-CX, RIR-EMAIL-CY</td></tr><tr><td>Cliente</td><td>Quem adquire os bens ou serviços (cliente comprador).</td><td>Entidade [1..1], Morada [1..1]</td><td>consentimentoComercial</td><td>HLM Fatura, HLM OrdemInstalacao</td><td>—</td></tr><tr><td>Linhas</td><td>Coleção das linhas do documento.</td><td>Linha [1..*]</td><td>—</td><td>HLM Fatura</td><td>RP-LIN-NUM, RP-LIN-SEQ, RP-LIN-MAX</td></tr><tr><td>Pedido</td><td>Dados do pedido de instalação: número e data.</td><td>—</td><td>numeroOrdem, dataPedido</td><td>HLM OrdemInstalacao</td><td>—</td></tr></tbody></table>
+<p><b>Linhas (SM de coleção).</b> As três RP vivem aqui porque verificam o conjunto, e não cada linha.</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;Linhas&quot;,
+  &quot;descricao&quot;: &quot;Coleção das linhas do documento.&quot;,
+  &quot;composicao&quot;: [
+    {&quot;usm&quot;: &quot;Linha&quot;, &quot;cardinalidade&quot;: &quot;1..*&quot;}
+  ],
+  &quot;regras&quot;: [
+    {
+      &quot;id&quot;: &quot;RP-LIN-NUM&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;valoresUnicos(Linhas.Linha.numero)&quot;,
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;valoresUnicos&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;Linha.numero&quot;}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;Existem linhas com o mesmo número.&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;RP-LIN-SEQ&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;valoresConsecutivos(Linhas.Linha.numero)&quot;,
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;valoresConsecutivos&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;Linha.numero&quot;}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;A numeração das linhas tem de começar em 1 e não ter falhas.&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;RP-LIN-MAX&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;contagemInferiorA(Linhas.Linha, 100)&quot;,
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;contagemInferiorA&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;Linha&quot;},
+            {&quot;literal&quot;: 100}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;A fatura tem 100 ou mais linhas.&quot;
+      }
+    }
+  ],
+  &quot;notas&quot;: &quot;SM que existe para reunir uma coleção: nome no plural; o elemento (USM Linha) no singular.&quot;
+}</code></pre>
+<p><b>Cliente (SM reutilizado, com propriedade residual).</b></p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;Cliente&quot;,
+  &quot;descricao&quot;: &quot;Quem adquire os bens ou serviços (cliente comprador).&quot;,
+  &quot;composicao&quot;: [
+    {&quot;usm&quot;: &quot;Entidade&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;usm&quot;: &quot;Morada&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;}
+  ],
+  &quot;propriedades&quot;: [
+    {
+      &quot;nome&quot;: &quot;consentimentoComercial&quot;,
+      &quot;tipo&quot;: &quot;booleano&quot;,
+      &quot;descricao&quot;: &quot;Consentimento do cliente para comunicações comerciais&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;marketingConsent&quot;],
+      &quot;notas&quot;: &quot;Propriedade residual: não é canónica (uma pessoa existe sem consentimento) nem é do HLM (é de quem compra).&quot;
+    }
+  ],
+  &quot;notas&quot;: &quot;Na Secção ECM da tese corresponde ao &#x27;SM Cliente Comprador&#x27;, reutilizado pela Fatura e pela Ordem de Instalação.&quot;
+}</code></pre>
+<p><b>Localizacao (SM reutilizado, com uma RIR cuja condição é uma função).</b></p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;Localizacao&quot;,
+  &quot;descricao&quot;: &quot;Localização de um equipamento: coordenadas, morada e indicação de acesso.&quot;,
+  &quot;composicao&quot;: [
+    {&quot;usm&quot;: &quot;InformacaoGeografica&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;usm&quot;: &quot;Morada&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;}
+  ],
+  &quot;propriedades&quot;: [
+    {
+      &quot;nome&quot;: &quot;indicacaoAcesso&quot;,
+      &quot;tipo&quot;: &quot;texto&quot;,
+      &quot;descricao&quot;: &quot;Indicação de acesso ao local (texto livre, ex.: portão lateral, chave no cofre)&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;accessNotes&quot;],
+      &quot;notas&quot;: &quot;Propriedade residual: só faz sentido porque a finalidade do SM é situar equipamento.&quot;
+    }
+  ],
+  &quot;regras&quot;: [
+    {
+      &quot;id&quot;: &quot;RIR-LX-LOCALIDADE&quot;,
+      &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+      &quot;descricao&quot;: &quot;Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA&quot;,
+      &quot;condicao&quot;: [
+        {
+          &quot;operador&quot;: &quot;FUNCTION&quot;,
+          &quot;chamada&quot;: {
+            &quot;funcao&quot;: &quot;dentroDe&quot;,
+            &quot;argumentos&quot;: [
+              {&quot;caminho&quot;: &quot;InformacaoGeografica.latitude&quot;},
+              {&quot;caminho&quot;: &quot;InformacaoGeografica.longitude&quot;},
+              {
+                &quot;literal&quot;: [[38.796, -9.23], [38.796, -9.09], [38.69, -9.09], [38.69, -9.23]]
+              }
+            ]
+          }
+        }
+      ],
+      &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;Morada.localidade&quot;,
+        &quot;operador&quot;: &quot;EQUALS&quot;,
+        &quot;valor&quot;: &quot;LISBOA&quot;,
+        &quot;mensagem&quot;: &quot;Um equipamento localizado dentro dos limites de Lisboa tem de ter a localidade LISBOA na morada.&quot;
+      },
+      &quot;notas&quot;: &quot;Função usada num termo da condição de aplicabilidade (e não na restrição).&quot;
+    }
+  ],
+  &quot;notas&quot;: &quot;Na Secção ECM da tese corresponde ao &#x27;SM Localização de Equipamento&#x27;, reutilizado pelo Dispositivo e pela Ordem de Instalação.&quot;
+}</code></pre>
+<p><b>Cabecalho (SM só com propriedades residuais e regras entre elas).</b></p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;Cabecalho&quot;,
+  &quot;descricao&quot;: &quot;Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.&quot;,
+  &quot;propriedades&quot;: [
+    {
+      &quot;nome&quot;: &quot;numero&quot;,
+      &quot;tipo&quot;: &quot;texto&quot;,
+      &quot;descricao&quot;: &quot;Número do documento (série/sequência)&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;invoiceNo&quot;]
+    },
+    {
+      &quot;nome&quot;: &quot;serie&quot;,
+      &quot;tipo&quot;: &quot;texto&quot;,
+      &quot;descricao&quot;: &quot;Série do documento, comunicada à AT&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;series&quot;]
+    },
+    {
+      &quot;nome&quot;: &quot;atcud&quot;,
+      &quot;tipo&quot;: &quot;texto&quot;,
+      &quot;descricao&quot;: &quot;Código único do documento (ATCUD)&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;ATCUD&quot;]
+    },
+    {
+      &quot;nome&quot;: &quot;tipoDocumento&quot;,
+      &quot;tipo&quot;: &quot;texto&quot;,
+      &quot;descricao&quot;: &quot;Tipo de documento fiscal&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;invoiceType&quot;]
+    },
+    {
+      &quot;nome&quot;: &quot;dataEmissao&quot;,
+      &quot;tipo&quot;: &quot;data&quot;,
+      &quot;descricao&quot;: &quot;Data de emissão do documento&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;invoiceDate&quot;]
+    },
+    {
+      &quot;nome&quot;: &quot;totalFatura&quot;,
+      &quot;tipo&quot;: &quot;decimal&quot;,
+      &quot;descricao&quot;: &quot;Total do documento, em euros&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;grossTotal&quot;]
+    },
+    {
+      &quot;nome&quot;: &quot;hash&quot;,
+      &quot;tipo&quot;: &quot;texto&quot;,
+      &quot;descricao&quot;: &quot;Hash do documento, encadeado com o anterior da série&quot;,
+      &quot;nomesAlternativos&quot;: [&quot;hashDocumento&quot;]
+    }
+  ],
+  &quot;notas&quot;: &quot;SM só com propriedades residuais (não compõe USM): o cabeçalho só faz sentido no documento fiscal.&quot;,
+  &quot;regras&quot;: [&quot;... 4 regra(s) omitida(s) neste excerto ...&quot;]
+}</code></pre>
+<p>Relação com a tese: "SM Cliente Comprador" e "SM Localização de Equipamento" da Secção ECM correspondem a <code>Cliente</code> e <code>Localizacao</code>. A propriedade residual "indicação de acesso" é <code>Localizacao.indicacaoAcesso</code> e o "consentimento" é <code>Cliente.consentimentoComercial</code>.</p>
+<h3 id="pode-e-nao-pode">Pode e não pode</h3>
+<table><thead><tr><th>Pode</th><th>Não pode</th></tr></thead><tbody><tr><td>Compor USM, cada um com cardinalidade e, se preciso, papel</td><td>Compor outros SM ou HLM</td></tr><tr><td>Compor o mesmo USM duas vezes, com papéis diferentes (<code>Origem</code>, <code>Destino</code>)</td><td>Repetir um papel</td></tr><tr><td>Declarar propriedades residuais</td><td>Ter uma propriedade com o mesmo nome de um papel</td></tr><tr><td>Ser composto por vários HLM (reutilização)</td><td>Ficar sem composição e sem propriedades</td></tr><tr><td>Ter regras sobre a coleção (RP com funções sobre <code>Linha</code>)</td><td>—</td></tr><tr><td>Ter regras que relacionam os seus USM (RIR-EMAIL-CX, RIR-LX-LOCALIDADE)</td><td>—</td></tr></tbody></table>
+<h4 id="como-saber-se-um-modelo-e-um-sm-e-nao-um-usm-ou-um-hlm">Como saber se um modelo é um SM (e não um USM ou um HLM)</h4>
+<table><thead><tr><th>Pergunta</th><th>Se sim</th><th>Exemplo</th></tr></thead><tbody><tr><td>Junta informação canónica para uma finalidade (quem compra, onde está o equipamento)?</td><td>É um SM.</td><td><code>Cliente</code> = Entidade + Morada</td></tr><tr><td>Existe para reunir uma coleção (as linhas, os locais)?</td><td>É um SM de coleção, com nome no plural.</td><td><code>Linhas</code> compõe <code>Linha [1..*]</code></td></tr><tr><td>Tem informação que só faz sentido neste agrupamento e em nenhum outro?</td><td>São propriedades residuais deste SM.</td><td><code>Cliente.consentimentoComercial</code>, <code>Localizacao.indicacaoAcesso</code></td></tr><tr><td>A informação significa o mesmo em qualquer domínio?</td><td>Então é um USM, não um SM.</td><td>Morada</td></tr><tr><td>É o que o domínio instancia como um todo?</td><td>Então é um HLM.</td><td>Fatura</td></tr></tbody></table>
+<p><b>Teste da propriedade residual (tese, Secção ECM).</b> Altere-se a finalidade do SM mantendo os mesmos USM. Se a propriedade desaparecesse, é residual. Se sobrevivesse, pertence a um USM e está no sítio errado. O consentimento para comunicações comerciais não é canónico, porque uma pessoa existe sem ele. Também não é do HLM, porque é de quem compra e não da fatura. É, por isso, residual do SM Cliente.</p>
+<h3 id="detalhes">Detalhes</h3>
+<h4 id="tres-formas-de-sm">Três formas de SM</h4>
+<table><thead><tr><th>Forma</th><th>Quando</th><th>Exemplos</th></tr></thead><tbody><tr><td><b>SM de composição</b></td><td>Junta USM com uma finalidade</td><td><code>Emitente</code> (Entidade, Morada, Contacto), <code>Cliente</code>, <code>Leitura</code>, <code>Localizacao</code>, <code>Diagnostico</code></td></tr><tr><td><b>SM de coleção</b></td><td>Reúne <code>1..*</code> ou <code>0..*</code> instâncias de um USM; nome no plural</td><td><code>Linhas</code> (USM <code>Linha [1..*]</code>)</td></tr><tr><td><b>SM só com propriedades residuais</b></td><td>Informação própria do domínio, sem nenhum USM canónico</td><td><code>Cabecalho</code> (número, série, tipo, data, total), <code>Identificacao</code>, <code>Pedido</code></td></tr></tbody></table>
+<h4 id="contextos-de-utilizacao">Contextos de utilização</h4>
+<ul><li><b>Dar finalidade à informação canónica.</b> O mesmo USM Morada é a morada fiscal no Emitente e a morada da instalação na Localizacao.</li><li><b>Coleções.</b> As regras sobre o conjunto (números únicos, consecutivos, número máximo) precisam de um nó onde viver. Esse nó é o SM da coleção, e não uma propriedade "linhas" (tese, Secção Coleções).</li><li><b>Reutilização entre HLM.</b> Um SM pensado para a faturação (Cliente) serve a ordem de instalação sem adaptação.</li></ul>
+<h4 id="sm-de-metainformacao">SM de metainformação</h4>
+<p>Um HLM principal pode compor um SM genérico de metainformação, <code>Metainformacao</code> (cardinalidade <code>0..1</code>, papel <code>Metainformacao</code>). Não descreve o domínio: descreve o próprio modelo (de onde vem, que versão da fonte, que entidade da fonte representa, para que é usado). É um SM só com propriedades residuais; as propriedades recomendadas estão em <a href="../../ecv/config/ecv.config.json">ecv/config/ecv.config.json</a> (<code>metainformacao</code>):</p>
+<table><thead><tr><th>Propriedade</th><th>Tipo</th><th>Significado</th></tr></thead><tbody><tr><td><code>origemModelo</code></td><td>texto</td><td>Fonte do modelo de dados (norma, sistema ou repositório), ex.: <code>CIUS-PT 2.1.1</code>, <code>Smart Data Models Device</code></td></tr><tr><td><code>versaoOrigem</code></td><td>texto</td><td>Versão da fonte</td></tr><tr><td><code>referenciaOrigem</code></td><td>texto</td><td>Identificador da entidade na fonte (ex.: <code>BG-0 Invoice</code>, <code>Device</code>)</td></tr><tr><td><code>utilizacao</code></td><td>texto</td><td>Finalidade ou contexto de utilização</td></tr><tr><td><code>dominio</code></td><td>texto</td><td>Domínio a que o modelo pertence</td></tr><tr><td><code>observacoes</code></td><td>texto</td><td>Outra metainformação</td></tr></tbody></table>
+<p>Por ser igual em todos os HLM que o usam, a fusão guarda-o uma só vez; os valores (a origem concreta de cada HLM) são dados da instância ou valores fixados num perfil, não estrutura.</p>
+<h3 id="verificacoes">Verificações</h3>
+<ul><li><b>S-MOD:</b> PascalCase; descrição ≥ 10; tem composição ou propriedades; não compõe SM.</li><li><b>S-COMP:</b> papéis únicos; cardinalidade válida.</li><li><b>S-PROP:</b> nomes de propriedades únicos e diferentes dos papéis.</li><li><b>I8 (aviso):</b> uma regra do SM que só lê dentro de um USM não repetível poderia viver nesse USM.</li></ul><p class="note">Fonte: <a href="../../specs/entidades/ecm/SM.md">specs/entidades/ecm/SM.md</a></p></main><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,securityLevel:"loose"});}</script></body></html>

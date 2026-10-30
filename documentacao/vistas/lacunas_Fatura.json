@@ -1,0 +1,36 @@
+{
+  "vista": "lacunas",
+  "titulo": "Lacunas do HLM Fatura",
+  "hlm": "Fatura",
+  "projecoesConsideradas": [
+    "FaturaAT",
+    "FaturaSimplificada"
+  ],
+  "semRegras": [
+    {
+      "propriedade": "USM:Entidade.nome",
+      "nome": "nome",
+      "dono": "Entidade",
+      "lidaEmTermos": [
+        "RIR-EMAIL-CX",
+        "RIR-EMAIL-CY"
+      ]
+    },
+    {
+      "propriedade": "USM:Morada.rua",
+      "nome": "rua",
+      "dono": "Morada",
+      "lidaEmTermos": []
+    },
+    {
+      "propriedade": "SM:Cliente.consentimentoComercial",
+      "nome": "consentimentoComercial",
+      "dono": "Cliente",
+      "lidaEmTermos": []
+    }
+  ],
+  "nuncaProjetadas": [],
+  "parametros": {
+    "hlm": "Fatura"
+  }
+}

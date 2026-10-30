@@ -1,0 +1,2108 @@
+{
+  "$schema": "../../../specs/declaracao/ecv.schema.json",
+  "declaracao": {
+    "nome": "exportacao_fm",
+    "versao": "0.1.0",
+    "descricao": "Exportação dos registos da aplicação FM (VDM, CLI, YCL, STK, AUX, PRV): vendedor e numerações, clientes, saldos, stocks, produtos no veículo, zonas e configuração.",
+    "dominios": ["faturação"],
+    "hlm": "ExportacaoFm"
+  },
+  "funcoes": [
+    {
+      "nome": "digitoControloValido",
+      "descricao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+      "parametros": [
+        {"nome": "nif", "tipo": "texto", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    }
+  ],
+  "usm": [
+    {
+      "nome": "Entidade",
+      "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+      "propriedades": [
+        {
+          "nome": "nif",
+          "tipo": "texto",
+          "descricao": "Número de identificação fiscal",
+          "nomesAlternativos": ["taxId", "VATNumber"],
+          "regras": [
+            {
+              "id": "RP-NIF",
+              "natureza": "plausibilidade",
+              "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+              "restricao": {
+                "propriedade": "nif",
+                "operador": "PATTERN",
+                "valor": "^[0-9]{9}$",
+                "mensagem": "O NIF tem de ter nove algarismos."
+              }
+            },
+            {
+              "id": "RP-NIF-DC",
+              "natureza": "plausibilidade",
+              "descricao": "digitoControloValido(Entidade.nif)",
+              "restricao": {
+                "operador": "FUNCTION",
+                "chamada": {
+                  "funcao": "digitoControloValido",
+                  "argumentos": [
+                    {"caminho": "nif"}
+                  ]
+                },
+                "mensagem": "O dígito de controlo do NIF não está correto."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "nome",
+          "tipo": "texto",
+          "descricao": "Nome ou denominação social",
+          "nomesAlternativos": ["name", "denominacao"]
+        }
+      ]
+    },
+    {
+      "nome": "Morada",
+      "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+      "propriedades": [
+        {"nome": "rua", "tipo": "texto", "descricao": "Arruamento e número de porta"},
+        {
+          "nome": "codigoPostal",
+          "tipo": "texto",
+          "descricao": "Código postal da morada",
+          "nomesAlternativos": ["zipCode", "postalCode", "CP"],
+          "regras": [
+            {
+              "id": "RP-CP",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+              "restricao": {
+                "propriedade": "codigoPostal",
+                "operador": "PATTERN",
+                "valor": "^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+                "mensagem": "O código postal não tem nenhum dos formatos possíveis (português, espanhol ou britânico)."
+              },
+              "notas": "Plausibilidade: os formatos possíveis {PT, ES, GB}. Qual se aplica decide-se por inferência (RIR-CP-PT/ES/GB)."
+            }
+          ]
+        },
+        {
+          "nome": "localidade",
+          "tipo": "texto",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)"
+        },
+        {
+          "nome": "freguesia",
+          "tipo": "texto",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "regras": [
+            {
+              "id": "RP-FREGUESIA",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+              "restricao": {
+                "propriedade": "freguesia",
+                "operador": "IN",
+                "valor": [
+                  "AJUDA",
+                  "ALCANTARA",
+                  "ALVALADE",
+                  "AREEIRO",
+                  "ARROIOS",
+                  "AVENIDAS_NOVAS",
+                  "BEATO",
+                  "BELEM",
+                  "BENFICA",
+                  "CAMPO_DE_OURIQUE",
+                  "CAMPOLIDE",
+                  "CARNIDE",
+                  "ESTRELA",
+                  "LUMIAR",
+                  "MARVILA",
+                  "MISERICORDIA",
+                  "OLIVAIS",
+                  "PARQUE_DAS_NACOES",
+                  "PENHA_DE_FRANCA",
+                  "SANTA_CLARA",
+                  "SANTA_MARIA_MAIOR",
+                  "SANTO_ANTONIO",
+                  "SAO_DOMINGOS_DE_BENFICA",
+                  "SAO_VICENTE"
+                ],
+                "mensagem": "A freguesia não pertence às freguesias de Lisboa conhecidas."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "pais",
+          "tipo": "texto",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "nomesAlternativos": ["country", "countryCode"],
+          "regras": [
+            {
+              "id": "RP-PAIS",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.pais ∈ {PT, ES, GB}",
+              "restricao": {
+                "propriedade": "pais",
+                "operador": "IN",
+                "valor": ["PT", "ES", "GB"],
+                "mensagem": "O país tem de ser PT, ES ou GB."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-CP-PT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[1-9][0-9]{3}-[0-9]{3}$",
+            "mensagem": "O código postal português tem de ter o formato 0000-000, sem começar por zero."
+          }
+        },
+        {
+          "id": "RIR-CP-ES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "ES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[0-5][0-9]{4}$",
+            "mensagem": "O código postal espanhol tem de ter cinco algarismos, a começar por 0 a 5."
+          }
+        },
+        {
+          "id": "RIR-CP-GB",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "GB"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+            "mensagem": "O código postal britânico tem de ter a forma de um postcode (ex.: SW1A 1AA)."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AJUDA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AJUDA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1349)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Ajuda (Lisboa) começa por 1300 ou 1349."
+          },
+          "notas": "Mapeamento conhecido (códigos postais por freguesia de Lisboa) convertido em RIR: uma regra por freguesia. A vista de decisão sobre Morada.codigoPostal reconstrói a tabela."
+        },
+        {
+          "id": "RIR-CP-LX-ALCANTARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALCANTARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alcantara (Lisboa) começa por 1300 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ALVALADE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALVALADE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1700|1749)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alvalade (Lisboa) começa por 1700 ou 1749."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AREEIRO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AREEIRO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1000|1049)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Areeiro (Lisboa) começa por 1000 ou 1049."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ARROIOS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ARROIOS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1150|1169)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AVENIDAS_NOVAS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1050|1069)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Avenidas Novas (Lisboa) começa por 1050 ou 1069."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BEATO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BEATO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1900|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Beato (Lisboa) começa por 1900 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BELEM",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BELEM"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1400|1449)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Belem (Lisboa) começa por 1400 ou 1449."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1549)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Benfica (Lisboa) começa por 1500 ou 1549."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPO_DE_OURIQUE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campo de Ourique (Lisboa) começa por 1250 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPOLIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPOLIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1070|1099)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campolide (Lisboa) começa por 1070 ou 1099."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CARNIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CARNIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1649)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Carnide (Lisboa) começa por 1600 ou 1649."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ESTRELA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ESTRELA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Estrela (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-LUMIAR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "LUMIAR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1750)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Lumiar (Lisboa) começa por 1600 ou 1750."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MARVILA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MARVILA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Marvila (Lisboa) começa por 1800 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MISERICORDIA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MISERICORDIA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Misericordia (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-OLIVAIS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "OLIVAIS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1885)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Olivais (Lisboa) começa por 1800 ou 1885."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PARQUE_DAS_NACOES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1990|1998)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Parque das Nacoes (Lisboa) começa por 1990 ou 1998."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PENHA_DE_FRANCA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1170|1199)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Penha de Franca (Lisboa) começa por 1170 ou 1199."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-CLARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_CLARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1750|1769)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Clara (Lisboa) começa por 1750 ou 1769."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_MARIA_MAIOR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1149)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Maria Maior (Lisboa) começa por 1100 ou 1149."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTO-ANTONIO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTO_ANTONIO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1269)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santo Antonio (Lisboa) começa por 1250 ou 1269."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_DOMINGOS_DE_BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1600)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Domingos de Benfica (Lisboa) começa por 1500 ou 1600."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-VICENTE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_VICENTE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1170)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Vicente (Lisboa) começa por 1100 ou 1170."
+          }
+        }
+      ]
+    },
+    {
+      "nome": "Contacto",
+      "descricao": "Contacto eletrónico de uma entidade.",
+      "propriedades": [
+        {
+          "nome": "email",
+          "tipo": "texto",
+          "descricao": "Endereço de correio eletrónico",
+          "nomesAlternativos": ["eMail", "correioEletronico"],
+          "regras": [
+            {
+              "id": "RP-EMAIL",
+              "natureza": "plausibilidade",
+              "descricao": "Contacto.email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+              "restricao": {
+                "propriedade": "email",
+                "operador": "PATTERN",
+                "valor": "^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+                "mensagem": "O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "ContactoTelefonico",
+      "descricao": "Contactos telefónicos de uma pessoa ou entidade: telefone e telemóvel.",
+      "propriedades": [
+        {
+          "nome": "telefone",
+          "tipo": "texto",
+          "descricao": "Número de telefone (rede fixa ou geral)",
+          "nomesAlternativos": ["Telephone", "fixePhoneNumber"],
+          "regras": [
+            {
+              "id": "RP-TELEFONE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "telefone",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O telefone tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "ContactoTelefonico.telefone tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "telemovel",
+          "tipo": "texto",
+          "descricao": "Número de telemóvel",
+          "nomesAlternativos": ["phoneNumber", "mobile"]
+        }
+      ]
+    },
+    {
+      "nome": "DocumentoIdentificacao",
+      "descricao": "Documento de identificação pessoal (ex.: cartão de cidadão): número e data de validade.",
+      "propriedades": [
+        {
+          "nome": "numero",
+          "tipo": "texto",
+          "descricao": "Número do documento de identificação",
+          "nomesAlternativos": ["citizenCard"]
+        },
+        {
+          "nome": "dataValidade",
+          "tipo": "data",
+          "descricao": "Data de validade do documento de identificação",
+          "nomesAlternativos": ["citizenCardExpirationDate"]
+        }
+      ]
+    },
+    {
+      "nome": "Artigo",
+      "descricao": "Bem ou serviço transacionado: designação, descrição, códigos de identificação e país de origem.",
+      "propriedades": [
+        {
+          "nome": "nome",
+          "tipo": "texto",
+          "descricao": "Designação do bem ou serviço",
+          "nomesAlternativos": ["Item name", "description"],
+          "regras": [
+            {
+              "id": "RP-ART-NOME",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nome",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A designação do artigo tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "Artigo.nome tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "descricao",
+          "tipo": "texto",
+          "descricao": "Descrição detalhada do bem ou serviço",
+          "nomesAlternativos": ["Item description"],
+          "regras": [
+            {
+              "id": "RP-ART-DESC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "descricao",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A descrição do artigo tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "Artigo.descricao tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigo",
+          "tipo": "texto",
+          "descricao": "Código do artigo atribuído pelo vendedor",
+          "nomesAlternativos": ["Item Seller s identifier", "code"],
+          "regras": [
+            {
+              "id": "RP-ART-CODIGO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigo",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código do artigo tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.codigo tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoComprador",
+          "tipo": "texto",
+          "descricao": "Código do artigo atribuído pelo comprador",
+          "nomesAlternativos": ["Item Buyer s identifier"],
+          "regras": [
+            {
+              "id": "RP-ART-CODCOMP",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoComprador",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código do artigo do comprador tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.codigoComprador tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoBarras",
+          "tipo": "texto",
+          "descricao": "Identificador normalizado do artigo (EAN/GTIN)",
+          "nomesAlternativos": ["Item standard identifier", "barCode", "EAN"],
+          "regras": [
+            {
+              "id": "RP-ART-CODBARRAS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoBarras",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código EAN tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.codigoBarras tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "classificacao",
+          "tipo": "texto",
+          "descricao": "Código de classificação da mercadoria (ex.: CPV)",
+          "nomesAlternativos": ["Item classification identifier", "CPV"],
+          "regras": [
+            {
+              "id": "RP-ART-CLASSIF",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "classificacao",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código de classificação tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.classificacao tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "paisOrigem",
+          "tipo": "texto",
+          "descricao": "País de origem do artigo (código ISO 3166-1 alfa-2)",
+          "nomesAlternativos": ["Item country of origin"],
+          "regras": [
+            {
+              "id": "RP-ART-PAIS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "paisOrigem",
+                "operador": "PATTERN",
+                "valor": "^[A-Z]{2}$",
+                "mensagem": "O país de origem tem de ser um código ISO 3166-1 de duas letras."
+              },
+              "descricao": "Artigo.paisOrigem segue o padrão ^[A-Z]{2}$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Veiculo",
+      "descricao": "Veículo identificado pela matrícula, com a marca e o modelo.",
+      "propriedades": [
+        {
+          "nome": "matricula",
+          "tipo": "texto",
+          "descricao": "Matrícula do veículo",
+          "nomesAlternativos": ["carRegistration", "Matricula"],
+          "regras": [
+            {
+              "id": "RP-VEIC-MATRICULA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "matricula",
+                "operador": "LENGTH",
+                "valor": [0, 15],
+                "mensagem": "A matrícula tem no máximo 15 caracteres."
+              },
+              "descricao": "Veiculo.matricula tem entre 0 e 15 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "marca",
+          "tipo": "texto",
+          "descricao": "Marca ou designação do veículo",
+          "nomesAlternativos": ["car", "Veiculo"],
+          "regras": [
+            {
+              "id": "RP-VEIC-MARCA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "marca",
+                "operador": "LENGTH",
+                "valor": [0, 25],
+                "mensagem": "A designação do veículo tem no máximo 25 caracteres."
+              },
+              "descricao": "Veiculo.marca tem entre 0 e 25 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "modelo",
+          "tipo": "texto",
+          "descricao": "Modelo do veículo",
+          "nomesAlternativos": ["carModel", "Modelo"],
+          "regras": [
+            {
+              "id": "RP-VEIC-MODELO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "modelo",
+                "operador": "LENGTH",
+                "valor": [0, 20],
+                "mensagem": "O modelo do veículo tem no máximo 20 caracteres."
+              },
+              "descricao": "Veiculo.modelo tem entre 0 e 20 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "NumeracaoDocumento",
+      "descricao": "Estado da numeração de um tipo de documento numa série: último número, data do último documento e prefixo ATCUD.",
+      "propriedades": [
+        {
+          "nome": "tipoDocumento",
+          "tipo": "texto",
+          "descricao": "Tipo de documento numerado na série",
+          "regras": [
+            {
+              "id": "RP-NUM-TIPO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "tipoDocumento",
+                "operador": "IN",
+                "valor": [
+                  "ENCOMENDA",
+                  "FATURA",
+                  "FATURA_RECIBO",
+                  "NOTA_CREDITO",
+                  "ALTERACAO_ENCOMENDA",
+                  "RECEBIMENTO",
+                  "RECIBO",
+                  "ENTRADA_CC"
+                ],
+                "mensagem": "O tipo de documento numerado tem de ser ENCOMENDA, FATURA, FATURA_RECIBO, NOTA_CREDITO, ALTERACAO_ENCOMENDA, RECEBIMENTO, RECIBO ou ENTRADA_CC."
+              },
+              "descricao": "NumeracaoDocumento.tipoDocumento ∈ {ENCOMENDA, FATURA, FATURA_RECIBO, NOTA_CREDITO, ALTERACAO_ENCOMENDA, RECEBIMENTO, RECIBO, ENTRADA_CC}"
+            }
+          ]
+        },
+        {
+          "nome": "ultimoNumero",
+          "tipo": "inteiro",
+          "descricao": "Número do último documento emitido deste tipo"
+        },
+        {"nome": "dataUltimo", "tipo": "data", "descricao": "Data do último documento emitido deste tipo"},
+        {
+          "nome": "prefixoAtcud",
+          "tipo": "texto",
+          "descricao": "Prefixo ATCUD (código de validação da série) para este tipo de documento",
+          "regras": [
+            {
+              "id": "RP-NUM-ATCUD",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "prefixoAtcud",
+                "operador": "LENGTH",
+                "valor": [0, 10],
+                "mensagem": "O prefixo ATCUD do tipo de documento tem no máximo 10 caracteres."
+              },
+              "descricao": "NumeracaoDocumento.prefixoAtcud tem entre 0 e 10 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "ParametroConfiguracao",
+      "descricao": "Parâmetro de configuração expresso como um par nome e valor.",
+      "propriedades": [
+        {
+          "nome": "nome",
+          "tipo": "texto",
+          "descricao": "Nome do parâmetro",
+          "nomesAlternativos": ["prop", "propertyName"]
+        },
+        {
+          "nome": "valor",
+          "tipo": "texto",
+          "descricao": "Valor do parâmetro",
+          "nomesAlternativos": ["value", "propertyValue"]
+        }
+      ]
+    }
+  ],
+  "sm": [
+    {
+      "nome": "Metainformacao",
+      "descricao": "Metainformação do próprio modelo: origem, versão da fonte, entidade de origem, utilização e domínio.",
+      "propriedades": [
+        {
+          "nome": "origemModelo",
+          "tipo": "texto",
+          "descricao": "Fonte do modelo de dados (norma, sistema ou repositório)"
+        },
+        {"nome": "versaoOrigem", "tipo": "texto", "descricao": "Versão da fonte usada"},
+        {
+          "nome": "referenciaOrigem",
+          "tipo": "texto",
+          "descricao": "Identificador da entidade na fonte (ex.: BG-0 Invoice, Device)"
+        },
+        {"nome": "utilizacao", "tipo": "texto", "descricao": "Finalidade ou contexto de utilização do modelo"},
+        {"nome": "dominio", "tipo": "texto", "descricao": "Domínio a que o modelo pertence"},
+        {"nome": "observacoes", "tipo": "texto", "descricao": "Outra metainformação relevante sobre o modelo"}
+      ]
+    },
+    {
+      "nome": "ClienteVenda",
+      "descricao": "Cliente da aplicação de vendas FM: identificação, morada, contactos, documento de identificação, segundo titular e dados comerciais (zona, vendedor, cobrança).",
+      "notas": "O SM Cliente existente não serve tal e qual (só tem Entidade, Morada e consentimento); este é o cliente operacional do FM, com segundo titular.",
+      "composicao": [
+        {"usm": "Entidade", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"},
+        {"usm": "Contacto", "cardinalidade": "0..1"},
+        {"usm": "ContactoTelefonico", "cardinalidade": "0..1"},
+        {"usm": "DocumentoIdentificacao", "papel": "CartaoCidadao", "cardinalidade": "0..1"},
+        {"usm": "Entidade", "papel": "SegundoTitular", "cardinalidade": "0..1"},
+        {"usm": "Morada", "papel": "MoradaSegundoTitular", "cardinalidade": "0..1"},
+        {"usm": "ContactoTelefonico", "papel": "ContactoSegundoTitular", "cardinalidade": "0..1"},
+        {"usm": "DocumentoIdentificacao", "papel": "CartaoCidadaoSegundoTitular", "cardinalidade": "0..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "codigo",
+          "tipo": "texto",
+          "descricao": "Código do cliente na aplicação (atribuído automaticamente e imutável)",
+          "nomesAlternativos": ["code", "Codigo Cliente"]
+        },
+        {
+          "nome": "designacaoPostal",
+          "tipo": "texto",
+          "descricao": "Designação postal (localidade) que acompanha o código postal do cliente",
+          "nomesAlternativos": ["zipCodeLoc"]
+        },
+        {
+          "nome": "designacaoPostalSegundoTitular",
+          "tipo": "texto",
+          "descricao": "Designação postal que acompanha o código postal do segundo titular",
+          "nomesAlternativos": ["zipCodeLoc2"]
+        },
+        {
+          "nome": "zona",
+          "tipo": "texto",
+          "descricao": "Código da zona comercial do cliente (referência a uma Zona)",
+          "nomesAlternativos": ["zone", "Zona"],
+          "regras": [
+            {
+              "id": "RP-CLI-ZONA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "zona",
+                "operador": "LENGTH",
+                "valor": [0, 10],
+                "mensagem": "A zona do cliente tem no máximo 10 caracteres."
+              },
+              "descricao": "ClienteVenda.zona tem entre 0 e 10 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "localCobranca",
+          "tipo": "texto",
+          "descricao": "Local onde é feita a cobrança ao cliente",
+          "nomesAlternativos": ["chargeLocation", "Local Cobrança"],
+          "regras": [
+            {
+              "id": "RP-CLI-COBRANCA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "localCobranca",
+                "operador": "LENGTH",
+                "valor": [0, 10],
+                "mensagem": "O local de cobrança tem no máximo 10 caracteres."
+              },
+              "descricao": "ClienteVenda.localCobranca tem entre 0 e 10 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "observacoes",
+          "tipo": "texto",
+          "descricao": "Observações livres sobre o cliente",
+          "nomesAlternativos": ["notes"]
+        },
+        {
+          "nome": "codigoVendedor",
+          "tipo": "texto",
+          "descricao": "Código do vendedor responsável pelo cliente",
+          "nomesAlternativos": ["sellerCode", "Codigo Vendedor"]
+        },
+        {
+          "nome": "numeroOrdem",
+          "tipo": "texto",
+          "descricao": "Número de ordem do cliente no percurso do vendedor",
+          "nomesAlternativos": ["orderNumber", "Numero Ordem"]
+        },
+        {
+          "nome": "dataNascimento",
+          "tipo": "data",
+          "descricao": "Data de nascimento do cliente",
+          "nomesAlternativos": ["dateOfBirth"]
+        },
+        {
+          "nome": "diaRecebimento",
+          "tipo": "texto",
+          "descricao": "Dia do mês para recebimento das prestações",
+          "nomesAlternativos": ["receivingDay", "Dia Recebimento"]
+        },
+        {
+          "nome": "novo",
+          "tipo": "booleano",
+          "descricao": "Indica se o cliente foi criado no dispositivo e ainda não foi sincronizado",
+          "nomesAlternativos": ["isNew"]
+        },
+        {
+          "nome": "dataRegisto",
+          "tipo": "data",
+          "descricao": "Data de abertura da ficha do cliente",
+          "nomesAlternativos": ["registrationDate", "Data Abertura Ficha"]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-CLI-NOME",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Entidade.nome",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "O nome do cliente tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.Entidade.nome tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-NIF",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Entidade.nif",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O contribuinte do cliente tem no máximo 15 caracteres."
+          },
+          "descricao": "ClienteVenda.Entidade.nif tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-CLI-RUA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Morada.rua",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "A morada do cliente tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.Morada.rua tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-LOCALIDADE",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Morada.localidade",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "A localidade do cliente tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.Morada.localidade tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-CP",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Morada.codigoPostal",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "O código postal do cliente tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.Morada.codigoPostal tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-EMAIL",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Contacto.email",
+            "operador": "LENGTH",
+            "valor": [0, 60],
+            "mensagem": "O email do cliente tem no máximo 60 caracteres."
+          },
+          "descricao": "ClienteVenda.Contacto.email tem entre 0 e 60 caracteres"
+        },
+        {
+          "id": "RP-CLI-TELEFONE",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "ContactoTelefonico.telefone",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O telefone do cliente tem no máximo 15 caracteres."
+          },
+          "descricao": "ClienteVenda.ContactoTelefonico.telefone tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-CLI-TELEMOVEL",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "ContactoTelefonico.telemovel",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O telemóvel do cliente tem no máximo 15 caracteres."
+          },
+          "descricao": "ClienteVenda.ContactoTelefonico.telemovel tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-CLI-CC",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "CartaoCidadao.numero",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O número do cartão de cidadão do cliente tem no máximo 15 caracteres."
+          },
+          "descricao": "ClienteVenda.CartaoCidadao.numero tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-CLI-NOME2",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "SegundoTitular.nome",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "O nome do segundo titular tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.SegundoTitular.nome tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-NIF2",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "SegundoTitular.nif",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O contribuinte do segundo titular tem no máximo 15 caracteres."
+          },
+          "descricao": "ClienteVenda.SegundoTitular.nif tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-CLI-RUA2",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "MoradaSegundoTitular.rua",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "A morada do segundo titular tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.MoradaSegundoTitular.rua tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-LOCALIDADE2",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "MoradaSegundoTitular.localidade",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "A localidade do segundo titular tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.MoradaSegundoTitular.localidade tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-CP2",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "MoradaSegundoTitular.codigoPostal",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "O código postal do segundo titular tem no máximo 35 caracteres."
+          },
+          "descricao": "ClienteVenda.MoradaSegundoTitular.codigoPostal tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-CLI-TELEFONE2",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "ContactoSegundoTitular.telefone",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O telefone do segundo titular tem no máximo 15 caracteres."
+          },
+          "descricao": "ClienteVenda.ContactoSegundoTitular.telefone tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-CLI-CC2",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "CartaoCidadaoSegundoTitular.numero",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O número do cartão de cidadão do segundo titular tem no máximo 15 caracteres."
+          },
+          "descricao": "ClienteVenda.CartaoCidadaoSegundoTitular.numero tem entre 0 e 15 caracteres"
+        }
+      ]
+    },
+    {
+      "nome": "Vendedor",
+      "descricao": "Vendedor da aplicação FM: identificação, morada, contactos, veículo, comissões, série de numeração e numerações por tipo de documento.",
+      "composicao": [
+        {"usm": "Entidade", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"},
+        {"usm": "ContactoTelefonico", "cardinalidade": "0..1"},
+        {"usm": "Veiculo", "cardinalidade": "0..1"},
+        {"usm": "NumeracaoDocumento", "cardinalidade": "0..*"}
+      ],
+      "propriedades": [
+        {
+          "nome": "codigo",
+          "tipo": "texto",
+          "descricao": "Código do vendedor",
+          "nomesAlternativos": ["code", "Codigo Vendedor"]
+        },
+        {
+          "nome": "dataRegisto",
+          "tipo": "data",
+          "descricao": "Data de registo do vendedor na aplicação",
+          "nomesAlternativos": ["registrationDate"]
+        },
+        {
+          "nome": "designacaoPostal",
+          "tipo": "texto",
+          "descricao": "Designação postal que acompanha o código postal do vendedor",
+          "nomesAlternativos": ["zipCodeLoc"]
+        },
+        {
+          "nome": "numeroUltimoCliente",
+          "tipo": "inteiro",
+          "descricao": "Número do último cliente criado pelo vendedor",
+          "nomesAlternativos": ["Nº Ultimo Cliente"]
+        },
+        {
+          "nome": "serie",
+          "tipo": "texto",
+          "descricao": "Série de numeração dos documentos do vendedor",
+          "nomesAlternativos": ["seriesNumber", "Serie Numerações"],
+          "regras": [
+            {
+              "id": "RP-VEND-SERIE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "serie",
+                "operador": "LENGTH",
+                "valor": [0, 3],
+                "mensagem": "A série de numeração tem no máximo 3 caracteres."
+              },
+              "descricao": "Vendedor.serie tem entre 0 e 3 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "dataInicioSerie",
+          "tipo": "data",
+          "descricao": "Data de início da série de numeração",
+          "nomesAlternativos": ["seriesNumberStartingDate", "Data Inicio Serie"]
+        },
+        {
+          "nome": "numeroDigitosSerie",
+          "tipo": "texto",
+          "descricao": "Número de dígitos da numeração na série",
+          "nomesAlternativos": ["Numero Digitos Serie"],
+          "regras": [
+            {
+              "id": "RP-VEND-DIGITOS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "numeroDigitosSerie",
+                "operador": "LENGTH",
+                "valor": [0, 4],
+                "mensagem": "O número de dígitos da série tem no máximo 4 caracteres."
+              },
+              "descricao": "Vendedor.numeroDigitosSerie tem entre 0 e 4 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "prefixoAtcud",
+          "tipo": "texto",
+          "descricao": "Prefixo ATCUD geral da série do vendedor",
+          "nomesAlternativos": ["Prefixo ATCUD"],
+          "regras": [
+            {
+              "id": "RP-VEND-ATCUD",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "prefixoAtcud",
+                "operador": "LENGTH",
+                "valor": [0, 15],
+                "mensagem": "O prefixo ATCUD tem no máximo 15 caracteres."
+              },
+              "descricao": "Vendedor.prefixoAtcud tem entre 0 e 15 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "comissaoVendaPronto",
+          "tipo": "decimal",
+          "descricao": "Comissão do vendedor nas vendas a pronto (%)",
+          "nomesAlternativos": ["commissionOfSaleOfProduct", "Comissao Venda Pronto"]
+        },
+        {
+          "nome": "comissaoVendaPrestacao",
+          "tipo": "decimal",
+          "descricao": "Comissão do vendedor nas vendas a prestações (%)",
+          "nomesAlternativos": ["commissionOfSaleOfInstallment", "Comissao Venda Prestacao"]
+        },
+        {
+          "nome": "comissaoCobranca",
+          "tipo": "decimal",
+          "descricao": "Comissão do vendedor sobre as cobranças (%)",
+          "nomesAlternativos": ["commissionOfCharge", "Comissao Cobranca"]
+        },
+        {
+          "nome": "numeroGuiaTransporte",
+          "tipo": "inteiro",
+          "descricao": "Número da última guia de transporte",
+          "nomesAlternativos": ["transportGuideNumber"]
+        },
+        {
+          "nome": "numeroGuiaTransporteExtra",
+          "tipo": "inteiro",
+          "descricao": "Número da última guia de transporte extra",
+          "nomesAlternativos": ["transportGuideExtraNumber"]
+        },
+        {
+          "nome": "codigoFamiliaExtra",
+          "tipo": "texto",
+          "descricao": "Código da família de artigos extra",
+          "nomesAlternativos": ["familyCodeExtra"],
+          "regras": [
+            {
+              "id": "RP-VEND-FAMEXTRA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoFamiliaExtra",
+                "operador": "LENGTH",
+                "valor": [0, 7],
+                "mensagem": "O código da família extra tem no máximo 7 caracteres."
+              },
+              "descricao": "Vendedor.codigoFamiliaExtra tem entre 0 e 7 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "trataRecebimentos",
+          "tipo": "booleano",
+          "descricao": "Indica se o vendedor pode processar recebimentos",
+          "nomesAlternativos": ["processReceiptsPermissions", "Trata Recebimentos"]
+        },
+        {
+          "nome": "nifEmissor",
+          "tipo": "texto",
+          "descricao": "Contribuinte da entidade emissora dos documentos",
+          "nomesAlternativos": ["senderNif", "Contribuinte do Emissor"],
+          "regras": [
+            {
+              "id": "RP-VEND-NIFEMISSOR",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nifEmissor",
+                "operador": "LENGTH",
+                "valor": [0, 15],
+                "mensagem": "O contribuinte do emissor tem no máximo 15 caracteres."
+              },
+              "descricao": "Vendedor.nifEmissor tem entre 0 e 15 caracteres"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-VEND-NOME",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Entidade.nome",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "O nome do vendedor tem no máximo 35 caracteres."
+          },
+          "descricao": "Vendedor.Entidade.nome tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-VEND-NIF",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Entidade.nif",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O NIF do vendedor tem no máximo 15 caracteres."
+          },
+          "descricao": "Vendedor.Entidade.nif tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-VEND-RUA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Morada.rua",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "A morada do vendedor tem no máximo 35 caracteres."
+          },
+          "descricao": "Vendedor.Morada.rua tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-VEND-LOCALIDADE",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Morada.localidade",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "A localidade do vendedor tem no máximo 35 caracteres."
+          },
+          "descricao": "Vendedor.Morada.localidade tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-VEND-CP",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Morada.codigoPostal",
+            "operador": "LENGTH",
+            "valor": [0, 35],
+            "mensagem": "O código postal do vendedor tem no máximo 35 caracteres."
+          },
+          "descricao": "Vendedor.Morada.codigoPostal tem entre 0 e 35 caracteres"
+        },
+        {
+          "id": "RP-VEND-TELEFONE",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "ContactoTelefonico.telefone",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O telefone do vendedor tem no máximo 15 caracteres."
+          },
+          "descricao": "Vendedor.ContactoTelefonico.telefone tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-VEND-TELEMOVEL",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "ContactoTelefonico.telemovel",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O telemóvel do vendedor tem no máximo 15 caracteres."
+          },
+          "descricao": "Vendedor.ContactoTelefonico.telemovel tem entre 0 e 15 caracteres"
+        }
+      ]
+    },
+    {
+      "nome": "CabecalhoExportacao",
+      "descricao": "Informação do ficheiro de exportação: nome, tamanho, data de modificação e contagens de registos.",
+      "propriedades": [
+        {
+          "nome": "nomeFicheiro",
+          "tipo": "texto",
+          "descricao": "Nome do ficheiro de exportação",
+          "nomesAlternativos": ["name"]
+        },
+        {
+          "nome": "tamanhoFicheiro",
+          "tipo": "decimal",
+          "descricao": "Tamanho do ficheiro",
+          "nomesAlternativos": ["size"]
+        },
+        {
+          "nome": "dataModificacao",
+          "tipo": "texto",
+          "descricao": "Data e hora da última modificação do ficheiro, tal como registada",
+          "nomesAlternativos": ["lastModified"]
+        },
+        {
+          "nome": "numeroClientes",
+          "tipo": "inteiro",
+          "descricao": "Número de registos de clientes",
+          "nomesAlternativos": ["nCli"]
+        },
+        {
+          "nome": "numeroArtigos",
+          "tipo": "inteiro",
+          "descricao": "Número de registos de artigos",
+          "nomesAlternativos": ["nArt"]
+        },
+        {
+          "nome": "numeroEntregas",
+          "tipo": "inteiro",
+          "descricao": "Número de entregas",
+          "nomesAlternativos": ["nDlv"]
+        },
+        {
+          "nome": "numeroLinhasEntrega",
+          "tipo": "inteiro",
+          "descricao": "Número de linhas de entrega",
+          "nomesAlternativos": ["nItem"]
+        },
+        {
+          "nome": "numeroArtigosVeiculo",
+          "tipo": "inteiro",
+          "descricao": "Número de registos de produtos no veículo",
+          "nomesAlternativos": ["nArtVeic"]
+        },
+        {
+          "nome": "numeroZonas",
+          "tipo": "inteiro",
+          "descricao": "Número de registos de zonas",
+          "nomesAlternativos": ["nZone"]
+        }
+      ]
+    },
+    {
+      "nome": "SaldoCliente",
+      "descricao": "Conta corrente de um cliente: saldo, total de vendas e saldo inicial.",
+      "propriedades": [
+        {
+          "nome": "codigoCliente",
+          "tipo": "texto",
+          "descricao": "Código do cliente a que o saldo respeita",
+          "nomesAlternativos": ["Codigo Cliente"]
+        },
+        {
+          "nome": "saldo",
+          "tipo": "decimal",
+          "descricao": "Saldo atual do cliente",
+          "nomesAlternativos": ["Saldo"]
+        },
+        {
+          "nome": "totalVendas",
+          "tipo": "decimal",
+          "descricao": "Valor total das vendas ao cliente",
+          "nomesAlternativos": ["Valor Total Vendas"]
+        },
+        {
+          "nome": "saldoInicial",
+          "tipo": "decimal",
+          "descricao": "Valor do saldo inicial",
+          "nomesAlternativos": ["Valor Saldo Inicial"]
+        },
+        {
+          "nome": "pagoSaldoInicial",
+          "tipo": "decimal",
+          "descricao": "Valor já pago do saldo inicial",
+          "nomesAlternativos": ["Valor Pago Saldo Inicial"]
+        },
+        {
+          "nome": "dataSaldoInicial",
+          "tipo": "data",
+          "descricao": "Data do saldo inicial",
+          "nomesAlternativos": ["Data Saldo Inicial"]
+        }
+      ]
+    },
+    {
+      "nome": "ArtigoStock",
+      "descricao": "Ficha de artigo em stock: artigo, preços de venda e de custo, IVA, descontos, quantidades, família e fornecedor.",
+      "composicao": [
+        {"usm": "Artigo", "cardinalidade": "1..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "codigoAuxiliar",
+          "tipo": "texto",
+          "descricao": "Código auxiliar do artigo",
+          "nomesAlternativos": ["articleCode", "Codigo Axiliar"],
+          "regras": [
+            {
+              "id": "RP-STK-AUXILIAR",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoAuxiliar",
+                "operador": "LENGTH",
+                "valor": [0, 13],
+                "mensagem": "O código auxiliar tem no máximo 13 caracteres."
+              },
+              "descricao": "ArtigoStock.codigoAuxiliar tem entre 0 e 13 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "referencia",
+          "tipo": "texto",
+          "descricao": "Referência do artigo",
+          "nomesAlternativos": ["reference", "Referencia"],
+          "regras": [
+            {
+              "id": "RP-STK-REFERENCIA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "referencia",
+                "operador": "LENGTH",
+                "valor": [0, 20],
+                "mensagem": "A referência do artigo tem no máximo 20 caracteres."
+              },
+              "descricao": "ArtigoStock.referencia tem entre 0 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "unidadeMedida",
+          "tipo": "texto",
+          "descricao": "Unidade de medida do artigo",
+          "nomesAlternativos": ["unit", "Unidade Medida"],
+          "regras": [
+            {
+              "id": "RP-STK-UNIDADE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "unidadeMedida",
+                "operador": "LENGTH",
+                "valor": [0, 6],
+                "mensagem": "A unidade de medida tem no máximo 6 caracteres."
+              },
+              "descricao": "ArtigoStock.unidadeMedida tem entre 0 e 6 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "dataRegisto",
+          "tipo": "data",
+          "descricao": "Data de criação da ficha do artigo",
+          "nomesAlternativos": ["registrationDate", "Data Criação ficha"]
+        },
+        {
+          "nome": "formaArtigo",
+          "tipo": "texto",
+          "descricao": "Forma de apresentação do artigo",
+          "nomesAlternativos": ["artForm"]
+        },
+        {
+          "nome": "precoVendaComIva",
+          "tipo": "decimal",
+          "descricao": "Preço de venda 1 com IVA",
+          "nomesAlternativos": ["salePrice", "Preço Venda com Iva"]
+        },
+        {
+          "nome": "precoVendaSemIva",
+          "tipo": "decimal",
+          "descricao": "Preço de venda 1 sem IVA",
+          "nomesAlternativos": ["Preço Venda 1 sem Iva"]
+        },
+        {
+          "nome": "precoVenda2ComIva",
+          "tipo": "decimal",
+          "descricao": "Preço de venda 2 com IVA",
+          "nomesAlternativos": ["Preço Venda 2 com IVA"]
+        },
+        {
+          "nome": "precoVenda2SemIva",
+          "tipo": "decimal",
+          "descricao": "Preço de venda 2 sem IVA",
+          "nomesAlternativos": ["Preço Venda 2 sem IVA"]
+        },
+        {
+          "nome": "precoPublico",
+          "tipo": "decimal",
+          "descricao": "Preço de venda ao público",
+          "nomesAlternativos": ["ppPrice"]
+        },
+        {
+          "nome": "desconto1",
+          "tipo": "decimal",
+          "descricao": "Percentagem do primeiro desconto",
+          "nomesAlternativos": ["% Desconto1"]
+        },
+        {
+          "nome": "desconto2",
+          "tipo": "decimal",
+          "descricao": "Percentagem do segundo desconto",
+          "nomesAlternativos": ["discount2", "% Desconto2"]
+        },
+        {
+          "nome": "taxaIva",
+          "tipo": "decimal",
+          "descricao": "Taxa de IVA de venda (%)",
+          "nomesAlternativos": ["saleIva", "Taxa de Iva"]
+        },
+        {
+          "nome": "ecoTaxa",
+          "tipo": "decimal",
+          "descricao": "Valor da ecotaxa do artigo",
+          "nomesAlternativos": ["ecoTaxa"]
+        },
+        {
+          "nome": "precoCusto",
+          "tipo": "decimal",
+          "descricao": "Preço de custo",
+          "nomesAlternativos": ["costPrice"]
+        },
+        {
+          "nome": "descontoCusto",
+          "tipo": "decimal",
+          "descricao": "Desconto sobre o preço de custo",
+          "nomesAlternativos": ["costDiscount"]
+        },
+        {
+          "nome": "precoCustoSemIva",
+          "tipo": "decimal",
+          "descricao": "Preço de custo sem IVA",
+          "nomesAlternativos": ["costPriceNoIva", "Preço Custo sem Iva"]
+        },
+        {
+          "nome": "precoCustoComIva",
+          "tipo": "decimal",
+          "descricao": "Preço de custo com IVA",
+          "nomesAlternativos": ["costPriceWithIva", "Preço Custo com Iva"]
+        },
+        {
+          "nome": "precoCusto2SemIva",
+          "tipo": "decimal",
+          "descricao": "Segundo preço de custo sem IVA",
+          "nomesAlternativos": ["costPriceNoIva2"]
+        },
+        {
+          "nome": "precoCusto2ComIva",
+          "tipo": "decimal",
+          "descricao": "Segundo preço de custo com IVA",
+          "nomesAlternativos": ["costPriceWithIva2"]
+        },
+        {
+          "nome": "quantidadeStock",
+          "tipo": "decimal",
+          "descricao": "Quantidade em stock",
+          "nomesAlternativos": ["stockQuantity", "Quantidade em stock"]
+        },
+        {
+          "nome": "quantidadeStockFora",
+          "tipo": "decimal",
+          "descricao": "Quantidade em stock fora do armazém",
+          "nomesAlternativos": ["stockOutQuantity", "Quantidade em stock Out"]
+        },
+        {
+          "nome": "peso",
+          "tipo": "decimal",
+          "descricao": "Peso do artigo",
+          "nomesAlternativos": ["weight", "Peso"]
+        },
+        {
+          "nome": "codigoFamilia",
+          "tipo": "texto",
+          "descricao": "Código da família do artigo",
+          "nomesAlternativos": ["familyCode", "Codigo Familia"],
+          "regras": [
+            {
+              "id": "RP-STK-FAMILIA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoFamilia",
+                "operador": "LENGTH",
+                "valor": [0, 7],
+                "mensagem": "O código da família tem no máximo 7 caracteres."
+              },
+              "descricao": "ArtigoStock.codigoFamilia tem entre 0 e 7 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "descricaoFamilia",
+          "tipo": "texto",
+          "descricao": "Descrição da família do artigo",
+          "nomesAlternativos": ["familyDescription", "Descricção Familia"],
+          "regras": [
+            {
+              "id": "RP-STK-DESCFAMILIA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "descricaoFamilia",
+                "operador": "LENGTH",
+                "valor": [0, 35],
+                "mensagem": "A descrição da família tem no máximo 35 caracteres."
+              },
+              "descricao": "ArtigoStock.descricaoFamilia tem entre 0 e 35 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoFornecedor",
+          "tipo": "texto",
+          "descricao": "Código do fornecedor do artigo",
+          "nomesAlternativos": ["supplierCode", "Codigo Fornecedor"]
+        },
+        {
+          "nome": "nomeFornecedor",
+          "tipo": "texto",
+          "descricao": "Nome do fornecedor do artigo",
+          "nomesAlternativos": ["supplier", "Nome Fornecedor"],
+          "regras": [
+            {
+              "id": "RP-STK-FORNECEDOR",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nomeFornecedor",
+                "operador": "LENGTH",
+                "valor": [0, 35],
+                "mensagem": "O nome do fornecedor tem no máximo 35 caracteres."
+              },
+              "descricao": "ArtigoStock.nomeFornecedor tem entre 0 e 35 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "servico",
+          "tipo": "booleano",
+          "descricao": "Indica se o artigo é um serviço",
+          "nomesAlternativos": ["service", "Serviço"]
+        },
+        {
+          "nome": "exportaObservacoes",
+          "tipo": "booleano",
+          "descricao": "Indica se as observações do artigo são exportadas",
+          "nomesAlternativos": ["Exporta OBS"]
+        },
+        {
+          "nome": "observacoes",
+          "tipo": "texto",
+          "descricao": "Observações sobre o artigo",
+          "nomesAlternativos": ["observations"]
+        },
+        {
+          "nome": "emVeiculo",
+          "tipo": "booleano",
+          "descricao": "Indica se o artigo é transportado no veículo do vendedor",
+          "nomesAlternativos": ["isCar"]
+        },
+        {
+          "nome": "matriculaVeiculo",
+          "tipo": "texto",
+          "descricao": "Matrícula do veículo onde o artigo está",
+          "nomesAlternativos": ["carRegistration"]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-STK-CODIGO",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Artigo.codigo",
+            "operador": "LENGTH",
+            "valor": [0, 6],
+            "mensagem": "O código do artigo no registo de stock tem no máximo 6 caracteres."
+          },
+          "descricao": "ArtigoStock.Artigo.codigo tem entre 0 e 6 caracteres"
+        },
+        {
+          "id": "RP-STK-EAN",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Artigo.codigoBarras",
+            "operador": "LENGTH",
+            "valor": [0, 15],
+            "mensagem": "O código EAN no registo de stock tem no máximo 15 caracteres."
+          },
+          "descricao": "ArtigoStock.Artigo.codigoBarras tem entre 0 e 15 caracteres"
+        },
+        {
+          "id": "RP-STK-DESCRICAO",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "propriedade": "Artigo.nome",
+            "operador": "LENGTH",
+            "valor": [0, 50],
+            "mensagem": "A descrição do artigo no registo de stock tem no máximo 50 caracteres."
+          },
+          "descricao": "ArtigoStock.Artigo.nome tem entre 0 e 50 caracteres"
+        }
+      ]
+    },
+    {
+      "nome": "ProdutoVeiculo",
+      "descricao": "Quantidades de um artigo transportadas no veículo de um vendedor.",
+      "propriedades": [
+        {
+          "nome": "matricula",
+          "tipo": "texto",
+          "descricao": "Matrícula do veículo",
+          "nomesAlternativos": ["Matricula"],
+          "regras": [
+            {
+              "id": "RP-PRV-MATRICULA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "matricula",
+                "operador": "LENGTH",
+                "valor": [0, 15],
+                "mensagem": "A matrícula tem no máximo 15 caracteres."
+              },
+              "descricao": "ProdutoVeiculo.matricula tem entre 0 e 15 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoArtigo",
+          "tipo": "texto",
+          "descricao": "Código do artigo no veículo",
+          "nomesAlternativos": ["Codigo Artigo"],
+          "regras": [
+            {
+              "id": "RP-PRV-ARTIGO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoArtigo",
+                "operador": "LENGTH",
+                "valor": [0, 7],
+                "mensagem": "O código do artigo no veículo tem no máximo 7 caracteres."
+              },
+              "descricao": "ProdutoVeiculo.codigoArtigo tem entre 0 e 7 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "quantidadeTotal",
+          "tipo": "decimal",
+          "descricao": "Quantidade total do artigo no veículo",
+          "nomesAlternativos": ["carQuantityTotal", "Quantidade Total"]
+        },
+        {
+          "nome": "quantidadeNormal",
+          "tipo": "decimal",
+          "descricao": "Quantidade normal do artigo no veículo",
+          "nomesAlternativos": ["carQuantityNormal", "Quantidade Normal"]
+        },
+        {
+          "nome": "quantidadeFora",
+          "tipo": "decimal",
+          "descricao": "Quantidade do artigo fora do veículo",
+          "nomesAlternativos": ["carQuantityOut", "Quantidade Fora"]
+        }
+      ]
+    },
+    {
+      "nome": "Zona",
+      "descricao": "Zona comercial a que os clientes são atribuídos.",
+      "propriedades": [
+        {"nome": "codigo", "tipo": "texto", "descricao": "Código da zona", "nomesAlternativos": ["code"]},
+        {"nome": "nome", "tipo": "texto", "descricao": "Nome da zona", "nomesAlternativos": ["name"]}
+      ]
+    },
+    {
+      "nome": "Auxiliar",
+      "descricao": "Registo auxiliar de texto da exportação, identificado por um número.",
+      "propriedades": [
+        {
+          "nome": "identificador",
+          "tipo": "inteiro",
+          "descricao": "Identificador do texto auxiliar",
+          "nomesAlternativos": ["ID"]
+        },
+        {
+          "nome": "texto",
+          "tipo": "texto",
+          "descricao": "Texto auxiliar",
+          "nomesAlternativos": ["Texto"],
+          "regras": [
+            {
+              "id": "RP-AUX-TEXTO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "texto",
+                "operador": "LENGTH",
+                "valor": [0, 40],
+                "mensagem": "O texto auxiliar tem no máximo 40 caracteres."
+              },
+              "descricao": "Auxiliar.texto tem entre 0 e 40 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Configuracao",
+      "descricao": "Parâmetros de configuração da empresa, da aplicação e do vendedor.",
+      "composicao": [
+        {"usm": "ParametroConfiguracao", "papel": "ParametroEmpresa", "cardinalidade": "0..*"},
+        {"usm": "ParametroConfiguracao", "papel": "ParametroAplicacao", "cardinalidade": "0..*"},
+        {"usm": "ParametroConfiguracao", "papel": "ParametroVendedor", "cardinalidade": "0..*"}
+      ]
+    }
+  ],
+  "hlm": [
+    {
+      "nome": "ExportacaoFm",
+      "descricao": "Exportação dos registos da aplicação FM de um vendedor: vendedor e numerações, clientes, saldos, stocks, produtos no veículo, zonas, textos auxiliares e configuração.",
+      "composicao": [
+        {"sm": "CabecalhoExportacao", "cardinalidade": "0..1"},
+        {"sm": "Vendedor", "cardinalidade": "1..1"},
+        {"sm": "ClienteVenda", "cardinalidade": "0..*"},
+        {"sm": "SaldoCliente", "cardinalidade": "0..*"},
+        {"sm": "ArtigoStock", "cardinalidade": "0..*"},
+        {"sm": "ProdutoVeiculo", "cardinalidade": "0..*"},
+        {"sm": "Zona", "cardinalidade": "0..*"},
+        {"sm": "Auxiliar", "cardinalidade": "0..*"},
+        {"sm": "Configuracao", "cardinalidade": "0..1"},
+        {"sm": "Metainformacao", "papel": "Metainformacao", "cardinalidade": "0..1"}
+      ]
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "ExportacaoDiariaFm",
+      "hlm": "ExportacaoFm",
+      "descricao": "Exportação diária dos registos de um vendedor (VDM, CLI, YCL, STK, AUX, PRV).",
+      "obrigatorias": [
+        "Vendedor.codigo",
+        "Vendedor.Entidade.nome",
+        "Vendedor.Entidade.nif",
+        "Vendedor.serie",
+        "Vendedor.dataInicioSerie",
+        "Vendedor.prefixoAtcud"
+      ],
+      "permitidas": [
+        "CabecalhoExportacao.*",
+        "Vendedor.Morada.*",
+        "Vendedor.ContactoTelefonico.*",
+        "Vendedor.Veiculo.*",
+        "Vendedor.NumeracaoDocumento.*",
+        "Vendedor.dataRegisto",
+        "Vendedor.designacaoPostal",
+        "Vendedor.numeroUltimoCliente",
+        "Vendedor.numeroDigitosSerie",
+        "Vendedor.comissaoVendaPronto",
+        "Vendedor.comissaoVendaPrestacao",
+        "Vendedor.comissaoCobranca",
+        "Vendedor.numeroGuiaTransporte",
+        "Vendedor.numeroGuiaTransporteExtra",
+        "Vendedor.codigoFamiliaExtra",
+        "Vendedor.trataRecebimentos",
+        "Vendedor.nifEmissor",
+        "ClienteVenda.*",
+        "SaldoCliente.*",
+        "ArtigoStock.*",
+        "ProdutoVeiculo.*",
+        "Zona.*",
+        "Auxiliar.*",
+        "Configuracao.*",
+        "Metainformacao.*"
+      ]
+    }
+  ],
+  "perfis": [
+    {
+      "nome": "ExportacaoDiariaVendedor",
+      "projecao": "ExportacaoDiariaFm",
+      "descricao": "Exportação diária de um vendedor em Portugal, com a série e o prefixo ATCUD conhecidos (os valores concretos vêm da instância).",
+      "fixa": [
+        {"propriedade": "Vendedor.Morada.pais", "valor": "PT"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-VALOR-DEC",
+  "regra": {
+    "id": "RP-VALOR-DEC",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Linha.valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+    "alcance": "USM Linha.valor",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "valor",
+      "chave": "Propriedade:USM:Linha.valor",
+      "dono": "Linha"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "O valor da linha tem no máximo duas casas decimais.",
+      "texto": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+      "caminho": "valor",
+      "propriedade": "USM:Linha.valor",
+      "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O valor da linha tem no máximo duas casas decimais.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Linha.valor",
+      "nome": "valor",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "O valor da linha tem no máximo duas casas decimais.",
+    "texto": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+    "caminho": "valor",
+    "propriedade": "USM:Linha.valor",
+    "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+    "alvo": {
+      "chave": "USM:Linha.valor",
+      "nome": "valor",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Valor da linha, em euros"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Linha.valor",
+    "nome": "valor",
+    "dono": "Linha",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Valor da linha, em euros",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-VALOR-DEC",
+        "rotulo": "RP",
+        "texto": "RP-VALOR-DEC",
+        "detalhe": "Linha.valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.valor",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.valor",
+        "detalhe": "Valor da linha, em euros"
+      },
+      {
+        "chave": "Restricao:RP-VALOR-DEC",
+        "rotulo": "Restricao",
+        "texto": "RP-VALOR-DEC#restricao",
+        "detalhe": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-VALOR-DEC",
+        "para": "Propriedade:USM:Linha.valor",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-VALOR-DEC",
+        "para": "Restricao:RP-VALOR-DEC",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-VALOR-DEC",
+        "para": "Propriedade:USM:Linha.valor",
+        "tipo": "RESTRINGE",
+        "texto": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Linha.valor",
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "dono": "Linha",
+        "descricao": "Valor da linha, em euros",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.valor",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-VALOR-DEC"
+  }
+}

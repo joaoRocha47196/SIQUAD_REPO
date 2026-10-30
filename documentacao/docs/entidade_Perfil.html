@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Perfil de execução · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="current sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="entidades.html">Entidades</a></div><h1>Perfil de execução</h1><h3 id="descricao">Descrição</h3>
+<p>O perfil liga o conhecimento de validação a um cenário concreto. Indica a <b>projeção</b> usada (e, por ela, o HLM). Fixa os <b>valores conhecidos antes da execução</b>: propriedades do modelo e contextos externos. O perfil não contém regras. Define o cenário em que as regras já declaradas vão ser avaliadas.</p>
+<p>A diferença entre <b>seleção estática</b> e <b>seleção dinâmica</b> não está na regra nem na condição. Está na origem dos valores usados para avaliar a condição: o perfil (estática) ou a instância (dinâmica).</p>
+<table><thead><tr><th>Seleção</th><th>Os valores vêm de</th><th>Efeito</th><th>Exemplo</th></tr></thead><tbody><tr><td>Estática</td><td><code>fixa</code> do perfil</td><td>Os termos ficam resolvidos antes da execução: a regra fica sempre aplicável ou nunca aplicável</td><td>RefrigeracaoLote: RIR-TEMP-REFRIG-CELSIUS sempre aplicável, RIR-TEMP-ESTUFA-CELSIUS nunca aplicável</td></tr><tr><td>Dinâmica</td><td>a instância</td><td>A condição é avaliada instância a instância; as propriedades da condição têm de estar na projeção</td><td>LeiturasIndustriais (nada fixado)</td></tr></tbody></table>
+<p>Uma propriedade fixada pode não fazer parte da projeção: o seu valor já é conhecido, e a instância não precisa de o trazer (TesteRefrigeracao fixa <code>ambiente</code>, que DispositivoTeste não projeta). Se uma condição lê uma propriedade que não está na projeção nem está fixada, a regra não é avaliável. O motor assinala isto quando o perfil é criado (aviso I10, perfil TesteLaboratorio).</p>
+<h3 id="diagrama">Diagrama</h3>
+<p>Todos os atributos da entidade e todas as ligações a outras entidades. <b>LIGAÇÃO</b> marca os atributos que ligam a outra entidade; cada seta indica o atributo da declaração e a aresta correspondente no grafo.</p>
+<pre class="mermaid">classDiagram
+  direction LR
+  class Perfil {
+    nome : texto · chave · PascalCase
+    projecao : nome da Projecao · LIGAÇÃO
+    descricao : texto
+    fixa : lista de propriedade ou contexto com valor · LIGAÇÃO
+    hlm : nome do HLM · redundante
+    notas : texto
+  }
+  Perfil &quot;0..*&quot; --&gt; &quot;1&quot; Projecao : projecao · USA
+  Perfil &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade : fixa propriedade · FIXA com caminho e valor
+  Perfil &quot;0..*&quot; --&gt; &quot;0..*&quot; ContextoExterno : fixa contexto · FIXA com valor</pre>
+<h3 id="atributos">Atributos</h3>
+<table><thead><tr><th>Atributo</th><th>Tipo</th><th>Obrigatório</th><th>Descrição</th></tr></thead><tbody><tr><td><code>nome</code></td><td>PascalCase</td><td>sim</td><td>Único.</td></tr><tr><td><code>projecao</code></td><td>nome de projeção</td><td>sim</td><td>A projeção usada.</td></tr><tr><td><code>descricao</code></td><td>texto</td><td>não (recomendado)</td><td>O cenário.</td></tr><tr><td><code>fixa</code></td><td>lista de <code>{propriedade, valor}</code> ou <code>{contexto, valor}</code></td><td>sim (pode ser vazia)</td><td>Valores conhecidos antes da execução.</td></tr><tr><td><code>hlm</code></td><td>nome de HLM</td><td>não</td><td>Redundante (vem da projeção); se presente, tem de coincidir.</td></tr><tr><td><code>notas</code></td><td>texto</td><td>não</td><td>Comentário livre.</td></tr></tbody></table>
+<h4 id="ligacoes-no-grafo">Ligações no grafo</h4>
+<table><thead><tr><th>Aresta</th><th>Sentido</th><th>Outro extremo</th><th>Atributos</th></tr></thead><tbody><tr><td><code>USA</code></td><td>Perfil →</td><td>Projecao</td><td>—</td></tr><tr><td><code>FIXA</code></td><td>Perfil →</td><td>Propriedade</td><td><code>caminho</code>, <code>valor</code> (JSON)</td></tr><tr><td><code>FIXA</code></td><td>Perfil →</td><td>ContextoExterno</td><td><code>valor</code> (JSON)</td></tr></tbody></table>
+<p>No grafo: nó <code>Perfil</code> (chave <code>nome</code>). O modelo completo do grafo está em <a href="../../ecv/4_graph/graph_model.json">ecv/4_graph/graph_model.json</a>.</p>
+<h3 id="exemplos">Exemplos</h3>
+<h4 id="esboco-na-declaracao">Esboço na declaração</h4>
+<pre class="code"><code>&quot;perfis&quot;: [
+  {
+    &quot;nome&quot;: &quot;RefrigeracaoLote&quot;,
+    &quot;projecao&quot;: &quot;DispositivoProducao&quot;,
+    &quot;descricao&quot;: &quot;Lote de sensores de temperatura em câmaras de refrigeração, em °C.&quot;,
+    &quot;fixa&quot;: [
+      {&quot;propriedade&quot;: &quot;Identificacao.tipoDispositivo&quot;, &quot;valor&quot;: &quot;TEMPERATURA&quot;},
+      {&quot;propriedade&quot;: &quot;Leitura.Instalacao.ambiente&quot;, &quot;valor&quot;: &quot;REFRIGERACAO&quot;},
+      {&quot;propriedade&quot;: &quot;Leitura.Medicao.unidadeMedida&quot;, &quot;valor&quot;: &quot;°C&quot;},
+      {&quot;contexto&quot;: &quot;dataDeHoje&quot;, &quot;valor&quot;: &quot;2026-09-30&quot;}
+    ]
+  }
+]</code></pre>
+<h4 id="exemplos-das-declaracoes-de-exemplo">Exemplos das declarações de exemplo</h4>
+<table><thead><tr><th>Perfil</th><th>Projeção</th><th>Descrição</th><th>Valores fixados</th></tr></thead><tbody><tr><td>RefrigeracaoLote</td><td>DispositivoProducao</td><td>Lote de sensores de temperatura em câmaras de refrigeração, em °C.</td><td>Identificacao.tipoDispositivo = TEMPERATURA; Leitura.Instalacao.ambiente = REFRIGERACAO; Leitura.Medicao.unidadeMedida = °C</td></tr><tr><td>LeiturasIndustriais</td><td>DispositivoProducao</td><td>Plataforma com leituras de várias fontes: nenhum valor fixado.</td><td>— (seleção dinâmica)</td></tr><tr><td>Estufas</td><td>DispositivoProducao</td><td>Sensores instalados em estufas agrícolas.</td><td>Leitura.Instalacao.ambiente = ESTUFA</td></tr><tr><td>TesteLaboratorio</td><td>DispositivoTeste</td><td>Testes de bancada: o ambiente não é projetado nem fixado.</td><td>— (seleção dinâmica)</td></tr><tr><td>TesteRefrigeracao</td><td>DispositivoTeste</td><td>Testes de sensores de refrigeração, com contextos externos fixados.</td><td>Leitura.Instalacao.ambiente = REFRIGERACAO; contexto dataDeHoje = 2026-09-30; contexto relogioServidor = 2026-09-30T12:00:00Z; contexto chaveDispositivo = chave-de-teste-0001</td></tr><tr><td>EmissaoSimplificada</td><td>FaturaSimplificada</td><td>Emissão de faturas simplificadas: o tipo de documento é conhecido.</td><td>Cabecalho.tipoDocumento = FS</td></tr><tr><td>SubmissaoAT</td><td>FaturaAT</td><td>Submissão à AT: nenhum valor conhecido à partida (seleção dinâmica).</td><td>— (seleção dinâmica)</td></tr><tr><td>AuditoriaSetembro2026</td><td>FaturaAT</td><td>Auditoria reprodutível: a data de hoje é fixada.</td><td>contexto dataDeHoje = 2026-09-30</td></tr><tr><td>OrdensCorrentes</td><td>OrdemCompleta</td><td>Ordens de instalação correntes.</td><td>— (seleção dinâmica)</td></tr></tbody></table>
+<p>Perfil que fixa propriedades (seleção estática):</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;RefrigeracaoLote&quot;,
+  &quot;projecao&quot;: &quot;DispositivoProducao&quot;,
+  &quot;descricao&quot;: &quot;Lote de sensores de temperatura em câmaras de refrigeração, em °C.&quot;,
+  &quot;fixa&quot;: [
+    {&quot;propriedade&quot;: &quot;Identificacao.tipoDispositivo&quot;, &quot;valor&quot;: &quot;TEMPERATURA&quot;},
+    {&quot;propriedade&quot;: &quot;Leitura.Instalacao.ambiente&quot;, &quot;valor&quot;: &quot;REFRIGERACAO&quot;},
+    {&quot;propriedade&quot;: &quot;Leitura.Medicao.unidadeMedida&quot;, &quot;valor&quot;: &quot;°C&quot;}
+  ],
+  &quot;notas&quot;: &quot;Seleção estática (tese, Figura &#x27;Seleção estática&#x27;): RIR-TEMP-REFRIG-CELSIUS sempre aplicada; as gamas de outros ambientes nunca.&quot;
+}</code></pre>
+<p>Perfil que fixa uma propriedade não projetada e injeta contextos externos:</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;TesteRefrigeracao&quot;,
+  &quot;projecao&quot;: &quot;DispositivoTeste&quot;,
+  &quot;descricao&quot;: &quot;Testes de sensores de refrigeração, com contextos externos fixados.&quot;,
+  &quot;fixa&quot;: [
+    {&quot;propriedade&quot;: &quot;Leitura.Instalacao.ambiente&quot;, &quot;valor&quot;: &quot;REFRIGERACAO&quot;},
+    {&quot;contexto&quot;: &quot;dataDeHoje&quot;, &quot;valor&quot;: &quot;2026-09-30&quot;},
+    {&quot;contexto&quot;: &quot;relogioServidor&quot;, &quot;valor&quot;: &quot;2026-09-30T12:00:00Z&quot;},
+    {&quot;contexto&quot;: &quot;chaveDispositivo&quot;, &quot;valor&quot;: &quot;chave-de-teste-0001&quot;}
+  ],
+  &quot;notas&quot;: &quot;A propriedade fixada (ambiente) não está na projeção: o seu valor já é conhecido e resolve os termos da condição.&quot;
+}</code></pre>
+<p>Perfil que só injeta um contexto (avaliação reprodutível):</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;AuditoriaSetembro2026&quot;,
+  &quot;projecao&quot;: &quot;FaturaAT&quot;,
+  &quot;descricao&quot;: &quot;Auditoria reprodutível: a data de hoje é fixada.&quot;,
+  &quot;fixa&quot;: [
+    {&quot;contexto&quot;: &quot;dataDeHoje&quot;, &quot;valor&quot;: &quot;2026-09-30&quot;}
+  ],
+  &quot;notas&quot;: &quot;Perfil que injeta um contexto externo: as regras que dependem de dataDeHoje usam este valor.&quot;
+}</code></pre>
+<p>Perfil com regras não avaliáveis (aviso I10):</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;TesteLaboratorio&quot;,
+  &quot;projecao&quot;: &quot;DispositivoTeste&quot;,
+  &quot;descricao&quot;: &quot;Testes de bancada: o ambiente não é projetado nem fixado.&quot;,
+  &quot;fixa&quot;: [],
+  &quot;notas&quot;: &quot;Demonstra o invariante I10: as RIR cuja condição lê ambiente não são avaliáveis neste perfil.&quot;
+}</code></pre>
+<h3 id="pode-e-nao-pode">Pode e não pode</h3>
+<table><thead><tr><th>Pode</th><th>Não pode</th></tr></thead><tbody><tr><td>Usar exatamente uma projeção</td><td>Conter regras</td></tr><tr><td>Fixar propriedades (por caminho a partir do HLM) com valores plausíveis</td><td>Fixar um valor não plausível (I9)</td></tr><tr><td>Fixar contextos externos</td><td>Fixar um caminho que não existe (I9)</td></tr><tr><td>Não fixar nada (seleção dinâmica)</td><td>Ter um HLM diferente do da projeção</td></tr></tbody></table>
+<h3 id="detalhes">Detalhes</h3>
+<h4 id="como-construir-um-perfil-estatico">Como construir um perfil estático</h4>
+<p>Faz-se a pesquisa "candidatos a fixar": dadas as propriedades a validar, obtêm-se as outras propriedades usadas nas condições das regras que as restringem. Para <code>valor</code> e <code>unidadeMedida</code>, são <code>tipoDispositivo</code>, <code>unidadeMedida</code> e <code>ambiente</code> (vista <code>candidatos_perfil</code>).</p>
+<h4 id="observacoes-tese-selecao-estatica-e-dinamica">Observações (tese, Seleção estática e dinâmica)</h4>
+<ol><li>O conhecimento não muda com o cenário: só o perfil muda.</li><li>A seleção é declarada, e não escondida em código.</li><li>O que fica de fora é consultável antes de executar.</li><li>O perfil lê-se como uma regra.</li><li>A fronteira com o exterior é explícita: os contextos são fixados no perfil ou obtidos pelo motor.</li></ol>
+<h3 id="verificacoes">Verificações</h3>
+<p><b>S-PERFIL</b> (projeção declarada; cada fixação tem <code>propriedade</code> ou <code>contexto</code> e <code>valor</code>), <b>I9</b> (caminhos existem; valores plausíveis) e <b>I10</b> (aviso: regras não avaliáveis).</p><p class="note">Fonte: <a href="../../specs/entidades/ecr/Perfil.md">specs/entidades/ecr/Perfil.md</a></p></main><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,securityLevel:"loose"});}</script></body></html>

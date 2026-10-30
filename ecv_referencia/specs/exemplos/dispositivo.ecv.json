@@ -1,0 +1,1904 @@
+{
+  "$schema": "../declaracao/ecv.schema.json",
+  "declaracao": {
+    "nome": "ECV de referência: Dispositivo IoT",
+    "versao": "1.0.0",
+    "descricao": "Exemplo IoT: o HLM Dispositivo, com identificação, leitura, localização e diagnóstico, as gamas inferidas por tipo, unidade e ambiente, as RIC de diagnóstico, funções, contextos externos, projeções e perfis. Inclui, repetidos, os modelos partilhados (SM Localizacao, USM Morada).",
+    "dominios": ["IoT"],
+    "hlm": "Dispositivo"
+  },
+  "contextosExternos": [
+    {
+      "nome": "dataDeHoje",
+      "tipo": "data",
+      "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+      "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível."
+    },
+    {
+      "nome": "relogioServidor",
+      "tipo": "data",
+      "descricao": "Instante atual do servidor que recebe as leituras (data e hora ISO 8601).",
+      "fonte": "Relógio do servidor da plataforma IoT."
+    },
+    {
+      "nome": "chaveDispositivo",
+      "tipo": "texto",
+      "descricao": "Chave secreta com que cada dispositivo assina as suas mensagens (HMAC-SHA256).",
+      "fonte": "Cofre de chaves da plataforma IoT, consultado pelo identificador do dispositivo."
+    }
+  ],
+  "funcoes": [
+    {
+      "nome": "excedeDiasDesdeHoje",
+      "descricao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+      "parametros": [
+        {"nome": "data", "tipo": "data", "papel": "alvo", "descricao": "Data a comparar com a data de hoje."},
+        {"nome": "n", "tipo": "inteiro", "papel": "parametro", "descricao": "Número de dias."}
+      ],
+      "contextosExternos": ["dataDeHoje"],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "naoPosteriorAHoje",
+      "descricao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "parametros": [
+        {"nome": "data", "tipo": "data", "papel": "alvo", "descricao": "Data que não pode estar no futuro."}
+      ],
+      "contextosExternos": ["dataDeHoje"],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "desfasamentoInferiorA",
+      "descricao": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.",
+      "parametros": [
+        {
+          "nome": "instante",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Instante da leitura (data e hora)."
+        },
+        {"nome": "s", "tipo": "inteiro", "papel": "parametro", "descricao": "Tolerância, em segundos."}
+      ],
+      "contextosExternos": ["relogioServidor"],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "dentroDe",
+      "descricao": "Verdadeira quando o ponto (latitude, longitude) está dentro da área, um polígono de vértices (latitude, longitude).",
+      "parametros": [
+        {"nome": "latitude", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "longitude", "tipo": "decimal", "papel": "alvo"},
+        {
+          "nome": "area",
+          "tipo": "poligono",
+          "papel": "parametro",
+          "descricao": "Lista de vértices [latitude, longitude], declarada na regra."
+        }
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "assinaturaValida",
+      "descricao": "Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.",
+      "parametros": [
+        {"nome": "mensagem", "tipo": "texto", "papel": "alvo"},
+        {"nome": "assinatura", "tipo": "texto", "papel": "alvo"}
+      ],
+      "contextosExternos": ["chaveDispositivo"],
+      "retorno": "booleano"
+    }
+  ],
+  "usm": [
+    {
+      "nome": "Morada",
+      "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+      "propriedades": [
+        {"nome": "rua", "tipo": "texto", "descricao": "Arruamento e número de porta"},
+        {
+          "nome": "codigoPostal",
+          "tipo": "texto",
+          "descricao": "Código postal da morada",
+          "nomesAlternativos": ["zipCode", "postalCode", "CP"],
+          "regras": [
+            {
+              "id": "RP-CP",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+              "restricao": {
+                "propriedade": "codigoPostal",
+                "operador": "PATTERN",
+                "valor": "^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+                "mensagem": "O código postal não tem nenhum dos formatos possíveis (português, espanhol ou britânico)."
+              },
+              "notas": "Plausibilidade: os formatos possíveis {PT, ES, GB}. Qual se aplica decide-se por inferência (RIR-CP-PT/ES/GB)."
+            }
+          ]
+        },
+        {
+          "nome": "localidade",
+          "tipo": "texto",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)"
+        },
+        {
+          "nome": "freguesia",
+          "tipo": "texto",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "regras": [
+            {
+              "id": "RP-FREGUESIA",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+              "restricao": {
+                "propriedade": "freguesia",
+                "operador": "IN",
+                "valor": [
+                  "AJUDA",
+                  "ALCANTARA",
+                  "ALVALADE",
+                  "AREEIRO",
+                  "ARROIOS",
+                  "AVENIDAS_NOVAS",
+                  "BEATO",
+                  "BELEM",
+                  "BENFICA",
+                  "CAMPO_DE_OURIQUE",
+                  "CAMPOLIDE",
+                  "CARNIDE",
+                  "ESTRELA",
+                  "LUMIAR",
+                  "MARVILA",
+                  "MISERICORDIA",
+                  "OLIVAIS",
+                  "PARQUE_DAS_NACOES",
+                  "PENHA_DE_FRANCA",
+                  "SANTA_CLARA",
+                  "SANTA_MARIA_MAIOR",
+                  "SANTO_ANTONIO",
+                  "SAO_DOMINGOS_DE_BENFICA",
+                  "SAO_VICENTE"
+                ],
+                "mensagem": "A freguesia não pertence às freguesias de Lisboa conhecidas."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "pais",
+          "tipo": "texto",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "nomesAlternativos": ["country", "countryCode"],
+          "regras": [
+            {
+              "id": "RP-PAIS",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.pais ∈ {PT, ES, GB}",
+              "restricao": {
+                "propriedade": "pais",
+                "operador": "IN",
+                "valor": ["PT", "ES", "GB"],
+                "mensagem": "O país tem de ser PT, ES ou GB."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-CP-PT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[1-9][0-9]{3}-[0-9]{3}$",
+            "mensagem": "O código postal português tem de ter o formato 0000-000, sem começar por zero."
+          }
+        },
+        {
+          "id": "RIR-CP-ES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "ES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[0-5][0-9]{4}$",
+            "mensagem": "O código postal espanhol tem de ter cinco algarismos, a começar por 0 a 5."
+          }
+        },
+        {
+          "id": "RIR-CP-GB",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "GB"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+            "mensagem": "O código postal britânico tem de ter a forma de um postcode (ex.: SW1A 1AA)."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AJUDA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AJUDA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1349)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Ajuda (Lisboa) começa por 1300 ou 1349."
+          },
+          "notas": "Mapeamento conhecido (códigos postais por freguesia de Lisboa) convertido em RIR: uma regra por freguesia. A vista de decisão sobre Morada.codigoPostal reconstrói a tabela."
+        },
+        {
+          "id": "RIR-CP-LX-ALCANTARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALCANTARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alcantara (Lisboa) começa por 1300 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ALVALADE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALVALADE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1700|1749)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alvalade (Lisboa) começa por 1700 ou 1749."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AREEIRO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AREEIRO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1000|1049)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Areeiro (Lisboa) começa por 1000 ou 1049."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ARROIOS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ARROIOS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1150|1169)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AVENIDAS_NOVAS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1050|1069)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Avenidas Novas (Lisboa) começa por 1050 ou 1069."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BEATO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BEATO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1900|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Beato (Lisboa) começa por 1900 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BELEM",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BELEM"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1400|1449)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Belem (Lisboa) começa por 1400 ou 1449."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1549)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Benfica (Lisboa) começa por 1500 ou 1549."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPO_DE_OURIQUE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campo de Ourique (Lisboa) começa por 1250 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPOLIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPOLIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1070|1099)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campolide (Lisboa) começa por 1070 ou 1099."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CARNIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CARNIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1649)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Carnide (Lisboa) começa por 1600 ou 1649."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ESTRELA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ESTRELA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Estrela (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-LUMIAR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "LUMIAR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1750)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Lumiar (Lisboa) começa por 1600 ou 1750."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MARVILA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MARVILA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Marvila (Lisboa) começa por 1800 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MISERICORDIA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MISERICORDIA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Misericordia (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-OLIVAIS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "OLIVAIS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1885)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Olivais (Lisboa) começa por 1800 ou 1885."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PARQUE_DAS_NACOES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1990|1998)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Parque das Nacoes (Lisboa) começa por 1990 ou 1998."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PENHA_DE_FRANCA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1170|1199)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Penha de Franca (Lisboa) começa por 1170 ou 1199."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-CLARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_CLARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1750|1769)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Clara (Lisboa) começa por 1750 ou 1769."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_MARIA_MAIOR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1149)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Maria Maior (Lisboa) começa por 1100 ou 1149."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTO-ANTONIO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTO_ANTONIO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1269)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santo Antonio (Lisboa) começa por 1250 ou 1269."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_DOMINGOS_DE_BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1600)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Domingos de Benfica (Lisboa) começa por 1500 ou 1600."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-VICENTE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_VICENTE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1170)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Vicente (Lisboa) começa por 1100 ou 1170."
+          }
+        }
+      ]
+    },
+    {
+      "nome": "Medicao",
+      "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+      "propriedades": [
+        {
+          "nome": "unidadeMedida",
+          "tipo": "texto",
+          "descricao": "Unidade de medida associada ao valor medido",
+          "nomesAlternativos": ["unit"],
+          "regras": [
+            {
+              "id": "RP-UNIDADE",
+              "natureza": "plausibilidade",
+              "descricao": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+              "restricao": {
+                "propriedade": "unidadeMedida",
+                "operador": "IN",
+                "valor": ["°C", "K", "°F", "%", "hPa", "bar", "m/s", "km/h"],
+                "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "valor",
+          "tipo": "decimal",
+          "descricao": "Valor medido, na unidade indicada",
+          "nomesAlternativos": ["value", "reading"],
+          "regras": [
+            {
+              "id": "RP-VALOR-FISICO",
+              "natureza": "plausibilidade",
+              "descricao": "Medicao.valor entre -273.15 e 2400",
+              "restricao": {
+                "propriedade": "valor",
+                "operador": "RANGE",
+                "valor": [-273.15, 2400],
+                "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir."
+              },
+              "notas": "Conjunto de gamas fisicamente admissíveis do domínio; a gama de cada combinação é inferida (RIR-*)."
+            }
+          ]
+        },
+        {
+          "nome": "dataMedicao",
+          "tipo": "data",
+          "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+          "nomesAlternativos": ["timestamp", "measuredAt"],
+          "regras": [
+            {
+              "id": "RP-RELOGIO",
+              "natureza": "plausibilidade",
+              "descricao": "desfasamentoInferiorA(Medicao.dataMedicao, 300)",
+              "restricao": {
+                "operador": "EXT_FUNCTION",
+                "chamada": {
+                  "funcao": "desfasamentoInferiorA",
+                  "argumentos": [
+                    {"caminho": "dataMedicao"},
+                    {"literal": 300}
+                  ]
+                },
+                "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado)."
+              },
+              "contextosExternos": ["relogioServidor"]
+            },
+            {
+              "id": "RIC-MED-DIFERIDA",
+              "natureza": "inferencia_conclusiva",
+              "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+              "condicao": [
+                {"propriedade": "dataMedicao", "operador": "LT", "contexto": "dataDeHoje"}
+              ],
+              "mensagem": "Estado DIFERIDA: a leitura foi medida antes de hoje e chega com atraso; deve ser tratada como dado histórico.",
+              "conclusao": {"tipo": "ESTADO", "valor": "DIFERIDA"},
+              "contextosExternos": ["dataDeHoje"],
+              "notas": "Contexto externo usado diretamente num termo da condição (sem função): dataMedicao < dataDeHoje."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Instalacao",
+      "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+      "propriedades": [
+        {
+          "nome": "ambiente",
+          "tipo": "texto",
+          "descricao": "Ambiente onde o dispositivo está instalado",
+          "nomesAlternativos": ["environment"],
+          "regras": [
+            {
+              "id": "RP-AMBIENTE",
+              "natureza": "plausibilidade",
+              "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+              "restricao": {
+                "propriedade": "ambiente",
+                "operador": "IN",
+                "valor": ["REFRIGERACAO", "ESTUFA", "ARMAZEM", "SERVIDORES", "EXTERIOR", "INCINERADORA", "LABORATORIO"],
+                "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Assinatura",
+      "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+      "propriedades": [
+        {
+          "nome": "mensagem",
+          "tipo": "texto",
+          "descricao": "Conteúdo assinado, tal como enviado pelo dispositivo",
+          "nomesAlternativos": ["payload"]
+        },
+        {
+          "nome": "assinatura",
+          "tipo": "texto",
+          "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+          "nomesAlternativos": ["signature"],
+          "regras": [
+            {
+              "id": "RP-ASSIN-FORMA",
+              "natureza": "plausibilidade",
+              "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+              "restricao": {
+                "propriedade": "assinatura",
+                "operador": "PATTERN",
+                "valor": "^[0-9a-f]{64}$",
+                "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256)."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-ASSINATURA",
+          "natureza": "plausibilidade",
+          "descricao": "assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)",
+          "restricao": {
+            "operador": "EXT_FUNCTION",
+            "chamada": {
+              "funcao": "assinaturaValida",
+              "argumentos": [
+                {"caminho": "mensagem"},
+                {"caminho": "assinatura"}
+              ]
+            },
+            "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo."
+          },
+          "contextosExternos": ["chaveDispositivo"]
+        }
+      ]
+    },
+    {
+      "nome": "Diagnostico",
+      "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+      "propriedades": [
+        {
+          "nome": "nivelBateria",
+          "tipo": "decimal",
+          "descricao": "Nível de bateria (%)",
+          "nomesAlternativos": ["battery"],
+          "regras": [
+            {
+              "id": "RP-BATERIA",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.nivelBateria entre 0 e 100",
+              "restricao": {
+                "propriedade": "nivelBateria",
+                "operador": "RANGE",
+                "valor": [0, 100],
+                "mensagem": "O nível de bateria é uma percentagem entre 0 e 100."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "dataUltimaManutencao",
+          "tipo": "data",
+          "descricao": "Data da última manutenção",
+          "nomesAlternativos": ["lastMaintenance"],
+          "regras": [
+            {
+              "id": "RP-MANUT-DATA",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01",
+              "restricao": {
+                "propriedade": "dataUltimaManutencao",
+                "operador": "GTE",
+                "valor": "2000-01-01",
+                "mensagem": "A data da última manutenção não é uma data plausível."
+              }
+            },
+            {
+              "id": "RP-MANUT-FUTURA",
+              "natureza": "plausibilidade",
+              "descricao": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)",
+              "restricao": {
+                "operador": "EXT_FUNCTION",
+                "chamada": {
+                  "funcao": "naoPosteriorAHoje",
+                  "argumentos": [
+                    {"caminho": "dataUltimaManutencao"}
+                  ]
+                },
+                "mensagem": "A data da última manutenção não pode ser posterior à data de hoje."
+              },
+              "contextosExternos": ["dataDeHoje"]
+            }
+          ]
+        },
+        {
+          "nome": "sinalRede",
+          "tipo": "decimal",
+          "descricao": "Intensidade do sinal de rede (dBm)",
+          "nomesAlternativos": ["rssi"],
+          "regras": [
+            {
+              "id": "RP-SINAL",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.sinalRede entre -140 e 0",
+              "restricao": {
+                "propriedade": "sinalRede",
+                "operador": "RANGE",
+                "valor": [-140, 0],
+                "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "latencia",
+          "tipo": "decimal",
+          "descricao": "Latência da comunicação (ms)",
+          "nomesAlternativos": ["latency"],
+          "regras": [
+            {
+              "id": "RP-LATENCIA",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.latencia entre 0 e 60000",
+              "restricao": {
+                "propriedade": "latencia",
+                "operador": "RANGE",
+                "valor": [0, 60000],
+                "mensagem": "A latência (ms) tem de estar entre 0 e 60000."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "taxaRececao",
+          "tipo": "decimal",
+          "descricao": "Taxa de receção de mensagens (%)",
+          "nomesAlternativos": ["receptionRate"],
+          "regras": [
+            {
+              "id": "RP-RECECAO",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.taxaRececao entre 0 e 100",
+              "restricao": {
+                "propriedade": "taxaRececao",
+                "operador": "RANGE",
+                "valor": [0, 100],
+                "mensagem": "A taxa de receção é uma percentagem entre 0 e 100."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIC-MANUT",
+          "natureza": "inferencia_conclusiva",
+          "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+          "condicao": [
+            {"propriedade": "nivelBateria", "operador": "RANGE", "valor": [0, 10]},
+            {
+              "operador": "EXT_FUNCTION",
+              "chamada": {
+                "funcao": "excedeDiasDesdeHoje",
+                "argumentos": [
+                  {"caminho": "dataUltimaManutencao"},
+                  {"literal": 7}
+                ]
+              }
+            }
+          ],
+          "mensagem": "Ação MANUTENCAO: o nível de bateria está baixo e o dispositivo não recebe manutenção há mais de 7 dias.",
+          "conclusao": {"tipo": "ACAO", "valor": "MANUTENCAO"},
+          "contextosExternos": ["dataDeHoje"]
+        },
+        {
+          "id": "RIC-REDE",
+          "natureza": "inferencia_conclusiva",
+          "descricao": "Se Diagnostico.sinalRede entre -120 e -100 e Diagnostico.latencia entre 500 e 10000 e Diagnostico.taxaRececao entre 0 e 50 → informa Estado NAO_FIAVEL",
+          "condicao": [
+            {"propriedade": "sinalRede", "operador": "RANGE", "valor": [-120, -100]},
+            {"propriedade": "latencia", "operador": "RANGE", "valor": [500, 10000]},
+            {"propriedade": "taxaRececao", "operador": "RANGE", "valor": [0, 50]}
+          ],
+          "mensagem": "Estado NAO_FIAVEL: o sinal de rede é fraco e a receção irregular; as medições deste dispositivo são QUESTIONAVEL.",
+          "conclusao": {"tipo": "ESTADO", "valor": "NAO_FIAVEL"}
+        }
+      ]
+    },
+    {
+      "nome": "InformacaoGeografica",
+      "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+      "propriedades": [
+        {
+          "nome": "latitude",
+          "tipo": "decimal",
+          "descricao": "Latitude, em graus decimais",
+          "nomesAlternativos": ["lat"],
+          "regras": [
+            {
+              "id": "RP-LAT",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.latitude entre -90 e 90",
+              "restricao": {
+                "propriedade": "latitude",
+                "operador": "RANGE",
+                "valor": [-90, 90],
+                "mensagem": "A latitude tem de estar entre -90 e 90."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "longitude",
+          "tipo": "decimal",
+          "descricao": "Longitude, em graus decimais",
+          "nomesAlternativos": ["lon", "lng"],
+          "regras": [
+            {
+              "id": "RP-LON",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+              "restricao": {
+                "propriedade": "longitude",
+                "operador": "RANGE",
+                "valor": [-180, 180],
+                "mensagem": "A longitude tem de estar entre -180 e 180."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "altitude",
+          "tipo": "decimal",
+          "descricao": "Altitude, em metros",
+          "nomesAlternativos": ["alt", "elevation"],
+          "regras": [
+            {
+              "id": "RP-ALT",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.altitude entre -500 e 9000",
+              "restricao": {
+                "propriedade": "altitude",
+                "operador": "RANGE",
+                "valor": [-500, 9000],
+                "mensagem": "A altitude (m) tem de estar entre -500 e 9000."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "sistemaReferencia",
+          "tipo": "texto",
+          "descricao": "Sistema de referência das coordenadas",
+          "nomesAlternativos": ["crs", "datum"],
+          "regras": [
+            {
+              "id": "RP-SRC",
+              "natureza": "plausibilidade",
+              "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+              "restricao": {
+                "propriedade": "sistemaReferencia",
+                "operador": "IN",
+                "valor": ["WGS84", "ETRS89", "PT-TM06"],
+                "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-AREA",
+          "natureza": "plausibilidade",
+          "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "dentroDe",
+              "argumentos": [
+                {"caminho": "latitude"},
+                {"caminho": "longitude"},
+                {
+                  "literal": [[38.8, -9.25], [38.8, -9.05], [38.68, -9.05], [38.68, -9.25]]
+                }
+              ]
+            },
+            "mensagem": "O dispositivo está fora da área onde foi autorizado."
+          },
+          "notas": "A área autorizada é informação da própria regra (parâmetro literal), não contexto externo."
+        }
+      ]
+    }
+  ],
+  "sm": [
+    {
+      "nome": "Identificacao",
+      "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+      "propriedades": [
+        {
+          "nome": "identificador",
+          "tipo": "texto",
+          "descricao": "Identificador do dispositivo",
+          "nomesAlternativos": ["deviceId"],
+          "regras": [
+            {
+              "id": "RP-IDENT",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+              "restricao": {
+                "propriedade": "identificador",
+                "operador": "PATTERN",
+                "valor": "^[A-Z]+-[0-9]{4}$",
+                "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos)."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "fabricante",
+          "tipo": "texto",
+          "descricao": "Fabricante do dispositivo",
+          "nomesAlternativos": ["manufacturer"],
+          "regras": [
+            {
+              "id": "RP-FABRICANTE",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.fabricante tem entre 2 e 50 caracteres",
+              "restricao": {
+                "propriedade": "fabricante",
+                "operador": "LENGTH",
+                "valor": [2, 50],
+                "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "estado",
+          "tipo": "texto",
+          "descricao": "Estado operacional do dispositivo",
+          "nomesAlternativos": ["status"],
+          "regras": [
+            {
+              "id": "RP-ESTADO",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+              "restricao": {
+                "propriedade": "estado",
+                "operador": "IN",
+                "valor": ["ATIVO", "INATIVO", "MANUTENCAO"],
+                "mensagem": "O estado tem de ser ativo, inativo ou em manutenção."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "tipoDispositivo",
+          "tipo": "texto",
+          "descricao": "Grandeza medida pelo dispositivo",
+          "nomesAlternativos": ["deviceType"],
+          "regras": [
+            {
+              "id": "RP-TIPODISP",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+              "restricao": {
+                "propriedade": "tipoDispositivo",
+                "operador": "IN",
+                "valor": ["TEMPERATURA", "HUMIDADE", "PRESSAO", "VELOCIDADE"],
+                "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade."
+              }
+            }
+          ]
+        }
+      ],
+      "notas": "SM só com propriedades residuais: a identificação do equipamento é informação própria do domínio IoT."
+    },
+    {
+      "nome": "Leitura",
+      "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+      "composicao": [
+        {"usm": "Medicao", "cardinalidade": "1..1"},
+        {"usm": "Instalacao", "cardinalidade": "1..1"},
+        {"usm": "Assinatura", "cardinalidade": "0..1"}
+      ]
+    },
+    {
+      "nome": "Localizacao",
+      "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso.",
+      "composicao": [
+        {"usm": "InformacaoGeografica", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "indicacaoAcesso",
+          "tipo": "texto",
+          "descricao": "Indicação de acesso ao local (texto livre, ex.: portão lateral, chave no cofre)",
+          "nomesAlternativos": ["accessNotes"],
+          "notas": "Propriedade residual: só faz sentido porque a finalidade do SM é situar equipamento."
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-LX-LOCALIDADE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA",
+          "condicao": [
+            {
+              "operador": "FUNCTION",
+              "chamada": {
+                "funcao": "dentroDe",
+                "argumentos": [
+                  {"caminho": "InformacaoGeografica.latitude"},
+                  {"caminho": "InformacaoGeografica.longitude"},
+                  {
+                    "literal": [[38.796, -9.23], [38.796, -9.09], [38.69, -9.09], [38.69, -9.23]]
+                  }
+                ]
+              }
+            }
+          ],
+          "restricao": {
+            "propriedade": "Morada.localidade",
+            "operador": "EQUALS",
+            "valor": "LISBOA",
+            "mensagem": "Um equipamento localizado dentro dos limites de Lisboa tem de ter a localidade LISBOA na morada."
+          },
+          "notas": "Função usada num termo da condição de aplicabilidade (e não na restrição)."
+        }
+      ],
+      "notas": "Na Secção ECM da tese corresponde ao 'SM Localização de Equipamento', reutilizado pelo Dispositivo e pela Ordem de Instalação."
+    },
+    {
+      "nome": "Diagnostico",
+      "descricao": "Diagnóstico técnico do dispositivo.",
+      "composicao": [
+        {"usm": "Diagnostico", "cardinalidade": "1..1"}
+      ]
+    }
+  ],
+  "hlm": [
+    {
+      "nome": "Dispositivo",
+      "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+      "composicao": [
+        {"sm": "Identificacao", "cardinalidade": "1..1"},
+        {"sm": "Leitura", "cardinalidade": "1..1"},
+        {"sm": "Localizacao", "cardinalidade": "1..1"},
+        {"sm": "Diagnostico", "cardinalidade": "0..1"}
+      ],
+      "regras": [
+        {
+          "id": "RIR-TEMP-UN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA → Leitura.Medicao.unidadeMedida ∈ {°C, K, °F}",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.unidadeMedida",
+            "operador": "IN",
+            "valor": ["°C", "K", "°F"],
+            "mensagem": "Uma temperatura tem de ser medida em °C, K ou °F."
+          }
+        },
+        {
+          "id": "RIR-HUM-UN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "HUMIDADE"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.unidadeMedida",
+            "operador": "IN",
+            "valor": ["%"],
+            "mensagem": "Uma humidade tem de ser medida em %."
+          }
+        },
+        {
+          "id": "RIR-PRES-UN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = PRESSAO → Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "PRESSAO"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.unidadeMedida",
+            "operador": "IN",
+            "valor": ["hPa", "bar"],
+            "mensagem": "Uma pressão tem de ser medida em hPa ou bar."
+          }
+        },
+        {
+          "id": "RIR-VEL-UN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE → Leitura.Medicao.unidadeMedida ∈ {m/s, km/h}",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "VELOCIDADE"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.unidadeMedida",
+            "operador": "IN",
+            "valor": ["m/s", "km/h"],
+            "mensagem": "Uma velocidade tem de ser medida em m/s ou km/h."
+          }
+        },
+        {
+          "id": "RIR-TEMP-C",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C → Leitura.Medicao.valor entre -60 e 1300",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [-60, 1300],
+            "mensagem": "Uma temperatura em °C tem de estar entre -60 e 1300."
+          }
+        },
+        {
+          "id": "RIR-TEMP-K",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K → Leitura.Medicao.valor entre 213.15 e 1573.15",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "K"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [213.15, 1573.15],
+            "mensagem": "Uma temperatura em K tem de estar entre 213.15 e 1573.15."
+          }
+        },
+        {
+          "id": "RIR-TEMP-F",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F → Leitura.Medicao.valor entre -76 e 2372",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°F"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [-76, 2372],
+            "mensagem": "Uma temperatura em °F tem de estar entre -76 e 2372."
+          }
+        },
+        {
+          "id": "RIR-HUM",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % → Leitura.Medicao.valor entre 0 e 100",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "HUMIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "%"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [0, 100],
+            "mensagem": "Uma humidade em % tem de estar entre 0 e 100."
+          }
+        },
+        {
+          "id": "RIR-PRES-HPA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa → Leitura.Medicao.valor entre 300 e 1100",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "PRESSAO"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "hPa"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [300, 1100],
+            "mensagem": "Uma pressão em hPa tem de estar entre 300 e 1100."
+          }
+        },
+        {
+          "id": "RIR-PRES-BAR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar → Leitura.Medicao.valor entre 0.3 e 1.1",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "PRESSAO"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "bar"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [0.3, 1.1],
+            "mensagem": "Uma pressão em bar tem de estar entre 0.3 e 1.1."
+          }
+        },
+        {
+          "id": "RIR-VEL-MS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s → Leitura.Medicao.valor entre 0 e 75",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "VELOCIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "m/s"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [0, 75],
+            "mensagem": "Uma velocidade em m/s tem de estar entre 0 e 75."
+          }
+        },
+        {
+          "id": "RIR-VEL-KMH",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h → Leitura.Medicao.valor entre 0 e 270",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "VELOCIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "km/h"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [0, 270],
+            "mensagem": "Uma velocidade em km/h tem de estar entre 0 e 270."
+          }
+        },
+        {
+          "id": "RIR-TEMP-REFRIG-CELSIUS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -30 e 0",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "REFRIGERACAO"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [-30, 0],
+            "mensagem": "Temperatura fora da gama de refrigeração (-30 a 0 °C)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-REFRIG-KELVIN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 243.15 e 273.15",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "K"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "REFRIGERACAO"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [243.15, 273.15],
+            "mensagem": "Temperatura fora da gama de refrigeração (243.15 a 273.15 K)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-REFRIG-FAHRENHEIT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -22 e 32",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°F"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "REFRIGERACAO"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [-22, 32],
+            "mensagem": "Temperatura fora da gama de refrigeração (-22 a 32 °F)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-ESTUFA-CELSIUS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 15 e 45",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ESTUFA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [15, 45],
+            "mensagem": "Temperatura fora da gama da estufa (15 a 45 °C)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-ESTUFA-KELVIN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 288.15 e 318.15",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "K"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ESTUFA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [288.15, 318.15],
+            "mensagem": "Temperatura fora da gama da estufa (288.15 a 318.15 K)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 59 e 113",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°F"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ESTUFA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [59, 113],
+            "mensagem": "Temperatura fora da gama da estufa (59 a 113 °F)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-ARMAZEM-CELSIUS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 5 e 30",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ARMAZEM"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [5, 30],
+            "mensagem": "Temperatura fora da gama do armazém (5 a 30 °C)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-ARMAZEM-KELVIN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 278.15 e 303.15",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "K"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ARMAZEM"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [278.15, 303.15],
+            "mensagem": "Temperatura fora da gama do armazém (278.15 a 303.15 K)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 41 e 86",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°F"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ARMAZEM"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [41, 86],
+            "mensagem": "Temperatura fora da gama do armazém (41 a 86 °F)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-SERVIDORES-CELSIUS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 18 e 27",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "SERVIDORES"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [18, 27],
+            "mensagem": "Temperatura fora da gama da sala de servidores (18 a 27 °C)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-SERVIDORES-KELVIN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 291.15 e 300.15",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "K"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "SERVIDORES"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [291.15, 300.15],
+            "mensagem": "Temperatura fora da gama da sala de servidores (291.15 a 300.15 K)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 64.4 e 80.6",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°F"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "SERVIDORES"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [64.4, 80.6],
+            "mensagem": "Temperatura fora da gama da sala de servidores (64.4 a 80.6 °F)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-EXTERIOR-CELSIUS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -20 e 50",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [-20, 50],
+            "mensagem": "Temperatura fora da gama do exterior (-20 a 50 °C)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-EXTERIOR-KELVIN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 253.15 e 323.15",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "K"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [253.15, 323.15],
+            "mensagem": "Temperatura fora da gama do exterior (253.15 a 323.15 K)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -4 e 122",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°F"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [-4, 122],
+            "mensagem": "Temperatura fora da gama do exterior (-4 a 122 °F)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-INCIN-CELSIUS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 200 e 1200",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "INCINERADORA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [200, 1200],
+            "mensagem": "Temperatura fora da gama da incineradora (200 a 1200 °C)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-INCIN-KELVIN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 473.15 e 1473.15",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "K"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "INCINERADORA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [473.15, 1473.15],
+            "mensagem": "Temperatura fora da gama da incineradora (473.15 a 1473.15 K)."
+          }
+        },
+        {
+          "id": "RIR-TEMP-INCIN-FAHRENHEIT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 392 e 2192",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°F"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "INCINERADORA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [392, 2192],
+            "mensagem": "Temperatura fora da gama da incineradora (392 a 2192 °F)."
+          }
+        },
+        {
+          "id": "RIR-HUM-REFRIG",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 80 e 95",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "HUMIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "%"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "REFRIGERACAO"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [80, 95],
+            "mensagem": "Humidade fora da gama de refrigeração (80 a 95 %)."
+          }
+        },
+        {
+          "id": "RIR-HUM-ESTUFA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 60 e 90",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "HUMIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "%"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ESTUFA"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [60, 90],
+            "mensagem": "Humidade fora da gama da estufa (60 a 90 %)."
+          }
+        },
+        {
+          "id": "RIR-HUM-ARMAZEM",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 30 e 60",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "HUMIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "%"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "ARMAZEM"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [30, 60],
+            "mensagem": "Humidade fora da gama do armazém (30 a 60 %)."
+          }
+        },
+        {
+          "id": "RIR-HUM-SERVIDORES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 40 e 60",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "HUMIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "%"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "SERVIDORES"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [40, 60],
+            "mensagem": "Humidade fora da gama da sala de servidores (40 a 60 %)."
+          }
+        },
+        {
+          "id": "RIR-HUM-EXTERIOR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 100",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "HUMIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "%"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [0, 100],
+            "mensagem": "Humidade fora da gama do exterior (0 a 100 %)."
+          }
+        },
+        {
+          "id": "RIR-VEL-EXTERIOR-MS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 40",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "VELOCIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "m/s"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [0, 40],
+            "mensagem": "Velocidade fora da gama do exterior (0 a 40 m/s)."
+          }
+        },
+        {
+          "id": "RIR-VEL-EXTERIOR-KMH",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 144",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "VELOCIDADE"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "km/h"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [0, 144],
+            "mensagem": "Velocidade fora da gama do exterior (0 a 144 km/h)."
+          }
+        },
+        {
+          "id": "RIR-PRES-EXTERIOR-HPA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "PRESSAO"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "hPa"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [950, 1050],
+            "mensagem": "Pressão fora da gama do exterior (950 a 1050 hPa)."
+          }
+        },
+        {
+          "id": "RIR-PRES-EXTERIOR-BAR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "PRESSAO"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "bar"},
+            {"propriedade": "Leitura.Instalacao.ambiente", "operador": "EQUALS", "valor": "EXTERIOR"}
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [950, 1050],
+            "mensagem": "Pressão fora da gama do exterior (950 a 1050 bar)."
+          },
+          "notas": "Anomalia intencional (do mapeamento original): a gama [950, 1050] está em hPa, não em bar, e não tem nenhum valor em comum com RIR-PRES-BAR [0.3, 1.1]. A matriz de decisão assinala-a a vermelho."
+        },
+        {
+          "id": "RIR-TEMP-CAMARA-CELSIUS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = CAMARA_FRIGORIFICA → Leitura.Medicao.valor entre -25 e -18",
+          "condicao": [
+            {"propriedade": "Identificacao.tipoDispositivo", "operador": "EQUALS", "valor": "TEMPERATURA"},
+            {"propriedade": "Leitura.Medicao.unidadeMedida", "operador": "EQUALS", "valor": "°C"},
+            {
+              "propriedade": "Leitura.Instalacao.ambiente",
+              "operador": "EQUALS",
+              "valor": "CAMARA_FRIGORIFICA"
+            }
+          ],
+          "restricao": {
+            "propriedade": "Leitura.Medicao.valor",
+            "operador": "RANGE",
+            "valor": [-25, -18],
+            "mensagem": "Temperatura fora da gama da câmara frigorífica (-25 a -18 °C)."
+          },
+          "notas": "Anomalia intencional (invariante I7): CAMARA_FRIGORIFICA não pertence aos valores plausíveis de ambiente, pelo que a regra nunca se aplica. Equivale ao exemplo 'ambiente = ARMAZEM' da tese."
+        }
+      ],
+      "notas": "As gamas seguem o mapeamento conhecido do Capítulo 4 (matriz de decisão): RIR-TEMP-C é a gama física [-60, 1300] (no texto do Capítulo 3 usou-se [-50, 100], ilustrativa)."
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "DispositivoTeste",
+      "hlm": "Dispositivo",
+      "descricao": "Equipamento em testes: identificação mínima e medição; coordenadas opcionais.",
+      "obrigatorias": [
+        "Identificacao.identificador",
+        "Identificacao.estado",
+        "Identificacao.tipoDispositivo",
+        "Leitura.Medicao.*"
+      ],
+      "permitidas": ["Localizacao.InformacaoGeografica.*"]
+    },
+    {
+      "nome": "DispositivoProducao",
+      "hlm": "Dispositivo",
+      "descricao": "Equipamento em produção: identificação completa, leitura, localização e diagnóstico.",
+      "obrigatorias": [
+        "Identificacao.*",
+        "Leitura.Medicao.*",
+        "Leitura.Instalacao.*",
+        "Localizacao.InformacaoGeografica.*",
+        "Localizacao.Morada.pais",
+        "Diagnostico.*"
+      ],
+      "permitidas": [
+        "Leitura.Assinatura.*",
+        "Localizacao.Morada.rua",
+        "Localizacao.Morada.codigoPostal",
+        "Localizacao.Morada.localidade",
+        "Localizacao.Morada.freguesia",
+        "Localizacao.indicacaoAcesso"
+      ]
+    }
+  ],
+  "perfis": [
+    {
+      "nome": "RefrigeracaoLote",
+      "projecao": "DispositivoProducao",
+      "descricao": "Lote de sensores de temperatura em câmaras de refrigeração, em °C.",
+      "fixa": [
+        {"propriedade": "Identificacao.tipoDispositivo", "valor": "TEMPERATURA"},
+        {"propriedade": "Leitura.Instalacao.ambiente", "valor": "REFRIGERACAO"},
+        {"propriedade": "Leitura.Medicao.unidadeMedida", "valor": "°C"}
+      ],
+      "notas": "Seleção estática (tese, Figura 'Seleção estática'): RIR-TEMP-REFRIG-CELSIUS sempre aplicada; as gamas de outros ambientes nunca."
+    },
+    {
+      "nome": "LeiturasIndustriais",
+      "projecao": "DispositivoProducao",
+      "descricao": "Plataforma com leituras de várias fontes: nenhum valor fixado.",
+      "fixa": []
+    },
+    {
+      "nome": "Estufas",
+      "projecao": "DispositivoProducao",
+      "descricao": "Sensores instalados em estufas agrícolas.",
+      "fixa": [
+        {"propriedade": "Leitura.Instalacao.ambiente", "valor": "ESTUFA"}
+      ]
+    },
+    {
+      "nome": "TesteLaboratorio",
+      "projecao": "DispositivoTeste",
+      "descricao": "Testes de bancada: o ambiente não é projetado nem fixado.",
+      "fixa": [],
+      "notas": "Demonstra o invariante I10: as RIR cuja condição lê ambiente não são avaliáveis neste perfil."
+    },
+    {
+      "nome": "TesteRefrigeracao",
+      "projecao": "DispositivoTeste",
+      "descricao": "Testes de sensores de refrigeração, com contextos externos fixados.",
+      "fixa": [
+        {"propriedade": "Leitura.Instalacao.ambiente", "valor": "REFRIGERACAO"},
+        {"contexto": "dataDeHoje", "valor": "2026-09-30"},
+        {"contexto": "relogioServidor", "valor": "2026-09-30T12:00:00Z"},
+        {"contexto": "chaveDispositivo", "valor": "chave-de-teste-0001"}
+      ],
+      "notas": "A propriedade fixada (ambiente) não está na projeção: o seu valor já é conhecido e resolve os termos da condição."
+    }
+  ]
+}

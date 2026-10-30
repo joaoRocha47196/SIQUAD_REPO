@@ -1,0 +1,25 @@
+{
+  "id": "iot",
+  "nome": "Dispositivos IoT",
+  "descricao": "Dispositivos IoT segundo o Smart Data Models (dataModel.Device): o dispositivo e o seu modelo, as medições, as operações, e os modelos especializados (câmara, Modbus, sensor de ritmo cardíaco, Sense HAT, contador inteligente, âncora UWB, objeto de privacidade), com as definições comuns (GSMA, localização, objeto físico).",
+  "fontes": [
+    {"id": "sdm-device", "adaptador": "json_schema.smart_data_models", "caminho": "data/SDM_Device",
+     "papel": "modelos JSON Schema do Smart Data Models Device e as definições comuns"}
+  ],
+  "excluidos": [
+    {"caminho": "W3C WoT Thing Description", "motivo": "não disponível nesta iteração (a decidir mais tarde)"}
+  ],
+  "utilizacoes": [
+    "Registo e inventário de dispositivos (Device, DeviceModel)",
+    "Receção de medições (DeviceMeasurement, SmartMeteringObservation)",
+    "Operação e manutenção de dispositivos (DeviceOperation)",
+    "Dispositivos especializados (Camera, Modbus, PolarH10, SenseHat, UWBAnchor)"
+  ],
+  "cenarios": [
+    "Sensor de temperatura numa câmara de refrigeração",
+    "Contador inteligente de eletricidade numa habitação",
+    "Câmara de vigilância urbana"
+  ],
+  "mapeamentos": [],
+  "metainformacao": {"dominio": "IoT"}
+}

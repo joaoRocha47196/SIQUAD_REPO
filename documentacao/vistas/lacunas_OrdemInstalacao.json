@@ -1,0 +1,41 @@
+{
+  "vista": "lacunas",
+  "titulo": "Lacunas do HLM OrdemInstalacao",
+  "hlm": "OrdemInstalacao",
+  "projecoesConsideradas": [
+    "OrdemCompleta"
+  ],
+  "semRegras": [
+    {
+      "propriedade": "SM:Cliente.consentimentoComercial",
+      "nome": "consentimentoComercial",
+      "dono": "Cliente",
+      "lidaEmTermos": []
+    },
+    {
+      "propriedade": "USM:Entidade.nome",
+      "nome": "nome",
+      "dono": "Entidade",
+      "lidaEmTermos": [
+        "RIR-EMAIL-CX",
+        "RIR-EMAIL-CY"
+      ]
+    },
+    {
+      "propriedade": "USM:Morada.rua",
+      "nome": "rua",
+      "dono": "Morada",
+      "lidaEmTermos": []
+    },
+    {
+      "propriedade": "SM:Localizacao.indicacaoAcesso",
+      "nome": "indicacaoAcesso",
+      "dono": "Localizacao",
+      "lidaEmTermos": []
+    }
+  ],
+  "nuncaProjetadas": [],
+  "parametros": {
+    "hlm": "OrdemInstalacao"
+  }
+}

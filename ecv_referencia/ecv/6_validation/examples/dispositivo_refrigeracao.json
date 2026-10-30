@@ -1,0 +1,49 @@
+{
+  "descricao": "Leitura de um sensor de temperatura numa câmara de refrigeração, no perfil RefrigeracaoLote (tipo, ambiente e unidade vêm do perfil). A temperatura está acima do intervalo de refrigeração.",
+  "perfil": "RefrigeracaoLote",
+  "contextos": {
+    "dataDeHoje": "2026-09-30",
+    "relogioServidor": "2026-09-30T12:00:00Z",
+    "chaveDispositivo": "chave-de-teste-0001"
+  },
+  "instancia": {
+    "Identificacao": {
+      "identificador": "TMP-0042",
+      "fabricante": "Sensores Lda",
+      "estado": "ATIVO"
+    },
+    "Leitura": {
+      "Medicao": {
+        "valor": 3.5,
+        "dataMedicao": "2026-09-30T11:58:00Z"
+      },
+      "Assinatura": {
+        "mensagem": "TMP-0042;2026-09-30T11:58:00Z;-3.5",
+        "assinatura": "9e4db5d6fe9d23f8aee3b01ead415c60a9006bb1e2a2cfeab3851de4b6367abc"
+      }
+    },
+    "Localizacao": {
+      "InformacaoGeografica": {
+        "latitude": 38.72,
+        "longitude": -9.14,
+        "altitude": 80,
+        "sistemaReferencia": "WGS84"
+      },
+      "Morada": {
+        "pais": "PT",
+        "localidade": "LISBOA",
+        "freguesia": "ARROIOS",
+        "codigoPostal": "1150-100"
+      }
+    },
+    "Diagnostico": {
+      "Diagnostico": {
+        "nivelBateria": 8,
+        "dataUltimaManutencao": "2026-08-01",
+        "sinalRede": -85,
+        "latencia": 120,
+        "taxaRececao": 98
+      }
+    }
+  }
+}

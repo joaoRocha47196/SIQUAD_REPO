@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RE (regra estrutural) e Projeção · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="current sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="entidades.html">Entidades</a></div><h1>RE (regra estrutural) e Projeção</h1><h3 id="descricao">Descrição</h3>
+<p>As condições estruturais são a presença, o tipo e a cardinalidade (notNull, isString, isInteger, …). Não se declaram regra a regra. O tipo já está na propriedade e a cardinalidade na composição (eixo E4). O que varia de utilização para utilização é que partes do modelo devem estar presentes. Isso exprime-se pela <b>projeção</b>.</p>
+<p>Uma projeção é definida sobre um HLM e distingue, para uma utilização:</p>
+<ul><li><b>obrigatórias:</b> propriedades que têm de estar presentes e respeitar a estrutura;</li><li><b>permitidas:</b> propriedades que podem estar presentes e são avaliadas quando existem;</li><li><b>proibidas:</b> todas as restantes, implicitamente (não se declaram).</li></ul>
+<p>A projeção não cria regras sobre as propriedades nem escolhe que regras correm. Define o âmbito estrutural da avaliação para uma utilização concreta. Estrutura e regras não se confundem (eixo E2).</p>
+<h3 id="diagrama">Diagrama</h3>
+<p>Todos os atributos da entidade e todas as ligações a outras entidades. <b>LIGAÇÃO</b> marca os atributos que ligam a outra entidade; cada seta indica o atributo da declaração e a aresta correspondente no grafo.</p>
+<pre class="mermaid">classDiagram
+  direction LR
+  class Projecao {
+    nome : texto · chave · PascalCase
+    hlm : nome do HLM · LIGAÇÃO
+    descricao : texto
+    obrigatorias : lista de caminhos · LIGAÇÃO
+    permitidas : lista de caminhos · LIGAÇÃO
+    notas : texto
+  }
+  Projecao &quot;0..*&quot; --&gt; &quot;1&quot; HLM : hlm · PROJETA
+  Projecao &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade : obrigatorias · OBRIGATORIA com caminho
+  Projecao &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade : permitidas · PERMITIDA com caminho
+  Perfil &quot;0..*&quot; --&gt; &quot;1&quot; Projecao : projecao · USA</pre>
+<h3 id="atributos">Atributos</h3>
+<table><thead><tr><th>Atributo</th><th>Tipo</th><th>Obrigatório</th><th>Descrição</th></tr></thead><tbody><tr><td><code>nome</code></td><td>texto, PascalCase</td><td>sim</td><td>Único entre as projeções.</td></tr><tr><td><code>hlm</code></td><td>nome de HLM</td><td>sim</td><td>O HLM projetado.</td></tr><tr><td><code>descricao</code></td><td>texto</td><td>não (recomendado)</td><td>A utilização.</td></tr><tr><td><code>obrigatorias</code></td><td>lista de caminhos</td><td>sim (pode ser vazia)</td><td>A partir do HLM; aceita <code>X.*</code>.</td></tr><tr><td><code>permitidas</code></td><td>lista de caminhos</td><td>sim (pode ser vazia)</td><td>Idem.</td></tr><tr><td><code>notas</code></td><td>texto</td><td>não</td><td>Comentário livre.</td></tr></tbody></table>
+<p>Os caminhos partem do HLM (<code>Leitura.Medicao.*</code>, <code>Identificacao.estado</code>). <code>X.*</code> expande para todas as propriedades, a qualquer profundidade, abaixo de X. Um caminho sem <code>*</code> tem de terminar numa propriedade.</p>
+<h4 id="ligacoes-no-grafo">Ligações no grafo</h4>
+<table><thead><tr><th>Aresta</th><th>Sentido</th><th>Outro extremo</th><th>Atributos</th><th>Significado</th></tr></thead><tbody><tr><td><code>PROJETA</code></td><td>Projecao →</td><td>HLM</td><td>—</td><td>Sobre que HLM incide.</td></tr><tr><td><code>OBRIGATORIA</code></td><td>Projecao →</td><td>Propriedade</td><td><code>caminho</code></td><td>Uma aresta por ocorrência (caminho expandido).</td></tr><tr><td><code>PERMITIDA</code></td><td>Projecao →</td><td>Propriedade</td><td><code>caminho</code></td><td>Idem.</td></tr><tr><td><code>USA</code></td><td>←</td><td>Perfil</td><td>—</td><td>Perfis que usam a projeção.</td></tr></tbody></table>
+<p>A mesma propriedade pode receber várias arestas da mesma projeção, uma por caminho. Por exemplo, <code>USM:Morada.codigoPostal</code> recebe uma por <code>Emitente.Morada.codigoPostal</code> e outra por <code>Cliente.Morada.codigoPostal</code>.</p>
+<p>No grafo: nó <code>Projecao</code> (chave <code>nome</code>). O modelo completo do grafo está em <a href="../../ecv/4_graph/graph_model.json">ecv/4_graph/graph_model.json</a>.</p>
+<h3 id="exemplos">Exemplos</h3>
+<h4 id="esboco-na-declaracao">Esboço na declaração</h4>
+<p>Na lista <code>projecoes</code>:</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;NomeDaProjecao&quot;,
+  &quot;hlm&quot;: &quot;NomeDoHLM&quot;,
+  &quot;descricao&quot;: &quot;Para que utilização.&quot;,
+  &quot;obrigatorias&quot;: [&quot;SmA.*&quot;, &quot;SmB.UsmX.propriedade&quot;],
+  &quot;permitidas&quot;: [&quot;SmC.*&quot;]
+}</code></pre>
+<h4 id="exemplos-das-declaracoes-de-exemplo">Exemplos das declarações de exemplo</h4>
+<table><thead><tr><th>Projeção</th><th>HLM</th><th>Descrição</th><th>Obrigatórias</th><th>Permitidas</th></tr></thead><tbody><tr><td>DispositivoTeste</td><td>Dispositivo</td><td>Equipamento em testes: identificação mínima e medição; coordenadas opcionais.</td><td>Identificacao.identificador, Identificacao.estado, Identificacao.tipoDispositivo, Leitura.Medicao.*</td><td>Localizacao.InformacaoGeografica.*</td></tr><tr><td>DispositivoProducao</td><td>Dispositivo</td><td>Equipamento em produção: identificação completa, leitura, localização e diagnóstico.</td><td>Identificacao.*, Leitura.Medicao.*, Leitura.Instalacao.*, Localizacao.InformacaoGeografica.*, Localizacao.Morada.pais, Diagnostico.*</td><td>Leitura.Assinatura.*, Localizacao.Morada.rua, Localizacao.Morada.codigoPostal, Localizacao.Morada.localidade, Localizacao.Morada.freguesia, Localizacao.indicacaoAcesso</td></tr><tr><td>FaturaSimplificada</td><td>Fatura</td><td>Fatura simplificada: dispensa a identificação do cliente.</td><td>Cabecalho.*, Emitente.*, Linhas.*</td><td>—</td></tr><tr><td>FaturaAT</td><td>Fatura</td><td>Fatura para submissão à AT: exige o cliente.</td><td>Cabecalho.*, Emitente.*, Cliente.Entidade.*, Cliente.Morada.*, Linhas.*</td><td>Cliente.consentimentoComercial</td></tr><tr><td>OrdemCompleta</td><td>OrdemInstalacao</td><td>Ordem de instalação com requerente e locais completos.</td><td>Pedido.*, Requerente.Entidade.*, Requerente.Morada.*, Localizacao.InformacaoGeografica.*, Localizacao.Morada.*</td><td>Requerente.consentimentoComercial, Localizacao.indicacaoAcesso</td></tr></tbody></table>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;DispositivoProducao&quot;,
+  &quot;hlm&quot;: &quot;Dispositivo&quot;,
+  &quot;descricao&quot;: &quot;Equipamento em produção: identificação completa, leitura, localização e diagnóstico.&quot;,
+  &quot;obrigatorias&quot;: [
+    &quot;Identificacao.*&quot;,
+    &quot;Leitura.Medicao.*&quot;,
+    &quot;Leitura.Instalacao.*&quot;,
+    &quot;Localizacao.InformacaoGeografica.*&quot;,
+    &quot;Localizacao.Morada.pais&quot;,
+    &quot;Diagnostico.*&quot;
+  ],
+  &quot;permitidas&quot;: [
+    &quot;Leitura.Assinatura.*&quot;,
+    &quot;Localizacao.Morada.rua&quot;,
+    &quot;Localizacao.Morada.codigoPostal&quot;,
+    &quot;Localizacao.Morada.localidade&quot;,
+    &quot;Localizacao.Morada.freguesia&quot;,
+    &quot;Localizacao.indicacaoAcesso&quot;
+  ]
+}</code></pre>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;FaturaAT&quot;,
+  &quot;hlm&quot;: &quot;Fatura&quot;,
+  &quot;descricao&quot;: &quot;Fatura para submissão à AT: exige o cliente.&quot;,
+  &quot;obrigatorias&quot;: [&quot;Cabecalho.*&quot;, &quot;Emitente.*&quot;, &quot;Cliente.Entidade.*&quot;, &quot;Cliente.Morada.*&quot;, &quot;Linhas.*&quot;],
+  &quot;permitidas&quot;: [&quot;Cliente.consentimentoComercial&quot;]
+}</code></pre>
+<p>A matriz de projeções de cada HLM está em <code>documentacao/vistas/projecoes_&lt;HLM&gt;.html</code>. É a tabela "Modelos Fatura e Dispositivo e respetivas projeções" da tese e a "Matriz de projeções" do Capítulo 4.</p>
+<p>Relação com a tese: no Capítulo 3, DispositivoProducao tinha <code>Diagnostico.*</code> como permitida; aqui segue a matriz do Capítulo 4 (Diagnóstico obrigatório, Morada parcialmente permitida).</p>
+<h3 id="pode-e-nao-pode">Pode e não pode</h3>
+<table><thead><tr><th>Pode</th><th>Não pode</th></tr></thead><tbody><tr><td>Incidir sobre um único HLM</td><td>Incidir sobre um SM ou USM</td></tr><tr><td>Usar <code>X.*</code> para todas as propriedades abaixo de X</td><td>Ter a mesma propriedade (caminho) obrigatória e permitida (I9)</td></tr><tr><td>Selecionar uma ocorrência específica pelo caminho (<code>Localizacao.Morada.pais</code>)</td><td>Selecionar um caminho que não existe (I9)</td></tr><tr><td>Coexistir com outras projeções sobre o mesmo HLM</td><td>Conter regras ou valores fixados (os valores são do perfil)</td></tr></tbody></table>
+<h4 id="como-saber-se-e-uma-projecao-e-nao-uma-regra">Como saber se é uma projeção (e não uma regra)</h4>
+<table><thead><tr><th>Situação</th><th>O que usar</th></tr></thead><tbody><tr><td>"Para esta utilização, o NIF do cliente tem de vir"</td><td>Projeção (obrigatória)</td></tr><tr><td>"O NIF tem nove algarismos"</td><td>RP</td></tr><tr><td>"Acima de 1000 euros, o NIF do cliente não pode ser o de consumidor final"</td><td>RIR</td></tr><tr><td>"Na fatura simplificada não vem o cliente"</td><td>Projeção (FaturaSimplificada não inclui <code>Cliente.*</code>)</td></tr></tbody></table>
+<h3 id="detalhes">Detalhes</h3>
+<h4 id="contextos-de-utilizacao">Contextos de utilização</h4>
+<ul><li>Estruturas diferentes por utilização do mesmo modelo (CA5): uma fatura simplificada e uma fatura para a AT; um dispositivo em testes e em produção.</li><li>A pesquisa inversa "em que projeções é usada esta propriedade" (vista <code>impacto</code>) e a matriz de projeções (vista <code>projecoes</code>).</li><li>Juntamente com o perfil, decide se uma regra é avaliável: se a condição lê uma propriedade que a projeção não inclui e o perfil não fixa, a regra não é avaliável (I10).</li></ul>
+<h3 id="verificacoes">Verificações</h3>
+<p><b>S-PROJ</b> (nome; HLM declarado; listas) e <b>I9</b> (caminhos existem; obrigatórias ∩ permitidas = ∅).</p><p class="note">Fonte: <a href="../../specs/entidades/ecr/RE_Projecao.md">specs/entidades/ecr/RE_Projecao.md</a></p></main><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,securityLevel:"loose"});}</script></body></html>

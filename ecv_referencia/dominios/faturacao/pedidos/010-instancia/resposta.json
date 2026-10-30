@@ -1,0 +1,112 @@
+{
+  "descricao": "Instância de teste válida para o perfil PERFILTESTE do HLM DocumentoFaturacao. Testa uma nota de crédito (381) com moeda EUR, fornecedor português, morada válida, linha de documento com encargo corretamente calculado e justificado, referência à fatura original, data de vencimento, totais coerentes e decomposição de IVA. Todos os campos necessários às regras aplicáveis estão preenchidos e os totais são matematicamente consistentes.",
+  "perfil": "PERFILTESTE",
+  "contextos": {},
+  "instancia": {
+    "CabecalhoDocumento": {
+      "tipoDocumento": "381",
+      "moeda": "EUR",
+      "moedaIva": "EUR",
+      "numero": "NC-2026-0001",
+      "dataVencimento": "2026-11-30",
+      "condicoesPagamento": "Pagamento a 30 dias",
+      "referenciaCliente": "CLI-2026-001",
+      "numeroCompromisso": "COMP-2026-001",
+      "tipoProcesso": "NORMAL",
+      "identificadorEspecificacao": "urn:cen.eu:en16931:2017#compliant#urn:feap.gov.pt:CIUS-PT:2.1",
+      "dataEmissao": "2026-10-30"
+    },
+    "Fornecedor": {
+      "registoFiscal": "PT501234567",
+      "capitalSocial": "50000 EUR",
+      "enderecoEletronico": "faturacao@empresa.pt",
+      "pontoContacto": "Departamento Financeiro",
+      "Morada": {
+        "rua": [
+          "Rua das Flores, 10"
+        ],
+        "localidade": "LISBOA",
+        "freguesia": "AJUDA",
+        "codigoPostal": "1300-001",
+        "pais": "PT"
+      }
+    },
+    "LocalEntrega": {
+      "Morada": {
+        "rua": [
+          "Rua das Flores, 10"
+        ],
+        "localidade": "LISBOA",
+        "freguesia": "AJUDA",
+        "codigoPostal": "1300-001",
+        "pais": "PT"
+      }
+    },
+    "DocumentosAnteriores": [
+      {
+        "ReferenciaDocumento": {
+          "numero": "FT-2026-0001"
+        }
+      }
+    ],
+    "LinhaDocumento": [
+      {
+        "identificador": "LIN-001",
+        "nota": "Correção de valor faturado anteriormente",
+        "identificadorObjeto": "ART-001",
+        "unidadeMedida": "UN",
+        "referenciaLinhaEncomenda": "ENC-001",
+        "numeroCompromisso": "COMP-2026-001",
+        "quantidade": 2,
+        "Preco": {
+          "precoLiquido": 100.00,
+          "quantidadeBase": 1
+        },
+        "CategoriaIva": {
+          "codigoCategoria": "S"
+        },
+        "Encargo": [
+          {
+            "montante": 10.00,
+            "montanteBase": 100.00,
+            "percentagem": 10,
+            "motivo": "Encargo administrativo",
+            "codigoMotivo": "ADM"
+          }
+        ],
+        "montanteLiquido": 210.00
+      }
+    ],
+    "Desconto": [],
+    "Encargo": [
+      {
+        "DescontoEncargo": {
+          "montante": 10.00,
+          "montanteBase": 100.00,
+          "percentagem": 10,
+          "motivo": "Encargo administrativo",
+          "codigoMotivo": "ADM"
+        }
+      }
+    ],
+    "DecomposicaoIva": [
+      {
+        "CategoriaIva": {
+          "codigoCategoria": "S"
+        },
+        "montanteImposto": 48.30
+      }
+    ],
+    "Totais": {
+      "somaLinhas": 210.00,
+      "totalDescontos": 0.00,
+      "totalEncargos": 10.00,
+      "totalIva": 48.30,
+      "valorPagar": 258.30
+    },
+    "Metainformacao": {
+      "origemModelo": "PERFILTESTE",
+      "referenciaOrigem": "TESTE-NC-001"
+    }
+  }
+}

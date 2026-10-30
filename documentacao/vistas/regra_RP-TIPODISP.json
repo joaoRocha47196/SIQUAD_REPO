@@ -1,0 +1,171 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-TIPODISP",
+  "regra": {
+    "id": "RP-TIPODISP",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+    "alcance": "SM Identificacao.tipoDispositivo",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "tipoDispositivo",
+      "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+      "dono": "Identificacao"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+      "texto": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+      "caminho": "tipoDispositivo",
+      "propriedade": "SM:Identificacao.tipoDispositivo",
+      "valor": [
+        "TEMPERATURA",
+        "HUMIDADE",
+        "PRESSAO",
+        "VELOCIDADE"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "SM:Identificacao.tipoDispositivo",
+      "nome": "tipoDispositivo",
+      "dono": "Identificacao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+    "texto": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+    "caminho": "tipoDispositivo",
+    "propriedade": "SM:Identificacao.tipoDispositivo",
+    "valor": [
+      "TEMPERATURA",
+      "HUMIDADE",
+      "PRESSAO",
+      "VELOCIDADE"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+    "alvo": {
+      "chave": "SM:Identificacao.tipoDispositivo",
+      "nome": "tipoDispositivo",
+      "dono": "Identificacao",
+      "nivelDono": "SM",
+      "tipo": "texto",
+      "descricao": "Grandeza medida pelo dispositivo"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+    "nome": "tipoDispositivo",
+    "dono": "Identificacao",
+    "nivelDono": "SM",
+    "tipo": "texto",
+    "descricao": "Grandeza medida pelo dispositivo",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-TIPODISP",
+        "rotulo": "RP",
+        "texto": "RP-TIPODISP",
+        "detalhe": "Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.tipoDispositivo",
+        "detalhe": "Grandeza medida pelo dispositivo"
+      },
+      {
+        "chave": "Restricao:RP-TIPODISP",
+        "rotulo": "Restricao",
+        "texto": "RP-TIPODISP#restricao",
+        "detalhe": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-TIPODISP",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-TIPODISP",
+        "para": "Restricao:RP-TIPODISP",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-TIPODISP",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "RESTRINGE",
+        "texto": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "nome": "tipoDispositivo",
+        "dono": "Identificacao",
+        "descricao": "Grandeza medida pelo dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-TIPODISP"
+  }
+}

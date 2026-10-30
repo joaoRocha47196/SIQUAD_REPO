@@ -1,0 +1,532 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo SM Identificacao",
+  "nivel": "SM",
+  "nome": "Identificacao",
+  "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "SM",
+    "nome": "Identificacao",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+    "propriedades": [
+      {
+        "chave": "SM:Identificacao.identificador",
+        "nome": "identificador",
+        "dono": "Identificacao",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Identificador do dispositivo",
+        "caminho": "identificador",
+        "nomesAlternativos": [
+          "deviceId"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Identificacao.fabricante",
+        "nome": "fabricante",
+        "dono": "Identificacao",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Fabricante do dispositivo",
+        "caminho": "fabricante",
+        "nomesAlternativos": [
+          "manufacturer"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Identificacao.estado",
+        "nome": "estado",
+        "dono": "Identificacao",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Estado operacional do dispositivo",
+        "caminho": "estado",
+        "nomesAlternativos": [
+          "status"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Identificacao.tipoDispositivo",
+        "nome": "tipoDispositivo",
+        "dono": "Identificacao",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Grandeza medida pelo dispositivo",
+        "caminho": "tipoDispositivo",
+        "nomesAlternativos": [
+          "deviceType"
+        ],
+        "discriminante": true
+      }
+    ],
+    "filhos": [],
+    "usadoPor": [
+      "Dispositivo"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "SM",
+    "nome": "Identificacao",
+    "caminho": "",
+    "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+    "regras": [],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Identificacao",
+      "nivel": "SM",
+      "proprio": true,
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "identificador",
+          "caminho": "identificador",
+          "descricao": "Identificador do dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "deviceId"
+          ],
+          "chave": "SM:Identificacao.identificador",
+          "dono": "Identificacao",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-IDENT",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+              "alcance": "SM Identificacao.identificador",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "identificador",
+                "chave": "Propriedade:SM:Identificacao.identificador",
+                "dono": "Identificacao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).",
+                "texto": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+                "caminho": "identificador",
+                "propriedade": "SM:Identificacao.identificador",
+                "valor": "^[A-Z]+-[0-9]{4}$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "SM:Identificacao.identificador",
+                "nome": "identificador",
+                "dono": "Identificacao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "identificador"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "fabricante",
+          "caminho": "fabricante",
+          "descricao": "Fabricante do dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "manufacturer"
+          ],
+          "chave": "SM:Identificacao.fabricante",
+          "dono": "Identificacao",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-FABRICANTE",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.fabricante tem entre 2 e 50 caracteres",
+              "alcance": "SM Identificacao.fabricante",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "fabricante",
+                "chave": "Propriedade:SM:Identificacao.fabricante",
+                "dono": "Identificacao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "LENGTH",
+                "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres.",
+                "texto": "fabricante tem entre 2 e 50 caracteres",
+                "caminho": "fabricante",
+                "propriedade": "SM:Identificacao.fabricante",
+                "valor": [
+                  2,
+                  50
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "SM:Identificacao.fabricante",
+                "nome": "fabricante",
+                "dono": "Identificacao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "fabricante"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "estado",
+          "caminho": "estado",
+          "descricao": "Estado operacional do dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "status"
+          ],
+          "chave": "SM:Identificacao.estado",
+          "dono": "Identificacao",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-ESTADO",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+              "alcance": "SM Identificacao.estado",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "estado",
+                "chave": "Propriedade:SM:Identificacao.estado",
+                "dono": "Identificacao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "O estado tem de ser ativo, inativo ou em manutenção.",
+                "texto": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+                "caminho": "estado",
+                "propriedade": "SM:Identificacao.estado",
+                "valor": [
+                  "ATIVO",
+                  "INATIVO",
+                  "MANUTENCAO"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O estado tem de ser ativo, inativo ou em manutenção.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "SM:Identificacao.estado",
+                "nome": "estado",
+                "dono": "Identificacao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "estado"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "tipoDispositivo",
+          "caminho": "tipoDispositivo",
+          "descricao": "Grandeza medida pelo dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "deviceType"
+          ],
+          "chave": "SM:Identificacao.tipoDispositivo",
+          "dono": "Identificacao",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-TIPODISP",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+              "alcance": "SM Identificacao.tipoDispositivo",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "tipoDispositivo",
+                "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+                "dono": "Identificacao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+                "texto": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+                "caminho": "tipoDispositivo",
+                "propriedade": "SM:Identificacao.tipoDispositivo",
+                "valor": [
+                  "TEMPERATURA",
+                  "HUMIDADE",
+                  "PRESSAO",
+                  "VELOCIDADE"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "SM:Identificacao.tipoDispositivo",
+                "nome": "tipoDispositivo",
+                "dono": "Identificacao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "tipoDispositivo"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "identificador",
+        "fabricante",
+        "estado",
+        "tipoDispositivo"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Dispositivo"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Dispositivo",
+            "papel": "Identificacao",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Identificacao"
+          }
+        ],
+        "texto": "Dispositivo › Identificacao"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-ESTADO",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+      "alcance": "SM Identificacao.estado",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "estado",
+        "chave": "Propriedade:SM:Identificacao.estado",
+        "dono": "Identificacao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "O estado tem de ser ativo, inativo ou em manutenção.",
+        "texto": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+        "caminho": "estado",
+        "propriedade": "SM:Identificacao.estado",
+        "valor": [
+          "ATIVO",
+          "INATIVO",
+          "MANUTENCAO"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O estado tem de ser ativo, inativo ou em manutenção.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "SM:Identificacao.estado",
+        "nome": "estado",
+        "dono": "Identificacao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "estado"
+      ]
+    },
+    {
+      "id": "RP-FABRICANTE",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Identificacao.fabricante tem entre 2 e 50 caracteres",
+      "alcance": "SM Identificacao.fabricante",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "fabricante",
+        "chave": "Propriedade:SM:Identificacao.fabricante",
+        "dono": "Identificacao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "LENGTH",
+        "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres.",
+        "texto": "fabricante tem entre 2 e 50 caracteres",
+        "caminho": "fabricante",
+        "propriedade": "SM:Identificacao.fabricante",
+        "valor": [
+          2,
+          50
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "SM:Identificacao.fabricante",
+        "nome": "fabricante",
+        "dono": "Identificacao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "fabricante"
+      ]
+    },
+    {
+      "id": "RP-IDENT",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+      "alcance": "SM Identificacao.identificador",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "identificador",
+        "chave": "Propriedade:SM:Identificacao.identificador",
+        "dono": "Identificacao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).",
+        "texto": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+        "caminho": "identificador",
+        "propriedade": "SM:Identificacao.identificador",
+        "valor": "^[A-Z]+-[0-9]{4}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "SM:Identificacao.identificador",
+        "nome": "identificador",
+        "dono": "Identificacao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "identificador"
+      ]
+    },
+    {
+      "id": "RP-TIPODISP",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+      "alcance": "SM Identificacao.tipoDispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "tipoDispositivo",
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "dono": "Identificacao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+        "texto": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+        "caminho": "tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "valor": [
+          "TEMPERATURA",
+          "HUMIDADE",
+          "PRESSAO",
+          "VELOCIDADE"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "SM:Identificacao.tipoDispositivo",
+        "nome": "tipoDispositivo",
+        "dono": "Identificacao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "tipoDispositivo"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 4,
+    "RIR": 0,
+    "RIC": 0,
+    "FN": 0
+  },
+  "funcoes": [],
+  "contextos": [],
+  "parametros": {
+    "nivel": "SM",
+    "nome": "Identificacao",
+    "regras": true
+  }
+}

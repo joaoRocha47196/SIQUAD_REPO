@@ -1,0 +1,176 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-EMAIL",
+  "regra": {
+    "id": "RP-EMAIL",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Contacto.email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+    "alcance": "USM Contacto.email",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "email",
+      "chave": "Propriedade:USM:Contacto.email",
+      "dono": "Contacto"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas.",
+      "texto": "email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+      "caminho": "email",
+      "propriedade": "USM:Contacto.email",
+      "valor": "^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Contacto.email",
+      "nome": "email",
+      "dono": "Contacto"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas.",
+    "texto": "email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+    "caminho": "email",
+    "propriedade": "USM:Contacto.email",
+    "valor": "^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+    "alvo": {
+      "chave": "USM:Contacto.email",
+      "nome": "email",
+      "dono": "Contacto",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Endereço de correio eletrónico"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Contacto.email",
+    "nome": "email",
+    "dono": "Contacto",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Endereço de correio eletrónico",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-EMAIL",
+        "rotulo": "RP",
+        "texto": "RP-EMAIL",
+        "detalhe": "Contacto.email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$"
+      },
+      {
+        "chave": "Propriedade:USM:Contacto.email",
+        "rotulo": "Propriedade",
+        "texto": "USM:Contacto.email",
+        "detalhe": "Endereço de correio eletrónico"
+      },
+      {
+        "chave": "Restricao:RP-EMAIL",
+        "rotulo": "Restricao",
+        "texto": "RP-EMAIL#restricao",
+        "detalhe": "email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-EMAIL",
+        "para": "Propriedade:USM:Contacto.email",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-EMAIL",
+        "para": "Restricao:RP-EMAIL",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-EMAIL",
+        "para": "Propriedade:USM:Contacto.email",
+        "tipo": "RESTRINGE",
+        "texto": "email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Contacto.email",
+        "rotulo": "Propriedade",
+        "nome": "email",
+        "dono": "Contacto",
+        "descricao": "Endereço de correio eletrónico",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Contacto",
+        "rotulo": "USM",
+        "nome": "Contacto",
+        "dono": null,
+        "descricao": "Contacto eletrónico de uma entidade.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "dono": null,
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Contacto",
+        "para": "Propriedade:USM:Contacto.email",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Contacto",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Contacto",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Emitente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Emitente",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-EMAIL"
+  }
+}

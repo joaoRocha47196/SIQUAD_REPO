@@ -1,0 +1,60 @@
+{
+  "descricao": "Ordem de instalação com duas localizações: uma em Lisboa, outra fora da área de serviço e com o código postal errado.",
+  "perfil": "OrdensCorrentes",
+  "contextos": {
+    "dataDeHoje": "2026-09-30"
+  },
+  "instancia": {
+    "Pedido": {
+      "numeroOrdem": "OI-2026-00042",
+      "dataPedido": "2026-09-28"
+    },
+    "Requerente": {
+      "consentimentoComercial": false,
+      "Entidade": {
+        "nif": "512345678",
+        "nome": "Condomínio Exemplo"
+      },
+      "Morada": {
+        "rua": "Avenida da República 1",
+        "codigoPostal": "1050-185",
+        "localidade": "LISBOA",
+        "freguesia": "AVENIDAS_NOVAS",
+        "pais": "PT"
+      }
+    },
+    "Localizacao": [
+      {
+        "indicacaoAcesso": "Portaria",
+        "InformacaoGeografica": {
+          "latitude": 38.735,
+          "longitude": -9.145,
+          "altitude": 95,
+          "sistemaReferencia": "WGS84"
+        },
+        "Morada": {
+          "rua": "Avenida da República 1",
+          "codigoPostal": "1050-185",
+          "localidade": "LISBOA",
+          "freguesia": "AVENIDAS_NOVAS",
+          "pais": "PT"
+        }
+      },
+      {
+        "InformacaoGeografica": {
+          "latitude": 41.15,
+          "longitude": -8.61,
+          "altitude": 100,
+          "sistemaReferencia": "WGS84"
+        },
+        "Morada": {
+          "rua": "Rua de Santa Catarina 1",
+          "codigoPostal": "4000",
+          "localidade": "PORTO",
+          "freguesia": "BONFIM",
+          "pais": "PT"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "descricao": "Fatura para a AT com erros: soma das linhas diferente do total, taxa de IVA errada, NIF do cliente inválido, código postal que não corresponde à freguesia, data no futuro em relação à auditoria e um campo desconhecido.",
+  "perfil": "AuditoriaSetembro2026",
+  "contextos": {
+    "hashAnterior": "0000000000000000000000000000000000000000000000000000000000000000",
+    "seriesComunicadasAT": {
+      "FS2026": "JFKL3M7Q",
+      "FT2026": "AB12CD34"
+    }
+  },
+  "instancia": {
+    "Cabecalho": {
+      "numero": "FT2026/301",
+      "serie": "FT2026",
+      "atcud": "AB12CD34-301",
+      "tipoDocumento": "FT",
+      "dataEmissao": "2026-10-02",
+      "totalFatura": 1500.0,
+      "hash": "abc"
+    },
+    "Emitente": {
+      "Entidade": {
+        "nif": "500000000",
+        "nome": "Companhia X"
+      },
+      "Morada": {
+        "rua": "Rua da Junqueira 10",
+        "codigoPostal": "1300-343",
+        "localidade": "LISBOA",
+        "freguesia": "AJUDA",
+        "pais": "PT"
+      },
+      "Contacto": {
+        "email": "faturacao@companhiax.com"
+      }
+    },
+    "Cliente": {
+      "consentimentoComercial": true,
+      "Entidade": {
+        "nif": "123456780",
+        "nome": "Cliente Exemplo"
+      },
+      "Morada": {
+        "rua": "Rua de Belém 5",
+        "codigoPostal": "1200-100",
+        "localidade": "LISBOA",
+        "freguesia": "AJUDA",
+        "pais": "PT"
+      }
+    },
+    "Linhas": {
+      "Linha": [
+        {
+          "numero": 1,
+          "descricao": "Equipamento",
+          "valor": 1200.0,
+          "tipoIVA": "NORMAL",
+          "taxaIVA": 23
+        },
+        {
+          "numero": 3,
+          "descricao": "Instalação",
+          "valor": 250.0,
+          "tipoIVA": "NORMAL",
+          "taxaIVA": 6
+        }
+      ]
+    },
+    "observacoes": "campo que não existe no modelo"
+  }
+}

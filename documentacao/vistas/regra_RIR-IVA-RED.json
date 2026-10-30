@@ -1,0 +1,254 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-IVA-RED",
+  "regra": {
+    "id": "RIR-IVA-RED",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6",
+    "alcance": "USM Linha",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "USM",
+      "nome": "Linha",
+      "chave": "USM:Linha",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "EQUALS",
+      "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+      "texto": "taxaIVA = 6",
+      "caminho": "taxaIVA",
+      "propriedade": "USM:Linha.taxaIVA",
+      "valor": 6,
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "tipoIVA",
+        "propriedade": "USM:Linha.tipoIVA",
+        "operador": "EQUALS",
+        "valor": "REDUZIDA",
+        "contexto": null,
+        "texto": "tipoIVA = REDUZIDA",
+        "nome": "tipoIVA"
+      }
+    ],
+    "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "EQUALS",
+    "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+    "texto": "taxaIVA = 6",
+    "caminho": "taxaIVA",
+    "propriedade": "USM:Linha.taxaIVA",
+    "valor": 6,
+    "minimo": null,
+    "maximo": null,
+    "descricao": "taxaIVA = 6",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Taxa de IVA aplicada à linha (%)"
+    }
+  },
+  "condicao": {
+    "descricao": "tipoIVA = REDUZIDA",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "tipoIVA",
+        "propriedade": "USM:Linha.tipoIVA",
+        "operador": "EQUALS",
+        "valor": "REDUZIDA",
+        "contexto": null,
+        "texto": "tipoIVA = REDUZIDA",
+        "nome": "tipoIVA",
+        "alvo": {
+          "chave": "USM:Linha.tipoIVA",
+          "nome": "tipoIVA",
+          "dono": "Linha",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Tipo de taxa de IVA aplicada à linha"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "USM",
+    "nome": "Linha",
+    "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+    "chave": "USM:Linha",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-IVA-RED",
+        "rotulo": "RIR",
+        "texto": "RIR-IVA-RED",
+        "detalhe": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "texto": "Linha",
+        "detalhe": "Linha de um documento: um bem ou serviço, com valor e IVA."
+      },
+      {
+        "chave": "Restricao:RIR-IVA-RED",
+        "rotulo": "Restricao",
+        "texto": "RIR-IVA-RED#restricao",
+        "detalhe": "taxaIVA = 6"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.taxaIVA",
+        "detalhe": "Taxa de IVA aplicada à linha (%)"
+      },
+      {
+        "chave": "Condicao:RIR-IVA-RED",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-IVA-RED#condicao",
+        "detalhe": "tipoIVA = REDUZIDA"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.tipoIVA",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.tipoIVA",
+        "detalhe": "Tipo de taxa de IVA aplicada à linha"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-IVA-RED",
+        "para": "USM:Linha",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-IVA-RED",
+        "para": "Restricao:RIR-IVA-RED",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-IVA-RED",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "RESTRINGE",
+        "texto": "taxaIVA = 6"
+      },
+      {
+        "de": "R:RIR-IVA-RED",
+        "para": "Condicao:RIR-IVA-RED",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-IVA-RED",
+        "para": "Propriedade:USM:Linha.tipoIVA",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoIVA = REDUZIDA"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "nome": "taxaIVA",
+        "dono": "Linha",
+        "descricao": "Taxa de IVA aplicada à linha (%)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.tipoIVA",
+        "rotulo": "Propriedade",
+        "nome": "tipoIVA",
+        "dono": "Linha",
+        "descricao": "Tipo de taxa de IVA aplicada à linha",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.tipoIVA",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-IVA-RED"
+  }
+}

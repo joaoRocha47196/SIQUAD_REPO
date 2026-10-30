@@ -1,0 +1,273 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de ambiente (Instalacao)",
+  "propriedade": "USM:Instalacao.ambiente",
+  "nome": "ambiente",
+  "regras": [
+    {
+      "id": "RP-AMBIENTE",
+      "tipo": "RP",
+      "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIR-HUM-ARMAZEM",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 30 e 60",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-HUM-ESTUFA",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 60 e 90",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-HUM-EXTERIOR",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 100",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-HUM-REFRIG",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 80 e 95",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-HUM-SERVIDORES",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 40 e 60",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-PRES-EXTERIOR-BAR",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-PRES-EXTERIOR-HPA",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ARMAZEM-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 5 e 30",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 41 e 86",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ARMAZEM-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 278.15 e 303.15",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-CAMARA-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = CAMARA_FRIGORIFICA → Leitura.Medicao.valor entre -25 e -18",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ESTUFA-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 15 e 45",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 59 e 113",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ESTUFA-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 288.15 e 318.15",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-EXTERIOR-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -20 e 50",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -4 e 122",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-EXTERIOR-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 253.15 e 323.15",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-INCIN-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 200 e 1200",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-INCIN-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 392 e 2192",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-INCIN-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 473.15 e 1473.15",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-REFRIG-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -30 e 0",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-REFRIG-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -22 e 32",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-REFRIG-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 243.15 e 273.15",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-SERVIDORES-CELSIUS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 18 e 27",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 64.4 e 80.6",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-TEMP-SERVIDORES-KELVIN",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 291.15 e 300.15",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-VEL-EXTERIOR-KMH",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 144",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-VEL-EXTERIOR-MS",
+      "tipo": "RIR",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 40",
+      "papeis": [
+        "termo da condição"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 1,
+    "RIR": 28,
+    "RIC": 0
+  },
+  "projecoes": [
+    {
+      "projecao": "DispositivoProducao",
+      "tipo": "obrigatoria",
+      "caminho": "Leitura.Instalacao.ambiente"
+    }
+  ],
+  "perfis": [
+    {
+      "perfil": "RefrigeracaoLote",
+      "caminho": "Leitura.Instalacao.ambiente",
+      "valor": "REFRIGERACAO"
+    },
+    {
+      "perfil": "Estufas",
+      "caminho": "Leitura.Instalacao.ambiente",
+      "valor": "ESTUFA"
+    },
+    {
+      "perfil": "TesteRefrigeracao",
+      "caminho": "Leitura.Instalacao.ambiente",
+      "valor": "REFRIGERACAO"
+    }
+  ],
+  "parametros": {
+    "propriedade": "USM:Instalacao.ambiente"
+  }
+}

@@ -1,0 +1,5 @@
+# Núcleo (verificação, grafo em memória, ViewModels, vistas HTML): só a biblioteca padrão do Python >= 3.10.
+#
+# Opcionais:
+neo4j>=5.20,<6        # importar para o Neo4j e calcular as vistas sobre o Neo4j (python -m ecv importar | --neo4j | cypher)
+jsonschema>=4.18      # validar a declaração contra specs/declaracao/ecv.schema.json (S-SCHEMA)

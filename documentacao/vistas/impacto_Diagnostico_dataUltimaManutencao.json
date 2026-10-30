@@ -1,0 +1,50 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de dataUltimaManutencao (Diagnostico)",
+  "propriedade": "USM:Diagnostico.dataUltimaManutencao",
+  "nome": "dataUltimaManutencao",
+  "regras": [
+    {
+      "id": "RP-MANUT-DATA",
+      "tipo": "RP",
+      "descricao": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RP-MANUT-FUTURA",
+      "tipo": "RP",
+      "descricao": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)",
+      "papeis": [
+        "argumento de naoPosteriorAHoje (restricao)",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIC-MANUT",
+      "tipo": "RIC",
+      "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+      "papeis": [
+        "argumento de excedeDiasDesdeHoje (termo)"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 2,
+    "RIR": 0,
+    "RIC": 1
+  },
+  "projecoes": [
+    {
+      "projecao": "DispositivoProducao",
+      "tipo": "obrigatoria",
+      "caminho": "Diagnostico.Diagnostico.dataUltimaManutencao"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "USM:Diagnostico.dataUltimaManutencao"
+  }
+}

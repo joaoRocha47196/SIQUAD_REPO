@@ -1,0 +1,176 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-MANUT-DATA",
+  "regra": {
+    "id": "RP-MANUT-DATA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01",
+    "alcance": "USM Diagnostico.dataUltimaManutencao",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "dataUltimaManutencao",
+      "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+      "dono": "Diagnostico"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "GTE",
+      "mensagem": "A data da última manutenção não é uma data plausível.",
+      "texto": "dataUltimaManutencao ≥ 2000-01-01",
+      "caminho": "dataUltimaManutencao",
+      "propriedade": "USM:Diagnostico.dataUltimaManutencao",
+      "valor": "2000-01-01",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "A data da última manutenção não é uma data plausível.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Diagnostico.dataUltimaManutencao",
+      "nome": "dataUltimaManutencao",
+      "dono": "Diagnostico"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "GTE",
+    "mensagem": "A data da última manutenção não é uma data plausível.",
+    "texto": "dataUltimaManutencao ≥ 2000-01-01",
+    "caminho": "dataUltimaManutencao",
+    "propriedade": "USM:Diagnostico.dataUltimaManutencao",
+    "valor": "2000-01-01",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "dataUltimaManutencao ≥ 2000-01-01",
+    "alvo": {
+      "chave": "USM:Diagnostico.dataUltimaManutencao",
+      "nome": "dataUltimaManutencao",
+      "dono": "Diagnostico",
+      "nivelDono": "USM",
+      "tipo": "data",
+      "descricao": "Data da última manutenção"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+    "nome": "dataUltimaManutencao",
+    "dono": "Diagnostico",
+    "nivelDono": "USM",
+    "tipo": "data",
+    "descricao": "Data da última manutenção",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-MANUT-DATA",
+        "rotulo": "RP",
+        "texto": "RP-MANUT-DATA",
+        "detalhe": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.dataUltimaManutencao",
+        "detalhe": "Data da última manutenção"
+      },
+      {
+        "chave": "Restricao:RP-MANUT-DATA",
+        "rotulo": "Restricao",
+        "texto": "RP-MANUT-DATA#restricao",
+        "detalhe": "dataUltimaManutencao ≥ 2000-01-01"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-MANUT-DATA",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-MANUT-DATA",
+        "para": "Restricao:RP-MANUT-DATA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-MANUT-DATA",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "RESTRINGE",
+        "texto": "dataUltimaManutencao ≥ 2000-01-01"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "rotulo": "Propriedade",
+        "nome": "dataUltimaManutencao",
+        "dono": "Diagnostico",
+        "descricao": "Data da última manutenção",
+        "tipoBase": "data"
+      },
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Diagnostico",
+        "rotulo": "SM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Diagnostico",
+        "para": "USM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-MANUT-DATA"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-IVA-NOR",
+  "regra": {
+    "id": "RIR-IVA-NOR",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23",
+    "alcance": "USM Linha",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "USM",
+      "nome": "Linha",
+      "chave": "USM:Linha",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "EQUALS",
+      "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+      "texto": "taxaIVA = 23",
+      "caminho": "taxaIVA",
+      "propriedade": "USM:Linha.taxaIVA",
+      "valor": 23,
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "tipoIVA",
+        "propriedade": "USM:Linha.tipoIVA",
+        "operador": "EQUALS",
+        "valor": "NORMAL",
+        "contexto": null,
+        "texto": "tipoIVA = NORMAL",
+        "nome": "tipoIVA"
+      }
+    ],
+    "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "EQUALS",
+    "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+    "texto": "taxaIVA = 23",
+    "caminho": "taxaIVA",
+    "propriedade": "USM:Linha.taxaIVA",
+    "valor": 23,
+    "minimo": null,
+    "maximo": null,
+    "descricao": "taxaIVA = 23",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Taxa de IVA aplicada à linha (%)"
+    }
+  },
+  "condicao": {
+    "descricao": "tipoIVA = NORMAL",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "tipoIVA",
+        "propriedade": "USM:Linha.tipoIVA",
+        "operador": "EQUALS",
+        "valor": "NORMAL",
+        "contexto": null,
+        "texto": "tipoIVA = NORMAL",
+        "nome": "tipoIVA",
+        "alvo": {
+          "chave": "USM:Linha.tipoIVA",
+          "nome": "tipoIVA",
+          "dono": "Linha",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Tipo de taxa de IVA aplicada à linha"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "USM",
+    "nome": "Linha",
+    "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+    "chave": "USM:Linha",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-IVA-NOR",
+        "rotulo": "RIR",
+        "texto": "RIR-IVA-NOR",
+        "detalhe": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "texto": "Linha",
+        "detalhe": "Linha de um documento: um bem ou serviço, com valor e IVA."
+      },
+      {
+        "chave": "Restricao:RIR-IVA-NOR",
+        "rotulo": "Restricao",
+        "texto": "RIR-IVA-NOR#restricao",
+        "detalhe": "taxaIVA = 23"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.taxaIVA",
+        "detalhe": "Taxa de IVA aplicada à linha (%)"
+      },
+      {
+        "chave": "Condicao:RIR-IVA-NOR",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-IVA-NOR#condicao",
+        "detalhe": "tipoIVA = NORMAL"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.tipoIVA",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.tipoIVA",
+        "detalhe": "Tipo de taxa de IVA aplicada à linha"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-IVA-NOR",
+        "para": "USM:Linha",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-IVA-NOR",
+        "para": "Restricao:RIR-IVA-NOR",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-IVA-NOR",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "RESTRINGE",
+        "texto": "taxaIVA = 23"
+      },
+      {
+        "de": "R:RIR-IVA-NOR",
+        "para": "Condicao:RIR-IVA-NOR",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-IVA-NOR",
+        "para": "Propriedade:USM:Linha.tipoIVA",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoIVA = NORMAL"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "nome": "taxaIVA",
+        "dono": "Linha",
+        "descricao": "Taxa de IVA aplicada à linha (%)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.tipoIVA",
+        "rotulo": "Propriedade",
+        "nome": "tipoIVA",
+        "dono": "Linha",
+        "descricao": "Tipo de taxa de IVA aplicada à linha",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.tipoIVA",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-IVA-NOR"
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIC-MANUT",
+  "regra": {
+    "id": "RIC-MANUT",
+    "tipo": "RIC",
+    "natureza": "inferencia_conclusiva",
+    "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+    "alcance": "USM Diagnostico",
+    "notas": null,
+    "contextosExternos": [
+      "dataDeHoje"
+    ],
+    "viveEm": {
+      "rotulo": "USM",
+      "nome": "Diagnostico",
+      "chave": "USM:Diagnostico",
+      "dono": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "nivelBateria",
+        "propriedade": "USM:Diagnostico.nivelBateria",
+        "operador": "RANGE",
+        "valor": [
+          0,
+          10
+        ],
+        "contexto": null,
+        "texto": "nivelBateria entre 0 e 10",
+        "nome": "nivelBateria"
+      },
+      {
+        "ordem": 1,
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+        "chamada": {
+          "funcao": "excedeDiasDesdeHoje",
+          "chamada": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+          "operador": "EXT_FUNCTION",
+          "termo": 1,
+          "descricaoFuncao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+          "argumentos": [
+            {
+              "caminho": "dataUltimaManutencao",
+              "alvo": "USM:Diagnostico.dataUltimaManutencao",
+              "nomeAlvo": "dataUltimaManutencao",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "dataDeHoje"
+          ]
+        }
+      }
+    ],
+    "mensagem": "Ação MANUTENCAO: o nível de bateria está baixo e o dispositivo não recebe manutenção há mais de 7 dias.",
+    "conclusao": {
+      "tipo": "ACAO",
+      "valor": "MANUTENCAO"
+    },
+    "funcao": false,
+    "categoria": "RIC",
+    "alvo": null,
+    "funcoes": [
+      "excedeDiasDesdeHoje"
+    ]
+  },
+  "restricao": null,
+  "condicao": {
+    "descricao": "nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "nivelBateria",
+        "propriedade": "USM:Diagnostico.nivelBateria",
+        "operador": "RANGE",
+        "valor": [
+          0,
+          10
+        ],
+        "contexto": null,
+        "texto": "nivelBateria entre 0 e 10",
+        "nome": "nivelBateria",
+        "alvo": {
+          "chave": "USM:Diagnostico.nivelBateria",
+          "nome": "nivelBateria",
+          "dono": "Diagnostico",
+          "nivelDono": "USM",
+          "tipo": "decimal",
+          "descricao": "Nível de bateria (%)"
+        }
+      },
+      {
+        "ordem": 1,
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+        "chamada": {
+          "funcao": "excedeDiasDesdeHoje",
+          "chamada": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+          "operador": "EXT_FUNCTION",
+          "termo": 1,
+          "descricaoFuncao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+          "argumentos": [
+            {
+              "caminho": "dataUltimaManutencao",
+              "alvo": "USM:Diagnostico.dataUltimaManutencao",
+              "nomeAlvo": "dataUltimaManutencao",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "dataDeHoje"
+          ]
+        },
+        "funcao": {
+          "nome": "excedeDiasDesdeHoje",
+          "descricao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+          "parametros": [
+            {
+              "nome": "data",
+              "tipo": "data",
+              "papel": "alvo",
+              "descricao": "Data a comparar com a data de hoje."
+            },
+            {
+              "nome": "n",
+              "tipo": "inteiro",
+              "papel": "parametro",
+              "descricao": "Número de dias."
+            }
+          ],
+          "retorno": "booleano",
+          "contextos": [
+            {
+              "nome": "dataDeHoje",
+              "tipo": "data",
+              "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+              "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "USM",
+    "nome": "Diagnostico",
+    "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+    "chave": "USM:Diagnostico",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIC-MANUT",
+        "rotulo": "RIC",
+        "texto": "RIC-MANUT",
+        "detalhe": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO"
+      },
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "texto": "Diagnostico",
+        "detalhe": "Estado técnico do dispositivo: bateria, manutenção e rede."
+      },
+      {
+        "chave": "Condicao:RIC-MANUT",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIC-MANUT#condicao",
+        "detalhe": "nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(dataUltimaManutencao, 7)"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.nivelBateria",
+        "detalhe": "Nível de bateria (%)"
+      },
+      {
+        "chave": "Funcao:excedeDiasDesdeHoje",
+        "rotulo": "Funcao",
+        "texto": "excedeDiasDesdeHoje",
+        "detalhe": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje."
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.dataUltimaManutencao",
+        "detalhe": "Data da última manutenção"
+      },
+      {
+        "chave": "ContextoExterno:dataDeHoje",
+        "rotulo": "ContextoExterno",
+        "texto": "dataDeHoje",
+        "detalhe": "Data atual no momento da avaliação (AAAA-MM-DD)."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIC-MANUT",
+        "para": "USM:Diagnostico",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIC-MANUT",
+        "para": "Condicao:RIC-MANUT",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIC-MANUT",
+        "para": "Propriedade:USM:Diagnostico.nivelBateria",
+        "tipo": "TERMO",
+        "texto": "termo 1: nivelBateria entre 0 e 10"
+      },
+      {
+        "de": "Condicao:RIC-MANUT",
+        "para": "Funcao:excedeDiasDesdeHoje",
+        "tipo": "CHAMA",
+        "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)"
+      },
+      {
+        "de": "Funcao:excedeDiasDesdeHoje",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "LE",
+        "texto": "argumento: dataUltimaManutencao"
+      },
+      {
+        "de": "Funcao:excedeDiasDesdeHoje",
+        "para": "ContextoExterno:dataDeHoje",
+        "tipo": "DEPENDE_DE",
+        "texto": null
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+        "rotulo": "Propriedade",
+        "nome": "nivelBateria",
+        "dono": "Diagnostico",
+        "descricao": "Nível de bateria (%)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "rotulo": "Propriedade",
+        "nome": "dataUltimaManutencao",
+        "dono": "Diagnostico",
+        "descricao": "Data da última manutenção",
+        "tipoBase": "data"
+      },
+      {
+        "chave": "SM:Diagnostico",
+        "rotulo": "SM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Diagnostico",
+        "para": "USM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.nivelBateria",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIC-MANUT"
+  }
+}

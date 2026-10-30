@@ -1,0 +1,17 @@
+{
+ "id": "005-instancia",
+ "tipo": "instancia",
+ "titulo": "Instância de teste deve_estar_de_acordo_com_algumas",
+ "passo": null,
+ "estado": "aplicado",
+ "criado": "2026-10-30T14:50:44",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "perfil": "EmissaoAutofaturacao",
+ "hlm": "",
+ "nome": "deve_estar_de_acordo_com_algumas",
+ "pedido": "Deve estar de acordo com algumas regras e falhar noutras para testar a validacao",
+ "respondido": "2026-10-30T14:53:17",
+ "aplicado": "2026-10-30T14:53:21",
+ "resumo": "instância gravada em dominios\\faturacao\\instancias\\deve_estar_de_acordo_com_algumas.json; inválida (não conforme: 7, conforme: 105, não aplicável: 87, sem valor: 14, não avaliável: 27, fora da projeção: 4, ausente: 96)"
+}

@@ -1,0 +1,15 @@
+{
+ "id": "001-passo-G",
+ "tipo": "passo",
+ "titulo": "Fase G: Geração da declaração completa",
+ "passo": "G",
+ "estado": "pendente",
+ "criado": "2026-10-29T23:18:37",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "iot",
+ "tamanho": {
+  "caracteres": 186425,
+  "tokensEstimados": 46606,
+  "linhas": 2243
+ }
+}

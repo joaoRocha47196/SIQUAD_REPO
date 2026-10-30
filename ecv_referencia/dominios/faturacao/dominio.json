@@ -1,0 +1,89 @@
+{
+  "id": "faturacao",
+  "nome": "Faturação",
+  "descricao": "Documentos de faturação em Portugal: fatura, nota de crédito, nota de débito e mensagem de estado segundo o CIUS-PT (modelo semântico EN 16931 e schematron da AT/eSPap), completados com as entidades de uma aplicação real de faturação e vendas (FM): clientes, vendedores, artigos, entregas e o desenho dos registos de exportação. As duas fontes usam-se em conjunto para um cenário completo: o CIUS-PT dá o modelo semântico e as regras legais; o FM dá a informação operacional (vendedores, zonas, stocks, entregas) e o formato de exportação.",
+  "fontes": [
+    {
+      "id": "cius-pt-schematron",
+      "adaptador": "cius_pt.schematron",
+      "caminho": "data/CIS_PT_SCHEMATRON/urn_feap.gov.pt_cius-pt_schematron",
+      "papel": "regras de validação da fatura eletrónica (sintaxe, modelo, condições, tipos de dados)"
+    },
+    {
+      "id": "cius-pt-guia",
+      "adaptador": "cius_pt.guia",
+      "caminho": "data/CIS_PT_SCHEMATRON/guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf",
+      "nomesDe": "cius-pt-schematron",
+      "papel": "modelo semântico: a estrutura principal (BG e BT), independente da sintaxe XML"
+    },
+    {
+      "id": "cius-pt-ubl-fatura",
+      "adaptador": "cius_pt.ubl",
+      "caminho": "data/CIS_PT_SCHEMATRON/Fatura CIUS-PT_UBL2.1_V1.0.0.xml",
+      "papel": "sintaxe UBL da fatura: cardinalidades e descrições em português de cada elemento",
+      "passoA": "complementar"
+    },
+    {
+      "id": "cius-pt-ubl-nota-de-credito",
+      "adaptador": "cius_pt.ubl",
+      "caminho": "data/CIS_PT_SCHEMATRON/Nota de Credito CIUS-PT_UBL2.1_V1.0.0.xml",
+      "papel": "sintaxe UBL da nota de crédito",
+      "passoA": "complementar"
+    },
+    {
+      "id": "cius-pt-ubl-mensagem-de-estado",
+      "adaptador": "cius_pt.ubl",
+      "caminho": "data/CIS_PT_SCHEMATRON/Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml",
+      "papel": "sintaxe UBL da mensagem de estado (resposta do adquirente)",
+      "passoA": "complementar"
+    },
+    {
+      "id": "fm-dart",
+      "adaptador": "fm.dart",
+      "caminho": "data/FM/model",
+      "papel": "entidades da aplicação FM: cliente, vendedor, empresa, artigo, entrega, linha de entrega, zona, configuração"
+    },
+    {
+      "id": "fm-registos",
+      "adaptador": "fm.registos",
+      "caminho": "data/FM/Campos Exporta*.xlsx",
+      "papel": "desenho dos registos de exportação FM (VDM, CLI, YCL, STK, AUX, PRV): campos, comprimentos e tipos"
+    }
+  ],
+  "excluidos": [
+    {
+      "caminho": "data/FM/Dados_Imp.txt",
+      "motivo": "dados reais com informação pessoal (nomes, moradas, NIF): só se usa o desenho dos registos"
+    },
+    {
+      "caminho": "data/FM/delivery_text_controller.dart",
+      "motivo": "código de interface, sem modelo de dados"
+    },
+    {
+      "caminho": "data/Comunicacao_dos_elementos_dos_documentos_de_faturacao.pdf",
+      "motivo": "comunicação à AT (SAF-T): fora do âmbito desta iteração"
+    },
+    {
+      "caminho": "SAF-T PT (XSD 1.03_01)",
+      "motivo": "não disponível nesta iteração (a decidir mais tarde)"
+    }
+  ],
+  "utilizacoes": [
+    "Emissão de fatura eletrónica CIUS-PT (tipo 380) para entidades públicas",
+    "Emissão de nota de crédito (381), incluindo nota de crédito de rappel",
+    "Emissão de nota de débito (383), fatura de adiantamento (386) e autofaturação (389)",
+    "Mensagem de estado: resposta do adquirente a um documento recebido",
+    "Exportação dos registos de vendas, clientes, vendedores e stocks da aplicação FM",
+    "Entregas e encomendas da aplicação FM (documento de venda, guia de transporte)"
+  ],
+  "cenarios": [
+    "Emissão em Portugal, em euros, por um fornecedor com NIF português",
+    "Fatura isenta de IVA (motivo de isenção obrigatório)",
+    "Nota de crédito que referencia a fatura original",
+    "Exportação diária de um vendedor (série e prefixo ATCUD conhecidos)"
+  ],
+  "mapeamentos": [],
+  "metainformacao": {
+    "dominio": "faturação"
+  }
+}

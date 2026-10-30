@@ -1,0 +1,1128 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo SM Diagnostico",
+  "nivel": "SM",
+  "nome": "Diagnostico",
+  "descricao": "Diagnóstico técnico do dispositivo.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "SM",
+    "nome": "Diagnostico",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Diagnóstico técnico do dispositivo.",
+    "propriedades": [],
+    "filhos": [
+      {
+        "nivel": "USM",
+        "nome": "Diagnostico",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1",
+        "caminho": "Diagnostico",
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "propriedades": [
+          {
+            "chave": "USM:Diagnostico.nivelBateria",
+            "nome": "nivelBateria",
+            "dono": "Diagnostico",
+            "nivelDono": "USM",
+            "tipo": "decimal",
+            "descricao": "Nível de bateria (%)",
+            "caminho": "Diagnostico.nivelBateria",
+            "nomesAlternativos": [
+              "battery"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "USM:Diagnostico.dataUltimaManutencao",
+            "nome": "dataUltimaManutencao",
+            "dono": "Diagnostico",
+            "nivelDono": "USM",
+            "tipo": "data",
+            "descricao": "Data da última manutenção",
+            "caminho": "Diagnostico.dataUltimaManutencao",
+            "nomesAlternativos": [
+              "lastMaintenance"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "USM:Diagnostico.sinalRede",
+            "nome": "sinalRede",
+            "dono": "Diagnostico",
+            "nivelDono": "USM",
+            "tipo": "decimal",
+            "descricao": "Intensidade do sinal de rede (dBm)",
+            "caminho": "Diagnostico.sinalRede",
+            "nomesAlternativos": [
+              "rssi"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "USM:Diagnostico.latencia",
+            "nome": "latencia",
+            "dono": "Diagnostico",
+            "nivelDono": "USM",
+            "tipo": "decimal",
+            "descricao": "Latência da comunicação (ms)",
+            "caminho": "Diagnostico.latencia",
+            "nomesAlternativos": [
+              "latency"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "USM:Diagnostico.taxaRececao",
+            "nome": "taxaRececao",
+            "dono": "Diagnostico",
+            "nivelDono": "USM",
+            "tipo": "decimal",
+            "descricao": "Taxa de receção de mensagens (%)",
+            "caminho": "Diagnostico.taxaRececao",
+            "nomesAlternativos": [
+              "receptionRate"
+            ],
+            "discriminante": true
+          }
+        ],
+        "filhos": [],
+        "usadoPor": [
+          "Dispositivo"
+        ]
+      }
+    ],
+    "usadoPor": [
+      "Dispositivo"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "SM",
+    "nome": "Diagnostico",
+    "caminho": "",
+    "descricao": "Diagnóstico técnico do dispositivo.",
+    "regras": [],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Diagnostico",
+      "nivel": "USM",
+      "papel": "Diagnostico",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "USM",
+          "nome": "Diagnostico",
+          "papel": "Diagnostico",
+          "caminho": "Diagnostico",
+          "cardinalidade": "1..1",
+          "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+          "regras": [
+            {
+              "id": "RIC-MANUT",
+              "tipo": "RIC",
+              "natureza": "inferencia_conclusiva",
+              "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+              "alcance": "USM Diagnostico",
+              "notas": null,
+              "contextosExternos": [
+                "dataDeHoje"
+              ],
+              "viveEm": {
+                "rotulo": "USM",
+                "nome": "Diagnostico",
+                "chave": "USM:Diagnostico",
+                "dono": null
+              },
+              "condicao": [
+                {
+                  "ordem": 0,
+                  "forma": "tipificado",
+                  "caminho": "nivelBateria",
+                  "propriedade": "USM:Diagnostico.nivelBateria",
+                  "operador": "RANGE",
+                  "valor": [
+                    0,
+                    10
+                  ],
+                  "contexto": null,
+                  "texto": "nivelBateria entre 0 e 10",
+                  "nome": "nivelBateria"
+                },
+                {
+                  "ordem": 1,
+                  "forma": "funcao",
+                  "operador": "EXT_FUNCTION",
+                  "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+                  "chamada": {
+                    "funcao": "excedeDiasDesdeHoje",
+                    "chamada": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+                    "operador": "EXT_FUNCTION",
+                    "termo": 1,
+                    "descricaoFuncao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+                    "argumentos": [
+                      {
+                        "caminho": "dataUltimaManutencao",
+                        "alvo": "USM:Diagnostico.dataUltimaManutencao",
+                        "nomeAlvo": "dataUltimaManutencao",
+                        "rotuloAlvo": "Propriedade",
+                        "colecao": false
+                      }
+                    ],
+                    "contextos": [
+                      "dataDeHoje"
+                    ]
+                  }
+                }
+              ],
+              "mensagem": "Ação MANUTENCAO: o nível de bateria está baixo e o dispositivo não recebe manutenção há mais de 7 dias.",
+              "conclusao": {
+                "tipo": "ACAO",
+                "valor": "MANUTENCAO"
+              },
+              "funcao": false,
+              "categoria": "RIC",
+              "alvo": null,
+              "funcoes": [
+                "excedeDiasDesdeHoje"
+              ],
+              "ocorrencias": [
+                "Diagnostico"
+              ]
+            },
+            {
+              "id": "RIC-REDE",
+              "tipo": "RIC",
+              "natureza": "inferencia_conclusiva",
+              "descricao": "Se Diagnostico.sinalRede entre -120 e -100 e Diagnostico.latencia entre 500 e 10000 e Diagnostico.taxaRececao entre 0 e 50 → informa Estado NAO_FIAVEL",
+              "alcance": "USM Diagnostico",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "USM",
+                "nome": "Diagnostico",
+                "chave": "USM:Diagnostico",
+                "dono": null
+              },
+              "condicao": [
+                {
+                  "ordem": 0,
+                  "forma": "tipificado",
+                  "caminho": "sinalRede",
+                  "propriedade": "USM:Diagnostico.sinalRede",
+                  "operador": "RANGE",
+                  "valor": [
+                    -120,
+                    -100
+                  ],
+                  "contexto": null,
+                  "texto": "sinalRede entre -120 e -100",
+                  "nome": "sinalRede"
+                },
+                {
+                  "ordem": 1,
+                  "forma": "tipificado",
+                  "caminho": "latencia",
+                  "propriedade": "USM:Diagnostico.latencia",
+                  "operador": "RANGE",
+                  "valor": [
+                    500,
+                    10000
+                  ],
+                  "contexto": null,
+                  "texto": "latencia entre 500 e 10000",
+                  "nome": "latencia"
+                },
+                {
+                  "ordem": 2,
+                  "forma": "tipificado",
+                  "caminho": "taxaRececao",
+                  "propriedade": "USM:Diagnostico.taxaRececao",
+                  "operador": "RANGE",
+                  "valor": [
+                    0,
+                    50
+                  ],
+                  "contexto": null,
+                  "texto": "taxaRececao entre 0 e 50",
+                  "nome": "taxaRececao"
+                }
+              ],
+              "mensagem": "Estado NAO_FIAVEL: o sinal de rede é fraco e a receção irregular; as medições deste dispositivo são QUESTIONAVEL.",
+              "conclusao": {
+                "tipo": "ESTADO",
+                "valor": "NAO_FIAVEL"
+              },
+              "funcao": false,
+              "categoria": "RIC",
+              "alvo": null,
+              "funcoes": [],
+              "ocorrencias": [
+                "Diagnostico"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "nivelBateria",
+          "caminho": "Diagnostico.nivelBateria",
+          "descricao": "Nível de bateria (%)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "battery"
+          ],
+          "chave": "USM:Diagnostico.nivelBateria",
+          "dono": "Diagnostico",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-BATERIA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.nivelBateria entre 0 e 100",
+              "alcance": "USM Diagnostico.nivelBateria",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "nivelBateria",
+                "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+                "dono": "Diagnostico"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "O nível de bateria é uma percentagem entre 0 e 100.",
+                "texto": "nivelBateria entre 0 e 100",
+                "caminho": "nivelBateria",
+                "propriedade": "USM:Diagnostico.nivelBateria",
+                "valor": [
+                  0,
+                  100
+                ],
+                "minimo": 0,
+                "maximo": 100
+              },
+              "mensagem": "O nível de bateria é uma percentagem entre 0 e 100.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Diagnostico.nivelBateria",
+                "nome": "nivelBateria",
+                "dono": "Diagnostico"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Diagnostico.nivelBateria"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "dataUltimaManutencao",
+          "caminho": "Diagnostico.dataUltimaManutencao",
+          "descricao": "Data da última manutenção",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "lastMaintenance"
+          ],
+          "chave": "USM:Diagnostico.dataUltimaManutencao",
+          "dono": "Diagnostico",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-MANUT-DATA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01",
+              "alcance": "USM Diagnostico.dataUltimaManutencao",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "dataUltimaManutencao",
+                "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+                "dono": "Diagnostico"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "GTE",
+                "mensagem": "A data da última manutenção não é uma data plausível.",
+                "texto": "dataUltimaManutencao ≥ 2000-01-01",
+                "caminho": "dataUltimaManutencao",
+                "propriedade": "USM:Diagnostico.dataUltimaManutencao",
+                "valor": "2000-01-01",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "A data da última manutenção não é uma data plausível.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Diagnostico.dataUltimaManutencao",
+                "nome": "dataUltimaManutencao",
+                "dono": "Diagnostico"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Diagnostico.dataUltimaManutencao"
+              ]
+            },
+            {
+              "id": "RP-MANUT-FUTURA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)",
+              "alcance": "USM Diagnostico.dataUltimaManutencao",
+              "notas": null,
+              "contextosExternos": [
+                "dataDeHoje"
+              ],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "dataUltimaManutencao",
+                "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+                "dono": "Diagnostico"
+              },
+              "restricao": {
+                "forma": "funcao",
+                "operador": "EXT_FUNCTION",
+                "mensagem": "A data da última manutenção não pode ser posterior à data de hoje.",
+                "texto": "naoPosteriorAHoje(dataUltimaManutencao)",
+                "chamada": {
+                  "funcao": "naoPosteriorAHoje",
+                  "chamada": "naoPosteriorAHoje(dataUltimaManutencao)",
+                  "operador": "EXT_FUNCTION",
+                  "termo": null,
+                  "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+                  "argumentos": [
+                    {
+                      "caminho": "dataUltimaManutencao",
+                      "alvo": "USM:Diagnostico.dataUltimaManutencao",
+                      "nomeAlvo": "dataUltimaManutencao",
+                      "rotuloAlvo": "Propriedade",
+                      "colecao": false
+                    }
+                  ],
+                  "contextos": [
+                    "dataDeHoje"
+                  ]
+                }
+              },
+              "mensagem": "A data da última manutenção não pode ser posterior à data de hoje.",
+              "funcao": true,
+              "categoria": "FN",
+              "alvo": {
+                "chave": "USM:Diagnostico.dataUltimaManutencao",
+                "nome": "dataUltimaManutencao",
+                "funcao": "naoPosteriorAHoje"
+              },
+              "funcoes": [
+                "naoPosteriorAHoje"
+              ],
+              "ocorrencias": [
+                "Diagnostico.dataUltimaManutencao"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "sinalRede",
+          "caminho": "Diagnostico.sinalRede",
+          "descricao": "Intensidade do sinal de rede (dBm)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "rssi"
+          ],
+          "chave": "USM:Diagnostico.sinalRede",
+          "dono": "Diagnostico",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-SINAL",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.sinalRede entre -140 e 0",
+              "alcance": "USM Diagnostico.sinalRede",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "sinalRede",
+                "chave": "Propriedade:USM:Diagnostico.sinalRede",
+                "dono": "Diagnostico"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.",
+                "texto": "sinalRede entre -140 e 0",
+                "caminho": "sinalRede",
+                "propriedade": "USM:Diagnostico.sinalRede",
+                "valor": [
+                  -140,
+                  0
+                ],
+                "minimo": -140,
+                "maximo": 0
+              },
+              "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Diagnostico.sinalRede",
+                "nome": "sinalRede",
+                "dono": "Diagnostico"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Diagnostico.sinalRede"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "latencia",
+          "caminho": "Diagnostico.latencia",
+          "descricao": "Latência da comunicação (ms)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "latency"
+          ],
+          "chave": "USM:Diagnostico.latencia",
+          "dono": "Diagnostico",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-LATENCIA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.latencia entre 0 e 60000",
+              "alcance": "USM Diagnostico.latencia",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "latencia",
+                "chave": "Propriedade:USM:Diagnostico.latencia",
+                "dono": "Diagnostico"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "A latência (ms) tem de estar entre 0 e 60000.",
+                "texto": "latencia entre 0 e 60000",
+                "caminho": "latencia",
+                "propriedade": "USM:Diagnostico.latencia",
+                "valor": [
+                  0,
+                  60000
+                ],
+                "minimo": 0,
+                "maximo": 60000
+              },
+              "mensagem": "A latência (ms) tem de estar entre 0 e 60000.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Diagnostico.latencia",
+                "nome": "latencia",
+                "dono": "Diagnostico"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Diagnostico.latencia"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "taxaRececao",
+          "caminho": "Diagnostico.taxaRececao",
+          "descricao": "Taxa de receção de mensagens (%)",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "receptionRate"
+          ],
+          "chave": "USM:Diagnostico.taxaRececao",
+          "dono": "Diagnostico",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-RECECAO",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Diagnostico.taxaRececao entre 0 e 100",
+              "alcance": "USM Diagnostico.taxaRececao",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "taxaRececao",
+                "chave": "Propriedade:USM:Diagnostico.taxaRececao",
+                "dono": "Diagnostico"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "A taxa de receção é uma percentagem entre 0 e 100.",
+                "texto": "taxaRececao entre 0 e 100",
+                "caminho": "taxaRececao",
+                "propriedade": "USM:Diagnostico.taxaRececao",
+                "valor": [
+                  0,
+                  100
+                ],
+                "minimo": 0,
+                "maximo": 100
+              },
+              "mensagem": "A taxa de receção é uma percentagem entre 0 e 100.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Diagnostico.taxaRececao",
+                "nome": "taxaRececao",
+                "dono": "Diagnostico"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Diagnostico.taxaRececao"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "nivelBateria",
+        "dataUltimaManutencao",
+        "sinalRede",
+        "latencia",
+        "taxaRececao"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Dispositivo"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Dispositivo",
+            "papel": "Diagnostico",
+            "cardinalidade": "0..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Diagnostico"
+          }
+        ],
+        "texto": "Dispositivo › Diagnostico"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-BATERIA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Diagnostico.nivelBateria entre 0 e 100",
+      "alcance": "USM Diagnostico.nivelBateria",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "nivelBateria",
+        "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+        "dono": "Diagnostico"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "O nível de bateria é uma percentagem entre 0 e 100.",
+        "texto": "nivelBateria entre 0 e 100",
+        "caminho": "nivelBateria",
+        "propriedade": "USM:Diagnostico.nivelBateria",
+        "valor": [
+          0,
+          100
+        ],
+        "minimo": 0,
+        "maximo": 100
+      },
+      "mensagem": "O nível de bateria é uma percentagem entre 0 e 100.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Diagnostico.nivelBateria",
+        "nome": "nivelBateria",
+        "dono": "Diagnostico"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Diagnostico.nivelBateria"
+      ]
+    },
+    {
+      "id": "RP-LATENCIA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Diagnostico.latencia entre 0 e 60000",
+      "alcance": "USM Diagnostico.latencia",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "latencia",
+        "chave": "Propriedade:USM:Diagnostico.latencia",
+        "dono": "Diagnostico"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "A latência (ms) tem de estar entre 0 e 60000.",
+        "texto": "latencia entre 0 e 60000",
+        "caminho": "latencia",
+        "propriedade": "USM:Diagnostico.latencia",
+        "valor": [
+          0,
+          60000
+        ],
+        "minimo": 0,
+        "maximo": 60000
+      },
+      "mensagem": "A latência (ms) tem de estar entre 0 e 60000.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Diagnostico.latencia",
+        "nome": "latencia",
+        "dono": "Diagnostico"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Diagnostico.latencia"
+      ]
+    },
+    {
+      "id": "RP-MANUT-DATA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01",
+      "alcance": "USM Diagnostico.dataUltimaManutencao",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "dataUltimaManutencao",
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "dono": "Diagnostico"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "GTE",
+        "mensagem": "A data da última manutenção não é uma data plausível.",
+        "texto": "dataUltimaManutencao ≥ 2000-01-01",
+        "caminho": "dataUltimaManutencao",
+        "propriedade": "USM:Diagnostico.dataUltimaManutencao",
+        "valor": "2000-01-01",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "A data da última manutenção não é uma data plausível.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Diagnostico.dataUltimaManutencao",
+        "nome": "dataUltimaManutencao",
+        "dono": "Diagnostico"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Diagnostico.dataUltimaManutencao"
+      ]
+    },
+    {
+      "id": "RP-MANUT-FUTURA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)",
+      "alcance": "USM Diagnostico.dataUltimaManutencao",
+      "notas": null,
+      "contextosExternos": [
+        "dataDeHoje"
+      ],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "dataUltimaManutencao",
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "dono": "Diagnostico"
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "A data da última manutenção não pode ser posterior à data de hoje.",
+        "texto": "naoPosteriorAHoje(dataUltimaManutencao)",
+        "chamada": {
+          "funcao": "naoPosteriorAHoje",
+          "chamada": "naoPosteriorAHoje(dataUltimaManutencao)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+          "argumentos": [
+            {
+              "caminho": "dataUltimaManutencao",
+              "alvo": "USM:Diagnostico.dataUltimaManutencao",
+              "nomeAlvo": "dataUltimaManutencao",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "dataDeHoje"
+          ]
+        }
+      },
+      "mensagem": "A data da última manutenção não pode ser posterior à data de hoje.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:Diagnostico.dataUltimaManutencao",
+        "nome": "dataUltimaManutencao",
+        "funcao": "naoPosteriorAHoje"
+      },
+      "funcoes": [
+        "naoPosteriorAHoje"
+      ],
+      "ocorrencias": [
+        "Diagnostico.dataUltimaManutencao"
+      ]
+    },
+    {
+      "id": "RP-RECECAO",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Diagnostico.taxaRececao entre 0 e 100",
+      "alcance": "USM Diagnostico.taxaRececao",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "taxaRececao",
+        "chave": "Propriedade:USM:Diagnostico.taxaRececao",
+        "dono": "Diagnostico"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "A taxa de receção é uma percentagem entre 0 e 100.",
+        "texto": "taxaRececao entre 0 e 100",
+        "caminho": "taxaRececao",
+        "propriedade": "USM:Diagnostico.taxaRececao",
+        "valor": [
+          0,
+          100
+        ],
+        "minimo": 0,
+        "maximo": 100
+      },
+      "mensagem": "A taxa de receção é uma percentagem entre 0 e 100.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Diagnostico.taxaRececao",
+        "nome": "taxaRececao",
+        "dono": "Diagnostico"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Diagnostico.taxaRececao"
+      ]
+    },
+    {
+      "id": "RP-SINAL",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Diagnostico.sinalRede entre -140 e 0",
+      "alcance": "USM Diagnostico.sinalRede",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "sinalRede",
+        "chave": "Propriedade:USM:Diagnostico.sinalRede",
+        "dono": "Diagnostico"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.",
+        "texto": "sinalRede entre -140 e 0",
+        "caminho": "sinalRede",
+        "propriedade": "USM:Diagnostico.sinalRede",
+        "valor": [
+          -140,
+          0
+        ],
+        "minimo": -140,
+        "maximo": 0
+      },
+      "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Diagnostico.sinalRede",
+        "nome": "sinalRede",
+        "dono": "Diagnostico"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Diagnostico.sinalRede"
+      ]
+    },
+    {
+      "id": "RIC-MANUT",
+      "tipo": "RIC",
+      "natureza": "inferencia_conclusiva",
+      "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+      "alcance": "USM Diagnostico",
+      "notas": null,
+      "contextosExternos": [
+        "dataDeHoje"
+      ],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "chave": "USM:Diagnostico",
+        "dono": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "nivelBateria",
+          "propriedade": "USM:Diagnostico.nivelBateria",
+          "operador": "RANGE",
+          "valor": [
+            0,
+            10
+          ],
+          "contexto": null,
+          "texto": "nivelBateria entre 0 e 10",
+          "nome": "nivelBateria"
+        },
+        {
+          "ordem": 1,
+          "forma": "funcao",
+          "operador": "EXT_FUNCTION",
+          "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+          "chamada": {
+            "funcao": "excedeDiasDesdeHoje",
+            "chamada": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+            "operador": "EXT_FUNCTION",
+            "termo": 1,
+            "descricaoFuncao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+            "argumentos": [
+              {
+                "caminho": "dataUltimaManutencao",
+                "alvo": "USM:Diagnostico.dataUltimaManutencao",
+                "nomeAlvo": "dataUltimaManutencao",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              }
+            ],
+            "contextos": [
+              "dataDeHoje"
+            ]
+          }
+        }
+      ],
+      "mensagem": "Ação MANUTENCAO: o nível de bateria está baixo e o dispositivo não recebe manutenção há mais de 7 dias.",
+      "conclusao": {
+        "tipo": "ACAO",
+        "valor": "MANUTENCAO"
+      },
+      "funcao": false,
+      "categoria": "RIC",
+      "alvo": null,
+      "funcoes": [
+        "excedeDiasDesdeHoje"
+      ],
+      "ocorrencias": [
+        "Diagnostico"
+      ]
+    },
+    {
+      "id": "RIC-REDE",
+      "tipo": "RIC",
+      "natureza": "inferencia_conclusiva",
+      "descricao": "Se Diagnostico.sinalRede entre -120 e -100 e Diagnostico.latencia entre 500 e 10000 e Diagnostico.taxaRececao entre 0 e 50 → informa Estado NAO_FIAVEL",
+      "alcance": "USM Diagnostico",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "chave": "USM:Diagnostico",
+        "dono": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "sinalRede",
+          "propriedade": "USM:Diagnostico.sinalRede",
+          "operador": "RANGE",
+          "valor": [
+            -120,
+            -100
+          ],
+          "contexto": null,
+          "texto": "sinalRede entre -120 e -100",
+          "nome": "sinalRede"
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "latencia",
+          "propriedade": "USM:Diagnostico.latencia",
+          "operador": "RANGE",
+          "valor": [
+            500,
+            10000
+          ],
+          "contexto": null,
+          "texto": "latencia entre 500 e 10000",
+          "nome": "latencia"
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "taxaRececao",
+          "propriedade": "USM:Diagnostico.taxaRececao",
+          "operador": "RANGE",
+          "valor": [
+            0,
+            50
+          ],
+          "contexto": null,
+          "texto": "taxaRececao entre 0 e 50",
+          "nome": "taxaRececao"
+        }
+      ],
+      "mensagem": "Estado NAO_FIAVEL: o sinal de rede é fraco e a receção irregular; as medições deste dispositivo são QUESTIONAVEL.",
+      "conclusao": {
+        "tipo": "ESTADO",
+        "valor": "NAO_FIAVEL"
+      },
+      "funcao": false,
+      "categoria": "RIC",
+      "alvo": null,
+      "funcoes": [],
+      "ocorrencias": [
+        "Diagnostico"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 6,
+    "RIR": 0,
+    "RIC": 2,
+    "FN": 1
+  },
+  "funcoes": [
+    {
+      "nome": "excedeDiasDesdeHoje",
+      "descricao": "Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.",
+      "parametros": [
+        {
+          "nome": "data",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Data a comparar com a data de hoje."
+        },
+        {
+          "nome": "n",
+          "tipo": "inteiro",
+          "papel": "parametro",
+          "descricao": "Número de dias."
+        }
+      ],
+      "contextos": [
+        "dataDeHoje"
+      ],
+      "regras": [
+        "RIC-MANUT"
+      ]
+    },
+    {
+      "nome": "naoPosteriorAHoje",
+      "descricao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "parametros": [
+        {
+          "nome": "data",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Data que não pode estar no futuro."
+        }
+      ],
+      "contextos": [
+        "dataDeHoje"
+      ],
+      "regras": [
+        "RP-MANUT-FUTURA"
+      ]
+    }
+  ],
+  "contextos": [
+    {
+      "nome": "dataDeHoje",
+      "tipo": "data",
+      "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+      "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível.",
+      "regras": [
+        "RIC-MANUT",
+        "RP-MANUT-FUTURA"
+      ],
+      "fixadoPor": [
+        {
+          "perfil": "AuditoriaSetembro2026",
+          "valor": "2026-09-30"
+        },
+        {
+          "perfil": "TesteRefrigeracao",
+          "valor": "2026-09-30"
+        }
+      ]
+    }
+  ],
+  "parametros": {
+    "nivel": "SM",
+    "nome": "Diagnostico",
+    "regras": true
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de Linha.tipoIVA",
+  "propriedade": {
+    "chave": "USM:Linha.tipoIVA",
+    "nome": "tipoIVA",
+    "dono": "Linha",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Tipo de taxa de IVA aplicada à linha"
+  },
+  "plausiveis": [
+    "ISENTA",
+    "REDUZIDA",
+    "INTERMEDIA",
+    "NORMAL"
+  ],
+  "rp": [
+    {
+      "id": "RP-TIPOIVA",
+      "texto": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}"
+    }
+  ],
+  "valores": [
+    {
+      "valor": "ISENTA",
+      "plausivel": true,
+      "regras": [
+        "RIR-IVA-ISE"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "REDUZIDA",
+      "plausivel": true,
+      "regras": [
+        "RIR-IVA-RED"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "INTERMEDIA",
+      "plausivel": true,
+      "regras": [
+        "RIR-IVA-INT"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "NORMAL",
+      "plausivel": true,
+      "regras": [
+        "RIR-IVA-NOR"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ],
+      "semRegras": false
+    }
+  ],
+  "outrosTermos": [],
+  "regras": [
+    {
+      "id": "RIR-IVA-INT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = INTERMEDIA → Linha.taxaIVA = 13",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha com taxa intermédia tem de ter taxa de IVA 13.",
+        "texto": "taxaIVA = 13",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 13,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "INTERMEDIA",
+          "contexto": null,
+          "texto": "tipoIVA = INTERMEDIA",
+          "nome": "tipoIVA",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma linha com taxa intermédia tem de ter taxa de IVA 13.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ]
+    },
+    {
+      "id": "RIR-IVA-ISE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = ISENTA → Linha.taxaIVA = 0",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha isenta tem de ter taxa de IVA 0.",
+        "texto": "taxaIVA = 0",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 0,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "ISENTA",
+          "contexto": null,
+          "texto": "tipoIVA = ISENTA",
+          "nome": "tipoIVA",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma linha isenta tem de ter taxa de IVA 0.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ]
+    },
+    {
+      "id": "RIR-IVA-NOR",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+        "texto": "taxaIVA = 23",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 23,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "NORMAL",
+          "contexto": null,
+          "texto": "tipoIVA = NORMAL",
+          "nome": "tipoIVA",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ]
+    },
+    {
+      "id": "RIR-IVA-RED",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6",
+      "alcance": "USM Linha",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Linha",
+        "chave": "USM:Linha",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+        "texto": "taxaIVA = 6",
+        "caminho": "taxaIVA",
+        "propriedade": "USM:Linha.taxaIVA",
+        "valor": 6,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoIVA",
+          "propriedade": "USM:Linha.tipoIVA",
+          "operador": "EQUALS",
+          "valor": "REDUZIDA",
+          "contexto": null,
+          "texto": "tipoIVA = REDUZIDA",
+          "nome": "tipoIVA",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Linha.taxaIVA",
+        "nome": "taxaIVA",
+        "dono": "Linha"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Linha.taxaIVA",
+          "nome": "taxaIVA",
+          "caminho": "taxaIVA"
+        }
+      ]
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "caminho": "taxaIVA",
+      "regras": [
+        "RIR-IVA-INT",
+        "RIR-IVA-ISE",
+        "RIR-IVA-NOR",
+        "RIR-IVA-RED"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "USM:Linha.tipoIVA"
+  }
+}

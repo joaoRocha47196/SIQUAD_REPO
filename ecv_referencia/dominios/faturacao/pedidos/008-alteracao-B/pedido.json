@@ -1,0 +1,20 @@
+{
+ "id": "008-alteracao-B",
+ "tipo": "alteracao",
+ "titulo": "Se a o valor da fatura for menos que 1000 ent a propriedade de estado tipoDeValo",
+ "passo": "B",
+ "estado": "pendente",
+ "criado": "2026-10-30T15:00:56",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "pedido": "Se a o valor da fatura for menos que 1000 ent a propriedade de estado tipoDeValor deve ser SMALL se for acime de 1000 deve ser BIG",
+ "tamanho": {
+  "caracteres": 22428,
+  "tokensEstimados": 5607,
+  "linhas": 314
+ },
+ "informacaoAdicional": false,
+ "contexto": {
+  "hlm": "DocumentoFaturacao"
+ }
+}

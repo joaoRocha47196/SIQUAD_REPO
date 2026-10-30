@@ -1,0 +1,14 @@
+{
+ "id": "002-funcao",
+ "tipo": "funcao",
+ "titulo": "Implementar a função categoriasIvaDecompostas",
+ "passo": null,
+ "estado": "aplicado",
+ "criado": "2026-10-30T01:44:15",
+ "ficheiroResposta": "resposta.py",
+ "funcao": "categoriasIvaDecompostas",
+ "ficheiro": "f_categorias_iva_decompostas.py",
+ "respondido": "2026-10-30T01:47:01",
+ "aplicado": "2026-10-30T01:47:05",
+ "resumo": "categoriasIvaDecompostas implementada em f_categorias_iva_decompostas.py"
+}

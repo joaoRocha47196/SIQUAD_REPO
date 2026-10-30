@@ -1,0 +1,18 @@
+{
+ "id": "biblioteca",
+ "nome": "Biblioteca municipal",
+ "descricao": "Obras, exemplares, leitores, empréstimos e reservas de uma biblioteca municipal, descritos em linguagem natural (sem esquema de origem): serve para testar se um LLM gera a declaração ECV a partir só de texto.",
+ "fontes": [
+  {
+   "id": "descricao-biblioteca",
+   "adaptador": "texto.markdown",
+   "caminho": "ecv_referencia/dados_teste/biblioteca/descricao_biblioteca.md",
+   "papel": "descrição do domínio em linguagem natural: entidades, propriedades e regras"
+  }
+ ],
+ "excluidos": [],
+ "utilizacoes": [],
+ "cenarios": [],
+ "mapeamentos": [],
+ "metainformacao": {}
+}

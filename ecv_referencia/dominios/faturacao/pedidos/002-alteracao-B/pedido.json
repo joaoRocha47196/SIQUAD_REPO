@@ -1,0 +1,17 @@
+{
+ "id": "002-alteracao-B",
+ "tipo": "alteracao",
+ "titulo": "Quero criar uma nova projecao",
+ "passo": "B",
+ "estado": "pendente",
+ "criado": "2026-10-30T01:06:36",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "pedido": "Quero criar uma nova projecao",
+ "tamanho": {
+  "caracteres": 739653,
+  "tokensEstimados": 184913,
+  "linhas": 17690
+ },
+ "informacaoAdicional": false
+}

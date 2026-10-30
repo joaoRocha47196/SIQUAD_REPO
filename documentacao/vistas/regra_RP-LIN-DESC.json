@@ -1,0 +1,176 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-LIN-DESC",
+  "regra": {
+    "id": "RP-LIN-DESC",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Linha.descricao segue o padrão ^.{1,200}$",
+    "alcance": "USM Linha.descricao",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "descricao",
+      "chave": "Propriedade:USM:Linha.descricao",
+      "dono": "Linha"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres.",
+      "texto": "descricao segue o padrão ^.{1,200}$",
+      "caminho": "descricao",
+      "propriedade": "USM:Linha.descricao",
+      "valor": "^.{1,200}$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Linha.descricao",
+      "nome": "descricao",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres.",
+    "texto": "descricao segue o padrão ^.{1,200}$",
+    "caminho": "descricao",
+    "propriedade": "USM:Linha.descricao",
+    "valor": "^.{1,200}$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "descricao segue o padrão ^.{1,200}$",
+    "alvo": {
+      "chave": "USM:Linha.descricao",
+      "nome": "descricao",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Descrição do bem ou serviço"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Linha.descricao",
+    "nome": "descricao",
+    "dono": "Linha",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Descrição do bem ou serviço",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-LIN-DESC",
+        "rotulo": "RP",
+        "texto": "RP-LIN-DESC",
+        "detalhe": "Linha.descricao segue o padrão ^.{1,200}$"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.descricao",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.descricao",
+        "detalhe": "Descrição do bem ou serviço"
+      },
+      {
+        "chave": "Restricao:RP-LIN-DESC",
+        "rotulo": "Restricao",
+        "texto": "RP-LIN-DESC#restricao",
+        "detalhe": "descricao segue o padrão ^.{1,200}$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-LIN-DESC",
+        "para": "Propriedade:USM:Linha.descricao",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-LIN-DESC",
+        "para": "Restricao:RP-LIN-DESC",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-LIN-DESC",
+        "para": "Propriedade:USM:Linha.descricao",
+        "tipo": "RESTRINGE",
+        "texto": "descricao segue o padrão ^.{1,200}$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Linha.descricao",
+        "rotulo": "Propriedade",
+        "nome": "descricao",
+        "dono": "Linha",
+        "descricao": "Descrição do bem ou serviço",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.descricao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-LIN-DESC"
+  }
+}

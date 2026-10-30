@@ -1,0 +1,404 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-TEMP-ESTUFA-KELVIN",
+  "regra": {
+    "id": "RIR-TEMP-ESTUFA-KELVIN",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 288.15 e 318.15",
+    "alcance": "HLM Dispositivo",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "HLM",
+      "nome": "Dispositivo",
+      "chave": "HLM:Dispositivo",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "Temperatura fora da gama da estufa (288.15 a 318.15 K).",
+      "texto": "Leitura.Medicao.valor entre 288.15 e 318.15",
+      "caminho": "Leitura.Medicao.valor",
+      "propriedade": "USM:Medicao.valor",
+      "valor": [
+        288.15,
+        318.15
+      ],
+      "minimo": 288.15,
+      "maximo": 318.15
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "TEMPERATURA",
+        "contexto": null,
+        "texto": "tipoDispositivo = TEMPERATURA",
+        "nome": "tipoDispositivo"
+      },
+      {
+        "ordem": 1,
+        "forma": "tipificado",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "operador": "EQUALS",
+        "valor": "K",
+        "contexto": null,
+        "texto": "unidadeMedida = K",
+        "nome": "unidadeMedida"
+      },
+      {
+        "ordem": 2,
+        "forma": "tipificado",
+        "caminho": "Leitura.Instalacao.ambiente",
+        "propriedade": "USM:Instalacao.ambiente",
+        "operador": "EQUALS",
+        "valor": "ESTUFA",
+        "contexto": null,
+        "texto": "ambiente = ESTUFA",
+        "nome": "ambiente"
+      }
+    ],
+    "mensagem": "Temperatura fora da gama da estufa (288.15 a 318.15 K).",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Medicao.valor",
+      "nome": "valor",
+      "dono": "Medicao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "Temperatura fora da gama da estufa (288.15 a 318.15 K).",
+    "texto": "Leitura.Medicao.valor entre 288.15 e 318.15",
+    "caminho": "Leitura.Medicao.valor",
+    "propriedade": "USM:Medicao.valor",
+    "valor": [
+      288.15,
+      318.15
+    ],
+    "minimo": 288.15,
+    "maximo": 318.15,
+    "descricao": "Leitura.Medicao.valor entre 288.15 e 318.15",
+    "alvo": {
+      "chave": "USM:Medicao.valor",
+      "nome": "valor",
+      "dono": "Medicao",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Valor medido, na unidade indicada"
+    }
+  },
+  "condicao": {
+    "descricao": "Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "TEMPERATURA",
+        "contexto": null,
+        "texto": "tipoDispositivo = TEMPERATURA",
+        "nome": "tipoDispositivo",
+        "alvo": {
+          "chave": "SM:Identificacao.tipoDispositivo",
+          "nome": "tipoDispositivo",
+          "dono": "Identificacao",
+          "nivelDono": "SM",
+          "tipo": "texto",
+          "descricao": "Grandeza medida pelo dispositivo"
+        }
+      },
+      {
+        "ordem": 1,
+        "forma": "tipificado",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "operador": "EQUALS",
+        "valor": "K",
+        "contexto": null,
+        "texto": "unidadeMedida = K",
+        "nome": "unidadeMedida",
+        "alvo": {
+          "chave": "USM:Medicao.unidadeMedida",
+          "nome": "unidadeMedida",
+          "dono": "Medicao",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Unidade de medida associada ao valor medido"
+        }
+      },
+      {
+        "ordem": 2,
+        "forma": "tipificado",
+        "caminho": "Leitura.Instalacao.ambiente",
+        "propriedade": "USM:Instalacao.ambiente",
+        "operador": "EQUALS",
+        "valor": "ESTUFA",
+        "contexto": null,
+        "texto": "ambiente = ESTUFA",
+        "nome": "ambiente",
+        "alvo": {
+          "chave": "USM:Instalacao.ambiente",
+          "nome": "ambiente",
+          "dono": "Instalacao",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Ambiente onde o dispositivo está instalado"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "HLM",
+    "nome": "Dispositivo",
+    "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+    "chave": "HLM:Dispositivo",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-TEMP-ESTUFA-KELVIN",
+        "rotulo": "RIR",
+        "texto": "RIR-TEMP-ESTUFA-KELVIN",
+        "detalhe": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 288.15 e 318.15"
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "texto": "Dispositivo",
+        "detalhe": "Dispositivo IoT: identificação, leitura, localização e diagnóstico."
+      },
+      {
+        "chave": "Restricao:RIR-TEMP-ESTUFA-KELVIN",
+        "rotulo": "Restricao",
+        "texto": "RIR-TEMP-ESTUFA-KELVIN#restricao",
+        "detalhe": "Leitura.Medicao.valor entre 288.15 e 318.15"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.valor",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.valor",
+        "detalhe": "Valor medido, na unidade indicada"
+      },
+      {
+        "chave": "Condicao:RIR-TEMP-ESTUFA-KELVIN",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-TEMP-ESTUFA-KELVIN#condicao",
+        "detalhe": "Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.tipoDispositivo",
+        "detalhe": "Grandeza medida pelo dispositivo"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.unidadeMedida",
+        "detalhe": "Unidade de medida associada ao valor medido"
+      },
+      {
+        "chave": "Propriedade:USM:Instalacao.ambiente",
+        "rotulo": "Propriedade",
+        "texto": "USM:Instalacao.ambiente",
+        "detalhe": "Ambiente onde o dispositivo está instalado"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-TEMP-ESTUFA-KELVIN",
+        "para": "HLM:Dispositivo",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-TEMP-ESTUFA-KELVIN",
+        "para": "Restricao:RIR-TEMP-ESTUFA-KELVIN",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-TEMP-ESTUFA-KELVIN",
+        "para": "Propriedade:USM:Medicao.valor",
+        "tipo": "RESTRINGE",
+        "texto": "Leitura.Medicao.valor entre 288.15 e 318.15"
+      },
+      {
+        "de": "R:RIR-TEMP-ESTUFA-KELVIN",
+        "para": "Condicao:RIR-TEMP-ESTUFA-KELVIN",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-TEMP-ESTUFA-KELVIN",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoDispositivo = TEMPERATURA"
+      },
+      {
+        "de": "Condicao:RIR-TEMP-ESTUFA-KELVIN",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "TERMO",
+        "texto": "termo 2: unidadeMedida = K"
+      },
+      {
+        "de": "Condicao:RIR-TEMP-ESTUFA-KELVIN",
+        "para": "Propriedade:USM:Instalacao.ambiente",
+        "tipo": "TERMO",
+        "texto": "termo 3: ambiente = ESTUFA"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.valor",
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "dono": "Medicao",
+        "descricao": "Valor medido, na unidade indicada",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "nome": "tipoDispositivo",
+        "dono": "Identificacao",
+        "descricao": "Grandeza medida pelo dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "nome": "unidadeMedida",
+        "dono": "Medicao",
+        "descricao": "Unidade de medida associada ao valor medido",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Instalacao.ambiente",
+        "rotulo": "Propriedade",
+        "nome": "ambiente",
+        "dono": "Instalacao",
+        "descricao": "Ambiente onde o dispositivo está instalado",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Instalacao",
+        "rotulo": "USM",
+        "nome": "Instalacao",
+        "dono": null,
+        "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.valor",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Instalacao",
+        "para": "Propriedade:USM:Instalacao.ambiente",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Instalacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Instalacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-TEMP-ESTUFA-KELVIN"
+  }
+}

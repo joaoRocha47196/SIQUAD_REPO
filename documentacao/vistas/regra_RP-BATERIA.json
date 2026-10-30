@@ -1,0 +1,182 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-BATERIA",
+  "regra": {
+    "id": "RP-BATERIA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Diagnostico.nivelBateria entre 0 e 100",
+    "alcance": "USM Diagnostico.nivelBateria",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "nivelBateria",
+      "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+      "dono": "Diagnostico"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "O nível de bateria é uma percentagem entre 0 e 100.",
+      "texto": "nivelBateria entre 0 e 100",
+      "caminho": "nivelBateria",
+      "propriedade": "USM:Diagnostico.nivelBateria",
+      "valor": [
+        0,
+        100
+      ],
+      "minimo": 0,
+      "maximo": 100
+    },
+    "mensagem": "O nível de bateria é uma percentagem entre 0 e 100.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Diagnostico.nivelBateria",
+      "nome": "nivelBateria",
+      "dono": "Diagnostico"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "O nível de bateria é uma percentagem entre 0 e 100.",
+    "texto": "nivelBateria entre 0 e 100",
+    "caminho": "nivelBateria",
+    "propriedade": "USM:Diagnostico.nivelBateria",
+    "valor": [
+      0,
+      100
+    ],
+    "minimo": 0,
+    "maximo": 100,
+    "descricao": "nivelBateria entre 0 e 100",
+    "alvo": {
+      "chave": "USM:Diagnostico.nivelBateria",
+      "nome": "nivelBateria",
+      "dono": "Diagnostico",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Nível de bateria (%)"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+    "nome": "nivelBateria",
+    "dono": "Diagnostico",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Nível de bateria (%)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-BATERIA",
+        "rotulo": "RP",
+        "texto": "RP-BATERIA",
+        "detalhe": "Diagnostico.nivelBateria entre 0 e 100"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.nivelBateria",
+        "detalhe": "Nível de bateria (%)"
+      },
+      {
+        "chave": "Restricao:RP-BATERIA",
+        "rotulo": "Restricao",
+        "texto": "RP-BATERIA#restricao",
+        "detalhe": "nivelBateria entre 0 e 100"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-BATERIA",
+        "para": "Propriedade:USM:Diagnostico.nivelBateria",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-BATERIA",
+        "para": "Restricao:RP-BATERIA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-BATERIA",
+        "para": "Propriedade:USM:Diagnostico.nivelBateria",
+        "tipo": "RESTRINGE",
+        "texto": "nivelBateria entre 0 e 100"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Diagnostico.nivelBateria",
+        "rotulo": "Propriedade",
+        "nome": "nivelBateria",
+        "dono": "Diagnostico",
+        "descricao": "Nível de bateria (%)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Diagnostico",
+        "rotulo": "SM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.nivelBateria",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Diagnostico",
+        "para": "USM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-BATERIA"
+  }
+}

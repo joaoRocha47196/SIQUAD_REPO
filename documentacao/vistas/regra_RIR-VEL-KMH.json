@@ -1,0 +1,332 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-VEL-KMH",
+  "regra": {
+    "id": "RIR-VEL-KMH",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h → Leitura.Medicao.valor entre 0 e 270",
+    "alcance": "HLM Dispositivo",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "HLM",
+      "nome": "Dispositivo",
+      "chave": "HLM:Dispositivo",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "Uma velocidade em km/h tem de estar entre 0 e 270.",
+      "texto": "Leitura.Medicao.valor entre 0 e 270",
+      "caminho": "Leitura.Medicao.valor",
+      "propriedade": "USM:Medicao.valor",
+      "valor": [
+        0,
+        270
+      ],
+      "minimo": 0,
+      "maximo": 270
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "VELOCIDADE",
+        "contexto": null,
+        "texto": "tipoDispositivo = VELOCIDADE",
+        "nome": "tipoDispositivo"
+      },
+      {
+        "ordem": 1,
+        "forma": "tipificado",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "operador": "EQUALS",
+        "valor": "km/h",
+        "contexto": null,
+        "texto": "unidadeMedida = km/h",
+        "nome": "unidadeMedida"
+      }
+    ],
+    "mensagem": "Uma velocidade em km/h tem de estar entre 0 e 270.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Medicao.valor",
+      "nome": "valor",
+      "dono": "Medicao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "Uma velocidade em km/h tem de estar entre 0 e 270.",
+    "texto": "Leitura.Medicao.valor entre 0 e 270",
+    "caminho": "Leitura.Medicao.valor",
+    "propriedade": "USM:Medicao.valor",
+    "valor": [
+      0,
+      270
+    ],
+    "minimo": 0,
+    "maximo": 270,
+    "descricao": "Leitura.Medicao.valor entre 0 e 270",
+    "alvo": {
+      "chave": "USM:Medicao.valor",
+      "nome": "valor",
+      "dono": "Medicao",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Valor medido, na unidade indicada"
+    }
+  },
+  "condicao": {
+    "descricao": "Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "VELOCIDADE",
+        "contexto": null,
+        "texto": "tipoDispositivo = VELOCIDADE",
+        "nome": "tipoDispositivo",
+        "alvo": {
+          "chave": "SM:Identificacao.tipoDispositivo",
+          "nome": "tipoDispositivo",
+          "dono": "Identificacao",
+          "nivelDono": "SM",
+          "tipo": "texto",
+          "descricao": "Grandeza medida pelo dispositivo"
+        }
+      },
+      {
+        "ordem": 1,
+        "forma": "tipificado",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "operador": "EQUALS",
+        "valor": "km/h",
+        "contexto": null,
+        "texto": "unidadeMedida = km/h",
+        "nome": "unidadeMedida",
+        "alvo": {
+          "chave": "USM:Medicao.unidadeMedida",
+          "nome": "unidadeMedida",
+          "dono": "Medicao",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Unidade de medida associada ao valor medido"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "HLM",
+    "nome": "Dispositivo",
+    "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+    "chave": "HLM:Dispositivo",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-VEL-KMH",
+        "rotulo": "RIR",
+        "texto": "RIR-VEL-KMH",
+        "detalhe": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h → Leitura.Medicao.valor entre 0 e 270"
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "texto": "Dispositivo",
+        "detalhe": "Dispositivo IoT: identificação, leitura, localização e diagnóstico."
+      },
+      {
+        "chave": "Restricao:RIR-VEL-KMH",
+        "rotulo": "Restricao",
+        "texto": "RIR-VEL-KMH#restricao",
+        "detalhe": "Leitura.Medicao.valor entre 0 e 270"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.valor",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.valor",
+        "detalhe": "Valor medido, na unidade indicada"
+      },
+      {
+        "chave": "Condicao:RIR-VEL-KMH",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-VEL-KMH#condicao",
+        "detalhe": "Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.tipoDispositivo",
+        "detalhe": "Grandeza medida pelo dispositivo"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.unidadeMedida",
+        "detalhe": "Unidade de medida associada ao valor medido"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-VEL-KMH",
+        "para": "HLM:Dispositivo",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-VEL-KMH",
+        "para": "Restricao:RIR-VEL-KMH",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-VEL-KMH",
+        "para": "Propriedade:USM:Medicao.valor",
+        "tipo": "RESTRINGE",
+        "texto": "Leitura.Medicao.valor entre 0 e 270"
+      },
+      {
+        "de": "R:RIR-VEL-KMH",
+        "para": "Condicao:RIR-VEL-KMH",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-VEL-KMH",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoDispositivo = VELOCIDADE"
+      },
+      {
+        "de": "Condicao:RIR-VEL-KMH",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "TERMO",
+        "texto": "termo 2: unidadeMedida = km/h"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.valor",
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "dono": "Medicao",
+        "descricao": "Valor medido, na unidade indicada",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "nome": "tipoDispositivo",
+        "dono": "Identificacao",
+        "descricao": "Grandeza medida pelo dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "nome": "unidadeMedida",
+        "dono": "Medicao",
+        "descricao": "Unidade de medida associada ao valor medido",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.valor",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-VEL-KMH"
+  }
+}

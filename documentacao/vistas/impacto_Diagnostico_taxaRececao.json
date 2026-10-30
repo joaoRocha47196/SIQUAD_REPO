@@ -1,0 +1,41 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de taxaRececao (Diagnostico)",
+  "propriedade": "USM:Diagnostico.taxaRececao",
+  "nome": "taxaRececao",
+  "regras": [
+    {
+      "id": "RP-RECECAO",
+      "tipo": "RP",
+      "descricao": "Diagnostico.taxaRececao entre 0 e 100",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIC-REDE",
+      "tipo": "RIC",
+      "descricao": "Se Diagnostico.sinalRede entre -120 e -100 e Diagnostico.latencia entre 500 e 10000 e Diagnostico.taxaRececao entre 0 e 50 → informa Estado NAO_FIAVEL",
+      "papeis": [
+        "termo da condição"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 1,
+    "RIR": 0,
+    "RIC": 1
+  },
+  "projecoes": [
+    {
+      "projecao": "DispositivoProducao",
+      "tipo": "obrigatoria",
+      "caminho": "Diagnostico.Diagnostico.taxaRececao"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "USM:Diagnostico.taxaRececao"
+  }
+}

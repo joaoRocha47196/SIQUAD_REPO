@@ -1,0 +1,169 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-ESTADO",
+  "regra": {
+    "id": "RP-ESTADO",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+    "alcance": "SM Identificacao.estado",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "estado",
+      "chave": "Propriedade:SM:Identificacao.estado",
+      "dono": "Identificacao"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "O estado tem de ser ativo, inativo ou em manutenção.",
+      "texto": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+      "caminho": "estado",
+      "propriedade": "SM:Identificacao.estado",
+      "valor": [
+        "ATIVO",
+        "INATIVO",
+        "MANUTENCAO"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O estado tem de ser ativo, inativo ou em manutenção.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "SM:Identificacao.estado",
+      "nome": "estado",
+      "dono": "Identificacao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "O estado tem de ser ativo, inativo ou em manutenção.",
+    "texto": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+    "caminho": "estado",
+    "propriedade": "SM:Identificacao.estado",
+    "valor": [
+      "ATIVO",
+      "INATIVO",
+      "MANUTENCAO"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+    "alvo": {
+      "chave": "SM:Identificacao.estado",
+      "nome": "estado",
+      "dono": "Identificacao",
+      "nivelDono": "SM",
+      "tipo": "texto",
+      "descricao": "Estado operacional do dispositivo"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Identificacao.estado",
+    "nome": "estado",
+    "dono": "Identificacao",
+    "nivelDono": "SM",
+    "tipo": "texto",
+    "descricao": "Estado operacional do dispositivo",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-ESTADO",
+        "rotulo": "RP",
+        "texto": "RP-ESTADO",
+        "detalhe": "Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.estado",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.estado",
+        "detalhe": "Estado operacional do dispositivo"
+      },
+      {
+        "chave": "Restricao:RP-ESTADO",
+        "rotulo": "Restricao",
+        "texto": "RP-ESTADO#restricao",
+        "detalhe": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-ESTADO",
+        "para": "Propriedade:SM:Identificacao.estado",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-ESTADO",
+        "para": "Restricao:RP-ESTADO",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-ESTADO",
+        "para": "Propriedade:SM:Identificacao.estado",
+        "tipo": "RESTRINGE",
+        "texto": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Identificacao.estado",
+        "rotulo": "Propriedade",
+        "nome": "estado",
+        "dono": "Identificacao",
+        "descricao": "Estado operacional do dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.estado",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-ESTADO"
+  }
+}

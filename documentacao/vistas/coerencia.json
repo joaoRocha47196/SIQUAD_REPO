@@ -1,0 +1,48 @@
+{
+  "vista": "coerencia",
+  "titulo": "Coerência entre regras",
+  "foraDosPlausiveis": [
+    {
+      "regra": "RIR-TEMP-CAMARA-CELSIUS",
+      "propriedade": "USM:Instalacao.ambiente",
+      "valores": [
+        "CAMARA_FRIGORIFICA"
+      ],
+      "plausiveis": [
+        "REFRIGERACAO",
+        "ESTUFA",
+        "ARMAZEM",
+        "SERVIDORES",
+        "EXTERIOR",
+        "INCINERADORA",
+        "LABORATORIO"
+      ]
+    }
+  ],
+  "incompativeis": [
+    {
+      "propriedade": "USM:Medicao.valor",
+      "regras": [
+        {
+          "id": "RIR-PRES-BAR",
+          "texto": "valor entre 0.3 e 1.1"
+        },
+        {
+          "id": "RIR-PRES-EXTERIOR-BAR",
+          "texto": "valor entre 950 e 1050"
+        }
+      ]
+    }
+  ],
+  "mesmaCondicao": [
+    {
+      "condicao": "SM:Cabecalho.tipoDocumento EQUALS \"FS\"",
+      "regras": [
+        "RIR-FS",
+        "RIR-FS-LIN",
+        "RIR-FS-NUM"
+      ]
+    }
+  ],
+  "parametros": {}
+}

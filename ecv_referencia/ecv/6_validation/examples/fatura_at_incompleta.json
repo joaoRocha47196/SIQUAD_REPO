@@ -1,0 +1,45 @@
+{
+  "descricao": "Fatura submetida à AT sem o cliente e sem os contextos externos: faltas estruturais e regras não avaliáveis.",
+  "perfil": "SubmissaoAT",
+  "contextos": {
+    "dataDeHoje": "2026-09-30"
+  },
+  "instancia": {
+    "Cabecalho": {
+      "numero": "FT2026/302",
+      "serie": "FT2026",
+      "atcud": "AB12CD34-302",
+      "tipoDocumento": "FT",
+      "dataEmissao": "2026-09-15",
+      "totalFatura": 100.0,
+      "hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "Emitente": {
+      "Entidade": {
+        "nif": "500000000",
+        "nome": "Companhia X"
+      },
+      "Morada": {
+        "rua": "Rua da Junqueira 10",
+        "codigoPostal": "1300-343",
+        "localidade": "LISBOA",
+        "freguesia": "AJUDA",
+        "pais": "PT"
+      },
+      "Contacto": {
+        "email": "faturacao@companhiax.com"
+      }
+    },
+    "Linhas": {
+      "Linha": [
+        {
+          "numero": 1,
+          "descricao": "Serviço",
+          "valor": 100.0,
+          "tipoIVA": "NORMAL",
+          "taxaIVA": 23
+        }
+      ]
+    }
+  }
+}

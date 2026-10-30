@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HLM: High Level Model (modelo de alto nível) · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="current sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="entidades.html">Entidades</a></div><h1>HLM: High Level Model (modelo de alto nível)</h1><h3 id="descricao">Descrição</h3>
+<p>O HLM é o nível de topo da ECM: a entidade que o domínio instancia e a que chama "um modelo", como uma fatura, um dispositivo ou uma ordem de instalação. É o nível de maior especificidade contextual. Um HLM não declara propriedades próprias. É exclusivamente uma composição de submodelos (SM).</p>
+<h3 id="diagrama">Diagrama</h3>
+<p>Todos os atributos da entidade e todas as ligações a outras entidades. <b>LIGAÇÃO</b> marca os atributos que ligam a outra entidade; cada seta indica o atributo da declaração e a aresta correspondente no grafo.</p>
+<pre class="mermaid">classDiagram
+  direction LR
+  class HLM {
+    nome : texto · chave · PascalCase
+    descricao : texto
+    composicao : lista de Composicao · LIGAÇÃO
+    regras : lista de Regra · LIGAÇÃO
+    notas : texto
+  }
+  HLM &quot;1&quot; --&gt; &quot;1..*&quot; SM : composicao · COMPOSTO_POR com papel e cardinalidade
+  RP_RIR_RIC &quot;0..*&quot; --&gt; &quot;1&quot; HLM : regras · ASSOCIADA_A · vive no HLM
+  Projecao &quot;0..*&quot; --&gt; &quot;1&quot; HLM : projecao.hlm · PROJETA
+  Declaracao &quot;1&quot; --&gt; &quot;1&quot; HLM : declaracao.hlm · DESCREVE</pre>
+<h3 id="atributos">Atributos</h3>
+<table><thead><tr><th>Atributo</th><th>Tipo</th><th>Obrigatório</th><th>Descrição</th></tr></thead><tbody><tr><td><code>nome</code></td><td>texto, PascalCase</td><td>sim</td><td>Identificador do HLM, único entre os HLM.</td></tr><tr><td><code>descricao</code></td><td>texto (≥ 10 caracteres)</td><td>sim</td><td>O que o modelo representa, em linguagem natural. Aparece nas vistas.</td></tr><tr><td><code>composicao</code></td><td>lista de composições (≥ 1)</td><td>sim</td><td>Os SM que compõe; ver <a href="entidade_Composicao.html">Composicao.md</a>.</td></tr><tr><td><code>regras</code></td><td>lista de regras</td><td>não</td><td>Regras que vivem no HLM (o alcance é o HLM).</td></tr><tr><td><code>notas</code></td><td>texto</td><td>não</td><td>Comentário livre; não é conhecimento de validação.</td></tr></tbody></table>
+<h4 id="ligacoes-no-grafo">Ligações no grafo</h4>
+<table><thead><tr><th>Aresta</th><th>Sentido</th><th>Outro extremo</th><th>Atributos</th><th>Significado</th></tr></thead><tbody><tr><td><code>COMPOSTO_POR</code></td><td>HLM →</td><td>SM</td><td>cardinalidade, papel, ordem</td><td>O HLM compõe o SM.</td></tr><tr><td><code>ASSOCIADA_A</code></td><td>←</td><td>RP, RIR, RIC</td><td>—</td><td>A regra vive no HLM.</td></tr><tr><td><code>PROJETA</code></td><td>←</td><td>Projecao</td><td>—</td><td>A projeção incide sobre o HLM.</td></tr></tbody></table>
+<p>No grafo: nó <code>HLM</code> (chave <code>nome</code>). O modelo completo do grafo está em <a href="../../ecv/4_graph/graph_model.json">ecv/4_graph/graph_model.json</a>.</p>
+<h3 id="exemplos">Exemplos</h3>
+<h4 id="esboco-na-declaracao">Esboço na declaração</h4>
+<p>Na lista <code>hlm</code> da declaração:</p>
+<pre class="code"><code>&quot;hlm&quot;: [
+  {
+    &quot;nome&quot;: &quot;NomeDoHLM&quot;,
+    &quot;descricao&quot;: &quot;O que o modelo representa.&quot;,
+    &quot;composicao&quot;: [
+      {&quot;sm&quot;: &quot;SubmodeloA&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+      {&quot;sm&quot;: &quot;SubmodeloB&quot;, &quot;papel&quot;: &quot;OutroPapel&quot;, &quot;cardinalidade&quot;: &quot;0..1&quot;},
+      {&quot;sm&quot;: &quot;SubmodeloColecao&quot;, &quot;cardinalidade&quot;: &quot;1..*&quot;}
+    ],
+    &quot;regras&quot;: [ /* RP, RIR, RIC que leem mais do que um SM */ ]
+  }
+]</code></pre>
+<h4 id="exemplos-das-declaracoes-de-exemplo">Exemplos das declarações de exemplo</h4>
+<table><thead><tr><th>HLM</th><th>Descrição</th><th>Composição (papel, SM, cardinalidade)</th><th>Regras que vivem no HLM</th></tr></thead><tbody><tr><td>Dispositivo</td><td>Dispositivo IoT: identificação, leitura, localização e diagnóstico.</td><td>Identificacao [1..1], Leitura [1..1], Localizacao [1..1], Diagnostico [0..1]</td><td>RIR-TEMP-UN, RIR-HUM-UN, RIR-PRES-UN, RIR-VEL-UN, RIR-TEMP-C, RIR-TEMP-K … (+34)</td></tr><tr><td>Fatura</td><td>Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.</td><td>Cabecalho [1..1], Emitente [1..1], Cliente [1..1], Linhas [1..1]</td><td>RP-SOMA, RIR-FS-LIN, RIR-FT-NIF</td></tr><tr><td>OrdemInstalacao</td><td>Ordem de instalação de equipamento: quem a pede e onde instalar.</td><td>Pedido [1..1], Requerente (Cliente) [1..1], Localizacao [1..*]</td><td>RP-ORDEM-MAX</td></tr></tbody></table>
+<p><b>Fatura.</b> O exemplo da faturação. Compõe quatro SM; as regras que vivem no HLM cruzam SM: a soma das linhas (RP-SOMA), o número de linhas de uma fatura simplificada (RIR-FS-LIN) e o NIF obrigatório acima de 1000 euros (RIR-FT-NIF).</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;Fatura&quot;,
+  &quot;descricao&quot;: &quot;Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.&quot;,
+  &quot;composicao&quot;: [
+    {&quot;sm&quot;: &quot;Cabecalho&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Emitente&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Cliente&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Linhas&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;}
+  ],
+  &quot;regras&quot;: [
+    {
+      &quot;id&quot;: &quot;RP-SOMA&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)&quot;,
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;somaIgualA&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;Linhas.Linha.valor&quot;},
+            {&quot;caminho&quot;: &quot;Cabecalho.totalFatura&quot;}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;O total da fatura não corresponde à soma dos valores das linhas.&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;RIR-FS-LIN&quot;,
+      &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+      &quot;descricao&quot;: &quot;Se Cabecalho.tipoDocumento = FS → contagemInferiorA(Linhas.Linha, 11)&quot;,
+      &quot;condicao&quot;: [
+        {&quot;propriedade&quot;: &quot;Cabecalho.tipoDocumento&quot;, &quot;operador&quot;: &quot;EQUALS&quot;, &quot;valor&quot;: &quot;FS&quot;}
+      ],
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;contagemInferiorA&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;Linhas.Linha&quot;},
+            {&quot;literal&quot;: 11}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;Uma fatura simplificada não pode ter mais de 10 linhas.&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;RIR-FT-NIF&quot;,
+      &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+      &quot;descricao&quot;: &quot;Se Cabecalho.totalFatura &gt; 1000 → Cliente.Entidade.nif ≠ 999999990&quot;,
+      &quot;condicao&quot;: [
+        {&quot;propriedade&quot;: &quot;Cabecalho.totalFatura&quot;, &quot;operador&quot;: &quot;GT&quot;, &quot;valor&quot;: 1000}
+      ],
+      &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;Cliente.Entidade.nif&quot;,
+        &quot;operador&quot;: &quot;NOT_EQUALS&quot;,
+        &quot;valor&quot;: &quot;999999990&quot;,
+        &quot;mensagem&quot;: &quot;Uma fatura acima de 1000 euros tem de identificar o NIF do cliente (não pode usar o NIF de consumidor final 999999990).&quot;
+      }
+    }
+  ]
+}</code></pre>
+<p><b>OrdemInstalacao.</b> O exemplo da ECM. Reutiliza o SM <code>Cliente</code> da Fatura com o papel <code>Requerente</code> (o papel é atribuído pela composição, não pela definição). Reutiliza também o SM <code>Localizacao</code> do Dispositivo com cardinalidade <code>1..*</code>: uma ordem pode abranger vários locais.</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;OrdemInstalacao&quot;,
+  &quot;descricao&quot;: &quot;Ordem de instalação de equipamento: quem a pede e onde instalar.&quot;,
+  &quot;composicao&quot;: [
+    {&quot;sm&quot;: &quot;Pedido&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Cliente&quot;, &quot;papel&quot;: &quot;Requerente&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Localizacao&quot;, &quot;cardinalidade&quot;: &quot;1..*&quot;}
+  ],
+  &quot;regras&quot;: [
+    {
+      &quot;id&quot;: &quot;RP-ORDEM-MAX&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;contagemInferiorA(Localizacao, 21)&quot;,
+      &quot;restricao&quot;: {
+        &quot;operador&quot;: &quot;FUNCTION&quot;,
+        &quot;chamada&quot;: {
+          &quot;funcao&quot;: &quot;contagemInferiorA&quot;,
+          &quot;argumentos&quot;: [
+            {&quot;caminho&quot;: &quot;Localizacao&quot;},
+            {&quot;literal&quot;: 21}
+          ]
+        },
+        &quot;mensagem&quot;: &quot;Uma ordem de instalação abrange no máximo 20 locais.&quot;
+      }
+    }
+  ],
+  &quot;notas&quot;: &quot;Exemplo da Secção ECM: reutiliza o SM Cliente da Fatura (com o papel Requerente, atribuído pela composição) e o SM Localizacao do Dispositivo, com cardinalidade 1..*.&quot;
+}</code></pre>
+<p><b>Dispositivo.</b> O exemplo IoT. As dezenas de RIR que inferem gamas a partir do tipo, da unidade e do ambiente vivem aqui, porque leem <code>Identificacao</code> e <code>Leitura</code> (ver <a href="entidade_RIR.html">RIR.md</a>).</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;Dispositivo&quot;,
+  &quot;descricao&quot;: &quot;Dispositivo IoT: identificação, leitura, localização e diagnóstico.&quot;,
+  &quot;composicao&quot;: [
+    {&quot;sm&quot;: &quot;Identificacao&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Leitura&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Localizacao&quot;, &quot;cardinalidade&quot;: &quot;1..1&quot;},
+    {&quot;sm&quot;: &quot;Diagnostico&quot;, &quot;cardinalidade&quot;: &quot;0..1&quot;}
+  ],
+  &quot;notas&quot;: &quot;As gamas seguem o mapeamento conhecido do Capítulo 4 (matriz de decisão): RIR-TEMP-C é a gama física [-60, 1300] (no texto do Capítulo 3 usou-se [-50, 100], ilustrativa).&quot;,
+  &quot;regras&quot;: [&quot;... 40 regra(s) omitida(s) neste excerto ...&quot;]
+}</code></pre>
+<p>Relação com a tese: na Secção ECM, o exemplo conceptual tem os HLM "Fatura", "Ordem de Instalação" e "Medição de Dispositivo". Aqui são <code>Fatura</code>, <code>OrdemInstalacao</code> e <code>Dispositivo</code>.</p>
+<h3 id="pode-e-nao-pode">Pode e não pode</h3>
+<table><thead><tr><th>Pode</th><th>Não pode</th></tr></thead><tbody><tr><td>Compor um ou mais SM, cada um com a sua cardinalidade (<code>1..1</code>, <code>0..1</code>, <code>1..*</code>, <code>0..*</code>)</td><td>Declarar propriedades (<code>propriedades</code> é proibido)</td></tr><tr><td>Compor o mesmo SM mais de uma vez, com papéis diferentes</td><td>Compor USM diretamente</td></tr><tr><td>Ter regras que leem propriedades de mais de um SM (RP, RIR, RIC)</td><td>Ter regras que só leem dentro de um SM não repetível (deviam viver nesse SM, aviso I8)</td></tr><tr><td>Ser alvo de projeções (só o HLM é projetado)</td><td>Ser composto por outro modelo</td></tr><tr><td>Reutilizar SM de outros HLM (Cliente, Localizacao)</td><td>—</td></tr></tbody></table>
+<h4 id="como-saber-se-um-modelo-e-um-hlm">Como saber se um modelo é um HLM</h4>
+<p>Um modelo é um HLM quando responde "sim" a todas estas perguntas:</p>
+<table><thead><tr><th>Pergunta</th><th>Exemplo (sim)</th><th>Contraexemplo (não)</th></tr></thead><tbody><tr><td>É o que um sistema recebe, guarda ou envia como um todo, com identidade de negócio própria?</td><td>Fatura, Dispositivo, OrdemInstalacao</td><td>Morada (é sempre parte de outra coisa)</td></tr><tr><td>É a unidade sobre a qual faz sentido dizer "esta utilização precisa destas partes" (uma projeção)?</td><td>FaturaSimplificada e FaturaAT sobre Fatura</td><td>Linha (não se projeta sozinha)</td></tr><tr><td>Toda a sua informação cabe em grupos com finalidade (SM)?</td><td>Fatura = Cabecalho + Emitente + Cliente + Linhas</td><td>—</td></tr><tr><td>Não existe só para reunir uma coleção?</td><td>—</td><td>"Linhas" é um SM, não um HLM</td></tr></tbody></table>
+<p>Se alguma informação parecer pertencer ao HLM diretamente, como o número da fatura, pertence a um SM: aqui, ao SM Cabecalho, que só tem propriedades residuais.</p>
+<h3 id="detalhes">Detalhes</h3>
+<h4 id="contextos-de-utilizacao">Contextos de utilização</h4>
+<ul><li><b>Ponto de entrada da validação.</b> Uma instância é sempre de um HLM. O perfil, através da projeção, diz qual.</li><li><b>Âncora das projeções.</b> Só o HLM tem a visão completa do modelo.</li><li><b>Sítio das regras que cruzam SM.</b> Por exemplo, a soma das linhas igual ao total da fatura (RP-SOMA), ou o tipo de dispositivo e a unidade da medição (RIR-TEMP-C).</li></ul>
+<h3 id="verificacoes">Verificações</h3>
+<ul><li><b>S-MOD:</b> nome em PascalCase; descrição com pelo menos 10 caracteres; pelo menos uma composição; sem <code>propriedades</code>.</li><li><b>S-COMP:</b> cada composição tem <code>sm</code>, nunca <code>usm</code>; a cardinalidade é uma das quatro; os papéis são únicos.</li><li><b>I2:</b> os SM compostos estão declarados.</li><li><b>I8 (aviso):</b> uma regra do HLM que só lê dentro de um SM não repetível poderia viver nesse SM.</li></ul><p class="note">Fonte: <a href="../../specs/entidades/ecm/HLM.md">specs/entidades/ecm/HLM.md</a></p></main><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,securityLevel:"loose"});}</script></body></html>

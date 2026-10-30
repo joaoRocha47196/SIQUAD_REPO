@@ -1,0 +1,469 @@
+{
+  "descricao": "Modelo do grafo de conhecimento de validação (ECV): tipos de nó, chave de cada um, atributos e tipos de aresta. É lido pela ingestão (materialização e fusão), pela exportação Cypher e pela conformidade. O atributo 'dono' de cada aresta diz a que nó pertence a aresta para efeitos de fusão: 'origem' (o nó de onde sai) ou 'regra' (a regra indicada no atributo 'regra' da aresta).",
+  "versao": "1.1.0",
+  "grupos": {
+    "ECM": {
+      "cor": "#0072B2",
+      "nos": [
+        "HLM",
+        "SM",
+        "USM",
+        "Propriedade"
+      ]
+    },
+    "Regras": {
+      "cor": "#009E73",
+      "nos": [
+        "RP",
+        "RIR",
+        "RIC"
+      ]
+    },
+    "Restricao e condicao": {
+      "cor": "#6A3D9A",
+      "nos": [
+        "Restricao",
+        "CondicaoAplicabilidade"
+      ]
+    },
+    "Funcoes e contextos": {
+      "cor": "#8C6D1F",
+      "nos": [
+        "Funcao",
+        "ContextoExterno"
+      ]
+    },
+    "RE: projecoes e perfis": {
+      "cor": "#7F7F7F",
+      "nos": [
+        "Projecao",
+        "Perfil"
+      ]
+    },
+    "Proveniencia": {
+      "cor": "#444444",
+      "nos": [
+        "Declaracao"
+      ]
+    }
+  },
+  "nos": {
+    "HLM": {
+      "grupo": "ECM",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto (PascalCase)",
+        "descricao": "texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Modelo de alto nível: a entidade instanciada. Só composição de SM; não tem propriedades."
+    },
+    "SM": {
+      "grupo": "ECM",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto (PascalCase)",
+        "descricao": "texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Submodelo: agrupa USM com uma finalidade; pode ter propriedades residuais."
+    },
+    "USM": {
+      "grupo": "ECM",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto (PascalCase)",
+        "descricao": "texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Submodelo universal: informação canónica, dona da identidade das suas propriedades."
+    },
+    "Propriedade": {
+      "grupo": "ECM",
+      "chave": "chave",
+      "atributos": {
+        "chave": "texto: '<nível do dono>:<dono>.<nome>' (ex.: 'USM:Medicao.valor')",
+        "nome": "texto (camelCase)",
+        "dono": "texto: nome do USM ou SM que a contém",
+        "nivelDono": "'USM' ou 'SM' (propriedade residual)",
+        "tipo": "texto | inteiro | decimal | data | booleano",
+        "descricao": "texto",
+        "nomesAlternativos": "lista de texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Informação atómica, com uma única definição no modelo que a contém."
+    },
+    "RP": {
+      "grupo": "Regras",
+      "rotulosExtra": [
+        "Regra"
+      ],
+      "chave": "id",
+      "atributos": {
+        "id": "texto (RP-...)",
+        "natureza": "'plausibilidade'",
+        "tipo": "'RP'",
+        "descricao": "texto (derivado)",
+        "alcance": "texto: nó onde vive",
+        "contextosExternos": "lista de texto (derivada)",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Regra de plausibilidade: tem uma restrição e não tem condição."
+    },
+    "RIR": {
+      "grupo": "Regras",
+      "rotulosExtra": [
+        "Regra"
+      ],
+      "chave": "id",
+      "atributos": {
+        "id": "texto (RIR-...)",
+        "natureza": "'inferencia_restritiva'",
+        "tipo": "'RIR'",
+        "descricao": "texto (derivado)",
+        "alcance": "texto",
+        "contextosExternos": "lista de texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Regra de inferência restritiva: condição de aplicabilidade + restrição."
+    },
+    "RIC": {
+      "grupo": "Regras",
+      "rotulosExtra": [
+        "Regra"
+      ],
+      "chave": "id",
+      "atributos": {
+        "id": "texto (RIC-...)",
+        "natureza": "'inferencia_conclusiva'",
+        "tipo": "'RIC'",
+        "descricao": "texto (derivado)",
+        "alcance": "texto",
+        "mensagem": "texto: mensagem de conclusão",
+        "conclusaoTipo": "'ACAO' | 'ESTADO'",
+        "conclusaoValor": "texto",
+        "contextosExternos": "lista de texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Regra de inferência conclusiva: condição de aplicabilidade + mensagem de conclusão (sem restrição)."
+    },
+    "Restricao": {
+      "grupo": "Restricao e condicao",
+      "chave": "id",
+      "atributos": {
+        "id": "texto: '<id da regra>#restricao'",
+        "regra": "texto: id da regra",
+        "operador": "operador do catálogo",
+        "valor": "texto JSON dos valores esperados (vazio numa função)",
+        "mensagem": "texto: mensagem de não conformidade",
+        "forma": "'tipificada' | 'funcao'",
+        "descricao": "texto"
+      },
+      "descricao": "O que o dado tem de cumprir: um alvo, um operador e os valores esperados (ou uma função), com a mensagem de não conformidade."
+    },
+    "CondicaoAplicabilidade": {
+      "grupo": "Restricao e condicao",
+      "chave": "id",
+      "atributos": {
+        "id": "texto: '<id da regra>#condicao'",
+        "regra": "texto: id da regra",
+        "termos": "inteiro: número de termos",
+        "descricao": "texto"
+      },
+      "descricao": "Conjunção de termos que decide se a regra se aplica."
+    },
+    "Funcao": {
+      "grupo": "Funcoes e contextos",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto (camelCase)",
+        "descricao": "texto",
+        "parametros": "texto JSON da lista de parâmetros",
+        "retorno": "'booleano'",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Verificação delegada, declarada pelo nome, descrição, parâmetros (alvos e literais) e contextos externos."
+    },
+    "ContextoExterno": {
+      "grupo": "Funcoes e contextos",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto (camelCase)",
+        "tipo": "tipo base",
+        "descricao": "texto",
+        "fonte": "texto"
+      },
+      "descricao": "Valor de que a validação depende e que não pertence ao modelo nem à regra."
+    },
+    "Projecao": {
+      "grupo": "RE: projecoes e perfis",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto (PascalCase)",
+        "descricao": "texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Seleção das propriedades de um HLM (obrigatórias e permitidas) para uma utilização: as regras estruturais (RE)."
+    },
+    "Perfil": {
+      "grupo": "RE: projecoes e perfis",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto (PascalCase)",
+        "descricao": "texto",
+        "notas": "texto (opcional)"
+      },
+      "descricao": "Cenário de execução: usa uma projeção e fixa valores conhecidos antes da execução (propriedades e contextos externos)."
+    },
+    "Declaracao": {
+      "grupo": "Proveniencia",
+      "chave": "nome",
+      "atributos": {
+        "nome": "texto: nome da declaração",
+        "versao": "texto",
+        "descricao": "texto",
+        "dominios": "lista de texto",
+        "hlm": "texto: o HLM descrito"
+      },
+      "descricao": "Uma declaração ingerida: a exportação completa de um HLM. Liga-se ao HLM que descreve; os restantes nós podem ter vindo de várias declarações (fundidos)."
+    }
+  },
+  "arestas": {
+    "COMPOSTO_POR": {
+      "de": [
+        "HLM",
+        "SM"
+      ],
+      "para": [
+        "SM",
+        "USM"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "cardinalidade": "0..1 | 1..1 | 0..* | 1..*",
+        "papel": "texto: segmento do caminho",
+        "ordem": "inteiro"
+      },
+      "descricao": "Composição; o papel é o segmento de caminho e a cardinalidade diz quantas instâncias admite."
+    },
+    "CONTEM": {
+      "de": [
+        "USM",
+        "SM"
+      ],
+      "para": [
+        "Propriedade"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "ordem": "inteiro"
+      },
+      "descricao": "A propriedade pertence ao modelo (no SM: propriedade residual)."
+    },
+    "ASSOCIADA_A": {
+      "de": [
+        "RP",
+        "RIR",
+        "RIC"
+      ],
+      "para": [
+        "HLM",
+        "SM",
+        "USM",
+        "Propriedade"
+      ],
+      "dono": "origem",
+      "atributos": {},
+      "descricao": "Nó onde a regra vive (alcance). Os caminhos da regra são relativos a este nó (numa propriedade, ao seu dono)."
+    },
+    "RESTRITA_POR": {
+      "de": [
+        "RP",
+        "RIR"
+      ],
+      "para": [
+        "Restricao"
+      ],
+      "dono": "origem",
+      "atributos": {},
+      "descricao": "A regra tem esta restrição."
+    },
+    "CONDICIONADA_POR": {
+      "de": [
+        "RIR",
+        "RIC"
+      ],
+      "para": [
+        "CondicaoAplicabilidade"
+      ],
+      "dono": "origem",
+      "atributos": {},
+      "descricao": "A regra só se aplica quando a condição se verifica."
+    },
+    "RESTRINGE": {
+      "de": [
+        "Restricao"
+      ],
+      "para": [
+        "Propriedade"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "operador": "operador",
+        "valor": "texto JSON",
+        "minimo": "número (RANGE, opcional)",
+        "maximo": "número (RANGE, opcional)",
+        "caminho": "texto: caminho a partir do nó da regra",
+        "texto": "texto: a verificação em linguagem natural (ex.: 'valor entre -30 e 0')"
+      },
+      "cardinalidade": "0..1 por restrição (0 numa restrição por função)",
+      "descricao": "Alvo único da restrição tipificada."
+    },
+    "TERMO": {
+      "de": [
+        "CondicaoAplicabilidade"
+      ],
+      "para": [
+        "Propriedade"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "ordem": "inteiro",
+        "operador": "operador",
+        "valor": "texto JSON (ausente se compara com contexto)",
+        "minimo": "número (RANGE, opcional)",
+        "maximo": "número (RANGE, opcional)",
+        "contexto": "texto: nome do contexto externo (opcional)",
+        "caminho": "texto",
+        "texto": "texto: o termo em linguagem natural (ex.: 'ambiente = REFRIGERACAO')"
+      },
+      "cardinalidade": "1..N por condição (um por termo tipificado)",
+      "descricao": "Termo da condição: a propriedade lida, o operador e o valor (o fator discriminante)."
+    },
+    "CHAMA": {
+      "de": [
+        "Restricao",
+        "CondicaoAplicabilidade"
+      ],
+      "para": [
+        "Funcao"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "chamada": "texto legível da chamada",
+        "argumentos": "texto JSON dos argumentos",
+        "operador": "FUNCTION | EXT_FUNCTION",
+        "termo": "inteiro (ordem do termo, só a partir de uma condição)",
+        "regra": "texto"
+      },
+      "descricao": "A restrição, ou um termo da condição, é uma chamada a uma função."
+    },
+    "LE": {
+      "de": [
+        "Funcao"
+      ],
+      "para": [
+        "Propriedade",
+        "USM",
+        "SM"
+      ],
+      "dono": "regra",
+      "atributos": {
+        "caminho": "texto",
+        "regra": "texto: regra cuja chamada passa este argumento",
+        "posicao": "inteiro",
+        "parte": "'restricao' | 'termo'",
+        "colecao": "booleano"
+      },
+      "descricao": "Argumento (alvo) de uma chamada: uma propriedade, ou um modelo (coleção de instâncias). Como a Funcao é partilhada, a aresta identifica a regra que a usa."
+    },
+    "DEPENDE_DE": {
+      "de": [
+        "Funcao",
+        "CondicaoAplicabilidade"
+      ],
+      "para": [
+        "ContextoExterno"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "termo": "inteiro (só a partir de uma condição)"
+      },
+      "descricao": "Usa um valor externo ao modelo: a função, ou um termo da condição que compara com o contexto."
+    },
+    "PROJETA": {
+      "de": [
+        "Projecao"
+      ],
+      "para": [
+        "HLM"
+      ],
+      "dono": "origem",
+      "atributos": {},
+      "descricao": "A projeção incide sobre o HLM."
+    },
+    "OBRIGATORIA": {
+      "de": [
+        "Projecao"
+      ],
+      "para": [
+        "Propriedade"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "caminho": "texto: caminho a partir do HLM"
+      },
+      "descricao": "A propriedade, naquela ocorrência (caminho), é obrigatória."
+    },
+    "PERMITIDA": {
+      "de": [
+        "Projecao"
+      ],
+      "para": [
+        "Propriedade"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "caminho": "texto: caminho a partir do HLM"
+      },
+      "descricao": "A propriedade, naquela ocorrência (caminho), pode estar presente."
+    },
+    "USA": {
+      "de": [
+        "Perfil"
+      ],
+      "para": [
+        "Projecao"
+      ],
+      "dono": "origem",
+      "atributos": {},
+      "descricao": "O perfil usa a projeção (e, por ela, o HLM)."
+    },
+    "FIXA": {
+      "de": [
+        "Perfil"
+      ],
+      "para": [
+        "Propriedade",
+        "ContextoExterno"
+      ],
+      "dono": "origem",
+      "atributos": {
+        "caminho": "texto (só para propriedades)",
+        "valor": "texto JSON"
+      },
+      "descricao": "Valor conhecido antes da execução."
+    },
+    "DESCREVE": {
+      "de": [
+        "Declaracao"
+      ],
+      "para": [
+        "HLM"
+      ],
+      "dono": "origem",
+      "atributos": {},
+      "descricao": "A declaração descreve este HLM (proveniência)."
+    }
+  }
+}

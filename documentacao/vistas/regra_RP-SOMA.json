@@ -1,0 +1,286 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-SOMA",
+  "regra": {
+    "id": "RP-SOMA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+    "alcance": "HLM Fatura",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "HLM",
+      "nome": "Fatura",
+      "chave": "HLM:Fatura",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "FUNCTION",
+      "mensagem": "O total da fatura não corresponde à soma dos valores das linhas.",
+      "texto": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+      "chamada": {
+        "funcao": "somaIgualA",
+        "chamada": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+        "operador": "FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando a soma dos valores da coleção, arredondada ao cêntimo, é igual ao total.",
+        "argumentos": [
+          {
+            "caminho": "Linhas.Linha.valor",
+            "alvo": "USM:Linha.valor",
+            "nomeAlvo": "valor",
+            "rotuloAlvo": "Propriedade",
+            "colecao": true
+          },
+          {
+            "caminho": "Cabecalho.totalFatura",
+            "alvo": "SM:Cabecalho.totalFatura",
+            "nomeAlvo": "totalFatura",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          }
+        ],
+        "contextos": []
+      }
+    },
+    "mensagem": "O total da fatura não corresponde à soma dos valores das linhas.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "USM:Linha.valor",
+      "nome": "valor, totalFatura",
+      "funcao": "somaIgualA"
+    },
+    "funcoes": [
+      "somaIgualA"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "FUNCTION",
+    "mensagem": "O total da fatura não corresponde à soma dos valores das linhas.",
+    "texto": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+    "chamada": {
+      "funcao": "somaIgualA",
+      "chamada": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+      "operador": "FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando a soma dos valores da coleção, arredondada ao cêntimo, é igual ao total.",
+      "argumentos": [
+        {
+          "caminho": "Linhas.Linha.valor",
+          "alvo": "USM:Linha.valor",
+          "nomeAlvo": "valor",
+          "rotuloAlvo": "Propriedade",
+          "colecao": true
+        },
+        {
+          "caminho": "Cabecalho.totalFatura",
+          "alvo": "SM:Cabecalho.totalFatura",
+          "nomeAlvo": "totalFatura",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        }
+      ],
+      "contextos": []
+    },
+    "descricao": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+    "funcao": {
+      "nome": "somaIgualA",
+      "descricao": "Verdadeira quando a soma dos valores da coleção, arredondada ao cêntimo, é igual ao total.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<decimal>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores a somar."
+        },
+        {
+          "nome": "total",
+          "tipo": "decimal",
+          "papel": "alvo",
+          "descricao": "Total declarado."
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": []
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "rotulo": "HLM",
+    "nome": "Fatura",
+    "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+    "chave": "HLM:Fatura",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-SOMA",
+        "rotulo": "RP",
+        "texto": "RP-SOMA",
+        "detalhe": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "texto": "Fatura",
+        "detalhe": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas."
+      },
+      {
+        "chave": "Restricao:RP-SOMA",
+        "rotulo": "Restricao",
+        "texto": "RP-SOMA#restricao",
+        "detalhe": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)"
+      },
+      {
+        "chave": "Funcao:somaIgualA",
+        "rotulo": "Funcao",
+        "texto": "somaIgualA",
+        "detalhe": "Verdadeira quando a soma dos valores da coleção, arredondada ao cêntimo, é igual ao total."
+      },
+      {
+        "chave": "Propriedade:USM:Linha.valor",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.valor",
+        "detalhe": "Valor da linha, em euros"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.totalFatura",
+        "detalhe": "Total do documento, em euros"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-SOMA",
+        "para": "HLM:Fatura",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-SOMA",
+        "para": "Restricao:RP-SOMA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-SOMA",
+        "para": "Funcao:somaIgualA",
+        "tipo": "CHAMA",
+        "texto": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)"
+      },
+      {
+        "de": "Funcao:somaIgualA",
+        "para": "Propriedade:USM:Linha.valor",
+        "tipo": "LE",
+        "texto": "argumento: Linhas.Linha.valor (coleção)"
+      },
+      {
+        "de": "Funcao:somaIgualA",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "LE",
+        "texto": "argumento: Cabecalho.totalFatura"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Linha.valor",
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "dono": "Linha",
+        "descricao": "Valor da linha, em euros",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "nome": "totalFatura",
+        "dono": "Cabecalho",
+        "descricao": "Total do documento, em euros",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.valor",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-SOMA"
+  }
+}

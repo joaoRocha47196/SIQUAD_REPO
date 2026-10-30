@@ -1,0 +1,11 @@
+{
+ "id": "001-funcao",
+ "tipo": "funcao",
+ "titulo": "Implementar a função algumPresente",
+ "passo": null,
+ "estado": "pendente",
+ "criado": "2026-10-30T01:03:58",
+ "ficheiroResposta": "resposta.py",
+ "funcao": "algumPresente",
+ "ficheiro": "f_algum_presente.py"
+}

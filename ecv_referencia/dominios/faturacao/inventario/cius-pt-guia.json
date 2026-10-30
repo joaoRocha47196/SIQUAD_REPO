@@ -1,0 +1,3578 @@
+{
+ "fonte": {
+  "id": "cius-pt-guia",
+  "nome": "Guia do modelo de dados semântico CIUS-PT (v1.1)",
+  "tipo": "norma semântica",
+  "ficheiro": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf",
+  "adaptador": "cius_pt.guia",
+  "papel": "modelo semântico: a estrutura principal (BG e BT), independente da sintaxe XML",
+  "caminho": "data/CIS_PT_SCHEMATRON/guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf",
+  "extraido": "2026-10-29T19:09:50"
+ },
+ "contagens": {
+  "grupos": 33,
+  "elementos": 164,
+  "regras": 0,
+  "regrasPorCategoria": {}
+ },
+ "grupos": [
+  {
+   "id": "BG-0",
+   "nome": "Documento de faturação",
+   "descricao": "Raiz do modelo semântico: os campos sem grupo pertencem diretamente ao documento.",
+   "nomeOrigem": "INVOICE",
+   "pai": null,
+   "cardinalidade": null,
+   "elementos": [
+    "BT-1",
+    "BT-2",
+    "BT-3",
+    "BT-5",
+    "BT-6",
+    "BT-7",
+    "BT-8",
+    "BT-9",
+    "BT-10",
+    "BT-11",
+    "BT-12",
+    "BT-13",
+    "BT-14",
+    "BT-15",
+    "BT-16",
+    "BT-17",
+    "BT-18",
+    "BT-19",
+    "BT-20"
+   ],
+   "origem": "EN 16931 (raiz implícita)"
+  },
+  {
+   "id": "BG-1",
+   "nome": "Notas do Documento Faturação",
+   "descricao": "",
+   "nomeOrigem": "INVOICE NOTE",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-21",
+    "BT-22"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-2",
+   "nome": "Controlo do Processo",
+   "descricao": "",
+   "nomeOrigem": "PROCESS CONTROL",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-23",
+    "BT-24"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-3",
+   "nome": "Referência do Documento Relacionado",
+   "descricao": "",
+   "nomeOrigem": "PRECEDING INVOICE REFERENCE",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-25",
+    "BT-26"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-4",
+   "nome": "Identificação do Fornecedor",
+   "descricao": "",
+   "nomeOrigem": "SELLER",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-27",
+    "BT-28",
+    "BT-29",
+    "BT-30",
+    "BT-31",
+    "BT-32",
+    "BT-33",
+    "BT-34"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-5",
+   "nome": "Morada do Fornecedor",
+   "descricao": "",
+   "nomeOrigem": "SELLER POSTAL ADDRESS",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-35",
+    "BT-36",
+    "BT-162",
+    "BT-37",
+    "BT-38",
+    "BT-39",
+    "BT-40"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-6",
+   "nome": "Contacto do Fornecedor",
+   "descricao": "",
+   "nomeOrigem": "SELLER CONTACT",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-41",
+    "BT-42",
+    "BT-43"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-7",
+   "nome": "Identificação do Cliente",
+   "descricao": "",
+   "nomeOrigem": "BUYER",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-44",
+    "BT-45",
+    "BT-46",
+    "BT-47",
+    "BT-48",
+    "BT-49"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-8",
+   "nome": "Morada do Cliente",
+   "descricao": "",
+   "nomeOrigem": "BUYER POSTAL ADDRESS",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-50",
+    "BT-51",
+    "BT-163",
+    "BT-52",
+    "BT-53",
+    "BT-54",
+    "BT-55"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-9",
+   "nome": "Contacto do Cliente",
+   "descricao": "",
+   "nomeOrigem": "BUYER CONTACT",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-56",
+    "BT-57",
+    "BT-58"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-10",
+   "nome": "Identificação do Recebedor do Pagamento",
+   "descricao": "",
+   "nomeOrigem": "PAYEE",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-59",
+    "BT-60",
+    "BT-61"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-11",
+   "nome": "Identificação do Representante Legal do Fornecedor",
+   "descricao": "",
+   "nomeOrigem": "SELLER TAX REPRESENTATIVE PARTY",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-62",
+    "BT-63"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-12",
+   "nome": "Morada do Representante Legal do Fornecedor",
+   "descricao": "",
+   "nomeOrigem": "SELLER TAX REPRESENTATIVE",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-64",
+    "BT-65",
+    "BT-164",
+    "BT-66",
+    "BT-67",
+    "BT-68",
+    "BT-69"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-13",
+   "nome": "Local de Entrega",
+   "descricao": "",
+   "nomeOrigem": "DELIVERY INFORMATION",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-70",
+    "BT-71",
+    "BT-72"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-14",
+   "nome": "Período de Faturação",
+   "descricao": "",
+   "nomeOrigem": "INVOICING PERIOD",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-73",
+    "BT-74"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-15",
+   "nome": "Morada do Local de Entrega",
+   "descricao": "",
+   "nomeOrigem": "DELIVER TO ADDRESS",
+   "pai": null,
+   "cardinalidade": "1..*",
+   "elementos": [
+    "BT-75",
+    "BT-76",
+    "BT-165",
+    "BT-77",
+    "BT-78",
+    "BT-79",
+    "BT-80"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-16",
+   "nome": "Dados de Pagamento",
+   "descricao": "",
+   "nomeOrigem": "PAYMENT INSTRUCTIONS",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-81",
+    "BT-82",
+    "BT-83"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-17",
+   "nome": "Dados de Pagamento - Informação de Transferência Bancária",
+   "descricao": "",
+   "nomeOrigem": "CREDIT TRANSFER",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-84",
+    "BT-85",
+    "BT-86"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-18",
+   "nome": "Dados de Pagamento - Informação de Cartão Crédito",
+   "descricao": "",
+   "nomeOrigem": "PAYMENT CARD INFORMATION",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-87",
+    "BT-88"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-19",
+   "nome": "Dados de Pagamento - Informação de Débito Direto",
+   "descricao": "",
+   "nomeOrigem": "DIRECT DEBIT",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-89",
+    "BT-90",
+    "BT-91"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-20",
+   "nome": "Informação de Descontos do Documento",
+   "descricao": "",
+   "nomeOrigem": "DOCUMENT LEVEL ALLOWANCES",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-92",
+    "BT-93",
+    "BT-94",
+    "BT-95",
+    "BT-96",
+    "BT-97",
+    "BT-98"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-21",
+   "nome": "Informação de Encargos do Documento",
+   "descricao": "",
+   "nomeOrigem": "DOCUMENT LEVEL CHARGES",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-99",
+    "BT-100",
+    "BT-101",
+    "BT-102",
+    "BT-103",
+    "BT-104",
+    "BT-105"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-22",
+   "nome": "Totais do Documento",
+   "descricao": "",
+   "nomeOrigem": "DOCUMENT TOTALS",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-106",
+    "BT-107",
+    "BT-108",
+    "BT-109",
+    "BT-110",
+    "BT-111",
+    "BT-112",
+    "BT-113",
+    "BT-114",
+    "BT-115"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-23",
+   "nome": "Informação de Impostos",
+   "descricao": "",
+   "nomeOrigem": "VAT BREAKDOWN",
+   "pai": null,
+   "cardinalidade": "1..*",
+   "elementos": [
+    "BT-116",
+    "BT-117",
+    "BT-118",
+    "BT-119",
+    "BT-120",
+    "BT-121"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-24",
+   "nome": "Documentos de Suporte",
+   "descricao": "",
+   "nomeOrigem": "ADDITIONAL SUPPORTING",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-122",
+    "BT-123",
+    "BT-124",
+    "BT-125"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-25",
+   "nome": "Linha do Documento de Faturação",
+   "descricao": "",
+   "nomeOrigem": "INVOICE LINE",
+   "pai": null,
+   "cardinalidade": "1..*",
+   "elementos": [
+    "BT-126",
+    "BT-127",
+    "BT-128",
+    "BT-129",
+    "BT-130",
+    "BT-131",
+    "BT-132",
+    "BT-133"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-26",
+   "nome": "Linha do Documento de Faturação - Período",
+   "descricao": "",
+   "nomeOrigem": "INVOICE LINE PERIOD",
+   "pai": null,
+   "cardinalidade": "0..1",
+   "elementos": [
+    "BT-134",
+    "BT-135"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-27",
+   "nome": "Linha do Documento de Faturação - Descontos",
+   "descricao": "",
+   "nomeOrigem": "INVOICE LINE ALLOWANCES",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-136",
+    "BT-137",
+    "BT-138",
+    "BT-139",
+    "BT-140"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-28",
+   "nome": "Linha do Documento de Faturação - Encargos",
+   "descricao": "",
+   "nomeOrigem": "INVOICE LINE CHARGES",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-141",
+    "BT-142",
+    "BT-143",
+    "BT-144",
+    "BT-145"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-29",
+   "nome": "Linha do Documento de Faturação - Preço",
+   "descricao": "",
+   "nomeOrigem": "PRICE DETAILS",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-146",
+    "BT-147",
+    "BT-148",
+    "BT-149",
+    "BT-150"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-30",
+   "nome": "Linha do Documento de Faturação - Impostos",
+   "descricao": "",
+   "nomeOrigem": "LINE VAT INFORMATION",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-151",
+    "BT-152"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-31",
+   "nome": "Linha do Documento de Faturação - Detalhe do Bem/Serviço",
+   "descricao": "",
+   "nomeOrigem": "ITEM INFORMATION",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "BT-153",
+    "BT-154",
+    "BT-155",
+    "BT-156",
+    "BT-157",
+    "BT-158",
+    "BT-159"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  },
+  {
+   "id": "BG-32",
+   "nome": "Linha do Documento de Faturação - Propriedades adicionais",
+   "descricao": "",
+   "nomeOrigem": "ITEM ATTRIBUTES",
+   "pai": null,
+   "cardinalidade": "0..*",
+   "elementos": [
+    "BT-160",
+    "BT-161"
+   ],
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de grupos"
+  }
+ ],
+ "elementos": [
+  {
+   "id": "BT-1",
+   "nome": "Número de referência do documento, emitido pelo fornecedor",
+   "descricao": "Número de referência do documento, emitido pelo fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Invoice number"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-001",
+    "BR-2"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-2",
+   "nome": "Data de emissão do documento",
+   "descricao": "Data de emissão do documento.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "1..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Invoice issue date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-002",
+    "BR-3"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD)\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-3",
+   "nome": "Código que identifica o tipo funcional do documento",
+   "descricao": "Código que identifica o tipo funcional do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Invoice type code"
+   ],
+   "valoresAdmitidos": [
+    "380",
+    "381",
+    "383",
+    "386",
+    "389"
+   ],
+   "regras": [
+    "DT-CIUS-PT-003",
+    "BR-4"
+   ],
+   "notas": "- deve mencionar o tipo de documento, segundo a lista de códigos UNCL1001.\n- valores admitidos: 380, 381, 383, 386, 389. Legenda: 380 - Fatura, 381 - Nota de crédito, 383 - Nota de débito, 386 - Fatura de adiantamento, 389 - Auto-faturação.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-5",
+   "nome": "Moeda na qual os montantes constantes no documento estão indicados",
+   "descricao": "Moeda na qual os montantes constantes no documento estão indicados.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Invoice currency code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-151",
+    "BR-5"
+   ],
+   "notas": "- valores admitidos segundo a lista de códigos ISO4217.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-6",
+   "nome": "A moeda usada para fins de contabilidade e relatórios de IVA, conforme aceite ou exigida no país do vendedor",
+   "descricao": "A moeda usada para fins de contabilidade e relatórios de IVA, conforme aceite ou exigida no país do vendedor.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-152"
+   ],
+   "notas": "- valores admitidos segundo a lista de códigos ISO4217.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-7",
+   "nome": "A data em que o IVA se torna aplicável para o Vendedor e para o Comprador na medida em que essa data pode ser determinad",
+   "descricao": "A data em que o IVA se torna aplicável para o Vendedor e para o Comprador na medida em que essa data pode ser determinada e difere da data de emissão da fatura, de acordo com a diretiva do IVA",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Value added tax point date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-006",
+    "BR-CO-3"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD) - BT-7 e BT-8 são mutuamente exclusivos.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-8",
+   "nome": "O código da data em que o IVA se torna aplicável pelo vendedor e pelo comprador",
+   "descricao": "O código da data em que o IVA se torna aplicável pelo vendedor e pelo comprador.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Value added tax point date code"
+   ],
+   "valoresAdmitidos": [
+    "3",
+    "35",
+    "432"
+   ],
+   "regras": [
+    "DT-CIUS-PT-007",
+    "BR-CO-3"
+   ],
+   "notas": "- BT-8 e BT-7 são mutuamente exclusivos.\n- deve mencionar os códigos, segundo a lista de códigos UNTDID2005[6].\n- valores admitidos: 3, 35, 432. Legenda: 3 - Data de emissão; 35 - Data de entrega; 432 - Data em que o pagamento foi efetuado.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-9",
+   "nome": "Data de vencimento do documento",
+   "descricao": "Data de vencimento do documento.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Payment due date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-008",
+    "BR-CO-25"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD) Campo Recomendado\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-10",
+   "nome": "Referência do Cliente",
+   "descricao": "Referência do Cliente",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-009"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-11",
+   "nome": "Número do Projeto",
+   "descricao": "Número do Projeto",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Project reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-010",
+    "BR-CIUS-PT-33"
+   ],
+   "notas": "Referência para o documento de multifaturação.\n- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-12",
+   "nome": "Número do contrato",
+   "descricao": "Número do contrato.",
+   "tipo": "texto",
+   "tipoOrigem": "O",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Contract reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-011",
+    "BR-CIUS-PT-29"
+   ],
+   "notas": "Preenchido no caso do fornecedor ter recebido esta informação do Organismo.\n- valor com o seguinte formato (regex): /^(.{1,20})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 20. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-13",
+   "nome": "Número da nota de encomenda",
+   "descricao": "Número da nota de encomenda.",
+   "tipo": "texto",
+   "tipoOrigem": "O",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Purchase order reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-012",
+    "BR-CIUS-PT-24"
+   ],
+   "notas": "Preenchido no caso do fornecedor ter recebido esta informação do Organismo.\n- valor com o seguinte formato (regex): /^(.{1,20})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 20. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-14",
+   "nome": "Número da ordem de venda, emitida pelo fornecedor",
+   "descricao": "Número da ordem de venda, emitida pelo fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "O",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Sales order reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-013",
+    "BR-CIUS-PT-24"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,20})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 20.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-15",
+   "nome": "Número do aviso de recebimento referenciado",
+   "descricao": "Número do aviso de recebimento referenciado.",
+   "tipo": "texto",
+   "tipoOrigem": "O",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Receiving advice reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-014",
+    "BR-CIUS-PT-27"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,20})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 20.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-16",
+   "nome": "Referência do aviso de envio",
+   "descricao": "Referência do aviso de envio.",
+   "tipo": "texto",
+   "tipoOrigem": "O",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Despatch advice reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-015",
+    "BR-CIUS-PT-26"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,20})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 20.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-17",
+   "nome": "Número do acordo quadro",
+   "descricao": "Número do acordo quadro.",
+   "tipo": "texto",
+   "tipoOrigem": "O",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-016",
+    "BR-CIUS-PT-28"
+   ],
+   "notas": "Apesar de não ser obrigatório, neste momento é de extrema relevância que seja preenchido pois, num futuro breve para além de passar a obrigatório, servirá para agilizar o envio de informações de relatórios de contratação, etc. de forma a eliminar trabalho manual de report existente atualmente.\n- valor com o seguinte formato (regex): /^(.{1,20})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 20. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-18",
+   "nome": "Identificador do processo de registo de entrada do documento",
+   "descricao": "Identificador do processo de registo de entrada do documento. Tipificação do identificador do processo de registo de entrada do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 017.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos UNTDID1153[6]. 017.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-19",
+   "nome": "Número do compromisso",
+   "descricao": "Número do compromisso.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-0",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-018"
+   ],
+   "notas": "Servirá para agilizar o processo de conferência e aprovação, como tal é obrigatório o seu preenchimento, caso não se encontre mencionado numa das linhas do documento (BT-133).\n- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50. Campo Recomendado\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-20",
+   "nome": "Descritivo das condições de pagamento",
+   "descricao": "Descritivo das condições de pagamento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..*",
+   "grupo": "BG-0",
+   "nomesAlternativos": [
+    "Payment terms"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-019",
+    "BR-CIUS-PT-61",
+    "BR-CO-25"
+   ],
+   "notas": "Um documento eletrónico pode conter uma descrição textual das condições de pagamento. Poderão existir várias condições de pagamento no documento, sendo aplicada uma das condições, dependendo da decisão do Cliente (ex: Pagamento a 30 dias com desconto 10%; Pagamento a 60 dias sem desconto).\n- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-21",
+   "nome": "Assunto da nota",
+   "descricao": "Assunto da nota.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-1",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- valores admitidos segundo a lista de códigos UNTDID4451[6].\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-22",
+   "nome": "Nota textual, que permite ao fornecedor enviar informação não estruturada relativa ao documento",
+   "descricao": "Nota textual, que permite ao fornecedor enviar informação não estruturada relativa ao documento. Tipo da propriedade adicional do documento(name)./Valor da propriedade adicional do documento(value).",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-1",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-020"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\n- o valor deve ser um alfanumérico com tamanho entre 1 e 50 para o DT-CIUS-PT- 020_5.1 name. DT-CIUS-PT-\n- o valor deve ser um alfanumérico com tamanho entre 1 e 50 para o 020_5.2 value. DT-CIUS-PT- 020_5.3\n- é obrigatório prefixar o valor com o seguinte formato (regexp): /^(#(ADDITIONALPROPERTY)#(\\w{1,50})#(.{1,100})#)$/ O valor deve\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-23",
+   "nome": "Tipo de Processo de Negócio",
+   "descricao": "Tipo de Processo de Negócio",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-2",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-021"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-24",
+   "nome": "Nome da customização CIUS-PT",
+   "descricao": "Nome da customização CIUS-PT. Permite ao recetor aplicar a validação do documento de acordo com as regras da sua customização.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-2",
+   "nomesAlternativos": [
+    "Specification identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-022"
+   ],
+   "notas": "- valor admitido: urn:cen.eu:en16931:2017#compliant#urn:feap.gov.pt:CIUS-PT: seguido do identificador da versão.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-25",
+   "nome": "Número de referência do documento, emitido pelo fornecedor, anteriormente enviado",
+   "descricao": "Número de referência do documento, emitido pelo fornecedor, anteriormente enviado.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-3",
+   "nomesAlternativos": [
+    "Preceding Invoice reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-023",
+    "BR-CIUS-PT-25",
+    "BR-CIUS-PT-65",
+    "BR-55"
+   ],
+   "notas": "- é obrigatório o seu preenchimento, para os documentos do tipo Nota de Crédito e Nota de Débito. No caso de ser uma Nota de Crédito de RAPPEL, a referência da fatura deverá ser preenchida com a palavra “RAPPEL”.\n- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-26",
+   "nome": "Data de emissão do documento, anteriormente enviado",
+   "descricao": "Data de emissão do documento, anteriormente enviado.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-3",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-024"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-27",
+   "nome": "O nome formal completo pelo qual o fornecedor está registrado no registo nacional de pessoas jurídicas ou como sujeito p",
+   "descricao": "O nome formal completo pelo qual o fornecedor está registrado no registo nacional de pessoas jurídicas ou como sujeito passivo ou, de outra forma, negocia como pessoa ou pessoas.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-4",
+   "nomesAlternativos": [
+    "Seller name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-025",
+    "BR-6"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-28",
+   "nome": "Nome comercial do fornecedor",
+   "descricao": "Nome comercial do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-4",
+   "nomesAlternativos": [
+    "Seller trading name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-026",
+    "BR-CIUS-PT-35"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-29",
+   "nome": "Identificação do vendedor (ID Bancário) Tipificação da identificação do vendedor",
+   "descricao": "Identificação do vendedor (ID Bancário) Tipificação da identificação do vendedor.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..*",
+   "grupo": "BG-4",
+   "nomesAlternativos": [
+    "Seller identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-34",
+    "BR-CO-26"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 027.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT- 027.2\n- valores admitidos segundo a lista de códigos ISSO/IEC6523.\ncardinalidade na norma EN 16931: 0..*",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-30",
+   "nome": "Informação sobre o registo na conservatória",
+   "descricao": "Informação sobre o registo na conservatória. Tipificação da informação sobre o registo na conservatória.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-4",
+   "nomesAlternativos": [
+    "Seller legal registration identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CO-26"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ DT-CIUS-PT- 028.1 Exemplo: valor alfanumérico com tamanho entre 1 e 200. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos ISSO/IEC6523. 028.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-31",
+   "nome": "Número de identificação fiscal do fornecedor",
+   "descricao": "Número de identificação fiscal do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-4",
+   "nomesAlternativos": [
+    "Seller VAT Identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-029",
+    "BR-CIUS-PT-01",
+    "BR-CIUS-PT-02",
+    "BR-CO-9",
+    "BR-CO-26"
+   ],
+   "notas": "- valor precedido do código do país, segundo o código ISO 3166-1 alfa-2. Exemplo: PT123456789.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-32",
+   "nome": "Identificação do local do fornecedor (definida pelo endereço do fornecedor) para fins fiscais ou uma referência que perm",
+   "descricao": "Identificação do local do fornecedor (definida pelo endereço do fornecedor) para fins fiscais ou uma referência que permita ao fornecedor declarar seu status fiscal registado.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-4",
+   "nomesAlternativos": [
+    "Seller tax registration identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-030"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-33",
+   "nome": "Informação sobre o capital social",
+   "descricao": "Informação sobre o capital social.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-4",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-031"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-34",
+   "nome": "Endereço eletrónico do fornecedor",
+   "descricao": "Endereço eletrónico do fornecedor. Tipificação do endereço eletrónico do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-4",
+   "nomesAlternativos": [
+    "Seller electronic address"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-62"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 032.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos EAS. 032.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-35",
+   "nome": "Linha 1 da morada do fornecedor",
+   "descricao": "Linha 1 da morada do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-5",
+   "nomesAlternativos": [
+    "Seller address line"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-033",
+    "BR-CIUS-PT-05"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-36",
+   "nome": "Linha 2 da morada do fornecedor",
+   "descricao": "Linha 2 da morada do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-5",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-034"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-37",
+   "nome": "Cidade da morada do fornecedor",
+   "descricao": "Cidade da morada do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-5",
+   "nomesAlternativos": [
+    "Seller city"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-036",
+    "BR-CIUS-PT-06"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-38",
+   "nome": "Código postal da morada do fornecedor",
+   "descricao": "Código postal da morada do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-5",
+   "nomesAlternativos": [
+    "Seller post code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-037",
+    "BR-CIUS-PT-07"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-39",
+   "nome": "Região/Província da morada do fornecedor",
+   "descricao": "Região/Província da morada do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-5",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-038"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-40",
+   "nome": "Código identificador do país da morada do fornecedor",
+   "descricao": "Código identificador do país da morada do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-5",
+   "nomesAlternativos": [
+    "Seller country code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-141",
+    "BR-9"
+   ],
+   "notas": "- valores admitidos segundo o código ISO 3166-1 alfa-2.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-41",
+   "nome": "Ponto de contato do fornecedor",
+   "descricao": "Ponto de contato do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-6",
+   "nomesAlternativos": [
+    "Seller contact point"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-039",
+    "BR-CIUS-PT-36"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-42",
+   "nome": "Contacto telefónico do fornecedor",
+   "descricao": "Contacto telefónico do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-6",
+   "nomesAlternativos": [
+    "Seller contact telephone number"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-040",
+    "BR-CIUS-PT-36"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-43",
+   "nome": "Correio eletrónico do fornecedor",
+   "descricao": "Correio eletrónico do fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-6",
+   "nomesAlternativos": [
+    "Seller contact email address"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-041",
+    "BR-CIUS-PT-36"
+   ],
+   "notas": "- múltiplos endereços de correio eletrónico separados por ponto e vírgula (;).\n- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-44",
+   "nome": "Nome do cliente",
+   "descricao": "Nome do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-7",
+   "nomesAlternativos": [
+    "Buyer name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-042",
+    "BR-7"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-45",
+   "nome": "Nome comercial do cliente",
+   "descricao": "Nome comercial do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-7",
+   "nomesAlternativos": [
+    "Buyer trading name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-043",
+    "BR-CIUS-PT-39"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-46",
+   "nome": "Identificador do cliente",
+   "descricao": "Identificador do cliente. Tipificação do identificador do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-7",
+   "nomesAlternativos": [
+    "Buyer identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-38"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 044.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos ISSO/IEC6523. 044.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-47",
+   "nome": "Informação sobre o registo na conservatória do cliente",
+   "descricao": "Informação sobre o registo na conservatória do cliente. Tipificação da informação sobre o registo na conservatória do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-7",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 045.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos ISSO/IEC6523. 045.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-48",
+   "nome": "Número de identificação fiscal do cliente",
+   "descricao": "Número de identificação fiscal do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-7",
+   "nomesAlternativos": [
+    "Buyer VAT identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-03",
+    "BR-CIUS-PT-04",
+    "BR-CO-9"
+   ],
+   "notas": "- valor precedido do código do país, segundo o código ISO 3166-1 DT-CIUS-PT- 046.1 alfa-2. DT-CIUS-PT- Exemplo: PT123456789. 046.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-49",
+   "nome": "Endereço eletrónico do cliente",
+   "descricao": "Endereço eletrónico do cliente. Tipificação do endereço eletrónico do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-7",
+   "nomesAlternativos": [
+    "Buyer electronic address"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-63"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 047.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos EAS. 047.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-50",
+   "nome": "Linha 1 da morada do cliente",
+   "descricao": "Linha 1 da morada do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-8",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-048"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-51",
+   "nome": "Linha 2 da morada do cliente",
+   "descricao": "Linha 2 da morada do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-8",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-049"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-52",
+   "nome": "Cidade da morada do cliente",
+   "descricao": "Cidade da morada do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-8",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-051"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-53",
+   "nome": "Código postal da morada do cliente",
+   "descricao": "Código postal da morada do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-8",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-052"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-54",
+   "nome": "Região/Província da morada do cliente",
+   "descricao": "Região/Província da morada do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-8",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-053"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-55",
+   "nome": "Código identificador do país da morada do cliente",
+   "descricao": "Código identificador do país da morada do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-8",
+   "nomesAlternativos": [
+    "Buyer country code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-142",
+    "BR-11"
+   ],
+   "notas": "- valores admitidos segundo o código ISO 3166-1 alfa-2.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-56",
+   "nome": "Ponto de contato do cliente",
+   "descricao": "Ponto de contato do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-9",
+   "nomesAlternativos": [
+    "Buyer contact point"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-054",
+    "BR-CIUS-PT-40"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200. Campo Recomendado\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-57",
+   "nome": "Contacto telefónico do cliente",
+   "descricao": "Contacto telefónico do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-9",
+   "nomesAlternativos": [
+    "Buyer contact telephone number"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-055",
+    "BR-CIUS-PT-40"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-58",
+   "nome": "Correio eletrónico do cliente",
+   "descricao": "Correio eletrónico do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-9",
+   "nomesAlternativos": [
+    "Buyer contact email address"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-056",
+    "BR-CIUS-PT-40"
+   ],
+   "notas": "- múltiplos endereços de correio eletrónico separados por ponto e vírgula (;).\n- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-59",
+   "nome": "Nome da entidade que recebe o pagamento",
+   "descricao": "Nome da entidade que recebe o pagamento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-10",
+   "nomesAlternativos": [
+    "Payee name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-057",
+    "BR-CIUS-PT-32",
+    "BR-17"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-60",
+   "nome": "Identificador do recebedor do pagamento",
+   "descricao": "Identificador do recebedor do pagamento.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-10",
+   "nomesAlternativos": [
+    "Payee identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 058.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-61",
+   "nome": "Informação sobre o registo na conservatória do recebedor do pagamento",
+   "descricao": "Informação sobre o registo na conservatória do recebedor do pagamento. Tipificação da informação sobre o registo na conservatória do recebedor do pagamento.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-10",
+   "nomesAlternativos": [
+    "Payee legal registration identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-43"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 059.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos ISSO/IEC6523. 059.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-62",
+   "nome": "Nome do representante legal para os temas fiscais",
+   "descricao": "Nome do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-11",
+   "nomesAlternativos": [
+    "Seller tax representative name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-060",
+    "BR-18"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-63",
+   "nome": "Número de identificação fiscal do representante legal para os temas fiscais",
+   "descricao": "Número de identificação fiscal do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-11",
+   "nomesAlternativos": [
+    "Seller tax representative VAT identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-56",
+    "BR-CO-9"
+   ],
+   "notas": "- valor precedido do código do país, segundo o código ISO 3166-1 DT-CIUS-PT- 061.1 alfa-2. DT-CIUS-PT- Exemplo: PT123456789. 061.2\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-64",
+   "nome": "Linha 1 da morada do representante legal para os temas fiscais",
+   "descricao": "Linha 1 da morada do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-12",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-062"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-65",
+   "nome": "Linha 2 da morada do representante legal para os temas fiscais",
+   "descricao": "Linha 2 da morada do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-12",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-063"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-66",
+   "nome": "Cidade da morada do representante legal para os temas fiscais",
+   "descricao": "Cidade da morada do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-12",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-065"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-67",
+   "nome": "Código postal da morada do representante legal para os temas fiscais",
+   "descricao": "Código postal da morada do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-12",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-066"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-68",
+   "nome": "Região/Província da morada do representante legal para os temas fiscais",
+   "descricao": "Região/Província da morada do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-12",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-067"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-69",
+   "nome": "Código identificador do país da morada do representante legal para os temas fiscais",
+   "descricao": "Código identificador do país da morada do representante legal para os temas fiscais.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-12",
+   "nomesAlternativos": [
+    "Tax representative country code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-144",
+    "BR-20"
+   ],
+   "notas": "- valores admitidos segundo o código ISO 3166-1 alfa-2.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-70",
+   "nome": "Nome do local de entrega",
+   "descricao": "Nome do local de entrega.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-13",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-068",
+    "BR-CIUS-PT-46",
+    "BR-CIUS-PT-64"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-71",
+   "nome": "Identificador do local em que os bens e serviços são entregues",
+   "descricao": "Identificador do local em que os bens e serviços são entregues.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-13",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 069.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-72",
+   "nome": "Data da entrega",
+   "descricao": "Data da entrega.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-13",
+   "nomesAlternativos": [
+    "Actual delivery date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-070",
+    "BR-CIUS-PT-64"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-73",
+   "nome": "A data em que o período de faturação começa",
+   "descricao": "A data em que o período de faturação começa.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-14",
+   "nomesAlternativos": [
+    "Invoicing period start date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-071",
+    "BR-CO-19"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-74",
+   "nome": "A data em que o período de faturação acaba",
+   "descricao": "A data em que o período de faturação acaba.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-14",
+   "nomesAlternativos": [
+    "Invoicing period end date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-072",
+    "BR-29",
+    "BR-CO-19"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-75",
+   "nome": "Linha 1 da morada do local de entrega",
+   "descricao": "Linha 1 da morada do local de entrega.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-15",
+   "nomesAlternativos": [
+    "Seller address line"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-073",
+    "BR-CIUS-PT-21"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-76",
+   "nome": "Linha 2 da morada do local de entrega",
+   "descricao": "Linha 2 da morada do local de entrega.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-15",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-074"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-77",
+   "nome": "Cidade da morada do local de entrega",
+   "descricao": "Cidade da morada do local de entrega.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-15",
+   "nomesAlternativos": [
+    "Seller city"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-076",
+    "BR-CIUS-PT-22"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-78",
+   "nome": "Código postal da morada do local de entrega",
+   "descricao": "Código postal da morada do local de entrega.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-15",
+   "nomesAlternativos": [
+    "Seller post code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-077",
+    "BR-CIUS-PT-23"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-79",
+   "nome": "Região/Província da morada do local de entrega",
+   "descricao": "Região/Província da morada do local de entrega.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-15",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-078"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-80",
+   "nome": "Código identificador do país da morada do local de entrega",
+   "descricao": "Código identificador do país da morada do local de entrega.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-15",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-145",
+    "BR-57"
+   ],
+   "notas": "- valores admitidos segundo o código ISO 3166-1 alfa-2.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-81",
+   "nome": "Código identificador do método de pagamento",
+   "descricao": "Código identificador do método de pagamento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-16",
+   "nomesAlternativos": [
+    "Payment means type code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-49"
+   ],
+   "notas": "- valores admitidos segundo a lista de códigos UNCL4461 ou segundo DT-CIUS-PT- a lista da Autoridade Tributária e Aduaneira (CC, CD, CH, CI, CO, CS, 079.2 DE, LC, MB, NU, OU, PR, TB, TR). Legenda - CC - Cartão crédito; CD - Cartão débito; CH - Cheque bancário; CI - Crédito documentário internacional; CO - Cheque ou cartão oferta; CS - Compensação de saldos em conta corrente; DE- Dinheiro eletrónico, por exemplo residente em cartões de fidelidade ou de pontos; LC - Letra comercial; MB - Referências de pagamento para Multibanco; NU - Numerário; OU - Outros meios aqui não\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-82",
+   "nome": "Descrição do detalhe de pagamento do documento por ATM",
+   "descricao": "Descrição do detalhe de pagamento do documento por ATM.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-16",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o valor deve ser um alfanumérico com tamanho entre 1 e 150. DT-CIUS-PT- 079.3\n- é obrigatório prefixar o valor com o seguinte formato (regexp): DT-CIUS-PT- /^(#(DESCRIPTION@ATMPAYMENT)#(.{1,125})#)$/ 079.4 Exemplo: #DESCRIPTION@ATMPAYMENT#Valor total do documento, mais valores por pagar.#\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-83",
+   "nome": "Descrição da referência a pagamento do documento por ATM",
+   "descricao": "Descrição da referência a pagamento do documento por ATM. Descrição da referência a pagamento do documento por DUC.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-16",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-080"
+   ],
+   "notas": "- é obrigatório prefixar o valor com o seguinte formato (regexp): /^(#(REFERENCE@ATMPAYMENT)#(.{1,20})#)$/ Exemplo: #REFERENCE@ATMPAYMENT#123 456 789# De acordo com portaria n.º 1423-I/2003 de 31 de dezembro.\n- é obrigatório prefixar o valor com o seguinte formato (regexp): /^(#(REFERENCE@DUCPAYMENT)#(.{1,20})#)$/ Exemplo: #REFERENCE@DUCPAYMENT#123 456 789#\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-84",
+   "nome": "Identificador do pagamento, código IBAN",
+   "descricao": "Identificador do pagamento, código IBAN.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-17",
+   "nomesAlternativos": [
+    "Payment account identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-081",
+    "BR-CIUS-PT-47",
+    "BR-50",
+    "BR-61"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-85",
+   "nome": "Identificação da conta, para a qual o pagamento deve ser efetuado",
+   "descricao": "Identificação da conta, para a qual o pagamento deve ser efetuado.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-17",
+   "nomesAlternativos": [
+    "Payment account name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-082",
+    "BR-CIUS-PT-47"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-86",
+   "nome": "Código da instituição bancária, código SWIFT",
+   "descricao": "Código da instituição bancária, código SWIFT.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-17",
+   "nomesAlternativos": [
+    "Payment service provider identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-083",
+    "BR-CIUS-PT-47",
+    "BR-CIUS-PT-48"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-87",
+   "nome": "Número da conta principal do cartão utilizado no pagamento, PAN",
+   "descricao": "Número da conta principal do cartão utilizado no pagamento, PAN.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-18",
+   "nomesAlternativos": [
+    "Payment card primary account number"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-60",
+    "BR-51"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ DT-CIUS-PT- 084.1 Exemplo: valor alfanumérico com tamanho entre 1 e 200. DT-CIUS-PT- 084.2\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-88",
+   "nome": "Nome do titular do cartão de pagamento",
+   "descricao": "Nome do titular do cartão de pagamento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-18",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-085"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-89",
+   "nome": "Identificador exclusivo atribuído pelo Beneficiário para referenciar o mandato de débito direto (Nº Mandato)",
+   "descricao": "Identificador exclusivo atribuído pelo Beneficiário para referenciar o mandato de débito direto (Nº Mandato).",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-19",
+   "nomesAlternativos": [
+    "Mandate reference identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-086",
+    "BR-CIUS-PT-49"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-90",
+   "nome": "Identificador do credor designado pelo banco",
+   "descricao": "Identificador do credor designado pelo banco.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-19",
+   "nomesAlternativos": [
+    "Bank assigned creditor identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-027",
+    "DT-CIUS-PT-058",
+    "BR-CIUS-PT-34"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-91",
+   "nome": "A conta a ser debitada pelo débito direto",
+   "descricao": "A conta a ser debitada pelo débito direto.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-19",
+   "nomesAlternativos": [
+    "Debited account identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-087",
+    "BR-CIUS-PT-49",
+    "BR-CIUS-PT-50"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-92",
+   "nome": "Montante do desconto, sem impostos",
+   "descricao": "Montante do desconto, sem impostos.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-20",
+   "nomesAlternativos": [
+    "Document level allowance amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-156",
+    "BR-CIUS-PT-19",
+    "BR-31"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 088.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 088.2\n- o montante deve ser sem impostos.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-93",
+   "nome": "Montante base do desconto",
+   "descricao": "Montante base do desconto.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-20",
+   "nomesAlternativos": [
+    "Document level allowance base amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 089.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 089.2\n- o montante deve ser sem impostos.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-94",
+   "nome": "Fator multiplicador sobre o montante base do desconto",
+   "descricao": "Fator multiplicador sobre o montante base do desconto.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "0..1",
+   "grupo": "BG-20",
+   "nomesAlternativos": [
+    "Document level allowance percentage"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 090.1\n- o montante é um numérico (3,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,3}\\.\\d{2})$/ 090.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-95",
+   "nome": "Código de imposto aplicado ao desconto",
+   "descricao": "Código de imposto aplicado ao desconto.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-20",
+   "nomesAlternativos": [
+    "Document level allowance VAT category code"
+   ],
+   "valoresAdmitidos": [
+    "AA",
+    "S",
+    "E",
+    "RED",
+    "INT",
+    "NOR",
+    "ISE",
+    "OUT",
+    "NA",
+    "Z",
+    "AE",
+    "IC",
+    "G e O"
+   ],
+   "regras": [
+    "DT-CIUS-PT-091",
+    "BR-32"
+   ],
+   "notas": "- valores segundo a lista de códigos UNTDID5305[6].\n- valores admitidos: AA, S, E, RED, INT, NOR, ISE, OUT, NA, Z, AE, IC, G e O. Legenda: AA - Taxa reduzida; S - Taxa normal; E - Isenta; RED - Taxa reduzida; INT - Taxa intermédia; NOR - Taxa normal; ISE - Isenta; OUT - Outros, aplicável para os regimes especiais de IVA; NA - No caso de não sujeição a IVA ou IS. Nos recibos emitidos sem imposto discriminado deve ser preenchido com “NA”; Z - IVA taxa zero; AE - IVA autoliquidado; IC - IVA intracomunitário; G - IVA exportações; O - Não sujeito ou não tributado.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-96",
+   "nome": "Percentagem de imposto aplicada ao desconto",
+   "descricao": "Percentagem de imposto aplicada ao desconto.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "1..1",
+   "grupo": "BG-20",
+   "nomesAlternativos": [
+    "Document level allowance VAT rate"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 092.1\n- o montante é um numérico (3,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,3}\\.\\d{2})$/ 092.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-97",
+   "nome": "Representação textual do desconto",
+   "descricao": "Representação textual do desconto.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-20",
+   "nomesAlternativos": [
+    "Document level allowance reason"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-093",
+    "BR-33",
+    "BR-CO-5",
+    "BR-CO-21"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-98",
+   "nome": "Código do motivo, que possa levar a que o montante contemplado no desconto, esteja isento de imposto",
+   "descricao": "Código do motivo, que possa levar a que o montante contemplado no desconto, esteja isento de imposto.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-20",
+   "nomesAlternativos": [
+    "Document level allowance reason code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-149",
+    "BR-33",
+    "BR-CO-5",
+    "BR-CO-21"
+   ],
+   "notas": "- valores admitidos segundo a lista de códigos UNTDID5189[6].\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-99",
+   "nome": "Montante do encargo",
+   "descricao": "Montante do encargo.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-21",
+   "nomesAlternativos": [
+    "Document level charge amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-156",
+    "BR-CIUS-PT-20",
+    "BR-36"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 088.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 088.2\n- o montante deve ser sem impostos.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-100",
+   "nome": "Montante base do encargo",
+   "descricao": "Montante base do encargo.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-21",
+   "nomesAlternativos": [
+    "Document level charge base amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 089.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 089.2\n- o montante deve ser sem impostos.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-101",
+   "nome": "Fator multiplicador sobre o montante base do encargo",
+   "descricao": "Fator multiplicador sobre o montante base do encargo.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "0..1",
+   "grupo": "BG-21",
+   "nomesAlternativos": [
+    "Document level charge percentage"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 090.1\n- o montante é um numérico (3,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,3}\\.\\d{2})$/ 090.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-102",
+   "nome": "Código de imposto aplicado ao encargo",
+   "descricao": "Código de imposto aplicado ao encargo.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-21",
+   "nomesAlternativos": [
+    "Document level charge VAT category code"
+   ],
+   "valoresAdmitidos": [
+    "AA",
+    "S",
+    "E"
+   ],
+   "regras": [
+    "DT-CIUS-PT-091",
+    "BR-37"
+   ],
+   "notas": "- valores segundo a lista de códigos UNTDID5305[6].\n- valores admitidos: AA, S, E. Legenda: AA - Taxa reduzida; S - Taxa normal; E - Isenta.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-103",
+   "nome": "Percentagem de imposto aplicada ao encargo",
+   "descricao": "Percentagem de imposto aplicada ao encargo.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "1..1",
+   "grupo": "BG-21",
+   "nomesAlternativos": [
+    "Document level charge VAT rate"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 092.1\n- o montante é um numérico (3,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,3}\\.\\d{2})$/ 092.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-104",
+   "nome": "Representação textual do encargo",
+   "descricao": "Representação textual do encargo.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-21",
+   "nomesAlternativos": [
+    "Document level charge reason"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-093",
+    "BR-38",
+    "BR-CO-6",
+    "BR-CO-22"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-105",
+   "nome": "Código do motivo, que possa levar a que o montante contemplado no encargo, esteja isento de imposto",
+   "descricao": "Código do motivo, que possa levar a que o montante contemplado no encargo, esteja isento de imposto.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-21",
+   "nomesAlternativos": [
+    "Document level charge reason code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-150",
+    "BR-38",
+    "BR-CO-6",
+    "BR-CO-22"
+   ],
+   "notas": "Regras 1\n- valores admitidos segundo a lista de códigos UNTDID7161[6].\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-106",
+   "nome": "Soma dos montantes das linhas do documento (s/imposto)",
+   "descricao": "Soma dos montantes das linhas do documento (s/imposto).",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [
+    "Sum of Invoice line net amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-12",
+    "BR-CO-10"
+   ],
+   "notas": "- o valor pode ser negativo. DT-CIUS-PT- 094.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(-?\\d{1,13}\\.\\d{2})$/ 094.2\n- a soma dos montantes das linhas deve incluir todos os encargos/descontos respetivos a cada linha (com a inclusão de todas as taxas aplicadas, à exceção dos montantes cujas taxas sejam de categoria VAT).\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-107",
+   "nome": "Total de descontos aplicados no documento",
+   "descricao": "Total de descontos aplicados no documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-62",
+    "BR-CO-11"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 095.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 095.2\n- valor = soma de todos os descontos, não mencionados nas linhas do documento. - Tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-108",
+   "nome": "Total de encargos aplicados no documento",
+   "descricao": "Total de encargos aplicados no documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-63",
+    "BR-CO-12"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 096.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 096.2\n- valor = soma de todos os encargos, não mencionados nas linhas do documento. - Tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-109",
+   "nome": "Total do documento (s/imposto)",
+   "descricao": "Total do documento (s/imposto).",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [
+    "Invoice total amount without VAT"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-13",
+    "BR-CO-13"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 097.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 097.2\n- valor = (soma das linhas s/imposto) + (soma do total de encargos ao nível do cabeçalho do documento s/imposto) - (soma do total de descontos ao nível do cabeçalho do documento s/imposto). - Tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-110",
+   "nome": "Total de imposto",
+   "descricao": "Total de imposto.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [
+    "Total VAT amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-11",
+    "BR-CO-14"
+   ],
+   "notas": "- o valor pode ser negativo. DT-CIUS-PT- 098.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(-?\\d{1,13}\\.\\d{2})$/ 098.2\n- corresponde à soma de todos os subtotais de imposto e é DT-CIUS-PT- 098.3 adicionado ao montante total s/imposto.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-111",
+   "nome": "Total do IVA expresso na moeda aceite ou exigida no país do Fornecedor",
+   "descricao": "Total do IVA expresso na moeda aceite ou exigida no país do Fornecedor",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-53"
+   ],
+   "notas": "- o valor pode ser negativo.\n- o montante é um numérico (13,2), respeitando o seguinte formato (regexp): /^(-?\\d{1,13}\\.\\d{2})$/\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-112",
+   "nome": "Total do documento (c/imposto)",
+   "descricao": "Total do documento (c/imposto).",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [
+    "VAT"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-14",
+    "BR-CO-15"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 099.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 099.2\n- valor = total do documento (s/imposto) + total de imposto + montante de arredondamento.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-113",
+   "nome": "Valor pago à-priori",
+   "descricao": "Valor pago à-priori. O documento pode conter a soma de todos os montantes pré-pagos, que devem ser deduzidos do pagamento.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [
+    "VAT BT- Paid amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 100.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 100.2\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-114",
+   "nome": "Montante de arredondamento aplicado ao total do documento c/imposto",
+   "descricao": "Montante de arredondamento aplicado ao total do documento c/imposto",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [
+    "VAT BT- Paid amount BT- Rounding amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o valor pode ser negativo. DT-CIUS-PT- 101.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(-?\\d{1,13}\\.\\d{2})$/ 101.2\n- o valor máximo não deverá ultrapassar os 5,00€.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-115",
+   "nome": "Valor a pagar",
+   "descricao": "Valor a pagar. / Montante a pagamento do ATM. / Montante a pagamento do DUC.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-22",
+   "nomesAlternativos": [
+    "Amount due for payment"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-15",
+    "BR-CO-16"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 102.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 102.2\n- valor = total do documento c/imposto\n- valor pago à-priori\n- total das retenções na fonte.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-116",
+   "nome": "Montante base de incidência para a taxa de imposto aplicada no respetivo subtotal",
+   "descricao": "Montante base de incidência para a taxa de imposto aplicada no respetivo subtotal.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-23",
+   "nomesAlternativos": [
+    "VAT category taxable amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-45"
+   ],
+   "notas": "- o montante pode ser negativo. DT-CIUS-PT- 103.1\n- o montante é um numérico (13,3), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(-?\\d{1,13}\\.\\d{2,3})$/ 103.2\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-117",
+   "nome": "Montante calculado do imposto sobre o montante base de incidência respetivo",
+   "descricao": "Montante calculado do imposto sobre o montante base de incidência respetivo.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-23",
+   "nomesAlternativos": [
+    "VAT category tax amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-154",
+    "BR-CIUS-PT-08",
+    "BR-46",
+    "BR-CO-17"
+   ],
+   "notas": "- o montante pode ser negativo. DT-CIUS-PT- 104.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(-?\\d{1,13}\\.\\d{2})$/ 104.2\n- tolerância de 0,04€ para o documento de faturação entrar em DT-CIUS-PT- 104.3 sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-118",
+   "nome": "Código de imposto respeitante à taxa aplicada no subtotal",
+   "descricao": "Código de imposto respeitante à taxa aplicada no subtotal.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-23",
+   "nomesAlternativos": [
+    "VAT category code"
+   ],
+   "valoresAdmitidos": [
+    "AA",
+    "S",
+    "E",
+    "RED",
+    "INT",
+    "NOR",
+    "ISE",
+    "OUT",
+    "NA",
+    "Z",
+    "AE",
+    "IC",
+    "G e O"
+   ],
+   "regras": [
+    "DT-CIUS-PT-105",
+    "BR-47"
+   ],
+   "notas": "- valores segundo a lista de códigos UNTDID5305[6].\n- valores admitidos: AA, S, E, RED, INT, NOR, ISE, OUT, NA, Z, AE, IC, G e O. Legenda: AA - Taxa reduzida; S - Taxa normal; E - Isenta; RED - Taxa reduzida; INT - Taxa intermédia; NOR - Taxa normal; ISE - Isenta; OUT - Outros, aplicável para os regimes especiais de IVA; NA - No caso de não sujeição a IVA ou IS. Nos recibos emitidos sem imposto discriminado deve ser preenchido com “NA”; Z - IVA taxa zero; AE - IVA autoliquidado; IC - IVA intracomunitário; G - IVA exportações; O - Não sujeito ou não tributado.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-119",
+   "nome": "Percentagem de imposto do subtotal",
+   "descricao": "Percentagem de imposto do subtotal.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "1..1",
+   "grupo": "BG-23",
+   "nomesAlternativos": [
+    "VAT category rate"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-12",
+    "BR-CIUS-PT-14",
+    "BR-CIUS-PT-16",
+    "BR-48"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 106.1\n- o montante é um numérico (3,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,3}\\.\\d{2})$/ 106.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-120",
+   "nome": "Descrição textual do motivo, que possa levar a que o montante contemplado no subtotal, respetivo, esteja isento de impos",
+   "descricao": "Descrição textual do motivo, que possa levar a que o montante contemplado no subtotal, respetivo, esteja isento de imposto.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-23",
+   "nomesAlternativos": [
+    "VAT exemption reason text"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-107"
+   ],
+   "notas": "- caso a percentagem seja 0 (zero), este elemento é obrigatório.\n- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-121",
+   "nome": "Código do motivo, que possa levar a que o montante contemplado no subtotal, respetivo, esteja isento de imposto",
+   "descricao": "Código do motivo, que possa levar a que o montante contemplado no subtotal, respetivo, esteja isento de imposto.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-23",
+   "nomesAlternativos": [
+    "VAT exemption reason code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-108"
+   ],
+   "notas": "Despacho n.º 8632/2014, de 3 de julho do Ministério das Finanças - 2.2.14 - A impressão dos documentos em que a transmissão de bens ou prestação de serviços se encontrem isentos de imposto, deve exibir a expressão legalmente prevista que confere a isenção ou, na sua ausência, o normativo legal aplicável. Caso não conste o motivo de isenção na linha respetiva, deverá utilizar um qualquer tipo de referenciação que possibilite a associação da linha isenta ao respetivo motivo. O mesmo é válido para associar qualquer taxa de imposto ao respetivo produto/serviço.\n- caso a percentagem seja 0 (zero), este elemento é obrigatório.\n- o valor é um alfanumérico (5), respeitando o seguinte formato (regexp): /^(.{1,5})$/\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-122",
+   "nome": "Identificador do anexo referenciado",
+   "descricao": "Identificador do anexo referenciado.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-24",
+   "nomesAlternativos": [
+    "Supporting document reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-52"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^(.{1,50})$/ DT-CIUS-PT- 017.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT- 017.2\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-123",
+   "nome": "Descrição do documento anexado",
+   "descricao": "Descrição do documento anexado.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-24",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-109"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-124",
+   "nome": "Endereço para um documento, localizado externamente",
+   "descricao": "Endereço para um documento, localizado externamente.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-24",
+   "nomesAlternativos": [
+    "External document location"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-110",
+    "BR-CIUS-PT-30"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-125",
+   "nome": "O documento anexado em formato binário",
+   "descricao": "O documento anexado em formato binário. Tipificação do documento anexado em formato binário.",
+   "tipo": "texto",
+   "tipoOrigem": "B",
+   "cardinalidade": "0..1",
+   "grupo": "BG-24",
+   "nomesAlternativos": [
+    "Attached document"
+   ],
+   "valoresAdmitidos": [
+    "image/png; image/jpeg; application/pdf; application/msword; application/vnd"
+   ],
+   "regras": [
+    "BR-CIUS-PT-30",
+    "DT-CIUS-PT-112"
+   ],
+   "notas": "- só serão aceites ficheiros com as seguintes extensões: PNG, JPEG, DT-CIUS-PT- 111.1 PDF, DOC, DOCX, XLS, XLSX, XML, TXT, CSV. DT-CIUS-PT- Legenda: PNG\n- image/png; JPEG\n- image/jpeg; PDF\n- application/pdf; 111.2 DOC\n- application/msword; DOCX\n- application/vnd.openxmlformats- officedocument.wordprocessingml.document; XLS\n- application/vnd.ms-excel; XLSX\n- application/vnd.openxmlformats- officedocument.spreadsheetml.sheet; XML\n- application/xml; TXT\n- text/xml; CSV\n- text/csv.\n- o tamanho máximo por ficheiro é de 5 Mb.\n- valores admitidos: image/png; image/jpeg; application/pdf; application/msword; application/vnd.openxmlformats- officedocument.wordprocessingml.document; application/vnd.ms- excel; application/vnd.openxmlformats- officedocument.spreadsheetml.sheet; application/xml; text/xml; text/csv. Legenda: image/png\n- formato PNG; image/jpeg\n- formato JPEG;\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-126",
+   "nome": "Identificador único da linha do documento, atribuído pelo fornecedor",
+   "descricao": "Identificador único da linha do documento, atribuído pelo fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [
+    "Invoice line identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-21"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 114.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT- 114.2\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-127",
+   "nome": "Texto livre para descrever o item respetivo à linha do documento",
+   "descricao": "Texto livre para descrever o item respetivo à linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-115"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-128",
+   "nome": "Identificador para um objeto no qual a linha da fatura é baseada, fornecida pelo fornecedor",
+   "descricao": "Identificador para um objeto no qual a linha da fatura é baseada, fornecida pelo fornecedor. tipificação do identificador para um objeto no qual a linha da fatura é baseada, fornecida pelo fornecedor.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [
+    "Invoice line object identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-52"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 116.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos UNTDID1153[6]. 116.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-129",
+   "nome": "Quantidade, do bem ou serviço, faturada",
+   "descricao": "Quantidade, do bem ou serviço, faturada.",
+   "tipo": "decimal",
+   "tipoOrigem": "Q",
+   "cardinalidade": "1..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [
+    "Invoiced quantity"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-117",
+    "BR-22"
+   ],
+   "notas": "- o valor pode ser negativo.\n- o montante é um numérico (13,3), respeitando o seguinte formato (regexp): /^(-?\\d{1,13}\\.\\d{2,3})$/\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-130",
+   "nome": "Tipificação da quantidade, do bem ou serviço, faturada",
+   "descricao": "Tipificação da quantidade, do bem ou serviço, faturada.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "1..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [
+    "Invoiced quantity unit of measure code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-143",
+    "BR-23"
+   ],
+   "notas": "- valores admitidos segundo a lista de códigos UNECERec20.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-131",
+   "nome": "Montante da linha (s/imposto)",
+   "descricao": "Montante da linha (s/imposto). O valor deve incluir os respetivos encargos ou descontos aplicados à linha, desprovidos de imposto e outras taxas (que não sejam de IVA).",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [
+    "Invoice line net amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-09",
+    "BR-CIUS-PT-155",
+    "BR-24"
+   ],
+   "notas": "- o valor pode ser negativo. DT-CIUS-PT- 118.1\n- o montante é um numérico (13,8), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(-?\\d{1,13}\\.\\d{2,8})$/ 118.2\n- valor = montante do item sem imposto + montante de encargos sem imposto\n- montante de descontos sem imposto + outras taxas aplicáveis (s/IVA).\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-132",
+   "nome": "Referência para o item da nota de encomenda do cliente",
+   "descricao": "Referência para o item da nota de encomenda do cliente.",
+   "tipo": "texto",
+   "tipoOrigem": "O",
+   "cardinalidade": "0..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [
+    "Referenced purchase order line reference"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-119",
+    "BR-CIUS-PT-51"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,20})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 20.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-133",
+   "nome": "Número do compromisso associado à linha do documento",
+   "descricao": "Número do compromisso associado à linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-25",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-120"
+   ],
+   "notas": "Servirá para agilizar o processo de conferência e aprovação, como tal é obrigatório o seu preenchimento, caso não se encontre mencionado ao nível do cabeçalho do documento (BT-19).\n- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-134",
+   "nome": "A data em que o período começa",
+   "descricao": "A data em que o período começa.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-26",
+   "nomesAlternativos": [
+    "Invoice line period start date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-121",
+    "BR-CO-20"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-135",
+   "nome": "A data em que o período acaba",
+   "descricao": "A data em que o período acaba.",
+   "tipo": "data",
+   "tipoOrigem": "D",
+   "cardinalidade": "0..1",
+   "grupo": "BG-26",
+   "nomesAlternativos": [
+    "Invoice line period end date"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-122",
+    "BR-30",
+    "BR-CO-20"
+   ],
+   "notas": "- valor com o seguinte formato (regexp): /^((\\d{4})-(\\d{2})-(\\d{2}))$/ Exemplo: 1111-11-11 (AAAA-MM-DD)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-136",
+   "nome": "Montante de desconto da linha do documento",
+   "descricao": "Montante de desconto da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-27",
+   "nomesAlternativos": [
+    "Invoice line allowance amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-41"
+   ],
+   "notas": "Estrutura que guarda a informação de preço do item por quantidade DT-CIUS-PT- 123.1 base. A possibilidade deste montante ter até 8 casas decimais deve-se DT-CIUS-PT- ao facto de algumas áreas de negócios, nomeadamente nas “Utilities”, 123.2 ser necessário trabalhar com este grau de precisão por questões de arredondamentos. Para as restantes áreas de negócio recomenda-se o envio de apenas 2 casas decimais.\n- o montante não pode ser negativo.\n- o montante é um numérico (13,8), respeitando o seguinte formato (regexp): /^(\\d{1,13}\\.\\d{2,8})$/ Regra 3\n- valor = montante base, do preço do item da linha do documento, onde incidirá o desconto\n- montante do desconto sobre o preço do item da linha do documento.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-137",
+   "nome": "Montante base do desconto da linha do documento",
+   "descricao": "Montante base do desconto da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-27",
+   "nomesAlternativos": [
+    "Invoice line allowance base amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 124.1\n- o montante é um numérico (13,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2})$/ 124.2\n- o montante deve ser sem impostos.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-138",
+   "nome": "Fator multiplicador sobre o montante base do desconto da linha do documento",
+   "descricao": "Fator multiplicador sobre o montante base do desconto da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "0..1",
+   "grupo": "BG-27",
+   "nomesAlternativos": [
+    "Invoice line allowance percentage"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 125.1\n- o montante é um numérico (3,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,3}\\.\\d{2})$/ 125.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-139",
+   "nome": "Representação textual do desconto da linha do documento",
+   "descricao": "Representação textual do desconto da linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-27",
+   "nomesAlternativos": [
+    "Invoice line allowance reason"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-126",
+    "BR-44"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-140",
+   "nome": "Código do motivo, que possa levar a que o montante contemplado no desconto, esteja isento de imposto",
+   "descricao": "Código do motivo, que possa levar a que o montante contemplado no desconto, esteja isento de imposto.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-27",
+   "nomesAlternativos": [
+    "Invoice line allowance reason code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-147",
+    "BR-44",
+    "BR-CO-7",
+    "BR-CO-23"
+   ],
+   "notas": "- valores admitidos segundo a lista de códigos UNTDID5189[6]. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-141",
+   "nome": "Montante de encargo da linha do documento",
+   "descricao": "Montante de encargo da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "1..1",
+   "grupo": "BG-28",
+   "nomesAlternativos": [
+    "Invoice line charge amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-123",
+    "BR-43"
+   ],
+   "notas": "- o montante não pode ser negativo.\n- o montante é um numérico (13,2), respeitando o seguinte formato (regexp): /^(\\d{1,13}\\.\\d{2})$/\n- o montante deve ser sem impostos.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-142",
+   "nome": "Montante base do encargo da linha do documento",
+   "descricao": "Montante base do encargo da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "A",
+   "cardinalidade": "0..1",
+   "grupo": "BG-28",
+   "nomesAlternativos": [
+    "Invoice line charge base amount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-124"
+   ],
+   "notas": "- o montante não pode ser negativo.\n- o montante é um numérico (13,2), respeitando o seguinte formato (regexp): /^(\\d{1,13}\\.\\d{2})$/\n- o montante deve ser sem impostos.\n- tolerância de 0,04€ para o documento de faturação entrar em sistema (não significa que esta tolerância seja aceite pelo cliente).\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-143",
+   "nome": "Fator multiplicador sobre o montante base do encargo da linha do documento",
+   "descricao": "Fator multiplicador sobre o montante base do encargo da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "0..1",
+   "grupo": "BG-28",
+   "nomesAlternativos": [
+    "Invoice line charge percentage"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-125"
+   ],
+   "notas": "- o montante não pode ser negativo.\n- o montante é um numérico (3,2), respeitando o seguinte formato (regexp): /^(\\d{1,3}\\.\\d{2})$/\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-144",
+   "nome": "Representação textual do encargo da linha do documento",
+   "descricao": "Representação textual do encargo da linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-28",
+   "nomesAlternativos": [
+    "Invoice line charge reason"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-126",
+    "BR-42",
+    "BR-CO-8",
+    "BR-CO-24"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-145",
+   "nome": "Código do motivo, que possa levar a que o montante contemplado no encargo esteja isento de imposto",
+   "descricao": "Código do motivo, que possa levar a que o montante contemplado no encargo esteja isento de imposto.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-28",
+   "nomesAlternativos": [
+    "Invoice line charge reason code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-148",
+    "BR-42",
+    "BR-CO-8",
+    "BR-CO-24"
+   ],
+   "notas": "- valores admitidos segundo a lista de códigos UNTDID7161[6]. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-146",
+   "nome": "Montante do item após aplicação do desconto",
+   "descricao": "Montante do item após aplicação do desconto.",
+   "tipo": "decimal",
+   "tipoOrigem": "U",
+   "cardinalidade": "1..1",
+   "grupo": "BG-29",
+   "nomesAlternativos": [
+    "Item net price"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-26",
+    "BR-27"
+   ],
+   "notas": "Estrutura que guarda a informação de preço do item por quantidade DT-CIUS-PT- 127.1 base. A possibilidade deste montante ter até 8 casas decimais deve-se DT-CIUS-PT- ao facto de algumas áreas de negócios, nomeadamente nas “Utilities”, 127.2 ser necessário trabalhar com este grau de precisão por questões de arredondamentos. Para as restantes áreas de negócio recomenda-se o envio de apenas 2 casas decimais.\n- o montante não pode ser negativo.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-147",
+   "nome": "Montante do desconto sobre o preço do item da linha do documento",
+   "descricao": "Montante do desconto sobre o preço do item da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "U",
+   "cardinalidade": "0..1",
+   "grupo": "BG-29",
+   "nomesAlternativos": [
+    "Item price discount"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-58",
+    "BR-CIUS-PT-59"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 128.1\n- o montante é um numérico (13,8), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2,8})$/ 128.2\n- o montante deve ser sem imposto.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-148",
+   "nome": "Montante base, do preço do item da linha do documento, onde incidirá o desconto",
+   "descricao": "Montante base, do preço do item da linha do documento, onde incidirá o desconto.",
+   "tipo": "decimal",
+   "tipoOrigem": "U",
+   "cardinalidade": "0..1",
+   "grupo": "BG-29",
+   "nomesAlternativos": [
+    "Item gross price"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-28"
+   ],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 129.1\n- o montante é um numérico (13,8), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2,8})$/ 129.2\n- o montante deve ser sem imposto.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-149",
+   "nome": "Número de quantidades que fazem o montante do preço",
+   "descricao": "Número de quantidades que fazem o montante do preço. Por exemplo, se a quantidade faturada for 1000 litros, o preço pode ser 15€ por 10 litros.",
+   "tipo": "decimal",
+   "tipoOrigem": "Q",
+   "cardinalidade": "0..1",
+   "grupo": "BG-29",
+   "nomesAlternativos": [
+    "Item price base quantity"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 130.1\n- o montante é um numérico (13,3), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,13}\\.\\d{2,3})$/ 130.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-150",
+   "nome": "Tipificação do número de quantidades que fazem o montante do preço",
+   "descricao": "Tipificação do número de quantidades que fazem o montante do preço. Por exemplo, se a quantidade faturada for 1000 litros, o preço pode ser 15€ por 10 litros.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-29",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- valores admitidos segundo a lista de códigos UNECERec20.\n- a quantidade base deve estar na mesma unidade de medida que o campo BT-130.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-151",
+   "nome": "Código de imposto respeitante à taxa aplicada no item da linha do documento",
+   "descricao": "Código de imposto respeitante à taxa aplicada no item da linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "1..1",
+   "grupo": "BG-30",
+   "nomesAlternativos": [
+    "Invoiced item VAT category code"
+   ],
+   "valoresAdmitidos": [
+    "AA",
+    "S",
+    "E",
+    "RED",
+    "INT",
+    "NOR",
+    "ISE",
+    "OUT",
+    "NA",
+    "Z",
+    "AE",
+    "IC",
+    "G e O"
+   ],
+   "regras": [
+    "DT-CIUS-PT-131",
+    "BR-CO-4"
+   ],
+   "notas": "- valores segundo a lista de códigos UNTDID5305[6].\n- valores admitidos: AA, S, E, RED, INT, NOR, ISE, OUT, NA, Z, AE, IC, G e O. Legenda: AA - Taxa reduzida; S - Taxa normal; E - Isenta; RED - Taxa reduzida; INT - Taxa intermédia; NOR - Taxa normal; ISE - Isenta; OUT - Outros, aplicável para os regimes especiais de IVA; NA - No caso de não sujeição a IVA ou IS. Nos recibos emitidos sem imposto discriminado deve ser preenchido com “NA”; Z - IVA taxa zero; AE - IVA autoliquidado; IC - IVA intracomunitário; G - IVA exportações; O - Não sujeito ou não tributado.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-152",
+   "nome": "Percentagem de imposto respeitante à taxa aplicada no item da linha do documento",
+   "descricao": "Percentagem de imposto respeitante à taxa aplicada no item da linha do documento.",
+   "tipo": "decimal",
+   "tipoOrigem": "P",
+   "cardinalidade": "1..1",
+   "grupo": "BG-30",
+   "nomesAlternativos": [
+    "Invoiced item VAT rate"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "- o montante não pode ser negativo. DT-CIUS-PT- 132.1\n- o montante é um numérico (3,2), respeitando o seguinte formato DT-CIUS-PT- (regexp): /^(\\d{1,3}\\.\\d{2})$/ 132.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-153",
+   "nome": "Nome do item da linha do documento",
+   "descricao": "Nome do item da linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-31",
+   "nomesAlternativos": [
+    "Item name"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-133",
+    "BR-25"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-154",
+   "nome": "Descrição do item da linha do documento",
+   "descricao": "Descrição do item da linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..*",
+   "grupo": "BG-31",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-134"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..*",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-155",
+   "nome": "Código de material usado pelo fornecedor, partner number, para identificar univocamente o item da linha do documento",
+   "descricao": "Código de material usado pelo fornecedor, partner number, para identificar univocamente o item da linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-31",
+   "nomesAlternativos": [
+    "Item Seller s identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-135",
+    "BR-CIUS-PT-54"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-156",
+   "nome": "Código de material usado no ERP ou Sistema de Faturação",
+   "descricao": "Código de material usado no ERP ou Sistema de Faturação.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-31",
+   "nomesAlternativos": [
+    "Item Buyer s identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-136",
+    "BR-CIUS-PT-53"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 50.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-157",
+   "nome": "Identificador do item da linha do documento de acordo com um esquema padrão, EAN",
+   "descricao": "Identificador do item da linha do documento de acordo com um esquema padrão, EAN. Tipificação do identificador do item da linha do documento de acordo com um esquema padrão, EAN.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..1",
+   "grupo": "BG-31",
+   "nomesAlternativos": [
+    "Item standard identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-55",
+    "BR-64"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 137.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos ISO/IEC6523. 137.2\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-158",
+   "nome": "Código da classificação da mercadoria do item da linha do documento empregue na Administração Pública, CPV",
+   "descricao": "Código da classificação da mercadoria do item da linha do documento empregue na Administração Pública, CPV. Tipificação do código da classificação da mercadoria do item da linha do documento empregue na Administração Pública, CPV. Versão do código da classificação da mercadoria do item da linha do documento empregue na Administração Pública, CPV.",
+   "tipo": "texto",
+   "tipoOrigem": "I",
+   "cardinalidade": "0..*",
+   "grupo": "BG-31",
+   "nomesAlternativos": [
+    "Item classification identifier"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-57",
+    "BR-65"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,50})$/ DT-CIUS-PT- 138.1 Exemplo: valor alfanumérico com tamanho entre 1 e 50. DT-CIUS-PT-\n- valores admitidos segundo a lista de códigos UNTDID 7143[6]. 138.2 DT-CIUS-PT- 138.3\n- valores admitidos segundo a lista de códigos UNTDID 7143[6].\ncardinalidade na norma EN 16931: 0..*",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-159",
+   "nome": "País de origem do item",
+   "descricao": "País de origem do item.",
+   "tipo": "texto",
+   "tipoOrigem": "C",
+   "cardinalidade": "0..1",
+   "grupo": "BG-31",
+   "nomesAlternativos": [
+    "Item country of origin"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "BR-CIUS-PT-56",
+    "DT-CIUS-PT-146"
+   ],
+   "notas": "- valores admitidos segundo o código ISO 3166-1 alfa-2.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-160",
+   "nome": "Tipo da propriedade adicional do item da linha do documento",
+   "descricao": "Tipo da propriedade adicional do item da linha do documento.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-32",
+   "nomesAlternativos": [
+    "VAT exemption reason code"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-139",
+    "BR-54"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-161",
+   "nome": "Valor da propriedade do item da linha do documento",
+   "descricao": "Valor da propriedade do item da linha do documento. Estrutura que permite indicar o número de referência da fatura associada à linha do documento. Aplica-se a notas de crédito, quando a referência à fatura é indicada por linha.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "1..1",
+   "grupo": "BG-32",
+   "nomesAlternativos": [
+    "Item attribute value"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-140",
+    "BR-54"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\n- é obrigatório preencher o BT-160 com o seguinte formato (regexp): DT-CIUS-PT- 139_1 /^(#(ID@INVOICEDOCUMENTREFERENCE@BILLINGREFERENCE)-([0- 9]{3})#)$/ Exemplo: #ID@INVOICEDOCUMENTREFERENCE@BILLINGREFERENCE- 001#\n- o sub-sufixo \"-000\" deve ser utilizado como agrupador de elementos. Campo Recomendado (se aplicável)\ncardinalidade na norma EN 16931: 1..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-162",
+   "nome": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal",
+   "descricao": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-5",
+   "nomesAlternativos": [
+    "Seller address line"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-035",
+    "BR-CIUS-PT-37"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-163",
+   "nome": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal",
+   "descricao": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-8",
+   "nomesAlternativos": [
+    "Buyer address line"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-050",
+    "BR-CIUS-PT-41"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-164",
+   "nome": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal",
+   "descricao": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-12",
+   "nomesAlternativos": [
+    "Tax representative address line"
+   ],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-064",
+    "BR-CIUS-PT-44"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  },
+  {
+   "id": "BT-165",
+   "nome": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal",
+   "descricao": "Linha de endereço adicional que pode ser usado para fornecer mais detalhes, complementando a linha principal.",
+   "tipo": "texto",
+   "tipoOrigem": "T",
+   "cardinalidade": "0..1",
+   "grupo": "BG-15",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [
+    "DT-CIUS-PT-075",
+    "BR-CIUS-PT-45"
+   ],
+   "notas": "- valor com o seguinte formato (regex): /^(.{1,200})$/ Exemplo: valor alfanumérico com tamanho entre 1 e 200.\ncardinalidade na norma EN 16931: 0..1",
+   "origem": "guia_modelo_dados_semanticos_dos_documentos_fe_cius-pt_v1.1.pdf: tabela de campos"
+  }
+ ],
+ "regras": []
+}

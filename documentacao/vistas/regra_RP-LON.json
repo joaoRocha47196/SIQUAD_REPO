@@ -1,0 +1,198 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-LON",
+  "regra": {
+    "id": "RP-LON",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+    "alcance": "USM InformacaoGeografica.longitude",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "longitude",
+      "chave": "Propriedade:USM:InformacaoGeografica.longitude",
+      "dono": "InformacaoGeografica"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "A longitude tem de estar entre -180 e 180.",
+      "texto": "longitude entre -180 e 180",
+      "caminho": "longitude",
+      "propriedade": "USM:InformacaoGeografica.longitude",
+      "valor": [
+        -180,
+        180
+      ],
+      "minimo": -180,
+      "maximo": 180
+    },
+    "mensagem": "A longitude tem de estar entre -180 e 180.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:InformacaoGeografica.longitude",
+      "nome": "longitude",
+      "dono": "InformacaoGeografica"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "A longitude tem de estar entre -180 e 180.",
+    "texto": "longitude entre -180 e 180",
+    "caminho": "longitude",
+    "propriedade": "USM:InformacaoGeografica.longitude",
+    "valor": [
+      -180,
+      180
+    ],
+    "minimo": -180,
+    "maximo": 180,
+    "descricao": "longitude entre -180 e 180",
+    "alvo": {
+      "chave": "USM:InformacaoGeografica.longitude",
+      "nome": "longitude",
+      "dono": "InformacaoGeografica",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Longitude, em graus decimais"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:InformacaoGeografica.longitude",
+    "nome": "longitude",
+    "dono": "InformacaoGeografica",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Longitude, em graus decimais",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo",
+      "OrdemInstalacao"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-LON",
+        "rotulo": "RP",
+        "texto": "RP-LON",
+        "detalhe": "InformacaoGeografica.longitude entre -180 e 180"
+      },
+      {
+        "chave": "Propriedade:USM:InformacaoGeografica.longitude",
+        "rotulo": "Propriedade",
+        "texto": "USM:InformacaoGeografica.longitude",
+        "detalhe": "Longitude, em graus decimais"
+      },
+      {
+        "chave": "Restricao:RP-LON",
+        "rotulo": "Restricao",
+        "texto": "RP-LON#restricao",
+        "detalhe": "longitude entre -180 e 180"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-LON",
+        "para": "Propriedade:USM:InformacaoGeografica.longitude",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-LON",
+        "para": "Restricao:RP-LON",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-LON",
+        "para": "Propriedade:USM:InformacaoGeografica.longitude",
+        "tipo": "RESTRINGE",
+        "texto": "longitude entre -180 e 180"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:InformacaoGeografica.longitude",
+        "rotulo": "Propriedade",
+        "nome": "longitude",
+        "dono": "InformacaoGeografica",
+        "descricao": "Longitude, em graus decimais",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:InformacaoGeografica",
+        "rotulo": "USM",
+        "nome": "InformacaoGeografica",
+        "dono": null,
+        "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Localizacao",
+        "rotulo": "SM",
+        "nome": "Localizacao",
+        "dono": null,
+        "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:InformacaoGeografica",
+        "para": "Propriedade:USM:InformacaoGeografica.longitude",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Localizacao",
+        "para": "USM:InformacaoGeografica",
+        "tipo": "COMPOSTO_POR",
+        "papel": "InformacaoGeografica",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Localizacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Localizacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Localizacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Localizacao",
+        "cardinalidade": "1..*"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-LON"
+  }
+}

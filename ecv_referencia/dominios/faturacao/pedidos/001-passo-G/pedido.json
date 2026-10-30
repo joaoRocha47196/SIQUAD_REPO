@@ -1,0 +1,18 @@
+{
+ "id": "001-passo-G",
+ "tipo": "passo",
+ "titulo": "Fase G: Geração da declaração completa",
+ "passo": "G",
+ "estado": "aplicado",
+ "criado": "2026-10-29T23:00:48",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "tamanho": {
+  "caracteres": 753583,
+  "tokensEstimados": 188395,
+  "linhas": 4309
+ },
+ "respondido": "2026-10-30T00:20:10",
+ "aplicado": "2026-10-30T00:42:48",
+ "resumo": "4 declaração(ões); 0 erro(s), 46 aviso(s); cobertura em falta: 1164"
+}

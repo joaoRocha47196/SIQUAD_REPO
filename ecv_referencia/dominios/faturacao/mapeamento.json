@@ -1,0 +1,3799 @@
+[
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-1",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.numero",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-2",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.dataEmissao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-3",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.tipoDocumento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-5",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.moeda",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-6",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.moedaIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-7",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.dataIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-8",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.codigoDataIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-9",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.dataVencimento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-10",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.referenciaCliente",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-11",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.projeto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-12",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.contrato",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-13",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.encomenda",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-14",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.ordemVenda",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-15",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.avisoRececao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-16",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.avisoEnvio",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-17",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.acordoQuadro",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-18",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/ReferenciasDocumento.processoRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-19",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.numeroCompromisso",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-20",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.condicoesPagamento",
+  "nota": "0..* na fonte; o UBL-SR-05 limita a uma ocorrência",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-21",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/NotaDocumento.assunto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-22",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/NotaDocumento.texto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-23",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.tipoProcesso",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-24",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/CabecalhoDocumento.identificadorEspecificacao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-25",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DocumentosAnteriores.ReferenciaDocumento.numero",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-26",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DocumentosAnteriores.ReferenciaDocumento.dataEmissao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-27",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.SujeitoPassivo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-28",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.SujeitoPassivo.nomeComercial",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-29",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.SujeitoPassivo.identificador",
+  "nota": "0..* na fonte; simplificado a um valor",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-30",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.SujeitoPassivo.identificadorRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-31",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.SujeitoPassivo.identificadorIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-32",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.registoFiscal",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-33",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.capitalSocial",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-34",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.enderecoEletronico",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-35",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.Morada.rua",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-36",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.ComplementoMorada.linha2",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-162",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.ComplementoMorada.linha3",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-37",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.Morada.localidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-38",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.Morada.codigoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-39",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.ComplementoMorada.regiao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-40",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.Morada.pais",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-41",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.pontoContacto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-42",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.ContactoTelefonico.telefone",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-43",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Fornecedor.Contacto.email",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-44",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.SujeitoPassivo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-45",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.SujeitoPassivo.nomeComercial",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-46",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.SujeitoPassivo.identificador",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-47",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.SujeitoPassivo.identificadorRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-48",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.SujeitoPassivo.identificadorIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-49",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.enderecoEletronico",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-50",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.Morada.rua",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-51",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.ComplementoMorada.linha2",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-163",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.ComplementoMorada.linha3",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-52",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.Morada.localidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-53",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.Morada.codigoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-54",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.ComplementoMorada.regiao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-55",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.Morada.pais",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-56",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.pontoContacto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-57",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.ContactoTelefonico.telefone",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-58",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Adquirente.Contacto.email",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-59",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RecebedorPagamento.SujeitoPassivo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-60",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RecebedorPagamento.SujeitoPassivo.identificador",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-61",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RecebedorPagamento.SujeitoPassivo.identificadorRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-62",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.SujeitoPassivo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-63",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.SujeitoPassivo.identificadorIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-64",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.Morada.rua",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-65",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.ComplementoMorada.linha2",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-164",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.ComplementoMorada.linha3",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-66",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.Morada.localidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-67",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.Morada.codigoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-68",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.ComplementoMorada.regiao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-69",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/RepresentanteFiscal.Morada.pais",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-70",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.nomeLocal",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-71",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.identificadorLocal",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-72",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.dataEntrega",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-73",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/PeriodoFaturacao.Periodo.dataInicio",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-74",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/PeriodoFaturacao.Periodo.dataFim",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-75",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.Morada.rua",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-76",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.ComplementoMorada.linha2",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-165",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.ComplementoMorada.linha3",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-77",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.Morada.localidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-78",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.Morada.codigoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-79",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.ComplementoMorada.regiao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-80",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LocalEntrega.Morada.pais",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-81",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.meioPagamento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-82",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.detalhePagamento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-83",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.referenciaPagamento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-84",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.ContaBancaria.iban",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-85",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.ContaBancaria.nomeConta",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-86",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.ContaBancaria.bic",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-87",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.CartaoPagamento.numeroConta",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-88",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.CartaoPagamento.titular",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-89",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.DebitoDireto.referenciaMandato",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-90",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.DebitoDireto.identificadorCredor",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-91",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Pagamento.DebitoDireto.contaDebitada",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-92",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Desconto.DescontoEncargo.montante",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-93",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Desconto.DescontoEncargo.montanteBase",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-94",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Desconto.DescontoEncargo.percentagem",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-95",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Desconto.CategoriaIva.codigoCategoria",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-96",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Desconto.CategoriaIva.taxa",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-97",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Desconto.DescontoEncargo.motivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-98",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Desconto.DescontoEncargo.codigoMotivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-99",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Encargo.DescontoEncargo.montante",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-100",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Encargo.DescontoEncargo.montanteBase",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-101",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Encargo.DescontoEncargo.percentagem",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-102",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Encargo.CategoriaIva.codigoCategoria",
+  "nota": "o guia admite só AA, S, E nos encargos; a RP aplica a lista completa de CategoriaIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-103",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Encargo.CategoriaIva.taxa",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-104",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Encargo.DescontoEncargo.motivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-105",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Encargo.DescontoEncargo.codigoMotivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-106",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.somaLinhas",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-107",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.totalDescontos",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-108",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.totalEncargos",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-109",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.totalSemIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-110",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.totalIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-111",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.totalIvaMoedaContabilistica",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-112",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.totalComIva",
+  "nota": "o nome alternativo 'VAT' da fonte foi ignorado por ser ambíguo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-113",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.valorPago",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-114",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.arredondamento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-115",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/Totais.valorPagar",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-116",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DecomposicaoIva.baseTributavel",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-117",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DecomposicaoIva.montanteImposto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-118",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DecomposicaoIva.CategoriaIva.codigoCategoria",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-119",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DecomposicaoIva.CategoriaIva.taxa",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-120",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DecomposicaoIva.CategoriaIva.motivoIsencao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-121",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DecomposicaoIva.CategoriaIva.codigoMotivoIsencao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-122",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DocumentoSuporte.referencia",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-123",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DocumentoSuporte.descricao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-124",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DocumentoSuporte.localizacaoExterna",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-125",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/DocumentoSuporte.anexo",
+  "nota": "o tipo MIME e o nome do ficheiro passam a DocumentoSuporte.tipoMime e .nomeFicheiro",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-126",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.identificador",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-127",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.nota",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-128",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.identificadorObjeto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-129",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.quantidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-130",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.unidadeMedida",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-131",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.montanteLiquido",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-132",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.referenciaLinhaEncomenda",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-133",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.numeroCompromisso",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-134",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Periodo.dataInicio",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-135",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Periodo.dataFim",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-136",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Desconto.montante",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-137",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Desconto.montanteBase",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-138",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Desconto.percentagem",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-139",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Desconto.motivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-140",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Desconto.codigoMotivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-141",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Encargo.montante",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-142",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Encargo.montanteBase",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-143",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Encargo.percentagem",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-144",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Encargo.motivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-145",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Encargo.codigoMotivo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-146",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Preco.precoLiquido",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-147",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Preco.descontoPreco",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-148",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Preco.precoBruto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-149",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Preco.quantidadeBase",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-150",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Preco.unidadeQuantidadeBase",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-151",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.CategoriaIva.codigoCategoria",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-152",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.CategoriaIva.taxa",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-153",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Artigo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-154",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Artigo.descricao",
+  "nota": "0..* na fonte; simplificado a um valor",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-155",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Artigo.codigo",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-156",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Artigo.codigoComprador",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-157",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Artigo.codigoBarras",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-158",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Artigo.classificacao",
+  "nota": "0..* na fonte; simplificado a um valor",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-159",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.Artigo.paisOrigem",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-160",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.AtributoArtigo.nome",
+  "nota": "quando codifica o motivo de isenção da linha (#TAXEXEMPTIONREASON…#), passa a LinhaDocumento.CategoriaIva.motivoIsencao/codigoMotivoIsencao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-guia",
+  "origem": "BT-161",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento.AtributoArtigo.valor",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-01, BR-02, BR-03, BR-04, BR-05, BR-06, BR-07, BR-08, BR-09, BR-10, BR-11, BR-12, BR-13, BR-14, BR-15, BR-CIUS-PT-01, BR-CIUS-PT-03, BR-CIUS-PT-05, BR-CIUS-PT-06, BR-CIUS-PT-07, BR-CIUS-PT-10, BR-CIUS-PT-11",
+  "decisao": "mapeado",
+  "destino": "Projecao:FaturaCiusPt/obrigatorias",
+  "nota": "presença obrigatória; igual em NotaCreditoCiusPt",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-21, BR-22, BR-23, BR-24, BR-25, BR-26, BR-CO-04, BR-31, BR-32, BR-36, BR-37, BR-41, BR-43, BR-45, BR-46, BR-47, BR-48, BR-49, BR-50, BR-52, BR-54, BR-55, UBL-SR-07, BR-56, BR-57, BR-CIUS-PT-21, BR-CIUS-PT-22, BR-CIUS-PT-23, BR-CIUS-PT-60, BR-17, BR-18, BR-19, BR-20",
+  "decisao": "mapeado",
+  "destino": "Projecao:FaturaCiusPt/obrigatorias",
+  "nota": "'cada X tem Y': caminho obrigatório dentro de uma composição opcional ou repetível (vale em cada ocorrência presente)",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-16, BR-CO-18",
+  "decisao": "mapeado",
+  "destino": "HLM:DocumentoFaturacao/LinhaDocumento",
+  "nota": "cardinalidade 1..* de LinhaDocumento e de DecomposicaoIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CO-26, BR-AA-02, BR-AA-03, BR-AA-04, BR-S-02, BR-S-03, BR-S-04, BR-E-02, BR-E-03, BR-E-04",
+  "decisao": "mapeado",
+  "destino": "Projecao:FaturaCiusPt/Fornecedor.SujeitoPassivo.identificadorIva",
+  "nota": "o CIUS-PT torna sempre obrigatório o identificador de IVA do fornecedor (BR-CIUS-PT-01), por isso estas regras ficam sempre cumpridas",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CO-25",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-PAGAMENTO-PRAZO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-AA-01, BR-S-01, BR-E-01, DT-CIUS-PT-176",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-IVA-DECOMP",
+  "nota": "DT-176 (um subtotal por motivo de isenção) fica a cargo da implementação da função",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-165",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-COMIVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-163",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-SEMIVA",
+  "nota": "usa a soma das linhas (BT-106), que RP-SOMA-LINHAS liga a Σ BT-131",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-166",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-PAGAR",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-160",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SOMA-LINHAS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-161",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SOMA-DESCONTOS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-162",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SOMA-ENCARGOS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-164",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SOMA-IVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-171, DT-CIUS-PT-173, DT-CIUS-PT-175",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-IVA-BASE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-167, DT-CIUS-PT-172, DT-CIUS-PT-174",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DECOMP-IMPOSTO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-157",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-MONTANTE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-158, DT-CIUS-PT-159, DT-CIUS-PT-168, DT-CIUS-PT-169",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DE-CALCULO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-170",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRECO-CALCULO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-27, DT-CIUS-PT-127.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRECO-LIQ",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-28, DT-CIUS-PT-129.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRECO-BRUTO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-128.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRECO-DESC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-177, DT-CIUS-PT-130.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRECO-QBASE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-130.2",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRECO-UNIDADE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-E-05, BR-E-06, BR-E-07, BR-CIUS-PT-16",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-IVA-TAXA-ISENTA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-AA-05, BR-AA-06, BR-AA-07, BR-S-05, BR-S-06, BR-S-07, BR-CIUS-PT-12, BR-CIUS-PT-14",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-IVA-TAXA-POSITIVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-E-09",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-DECOMP-ISENTO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-E-10",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-DECOMP-ISENCAO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-S-10, BR-AA-10",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-DECOMP-SEM-ISENCAO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-17, BR-CIUS-PT-18",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-LIN-ISENCAO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-13, BR-CIUS-PT-15",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-LIN-SEM-ISENCAO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CO-03",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-DATAIVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-29, BR-30",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PERIODO-ORDEM",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CO-19, BR-CO-20",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PERIODO-DATA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-33, BR-38, BR-42, BR-44, BR-CO-21, BR-CO-22, BR-CO-23, BR-CO-24",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DE-JUSTIFICADO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-30",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SUP-CONTEUDO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "UBL-DT-06",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-SUP-MIME",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "UBL-DT-07",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-SUP-FICHEIRO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-64",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LENT-IDENT",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-66",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LENT-MORADA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-25",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-REFANT-NC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-65",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-REFANT-ND",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-62",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-TOT-DESCONTOS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-63",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-TOT-ENCARGOS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-61",
+  "decisao": "mapeado",
+  "destino": "Regra:RIR-PAG-IBAN",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-114.2",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-UNICAS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-001",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-NUMERO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-003_i, DT-CIUS-PT-003_cn",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-TIPO",
+  "nota": "reunião das duas listas; para a NC os valores 381/NC são fixados no perfil",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-151",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-MOEDA",
+  "nota": "lista ISO 4217 aproximada por padrão de 3 letras",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-152",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-MOEDAIVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-007",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-CODDATAIVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-009",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-REFCLIENTE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-010",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-PROJETO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-011",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-CONTRATO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-012",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-ENCOMENDA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-013",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-ORDEMVENDA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-014",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-RECECAO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-015",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-ENVIO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-016",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-ACORDO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-017.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REF-PROCESSO",
+  "nota": "também dá RP-SUP-REF (BT-122)",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-018",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-COMPROMISSO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-019",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-CONDPAG",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-020",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-NOTA-TEXTO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-021",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-PROCESSO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-022",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DOC-ESPEC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-023",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-REFDOC-NUMERO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-025, DT-CIUS-PT-042, DT-CIUS-PT-057, DT-CIUS-PT-060",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SP-NOME",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-026, DT-CIUS-PT-043",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SP-NOMECOM",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-027.1, DT-CIUS-PT-044.1, DT-CIUS-PT-058.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SP-IDENT",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-028.1, DT-CIUS-PT-045.1, DT-CIUS-PT-059.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SP-REGISTO",
+  "nota": "BT-47/BT-61 admitem 50; ficou o máximo comum de 200",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-029, DT-CIUS-PT-046.1, DT-CIUS-PT-046.2, DT-CIUS-PT-061.1, DT-CIUS-PT-061.2",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SP-IVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-030",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-FORN-REGFISCAL",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-031",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-FORN-CAPITAL",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-032.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-FORN-ENDELET",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-039",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-FORN-CONTACTO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-047.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ADQ-ENDELET",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-054",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ADQ-CONTACTO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-034, DT-CIUS-PT-049, DT-CIUS-PT-063, DT-CIUS-PT-074",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CMOR-LINHA2",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-035, DT-CIUS-PT-050, DT-CIUS-PT-064, DT-CIUS-PT-075",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CMOR-LINHA3",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-038, DT-CIUS-PT-053, DT-CIUS-PT-067, DT-CIUS-PT-078",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CMOR-REGIAO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-040, DT-CIUS-PT-055",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TELEFONE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-068",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LENT-NOME",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-069.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LENT-IDLOCAL",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-079.2",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PAG-MEIO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-079.3",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PAG-DETALHE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-080",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PAG-REF",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-081",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CONTA-IBAN",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-082",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CONTA-NOME",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-083",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CONTA-BIC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-084.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CARTAO-PAN",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-085",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CARTAO-TITULAR",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-086",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DD-MANDATO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-087",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DD-CONTA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-088.1, DT-CIUS-PT-123.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DE-MONTANTE",
+  "nota": "o padrão sem sinal significa montante não negativo; as casas decimais ficam para a serialização",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-089.1, DT-CIUS-PT-124.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DE-BASE",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-090.1, DT-CIUS-PT-090.2, DT-CIUS-PT-125.1, DT-CIUS-PT-125.2",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DE-PERC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-093, DT-CIUS-PT-126",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DE-MOTIVO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-147, DT-CIUS-PT-148, DT-CIUS-PT-149, DT-CIUS-PT-150",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-DE-CODMOTIVO",
+  "nota": "as listas UNCL 5189/7161 ficaram aproximadas por um padrão: o USM não distingue desconto de encargo (isso é o papel)",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-091, DT-CIUS-PT-105, DT-CIUS-PT-131",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-IVA-CATEGORIA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-092.1, DT-CIUS-PT-092.2, DT-CIUS-PT-106.1, DT-CIUS-PT-106.2, DT-CIUS-PT-132.1, DT-CIUS-PT-132.2",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-IVA-TAXA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-107",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-IVA-MOTIVO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-108",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-IVA-CODMOTIVO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-095.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-DESC-POS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-096.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-ENC-POS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-097.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-SEMIVA-POS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-099.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-COMIVA-POS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-100.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-PAGO-POS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-102.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-TOT-PAGAR-POS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-109",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SUP-DESC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-110",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SUP-URI",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-111.1, DT-CIUS-PT-111.2",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SUP-ANEXO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-112",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SUP-MIME",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-113",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-SUP-FICHEIRO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-114.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-ID",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-115",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-NOTA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-116.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-OBJETO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-143",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-UNIDADE",
+  "nota": "lista UN/ECE Rec. 20 aproximada por padrão",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-119",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-REFENC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-120",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-LIN-COMPROMISSO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-133",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ART-NOME",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-134",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ART-DESC",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-135",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ART-CODIGO",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-136",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ART-CODCOMP",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-137.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ART-CODBARRAS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-138.1",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ART-CLASSIF",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-146",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ART-PAIS",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-139",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ATRIB-NOME",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-140",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ATRIB-VALOR",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-002, DT-CIUS-PT-006, DT-CIUS-PT-008, DT-CIUS-PT-024, DT-CIUS-PT-070, DT-CIUS-PT-071, DT-CIUS-PT-072, DT-CIUS-PT-121, DT-CIUS-PT-122",
+  "decisao": "descartado",
+  "motivo": "o formato AAAA-MM-DD já é garantido pelo tipo base data",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-094.1, DT-CIUS-PT-098.1, DT-CIUS-PT-101.1, DT-CIUS-PT-103.1, DT-CIUS-PT-104.1, DT-CIUS-PT-117.1, DT-CIUS-PT-118.1",
+  "decisao": "descartado",
+  "motivo": "o número de casas decimais e de dígitos é da representação na serialização, não do valor; admitem valores negativos",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-088.2, 089.2, 094.2, 095.2, 096.2, 097.2, 098.2, 098.3, 099.2, 100.2, 101.2, 102.2, 103.2, 104.2, 104.3, 118.2, 123.2, 124.2, 127.2, 128.2, 129.2",
+  "decisao": "descartado",
+  "motivo": "atributo currencyID da sintaxe UBL; no modelo semântico todos os montantes estão na moeda do documento (CabecalhoDocumento.moeda) ou na moeda do IVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-017.2, 027.2, 028.2, 032.2, 044.2, 045.2, 047.2, 058.2, 059.2, 069.2, 116.2, 137.2, 138.2, 138.3, 153, 154, 155, 156, 084.2; BR-62, BR-63, BR-64, BR-65; BR-CIUS-PT-02, 04, 08, 09, 19, 20",
+  "decisao": "descartado",
+  "motivo": "atributos de esquema e de regime fiscal da sintaxe UBL (schemeID, listID, TaxScheme = VAT, NetworkID, DocumentTypeCode 130), que não estão no modelo semântico",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-033, 036, 037, 048, 051, 052, 062, 065, 066, 073, 076, 077, 141, 142, 144, 145, 041, 056",
+  "decisao": "descartado",
+  "motivo": "comprimentos e código de país de Morada e de Contacto, que são USM reutilizados: as regras deles (RP-PAIS, RP-CP, RP-EMAIL…) já se aplicam e não se acrescentam regras a um modelo partilhado",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-020_2.1 a DT-CIUS-PT-020_15.6 (todas as DT-CIUS-PT-020_*), DT-CIUS-PT-079.1, DT-CIUS-PT-079.4",
+  "decisao": "descartado",
+  "motivo": "informação estruturada codificada em notas e atributos com prefixos #…# (câmbio, retenção na fonte, pagamento ATM, programa certificado AT); é uma convenção sintática e não está no modelo semântico do guia",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "DT-CIUS-PT-139_1, DT-CIUS-PT-139_2, DT-CIUS-PT-139_3, DT-CIUS-PT-139_5",
+  "decisao": "descartado",
+  "motivo": "convenções #…# do BT-160; o motivo de isenção por linha está modelado em LinhaDocumento.CategoriaIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-24, 26, 27, 28, 29, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 59, 61",
+  "decisao": "descartado",
+  "motivo": "proíbem elementos UBL vazios ('shall be filled'); no modelo semântico uma propriedade ausente simplesmente não existe",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CO-07, BR-CO-08",
+  "decisao": "descartado",
+  "motivo": "expressão true(): não verificável",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "BR-CIUS-PT-58",
+  "decisao": "descartado",
+  "motivo": "o modelo só tem desconto sobre o preço; um encargo sobre o preço não tem lugar onde ser declarado",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "UBL-CR-001 a UBL-CR-647 (todas as UBL-CR-*)",
+  "decisao": "descartado",
+  "motivo": "excluem elementos UBL não usados; a exclusão já resulta da projeção (o que não se declara fica excluído)",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "UBL-DT-08 a UBL-DT-26",
+  "decisao": "descartado",
+  "motivo": "atributos da sintaxe UBL que não devem aparecer; não fazem parte do modelo semântico",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-schematron",
+  "origem": "UBL-SR-01 a UBL-SR-40 (exceto UBL-SR-07)",
+  "decisao": "descartado",
+  "motivo": "'no máximo uma ocorrência': já garantido por propriedades simples e composições 0..1; UBL-SR-19/20/21 são avisos sobre o recebedor diferente do fornecedor",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-fatura",
+  "origem": "/Invoice/* (todos os elementos com BT correspondente no guia)",
+  "decisao": "fundido",
+  "destino": "HLM:DocumentoFaturacao",
+  "nota": "fonte complementar: usada para confirmar cardinalidades e descrições; cada elemento é o BT do guia com o mesmo significado",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-fatura",
+  "origem": "/Invoice/*/TaxScheme/ID, /Invoice/PaymentMeans/CardAccount/NetworkID, /Invoice/AdditionalDocumentReference/DocumentTypeCode",
+  "decisao": "descartado",
+  "motivo": "constantes ou qualificadores da sintaxe UBL",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-fatura",
+  "origem": "/Invoice/AllowanceCharge/ChargeIndicator, /Invoice/InvoiceLine/AllowanceCharge/ChargeIndicator, /Invoice/InvoiceLine/Price/AllowanceCharge/ChargeIndicator",
+  "decisao": "descartado",
+  "motivo": "a distinção entre desconto e encargo é dada pelo papel da composição (Desconto, Encargo)",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-nota-de-credito",
+  "origem": "/CreditNote/* (todos os elementos com BT correspondente no guia)",
+  "decisao": "fundido",
+  "destino": "HLM:DocumentoFaturacao",
+  "nota": "fonte complementar; CreditedQuantity = BT-129, PaymentMeans/PaymentDueDate = BT-9",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-nota-de-credito",
+  "origem": "/CreditNote/*/TaxScheme/ID, /CreditNote/PaymentMeans/CardAccount/NetworkID, /CreditNote/AdditionalDocumentReference/DocumentTypeCode, /CreditNote/*/AllowanceCharge/ChargeIndicator",
+  "decisao": "descartado",
+  "motivo": "constantes ou qualificadores da sintaxe UBL; o desconto ou encargo é dado pelo papel",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/CustomizationID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/CabecalhoMensagem.identificadorEspecificacao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/ID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/CabecalhoMensagem.numero",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/IssueDate",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/CabecalhoMensagem.dataEmissao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/IssueTime",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/CabecalhoMensagem.horaEmissao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/Note",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/CabecalhoMensagem.nota",
+  "nota": "1..* na fonte; simplificado a um texto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/SenderParty/PartyName/Name",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Emissor.SujeitoPassivo.nomeComercial",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/SenderParty/PostalAddress/Country/IdentificationCode",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Emissor.Morada.pais",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/SenderParty/PartyTaxScheme/CompanyID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Emissor.SujeitoPassivo.identificadorIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/SenderParty/PartyLegalEntity/RegistrationName",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Emissor.SujeitoPassivo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/SenderParty/PartyLegalEntity/CompanyID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Emissor.SujeitoPassivo.identificadorRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/SenderParty/Contact/ElectronicMail",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Emissor.Contacto.email",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/ReceiverParty/PartyName/Name",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Recetor.SujeitoPassivo.nomeComercial",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/ReceiverParty/PostalAddress/Country/IdentificationCode",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Recetor.Morada.pais",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/ReceiverParty/PartyTaxScheme/CompanyID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Recetor.SujeitoPassivo.identificadorIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/ReceiverParty/PartyLegalEntity/RegistrationName",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Recetor.SujeitoPassivo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/ReceiverParty/PartyLegalEntity/CompanyID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Recetor.SujeitoPassivo.identificadorRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/ReceiverParty/Contact/ElectronicMail",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/Recetor.Contacto.email",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/SenderParty/PartyTaxScheme/TaxScheme/ID, /DocumentStatus/ReceiverParty/PartyTaxScheme/TaxScheme/ID",
+  "decisao": "descartado",
+  "motivo": "constante VAT da sintaxe UBL",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/DocumentResponse/Response/ResponseCode",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/RespostaDocumento.codigoResposta",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/DocumentResponse/Response/Description",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/RespostaDocumento.descricaoResposta",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/DocumentResponse/DocumentReference/ID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/RespostaDocumento.ReferenciaDocumento.numero",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/DocumentResponse/DocumentReference/UUID",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/RespostaDocumento.uuidDocumento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/DocumentResponse/DocumentReference/IssueDate",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/RespostaDocumento.ReferenciaDocumento.dataEmissao",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/DocumentResponse/DocumentReference/DocumentTypeCode",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/RespostaDocumento.tipoDocumento",
+  "passo": "G"
+ },
+ {
+  "fonte": "cius-pt-ubl-mensagem-de-estado",
+  "origem": "/DocumentStatus/DocumentResponse/DocumentReference/DocumentStatusCode",
+  "decisao": "mapeado",
+  "destino": "HLM:MensagemEstado/RespostaDocumento.estadoDocumento",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.internalId, BaseEntity.fields, Client.internalId, Delivery.internalId, DeliveryConfirmation.internalId, DeliveryItem.internalId, Seller.internalId, Zone.internalId, FileInfo.file",
+  "decisao": "descartado",
+  "motivo": "identificadores técnicos ou objetos internos da aplicação",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.registrationDate",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.dataRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.code",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.Artigo.codigo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.articleCode",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.codigoAuxiliar",
+  "nota": "dúvida: pode ser o código auxiliar do STK",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.barCode",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.Artigo.codigoBarras",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.description",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.Artigo.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.reference",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.referencia",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.artForm",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.formaArtigo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.supplier",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.nomeFornecedor",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.unit",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.unidadeMedida",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.saleIva",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.taxaIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.ecoTaxa",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.ecoTaxa",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.costPrice",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoCusto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.costDiscount",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.descontoCusto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.salePrice",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoVendaComIva",
+  "nota": "dúvida: confirmar se é com ou sem IVA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.ppPrice",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoPublico",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.isCar",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.emVeiculo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.observations",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.observacoes",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.discount2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.desconto2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.weight",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.peso",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.familyCode",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.codigoFamilia",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.costPriceNoIva",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoCustoSemIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.costPriceWithIva",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoCustoComIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.supplierCode",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.codigoFornecedor",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.familyDescription",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.descricaoFamilia",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.costPriceNoIva2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoCusto2SemIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.costPriceWithIva2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoCusto2ComIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.service",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.servico",
+  "nota": "String na fonte, booleano no STK; ficou booleano",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.carRegistration",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.matriculaVeiculo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.stockQuantity",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.quantidadeStock",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.stockOutQuantity",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.quantidadeStockFora",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.carQuantityTotal",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.quantidadeTotal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.carQuantityNormal",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.quantidadeNormal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Article.carQuantityOut",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.quantidadeFora",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.registrationDate",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.dataRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.code",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.codigo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.name",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.Entidade.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.address",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.Morada.rua",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.city",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.Morada.localidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.zipCode",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.Morada.codigoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.zipCodeLoc",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.designacaoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.nif",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.Entidade.nif",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.phoneNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.ContactoTelefonico.telemovel",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.zone",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.zona",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.chargeLocation",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.localCobranca",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.email",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.Contacto.email",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.notes",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.observacoes",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.fixePhoneNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.ContactoTelefonico.telefone",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.sellerCode",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.codigoVendedor",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.orderNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.numeroOrdem",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.dateOfBirth",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.dataNascimento",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.citizenCard",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.CartaoCidadao.numero",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.citizenCardExpirationDate",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.CartaoCidadao.dataValidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.name2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.SegundoTitular.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.address2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.MoradaSegundoTitular.rua",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.city2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.MoradaSegundoTitular.localidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.zipCode2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.MoradaSegundoTitular.codigoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.zipCodeLoc2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.designacaoPostalSegundoTitular",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.citizenCard2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.CartaoCidadaoSegundoTitular.numero",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.citizenCardExpirationDate2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.CartaoCidadaoSegundoTitular.dataValidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.nif2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.SegundoTitular.nif",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.fixePhoneNumber2",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.ContactoSegundoTitular.telefone",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.receivingDay",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.diaRecebimento",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Client.isNew",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ClienteVenda.novo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Company.prop",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Configuracao.ParametroEmpresa.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Company.value",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Configuracao.ParametroEmpresa.valor",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Config.prop",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Configuracao.ParametroAplicacao.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Config.value",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Configuracao.ParametroAplicacao.valor",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "SellerProperty.propertyName",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Configuracao.ParametroVendedor.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "SellerProperty.propertyValue",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Configuracao.ParametroVendedor.valor",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.registrationDate",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.dataRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.clientBuyer",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/Comprador",
+  "nota": "composição do SM ClienteVenda com o papel Comprador",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.clientDelivery",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/Destinatario",
+  "nota": "composição do SM ClienteVenda com o papel Destinatario",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.articles",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/LinhaEntrega",
+  "nota": "composição 0..*",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.deliveryNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.numeroEntrega",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.invoiceNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.numeroFatura",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.deliveryGuideNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.numeroGuiaTransporte",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.contractNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.numeroContrato",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.documentSaleNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.numeroDocumentoVenda",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.documentType",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.tipoDocumento",
+  "nota": "valores admitidos desconhecidos",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.status",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.estado",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Delivery.date",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/DadosEntrega.data",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryConfirmation.document",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/ConfirmacaoEntrega.documentoConfirmado",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryConfirmation.contract",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/ConfirmacaoEntrega.contratoConfirmado",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryConfirmation.delivery",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/ConfirmacaoEntrega.entregaConfirmada",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryConfirmation.originalPrice",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/ConfirmacaoEntrega.precoOriginal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryConfirmation.signal",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/ConfirmacaoEntrega.sinal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryConfirmation.installment",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/ConfirmacaoEntrega.prestacao",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryItem.article",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/LinhaEntrega.Artigo",
+  "nota": "referência ao artigo; só os dados canónicos (USM Artigo)",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryItem.seriesNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/LinhaEntrega.numeroSerie",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryItem.quantity",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/LinhaEntrega.quantidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryItem.customPrice",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/LinhaEntrega.precoPersonalizado",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "DeliveryItem.customDiscount",
+  "decisao": "mapeado",
+  "destino": "HLM:Entrega/LinhaEntrega.descontoPersonalizado",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "FileInfo.name",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.nomeFicheiro",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "FileInfo.size",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.tamanhoFicheiro",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "FileInfo.lastModified",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.dataModificacao",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "FileInfo.nCli",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroClientes",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "FileInfo.nArt",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroArtigos",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "FileInfo.nDlv",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroEntregas",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "FileInfo.nItem",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroLinhasEntrega",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "HeaderInfo.nCli",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroClientes",
+  "nota": "String na fonte",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "HeaderInfo.nArt",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroArtigos",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "HeaderInfo.nArtVeic",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroArtigosVeiculo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "HeaderInfo.nZone",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/CabecalhoExportacao.numeroZonas",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.registrationDate",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.dataRegisto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.code",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.codigo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.name",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Entidade.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.address",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Morada.rua",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.city",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Morada.localidade",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.zipCode",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Morada.codigoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.zipCodeLoc",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.designacaoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.nif",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Entidade.nif",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.seriesNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.serie",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.seriesNumberStartingDate",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.dataInicioSerie",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.commissionOfSaleOfProduct",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.comissaoVendaPronto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.commissionOfSaleOfInstallment",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.comissaoVendaPrestacao",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.commissionOfCharge",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.comissaoCobranca",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.phoneNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.ContactoTelefonico.telemovel",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.carRegistration",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Veiculo.matricula",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.car",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Veiculo.marca",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.carModel",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.Veiculo.modelo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.transportGuideNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.numeroGuiaTransporte",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.transportGuideExtraNumber",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.numeroGuiaTransporteExtra",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.familyCodeExtra",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.codigoFamiliaExtra",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.processReceiptsPermissions",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.trataRecebimentos",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Seller.senderNif",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.nifEmissor",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Zone.code",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Zona.codigo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Zone.name",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Zona.nome",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-dart",
+  "origem": "Status-valores",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-ENTFM-ESTADO",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Codigo Vendedor, VDM.Nome Vendedor, VDM.Morada Vendedor, VDM.Localidade Vendedor, VDM.Codigo Postal vendedor, VDM.Telemovel Vendedor, VDM.NIF Vendedor, VDM.Serie Numerações, VDM.Data Inicio Serie, VDM.Comissao Venda Pronto, VDM.Comissao Venda Prestacao, VDM.Comissao Cobranca, VDM.Matricula, VDM.Veiculo, VDM.Modelo, VDM.Numero Guia Transporte, VDM.Numero Guia Transporte Extra, VDM.Codigo Familia Extra, VDM.Trata Recebimentos, VDM.Contribuinte do Emissor",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/Vendedor",
+  "nota": "o mesmo significado que o campo correspondente de Seller (fm-dart), já mapeado",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Telfone Vendedor",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.ContactoTelefonico.telefone",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Nº Ultimo Cliente",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.numeroUltimoCliente",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Prefixo ATCUD",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.prefixoAtcud",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Numero Digitos Serie",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.numeroDigitosSerie",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Nº Ult. Encomenda, VDM.Nº ult. Fatura, VDM.Nº Ult. Fatura Recibo, VDM.Nº Ult. Nota Credito, VDM.Nº Ult. Alteração enc., VDM.Nº Ult Recebimento, VDM.Num Ult. Recibo, VDM.Num Ult Entrada em CC",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.NumeracaoDocumento.ultimoNumero",
+  "nota": "um campo plano por tipo de documento passa a uma ocorrência de NumeracaoDocumento, com tipoDocumento = ENCOMENDA, FATURA, FATURA_RECIBO, NOTA_CREDITO, ALTERACAO_ENCOMENDA, RECEBIMENTO, RECIBO ou ENTRADA_CC",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Data ULt Enomenda, VDM.Data Ult. Fatura, VDM.Data Ult. Fatura Recibo, VDM.Data Ult. Nota Credito, VDM.Data Ult Alteração  Encomenda, VDM.Data Ult . Recebimento, VDM.Data Ult Recibo, VDM.Data Ult. Entrada CC",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.NumeracaoDocumento.dataUltimo",
+  "nota": "Data Ult Recibo e Data Ult. Entrada CC são N(10) na fonte (provável erro); ficaram como data",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM.Prefixo ATCUD Fatura, VDM.Prefixo ATCUD Fatura/ Recibo, VDM.Prefixo ATCUD Nota Credito, VDM.Prefixo ATCUD Encomenda, VDM.Prefixo ATCUD Recibo",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Vendedor.NumeracaoDocumento.prefixoAtcud",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI.Codigo Cliente, CLI.Nome Cliente, CLI.Morada Cliente, CLI.Localidade Cliente, CLI.Codigo Postal cliente, CLI.Zona, CLI.Telefone Cliente, CLI.Telemovel Cliente, CLI.Data Abertura Ficha, CLI.Contribuinte Cliente, CLI.Codigo Vendedor, CLI.Numero Ordem, CLI.Email Cliente, CLI.Data Nascimento Cliente, CLI.Local Cobrança, CLI.Nome 2 Titular, CLI.Morada 2 Titular, CLI.Localidade 2 Titular, CLI.Cod Postal 2 Titular, CLI.Nº CC 2 Titular, CLI.Nº CC Cliente, CLI.Data Validade CC, CLI.Data Validade CC 2 Titular, CLI.Telefone 2 Titular, CLI.Contribuinte 2 Titular, CLI.Dia Recebimento",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/ClienteVenda",
+  "nota": "o mesmo significado que o campo de Client indicado nos nomes alternativos; o código postal do registo junta codigoPostal e designacaoPostal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "YCL.Codigo Cliente",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/SaldoCliente.codigoCliente",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "YCL.Saldo",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/SaldoCliente.saldo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "YCL.Valor Total Vendas",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/SaldoCliente.totalVendas",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "YCL.Valor Saldo Inicial",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/SaldoCliente.saldoInicial",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "YCL.Valor Pago Saldo Inicial",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/SaldoCliente.pagoSaldoInicial",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "YCL.Data Saldo Inicial",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/SaldoCliente.dataSaldoInicial",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK.Codigo Artigo, STK.Codigo Axiliar, STK.Codigp EAN, STK.Descricao, STK.Referencia, STK.Unidade Medida, STK.Data Criação ficha, STK.Preço Venda com Iva, STK.% Desconto2, STK.Taxa de Iva, STK.Quantidade em stock, STK.Quantidade em stock Out, STK.Peso, STK.Codigo Familia, STK.Preço Custo sem Iva, STK.Preço Custo com Iva, STK.Codigo Fornecedor, STK.Nome Fornecedor, STK.Descricção Familia, STK.Serviço",
+  "decisao": "fundido",
+  "destino": "HLM:ExportacaoFm/ArtigoStock",
+  "nota": "o mesmo significado que o campo correspondente de Article (fm-dart)",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK.% Desconto1",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.desconto1",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK.Preço Venda 1 sem Iva",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoVendaSemIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK.Preço Venda 2 com IVA",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoVenda2ComIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK.Preço Venda 2 sem IVA",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.precoVenda2SemIva",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK.Exporta OBS",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ArtigoStock.exportaObservacoes",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "AUX.ID",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Auxiliar.identificador",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "AUX.Texto",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/Auxiliar.texto",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "PRV.Matricula",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.matricula",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "PRV.Codigo Artigo",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.codigoArtigo",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "PRV.Quantidade Total",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.quantidadeTotal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "PRV.Quantidade Normal",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.quantidadeNormal",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "PRV.Quantidade Fora",
+  "decisao": "mapeado",
+  "destino": "HLM:ExportacaoFm/ProdutoVeiculo.quantidadeFora",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-2-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-NOME",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-3-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-RUA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-4-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-LOCALIDADE",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-5-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-CP",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-6-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-TELEFONE",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-7-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-TELEMOVEL",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-8-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-NIF",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-10-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-SERIE",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-15-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEIC-MATRICULA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-16-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEIC-MARCA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-17-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEIC-MODELO",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-24-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-ATCUD",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-33-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-FAMEXTRA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-37-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-DIGITOS",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-38-COMPRIMENTO, VDM-39-COMPRIMENTO, VDM-40-COMPRIMENTO, VDM-41-COMPRIMENTO, VDM-42-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-NUM-ATCUD",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "VDM-43-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-VEND-NIFEMISSOR",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-2-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-NOME",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-3-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-RUA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-4-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-LOCALIDADE",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-5-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-CP",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-6-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-ZONA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-7-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-TELEFONE",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-8-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-TELEMOVEL",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-10-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-NIF",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-13-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-EMAIL",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-15-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-COBRANCA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-16-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-NOME2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-17-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-RUA2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-18-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-LOCALIDADE2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-19-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-CP2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-20-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-CC2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-21-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-CC",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-24-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-TELEFONE2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "CLI-25-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-CLI-NIF2",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-1-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-CODIGO",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-2-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-AUXILIAR",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-3-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-EAN",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-4-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-DESCRICAO",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-5-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-REFERENCIA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-6-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-UNIDADE",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-16-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-FAMILIA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-20-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-FORNECEDOR",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "STK-21-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-STK-DESCFAMILIA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "AUX-2-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-AUX-TEXTO",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "PRV-1-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRV-MATRICULA",
+  "passo": "G"
+ },
+ {
+  "fonte": "fm-registos",
+  "origem": "PRV-2-COMPRIMENTO",
+  "decisao": "mapeado",
+  "destino": "Regra:RP-PRV-ARTIGO",
+  "passo": "G"
+ }
+]

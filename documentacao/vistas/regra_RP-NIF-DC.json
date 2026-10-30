@@ -1,0 +1,257 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-NIF-DC",
+  "regra": {
+    "id": "RP-NIF-DC",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "digitoControloValido(Entidade.nif)",
+    "alcance": "USM Entidade.nif",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "nif",
+      "chave": "Propriedade:USM:Entidade.nif",
+      "dono": "Entidade"
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "FUNCTION",
+      "mensagem": "O dígito de controlo do NIF não está correto.",
+      "texto": "digitoControloValido(nif)",
+      "chamada": {
+        "funcao": "digitoControloValido",
+        "chamada": "digitoControloValido(nif)",
+        "operador": "FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+        "argumentos": [
+          {
+            "caminho": "nif",
+            "alvo": "USM:Entidade.nif",
+            "nomeAlvo": "nif",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          }
+        ],
+        "contextos": []
+      }
+    },
+    "mensagem": "O dígito de controlo do NIF não está correto.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "USM:Entidade.nif",
+      "nome": "nif",
+      "funcao": "digitoControloValido"
+    },
+    "funcoes": [
+      "digitoControloValido"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "FUNCTION",
+    "mensagem": "O dígito de controlo do NIF não está correto.",
+    "texto": "digitoControloValido(nif)",
+    "chamada": {
+      "funcao": "digitoControloValido",
+      "chamada": "digitoControloValido(nif)",
+      "operador": "FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+      "argumentos": [
+        {
+          "caminho": "nif",
+          "alvo": "USM:Entidade.nif",
+          "nomeAlvo": "nif",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        }
+      ],
+      "contextos": []
+    },
+    "descricao": "digitoControloValido(nif)",
+    "funcao": {
+      "nome": "digitoControloValido",
+      "descricao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+      "parametros": [
+        {
+          "nome": "nif",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": []
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Entidade.nif",
+    "nome": "nif",
+    "dono": "Entidade",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Número de identificação fiscal",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura",
+      "OrdemInstalacao"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-NIF-DC",
+        "rotulo": "RP",
+        "texto": "RP-NIF-DC",
+        "detalhe": "digitoControloValido(Entidade.nif)"
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nif",
+        "rotulo": "Propriedade",
+        "texto": "USM:Entidade.nif",
+        "detalhe": "Número de identificação fiscal"
+      },
+      {
+        "chave": "Restricao:RP-NIF-DC",
+        "rotulo": "Restricao",
+        "texto": "RP-NIF-DC#restricao",
+        "detalhe": "digitoControloValido(nif)"
+      },
+      {
+        "chave": "Funcao:digitoControloValido",
+        "rotulo": "Funcao",
+        "texto": "digitoControloValido",
+        "detalhe": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-NIF-DC",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-NIF-DC",
+        "para": "Restricao:RP-NIF-DC",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-NIF-DC",
+        "para": "Funcao:digitoControloValido",
+        "tipo": "CHAMA",
+        "texto": "digitoControloValido(nif)"
+      },
+      {
+        "de": "Funcao:digitoControloValido",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "LE",
+        "texto": "argumento: nif"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Entidade.nif",
+        "rotulo": "Propriedade",
+        "nome": "nif",
+        "dono": "Entidade",
+        "descricao": "Número de identificação fiscal",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Entidade",
+        "rotulo": "USM",
+        "nome": "Entidade",
+        "dono": null,
+        "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cliente",
+        "rotulo": "SM",
+        "nome": "Cliente",
+        "dono": null,
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "dono": null,
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Entidade",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cliente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cliente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Requerente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Emitente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Emitente",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-NIF-DC"
+  }
+}

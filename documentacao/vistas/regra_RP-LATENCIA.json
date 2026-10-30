@@ -1,0 +1,182 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-LATENCIA",
+  "regra": {
+    "id": "RP-LATENCIA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Diagnostico.latencia entre 0 e 60000",
+    "alcance": "USM Diagnostico.latencia",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "latencia",
+      "chave": "Propriedade:USM:Diagnostico.latencia",
+      "dono": "Diagnostico"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "A latência (ms) tem de estar entre 0 e 60000.",
+      "texto": "latencia entre 0 e 60000",
+      "caminho": "latencia",
+      "propriedade": "USM:Diagnostico.latencia",
+      "valor": [
+        0,
+        60000
+      ],
+      "minimo": 0,
+      "maximo": 60000
+    },
+    "mensagem": "A latência (ms) tem de estar entre 0 e 60000.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Diagnostico.latencia",
+      "nome": "latencia",
+      "dono": "Diagnostico"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "A latência (ms) tem de estar entre 0 e 60000.",
+    "texto": "latencia entre 0 e 60000",
+    "caminho": "latencia",
+    "propriedade": "USM:Diagnostico.latencia",
+    "valor": [
+      0,
+      60000
+    ],
+    "minimo": 0,
+    "maximo": 60000,
+    "descricao": "latencia entre 0 e 60000",
+    "alvo": {
+      "chave": "USM:Diagnostico.latencia",
+      "nome": "latencia",
+      "dono": "Diagnostico",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Latência da comunicação (ms)"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Diagnostico.latencia",
+    "nome": "latencia",
+    "dono": "Diagnostico",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Latência da comunicação (ms)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-LATENCIA",
+        "rotulo": "RP",
+        "texto": "RP-LATENCIA",
+        "detalhe": "Diagnostico.latencia entre 0 e 60000"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.latencia",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.latencia",
+        "detalhe": "Latência da comunicação (ms)"
+      },
+      {
+        "chave": "Restricao:RP-LATENCIA",
+        "rotulo": "Restricao",
+        "texto": "RP-LATENCIA#restricao",
+        "detalhe": "latencia entre 0 e 60000"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-LATENCIA",
+        "para": "Propriedade:USM:Diagnostico.latencia",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-LATENCIA",
+        "para": "Restricao:RP-LATENCIA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-LATENCIA",
+        "para": "Propriedade:USM:Diagnostico.latencia",
+        "tipo": "RESTRINGE",
+        "texto": "latencia entre 0 e 60000"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Diagnostico.latencia",
+        "rotulo": "Propriedade",
+        "nome": "latencia",
+        "dono": "Diagnostico",
+        "descricao": "Latência da comunicação (ms)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Diagnostico",
+        "rotulo": "SM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.latencia",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Diagnostico",
+        "para": "USM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-LATENCIA"
+  }
+}

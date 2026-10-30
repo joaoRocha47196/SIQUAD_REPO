@@ -1,0 +1,78 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de Medicao.dataMedicao",
+  "propriedade": {
+    "chave": "USM:Medicao.dataMedicao",
+    "nome": "dataMedicao",
+    "dono": "Medicao",
+    "nivelDono": "USM",
+    "tipo": "data",
+    "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)"
+  },
+  "plausiveis": [],
+  "rp": [
+    {
+      "id": "RP-RELOGIO",
+      "texto": "desfasamentoInferiorA(Medicao.dataMedicao, 300)"
+    }
+  ],
+  "valores": [],
+  "outrosTermos": [
+    "RIC-MED-DIFERIDA"
+  ],
+  "regras": [
+    {
+      "id": "RIC-MED-DIFERIDA",
+      "tipo": "RIC",
+      "natureza": "inferencia_conclusiva",
+      "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+      "alcance": "USM Medicao.dataMedicao",
+      "notas": "Contexto externo usado diretamente num termo da condição (sem função): dataMedicao < dataDeHoje.",
+      "contextosExternos": [
+        "dataDeHoje"
+      ],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "dataMedicao",
+        "chave": "Propriedade:USM:Medicao.dataMedicao",
+        "dono": "Medicao"
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "dataMedicao",
+          "propriedade": "USM:Medicao.dataMedicao",
+          "operador": "LT",
+          "valor": null,
+          "contexto": "dataDeHoje",
+          "texto": "dataMedicao < dataDeHoje (contexto externo)",
+          "nome": "dataMedicao",
+          "foco": true
+        }
+      ],
+      "mensagem": "Estado DIFERIDA: a leitura foi medida antes de hoje e chega com atraso; deve ser tratada como dado histórico.",
+      "conclusao": {
+        "tipo": "ESTADO",
+        "valor": "DIFERIDA"
+      },
+      "funcao": false,
+      "categoria": "RIC",
+      "alvo": null,
+      "funcoes": [],
+      "alvos": []
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": null,
+      "nome": "(conclusão)",
+      "regras": [
+        "RIC-MED-DIFERIDA"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "USM:Medicao.dataMedicao"
+  }
+}

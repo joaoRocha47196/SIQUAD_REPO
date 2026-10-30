@@ -1,0 +1,3121 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de Medicao.unidadeMedida",
+  "propriedade": {
+    "chave": "USM:Medicao.unidadeMedida",
+    "nome": "unidadeMedida",
+    "dono": "Medicao",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Unidade de medida associada ao valor medido"
+  },
+  "plausiveis": [
+    "°C",
+    "K",
+    "°F",
+    "%",
+    "hPa",
+    "bar",
+    "m/s",
+    "km/h"
+  ],
+  "rp": [
+    {
+      "id": "RP-UNIDADE",
+      "texto": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}"
+    }
+  ],
+  "valores": [
+    {
+      "valor": "°C",
+      "plausivel": true,
+      "regras": [
+        "RIR-TEMP-ARMAZEM-CELSIUS",
+        "RIR-TEMP-C",
+        "RIR-TEMP-CAMARA-CELSIUS",
+        "RIR-TEMP-ESTUFA-CELSIUS",
+        "RIR-TEMP-EXTERIOR-CELSIUS",
+        "RIR-TEMP-INCIN-CELSIUS",
+        "RIR-TEMP-REFRIG-CELSIUS",
+        "RIR-TEMP-SERVIDORES-CELSIUS"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "K",
+      "plausivel": true,
+      "regras": [
+        "RIR-TEMP-ARMAZEM-KELVIN",
+        "RIR-TEMP-ESTUFA-KELVIN",
+        "RIR-TEMP-EXTERIOR-KELVIN",
+        "RIR-TEMP-INCIN-KELVIN",
+        "RIR-TEMP-K",
+        "RIR-TEMP-REFRIG-KELVIN",
+        "RIR-TEMP-SERVIDORES-KELVIN"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "°F",
+      "plausivel": true,
+      "regras": [
+        "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+        "RIR-TEMP-ESTUFA-FAHRENHEIT",
+        "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+        "RIR-TEMP-F",
+        "RIR-TEMP-INCIN-FAHRENHEIT",
+        "RIR-TEMP-REFRIG-FAHRENHEIT",
+        "RIR-TEMP-SERVIDORES-FAHRENHEIT"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "%",
+      "plausivel": true,
+      "regras": [
+        "RIR-HUM",
+        "RIR-HUM-ARMAZEM",
+        "RIR-HUM-ESTUFA",
+        "RIR-HUM-EXTERIOR",
+        "RIR-HUM-REFRIG",
+        "RIR-HUM-SERVIDORES"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "hPa",
+      "plausivel": true,
+      "regras": [
+        "RIR-PRES-EXTERIOR-HPA",
+        "RIR-PRES-HPA"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "bar",
+      "plausivel": true,
+      "regras": [
+        "RIR-PRES-BAR",
+        "RIR-PRES-EXTERIOR-BAR"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "m/s",
+      "plausivel": true,
+      "regras": [
+        "RIR-VEL-EXTERIOR-MS",
+        "RIR-VEL-MS"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "km/h",
+      "plausivel": true,
+      "regras": [
+        "RIR-VEL-EXTERIOR-KMH",
+        "RIR-VEL-KMH"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ],
+      "semRegras": false
+    }
+  ],
+  "outrosTermos": [],
+  "regras": [
+    {
+      "id": "RIR-HUM",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % → Leitura.Medicao.valor entre 0 e 100",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma humidade em % tem de estar entre 0 e 100.",
+        "texto": "Leitura.Medicao.valor entre 0 e 100",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          0,
+          100
+        ],
+        "minimo": 0,
+        "maximo": 100
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "HUMIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = HUMIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "%",
+          "contexto": null,
+          "texto": "unidadeMedida = %",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma humidade em % tem de estar entre 0 e 100.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-HUM-ARMAZEM",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 30 e 60",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Humidade fora da gama do armazém (30 a 60 %).",
+        "texto": "Leitura.Medicao.valor entre 30 e 60",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          30,
+          60
+        ],
+        "minimo": 30,
+        "maximo": 60
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "HUMIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = HUMIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "%",
+          "contexto": null,
+          "texto": "unidadeMedida = %",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ARMAZEM",
+          "contexto": null,
+          "texto": "ambiente = ARMAZEM",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Humidade fora da gama do armazém (30 a 60 %).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-HUM-ESTUFA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 60 e 90",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Humidade fora da gama da estufa (60 a 90 %).",
+        "texto": "Leitura.Medicao.valor entre 60 e 90",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          60,
+          90
+        ],
+        "minimo": 60,
+        "maximo": 90
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "HUMIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = HUMIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "%",
+          "contexto": null,
+          "texto": "unidadeMedida = %",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ESTUFA",
+          "contexto": null,
+          "texto": "ambiente = ESTUFA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Humidade fora da gama da estufa (60 a 90 %).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-HUM-EXTERIOR",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 100",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Humidade fora da gama do exterior (0 a 100 %).",
+        "texto": "Leitura.Medicao.valor entre 0 e 100",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          0,
+          100
+        ],
+        "minimo": 0,
+        "maximo": 100
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "HUMIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = HUMIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "%",
+          "contexto": null,
+          "texto": "unidadeMedida = %",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Humidade fora da gama do exterior (0 a 100 %).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-HUM-REFRIG",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 80 e 95",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Humidade fora da gama de refrigeração (80 a 95 %).",
+        "texto": "Leitura.Medicao.valor entre 80 e 95",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          80,
+          95
+        ],
+        "minimo": 80,
+        "maximo": 95
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "HUMIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = HUMIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "%",
+          "contexto": null,
+          "texto": "unidadeMedida = %",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "REFRIGERACAO",
+          "contexto": null,
+          "texto": "ambiente = REFRIGERACAO",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Humidade fora da gama de refrigeração (80 a 95 %).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-HUM-SERVIDORES",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 40 e 60",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Humidade fora da gama da sala de servidores (40 a 60 %).",
+        "texto": "Leitura.Medicao.valor entre 40 e 60",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          40,
+          60
+        ],
+        "minimo": 40,
+        "maximo": 60
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "HUMIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = HUMIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "%",
+          "contexto": null,
+          "texto": "unidadeMedida = %",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "SERVIDORES",
+          "contexto": null,
+          "texto": "ambiente = SERVIDORES",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Humidade fora da gama da sala de servidores (40 a 60 %).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-PRES-BAR",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar → Leitura.Medicao.valor entre 0.3 e 1.1",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma pressão em bar tem de estar entre 0.3 e 1.1.",
+        "texto": "Leitura.Medicao.valor entre 0.3 e 1.1",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          0.3,
+          1.1
+        ],
+        "minimo": 0.3,
+        "maximo": 1.1
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "PRESSAO",
+          "contexto": null,
+          "texto": "tipoDispositivo = PRESSAO",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "bar",
+          "contexto": null,
+          "texto": "unidadeMedida = bar",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma pressão em bar tem de estar entre 0.3 e 1.1.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-PRES-EXTERIOR-BAR",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "alcance": "HLM Dispositivo",
+      "notas": "Anomalia intencional (do mapeamento original): a gama [950, 1050] está em hPa, não em bar, e não tem nenhum valor em comum com RIR-PRES-BAR [0.3, 1.1]. A matriz de decisão assinala-a a vermelho.",
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Pressão fora da gama do exterior (950 a 1050 bar).",
+        "texto": "Leitura.Medicao.valor entre 950 e 1050",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          950,
+          1050
+        ],
+        "minimo": 950,
+        "maximo": 1050
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "PRESSAO",
+          "contexto": null,
+          "texto": "tipoDispositivo = PRESSAO",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "bar",
+          "contexto": null,
+          "texto": "unidadeMedida = bar",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Pressão fora da gama do exterior (950 a 1050 bar).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-PRES-EXTERIOR-HPA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Pressão fora da gama do exterior (950 a 1050 hPa).",
+        "texto": "Leitura.Medicao.valor entre 950 e 1050",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          950,
+          1050
+        ],
+        "minimo": 950,
+        "maximo": 1050
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "PRESSAO",
+          "contexto": null,
+          "texto": "tipoDispositivo = PRESSAO",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "hPa",
+          "contexto": null,
+          "texto": "unidadeMedida = hPa",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Pressão fora da gama do exterior (950 a 1050 hPa).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-PRES-HPA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa → Leitura.Medicao.valor entre 300 e 1100",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma pressão em hPa tem de estar entre 300 e 1100.",
+        "texto": "Leitura.Medicao.valor entre 300 e 1100",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          300,
+          1100
+        ],
+        "minimo": 300,
+        "maximo": 1100
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "PRESSAO",
+          "contexto": null,
+          "texto": "tipoDispositivo = PRESSAO",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "hPa",
+          "contexto": null,
+          "texto": "unidadeMedida = hPa",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma pressão em hPa tem de estar entre 300 e 1100.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ARMAZEM-CELSIUS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 5 e 30",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama do armazém (5 a 30 °C).",
+        "texto": "Leitura.Medicao.valor entre 5 e 30",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          5,
+          30
+        ],
+        "minimo": 5,
+        "maximo": 30
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ARMAZEM",
+          "contexto": null,
+          "texto": "ambiente = ARMAZEM",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama do armazém (5 a 30 °C).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 41 e 86",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama do armazém (41 a 86 °F).",
+        "texto": "Leitura.Medicao.valor entre 41 e 86",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          41,
+          86
+        ],
+        "minimo": 41,
+        "maximo": 86
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°F",
+          "contexto": null,
+          "texto": "unidadeMedida = °F",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ARMAZEM",
+          "contexto": null,
+          "texto": "ambiente = ARMAZEM",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama do armazém (41 a 86 °F).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ARMAZEM-KELVIN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 278.15 e 303.15",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama do armazém (278.15 a 303.15 K).",
+        "texto": "Leitura.Medicao.valor entre 278.15 e 303.15",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          278.15,
+          303.15
+        ],
+        "minimo": 278.15,
+        "maximo": 303.15
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "K",
+          "contexto": null,
+          "texto": "unidadeMedida = K",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ARMAZEM",
+          "contexto": null,
+          "texto": "ambiente = ARMAZEM",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama do armazém (278.15 a 303.15 K).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-C",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C → Leitura.Medicao.valor entre -60 e 1300",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma temperatura em °C tem de estar entre -60 e 1300.",
+        "texto": "Leitura.Medicao.valor entre -60 e 1300",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -60,
+          1300
+        ],
+        "minimo": -60,
+        "maximo": 1300
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma temperatura em °C tem de estar entre -60 e 1300.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-CAMARA-CELSIUS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = CAMARA_FRIGORIFICA → Leitura.Medicao.valor entre -25 e -18",
+      "alcance": "HLM Dispositivo",
+      "notas": "Anomalia intencional (invariante I7): CAMARA_FRIGORIFICA não pertence aos valores plausíveis de ambiente, pelo que a regra nunca se aplica. Equivale ao exemplo 'ambiente = ARMAZEM' da tese.",
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da câmara frigorífica (-25 a -18 °C).",
+        "texto": "Leitura.Medicao.valor entre -25 e -18",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -25,
+          -18
+        ],
+        "minimo": -25,
+        "maximo": -18
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "CAMARA_FRIGORIFICA",
+          "contexto": null,
+          "texto": "ambiente = CAMARA_FRIGORIFICA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da câmara frigorífica (-25 a -18 °C).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ESTUFA-CELSIUS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 15 e 45",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da estufa (15 a 45 °C).",
+        "texto": "Leitura.Medicao.valor entre 15 e 45",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          15,
+          45
+        ],
+        "minimo": 15,
+        "maximo": 45
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ESTUFA",
+          "contexto": null,
+          "texto": "ambiente = ESTUFA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da estufa (15 a 45 °C).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 59 e 113",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da estufa (59 a 113 °F).",
+        "texto": "Leitura.Medicao.valor entre 59 e 113",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          59,
+          113
+        ],
+        "minimo": 59,
+        "maximo": 113
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°F",
+          "contexto": null,
+          "texto": "unidadeMedida = °F",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ESTUFA",
+          "contexto": null,
+          "texto": "ambiente = ESTUFA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da estufa (59 a 113 °F).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-ESTUFA-KELVIN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 288.15 e 318.15",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da estufa (288.15 a 318.15 K).",
+        "texto": "Leitura.Medicao.valor entre 288.15 e 318.15",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          288.15,
+          318.15
+        ],
+        "minimo": 288.15,
+        "maximo": 318.15
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "K",
+          "contexto": null,
+          "texto": "unidadeMedida = K",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "ESTUFA",
+          "contexto": null,
+          "texto": "ambiente = ESTUFA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da estufa (288.15 a 318.15 K).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-EXTERIOR-CELSIUS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -20 e 50",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama do exterior (-20 a 50 °C).",
+        "texto": "Leitura.Medicao.valor entre -20 e 50",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -20,
+          50
+        ],
+        "minimo": -20,
+        "maximo": 50
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama do exterior (-20 a 50 °C).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -4 e 122",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama do exterior (-4 a 122 °F).",
+        "texto": "Leitura.Medicao.valor entre -4 e 122",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -4,
+          122
+        ],
+        "minimo": -4,
+        "maximo": 122
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°F",
+          "contexto": null,
+          "texto": "unidadeMedida = °F",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama do exterior (-4 a 122 °F).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-EXTERIOR-KELVIN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 253.15 e 323.15",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama do exterior (253.15 a 323.15 K).",
+        "texto": "Leitura.Medicao.valor entre 253.15 e 323.15",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          253.15,
+          323.15
+        ],
+        "minimo": 253.15,
+        "maximo": 323.15
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "K",
+          "contexto": null,
+          "texto": "unidadeMedida = K",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama do exterior (253.15 a 323.15 K).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-F",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F → Leitura.Medicao.valor entre -76 e 2372",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma temperatura em °F tem de estar entre -76 e 2372.",
+        "texto": "Leitura.Medicao.valor entre -76 e 2372",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -76,
+          2372
+        ],
+        "minimo": -76,
+        "maximo": 2372
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°F",
+          "contexto": null,
+          "texto": "unidadeMedida = °F",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma temperatura em °F tem de estar entre -76 e 2372.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-INCIN-CELSIUS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 200 e 1200",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da incineradora (200 a 1200 °C).",
+        "texto": "Leitura.Medicao.valor entre 200 e 1200",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          200,
+          1200
+        ],
+        "minimo": 200,
+        "maximo": 1200
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "INCINERADORA",
+          "contexto": null,
+          "texto": "ambiente = INCINERADORA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da incineradora (200 a 1200 °C).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-INCIN-FAHRENHEIT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 392 e 2192",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da incineradora (392 a 2192 °F).",
+        "texto": "Leitura.Medicao.valor entre 392 e 2192",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          392,
+          2192
+        ],
+        "minimo": 392,
+        "maximo": 2192
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°F",
+          "contexto": null,
+          "texto": "unidadeMedida = °F",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "INCINERADORA",
+          "contexto": null,
+          "texto": "ambiente = INCINERADORA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da incineradora (392 a 2192 °F).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-INCIN-KELVIN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 473.15 e 1473.15",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da incineradora (473.15 a 1473.15 K).",
+        "texto": "Leitura.Medicao.valor entre 473.15 e 1473.15",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          473.15,
+          1473.15
+        ],
+        "minimo": 473.15,
+        "maximo": 1473.15
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "K",
+          "contexto": null,
+          "texto": "unidadeMedida = K",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "INCINERADORA",
+          "contexto": null,
+          "texto": "ambiente = INCINERADORA",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da incineradora (473.15 a 1473.15 K).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-K",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K → Leitura.Medicao.valor entre 213.15 e 1573.15",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma temperatura em K tem de estar entre 213.15 e 1573.15.",
+        "texto": "Leitura.Medicao.valor entre 213.15 e 1573.15",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          213.15,
+          1573.15
+        ],
+        "minimo": 213.15,
+        "maximo": 1573.15
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "K",
+          "contexto": null,
+          "texto": "unidadeMedida = K",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma temperatura em K tem de estar entre 213.15 e 1573.15.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-REFRIG-CELSIUS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -30 e 0",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama de refrigeração (-30 a 0 °C).",
+        "texto": "Leitura.Medicao.valor entre -30 e 0",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -30,
+          0
+        ],
+        "minimo": -30,
+        "maximo": 0
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "REFRIGERACAO",
+          "contexto": null,
+          "texto": "ambiente = REFRIGERACAO",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama de refrigeração (-30 a 0 °C).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-REFRIG-FAHRENHEIT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -22 e 32",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama de refrigeração (-22 a 32 °F).",
+        "texto": "Leitura.Medicao.valor entre -22 e 32",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -22,
+          32
+        ],
+        "minimo": -22,
+        "maximo": 32
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°F",
+          "contexto": null,
+          "texto": "unidadeMedida = °F",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "REFRIGERACAO",
+          "contexto": null,
+          "texto": "ambiente = REFRIGERACAO",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama de refrigeração (-22 a 32 °F).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-REFRIG-KELVIN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 243.15 e 273.15",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama de refrigeração (243.15 a 273.15 K).",
+        "texto": "Leitura.Medicao.valor entre 243.15 e 273.15",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          243.15,
+          273.15
+        ],
+        "minimo": 243.15,
+        "maximo": 273.15
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "K",
+          "contexto": null,
+          "texto": "unidadeMedida = K",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "REFRIGERACAO",
+          "contexto": null,
+          "texto": "ambiente = REFRIGERACAO",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama de refrigeração (243.15 a 273.15 K).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-SERVIDORES-CELSIUS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 18 e 27",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da sala de servidores (18 a 27 °C).",
+        "texto": "Leitura.Medicao.valor entre 18 e 27",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          18,
+          27
+        ],
+        "minimo": 18,
+        "maximo": 27
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°C",
+          "contexto": null,
+          "texto": "unidadeMedida = °C",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "SERVIDORES",
+          "contexto": null,
+          "texto": "ambiente = SERVIDORES",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da sala de servidores (18 a 27 °C).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 64.4 e 80.6",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da sala de servidores (64.4 a 80.6 °F).",
+        "texto": "Leitura.Medicao.valor entre 64.4 e 80.6",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          64.4,
+          80.6
+        ],
+        "minimo": 64.4,
+        "maximo": 80.6
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "°F",
+          "contexto": null,
+          "texto": "unidadeMedida = °F",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "SERVIDORES",
+          "contexto": null,
+          "texto": "ambiente = SERVIDORES",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da sala de servidores (64.4 a 80.6 °F).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-TEMP-SERVIDORES-KELVIN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 291.15 e 300.15",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Temperatura fora da gama da sala de servidores (291.15 a 300.15 K).",
+        "texto": "Leitura.Medicao.valor entre 291.15 e 300.15",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          291.15,
+          300.15
+        ],
+        "minimo": 291.15,
+        "maximo": 300.15
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "K",
+          "contexto": null,
+          "texto": "unidadeMedida = K",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "SERVIDORES",
+          "contexto": null,
+          "texto": "ambiente = SERVIDORES",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Temperatura fora da gama da sala de servidores (291.15 a 300.15 K).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-VEL-EXTERIOR-KMH",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 144",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Velocidade fora da gama do exterior (0 a 144 km/h).",
+        "texto": "Leitura.Medicao.valor entre 0 e 144",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          0,
+          144
+        ],
+        "minimo": 0,
+        "maximo": 144
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "VELOCIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "km/h",
+          "contexto": null,
+          "texto": "unidadeMedida = km/h",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Velocidade fora da gama do exterior (0 a 144 km/h).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-VEL-EXTERIOR-MS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 40",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Velocidade fora da gama do exterior (0 a 40 m/s).",
+        "texto": "Leitura.Medicao.valor entre 0 e 40",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          0,
+          40
+        ],
+        "minimo": 0,
+        "maximo": 40
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "VELOCIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "m/s",
+          "contexto": null,
+          "texto": "unidadeMedida = m/s",
+          "nome": "unidadeMedida",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "Leitura.Instalacao.ambiente",
+          "propriedade": "USM:Instalacao.ambiente",
+          "operador": "EQUALS",
+          "valor": "EXTERIOR",
+          "contexto": null,
+          "texto": "ambiente = EXTERIOR",
+          "nome": "ambiente",
+          "foco": false
+        }
+      ],
+      "mensagem": "Velocidade fora da gama do exterior (0 a 40 m/s).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-VEL-KMH",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h → Leitura.Medicao.valor entre 0 e 270",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma velocidade em km/h tem de estar entre 0 e 270.",
+        "texto": "Leitura.Medicao.valor entre 0 e 270",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          0,
+          270
+        ],
+        "minimo": 0,
+        "maximo": 270
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "VELOCIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "km/h",
+          "contexto": null,
+          "texto": "unidadeMedida = km/h",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma velocidade em km/h tem de estar entre 0 e 270.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    },
+    {
+      "id": "RIR-VEL-MS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s → Leitura.Medicao.valor entre 0 e 75",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "Uma velocidade em m/s tem de estar entre 0 e 75.",
+        "texto": "Leitura.Medicao.valor entre 0 e 75",
+        "caminho": "Leitura.Medicao.valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          0,
+          75
+        ],
+        "minimo": 0,
+        "maximo": 75
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "VELOCIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "nome": "tipoDispositivo",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "Leitura.Medicao.unidadeMedida",
+          "propriedade": "USM:Medicao.unidadeMedida",
+          "operador": "EQUALS",
+          "valor": "m/s",
+          "contexto": null,
+          "texto": "unidadeMedida = m/s",
+          "nome": "unidadeMedida",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma velocidade em m/s tem de estar entre 0 e 75.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Medicao.valor",
+          "nome": "valor",
+          "caminho": "Leitura.Medicao.valor"
+        }
+      ]
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": "USM:Medicao.valor",
+      "nome": "valor",
+      "caminho": "Leitura.Medicao.valor",
+      "regras": [
+        "RIR-HUM",
+        "RIR-HUM-ARMAZEM",
+        "RIR-HUM-ESTUFA",
+        "RIR-HUM-EXTERIOR",
+        "RIR-HUM-REFRIG",
+        "RIR-HUM-SERVIDORES",
+        "RIR-PRES-BAR",
+        "RIR-PRES-EXTERIOR-BAR",
+        "RIR-PRES-EXTERIOR-HPA",
+        "RIR-PRES-HPA",
+        "RIR-TEMP-ARMAZEM-CELSIUS",
+        "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+        "RIR-TEMP-ARMAZEM-KELVIN",
+        "RIR-TEMP-C",
+        "RIR-TEMP-CAMARA-CELSIUS",
+        "RIR-TEMP-ESTUFA-CELSIUS",
+        "RIR-TEMP-ESTUFA-FAHRENHEIT",
+        "RIR-TEMP-ESTUFA-KELVIN",
+        "RIR-TEMP-EXTERIOR-CELSIUS",
+        "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+        "RIR-TEMP-EXTERIOR-KELVIN",
+        "RIR-TEMP-F",
+        "RIR-TEMP-INCIN-CELSIUS",
+        "RIR-TEMP-INCIN-FAHRENHEIT",
+        "RIR-TEMP-INCIN-KELVIN",
+        "RIR-TEMP-K",
+        "RIR-TEMP-REFRIG-CELSIUS",
+        "RIR-TEMP-REFRIG-FAHRENHEIT",
+        "RIR-TEMP-REFRIG-KELVIN",
+        "RIR-TEMP-SERVIDORES-CELSIUS",
+        "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+        "RIR-TEMP-SERVIDORES-KELVIN",
+        "RIR-VEL-EXTERIOR-KMH",
+        "RIR-VEL-EXTERIOR-MS",
+        "RIR-VEL-KMH",
+        "RIR-VEL-MS"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "USM:Medicao.unidadeMedida"
+  }
+}

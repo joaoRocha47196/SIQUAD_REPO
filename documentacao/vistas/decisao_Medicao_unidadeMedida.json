@@ -1,0 +1,492 @@
+{
+  "vista": "decisao",
+  "titulo": "Decisão de Medicao.unidadeMedida",
+  "alvo": "USM:Medicao.unidadeMedida",
+  "propriedade": {
+    "chave": "USM:Medicao.unidadeMedida",
+    "nome": "unidadeMedida",
+    "dono": "Medicao",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Unidade de medida associada ao valor medido",
+    "rp": [
+      {
+        "id": "RP-UNIDADE",
+        "texto": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+        "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+        "operador": "IN",
+        "valor": [
+          "°C",
+          "K",
+          "°F",
+          "%",
+          "hPa",
+          "bar",
+          "m/s",
+          "km/h"
+        ]
+      }
+    ]
+  },
+  "dimensoes": [
+    {
+      "chave": "SM:Identificacao.tipoDispositivo",
+      "nome": "tipoDispositivo",
+      "frequencia": 4,
+      "plausiveis": [
+        "TEMPERATURA",
+        "HUMIDADE",
+        "PRESSAO",
+        "VELOCIDADE"
+      ],
+      "usados": [
+        "TEMPERATURA",
+        "HUMIDADE",
+        "PRESSAO",
+        "VELOCIDADE"
+      ],
+      "ausenteEm": 0,
+      "dono": "Identificacao",
+      "descricao": "Grandeza medida pelo dispositivo",
+      "tipo": "texto",
+      "rp": [
+        {
+          "id": "RP-TIPODISP",
+          "texto": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+          "mensagem": "O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.",
+          "operador": "IN",
+          "valor": [
+            "TEMPERATURA",
+            "HUMIDADE",
+            "PRESSAO",
+            "VELOCIDADE"
+          ]
+        }
+      ]
+    }
+  ],
+  "matriz": {
+    "propriedade": "unidadeMedida",
+    "dimensaoLinhas": "tipoDispositivo",
+    "dimensoesColunas": [],
+    "dimensoes": [
+      {
+        "chave": "SM:Identificacao.tipoDispositivo",
+        "nome": "tipoDispositivo",
+        "frequencia": 4,
+        "plausiveis": [
+          "TEMPERATURA",
+          "HUMIDADE",
+          "PRESSAO",
+          "VELOCIDADE"
+        ],
+        "usados": [
+          "TEMPERATURA",
+          "HUMIDADE",
+          "PRESSAO",
+          "VELOCIDADE"
+        ],
+        "ausenteEm": 0
+      }
+    ],
+    "colunas": [
+      {
+        "valores": [],
+        "rotulo": "(qualquer)"
+      }
+    ],
+    "linhas": [
+      {
+        "valor": null,
+        "rotulo": "(qualquer)",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "vazia",
+            "regras": []
+          }
+        ]
+      },
+      {
+        "valor": "TEMPERATURA",
+        "rotulo": "TEMPERATURA",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "ok",
+            "regras": [
+              {
+                "id": "RIR-TEMP-UN",
+                "valor": [
+                  "°C",
+                  "K",
+                  "°F"
+                ],
+                "texto": "unidadeMedida ∈ {°C, K, °F}",
+                "minimo": null,
+                "maximo": null,
+                "mensagem": "Uma temperatura tem de ser medida em °C, K ou °F."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "valor": "HUMIDADE",
+        "rotulo": "HUMIDADE",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "ok",
+            "regras": [
+              {
+                "id": "RIR-HUM-UN",
+                "valor": [
+                  "%"
+                ],
+                "texto": "unidadeMedida ∈ {%}",
+                "minimo": null,
+                "maximo": null,
+                "mensagem": "Uma humidade tem de ser medida em %."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "valor": "PRESSAO",
+        "rotulo": "PRESSAO",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "ok",
+            "regras": [
+              {
+                "id": "RIR-PRES-UN",
+                "valor": [
+                  "hPa",
+                  "bar"
+                ],
+                "texto": "unidadeMedida ∈ {hPa, bar}",
+                "minimo": null,
+                "maximo": null,
+                "mensagem": "Uma pressão tem de ser medida em hPa ou bar."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "valor": "VELOCIDADE",
+        "rotulo": "VELOCIDADE",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "ok",
+            "regras": [
+              {
+                "id": "RIR-VEL-UN",
+                "valor": [
+                  "m/s",
+                  "km/h"
+                ],
+                "texto": "unidadeMedida ∈ {m/s, km/h}",
+                "minimo": null,
+                "maximo": null,
+                "mensagem": "Uma velocidade tem de ser medida em m/s ou km/h."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outras": []
+  },
+  "arvore": {
+    "tipo": "dimensao",
+    "propriedade": "tipoDispositivo",
+    "chave": "SM:Identificacao.tipoDispositivo",
+    "ramos": [
+      {
+        "valor": "TEMPERATURA",
+        "rotulo": "TEMPERATURA",
+        "plausivel": true,
+        "filho": {
+          "tipo": "regras",
+          "regras": [
+            {
+              "id": "RIR-TEMP-UN",
+              "texto": "unidadeMedida ∈ {°C, K, °F}",
+              "minimo": null,
+              "maximo": null
+            }
+          ]
+        }
+      },
+      {
+        "valor": "HUMIDADE",
+        "rotulo": "HUMIDADE",
+        "plausivel": true,
+        "filho": {
+          "tipo": "regras",
+          "regras": [
+            {
+              "id": "RIR-HUM-UN",
+              "texto": "unidadeMedida ∈ {%}",
+              "minimo": null,
+              "maximo": null
+            }
+          ]
+        }
+      },
+      {
+        "valor": "PRESSAO",
+        "rotulo": "PRESSAO",
+        "plausivel": true,
+        "filho": {
+          "tipo": "regras",
+          "regras": [
+            {
+              "id": "RIR-PRES-UN",
+              "texto": "unidadeMedida ∈ {hPa, bar}",
+              "minimo": null,
+              "maximo": null
+            }
+          ]
+        }
+      },
+      {
+        "valor": "VELOCIDADE",
+        "rotulo": "VELOCIDADE",
+        "plausivel": true,
+        "filho": {
+          "tipo": "regras",
+          "regras": [
+            {
+              "id": "RIR-VEL-UN",
+              "texto": "unidadeMedida ∈ {m/s, km/h}",
+              "minimo": null,
+              "maximo": null
+            }
+          ]
+        }
+      }
+    ],
+    "semRamo": []
+  },
+  "filtro": [],
+  "regras": [
+    {
+      "id": "RIR-HUM-UN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "Uma humidade tem de ser medida em %.",
+        "texto": "Leitura.Medicao.unidadeMedida ∈ {%}",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "valor": [
+          "%"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "HUMIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = HUMIDADE",
+          "nome": "tipoDispositivo"
+        }
+      ],
+      "mensagem": "Uma humidade tem de ser medida em %.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.unidadeMedida",
+        "nome": "unidadeMedida",
+        "dono": "Medicao"
+      },
+      "funcoes": []
+    },
+    {
+      "id": "RIR-PRES-UN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO → Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "Uma pressão tem de ser medida em hPa ou bar.",
+        "texto": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "valor": [
+          "hPa",
+          "bar"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "PRESSAO",
+          "contexto": null,
+          "texto": "tipoDispositivo = PRESSAO",
+          "nome": "tipoDispositivo"
+        }
+      ],
+      "mensagem": "Uma pressão tem de ser medida em hPa ou bar.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.unidadeMedida",
+        "nome": "unidadeMedida",
+        "dono": "Medicao"
+      },
+      "funcoes": []
+    },
+    {
+      "id": "RIR-TEMP-UN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA → Leitura.Medicao.unidadeMedida ∈ {°C, K, °F}",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "Uma temperatura tem de ser medida em °C, K ou °F.",
+        "texto": "Leitura.Medicao.unidadeMedida ∈ {°C, K, °F}",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "valor": [
+          "°C",
+          "K",
+          "°F"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "TEMPERATURA",
+          "contexto": null,
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "nome": "tipoDispositivo"
+        }
+      ],
+      "mensagem": "Uma temperatura tem de ser medida em °C, K ou °F.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.unidadeMedida",
+        "nome": "unidadeMedida",
+        "dono": "Medicao"
+      },
+      "funcoes": []
+    },
+    {
+      "id": "RIR-VEL-UN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE → Leitura.Medicao.unidadeMedida ∈ {m/s, km/h}",
+      "alcance": "HLM Dispositivo",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "chave": "HLM:Dispositivo",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "Uma velocidade tem de ser medida em m/s ou km/h.",
+        "texto": "Leitura.Medicao.unidadeMedida ∈ {m/s, km/h}",
+        "caminho": "Leitura.Medicao.unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "valor": [
+          "m/s",
+          "km/h"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Identificacao.tipoDispositivo",
+          "propriedade": "SM:Identificacao.tipoDispositivo",
+          "operador": "EQUALS",
+          "valor": "VELOCIDADE",
+          "contexto": null,
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "nome": "tipoDispositivo"
+        }
+      ],
+      "mensagem": "Uma velocidade tem de ser medida em m/s ou km/h.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Medicao.unidadeMedida",
+        "nome": "unidadeMedida",
+        "dono": "Medicao"
+      },
+      "funcoes": []
+    }
+  ],
+  "parametros": {
+    "alvo": "USM:Medicao.unidadeMedida"
+  }
+}

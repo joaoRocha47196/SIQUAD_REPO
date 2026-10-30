@@ -1,0 +1,176 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-ASSIN-FORMA",
+  "regra": {
+    "id": "RP-ASSIN-FORMA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+    "alcance": "USM Assinatura.assinatura",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "assinatura",
+      "chave": "Propriedade:USM:Assinatura.assinatura",
+      "dono": "Assinatura"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+      "texto": "assinatura segue o padrão ^[0-9a-f]{64}$",
+      "caminho": "assinatura",
+      "propriedade": "USM:Assinatura.assinatura",
+      "valor": "^[0-9a-f]{64}$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Assinatura.assinatura",
+      "nome": "assinatura",
+      "dono": "Assinatura"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+    "texto": "assinatura segue o padrão ^[0-9a-f]{64}$",
+    "caminho": "assinatura",
+    "propriedade": "USM:Assinatura.assinatura",
+    "valor": "^[0-9a-f]{64}$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "assinatura segue o padrão ^[0-9a-f]{64}$",
+    "alvo": {
+      "chave": "USM:Assinatura.assinatura",
+      "nome": "assinatura",
+      "dono": "Assinatura",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Assinatura.assinatura",
+    "nome": "assinatura",
+    "dono": "Assinatura",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-ASSIN-FORMA",
+        "rotulo": "RP",
+        "texto": "RP-ASSIN-FORMA",
+        "detalhe": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$"
+      },
+      {
+        "chave": "Propriedade:USM:Assinatura.assinatura",
+        "rotulo": "Propriedade",
+        "texto": "USM:Assinatura.assinatura",
+        "detalhe": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal"
+      },
+      {
+        "chave": "Restricao:RP-ASSIN-FORMA",
+        "rotulo": "Restricao",
+        "texto": "RP-ASSIN-FORMA#restricao",
+        "detalhe": "assinatura segue o padrão ^[0-9a-f]{64}$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-ASSIN-FORMA",
+        "para": "Propriedade:USM:Assinatura.assinatura",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-ASSIN-FORMA",
+        "para": "Restricao:RP-ASSIN-FORMA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-ASSIN-FORMA",
+        "para": "Propriedade:USM:Assinatura.assinatura",
+        "tipo": "RESTRINGE",
+        "texto": "assinatura segue o padrão ^[0-9a-f]{64}$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Assinatura.assinatura",
+        "rotulo": "Propriedade",
+        "nome": "assinatura",
+        "dono": "Assinatura",
+        "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Assinatura",
+        "rotulo": "USM",
+        "nome": "Assinatura",
+        "dono": null,
+        "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Assinatura",
+        "para": "Propriedade:USM:Assinatura.assinatura",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Assinatura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Assinatura",
+        "cardinalidade": "0..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-ASSIN-FORMA"
+  }
+}

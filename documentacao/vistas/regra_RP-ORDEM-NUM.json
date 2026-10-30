@@ -1,0 +1,161 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-ORDEM-NUM",
+  "regra": {
+    "id": "RP-ORDEM-NUM",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Pedido.numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+    "alcance": "SM Pedido.numeroOrdem",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "numeroOrdem",
+      "chave": "Propriedade:SM:Pedido.numeroOrdem",
+      "dono": "Pedido"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "O número da ordem tem a forma OI-AAAA-NNNNN.",
+      "texto": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+      "caminho": "numeroOrdem",
+      "propriedade": "SM:Pedido.numeroOrdem",
+      "valor": "^OI-[0-9]{4}-[0-9]{5}$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O número da ordem tem a forma OI-AAAA-NNNNN.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "SM:Pedido.numeroOrdem",
+      "nome": "numeroOrdem",
+      "dono": "Pedido"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "O número da ordem tem a forma OI-AAAA-NNNNN.",
+    "texto": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+    "caminho": "numeroOrdem",
+    "propriedade": "SM:Pedido.numeroOrdem",
+    "valor": "^OI-[0-9]{4}-[0-9]{5}$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+    "alvo": {
+      "chave": "SM:Pedido.numeroOrdem",
+      "nome": "numeroOrdem",
+      "dono": "Pedido",
+      "nivelDono": "SM",
+      "tipo": "texto",
+      "descricao": "Número da ordem de instalação"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Pedido.numeroOrdem",
+    "nome": "numeroOrdem",
+    "dono": "Pedido",
+    "nivelDono": "SM",
+    "tipo": "texto",
+    "descricao": "Número da ordem de instalação",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "OrdemInstalacao"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-ORDEM-NUM",
+        "rotulo": "RP",
+        "texto": "RP-ORDEM-NUM",
+        "detalhe": "Pedido.numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$"
+      },
+      {
+        "chave": "Propriedade:SM:Pedido.numeroOrdem",
+        "rotulo": "Propriedade",
+        "texto": "SM:Pedido.numeroOrdem",
+        "detalhe": "Número da ordem de instalação"
+      },
+      {
+        "chave": "Restricao:RP-ORDEM-NUM",
+        "rotulo": "Restricao",
+        "texto": "RP-ORDEM-NUM#restricao",
+        "detalhe": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-ORDEM-NUM",
+        "para": "Propriedade:SM:Pedido.numeroOrdem",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-ORDEM-NUM",
+        "para": "Restricao:RP-ORDEM-NUM",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-ORDEM-NUM",
+        "para": "Propriedade:SM:Pedido.numeroOrdem",
+        "tipo": "RESTRINGE",
+        "texto": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Pedido.numeroOrdem",
+        "rotulo": "Propriedade",
+        "nome": "numeroOrdem",
+        "dono": "Pedido",
+        "descricao": "Número da ordem de instalação",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Pedido",
+        "rotulo": "SM",
+        "nome": "Pedido",
+        "dono": null,
+        "descricao": "Dados do pedido de instalação: número e data.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Pedido",
+        "para": "Propriedade:SM:Pedido.numeroOrdem",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Pedido",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Pedido",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-ORDEM-NUM"
+  }
+}

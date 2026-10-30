@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RP: Regra de Plausibilidade · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="current sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="entidades.html">Entidades</a></div><h1>RP: Regra de Plausibilidade</h1><h3 id="descricao">Descrição</h3>
+<p>A plausibilidade representa o espaço de possibilidades admissíveis de uma propriedade: o que pode constituir um código postal, que unidades podem representar uma medição, que formas válidas tem um email. As RP de uma propriedade formam o seu <b>Conjunto de Regras de Plausibilidade</b>. Funcionam como tipos refinados: a ECM diz que a propriedade existe e qual é o tipo base; as RP dizem o que ela pode representar.</p>
+<p>Uma RP tem <b>sempre uma restrição</b> e <b>nunca tem condição de aplicabilidade</b>: aplica-se sempre, em qualquer utilização.</p>
+<h3 id="diagrama">Diagrama</h3>
+<p>Todos os atributos da entidade e todas as ligações a outras entidades. <b>LIGAÇÃO</b> marca os atributos que ligam a outra entidade; cada seta indica o atributo da declaração e a aresta correspondente no grafo.</p>
+<pre class="mermaid">classDiagram
+  direction LR
+  class RP {
+    id : texto · chave · RP-ASSUNTO
+    natureza = plausibilidade
+    descricao : texto derivado
+    restricao : Restricao · LIGAÇÃO · obrigatória
+    contextosExternos : lista · derivada · LIGAÇÃO
+    notas : texto
+  }
+  RP &quot;0..*&quot; --&gt; &quot;1&quot; No : vive em · ASSOCIADA_A · normalmente a propriedade
+  RP &quot;1&quot; --&gt; &quot;1&quot; Restricao : restricao · RESTRITA_POR
+  Restricao &quot;1&quot; --&gt; &quot;0..1&quot; Propriedade : alvo · RESTRINGE
+  Restricao &quot;1&quot; --&gt; &quot;0..1&quot; Funcao : chamada · CHAMA</pre>
+<h3 id="atributos">Atributos</h3>
+<p>Os atributos comuns a todas as regras (<code>id</code>, <code>natureza</code>, <code>descricao</code>, <code>contextosExternos</code>, <code>notas</code>) estão em <a href="entidade_Regra.html">Regra.md</a>; aqui ficam os próprios deste tipo.</p>
+<p>Os atributos comuns estão em <a href="entidade_Regra.html">Regra.md</a>. Na RP: <code>natureza: &quot;plausibilidade&quot;</code>, <code>restricao</code> obrigatória, sem <code>condicao</code> (ou <code>[]</code>).</p>
+<h4 id="ligacoes-no-grafo">Ligações no grafo</h4>
+<table><thead><tr><th>Aresta</th><th>Para</th><th>Significado</th></tr></thead><tbody><tr><td><code>ASSOCIADA_A</code></td><td>Propriedade, USM, SM ou HLM</td><td>Onde vive.</td></tr><tr><td><code>RESTRITA_POR</code></td><td>Restricao</td><td>A restrição (com a mensagem de não conformidade).</td></tr></tbody></table>
+<p>Através da restrição: <code>RESTRINGE</code> (tipificada) ou <code>CHAMA</code> → Funcao → <code>LE</code> (função).</p>
+<p>No grafo: nó <code>RP</code> (chave <code>id</code>). O modelo completo do grafo está em <a href="../../ecv/4_graph/graph_model.json">ecv/4_graph/graph_model.json</a>.</p>
+<h3 id="exemplos">Exemplos</h3>
+<h4 id="esboco-na-declaracao">Esboço na declaração</h4>
+<p>Na propriedade (forma mais comum):</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;latitude&quot;, &quot;tipo&quot;: &quot;decimal&quot;, &quot;descricao&quot;: &quot;…&quot;,
+  &quot;regras&quot;: [
+    {
+      &quot;id&quot;: &quot;RP-LAT&quot;,
+      &quot;natureza&quot;: &quot;plausibilidade&quot;,
+      &quot;descricao&quot;: &quot;InformacaoGeografica.latitude entre -90 e 90&quot;,
+      &quot;restricao&quot;: {&quot;propriedade&quot;: &quot;latitude&quot;, &quot;operador&quot;: &quot;RANGE&quot;, &quot;valor&quot;: [-90, 90],
+                    &quot;mensagem&quot;: &quot;A latitude tem de estar entre -90 e 90.&quot;}
+    }
+  ]
+}</code></pre>
+<p>No modelo, quando a restrição é uma função que lê várias propriedades ou uma coleção:</p>
+<pre class="code"><code>&quot;regras&quot;: [
+  {
+    &quot;id&quot;: &quot;RP-SOMA&quot;, &quot;natureza&quot;: &quot;plausibilidade&quot;, &quot;descricao&quot;: &quot;somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)&quot;,
+    &quot;restricao&quot;: {&quot;operador&quot;: &quot;FUNCTION&quot;,
+                  &quot;chamada&quot;: {&quot;funcao&quot;: &quot;somaIgualA&quot;, &quot;argumentos&quot;: [{&quot;caminho&quot;: &quot;Linhas.Linha.valor&quot;}, {&quot;caminho&quot;: &quot;Cabecalho.totalFatura&quot;}]},
+                  &quot;mensagem&quot;: &quot;O total da fatura não corresponde à soma dos valores das linhas.&quot;}
+  }
+]</code></pre>
+<h4 id="exemplos-das-declaracoes-de-exemplo">Exemplos das declarações de exemplo</h4>
+<p>RP tipificadas:</p>
+<table><thead><tr><th>Regra</th><th>Vive em</th><th>Restrição (descrição)</th><th>Mensagem de não conformidade</th></tr></thead><tbody><tr><td>RP-IDENT</td><td>SM Identificacao.identificador</td><td>Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$</td><td>O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).</td></tr><tr><td>RP-FABRICANTE</td><td>SM Identificacao.fabricante</td><td>Identificacao.fabricante tem entre 2 e 50 caracteres</td><td>O fabricante tem de ter entre 2 e 50 caracteres.</td></tr><tr><td>RP-ESTADO</td><td>SM Identificacao.estado</td><td>Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}</td><td>O estado tem de ser ativo, inativo ou em manutenção.</td></tr><tr><td>RP-TIPODISP</td><td>SM Identificacao.tipoDispositivo</td><td>Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}</td><td>O tipo de dispositivo tem de ser temperatura, humidade, pressão ou velocidade.</td></tr><tr><td>RP-TIPODOC</td><td>SM Cabecalho.tipoDocumento</td><td>Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}</td><td>O tipo de documento tem de ser FT, FS, FR, NC ou ND.</td></tr><tr><td>RP-TOTAL</td><td>SM Cabecalho.totalFatura</td><td>Cabecalho.totalFatura ≥ 0</td><td>O total da fatura não pode ser negativo.</td></tr><tr><td>RP-ORDEM-NUM</td><td>SM Pedido.numeroOrdem</td><td>Pedido.numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$</td><td>O número da ordem tem a forma OI-AAAA-NNNNN.</td></tr><tr><td>RP-CP</td><td>USM Morada.codigoPostal</td><td>Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$</td><td>O código postal não tem nenhum dos formatos possíveis (português, espanhol ou britânico).</td></tr><tr><td>RP-FREGUESIA</td><td>USM Morada.freguesia</td><td>Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}</td><td>A freguesia não pertence às freguesias de Lisboa conhecidas.</td></tr><tr><td>RP-PAIS</td><td>USM Morada.pais</td><td>Morada.pais ∈ {PT, ES, GB}</td><td>O país tem de ser PT, ES ou GB.</td></tr><tr><td>RP-UNIDADE</td><td>USM Medicao.unidadeMedida</td><td>Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}</td><td>A unidade de medida não pertence ao conjunto de valores plausíveis.</td></tr><tr><td>RP-VALOR-FISICO</td><td>USM Medicao.valor</td><td>Medicao.valor entre -273.15 e 2400</td><td>O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.</td></tr><tr><td>RP-AMBIENTE</td><td>USM Instalacao.ambiente</td><td>Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}</td><td>O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.</td></tr><tr><td>RP-ASSIN-FORMA</td><td>USM Assinatura.assinatura</td><td>Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$</td><td>A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).</td></tr><tr><td>RP-BATERIA</td><td>USM Diagnostico.nivelBateria</td><td>Diagnostico.nivelBateria entre 0 e 100</td><td>O nível de bateria é uma percentagem entre 0 e 100.</td></tr><tr><td>RP-MANUT-DATA</td><td>USM Diagnostico.dataUltimaManutencao</td><td>Diagnostico.dataUltimaManutencao ≥ 2000-01-01</td><td>A data da última manutenção não é uma data plausível.</td></tr><tr><td>RP-SINAL</td><td>USM Diagnostico.sinalRede</td><td>Diagnostico.sinalRede entre -140 e 0</td><td>A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.</td></tr><tr><td>RP-LATENCIA</td><td>USM Diagnostico.latencia</td><td>Diagnostico.latencia entre 0 e 60000</td><td>A latência (ms) tem de estar entre 0 e 60000.</td></tr><tr><td>RP-RECECAO</td><td>USM Diagnostico.taxaRececao</td><td>Diagnostico.taxaRececao entre 0 e 100</td><td>A taxa de receção é uma percentagem entre 0 e 100.</td></tr><tr><td>RP-LAT</td><td>USM InformacaoGeografica.latitude</td><td>InformacaoGeografica.latitude entre -90 e 90</td><td>A latitude tem de estar entre -90 e 90.</td></tr><tr><td>RP-LON</td><td>USM InformacaoGeografica.longitude</td><td>InformacaoGeografica.longitude entre -180 e 180</td><td>A longitude tem de estar entre -180 e 180.</td></tr><tr><td>RP-ALT</td><td>USM InformacaoGeografica.altitude</td><td>InformacaoGeografica.altitude entre -500 e 9000</td><td>A altitude (m) tem de estar entre -500 e 9000.</td></tr><tr><td>RP-SRC</td><td>USM InformacaoGeografica.sistemaReferencia</td><td>InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}</td><td>O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.</td></tr><tr><td>RP-NIF</td><td>USM Entidade.nif</td><td>Entidade.nif segue o padrão ^[0-9]{9}$</td><td>O NIF tem de ter nove algarismos.</td></tr><tr><td>RP-EMAIL</td><td>USM Contacto.email</td><td>Contacto.email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\.[a-z0-9-]+)+$</td><td>O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas.</td></tr><tr><td>RP-LIN-NUMPOS</td><td>USM Linha.numero</td><td>Linha.numero ≥ 1</td><td>O número da linha tem de ser igual ou superior a 1.</td></tr><tr><td>RP-LIN-DESC</td><td>USM Linha.descricao</td><td>Linha.descricao segue o padrão ^.{1,200}$</td><td>A descrição da linha tem de ter entre 1 e 200 caracteres.</td></tr><tr><td>RP-VALOR</td><td>USM Linha.valor</td><td>Linha.valor ≥ 0</td><td>O valor da linha não pode ser negativo.</td></tr><tr><td>RP-VALOR-DEC</td><td>USM Linha.valor</td><td>Linha.valor segue o padrão ^[0-9]+(\.[0-9]{1,2})?$</td><td>O valor da linha tem no máximo duas casas decimais.</td></tr><tr><td>RP-TIPOIVA</td><td>USM Linha.tipoIVA</td><td>Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}</td><td>O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.</td></tr><tr><td>RP-TAXAIVA</td><td>USM Linha.taxaIVA</td><td>Linha.taxaIVA entre 0 e 100</td><td>A taxa de IVA tem de estar entre 0 e 100.</td></tr><tr><td>RP-TAXAIVA-DEC</td><td>USM Linha.taxaIVA</td><td>Linha.taxaIVA segue o padrão ^[0-9]+(\.[0-9]{1,2})?$</td><td>A taxa de IVA tem no máximo duas casas decimais.</td></tr></tbody></table>
+<p>RP cuja restrição é uma função:</p>
+<table><thead><tr><th>Regra</th><th>Vive em</th><th>Restrição (descrição)</th><th>Mensagem de não conformidade</th></tr></thead><tbody><tr><td>RP-SOMA</td><td>HLM Fatura</td><td>somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)</td><td>O total da fatura não corresponde à soma dos valores das linhas.</td></tr><tr><td>RP-ORDEM-MAX</td><td>HLM OrdemInstalacao</td><td>contagemInferiorA(Localizacao, 21)</td><td>Uma ordem de instalação abrange no máximo 20 locais.</td></tr><tr><td>RP-HASH</td><td>SM Cabecalho</td><td>hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)</td><td>O hash do documento não corresponde ao encadeamento com o documento anterior.</td></tr><tr><td>RP-ATCUD</td><td>SM Cabecalho</td><td>atcudValido(Cabecalho.atcud, Cabecalho.serie)</td><td>O ATCUD não pertence a uma série comunicada à AT.</td></tr><tr><td>RP-DATAEMISSAO</td><td>SM Cabecalho.dataEmissao</td><td>naoPosteriorAHoje(Cabecalho.dataEmissao)</td><td>A data de emissão não pode ser posterior à data de hoje.</td></tr><tr><td>RP-LIN-NUM</td><td>SM Linhas</td><td>valoresUnicos(Linhas.Linha.numero)</td><td>Existem linhas com o mesmo número.</td></tr><tr><td>RP-LIN-SEQ</td><td>SM Linhas</td><td>valoresConsecutivos(Linhas.Linha.numero)</td><td>A numeração das linhas tem de começar em 1 e não ter falhas.</td></tr><tr><td>RP-LIN-MAX</td><td>SM Linhas</td><td>contagemInferiorA(Linhas.Linha, 100)</td><td>A fatura tem 100 ou mais linhas.</td></tr><tr><td>RP-ORDEM-DATA</td><td>SM Pedido.dataPedido</td><td>naoPosteriorAHoje(Pedido.dataPedido)</td><td>A data do pedido não pode ser posterior à data de hoje.</td></tr><tr><td>RP-RELOGIO</td><td>USM Medicao.dataMedicao</td><td>desfasamentoInferiorA(Medicao.dataMedicao, 300)</td><td>O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).</td></tr><tr><td>RP-ASSINATURA</td><td>USM Assinatura</td><td>assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)</td><td>A assinatura não corresponde à mensagem e à chave do dispositivo.</td></tr><tr><td>RP-MANUT-FUTURA</td><td>USM Diagnostico.dataUltimaManutencao</td><td>naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)</td><td>A data da última manutenção não pode ser posterior à data de hoje.</td></tr><tr><td>RP-AREA</td><td>USM InformacaoGeografica</td><td>dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])</td><td>O dispositivo está fora da área onde foi autorizado.</td></tr><tr><td>RP-NIF-DC</td><td>USM Entidade.nif</td><td>digitoControloValido(Entidade.nif)</td><td>O dígito de controlo do NIF não está correto.</td></tr></tbody></table>
+<p>RP sobre a coleção (vive no SM Linhas):</p>
+<pre class="code"><code>{
+  &quot;id&quot;: &quot;RP-LIN-NUM&quot;,
+  &quot;natureza&quot;: &quot;plausibilidade&quot;,
+  &quot;descricao&quot;: &quot;valoresUnicos(Linhas.Linha.numero)&quot;,
+  &quot;restricao&quot;: {
+    &quot;operador&quot;: &quot;FUNCTION&quot;,
+    &quot;chamada&quot;: {
+      &quot;funcao&quot;: &quot;valoresUnicos&quot;,
+      &quot;argumentos&quot;: [
+        {&quot;caminho&quot;: &quot;Linha.numero&quot;}
+      ]
+    },
+    &quot;mensagem&quot;: &quot;Existem linhas com o mesmo número.&quot;
+  }
+}</code></pre>
+<p>RP com parâmetro literal (a área autorizada é informação da própria regra, não um contexto externo):</p>
+<pre class="code"><code>{
+  &quot;id&quot;: &quot;RP-AREA&quot;,
+  &quot;natureza&quot;: &quot;plausibilidade&quot;,
+  &quot;descricao&quot;: &quot;dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])&quot;,
+  &quot;restricao&quot;: {
+    &quot;operador&quot;: &quot;FUNCTION&quot;,
+    &quot;chamada&quot;: {
+      &quot;funcao&quot;: &quot;dentroDe&quot;,
+      &quot;argumentos&quot;: [
+        {&quot;caminho&quot;: &quot;latitude&quot;},
+        {&quot;caminho&quot;: &quot;longitude&quot;},
+        {
+          &quot;literal&quot;: [[38.8, -9.25], [38.8, -9.05], [38.68, -9.05], [38.68, -9.25]]
+        }
+      ]
+    },
+    &quot;mensagem&quot;: &quot;O dispositivo está fora da área onde foi autorizado.&quot;
+  },
+  &quot;notas&quot;: &quot;A área autorizada é informação da própria regra (parâmetro literal), não contexto externo.&quot;
+}</code></pre>
+<p>RP com função e contexto externo:</p>
+<pre class="code"><code>{
+  &quot;id&quot;: &quot;RP-ASSINATURA&quot;,
+  &quot;natureza&quot;: &quot;plausibilidade&quot;,
+  &quot;descricao&quot;: &quot;assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)&quot;,
+  &quot;restricao&quot;: {
+    &quot;operador&quot;: &quot;EXT_FUNCTION&quot;,
+    &quot;chamada&quot;: {
+      &quot;funcao&quot;: &quot;assinaturaValida&quot;,
+      &quot;argumentos&quot;: [
+        {&quot;caminho&quot;: &quot;mensagem&quot;},
+        {&quot;caminho&quot;: &quot;assinatura&quot;}
+      ]
+    },
+    &quot;mensagem&quot;: &quot;A assinatura não corresponde à mensagem e à chave do dispositivo.&quot;
+  },
+  &quot;contextosExternos&quot;: [&quot;chaveDispositivo&quot;]
+}</code></pre>
+<h3 id="pode-e-nao-pode">Pode e não pode</h3>
+<table><thead><tr><th>Pode</th><th>Não pode</th></tr></thead><tbody><tr><td>Ter exatamente uma restrição</td><td>Ter condição de aplicabilidade (I4)</td></tr><tr><td>Ser tipificada (um alvo) ou ser uma função (alvos = argumentos)</td><td>Ter <code>mensagem</code> ao nível da regra (a mensagem é da restrição)</td></tr><tr><td>Viver numa propriedade ou num modelo, conforme o que lê</td><td>Ter <code>conclusao</code></td></tr><tr><td>Depender de contextos externos, através de uma função EXT_FUNCTION</td><td>—</td></tr></tbody></table>
+<h4 id="como-saber-se-e-uma-rp-e-nao-uma-rir">Como saber se é uma RP (e não uma RIR)</h4>
+<table><thead><tr><th>Pergunta</th><th>Se sim</th></tr></thead><tbody><tr><td>A validade decide-se só pelo valor e pelo conjunto de possibilidades da propriedade?</td><td>RP</td></tr><tr><td>Depende de outra propriedade, do momento da avaliação ou do cenário?</td><td>RIR (ou RIC)</td></tr><tr><td>Uma gama isolada (por exemplo <code>[0, 100]</code>) significaria algo diferente consoante a unidade ou o tipo?</td><td>Não é plausibilidade: é uma inferência (RIR). Na RP fica só o conjunto das gamas fisicamente possíveis.</td></tr><tr><td>O formato depende do país?</td><td>A RP admite todos os formatos possíveis (PT, ES, GB); a escolha do formato é uma RIR (RIR-CP-PT).</td></tr><tr><td>É uma verificação sobre toda uma coleção, sempre executada (números únicos)?</td><td>RP, cuja restrição é uma função, e que vive no SM da coleção</td></tr></tbody></table>
+<h3 id="detalhes">Detalhes</h3>
+<h4 id="formas-de-uma-rp">Formas de uma RP</h4>
+<table><thead><tr><th>Forma</th><th>Vive em</th><th>Restrição</th><th>Exemplos</th></tr></thead><tbody><tr><td><b>Tipificada na propriedade</b></td><td>a propriedade</td><td><code>{propriedade, operador, valor, mensagem}</code></td><td>RP-LAT, RP-PAIS, RP-CP, RP-NIF</td></tr><tr><td><b>Função com um alvo</b></td><td>a propriedade</td><td><code>{operador: FUNCTION/EXT_FUNCTION, chamada, mensagem}</code></td><td>RP-NIF-DC, RP-RELOGIO, RP-MANUT-FUTURA</td></tr><tr><td><b>Função com vários alvos</b></td><td>o nó mais baixo que contém os alvos</td><td>idem</td><td>RP-AREA (USM), RP-HASH (SM Cabecalho), RP-ASSINATURA (USM)</td></tr><tr><td><b>Sobre uma coleção</b></td><td>o SM da coleção</td><td>função cujos argumentos atravessam a composição repetível</td><td>RP-LIN-NUM, RP-LIN-SEQ, RP-LIN-MAX</td></tr><tr><td><b>Coleção e documento</b></td><td>o HLM</td><td>função</td><td>RP-SOMA, RP-ORDEM-MAX</td></tr></tbody></table>
+<p>Uma propriedade de texto cujo Conjunto de Regras de Plausibilidade é uma lista fechada (uma RP com <code>IN</code>) é, na prática, um <b>enumerado</b>, sem ser preciso um tipo de dados próprio. Os valores dessa lista são os <b>valores plausíveis</b> e os candidatos a <b>fatores discriminantes</b> nas condições das RIR (invariante I7).</p>
+<h4 id="conjuntos-de-regras-de-plausibilidade-da-tese-tabela-3-4-e-regras-correspondentes">Conjuntos de Regras de Plausibilidade da tese (Tabela 3.4) e regras correspondentes</h4>
+<table><thead><tr><th>Propriedade</th><th>Conjunto (tese)</th><th>Regra(s)</th></tr></thead><tbody><tr><td>Contacto.email</td><td>Um @, parte local e domínio; sem espaços nem maiúsculas; …</td><td>RP-EMAIL</td></tr><tr><td>Morada.pais</td><td>PT, ES ou GB</td><td>RP-PAIS</td></tr><tr><td>Morada.codigoPostal</td><td>Um dos formatos {PT, ES, GB}</td><td>RP-CP (os três formatos); a escolha é das RIR-CP-PT/ES/GB</td></tr><tr><td>InformacaoGeografica.latitude</td><td>-90 a 90</td><td>RP-LAT</td></tr><tr><td>InformacaoGeografica.longitude</td><td>-180 a 180</td><td>RP-LON</td></tr><tr><td>Cabecalho.tipoDocumento</td><td>FT, FS, FR, NC, ND</td><td>RP-TIPODOC</td></tr><tr><td>Linha.taxaIVA</td><td>0 a 100</td><td>RP-TAXAIVA (+ RP-TAXAIVA-DEC)</td></tr><tr><td>Identificacao.tipoDispositivo</td><td>TEMPERATURA, HUMIDADE, VELOCIDADE (+ PRESSAO no Cap. 4)</td><td>RP-TIPODISP</td></tr><tr><td>Medicao.unidadeMedida</td><td>°C, K, °F, %, m/s, km/h (+ hPa, bar)</td><td>RP-UNIDADE</td></tr><tr><td>Medicao.valor</td><td>gamas fisicamente admissíveis do domínio</td><td>RP-VALOR-FISICO ([-273.15, 2400]); a gama de cada combinação é inferida pelas RIR</td></tr><tr><td>Instalacao.ambiente</td><td>REFRIGERACAO, ESTUFA, INCINERADORA (+ ARMAZEM, SERVIDORES, EXTERIOR, LABORATORIO)</td><td>RP-AMBIENTE</td></tr></tbody></table>
+<h3 id="verificacoes">Verificações</h3>
+<ul><li><b>I4:</b> tem restrição e não tem condição.</li><li><b>I5:</b> o operador é admissível para o tipo do alvo; a forma do valor é a do operador.</li><li><b>I3:</b> numa propriedade, só lê essa propriedade.</li><li><b>S-RESTR:</b> a mensagem tem pelo menos 10 caracteres.</li></ul><p class="note">Fonte: <a href="../../specs/entidades/ecr/RP.md">specs/entidades/ecr/RP.md</a></p></main><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,securityLevel:"loose"});}</script></body></html>

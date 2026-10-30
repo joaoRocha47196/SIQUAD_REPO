@@ -1,0 +1,55 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de nome (Entidade)",
+  "propriedade": "USM:Entidade.nome",
+  "nome": "nome",
+  "regras": [
+    {
+      "id": "RIR-EMAIL-CX",
+      "tipo": "RIR",
+      "descricao": "Se Emitente.Entidade.nome = Companhia X → Emitente.Contacto.email termina em \"@companhiax.com\"",
+      "papeis": [
+        "termo da condição"
+      ]
+    },
+    {
+      "id": "RIR-EMAIL-CY",
+      "tipo": "RIR",
+      "descricao": "Se Emitente.Entidade.nome = Companhia Y → Emitente.Contacto.email termina em \"@companhia-y.pt\"",
+      "papeis": [
+        "termo da condição"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 0,
+    "RIR": 2,
+    "RIC": 0
+  },
+  "projecoes": [
+    {
+      "projecao": "FaturaAT",
+      "tipo": "obrigatoria",
+      "caminho": "Cliente.Entidade.nome"
+    },
+    {
+      "projecao": "FaturaAT",
+      "tipo": "obrigatoria",
+      "caminho": "Emitente.Entidade.nome"
+    },
+    {
+      "projecao": "FaturaSimplificada",
+      "tipo": "obrigatoria",
+      "caminho": "Emitente.Entidade.nome"
+    },
+    {
+      "projecao": "OrdemCompleta",
+      "tipo": "obrigatoria",
+      "caminho": "Requerente.Entidade.nome"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "USM:Entidade.nome"
+  }
+}

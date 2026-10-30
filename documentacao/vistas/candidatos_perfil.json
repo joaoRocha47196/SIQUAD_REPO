@@ -1,0 +1,134 @@
+{
+  "vista": "candidatos_perfil",
+  "titulo": "Propriedades candidatas a fixar num perfil",
+  "linhas": [
+    {
+      "alvo": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "regras": [
+        "RIR-IVA-INT",
+        "RIR-IVA-ISE",
+        "RIR-IVA-NOR",
+        "RIR-IVA-RED"
+      ],
+      "propriedades": [
+        "tipoIVA"
+      ]
+    },
+    {
+      "alvo": "USM:Medicao.unidadeMedida",
+      "nome": "unidadeMedida",
+      "regras": [
+        "RIR-HUM-UN",
+        "RIR-PRES-UN",
+        "RIR-TEMP-UN",
+        "RIR-VEL-UN"
+      ],
+      "propriedades": [
+        "tipoDispositivo"
+      ]
+    },
+    {
+      "alvo": "USM:Medicao.valor",
+      "nome": "valor",
+      "regras": [
+        "RIR-HUM",
+        "RIR-HUM-ARMAZEM",
+        "RIR-HUM-ESTUFA",
+        "RIR-HUM-EXTERIOR",
+        "RIR-HUM-REFRIG",
+        "RIR-HUM-SERVIDORES",
+        "RIR-PRES-BAR",
+        "RIR-PRES-EXTERIOR-BAR",
+        "RIR-PRES-EXTERIOR-HPA",
+        "RIR-PRES-HPA",
+        "RIR-TEMP-ARMAZEM-CELSIUS",
+        "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+        "RIR-TEMP-ARMAZEM-KELVIN",
+        "RIR-TEMP-C",
+        "RIR-TEMP-CAMARA-CELSIUS",
+        "RIR-TEMP-ESTUFA-CELSIUS",
+        "RIR-TEMP-ESTUFA-FAHRENHEIT",
+        "RIR-TEMP-ESTUFA-KELVIN",
+        "RIR-TEMP-EXTERIOR-CELSIUS",
+        "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+        "RIR-TEMP-EXTERIOR-KELVIN",
+        "RIR-TEMP-F",
+        "RIR-TEMP-INCIN-CELSIUS",
+        "RIR-TEMP-INCIN-FAHRENHEIT",
+        "RIR-TEMP-INCIN-KELVIN",
+        "RIR-TEMP-K",
+        "RIR-TEMP-REFRIG-CELSIUS",
+        "RIR-TEMP-REFRIG-FAHRENHEIT",
+        "RIR-TEMP-REFRIG-KELVIN",
+        "RIR-TEMP-SERVIDORES-CELSIUS",
+        "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+        "RIR-TEMP-SERVIDORES-KELVIN",
+        "RIR-VEL-EXTERIOR-KMH",
+        "RIR-VEL-EXTERIOR-MS",
+        "RIR-VEL-KMH",
+        "RIR-VEL-MS"
+      ],
+      "propriedades": [
+        "tipoDispositivo",
+        "unidadeMedida",
+        "ambiente"
+      ]
+    },
+    {
+      "alvo": "USM:Morada.codigoPostal",
+      "nome": "codigoPostal",
+      "regras": [
+        "RIR-CP-ES",
+        "RIR-CP-GB",
+        "RIR-CP-LX-AJUDA",
+        "RIR-CP-LX-ALCANTARA",
+        "RIR-CP-LX-ALVALADE",
+        "RIR-CP-LX-AREEIRO",
+        "RIR-CP-LX-ARROIOS",
+        "RIR-CP-LX-AVENIDAS-NOVAS",
+        "RIR-CP-LX-BEATO",
+        "RIR-CP-LX-BELEM",
+        "RIR-CP-LX-BENFICA",
+        "RIR-CP-LX-CAMPO-DE-OURIQUE",
+        "RIR-CP-LX-CAMPOLIDE",
+        "RIR-CP-LX-CARNIDE",
+        "RIR-CP-LX-ESTRELA",
+        "RIR-CP-LX-LUMIAR",
+        "RIR-CP-LX-MARVILA",
+        "RIR-CP-LX-MISERICORDIA",
+        "RIR-CP-LX-OLIVAIS",
+        "RIR-CP-LX-PARQUE-DAS-NACOES",
+        "RIR-CP-LX-PENHA-DE-FRANCA",
+        "RIR-CP-LX-SANTA-CLARA",
+        "RIR-CP-LX-SANTA-MARIA-MAIOR",
+        "RIR-CP-LX-SANTO-ANTONIO",
+        "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+        "RIR-CP-LX-SAO-VICENTE",
+        "RIR-CP-PT"
+      ],
+      "propriedades": [
+        "pais",
+        "localidade",
+        "freguesia"
+      ]
+    }
+  ],
+  "candidatas": [
+    "tipoIVA",
+    "tipoDispositivo",
+    "unidadeMedida",
+    "ambiente",
+    "pais",
+    "localidade",
+    "freguesia"
+  ],
+  "parametros": {
+    "alvos": [
+      "USM:Linha.taxaIVA",
+      "USM:Medicao.unidadeMedida",
+      "USM:Medicao.valor",
+      "USM:Morada.codigoPostal"
+    ]
+  }
+}

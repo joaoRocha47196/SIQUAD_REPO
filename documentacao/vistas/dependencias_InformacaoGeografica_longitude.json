@@ -1,0 +1,115 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de InformacaoGeografica.longitude",
+  "propriedade": {
+    "chave": "USM:InformacaoGeografica.longitude",
+    "nome": "longitude",
+    "dono": "InformacaoGeografica",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Longitude, em graus decimais"
+  },
+  "plausiveis": [],
+  "rp": [
+    {
+      "id": "RP-LON",
+      "texto": "InformacaoGeografica.longitude entre -180 e 180"
+    }
+  ],
+  "valores": [],
+  "outrosTermos": [
+    "RIR-LX-LOCALIDADE"
+  ],
+  "regras": [
+    {
+      "id": "RIR-LX-LOCALIDADE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA",
+      "alcance": "SM Localizacao",
+      "notas": "Função usada num termo da condição de aplicabilidade (e não na restrição).",
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Localizacao",
+        "chave": "SM:Localizacao",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "EQUALS",
+        "mensagem": "Um equipamento localizado dentro dos limites de Lisboa tem de ter a localidade LISBOA na morada.",
+        "texto": "Morada.localidade = LISBOA",
+        "caminho": "Morada.localidade",
+        "propriedade": "USM:Morada.localidade",
+        "valor": "LISBOA",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "funcao",
+          "operador": "FUNCTION",
+          "texto": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)])",
+          "chamada": {
+            "funcao": "dentroDe",
+            "chamada": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)])",
+            "operador": "FUNCTION",
+            "termo": 0,
+            "descricaoFuncao": "Verdadeira quando o ponto (latitude, longitude) está dentro da área, um polígono de vértices (latitude, longitude).",
+            "argumentos": [
+              {
+                "caminho": "InformacaoGeografica.latitude",
+                "alvo": "USM:InformacaoGeografica.latitude",
+                "nomeAlvo": "latitude",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              },
+              {
+                "caminho": "InformacaoGeografica.longitude",
+                "alvo": "USM:InformacaoGeografica.longitude",
+                "nomeAlvo": "longitude",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              }
+            ],
+            "contextos": []
+          },
+          "foco": true
+        }
+      ],
+      "mensagem": "Um equipamento localizado dentro dos limites de Lisboa tem de ter a localidade LISBOA na morada.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.localidade",
+        "nome": "localidade",
+        "dono": "Morada"
+      },
+      "funcoes": [
+        "dentroDe"
+      ],
+      "alvos": [
+        {
+          "chave": "USM:Morada.localidade",
+          "nome": "localidade",
+          "caminho": "Morada.localidade"
+        }
+      ]
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": "USM:Morada.localidade",
+      "nome": "localidade",
+      "caminho": "Morada.localidade",
+      "regras": [
+        "RIR-LX-LOCALIDADE"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "USM:InformacaoGeografica.longitude"
+  }
+}

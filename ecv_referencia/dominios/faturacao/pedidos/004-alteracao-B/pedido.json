@@ -1,0 +1,17 @@
+{
+ "id": "004-alteracao-B",
+ "tipo": "alteracao",
+ "titulo": "Quero alterar uma propriareda",
+ "passo": "B",
+ "estado": "pendente",
+ "criado": "2026-10-30T01:40:00",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "pedido": "Quero alterar uma propriareda",
+ "tamanho": {
+  "caracteres": 739653,
+  "tokensEstimados": 184913,
+  "linhas": 17690
+ },
+ "informacaoAdicional": false
+}

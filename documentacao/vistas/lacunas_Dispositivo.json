@@ -1,0 +1,27 @@
+{
+  "vista": "lacunas",
+  "titulo": "Lacunas do HLM Dispositivo",
+  "hlm": "Dispositivo",
+  "projecoesConsideradas": [
+    "DispositivoProducao",
+    "DispositivoTeste"
+  ],
+  "semRegras": [
+    {
+      "propriedade": "SM:Localizacao.indicacaoAcesso",
+      "nome": "indicacaoAcesso",
+      "dono": "Localizacao",
+      "lidaEmTermos": []
+    },
+    {
+      "propriedade": "USM:Morada.rua",
+      "nome": "rua",
+      "dono": "Morada",
+      "lidaEmTermos": []
+    }
+  ],
+  "nuncaProjetadas": [],
+  "parametros": {
+    "hlm": "Dispositivo"
+  }
+}

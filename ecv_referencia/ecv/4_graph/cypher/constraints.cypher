@@ -1,0 +1,14 @@
+// Restrições de unicidade: uma por rótulo, sobre a chave do modelo (grafo/modelo_grafo.json).
+CREATE CONSTRAINT ecv_hlm IF NOT EXISTS FOR (n:HLM) REQUIRE n.nome IS UNIQUE;
+CREATE CONSTRAINT ecv_sm IF NOT EXISTS FOR (n:SM) REQUIRE n.nome IS UNIQUE;
+CREATE CONSTRAINT ecv_usm IF NOT EXISTS FOR (n:USM) REQUIRE n.nome IS UNIQUE;
+CREATE CONSTRAINT ecv_propriedade IF NOT EXISTS FOR (n:Propriedade) REQUIRE n.chave IS UNIQUE;
+CREATE CONSTRAINT ecv_rp IF NOT EXISTS FOR (n:RP) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT ecv_rir IF NOT EXISTS FOR (n:RIR) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT ecv_ric IF NOT EXISTS FOR (n:RIC) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT ecv_restricao IF NOT EXISTS FOR (n:Restricao) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT ecv_condicaoaplicabilidade IF NOT EXISTS FOR (n:CondicaoAplicabilidade) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT ecv_funcao IF NOT EXISTS FOR (n:Funcao) REQUIRE n.nome IS UNIQUE;
+CREATE CONSTRAINT ecv_contextoexterno IF NOT EXISTS FOR (n:ContextoExterno) REQUIRE n.nome IS UNIQUE;
+CREATE CONSTRAINT ecv_projecao IF NOT EXISTS FOR (n:Projecao) REQUIRE n.nome IS UNIQUE;
+CREATE CONSTRAINT ecv_perfil IF NOT EXISTS FOR (n:Perfil) REQUIRE n.nome IS UNIQUE;

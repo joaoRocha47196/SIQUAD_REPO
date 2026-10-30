@@ -1,0 +1,167 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-FABRICANTE",
+  "regra": {
+    "id": "RP-FABRICANTE",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Identificacao.fabricante tem entre 2 e 50 caracteres",
+    "alcance": "SM Identificacao.fabricante",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "fabricante",
+      "chave": "Propriedade:SM:Identificacao.fabricante",
+      "dono": "Identificacao"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "LENGTH",
+      "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres.",
+      "texto": "fabricante tem entre 2 e 50 caracteres",
+      "caminho": "fabricante",
+      "propriedade": "SM:Identificacao.fabricante",
+      "valor": [
+        2,
+        50
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "SM:Identificacao.fabricante",
+      "nome": "fabricante",
+      "dono": "Identificacao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "LENGTH",
+    "mensagem": "O fabricante tem de ter entre 2 e 50 caracteres.",
+    "texto": "fabricante tem entre 2 e 50 caracteres",
+    "caminho": "fabricante",
+    "propriedade": "SM:Identificacao.fabricante",
+    "valor": [
+      2,
+      50
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "fabricante tem entre 2 e 50 caracteres",
+    "alvo": {
+      "chave": "SM:Identificacao.fabricante",
+      "nome": "fabricante",
+      "dono": "Identificacao",
+      "nivelDono": "SM",
+      "tipo": "texto",
+      "descricao": "Fabricante do dispositivo"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Identificacao.fabricante",
+    "nome": "fabricante",
+    "dono": "Identificacao",
+    "nivelDono": "SM",
+    "tipo": "texto",
+    "descricao": "Fabricante do dispositivo",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-FABRICANTE",
+        "rotulo": "RP",
+        "texto": "RP-FABRICANTE",
+        "detalhe": "Identificacao.fabricante tem entre 2 e 50 caracteres"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.fabricante",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.fabricante",
+        "detalhe": "Fabricante do dispositivo"
+      },
+      {
+        "chave": "Restricao:RP-FABRICANTE",
+        "rotulo": "Restricao",
+        "texto": "RP-FABRICANTE#restricao",
+        "detalhe": "fabricante tem entre 2 e 50 caracteres"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-FABRICANTE",
+        "para": "Propriedade:SM:Identificacao.fabricante",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-FABRICANTE",
+        "para": "Restricao:RP-FABRICANTE",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-FABRICANTE",
+        "para": "Propriedade:SM:Identificacao.fabricante",
+        "tipo": "RESTRINGE",
+        "texto": "fabricante tem entre 2 e 50 caracteres"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Identificacao.fabricante",
+        "rotulo": "Propriedade",
+        "nome": "fabricante",
+        "dono": "Identificacao",
+        "descricao": "Fabricante do dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.fabricante",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-FABRICANTE"
+  }
+}

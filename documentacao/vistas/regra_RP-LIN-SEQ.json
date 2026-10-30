@@ -1,0 +1,224 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-LIN-SEQ",
+  "regra": {
+    "id": "RP-LIN-SEQ",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "valoresConsecutivos(Linhas.Linha.numero)",
+    "alcance": "SM Linhas",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "SM",
+      "nome": "Linhas",
+      "chave": "SM:Linhas",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "FUNCTION",
+      "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas.",
+      "texto": "valoresConsecutivos(Linha.numero)",
+      "chamada": {
+        "funcao": "valoresConsecutivos",
+        "chamada": "valoresConsecutivos(Linha.numero)",
+        "operador": "FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas.",
+        "argumentos": [
+          {
+            "caminho": "Linha.numero",
+            "alvo": "USM:Linha.numero",
+            "nomeAlvo": "numero",
+            "rotuloAlvo": "Propriedade",
+            "colecao": true
+          }
+        ],
+        "contextos": []
+      }
+    },
+    "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "USM:Linha.numero",
+      "nome": "numero",
+      "funcao": "valoresConsecutivos"
+    },
+    "funcoes": [
+      "valoresConsecutivos"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "FUNCTION",
+    "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas.",
+    "texto": "valoresConsecutivos(Linha.numero)",
+    "chamada": {
+      "funcao": "valoresConsecutivos",
+      "chamada": "valoresConsecutivos(Linha.numero)",
+      "operador": "FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas.",
+      "argumentos": [
+        {
+          "caminho": "Linha.numero",
+          "alvo": "USM:Linha.numero",
+          "nomeAlvo": "numero",
+          "rotuloAlvo": "Propriedade",
+          "colecao": true
+        }
+      ],
+      "contextos": []
+    },
+    "descricao": "valoresConsecutivos(Linha.numero)",
+    "funcao": {
+      "nome": "valoresConsecutivos",
+      "descricao": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<inteiro>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores de uma propriedade em todas as instâncias da coleção."
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": []
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "rotulo": "SM",
+    "nome": "Linhas",
+    "descricao": "Coleção das linhas do documento.",
+    "chave": "SM:Linhas",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-LIN-SEQ",
+        "rotulo": "RP",
+        "texto": "RP-LIN-SEQ",
+        "detalhe": "valoresConsecutivos(Linhas.Linha.numero)"
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "texto": "Linhas",
+        "detalhe": "Coleção das linhas do documento."
+      },
+      {
+        "chave": "Restricao:RP-LIN-SEQ",
+        "rotulo": "Restricao",
+        "texto": "RP-LIN-SEQ#restricao",
+        "detalhe": "valoresConsecutivos(Linha.numero)"
+      },
+      {
+        "chave": "Funcao:valoresConsecutivos",
+        "rotulo": "Funcao",
+        "texto": "valoresConsecutivos",
+        "detalhe": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas."
+      },
+      {
+        "chave": "Propriedade:USM:Linha.numero",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.numero",
+        "detalhe": "Número da linha no documento"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-LIN-SEQ",
+        "para": "SM:Linhas",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-LIN-SEQ",
+        "para": "Restricao:RP-LIN-SEQ",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-LIN-SEQ",
+        "para": "Funcao:valoresConsecutivos",
+        "tipo": "CHAMA",
+        "texto": "valoresConsecutivos(Linha.numero)"
+      },
+      {
+        "de": "Funcao:valoresConsecutivos",
+        "para": "Propriedade:USM:Linha.numero",
+        "tipo": "LE",
+        "texto": "argumento: Linha.numero (coleção)"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Linha.numero",
+        "rotulo": "Propriedade",
+        "nome": "numero",
+        "dono": "Linha",
+        "descricao": "Número da linha no documento",
+        "tipoBase": "inteiro"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.numero",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-LIN-SEQ"
+  }
+}

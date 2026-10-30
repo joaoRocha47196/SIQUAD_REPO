@@ -1,0 +1,262 @@
+{
+  "vista": "decisao",
+  "titulo": "Decisão de Contacto.email",
+  "alvo": "USM:Contacto.email",
+  "propriedade": {
+    "chave": "USM:Contacto.email",
+    "nome": "email",
+    "dono": "Contacto",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Endereço de correio eletrónico",
+    "rp": [
+      {
+        "id": "RP-EMAIL",
+        "texto": "email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+        "mensagem": "O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas.",
+        "operador": "PATTERN",
+        "valor": "^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$"
+      }
+    ]
+  },
+  "dimensoes": [
+    {
+      "chave": "USM:Entidade.nome",
+      "nome": "nome",
+      "frequencia": 2,
+      "plausiveis": null,
+      "usados": [
+        "Companhia X",
+        "Companhia Y"
+      ],
+      "ausenteEm": 0,
+      "dono": "Entidade",
+      "descricao": "Nome ou denominação social",
+      "tipo": "texto",
+      "rp": []
+    }
+  ],
+  "matriz": {
+    "propriedade": "email",
+    "dimensaoLinhas": "nome",
+    "dimensoesColunas": [],
+    "dimensoes": [
+      {
+        "chave": "USM:Entidade.nome",
+        "nome": "nome",
+        "frequencia": 2,
+        "plausiveis": null,
+        "usados": [
+          "Companhia X",
+          "Companhia Y"
+        ],
+        "ausenteEm": 0
+      }
+    ],
+    "colunas": [
+      {
+        "valores": [],
+        "rotulo": "(qualquer)"
+      }
+    ],
+    "linhas": [
+      {
+        "valor": null,
+        "rotulo": "(qualquer)",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "vazia",
+            "regras": []
+          }
+        ]
+      },
+      {
+        "valor": "Companhia X",
+        "rotulo": "Companhia X",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "ok",
+            "regras": [
+              {
+                "id": "RIR-EMAIL-CX",
+                "valor": "@companhiax.com",
+                "texto": "email termina em \"@companhiax.com\"",
+                "minimo": null,
+                "maximo": null,
+                "mensagem": "O email de um emitente da Companhia X tem de terminar em @companhiax.com."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "valor": "Companhia Y",
+        "rotulo": "Companhia Y",
+        "plausivel": true,
+        "semRegras": false,
+        "celulas": [
+          {
+            "estado": "ok",
+            "regras": [
+              {
+                "id": "RIR-EMAIL-CY",
+                "valor": "@companhia-y.pt",
+                "texto": "email termina em \"@companhia-y.pt\"",
+                "minimo": null,
+                "maximo": null,
+                "mensagem": "O email de um emitente da Companhia Y tem de terminar em @companhia-y.pt."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outras": []
+  },
+  "arvore": {
+    "tipo": "dimensao",
+    "propriedade": "nome",
+    "chave": "USM:Entidade.nome",
+    "ramos": [
+      {
+        "valor": "Companhia X",
+        "rotulo": "Companhia X",
+        "plausivel": true,
+        "filho": {
+          "tipo": "regras",
+          "regras": [
+            {
+              "id": "RIR-EMAIL-CX",
+              "texto": "email termina em \"@companhiax.com\"",
+              "minimo": null,
+              "maximo": null
+            }
+          ]
+        }
+      },
+      {
+        "valor": "Companhia Y",
+        "rotulo": "Companhia Y",
+        "plausivel": true,
+        "filho": {
+          "tipo": "regras",
+          "regras": [
+            {
+              "id": "RIR-EMAIL-CY",
+              "texto": "email termina em \"@companhia-y.pt\"",
+              "minimo": null,
+              "maximo": null
+            }
+          ]
+        }
+      }
+    ],
+    "semRamo": []
+  },
+  "filtro": [],
+  "regras": [
+    {
+      "id": "RIR-EMAIL-CX",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Emitente.Entidade.nome = Companhia X → Emitente.Contacto.email termina em \"@companhiax.com\"",
+      "alcance": "SM Emitente",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "chave": "SM:Emitente",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "ENDS_WITH",
+        "mensagem": "O email de um emitente da Companhia X tem de terminar em @companhiax.com.",
+        "texto": "Contacto.email termina em \"@companhiax.com\"",
+        "caminho": "Contacto.email",
+        "propriedade": "USM:Contacto.email",
+        "valor": "@companhiax.com",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Entidade.nome",
+          "propriedade": "USM:Entidade.nome",
+          "operador": "EQUALS",
+          "valor": "Companhia X",
+          "contexto": null,
+          "texto": "nome = Companhia X",
+          "nome": "nome"
+        }
+      ],
+      "mensagem": "O email de um emitente da Companhia X tem de terminar em @companhiax.com.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Contacto.email",
+        "nome": "email",
+        "dono": "Contacto"
+      },
+      "funcoes": []
+    },
+    {
+      "id": "RIR-EMAIL-CY",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Emitente.Entidade.nome = Companhia Y → Emitente.Contacto.email termina em \"@companhia-y.pt\"",
+      "alcance": "SM Emitente",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "chave": "SM:Emitente",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "ENDS_WITH",
+        "mensagem": "O email de um emitente da Companhia Y tem de terminar em @companhia-y.pt.",
+        "texto": "Contacto.email termina em \"@companhia-y.pt\"",
+        "caminho": "Contacto.email",
+        "propriedade": "USM:Contacto.email",
+        "valor": "@companhia-y.pt",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Entidade.nome",
+          "propriedade": "USM:Entidade.nome",
+          "operador": "EQUALS",
+          "valor": "Companhia Y",
+          "contexto": null,
+          "texto": "nome = Companhia Y",
+          "nome": "nome"
+        }
+      ],
+      "mensagem": "O email de um emitente da Companhia Y tem de terminar em @companhia-y.pt.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Contacto.email",
+        "nome": "email",
+        "dono": "Contacto"
+      },
+      "funcoes": []
+    }
+  ],
+  "parametros": {
+    "alvo": "USM:Contacto.email"
+  }
+}

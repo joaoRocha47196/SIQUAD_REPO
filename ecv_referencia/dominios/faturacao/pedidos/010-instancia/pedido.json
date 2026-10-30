@@ -1,0 +1,17 @@
+{
+ "id": "010-instancia",
+ "tipo": "instancia",
+ "titulo": "Instância de teste quero_criar_uma_isntancia_de_testes",
+ "passo": null,
+ "estado": "aplicado",
+ "criado": "2026-10-30T15:43:36",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "perfil": "PERFILTESTE",
+ "hlm": "",
+ "nome": "quero_criar_uma_isntancia_de_testes",
+ "pedido": "Quero criar uma isntancia de testes para este perfil que passe a todas as regras",
+ "respondido": "2026-10-30T15:44:27",
+ "aplicado": "2026-10-30T15:44:31",
+ "resumo": "instância gravada em dominios\\faturacao\\instancias\\quero_criar_uma_isntancia_de_testes.json; inválida (conforme: 6, fora da projeção: 307)"
+}

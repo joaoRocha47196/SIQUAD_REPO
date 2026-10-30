@@ -1,0 +1,1 @@
+Se a o valor da fatura for menos que 1000 ent a propriedade de estado tipoDeValor deve ser SMALL se for acime de 1000 deve ser BIG

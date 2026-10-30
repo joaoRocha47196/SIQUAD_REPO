@@ -1,0 +1,2821 @@
+{
+  "vista": "perfil",
+  "titulo": "Perfil Estufas: seleção estática e dinâmica",
+  "perfil": "Estufas",
+  "descricao": "Sensores instalados em estufas agrícolas.",
+  "projecao": "DispositivoProducao",
+  "hlm": "Dispositivo",
+  "fixados": [
+    {
+      "caminho": "Leitura.Instalacao.ambiente",
+      "valor": "ESTUFA",
+      "projetada": true
+    }
+  ],
+  "contextos": [],
+  "resumo": {
+    "dinâmica": 47,
+    "nunca aplicável": 24,
+    "avaliada": 24
+  },
+  "regras": [
+    {
+      "regra": "RIR-HUM",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % → Leitura.Medicao.valor entre 0 e 100",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = %",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 0 e 100"
+    },
+    {
+      "regra": "RIR-HUM-ARMAZEM",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 30 e 60",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = %",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ARMAZEM",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 30 e 60"
+    },
+    {
+      "regra": "RIR-HUM-ESTUFA",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 60 e 90",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = %",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ESTUFA",
+          "estado": "verdadeiro",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 60 e 90"
+    },
+    {
+      "regra": "RIR-HUM-EXTERIOR",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 100",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = %",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 0 e 100"
+    },
+    {
+      "regra": "RIR-HUM-REFRIG",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 80 e 95",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = %",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = REFRIGERACAO",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 80 e 95"
+    },
+    {
+      "regra": "RIR-HUM-SERVIDORES",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE e Leitura.Medicao.unidadeMedida = % e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 40 e 60",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = %",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = SERVIDORES",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 40 e 60"
+    },
+    {
+      "regra": "RIR-HUM-UN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = HUMIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.unidadeMedida"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.unidadeMedida ∈ {%}"
+    },
+    {
+      "regra": "RIR-PRES-BAR",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar → Leitura.Medicao.valor entre 0.3 e 1.1",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = bar",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 0.3 e 1.1"
+    },
+    {
+      "regra": "RIR-PRES-EXTERIOR-BAR",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = bar e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = bar",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 950 e 1050"
+    },
+    {
+      "regra": "RIR-PRES-EXTERIOR-HPA",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 950 e 1050",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = hPa",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 950 e 1050"
+    },
+    {
+      "regra": "RIR-PRES-HPA",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO e Leitura.Medicao.unidadeMedida = hPa → Leitura.Medicao.valor entre 300 e 1100",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = hPa",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 300 e 1100"
+    },
+    {
+      "regra": "RIR-PRES-UN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = PRESSAO → Leitura.Medicao.unidadeMedida ∈ {hPa, bar}",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = PRESSAO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.unidadeMedida"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}"
+    },
+    {
+      "regra": "RIR-TEMP-ARMAZEM-CELSIUS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 5 e 30",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ARMAZEM",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 5 e 30"
+    },
+    {
+      "regra": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 41 e 86",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ARMAZEM",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 41 e 86"
+    },
+    {
+      "regra": "RIR-TEMP-ARMAZEM-KELVIN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ARMAZEM → Leitura.Medicao.valor entre 278.15 e 303.15",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ARMAZEM",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 278.15 e 303.15"
+    },
+    {
+      "regra": "RIR-TEMP-C",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C → Leitura.Medicao.valor entre -60 e 1300",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre -60 e 1300"
+    },
+    {
+      "regra": "RIR-TEMP-CAMARA-CELSIUS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = CAMARA_FRIGORIFICA → Leitura.Medicao.valor entre -25 e -18",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = CAMARA_FRIGORIFICA",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre -25 e -18"
+    },
+    {
+      "regra": "RIR-TEMP-ESTUFA-CELSIUS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 15 e 45",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ESTUFA",
+          "estado": "verdadeiro",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 15 e 45"
+    },
+    {
+      "regra": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 59 e 113",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ESTUFA",
+          "estado": "verdadeiro",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 59 e 113"
+    },
+    {
+      "regra": "RIR-TEMP-ESTUFA-KELVIN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = ESTUFA → Leitura.Medicao.valor entre 288.15 e 318.15",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = ESTUFA",
+          "estado": "verdadeiro",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 288.15 e 318.15"
+    },
+    {
+      "regra": "RIR-TEMP-EXTERIOR-CELSIUS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -20 e 50",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre -20 e 50"
+    },
+    {
+      "regra": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre -4 e 122",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre -4 e 122"
+    },
+    {
+      "regra": "RIR-TEMP-EXTERIOR-KELVIN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 253.15 e 323.15",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 253.15 e 323.15"
+    },
+    {
+      "regra": "RIR-TEMP-F",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F → Leitura.Medicao.valor entre -76 e 2372",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre -76 e 2372"
+    },
+    {
+      "regra": "RIR-TEMP-INCIN-CELSIUS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 200 e 1200",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = INCINERADORA",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 200 e 1200"
+    },
+    {
+      "regra": "RIR-TEMP-INCIN-FAHRENHEIT",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 392 e 2192",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = INCINERADORA",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 392 e 2192"
+    },
+    {
+      "regra": "RIR-TEMP-INCIN-KELVIN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = INCINERADORA → Leitura.Medicao.valor entre 473.15 e 1473.15",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = INCINERADORA",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 473.15 e 1473.15"
+    },
+    {
+      "regra": "RIR-TEMP-K",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K → Leitura.Medicao.valor entre 213.15 e 1573.15",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 213.15 e 1573.15"
+    },
+    {
+      "regra": "RIR-TEMP-REFRIG-CELSIUS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -30 e 0",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = REFRIGERACAO",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre -30 e 0"
+    },
+    {
+      "regra": "RIR-TEMP-REFRIG-FAHRENHEIT",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre -22 e 32",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = REFRIGERACAO",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre -22 e 32"
+    },
+    {
+      "regra": "RIR-TEMP-REFRIG-KELVIN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = REFRIGERACAO → Leitura.Medicao.valor entre 243.15 e 273.15",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = REFRIGERACAO",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 243.15 e 273.15"
+    },
+    {
+      "regra": "RIR-TEMP-SERVIDORES-CELSIUS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °C e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 18 e 27",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °C",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = SERVIDORES",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 18 e 27"
+    },
+    {
+      "regra": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = °F e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 64.4 e 80.6",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = °F",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = SERVIDORES",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 64.4 e 80.6"
+    },
+    {
+      "regra": "RIR-TEMP-SERVIDORES-KELVIN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA e Leitura.Medicao.unidadeMedida = K e Leitura.Instalacao.ambiente = SERVIDORES → Leitura.Medicao.valor entre 291.15 e 300.15",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = K",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = SERVIDORES",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 291.15 e 300.15"
+    },
+    {
+      "regra": "RIR-TEMP-UN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = TEMPERATURA → Leitura.Medicao.unidadeMedida ∈ {°C, K, °F}",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = TEMPERATURA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.unidadeMedida"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.unidadeMedida ∈ {°C, K, °F}"
+    },
+    {
+      "regra": "RIR-VEL-EXTERIOR-KMH",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 144",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = km/h",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 0 e 144"
+    },
+    {
+      "regra": "RIR-VEL-EXTERIOR-MS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s e Leitura.Instalacao.ambiente = EXTERIOR → Leitura.Medicao.valor entre 0 e 40",
+      "estado": "nunca aplicável",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = m/s",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "ambiente = EXTERIOR",
+          "estado": "falso",
+          "caminhos": [
+            "Leitura.Instalacao.ambiente"
+          ],
+          "valorFixado": "ESTUFA"
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 0 e 40"
+    },
+    {
+      "regra": "RIR-VEL-KMH",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = km/h → Leitura.Medicao.valor entre 0 e 270",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = km/h",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 0 e 270"
+    },
+    {
+      "regra": "RIR-VEL-MS",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE e Leitura.Medicao.unidadeMedida = m/s → Leitura.Medicao.valor entre 0 e 75",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "unidadeMedida = m/s",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.unidadeMedida"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.valor entre 0 e 75"
+    },
+    {
+      "regra": "RIR-VEL-UN",
+      "tipo": "RIR",
+      "ocorrencia": "",
+      "descricao": "Se Identificacao.tipoDispositivo = VELOCIDADE → Leitura.Medicao.unidadeMedida ∈ {m/s, km/h}",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "tipoDispositivo = VELOCIDADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Identificacao.tipoDispositivo"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Leitura.Medicao.unidadeMedida"
+      ],
+      "contextos": [],
+      "restricao": "Leitura.Medicao.unidadeMedida ∈ {m/s, km/h}"
+    },
+    {
+      "regra": "RP-IDENT",
+      "tipo": "RP",
+      "ocorrencia": "Identificacao",
+      "descricao": "Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Identificacao.identificador"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-FABRICANTE",
+      "tipo": "RP",
+      "ocorrencia": "Identificacao",
+      "descricao": "Identificacao.fabricante tem entre 2 e 50 caracteres",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Identificacao.fabricante"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-ESTADO",
+      "tipo": "RP",
+      "ocorrencia": "Identificacao",
+      "descricao": "Identificacao.estado ∈ {ATIVO, INATIVO, MANUTENCAO}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Identificacao.estado"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-TIPODISP",
+      "tipo": "RP",
+      "ocorrencia": "Identificacao",
+      "descricao": "Identificacao.tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Identificacao.tipoDispositivo"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-UNIDADE",
+      "tipo": "RP",
+      "ocorrencia": "Leitura.Medicao",
+      "descricao": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Leitura.Medicao.unidadeMedida"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-VALOR-FISICO",
+      "tipo": "RP",
+      "ocorrencia": "Leitura.Medicao",
+      "descricao": "Medicao.valor entre -273.15 e 2400",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Leitura.Medicao.valor"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-RELOGIO",
+      "tipo": "RP",
+      "ocorrencia": "Leitura.Medicao",
+      "descricao": "desfasamentoInferiorA(Medicao.dataMedicao, 300)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Leitura.Medicao.dataMedicao"
+      ],
+      "contextos": [
+        {
+          "nome": "relogioServidor",
+          "origem": "obtido pelo motor",
+          "valor": null
+        }
+      ]
+    },
+    {
+      "regra": "RIC-MED-DIFERIDA",
+      "tipo": "RIC",
+      "ocorrencia": "Leitura.Medicao",
+      "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "dataMedicao < dataDeHoje (contexto externo)",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Leitura.Medicao.dataMedicao"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [],
+      "contextos": [
+        {
+          "nome": "dataDeHoje",
+          "origem": "obtido pelo motor",
+          "valor": null
+        }
+      ],
+      "restricao": null
+    },
+    {
+      "regra": "RP-AMBIENTE",
+      "tipo": "RP",
+      "ocorrencia": "Leitura.Instalacao",
+      "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Leitura.Instalacao.ambiente"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-ASSINATURA",
+      "tipo": "RP",
+      "ocorrencia": "Leitura.Assinatura",
+      "descricao": "assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Leitura.Assinatura.mensagem",
+        "Leitura.Assinatura.assinatura"
+      ],
+      "contextos": [
+        {
+          "nome": "chaveDispositivo",
+          "origem": "obtido pelo motor",
+          "valor": null
+        }
+      ]
+    },
+    {
+      "regra": "RP-ASSIN-FORMA",
+      "tipo": "RP",
+      "ocorrencia": "Leitura.Assinatura",
+      "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Leitura.Assinatura.assinatura"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RIR-LX-LOCALIDADE",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao",
+      "descricao": "Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)])",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.InformacaoGeografica.latitude",
+            "Localizacao.InformacaoGeografica.longitude"
+          ]
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.localidade"
+      ],
+      "contextos": [],
+      "restricao": "Morada.localidade = LISBOA"
+    },
+    {
+      "regra": "RP-AREA",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.InformacaoGeografica.latitude",
+        "Localizacao.InformacaoGeografica.longitude"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-LAT",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "descricao": "InformacaoGeografica.latitude entre -90 e 90",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.InformacaoGeografica.latitude"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-LON",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.InformacaoGeografica.longitude"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-ALT",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "descricao": "InformacaoGeografica.altitude entre -500 e 9000",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.InformacaoGeografica.altitude"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-SRC",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.InformacaoGeografica",
+      "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.InformacaoGeografica.sistemaReferencia"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RIR-CP-ES",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = ES",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[0-5][0-9]{4}$"
+    },
+    {
+      "regra": "RIR-CP-GB",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = GB",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AJUDA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ALCANTARA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ALVALADE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AREEIRO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ARROIOS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = AVENIDAS_NOVAS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BEATO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BELEM",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = BENFICA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CAMPO_DE_OURIQUE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CAMPOLIDE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = CARNIDE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = ESTRELA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = LUMIAR",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = MARVILA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = MISERICORDIA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = OLIVAIS",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = PARQUE_DAS_NACOES",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = PENHA_DE_FRANCA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTA_CLARA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTA_MARIA_MAIOR",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SANTO_ANTONIO",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "localidade = LISBOA",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.localidade"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "freguesia = SAO_VICENTE",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.freguesia"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$"
+    },
+    {
+      "regra": "RIR-CP-PT",
+      "tipo": "RIR",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "pais = PT",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Localizacao.Morada.pais"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": [],
+      "restricao": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$"
+    },
+    {
+      "regra": "RP-CP",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.Morada.codigoPostal"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-FREGUESIA",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.Morada.freguesia"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-PAIS",
+      "tipo": "RP",
+      "ocorrencia": "Localizacao.Morada",
+      "descricao": "Morada.pais ∈ {PT, ES, GB}",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Localizacao.Morada.pais"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RIC-MANUT",
+      "tipo": "RIC",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "Se Diagnostico.nivelBateria entre 0 e 10 e excedeDiasDesdeHoje(Diagnostico.dataUltimaManutencao, 7) → informa Ação MANUTENCAO",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "nivelBateria entre 0 e 10",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Diagnostico.Diagnostico.nivelBateria"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Diagnostico.Diagnostico.dataUltimaManutencao"
+          ]
+        }
+      ],
+      "alvos": [],
+      "contextos": [
+        {
+          "nome": "dataDeHoje",
+          "origem": "obtido pelo motor",
+          "valor": null
+        }
+      ],
+      "restricao": null
+    },
+    {
+      "regra": "RIC-REDE",
+      "tipo": "RIC",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "Se Diagnostico.sinalRede entre -120 e -100 e Diagnostico.latencia entre 500 e 10000 e Diagnostico.taxaRececao entre 0 e 50 → informa Estado NAO_FIAVEL",
+      "estado": "dinâmica",
+      "termos": [
+        {
+          "texto": "sinalRede entre -120 e -100",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Diagnostico.Diagnostico.sinalRede"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "latencia entre 500 e 10000",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Diagnostico.Diagnostico.latencia"
+          ],
+          "valorFixado": null
+        },
+        {
+          "texto": "taxaRececao entre 0 e 50",
+          "estado": "dinâmico",
+          "caminhos": [
+            "Diagnostico.Diagnostico.taxaRececao"
+          ],
+          "valorFixado": null
+        }
+      ],
+      "alvos": [],
+      "contextos": [],
+      "restricao": null
+    },
+    {
+      "regra": "RP-BATERIA",
+      "tipo": "RP",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "Diagnostico.nivelBateria entre 0 e 100",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Diagnostico.Diagnostico.nivelBateria"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-MANUT-DATA",
+      "tipo": "RP",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "Diagnostico.dataUltimaManutencao ≥ 2000-01-01",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Diagnostico.Diagnostico.dataUltimaManutencao"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-MANUT-FUTURA",
+      "tipo": "RP",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Diagnostico.Diagnostico.dataUltimaManutencao"
+      ],
+      "contextos": [
+        {
+          "nome": "dataDeHoje",
+          "origem": "obtido pelo motor",
+          "valor": null
+        }
+      ]
+    },
+    {
+      "regra": "RP-SINAL",
+      "tipo": "RP",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "Diagnostico.sinalRede entre -140 e 0",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Diagnostico.Diagnostico.sinalRede"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-LATENCIA",
+      "tipo": "RP",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "Diagnostico.latencia entre 0 e 60000",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Diagnostico.Diagnostico.latencia"
+      ],
+      "contextos": []
+    },
+    {
+      "regra": "RP-RECECAO",
+      "tipo": "RP",
+      "ocorrencia": "Diagnostico.Diagnostico",
+      "descricao": "Diagnostico.taxaRececao entre 0 e 100",
+      "estado": "avaliada",
+      "termos": [],
+      "alvos": [
+        "Diagnostico.Diagnostico.taxaRececao"
+      ],
+      "contextos": []
+    }
+  ],
+  "parametros": {
+    "perfil": "Estufas"
+  }
+}

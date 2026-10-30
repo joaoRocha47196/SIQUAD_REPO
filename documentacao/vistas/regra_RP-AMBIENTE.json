@@ -1,0 +1,192 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-AMBIENTE",
+  "regra": {
+    "id": "RP-AMBIENTE",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+    "alcance": "USM Instalacao.ambiente",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "ambiente",
+      "chave": "Propriedade:USM:Instalacao.ambiente",
+      "dono": "Instalacao"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+      "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+      "caminho": "ambiente",
+      "propriedade": "USM:Instalacao.ambiente",
+      "valor": [
+        "REFRIGERACAO",
+        "ESTUFA",
+        "ARMAZEM",
+        "SERVIDORES",
+        "EXTERIOR",
+        "INCINERADORA",
+        "LABORATORIO"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Instalacao.ambiente",
+      "nome": "ambiente",
+      "dono": "Instalacao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+    "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+    "caminho": "ambiente",
+    "propriedade": "USM:Instalacao.ambiente",
+    "valor": [
+      "REFRIGERACAO",
+      "ESTUFA",
+      "ARMAZEM",
+      "SERVIDORES",
+      "EXTERIOR",
+      "INCINERADORA",
+      "LABORATORIO"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+    "alvo": {
+      "chave": "USM:Instalacao.ambiente",
+      "nome": "ambiente",
+      "dono": "Instalacao",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Ambiente onde o dispositivo está instalado"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Instalacao.ambiente",
+    "nome": "ambiente",
+    "dono": "Instalacao",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Ambiente onde o dispositivo está instalado",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-AMBIENTE",
+        "rotulo": "RP",
+        "texto": "RP-AMBIENTE",
+        "detalhe": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}"
+      },
+      {
+        "chave": "Propriedade:USM:Instalacao.ambiente",
+        "rotulo": "Propriedade",
+        "texto": "USM:Instalacao.ambiente",
+        "detalhe": "Ambiente onde o dispositivo está instalado"
+      },
+      {
+        "chave": "Restricao:RP-AMBIENTE",
+        "rotulo": "Restricao",
+        "texto": "RP-AMBIENTE#restricao",
+        "detalhe": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-AMBIENTE",
+        "para": "Propriedade:USM:Instalacao.ambiente",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-AMBIENTE",
+        "para": "Restricao:RP-AMBIENTE",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-AMBIENTE",
+        "para": "Propriedade:USM:Instalacao.ambiente",
+        "tipo": "RESTRINGE",
+        "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Instalacao.ambiente",
+        "rotulo": "Propriedade",
+        "nome": "ambiente",
+        "dono": "Instalacao",
+        "descricao": "Ambiente onde o dispositivo está instalado",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Instalacao",
+        "rotulo": "USM",
+        "nome": "Instalacao",
+        "dono": null,
+        "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Instalacao",
+        "para": "Propriedade:USM:Instalacao.ambiente",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Instalacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Instalacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-AMBIENTE"
+  }
+}

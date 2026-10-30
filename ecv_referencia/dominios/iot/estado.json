@@ -1,0 +1,37 @@
+{
+ "dominio": "iot",
+ "passos": {
+  "0": {
+   "estado": "aceite",
+   "atualizado": "2026-10-29T23:18:31",
+   "resumo": [
+    "sdm-device: 15 grupos, 146 elementos, 64 regras"
+   ]
+  },
+  "A": {
+   "estado": "por iniciar"
+  },
+  "B": {
+   "estado": "por iniciar"
+  },
+  "C": {
+   "estado": "por iniciar"
+  },
+  "D": {
+   "estado": "por iniciar"
+  },
+  "E": {
+   "estado": "por iniciar"
+  },
+  "F": {
+   "estado": "por iniciar"
+  },
+  "G": {
+   "estado": "em curso",
+   "pedidos": [
+    "001-passo-G"
+   ],
+   "atualizado": "2026-10-29T23:18:37"
+  }
+ }
+}

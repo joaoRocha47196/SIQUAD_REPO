@@ -1,0 +1,444 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-CP-LX-ARROIOS",
+  "regra": {
+    "id": "RIR-CP-LX-ARROIOS",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+    "alcance": "USM Morada",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "USM",
+      "nome": "Morada",
+      "chave": "USM:Morada",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169.",
+      "texto": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "caminho": "codigoPostal",
+      "propriedade": "USM:Morada.codigoPostal",
+      "valor": "^(1150|1169)-[0-9]{3}$",
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "pais",
+        "propriedade": "USM:Morada.pais",
+        "operador": "EQUALS",
+        "valor": "PT",
+        "contexto": null,
+        "texto": "pais = PT",
+        "nome": "pais"
+      },
+      {
+        "ordem": 1,
+        "forma": "tipificado",
+        "caminho": "localidade",
+        "propriedade": "USM:Morada.localidade",
+        "operador": "EQUALS",
+        "valor": "LISBOA",
+        "contexto": null,
+        "texto": "localidade = LISBOA",
+        "nome": "localidade"
+      },
+      {
+        "ordem": 2,
+        "forma": "tipificado",
+        "caminho": "freguesia",
+        "propriedade": "USM:Morada.freguesia",
+        "operador": "EQUALS",
+        "valor": "ARROIOS",
+        "contexto": null,
+        "texto": "freguesia = ARROIOS",
+        "nome": "freguesia"
+      }
+    ],
+    "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Morada.codigoPostal",
+      "nome": "codigoPostal",
+      "dono": "Morada"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169.",
+    "texto": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+    "caminho": "codigoPostal",
+    "propriedade": "USM:Morada.codigoPostal",
+    "valor": "^(1150|1169)-[0-9]{3}$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+    "alvo": {
+      "chave": "USM:Morada.codigoPostal",
+      "nome": "codigoPostal",
+      "dono": "Morada",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Código postal da morada"
+    }
+  },
+  "condicao": {
+    "descricao": "pais = PT e localidade = LISBOA e freguesia = ARROIOS",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "pais",
+        "propriedade": "USM:Morada.pais",
+        "operador": "EQUALS",
+        "valor": "PT",
+        "contexto": null,
+        "texto": "pais = PT",
+        "nome": "pais",
+        "alvo": {
+          "chave": "USM:Morada.pais",
+          "nome": "pais",
+          "dono": "Morada",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "País da morada (código ISO de duas letras)"
+        }
+      },
+      {
+        "ordem": 1,
+        "forma": "tipificado",
+        "caminho": "localidade",
+        "propriedade": "USM:Morada.localidade",
+        "operador": "EQUALS",
+        "valor": "LISBOA",
+        "contexto": null,
+        "texto": "localidade = LISBOA",
+        "nome": "localidade",
+        "alvo": {
+          "chave": "USM:Morada.localidade",
+          "nome": "localidade",
+          "dono": "Morada",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)"
+        }
+      },
+      {
+        "ordem": 2,
+        "forma": "tipificado",
+        "caminho": "freguesia",
+        "propriedade": "USM:Morada.freguesia",
+        "operador": "EQUALS",
+        "valor": "ARROIOS",
+        "contexto": null,
+        "texto": "freguesia = ARROIOS",
+        "nome": "freguesia",
+        "alvo": {
+          "chave": "USM:Morada.freguesia",
+          "nome": "freguesia",
+          "dono": "Morada",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "USM",
+    "nome": "Morada",
+    "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+    "chave": "USM:Morada",
+    "hlm": [
+      "Dispositivo",
+      "Fatura",
+      "OrdemInstalacao"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-CP-LX-ARROIOS",
+        "rotulo": "RIR",
+        "texto": "RIR-CP-LX-ARROIOS",
+        "detalhe": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+      },
+      {
+        "chave": "USM:Morada",
+        "rotulo": "USM",
+        "texto": "Morada",
+        "detalhe": "Morada postal: arruamento, código postal, localidade, freguesia e país."
+      },
+      {
+        "chave": "Restricao:RIR-CP-LX-ARROIOS",
+        "rotulo": "Restricao",
+        "texto": "RIR-CP-LX-ARROIOS#restricao",
+        "detalhe": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+      },
+      {
+        "chave": "Propriedade:USM:Morada.codigoPostal",
+        "rotulo": "Propriedade",
+        "texto": "USM:Morada.codigoPostal",
+        "detalhe": "Código postal da morada"
+      },
+      {
+        "chave": "Condicao:RIR-CP-LX-ARROIOS",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-CP-LX-ARROIOS#condicao",
+        "detalhe": "pais = PT e localidade = LISBOA e freguesia = ARROIOS"
+      },
+      {
+        "chave": "Propriedade:USM:Morada.pais",
+        "rotulo": "Propriedade",
+        "texto": "USM:Morada.pais",
+        "detalhe": "País da morada (código ISO de duas letras)"
+      },
+      {
+        "chave": "Propriedade:USM:Morada.localidade",
+        "rotulo": "Propriedade",
+        "texto": "USM:Morada.localidade",
+        "detalhe": "Localidade da morada (em maiúsculas, sem acentos)"
+      },
+      {
+        "chave": "Propriedade:USM:Morada.freguesia",
+        "rotulo": "Propriedade",
+        "texto": "USM:Morada.freguesia",
+        "detalhe": "Freguesia da morada (só para moradas em Lisboa)"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-CP-LX-ARROIOS",
+        "para": "USM:Morada",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-CP-LX-ARROIOS",
+        "para": "Restricao:RIR-CP-LX-ARROIOS",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-CP-LX-ARROIOS",
+        "para": "Propriedade:USM:Morada.codigoPostal",
+        "tipo": "RESTRINGE",
+        "texto": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+      },
+      {
+        "de": "R:RIR-CP-LX-ARROIOS",
+        "para": "Condicao:RIR-CP-LX-ARROIOS",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-CP-LX-ARROIOS",
+        "para": "Propriedade:USM:Morada.pais",
+        "tipo": "TERMO",
+        "texto": "termo 1: pais = PT"
+      },
+      {
+        "de": "Condicao:RIR-CP-LX-ARROIOS",
+        "para": "Propriedade:USM:Morada.localidade",
+        "tipo": "TERMO",
+        "texto": "termo 2: localidade = LISBOA"
+      },
+      {
+        "de": "Condicao:RIR-CP-LX-ARROIOS",
+        "para": "Propriedade:USM:Morada.freguesia",
+        "tipo": "TERMO",
+        "texto": "termo 3: freguesia = ARROIOS"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "USM:Morada",
+        "rotulo": "USM",
+        "nome": "Morada",
+        "dono": null,
+        "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Morada.codigoPostal",
+        "rotulo": "Propriedade",
+        "nome": "codigoPostal",
+        "dono": "Morada",
+        "descricao": "Código postal da morada",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Morada.pais",
+        "rotulo": "Propriedade",
+        "nome": "pais",
+        "dono": "Morada",
+        "descricao": "País da morada (código ISO de duas letras)",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Morada.localidade",
+        "rotulo": "Propriedade",
+        "nome": "localidade",
+        "dono": "Morada",
+        "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Morada.freguesia",
+        "rotulo": "Propriedade",
+        "nome": "freguesia",
+        "dono": "Morada",
+        "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Cliente",
+        "rotulo": "SM",
+        "nome": "Cliente",
+        "dono": null,
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "dono": null,
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Localizacao",
+        "rotulo": "SM",
+        "nome": "Localizacao",
+        "dono": null,
+        "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Cliente",
+        "para": "USM:Morada",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Morada",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Morada",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Morada",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Localizacao",
+        "para": "USM:Morada",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Morada",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "USM:Morada",
+        "para": "Propriedade:USM:Morada.codigoPostal",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Morada",
+        "para": "Propriedade:USM:Morada.pais",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Morada",
+        "para": "Propriedade:USM:Morada.localidade",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Morada",
+        "para": "Propriedade:USM:Morada.freguesia",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cliente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Requerente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Emitente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Emitente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Localizacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Localizacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Localizacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Localizacao",
+        "cardinalidade": "1..*"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-CP-LX-ARROIOS"
+  }
+}

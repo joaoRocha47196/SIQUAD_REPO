@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>JSON Schema da declaração · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="current sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="declaracao.html">Declaração</a></div><h1>JSON Schema da declaração</h1><div class="summary">A forma (sintaxe) da Declaração ECV; o resto (caminhos, tipos, invariantes) é verificado pela ingestão.</div><pre class="code"><code>{
+ &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+ &quot;$id&quot;: &quot;https://exemplo.local/ecv/ecv.schema.json&quot;,
+ &quot;title&quot;: &quot;Declaração ECV&quot;,
+ &quot;description&quot;: &quot;Forma (sintaxe) de uma Declaração ECV. As regras que dependem de várias entidades (caminhos, tipos, invariantes I1–I13) são verificadas por ecv/3_ingestion/verification/; ver specs/declaracao/README.md. Os enumerados (tipos base, cardinalidades, operadores) coincidem com ecv/config/ecv.config.json (há um teste que o confirma).&quot;,
+ &quot;type&quot;: &quot;object&quot;,
+ &quot;required&quot;: [
+  &quot;usm&quot;
+ ],
+ &quot;additionalProperties&quot;: false,
+ &quot;properties&quot;: {
+  &quot;$schema&quot;: {
+   &quot;type&quot;: &quot;string&quot;
+  },
+  &quot;declaracao&quot;: {
+   &quot;$ref&quot;: &quot;#/$defs/cabecalho&quot;
+  },
+  &quot;contextosExternos&quot;: {
+   &quot;type&quot;: &quot;array&quot;,
+   &quot;items&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/contextoExterno&quot;
+   }
+  },
+  &quot;funcoes&quot;: {
+   &quot;type&quot;: &quot;array&quot;,
+   &quot;items&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/funcao&quot;
+   }
+  },
+  &quot;usm&quot;: {
+   &quot;type&quot;: &quot;array&quot;,
+   &quot;minItems&quot;: 1,
+   &quot;items&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/usm&quot;
+   }
+  },
+  &quot;sm&quot;: {
+   &quot;type&quot;: &quot;array&quot;,
+   &quot;items&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/sm&quot;
+   }
+  },
+  &quot;hlm&quot;: {
+   &quot;type&quot;: &quot;array&quot;,
+   &quot;minItems&quot;: 1,
+   &quot;maxItems&quot;: 1,
+   &quot;items&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/hlm&quot;
+   },
+   &quot;description&quot;: &quot;Exatamente um HLM: uma declaração é a exportação completa de um HLM, com todos os modelos, funções e contextos de que depende.&quot;
+  },
+  &quot;projecoes&quot;: {
+   &quot;type&quot;: &quot;array&quot;,
+   &quot;items&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/projecao&quot;
+   }
+  },
+  &quot;perfis&quot;: {
+   &quot;type&quot;: &quot;array&quot;,
+   &quot;items&quot;: {
+    &quot;$ref&quot;: &quot;#/$defs/perfil&quot;
+   }
+  }
+ },
+ &quot;$defs&quot;: {
+  &quot;nomeModelo&quot;: {
+   &quot;type&quot;: &quot;string&quot;,
+   &quot;pattern&quot;: &quot;^[A-Z][A-Za-z0-9]*$&quot;,
+   &quot;description&quot;: &quot;PascalCase, sem acentos.&quot;
+  },
+  &quot;nomePropriedade&quot;: {
+   &quot;type&quot;: &quot;string&quot;,
+   &quot;pattern&quot;: &quot;^[a-z][A-Za-z0-9]*$&quot;,
+   &quot;description&quot;: &quot;camelCase, sem acentos.&quot;
+  },
+  &quot;nomeFuncao&quot;: {
+   &quot;type&quot;: &quot;string&quot;,
+   &quot;pattern&quot;: &quot;^[a-z][A-Za-z0-9]*$&quot;
+  },
+  &quot;tipoBase&quot;: {
+   &quot;enum&quot;: [
+    &quot;texto&quot;,
+    &quot;inteiro&quot;,
+    &quot;decimal&quot;,
+    &quot;data&quot;,
+    &quot;booleano&quot;
+   ]
+  },
+  &quot;cardinalidade&quot;: {
+   &quot;enum&quot;: [
+    &quot;0..1&quot;,
+    &quot;1..1&quot;,
+    &quot;0..*&quot;,
+    &quot;1..*&quot;
+   ]
+  },
+  &quot;notas&quot;: {
+   &quot;type&quot;: &quot;string&quot;,
+   &quot;description&quot;: &quot;Comentário livre; não é conhecimento de validação.&quot;
+  },
+  &quot;valorSimples&quot;: {
+   &quot;type&quot;: [
+    &quot;string&quot;,
+    &quot;number&quot;,
+    &quot;boolean&quot;
+   ]
+  },
+  &quot;operadorTipificado&quot;: {
+   &quot;enum&quot;: [
+    &quot;EQUALS&quot;,
+    &quot;NOT_EQUALS&quot;,
+    &quot;IN&quot;,
+    &quot;RANGE&quot;,
+    &quot;LT&quot;,
+    &quot;LTE&quot;,
+    &quot;GT&quot;,
+    &quot;GTE&quot;,
+    &quot;PATTERN&quot;,
+    &quot;CONTAINS&quot;,
+    &quot;STARTS_WITH&quot;,
+    &quot;ENDS_WITH&quot;,
+    &quot;LENGTH&quot;
+   ]
+  },
+  &quot;operadorFuncao&quot;: {
+   &quot;enum&quot;: [
+    &quot;FUNCTION&quot;,
+    &quot;EXT_FUNCTION&quot;
+   ]
+  },
+  &quot;cabecalho&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;hlm&quot;
+   ],
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;versao&quot;: {
+     &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;dominios&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+     }
+    },
+    &quot;hlm&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;,
+     &quot;description&quot;: &quot;O HLM que a declaração descreve.&quot;
+    }
+   },
+   &quot;additionalProperties&quot;: false
+  },
+  &quot;contextoExterno&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;tipo&quot;,
+    &quot;descricao&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeFuncao&quot;
+    },
+    &quot;tipo&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/tipoBase&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;minLength&quot;: 10
+    },
+    &quot;fonte&quot;: {
+     &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  },
+  &quot;funcao&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;descricao&quot;,
+    &quot;parametros&quot;,
+    &quot;contextosExternos&quot;,
+    &quot;retorno&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeFuncao&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;minLength&quot;: 10
+    },
+    &quot;parametros&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;minItems&quot;: 1,
+     &quot;items&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+       &quot;nome&quot;,
+       &quot;tipo&quot;,
+       &quot;papel&quot;
+      ],
+      &quot;additionalProperties&quot;: false,
+      &quot;properties&quot;: {
+       &quot;nome&quot;: {
+        &quot;type&quot;: &quot;string&quot;
+       },
+       &quot;tipo&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;tipo base, &#x27;lista&lt;tipo&gt;&#x27;, &#x27;modelo&#x27; (instâncias de uma coleção) ou outro (ex.: &#x27;poligono&#x27;).&quot;
+       },
+       &quot;papel&quot;: {
+        &quot;enum&quot;: [
+         &quot;alvo&quot;,
+         &quot;parametro&quot;
+        ],
+        &quot;description&quot;: &quot;alvo: recebe um caminho do modelo; parametro: recebe um literal da regra.&quot;
+       },
+       &quot;colecao&quot;: {
+        &quot;type&quot;: &quot;boolean&quot;
+       },
+       &quot;descricao&quot;: {
+        &quot;type&quot;: &quot;string&quot;
+       }
+      }
+     }
+    },
+    &quot;contextosExternos&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+     }
+    },
+    &quot;retorno&quot;: {
+     &quot;const&quot;: &quot;booleano&quot;
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  },
+  &quot;propriedade&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;tipo&quot;,
+    &quot;descricao&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomePropriedade&quot;
+    },
+    &quot;tipo&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/tipoBase&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;minLength&quot;: 5
+    },
+    &quot;nomesAlternativos&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+     }
+    },
+    &quot;regras&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/regra&quot;
+     }
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  },
+  &quot;composicaoUSM&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;usm&quot;,
+    &quot;cardinalidade&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;usm&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;papel&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;cardinalidade&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/cardinalidade&quot;
+    }
+   }
+  },
+  &quot;composicaoSM&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;sm&quot;,
+    &quot;cardinalidade&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;sm&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;papel&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;cardinalidade&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/cardinalidade&quot;
+    }
+   }
+  },
+  &quot;usm&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;descricao&quot;,
+    &quot;propriedades&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;minLength&quot;: 10
+    },
+    &quot;propriedades&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;minItems&quot;: 1,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/propriedade&quot;
+     }
+    },
+    &quot;regras&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/regra&quot;
+     }
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  },
+  &quot;sm&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;descricao&quot;
+   ],
+   &quot;anyOf&quot;: [
+    {
+     &quot;required&quot;: [
+      &quot;composicao&quot;
+     ]
+    },
+    {
+     &quot;required&quot;: [
+      &quot;propriedades&quot;
+     ]
+    }
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;minLength&quot;: 10
+    },
+    &quot;composicao&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/composicaoUSM&quot;
+     }
+    },
+    &quot;propriedades&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/propriedade&quot;
+     },
+     &quot;description&quot;: &quot;propriedades residuais&quot;
+    },
+    &quot;regras&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/regra&quot;
+     }
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  },
+  &quot;hlm&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;descricao&quot;,
+    &quot;composicao&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;minLength&quot;: 10
+    },
+    &quot;composicao&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;minItems&quot;: 1,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/composicaoSM&quot;
+     }
+    },
+    &quot;regras&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/regra&quot;
+     }
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  },
+  &quot;argumento&quot;: {
+   &quot;oneOf&quot;: [
+    {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;caminho&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;caminho&quot;: {
+       &quot;type&quot;: &quot;string&quot;
+      }
+     }
+    },
+    {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;literal&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;literal&quot;: {}
+     }
+    }
+   ]
+  },
+  &quot;chamada&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;funcao&quot;,
+    &quot;argumentos&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;funcao&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeFuncao&quot;
+    },
+    &quot;argumentos&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/argumento&quot;
+     }
+    }
+   }
+  },
+  &quot;restricao&quot;: {
+   &quot;oneOf&quot;: [
+    {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;propriedade&quot;,
+      &quot;operador&quot;,
+      &quot;valor&quot;,
+      &quot;mensagem&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;propriedade&quot;: {
+       &quot;type&quot;: &quot;string&quot;
+      },
+      &quot;operador&quot;: {
+       &quot;$ref&quot;: &quot;#/$defs/operadorTipificado&quot;
+      },
+      &quot;valor&quot;: {},
+      &quot;mensagem&quot;: {
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;minLength&quot;: 10
+      }
+     }
+    },
+    {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;operador&quot;,
+      &quot;chamada&quot;,
+      &quot;mensagem&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;operador&quot;: {
+       &quot;$ref&quot;: &quot;#/$defs/operadorFuncao&quot;
+      },
+      &quot;chamada&quot;: {
+       &quot;$ref&quot;: &quot;#/$defs/chamada&quot;
+      },
+      &quot;mensagem&quot;: {
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;minLength&quot;: 10
+      }
+     }
+    }
+   ]
+  },
+  &quot;termo&quot;: {
+   &quot;oneOf&quot;: [
+    {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;propriedade&quot;,
+      &quot;operador&quot;,
+      &quot;valor&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;propriedade&quot;: {
+       &quot;type&quot;: &quot;string&quot;
+      },
+      &quot;operador&quot;: {
+       &quot;$ref&quot;: &quot;#/$defs/operadorTipificado&quot;
+      },
+      &quot;valor&quot;: {}
+     }
+    },
+    {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;propriedade&quot;,
+      &quot;operador&quot;,
+      &quot;contexto&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;propriedade&quot;: {
+       &quot;type&quot;: &quot;string&quot;
+      },
+      &quot;operador&quot;: {
+       &quot;enum&quot;: [
+        &quot;EQUALS&quot;,
+        &quot;NOT_EQUALS&quot;,
+        &quot;LT&quot;,
+        &quot;LTE&quot;,
+        &quot;GT&quot;,
+        &quot;GTE&quot;
+       ]
+      },
+      &quot;contexto&quot;: {
+       &quot;type&quot;: &quot;string&quot;
+      }
+     }
+    },
+    {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;operador&quot;,
+      &quot;chamada&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;operador&quot;: {
+       &quot;$ref&quot;: &quot;#/$defs/operadorFuncao&quot;
+      },
+      &quot;chamada&quot;: {
+       &quot;$ref&quot;: &quot;#/$defs/chamada&quot;
+      }
+     }
+    }
+   ]
+  },
+  &quot;regra&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;id&quot;,
+    &quot;natureza&quot;,
+    &quot;descricao&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;id&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;pattern&quot;: &quot;^(RP|RIR|RIC)-[A-Z0-9]+(-[A-Z0-9]+)*$&quot;
+    },
+    &quot;natureza&quot;: {
+     &quot;enum&quot;: [
+      &quot;plausibilidade&quot;,
+      &quot;inferencia_restritiva&quot;,
+      &quot;inferencia_conclusiva&quot;
+     ]
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;condicao&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;$ref&quot;: &quot;#/$defs/termo&quot;
+     }
+    },
+    &quot;restricao&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/restricao&quot;
+    },
+    &quot;mensagem&quot;: {
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;minLength&quot;: 10,
+     &quot;description&quot;: &quot;só numa RIC: mensagem de conclusão&quot;
+    },
+    &quot;conclusao&quot;: {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;tipo&quot;,
+      &quot;valor&quot;
+     ],
+     &quot;additionalProperties&quot;: false,
+     &quot;properties&quot;: {
+      &quot;tipo&quot;: {
+       &quot;enum&quot;: [
+        &quot;ACAO&quot;,
+        &quot;ESTADO&quot;
+       ]
+      },
+      &quot;valor&quot;: {
+       &quot;type&quot;: &quot;string&quot;
+      }
+     }
+    },
+    &quot;contextosExternos&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+     },
+     &quot;description&quot;: &quot;derivado; se presente, tem de coincidir&quot;
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   },
+   &quot;allOf&quot;: [
+    {
+     &quot;if&quot;: {
+      &quot;properties&quot;: {
+       &quot;natureza&quot;: {
+        &quot;const&quot;: &quot;plausibilidade&quot;
+       }
+      }
+     },
+     &quot;then&quot;: {
+      &quot;required&quot;: [
+       &quot;restricao&quot;
+      ],
+      &quot;not&quot;: {
+       &quot;anyOf&quot;: [
+        {
+         &quot;required&quot;: [
+          &quot;mensagem&quot;
+         ]
+        },
+        {
+         &quot;required&quot;: [
+          &quot;conclusao&quot;
+         ]
+        }
+       ]
+      },
+      &quot;properties&quot;: {
+       &quot;condicao&quot;: {
+        &quot;maxItems&quot;: 0
+       }
+      }
+     }
+    },
+    {
+     &quot;if&quot;: {
+      &quot;properties&quot;: {
+       &quot;natureza&quot;: {
+        &quot;const&quot;: &quot;inferencia_restritiva&quot;
+       }
+      }
+     },
+     &quot;then&quot;: {
+      &quot;required&quot;: [
+       &quot;condicao&quot;,
+       &quot;restricao&quot;
+      ],
+      &quot;properties&quot;: {
+       &quot;condicao&quot;: {
+        &quot;minItems&quot;: 1
+       }
+      },
+      &quot;not&quot;: {
+       &quot;anyOf&quot;: [
+        {
+         &quot;required&quot;: [
+          &quot;mensagem&quot;
+         ]
+        },
+        {
+         &quot;required&quot;: [
+          &quot;conclusao&quot;
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     &quot;if&quot;: {
+      &quot;properties&quot;: {
+       &quot;natureza&quot;: {
+        &quot;const&quot;: &quot;inferencia_conclusiva&quot;
+       }
+      }
+     },
+     &quot;then&quot;: {
+      &quot;required&quot;: [
+       &quot;condicao&quot;,
+       &quot;mensagem&quot;
+      ],
+      &quot;properties&quot;: {
+       &quot;condicao&quot;: {
+        &quot;minItems&quot;: 1
+       }
+      },
+      &quot;not&quot;: {
+       &quot;required&quot;: [
+        &quot;restricao&quot;
+       ]
+      }
+     }
+    }
+   ]
+  },
+  &quot;projecao&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;hlm&quot;,
+    &quot;obrigatorias&quot;,
+    &quot;permitidas&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;hlm&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;obrigatorias&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+     }
+    },
+    &quot;permitidas&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+     }
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  },
+  &quot;perfil&quot;: {
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;nome&quot;,
+    &quot;projecao&quot;,
+    &quot;fixa&quot;
+   ],
+   &quot;additionalProperties&quot;: false,
+   &quot;properties&quot;: {
+    &quot;nome&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;projecao&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;hlm&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/nomeModelo&quot;
+    },
+    &quot;descricao&quot;: {
+     &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;fixa&quot;: {
+     &quot;type&quot;: &quot;array&quot;,
+     &quot;items&quot;: {
+      &quot;oneOf&quot;: [
+       {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+         &quot;propriedade&quot;,
+         &quot;valor&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+         &quot;propriedade&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+         },
+         &quot;valor&quot;: {}
+        }
+       },
+       {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;required&quot;: [
+         &quot;contexto&quot;,
+         &quot;valor&quot;
+        ],
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+         &quot;contexto&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+         },
+         &quot;valor&quot;: {}
+        }
+       }
+      ]
+     }
+    },
+    &quot;notas&quot;: {
+     &quot;$ref&quot;: &quot;#/$defs/notas&quot;
+    }
+   }
+  }
+ }
+}</code></pre></main></body></html>

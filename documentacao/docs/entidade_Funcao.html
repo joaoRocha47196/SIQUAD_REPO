@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Função · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="current sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a> › <a href="entidades.html">Entidades</a></div><h1>Função</h1><h3 id="descricao">Descrição</h3>
+<p>As funções ocupam o espaço onde quase nunca há conhecimento partilhado sobre a forma como os dados são validados: somar uma coleção, verificar unicidade, calcular sobre uma geometria, validar um hash, uma assinatura ou o dígito de controlo de um NIF. A regra delega a verificação em quem a sabe fazer: uma função declarada.</p>
+<p>Uma função é declarada com:</p>
+<ul><li>um <b>nome</b>;</li><li>uma <b>descrição</b>, que diz quando é verdadeira;</li><li>os <b>parâmetros</b>, que são os <b>alvos</b> (propriedades ou coleções que lê do modelo) e os <b>literais</b> (valores declarados na regra);</li><li>os <b>contextos externos</b> de que depende;</li><li>o <b>retorno</b>, sempre <code>booleano</code>.</li></ul>
+<p>Na declaração, a função só é declarada: a implementação vive no motor de avaliação. Na tese, as funções são geradas por um LLM a partir da declaração, testadas, revistas e só depois registadas no motor.</p>
+<h3 id="diagrama">Diagrama</h3>
+<p>Todos os atributos da entidade e todas as ligações a outras entidades. <b>LIGAÇÃO</b> marca os atributos que ligam a outra entidade; cada seta indica o atributo da declaração e a aresta correspondente no grafo.</p>
+<pre class="mermaid">classDiagram
+  direction LR
+  class Funcao {
+    nome : texto · chave · camelCase
+    descricao : texto · Verdadeira quando …
+    parametros : lista de Parametro
+    contextosExternos : lista de nomes · LIGAÇÃO
+    retorno = booleano
+    notas : texto
+  }
+  class Parametro {
+    nome : texto
+    tipo : tipo base
+    papel : alvo ou parametro
+    colecao : booleano
+  }
+  Funcao &quot;1&quot; --&gt; &quot;1..*&quot; Parametro
+  Funcao &quot;0..*&quot; --&gt; &quot;0..*&quot; ContextoExterno : contextosExternos · DEPENDE_DE
+  Restricao_ou_Condicao &quot;0..*&quot; --&gt; &quot;0..*&quot; Funcao : chamada · CHAMA
+  Funcao &quot;0..*&quot; --&gt; &quot;0..*&quot; Propriedade_ou_Modelo : argumento caminho · LE com a regra</pre>
+<h3 id="atributos">Atributos</h3>
+<table><thead><tr><th>Atributo</th><th>Tipo</th><th>Obrigatório</th></tr></thead><tbody><tr><td><code>nome</code></td><td>camelCase</td><td>sim</td></tr><tr><td><code>descricao</code></td><td>texto (≥ 10): "Verdadeira quando …"</td><td>sim</td></tr><tr><td><code>parametros</code></td><td>lista (≥ 1)</td><td>sim</td></tr><tr><td><code>contextosExternos</code></td><td>lista de nomes (pode ser vazia)</td><td>sim</td></tr><tr><td><code>retorno</code></td><td><code>&quot;booleano&quot;</code></td><td>sim</td></tr><tr><td><code>notas</code></td><td>texto</td><td>não</td></tr></tbody></table>
+<h4 id="ligacoes-no-grafo">Ligações no grafo</h4>
+<table><thead><tr><th>Aresta</th><th>Sentido</th><th>Outro extremo</th><th>Atributos</th></tr></thead><tbody><tr><td><code>CHAMA</code></td><td>←</td><td>Restricao ou CondicaoAplicabilidade</td><td><code>chamada</code>, <code>argumentos</code>, <code>operador</code>, <code>regra</code>, <code>termo</code></td></tr><tr><td><code>LE</code></td><td>Funcao →</td><td>Propriedade, USM ou SM</td><td><code>caminho</code>, <code>regra</code>, <code>posicao</code>, <code>parte</code>, <code>colecao</code></td></tr><tr><td><code>DEPENDE_DE</code></td><td>Funcao →</td><td>ContextoExterno</td><td>—</td></tr></tbody></table>
+<p>O nó <code>Funcao</code> é único por nome e partilhado pelas regras que a usam. Por isso, cada aresta <code>LE</code> tem o atributo <code>regra</code>, que identifica a chamada a que o argumento pertence.</p>
+<p>No grafo: nó <code>Funcao</code> (chave <code>nome</code>). O modelo completo do grafo está em <a href="../../ecv/4_graph/graph_model.json">ecv/4_graph/graph_model.json</a>.</p>
+<h3 id="exemplos">Exemplos</h3>
+<h4 id="esboco-na-declaracao">Esboço na declaração</h4>
+<p>As funções declaram-se uma vez, na lista <code>funcoes</code>, e são chamadas pelo nome nas regras:</p>
+<pre class="code"><code>&quot;funcoes&quot;: [
+  {
+    &quot;nome&quot;: &quot;excedeDiasDesdeHoje&quot;,
+    &quot;descricao&quot;: &quot;Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.&quot;,
+    &quot;parametros&quot;: [
+      {&quot;nome&quot;: &quot;data&quot;, &quot;tipo&quot;: &quot;data&quot;, &quot;papel&quot;: &quot;alvo&quot;},
+      {&quot;nome&quot;: &quot;n&quot;, &quot;tipo&quot;: &quot;inteiro&quot;, &quot;papel&quot;: &quot;parametro&quot;}
+    ],
+    &quot;contextosExternos&quot;: [&quot;dataDeHoje&quot;],
+    &quot;retorno&quot;: &quot;booleano&quot;
+  }
+]</code></pre>
+<p>Na regra:</p>
+<pre class="code"><code>{&quot;operador&quot;: &quot;EXT_FUNCTION&quot;, &quot;chamada&quot;: {&quot;funcao&quot;: &quot;excedeDiasDesdeHoje&quot;, &quot;argumentos&quot;: [{&quot;caminho&quot;: &quot;dataUltimaManutencao&quot;}, {&quot;literal&quot;: 7}]}}</code></pre>
+<h4 id="exemplos-das-declaracoes-de-exemplo">Exemplos das declarações de exemplo</h4>
+<table><thead><tr><th>Função</th><th>Verdadeira quando</th><th>Parâmetros</th><th>Contextos externos</th><th>Operador</th><th>Regras</th></tr></thead><tbody><tr><td>excedeDiasDesdeHoje</td><td>Verdadeira quando passaram mais de n dias desde a data indicada até à data de hoje.</td><td>data: data, n: inteiro (literal)</td><td>dataDeHoje</td><td>EXT_FUNCTION</td><td>RIC-MANUT</td></tr><tr><td>naoPosteriorAHoje</td><td>Verdadeira quando a data indicada não é posterior à data de hoje.</td><td>data: data</td><td>dataDeHoje</td><td>EXT_FUNCTION</td><td>RP-DATAEMISSAO, RP-ORDEM-DATA, RP-MANUT-FUTURA</td></tr><tr><td>desfasamentoInferiorA</td><td>Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.</td><td>instante: data, s: inteiro (literal)</td><td>relogioServidor</td><td>EXT_FUNCTION</td><td>RP-RELOGIO</td></tr><tr><td>dentroDe</td><td>Verdadeira quando o ponto (latitude, longitude) está dentro da área, um polígono de vértices (latitude, longitude).</td><td>latitude: decimal, longitude: decimal, area: poligono (literal)</td><td>—</td><td>FUNCTION</td><td>RIR-LX-LOCALIDADE, RP-AREA</td></tr><tr><td>assinaturaValida</td><td>Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.</td><td>mensagem: texto, assinatura: texto</td><td>chaveDispositivo</td><td>EXT_FUNCTION</td><td>RP-ASSINATURA</td></tr><tr><td>valoresUnicos</td><td>Verdadeira quando nenhum valor da coleção se repete.</td><td>valores: lista&lt;inteiro&gt; [coleção]</td><td>—</td><td>FUNCTION</td><td>RP-LIN-NUM</td></tr><tr><td>valoresConsecutivos</td><td>Verdadeira quando os valores da coleção começam em 1 e não têm falhas.</td><td>valores: lista&lt;inteiro&gt; [coleção]</td><td>—</td><td>FUNCTION</td><td>RP-LIN-SEQ</td></tr><tr><td>contagemInferiorA</td><td>Verdadeira quando a coleção tem menos de n instâncias.</td><td>instancias: modelo [coleção], n: inteiro (literal)</td><td>—</td><td>FUNCTION</td><td>RIR-FS-LIN, RP-ORDEM-MAX, RP-LIN-MAX</td></tr><tr><td>somaIgualA</td><td>Verdadeira quando a soma dos valores da coleção, arredondada ao cêntimo, é igual ao total.</td><td>valores: lista&lt;decimal&gt; [coleção], total: decimal</td><td>—</td><td>FUNCTION</td><td>RP-SOMA</td></tr><tr><td>digitoControloValido</td><td>Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.</td><td>nif: texto</td><td>—</td><td>FUNCTION</td><td>RP-NIF-DC</td></tr><tr><td>hashEncadeadoValido</td><td>Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.</td><td>numero: texto, dataEmissao: data, totalFatura: decimal, hash: texto</td><td>hashAnterior</td><td>EXT_FUNCTION</td><td>RP-HASH</td></tr><tr><td>atcudValido</td><td>Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.</td><td>atcud: texto, serie: texto</td><td>seriesComunicadasAT</td><td>EXT_FUNCTION</td><td>RP-ATCUD</td></tr></tbody></table>
+<p>Função com uma coleção e um literal:</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;contagemInferiorA&quot;,
+  &quot;descricao&quot;: &quot;Verdadeira quando a coleção tem menos de n instâncias.&quot;,
+  &quot;parametros&quot;: [
+    {
+      &quot;nome&quot;: &quot;instancias&quot;,
+      &quot;tipo&quot;: &quot;modelo&quot;,
+      &quot;papel&quot;: &quot;alvo&quot;,
+      &quot;colecao&quot;: true,
+      &quot;descricao&quot;: &quot;Instâncias de um modelo composto com cardinalidade repetível.&quot;
+    },
+    {
+      &quot;nome&quot;: &quot;n&quot;,
+      &quot;tipo&quot;: &quot;inteiro&quot;,
+      &quot;papel&quot;: &quot;parametro&quot;,
+      &quot;descricao&quot;: &quot;Limite exclusivo do número de instâncias.&quot;
+    }
+  ],
+  &quot;contextosExternos&quot;: [],
+  &quot;retorno&quot;: &quot;booleano&quot;
+}</code></pre>
+<p>Função com quatro alvos e um contexto externo:</p>
+<pre class="code"><code>{
+  &quot;nome&quot;: &quot;hashEncadeadoValido&quot;,
+  &quot;descricao&quot;: &quot;Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.&quot;,
+  &quot;parametros&quot;: [
+    {&quot;nome&quot;: &quot;numero&quot;, &quot;tipo&quot;: &quot;texto&quot;, &quot;papel&quot;: &quot;alvo&quot;},
+    {&quot;nome&quot;: &quot;dataEmissao&quot;, &quot;tipo&quot;: &quot;data&quot;, &quot;papel&quot;: &quot;alvo&quot;},
+    {&quot;nome&quot;: &quot;totalFatura&quot;, &quot;tipo&quot;: &quot;decimal&quot;, &quot;papel&quot;: &quot;alvo&quot;},
+    {&quot;nome&quot;: &quot;hash&quot;, &quot;tipo&quot;: &quot;texto&quot;, &quot;papel&quot;: &quot;alvo&quot;}
+  ],
+  &quot;contextosExternos&quot;: [&quot;hashAnterior&quot;],
+  &quot;retorno&quot;: &quot;booleano&quot;
+}</code></pre>
+<p>Funções da tese que não estão na declaração. <code>eQuadrado(area)</code>, <code>eCirculo(area)</code> e <code>interseta(areaA, areaB)</code> (tese, Tabela "Funções declaradas", com a regra RP-AREA-FORMA) só leem literais das regras. Não validam dados, analisam a própria declaração (por exemplo, se duas áreas autorizadas se intersetam). Pertencem, por isso, às operações sobre o grafo, e não a uma regra com alvo. Uma restrição sem alvo no modelo não é uma restrição de validação.</p>
+<h3 id="pode-e-nao-pode">Pode e não pode</h3>
+<table><thead><tr><th>Pode</th><th>Não pode</th></tr></thead><tbody><tr><td>Ser usada por várias regras, com argumentos diferentes (<code>contagemInferiorA</code> em RP-LIN-MAX, RIR-FS-LIN e RP-ORDEM-MAX)</td><td>Devolver outra coisa que não um booleano</td></tr><tr><td>Ler propriedades, listas de valores de uma coleção ou instâncias de um modelo</td><td>Aceder a contextos externos que não declare</td></tr><tr><td>Depender de contextos externos (só com EXT_FUNCTION)</td><td>Ser chamada com um número de argumentos diferente do de parâmetros</td></tr><tr><td>Receber literais declarados na regra</td><td>Ter efeitos laterais ou repetir verificações de presença (regra de geração)</td></tr></tbody></table>
+<h3 id="detalhes">Detalhes</h3>
+<h4 id="onde-pode-ser-usada">Onde pode ser usada</h4>
+<table><thead><tr><th>Lugar</th><th>Operador</th><th>Efeito</th><th>Exemplos</th></tr></thead><tbody><tr><td><b>Numa restrição</b> (RP ou RIR)</td><td><code>FUNCTION</code> ou <code>EXT_FUNCTION</code></td><td>A função é a verificação; se falha, comunica-se a mensagem da restrição</td><td>RP-SOMA, RP-AREA, RP-HASH, RIR-FS-LIN</td></tr><tr><td><b>Num termo de uma condição</b> (RIR ou RIC)</td><td><code>FUNCTION</code> ou <code>EXT_FUNCTION</code></td><td>A função decide (com os outros termos) se a regra se aplica</td><td>RIC-MANUT (<code>excedeDiasDesdeHoje</code>), RIR-LX-LOCALIDADE (<code>dentroDe</code> Lisboa)</td></tr></tbody></table>
+<p>O operador é <code>FUNCTION</code> quando a função só usa valores do modelo e da regra, e <code>EXT_FUNCTION</code> quando usa também contextos externos (I5).</p>
+<h4 id="parametros">Parâmetros</h4>
+<table><thead><tr><th>Campo</th><th>Valores</th><th>Significado</th></tr></thead><tbody><tr><td><code>nome</code></td><td>texto</td><td>Nome do parâmetro (posição na chamada).</td></tr><tr><td><code>tipo</code></td><td>tipo base, <code>lista&lt;tipo&gt;</code>, <code>modelo</code>, ou outro (<code>poligono</code>)</td><td>O que a função recebe.</td></tr><tr><td><code>papel</code></td><td><code>alvo</code> · <code>parametro</code></td><td><code>alvo</code> recebe um caminho do modelo (<code>{&quot;caminho&quot;: …}</code>); <code>parametro</code> recebe um literal da regra (<code>{&quot;literal&quot;: …}</code>).</td></tr><tr><td><code>colecao</code></td><td>booleano</td><td>O argumento atravessa uma composição repetível (lista de valores ou de instâncias).</td></tr><tr><td><code>descricao</code></td><td>texto</td><td>Opcional.</td></tr></tbody></table>
+<p>O que é literal e o que é contexto. A área autorizada de RP-AREA não está no modelo, mas também não é um contexto externo: é informação da própria regra, como os limites de um RANGE, e passa-se como literal. A data de hoje é um contexto externo: não pertence ao modelo nem à regra.</p>
+<h3 id="verificacoes">Verificações</h3>
+<p><b>S-FUNC</b> (declaração), <b>S-CHAMADA</b> (função declarada; número de argumentos; caminho ou literal conforme o papel; coleções), <b>I5</b> (FUNCTION vs EXT_FUNCTION) e <b>I13</b> (aviso: função declarada mas não usada).</p><p class="note">Fonte: <a href="../../specs/entidades/ecr/Funcao.md">specs/entidades/ecr/Funcao.md</a></p></main><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,securityLevel:"loose"});}</script></body></html>

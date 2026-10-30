@@ -1,0 +1,161 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-IDENT",
+  "regra": {
+    "id": "RP-IDENT",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+    "alcance": "SM Identificacao.identificador",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "identificador",
+      "chave": "Propriedade:SM:Identificacao.identificador",
+      "dono": "Identificacao"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).",
+      "texto": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+      "caminho": "identificador",
+      "propriedade": "SM:Identificacao.identificador",
+      "valor": "^[A-Z]+-[0-9]{4}$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "SM:Identificacao.identificador",
+      "nome": "identificador",
+      "dono": "Identificacao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "O identificador do dispositivo não tem o formato esperado (letras, hífen e quatro algarismos).",
+    "texto": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+    "caminho": "identificador",
+    "propriedade": "SM:Identificacao.identificador",
+    "valor": "^[A-Z]+-[0-9]{4}$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$",
+    "alvo": {
+      "chave": "SM:Identificacao.identificador",
+      "nome": "identificador",
+      "dono": "Identificacao",
+      "nivelDono": "SM",
+      "tipo": "texto",
+      "descricao": "Identificador do dispositivo"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Identificacao.identificador",
+    "nome": "identificador",
+    "dono": "Identificacao",
+    "nivelDono": "SM",
+    "tipo": "texto",
+    "descricao": "Identificador do dispositivo",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-IDENT",
+        "rotulo": "RP",
+        "texto": "RP-IDENT",
+        "detalhe": "Identificacao.identificador segue o padrão ^[A-Z]+-[0-9]{4}$"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.identificador",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.identificador",
+        "detalhe": "Identificador do dispositivo"
+      },
+      {
+        "chave": "Restricao:RP-IDENT",
+        "rotulo": "Restricao",
+        "texto": "RP-IDENT#restricao",
+        "detalhe": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-IDENT",
+        "para": "Propriedade:SM:Identificacao.identificador",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-IDENT",
+        "para": "Restricao:RP-IDENT",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-IDENT",
+        "para": "Propriedade:SM:Identificacao.identificador",
+        "tipo": "RESTRINGE",
+        "texto": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Identificacao.identificador",
+        "rotulo": "Propriedade",
+        "nome": "identificador",
+        "dono": "Identificacao",
+        "descricao": "Identificador do dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.identificador",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-IDENT"
+  }
+}

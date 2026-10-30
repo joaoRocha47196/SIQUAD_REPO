@@ -1,0 +1,182 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-VALOR-FISICO",
+  "regra": {
+    "id": "RP-VALOR-FISICO",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Medicao.valor entre -273.15 e 2400",
+    "alcance": "USM Medicao.valor",
+    "notas": "Conjunto de gamas fisicamente admissíveis do domínio; a gama de cada combinação é inferida (RIR-*).",
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "valor",
+      "chave": "Propriedade:USM:Medicao.valor",
+      "dono": "Medicao"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.",
+      "texto": "valor entre -273.15 e 2400",
+      "caminho": "valor",
+      "propriedade": "USM:Medicao.valor",
+      "valor": [
+        -273.15,
+        2400
+      ],
+      "minimo": -273.15,
+      "maximo": 2400
+    },
+    "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Medicao.valor",
+      "nome": "valor",
+      "dono": "Medicao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.",
+    "texto": "valor entre -273.15 e 2400",
+    "caminho": "valor",
+    "propriedade": "USM:Medicao.valor",
+    "valor": [
+      -273.15,
+      2400
+    ],
+    "minimo": -273.15,
+    "maximo": 2400,
+    "descricao": "valor entre -273.15 e 2400",
+    "alvo": {
+      "chave": "USM:Medicao.valor",
+      "nome": "valor",
+      "dono": "Medicao",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Valor medido, na unidade indicada"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Medicao.valor",
+    "nome": "valor",
+    "dono": "Medicao",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Valor medido, na unidade indicada",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-VALOR-FISICO",
+        "rotulo": "RP",
+        "texto": "RP-VALOR-FISICO",
+        "detalhe": "Medicao.valor entre -273.15 e 2400"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.valor",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.valor",
+        "detalhe": "Valor medido, na unidade indicada"
+      },
+      {
+        "chave": "Restricao:RP-VALOR-FISICO",
+        "rotulo": "Restricao",
+        "texto": "RP-VALOR-FISICO#restricao",
+        "detalhe": "valor entre -273.15 e 2400"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-VALOR-FISICO",
+        "para": "Propriedade:USM:Medicao.valor",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-VALOR-FISICO",
+        "para": "Restricao:RP-VALOR-FISICO",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-VALOR-FISICO",
+        "para": "Propriedade:USM:Medicao.valor",
+        "tipo": "RESTRINGE",
+        "texto": "valor entre -273.15 e 2400"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Medicao.valor",
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "dono": "Medicao",
+        "descricao": "Valor medido, na unidade indicada",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.valor",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-VALOR-FISICO"
+  }
+}

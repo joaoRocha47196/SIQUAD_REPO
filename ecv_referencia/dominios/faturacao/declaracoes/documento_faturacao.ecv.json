@@ -1,0 +1,3987 @@
+{
+  "$schema": "../../../specs/declaracao/ecv.schema.json",
+  "declaracao": {
+    "nome": "documento_faturacao",
+    "versao": "0.1.0",
+    "descricao": "Documento de faturação CIUS-PT (fatura 380, nota de crédito 381, nota de débito 383, adiantamento 386, autofaturação 389): estrutura semântica EN 16931 e regras do schematron CIUS-PT 2.1.1.",
+    "dominios": ["faturação"],
+    "hlm": "DocumentoFaturacao"
+  },
+  "funcoes": [
+    {
+      "nome": "algumPresente",
+      "descricao": "Verdadeira quando pelo menos um dos dois valores indicados está presente.",
+      "parametros": [
+        {"nome": "primeiro", "tipo": "valor", "papel": "alvo"},
+        {"nome": "segundo", "tipo": "valor", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "nenhumPresente",
+      "descricao": "Verdadeira quando nenhum dos dois valores indicados está presente.",
+      "parametros": [
+        {"nome": "primeiro", "tipo": "valor", "papel": "alvo"},
+        {"nome": "segundo", "tipo": "valor", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "existe",
+      "descricao": "Verdadeira quando o valor indicado está presente.",
+      "parametros": [
+        {"nome": "valor", "tipo": "valor", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "colecaoNaoVazia",
+      "descricao": "Verdadeira quando a coleção tem pelo menos um valor presente.",
+      "parametros": [
+        {"nome": "valores", "tipo": "lista<valor>", "papel": "alvo", "colecao": true}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "mutuamenteExclusivos",
+      "descricao": "Verdadeira quando os dois valores indicados não estão presentes ao mesmo tempo.",
+      "parametros": [
+        {"nome": "primeiro", "tipo": "valor", "papel": "alvo"},
+        {"nome": "segundo", "tipo": "valor", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "naoAnteriorA",
+      "descricao": "Verdadeira quando alguma das datas está ausente ou quando a data não é anterior à data de referência.",
+      "parametros": [
+        {"nome": "data", "tipo": "data", "papel": "alvo"},
+        {"nome": "referencia", "tipo": "data", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "somaIgualATolerancia",
+      "descricao": "Verdadeira quando o total está ausente ou quando a soma dos valores da coleção difere do total, no máximo, pela tolerância.",
+      "parametros": [
+        {"nome": "valores", "tipo": "lista<decimal>", "papel": "alvo", "colecao": true},
+        {"nome": "total", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "tolerancia", "tipo": "decimal", "papel": "parametro"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "somaParcelasIgualA",
+      "descricao": "Verdadeira quando o total está ausente ou quando a soma das duas parcelas (as ausentes contam como zero) difere do total, no máximo, pela tolerância.",
+      "parametros": [
+        {"nome": "parcelaA", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "parcelaB", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "total", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "tolerancia", "tipo": "decimal", "papel": "parametro"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "saldoIgualA",
+      "descricao": "Verdadeira quando base menos subtrair mais somar (os ausentes contam como zero) difere do total, no máximo, pela tolerância.",
+      "parametros": [
+        {"nome": "base", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "subtrair", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "somar", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "total", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "tolerancia", "tipo": "decimal", "papel": "parametro"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "produtoPercentualIgualA",
+      "descricao": "Verdadeira quando falta a base ou a percentagem, ou quando base × percentagem / 100 difere do resultado, no máximo, pela tolerância.",
+      "parametros": [
+        {"nome": "base", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "percentagem", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "resultado", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "tolerancia", "tipo": "decimal", "papel": "parametro"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "montanteLinhaCoerente",
+      "descricao": "Verdadeira quando quantidade × preço / quantidade base (1 se ausente ou zero), menos os descontos e mais os encargos da linha, difere do montante da linha, no máximo, pela tolerância.",
+      "parametros": [
+        {"nome": "quantidade", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "preco", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "quantidadeBase", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "descontos", "tipo": "lista<decimal>", "papel": "alvo", "colecao": true},
+        {"nome": "encargos", "tipo": "lista<decimal>", "papel": "alvo", "colecao": true},
+        {"nome": "montante", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "tolerancia", "tipo": "decimal", "papel": "parametro"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "baseTributavelCoerente",
+      "descricao": "Verdadeira quando, para cada categoria e taxa de IVA da decomposição, a base tributável é igual à soma dos montantes das linhas mais os encargos e menos os descontos dessa categoria e taxa (com a tolerância).",
+      "parametros": [
+        {"nome": "decomposicoes", "tipo": "modelo", "papel": "alvo", "colecao": true},
+        {"nome": "linhas", "tipo": "modelo", "papel": "alvo", "colecao": true},
+        {"nome": "descontos", "tipo": "modelo", "papel": "alvo", "colecao": true},
+        {"nome": "encargos", "tipo": "modelo", "papel": "alvo", "colecao": true},
+        {"nome": "tolerancia", "tipo": "decimal", "papel": "parametro"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "categoriasIvaDecompostas",
+      "descricao": "Verdadeira quando cada código de categoria de IVA usado nas linhas, nos descontos e nos encargos aparece na decomposição do IVA.",
+      "parametros": [
+        {"nome": "codigosLinhas", "tipo": "lista<texto>", "papel": "alvo", "colecao": true},
+        {"nome": "codigosDescontos", "tipo": "lista<texto>", "papel": "alvo", "colecao": true},
+        {"nome": "codigosEncargos", "tipo": "lista<texto>", "papel": "alvo", "colecao": true},
+        {"nome": "codigosDecomposicao", "tipo": "lista<texto>", "papel": "alvo", "colecao": true}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "valoresTextoUnicos",
+      "descricao": "Verdadeira quando nenhum valor de texto da coleção se repete.",
+      "parametros": [
+        {"nome": "valores", "tipo": "lista<texto>", "papel": "alvo", "colecao": true}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "localEntregaIdentificado",
+      "descricao": "Verdadeira quando está presente pelo menos um destes: o nome do local, o identificador do local, a data de entrega ou a morada.",
+      "parametros": [
+        {"nome": "nome", "tipo": "texto", "papel": "alvo"},
+        {"nome": "identificador", "tipo": "texto", "papel": "alvo"},
+        {"nome": "data", "tipo": "data", "papel": "alvo"},
+        {"nome": "rua", "tipo": "texto", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    }
+  ],
+  "usm": [
+    {
+      "nome": "SujeitoPassivo",
+      "descricao": "Pessoa singular ou coletiva identificada para efeitos fiscais, com o identificador de IVA precedido do código do país.",
+      "propriedades": [
+        {
+          "nome": "nome",
+          "tipo": "texto",
+          "descricao": "Nome formal completo ou denominação social registada",
+          "nomesAlternativos": ["RegistrationName", "Seller name", "Buyer name", "Payee name"],
+          "regras": [
+            {
+              "id": "RP-SP-NOME",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nome",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O nome tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "SujeitoPassivo.nome tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "nomeComercial",
+          "tipo": "texto",
+          "descricao": "Nome comercial pelo qual a parte é conhecida",
+          "nomesAlternativos": ["PartyName", "trading name"],
+          "regras": [
+            {
+              "id": "RP-SP-NOMECOM",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nomeComercial",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O nome comercial tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "SujeitoPassivo.nomeComercial tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "identificador",
+          "tipo": "texto",
+          "descricao": "Identificador da parte segundo um esquema de identificação (ex.: GLN, identificação bancária)",
+          "nomesAlternativos": ["PartyIdentification"],
+          "regras": [
+            {
+              "id": "RP-SP-IDENT",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "identificador",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O identificador da parte tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "SujeitoPassivo.identificador tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "identificadorRegisto",
+          "tipo": "texto",
+          "descricao": "Identificador do registo comercial (conservatória) da parte",
+          "nomesAlternativos": ["legal registration identifier"],
+          "regras": [
+            {
+              "id": "RP-SP-REGISTO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "identificadorRegisto",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O identificador de registo tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "SujeitoPassivo.identificadorRegisto tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "identificadorIva",
+          "tipo": "texto",
+          "descricao": "Número de identificação fiscal para efeitos de IVA, precedido do código ISO 3166-1 alfa-2 do país",
+          "nomesAlternativos": ["VAT identifier", "PartyTaxScheme"],
+          "regras": [
+            {
+              "id": "RP-SP-IVA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "identificadorIva",
+                "operador": "PATTERN",
+                "valor": "^[A-Z]{2}.{1,48}$",
+                "mensagem": "O identificador de IVA tem de começar pelo código do país (duas letras) e ter no máximo 50 caracteres."
+              },
+              "descricao": "SujeitoPassivo.identificadorIva segue o padrão ^[A-Z]{2}.{1,48}$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Morada",
+      "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+      "propriedades": [
+        {"nome": "rua", "tipo": "texto", "descricao": "Arruamento e número de porta"},
+        {
+          "nome": "codigoPostal",
+          "tipo": "texto",
+          "descricao": "Código postal da morada",
+          "nomesAlternativos": ["zipCode", "postalCode", "CP"],
+          "regras": [
+            {
+              "id": "RP-CP",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+              "restricao": {
+                "propriedade": "codigoPostal",
+                "operador": "PATTERN",
+                "valor": "^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+                "mensagem": "O código postal não tem nenhum dos formatos possíveis (português, espanhol ou britânico)."
+              },
+              "notas": "Plausibilidade: os formatos possíveis {PT, ES, GB}. Qual se aplica decide-se por inferência (RIR-CP-PT/ES/GB)."
+            }
+          ]
+        },
+        {
+          "nome": "localidade",
+          "tipo": "texto",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)"
+        },
+        {
+          "nome": "freguesia",
+          "tipo": "texto",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "regras": [
+            {
+              "id": "RP-FREGUESIA",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+              "restricao": {
+                "propriedade": "freguesia",
+                "operador": "IN",
+                "valor": [
+                  "AJUDA",
+                  "ALCANTARA",
+                  "ALVALADE",
+                  "AREEIRO",
+                  "ARROIOS",
+                  "AVENIDAS_NOVAS",
+                  "BEATO",
+                  "BELEM",
+                  "BENFICA",
+                  "CAMPO_DE_OURIQUE",
+                  "CAMPOLIDE",
+                  "CARNIDE",
+                  "ESTRELA",
+                  "LUMIAR",
+                  "MARVILA",
+                  "MISERICORDIA",
+                  "OLIVAIS",
+                  "PARQUE_DAS_NACOES",
+                  "PENHA_DE_FRANCA",
+                  "SANTA_CLARA",
+                  "SANTA_MARIA_MAIOR",
+                  "SANTO_ANTONIO",
+                  "SAO_DOMINGOS_DE_BENFICA",
+                  "SAO_VICENTE"
+                ],
+                "mensagem": "A freguesia não pertence às freguesias de Lisboa conhecidas."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "pais",
+          "tipo": "texto",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "nomesAlternativos": ["country", "countryCode"],
+          "regras": [
+            {
+              "id": "RP-PAIS",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.pais ∈ {PT, ES, GB}",
+              "restricao": {
+                "propriedade": "pais",
+                "operador": "IN",
+                "valor": ["PT", "ES", "GB"],
+                "mensagem": "O país tem de ser PT, ES ou GB."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-CP-PT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[1-9][0-9]{3}-[0-9]{3}$",
+            "mensagem": "O código postal português tem de ter o formato 0000-000, sem começar por zero."
+          }
+        },
+        {
+          "id": "RIR-CP-ES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "ES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[0-5][0-9]{4}$",
+            "mensagem": "O código postal espanhol tem de ter cinco algarismos, a começar por 0 a 5."
+          }
+        },
+        {
+          "id": "RIR-CP-GB",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "GB"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+            "mensagem": "O código postal britânico tem de ter a forma de um postcode (ex.: SW1A 1AA)."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AJUDA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AJUDA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1349)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Ajuda (Lisboa) começa por 1300 ou 1349."
+          },
+          "notas": "Mapeamento conhecido (códigos postais por freguesia de Lisboa) convertido em RIR: uma regra por freguesia. A vista de decisão sobre Morada.codigoPostal reconstrói a tabela."
+        },
+        {
+          "id": "RIR-CP-LX-ALCANTARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALCANTARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alcantara (Lisboa) começa por 1300 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ALVALADE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALVALADE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1700|1749)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alvalade (Lisboa) começa por 1700 ou 1749."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AREEIRO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AREEIRO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1000|1049)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Areeiro (Lisboa) começa por 1000 ou 1049."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ARROIOS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ARROIOS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1150|1169)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AVENIDAS_NOVAS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1050|1069)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Avenidas Novas (Lisboa) começa por 1050 ou 1069."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BEATO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BEATO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1900|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Beato (Lisboa) começa por 1900 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BELEM",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BELEM"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1400|1449)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Belem (Lisboa) começa por 1400 ou 1449."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1549)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Benfica (Lisboa) começa por 1500 ou 1549."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPO_DE_OURIQUE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campo de Ourique (Lisboa) começa por 1250 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPOLIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPOLIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1070|1099)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campolide (Lisboa) começa por 1070 ou 1099."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CARNIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CARNIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1649)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Carnide (Lisboa) começa por 1600 ou 1649."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ESTRELA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ESTRELA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Estrela (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-LUMIAR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "LUMIAR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1750)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Lumiar (Lisboa) começa por 1600 ou 1750."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MARVILA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MARVILA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Marvila (Lisboa) começa por 1800 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MISERICORDIA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MISERICORDIA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Misericordia (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-OLIVAIS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "OLIVAIS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1885)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Olivais (Lisboa) começa por 1800 ou 1885."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PARQUE_DAS_NACOES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1990|1998)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Parque das Nacoes (Lisboa) começa por 1990 ou 1998."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PENHA_DE_FRANCA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1170|1199)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Penha de Franca (Lisboa) começa por 1170 ou 1199."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-CLARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_CLARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1750|1769)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Clara (Lisboa) começa por 1750 ou 1769."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_MARIA_MAIOR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1149)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Maria Maior (Lisboa) começa por 1100 ou 1149."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTO-ANTONIO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTO_ANTONIO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1269)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santo Antonio (Lisboa) começa por 1250 ou 1269."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_DOMINGOS_DE_BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1600)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Domingos de Benfica (Lisboa) começa por 1500 ou 1600."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-VICENTE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_VICENTE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1170)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Vicente (Lisboa) começa por 1100 ou 1170."
+          }
+        }
+      ]
+    },
+    {
+      "nome": "ComplementoMorada",
+      "descricao": "Linhas complementares de uma morada postal: linha adicional, terceira linha e região ou província.",
+      "notas": "Criado para não alterar o USM Morada reutilizado, que não tem estas linhas.",
+      "propriedades": [
+        {
+          "nome": "linha2",
+          "tipo": "texto",
+          "descricao": "Segunda linha da morada",
+          "nomesAlternativos": ["AdditionalStreetName"],
+          "regras": [
+            {
+              "id": "RP-CMOR-LINHA2",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "linha2",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A segunda linha da morada tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "ComplementoMorada.linha2 tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "linha3",
+          "tipo": "texto",
+          "descricao": "Linha de endereço adicional, que complementa a linha principal",
+          "nomesAlternativos": ["AddressLine"],
+          "regras": [
+            {
+              "id": "RP-CMOR-LINHA3",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "linha3",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A linha adicional da morada tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "ComplementoMorada.linha3 tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "regiao",
+          "tipo": "texto",
+          "descricao": "Região ou província da morada",
+          "nomesAlternativos": ["CountrySubentity"],
+          "regras": [
+            {
+              "id": "RP-CMOR-REGIAO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "regiao",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A região da morada tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "ComplementoMorada.regiao tem entre 1 e 200 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Contacto",
+      "descricao": "Contacto eletrónico de uma entidade.",
+      "propriedades": [
+        {
+          "nome": "email",
+          "tipo": "texto",
+          "descricao": "Endereço de correio eletrónico",
+          "nomesAlternativos": ["eMail", "correioEletronico"],
+          "regras": [
+            {
+              "id": "RP-EMAIL",
+              "natureza": "plausibilidade",
+              "descricao": "Contacto.email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+              "restricao": {
+                "propriedade": "email",
+                "operador": "PATTERN",
+                "valor": "^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+                "mensagem": "O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "ContactoTelefonico",
+      "descricao": "Contactos telefónicos de uma pessoa ou entidade: telefone e telemóvel.",
+      "propriedades": [
+        {
+          "nome": "telefone",
+          "tipo": "texto",
+          "descricao": "Número de telefone (rede fixa ou geral)",
+          "nomesAlternativos": ["Telephone", "fixePhoneNumber"],
+          "regras": [
+            {
+              "id": "RP-TELEFONE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "telefone",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O telefone tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "ContactoTelefonico.telefone tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "telemovel",
+          "tipo": "texto",
+          "descricao": "Número de telemóvel",
+          "nomesAlternativos": ["phoneNumber", "mobile"]
+        }
+      ]
+    },
+    {
+      "nome": "ReferenciaDocumento",
+      "descricao": "Referência a outro documento: o número atribuído pelo emissor e a data de emissão.",
+      "propriedades": [
+        {
+          "nome": "numero",
+          "tipo": "texto",
+          "descricao": "Número de referência do documento referido",
+          "nomesAlternativos": ["Preceding Invoice reference", "DocumentReference"],
+          "regras": [
+            {
+              "id": "RP-REFDOC-NUMERO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "numero",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O número do documento referido tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "ReferenciaDocumento.numero tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {"nome": "dataEmissao", "tipo": "data", "descricao": "Data de emissão do documento referido"}
+      ]
+    },
+    {
+      "nome": "Periodo",
+      "descricao": "Intervalo temporal definido por uma data de início e uma data de fim.",
+      "propriedades": [
+        {
+          "nome": "dataInicio",
+          "tipo": "data",
+          "descricao": "Data em que o período começa",
+          "nomesAlternativos": ["StartDate"]
+        },
+        {
+          "nome": "dataFim",
+          "tipo": "data",
+          "descricao": "Data em que o período acaba",
+          "nomesAlternativos": ["EndDate"]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-PERIODO-ORDEM",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "naoAnteriorA",
+              "argumentos": [
+                {"caminho": "dataFim"},
+                {"caminho": "dataInicio"}
+              ]
+            },
+            "mensagem": "A data de fim do período não pode ser anterior à data de início."
+          },
+          "descricao": "naoAnteriorA(Periodo.dataFim, Periodo.dataInicio)"
+        },
+        {
+          "id": "RP-PERIODO-DATA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "algumPresente",
+              "argumentos": [
+                {"caminho": "dataInicio"},
+                {"caminho": "dataFim"}
+              ]
+            },
+            "mensagem": "Um período tem de indicar a data de início, a data de fim ou ambas."
+          },
+          "descricao": "algumPresente(Periodo.dataInicio, Periodo.dataFim)"
+        }
+      ]
+    },
+    {
+      "nome": "ContaBancaria",
+      "descricao": "Conta bancária para transferência: IBAN, nome da conta e código da instituição (BIC/SWIFT).",
+      "propriedades": [
+        {
+          "nome": "iban",
+          "tipo": "texto",
+          "descricao": "Identificador da conta (código IBAN)",
+          "nomesAlternativos": ["Payment account identifier", "IBAN"],
+          "regras": [
+            {
+              "id": "RP-CONTA-IBAN",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "iban",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O IBAN tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "ContaBancaria.iban tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "nomeConta",
+          "tipo": "texto",
+          "descricao": "Nome da conta para a qual o pagamento deve ser feito",
+          "nomesAlternativos": ["Payment account name"],
+          "regras": [
+            {
+              "id": "RP-CONTA-NOME",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nomeConta",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O nome da conta tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "ContaBancaria.nomeConta tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "bic",
+          "tipo": "texto",
+          "descricao": "Código da instituição bancária (BIC/SWIFT)",
+          "nomesAlternativos": ["Payment service provider identifier", "SWIFT"],
+          "regras": [
+            {
+              "id": "RP-CONTA-BIC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "bic",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código da instituição bancária tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "ContaBancaria.bic tem entre 1 e 50 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "CartaoPagamento",
+      "descricao": "Cartão usado no pagamento: número principal da conta (PAN) e titular.",
+      "propriedades": [
+        {
+          "nome": "numeroConta",
+          "tipo": "texto",
+          "descricao": "Número principal da conta do cartão (PAN)",
+          "nomesAlternativos": ["Payment card primary account number", "PAN"],
+          "regras": [
+            {
+              "id": "RP-CARTAO-PAN",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "numeroConta",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O número do cartão tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "CartaoPagamento.numeroConta tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "titular",
+          "tipo": "texto",
+          "descricao": "Nome do titular do cartão",
+          "nomesAlternativos": ["HolderName"],
+          "regras": [
+            {
+              "id": "RP-CARTAO-TITULAR",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "titular",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O nome do titular do cartão tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "CartaoPagamento.titular tem entre 1 e 200 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "DebitoDireto",
+      "descricao": "Mandato de débito direto: referência do mandato, identificador do credor e conta a debitar.",
+      "propriedades": [
+        {
+          "nome": "referenciaMandato",
+          "tipo": "texto",
+          "descricao": "Identificador único do mandato de débito direto atribuído pelo beneficiário",
+          "nomesAlternativos": ["Mandate reference identifier"],
+          "regras": [
+            {
+              "id": "RP-DD-MANDATO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "referenciaMandato",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "A referência do mandato tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "DebitoDireto.referenciaMandato tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "identificadorCredor",
+          "tipo": "texto",
+          "descricao": "Identificador do credor atribuído pelo banco",
+          "nomesAlternativos": ["Bank assigned creditor identifier"]
+        },
+        {
+          "nome": "contaDebitada",
+          "tipo": "texto",
+          "descricao": "Conta a debitar pelo débito direto",
+          "nomesAlternativos": ["Debited account identifier"],
+          "regras": [
+            {
+              "id": "RP-DD-CONTA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "contaDebitada",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "A conta a debitar tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "DebitoDireto.contaDebitada tem entre 1 e 50 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "DescontoEncargo",
+      "descricao": "Desconto ou encargo sobre um montante: valor, base, percentagem e motivo (o papel da composição diz se é desconto ou encargo).",
+      "propriedades": [
+        {
+          "nome": "montante",
+          "tipo": "decimal",
+          "descricao": "Montante do desconto ou do encargo, sem impostos",
+          "nomesAlternativos": ["Amount", "allowance amount", "charge amount"],
+          "regras": [
+            {
+              "id": "RP-DE-MONTANTE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "montante",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O montante do desconto ou do encargo não pode ser negativo."
+              },
+              "descricao": "DescontoEncargo.montante ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "montanteBase",
+          "tipo": "decimal",
+          "descricao": "Montante base sobre o qual incide a percentagem",
+          "nomesAlternativos": ["BaseAmount"],
+          "regras": [
+            {
+              "id": "RP-DE-BASE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "montanteBase",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O montante base não pode ser negativo."
+              },
+              "descricao": "DescontoEncargo.montanteBase ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "percentagem",
+          "tipo": "decimal",
+          "descricao": "Percentagem aplicada ao montante base",
+          "nomesAlternativos": ["MultiplierFactorNumeric"],
+          "regras": [
+            {
+              "id": "RP-DE-PERC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "percentagem",
+                "operador": "RANGE",
+                "valor": [0, 100],
+                "mensagem": "A percentagem tem de estar entre 0 e 100."
+              },
+              "descricao": "DescontoEncargo.percentagem entre 0 e 100"
+            }
+          ]
+        },
+        {
+          "nome": "motivo",
+          "tipo": "texto",
+          "descricao": "Descrição em texto do motivo do desconto ou do encargo",
+          "nomesAlternativos": ["AllowanceChargeReason"],
+          "regras": [
+            {
+              "id": "RP-DE-MOTIVO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "motivo",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O motivo tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "DescontoEncargo.motivo tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoMotivo",
+          "tipo": "texto",
+          "descricao": "Código do motivo (UNCL 5189 para descontos, UNCL 7161 para encargos)",
+          "nomesAlternativos": ["AllowanceChargeReasonCode"],
+          "regras": [
+            {
+              "id": "RP-DE-CODMOTIVO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoMotivo",
+                "operador": "PATTERN",
+                "valor": "^[A-Z0-9]{1,3}$",
+                "mensagem": "O código do motivo tem de ser um código UNCL 5189 ou UNCL 7161 (1 a 3 letras ou algarismos)."
+              },
+              "descricao": "DescontoEncargo.codigoMotivo segue o padrão ^[A-Z0-9]{1,3}$"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-DE-JUSTIFICADO",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "algumPresente",
+              "argumentos": [
+                {"caminho": "motivo"},
+                {"caminho": "codigoMotivo"}
+              ]
+            },
+            "mensagem": "Um desconto ou encargo tem de indicar o motivo, o código do motivo ou ambos."
+          },
+          "descricao": "algumPresente(DescontoEncargo.motivo, DescontoEncargo.codigoMotivo)"
+        },
+        {
+          "id": "RP-DE-CALCULO",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "produtoPercentualIgualA",
+              "argumentos": [
+                {"caminho": "montanteBase"},
+                {"caminho": "percentagem"},
+                {"caminho": "montante"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O montante tem de ser igual ao montante base vezes a percentagem, com uma tolerância de 1,00 €."
+          },
+          "descricao": "produtoPercentualIgualA(DescontoEncargo.montanteBase, DescontoEncargo.percentagem, DescontoEncargo.montante, 1)"
+        }
+      ]
+    },
+    {
+      "nome": "CategoriaIva",
+      "descricao": "Categoria de IVA aplicada: código da categoria, taxa e motivo de isenção.",
+      "propriedades": [
+        {
+          "nome": "codigoCategoria",
+          "tipo": "texto",
+          "descricao": "Código da categoria de IVA (UN/ECE 5305 com os códigos portugueses NOR, INT, RED, ISE, OUT)",
+          "nomesAlternativos": ["VAT category code", "ClassifiedTaxCategory", "TaxCategory"],
+          "regras": [
+            {
+              "id": "RP-IVA-CATEGORIA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoCategoria",
+                "operador": "IN",
+                "valor": ["AA", "S", "E", "RED", "INT", "NOR", "ISE", "OUT", "NA", "Z", "AE", "IC", "G", "O"],
+                "mensagem": "O código da categoria de IVA tem de ser um destes: AA, S, E, RED, INT, NOR, ISE, OUT, NA, Z, AE, IC, G, O."
+              },
+              "descricao": "CategoriaIva.codigoCategoria ∈ {AA, S, E, RED, INT, NOR, ISE, OUT, NA, Z, AE, IC, G, O}"
+            }
+          ]
+        },
+        {
+          "nome": "taxa",
+          "tipo": "decimal",
+          "descricao": "Taxa de IVA, em percentagem",
+          "nomesAlternativos": ["VAT rate", "Percent"],
+          "regras": [
+            {
+              "id": "RP-IVA-TAXA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "taxa",
+                "operador": "RANGE",
+                "valor": [0, 100],
+                "mensagem": "A taxa de IVA tem de estar entre 0 e 100."
+              },
+              "descricao": "CategoriaIva.taxa entre 0 e 100"
+            }
+          ]
+        },
+        {
+          "nome": "motivoIsencao",
+          "tipo": "texto",
+          "descricao": "Descrição em texto do motivo de isenção de IVA",
+          "nomesAlternativos": ["VAT exemption reason text", "TaxExemptionReason"],
+          "regras": [
+            {
+              "id": "RP-IVA-MOTIVO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "motivoIsencao",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O motivo de isenção tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "CategoriaIva.motivoIsencao tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoMotivoIsencao",
+          "tipo": "texto",
+          "descricao": "Código do motivo de isenção de IVA",
+          "nomesAlternativos": ["VAT exemption reason code", "TaxExemptionReasonCode"],
+          "regras": [
+            {
+              "id": "RP-IVA-CODMOTIVO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoMotivoIsencao",
+                "operador": "LENGTH",
+                "valor": [1, 5],
+                "mensagem": "O código do motivo de isenção tem de ter entre 1 e 5 caracteres."
+              },
+              "descricao": "CategoriaIva.codigoMotivoIsencao tem entre 1 e 5 caracteres"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-IVA-TAXA-ISENTA",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "codigoCategoria", "operador": "IN", "valor": ["E", "ISE"]}
+          ],
+          "restricao": {
+            "propriedade": "taxa",
+            "operador": "EQUALS",
+            "valor": 0,
+            "mensagem": "Numa categoria isenta de IVA (E, ISE), a taxa tem de ser 0."
+          },
+          "descricao": "Se CategoriaIva.codigoCategoria ∈ {E, ISE} → CategoriaIva.taxa = 0"
+        },
+        {
+          "id": "RIR-IVA-TAXA-POSITIVA",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "codigoCategoria", "operador": "IN", "valor": ["S", "NOR", "AA", "RED", "INT"]}
+          ],
+          "restricao": {
+            "propriedade": "taxa",
+            "operador": "GT",
+            "valor": 0,
+            "mensagem": "Numa categoria de taxa normal, intermédia ou reduzida, a taxa de IVA tem de ser maior do que zero."
+          },
+          "descricao": "Se CategoriaIva.codigoCategoria ∈ {S, NOR, AA, RED, INT} → CategoriaIva.taxa > 0"
+        }
+      ]
+    },
+    {
+      "nome": "Preco",
+      "descricao": "Preço de um bem ou serviço: preço líquido, desconto, preço bruto e quantidade base do preço.",
+      "propriedades": [
+        {
+          "nome": "precoLiquido",
+          "tipo": "decimal",
+          "descricao": "Preço do item depois do desconto, por quantidade base",
+          "nomesAlternativos": ["Item net price", "PriceAmount"],
+          "regras": [
+            {
+              "id": "RP-PRECO-LIQ",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "precoLiquido",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O preço líquido não pode ser negativo."
+              },
+              "descricao": "Preco.precoLiquido ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "descontoPreco",
+          "tipo": "decimal",
+          "descricao": "Desconto sobre o preço do item",
+          "nomesAlternativos": ["Item price discount"],
+          "regras": [
+            {
+              "id": "RP-PRECO-DESC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "descontoPreco",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O desconto sobre o preço não pode ser negativo."
+              },
+              "descricao": "Preco.descontoPreco ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "precoBruto",
+          "tipo": "decimal",
+          "descricao": "Preço do item antes do desconto",
+          "nomesAlternativos": ["Item gross price"],
+          "regras": [
+            {
+              "id": "RP-PRECO-BRUTO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "precoBruto",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O preço bruto não pode ser negativo."
+              },
+              "descricao": "Preco.precoBruto ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "quantidadeBase",
+          "tipo": "decimal",
+          "descricao": "Número de unidades a que o preço se refere (ex.: 15 € por 10 litros)",
+          "nomesAlternativos": ["Item price base quantity", "BaseQuantity"],
+          "regras": [
+            {
+              "id": "RP-PRECO-QBASE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "quantidadeBase",
+                "operador": "GT",
+                "valor": 0,
+                "mensagem": "A quantidade base do preço tem de ser maior do que zero."
+              },
+              "descricao": "Preco.quantidadeBase > 0"
+            }
+          ]
+        },
+        {
+          "nome": "unidadeQuantidadeBase",
+          "tipo": "texto",
+          "descricao": "Unidade de medida da quantidade base (UN/ECE Rec. 20 e 21)",
+          "regras": [
+            {
+              "id": "RP-PRECO-UNIDADE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "unidadeQuantidadeBase",
+                "operador": "PATTERN",
+                "valor": "^[A-Z0-9]{1,3}$",
+                "mensagem": "A unidade da quantidade base tem de ser um código UN/ECE Rec. 20 (1 a 3 letras ou algarismos)."
+              },
+              "descricao": "Preco.unidadeQuantidadeBase segue o padrão ^[A-Z0-9]{1,3}$"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-PRECO-CALCULO",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaParcelasIgualA",
+              "argumentos": [
+                {"caminho": "precoLiquido"},
+                {"caminho": "descontoPreco"},
+                {"caminho": "precoBruto"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O preço líquido tem de ser igual ao preço bruto menos o desconto, com uma tolerância de 1,00 €."
+          },
+          "descricao": "somaParcelasIgualA(Preco.precoLiquido, Preco.descontoPreco, Preco.precoBruto, 1)"
+        }
+      ]
+    },
+    {
+      "nome": "Artigo",
+      "descricao": "Bem ou serviço transacionado: designação, descrição, códigos de identificação e país de origem.",
+      "propriedades": [
+        {
+          "nome": "nome",
+          "tipo": "texto",
+          "descricao": "Designação do bem ou serviço",
+          "nomesAlternativos": ["Item name", "description"],
+          "regras": [
+            {
+              "id": "RP-ART-NOME",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nome",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A designação do artigo tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "Artigo.nome tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "descricao",
+          "tipo": "texto",
+          "descricao": "Descrição detalhada do bem ou serviço",
+          "nomesAlternativos": ["Item description"],
+          "regras": [
+            {
+              "id": "RP-ART-DESC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "descricao",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A descrição do artigo tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "Artigo.descricao tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigo",
+          "tipo": "texto",
+          "descricao": "Código do artigo atribuído pelo vendedor",
+          "nomesAlternativos": ["Item Seller s identifier", "code"],
+          "regras": [
+            {
+              "id": "RP-ART-CODIGO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigo",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código do artigo tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.codigo tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoComprador",
+          "tipo": "texto",
+          "descricao": "Código do artigo atribuído pelo comprador",
+          "nomesAlternativos": ["Item Buyer s identifier"],
+          "regras": [
+            {
+              "id": "RP-ART-CODCOMP",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoComprador",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código do artigo do comprador tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.codigoComprador tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "codigoBarras",
+          "tipo": "texto",
+          "descricao": "Identificador normalizado do artigo (EAN/GTIN)",
+          "nomesAlternativos": ["Item standard identifier", "barCode", "EAN"],
+          "regras": [
+            {
+              "id": "RP-ART-CODBARRAS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoBarras",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código EAN tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.codigoBarras tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "classificacao",
+          "tipo": "texto",
+          "descricao": "Código de classificação da mercadoria (ex.: CPV)",
+          "nomesAlternativos": ["Item classification identifier", "CPV"],
+          "regras": [
+            {
+              "id": "RP-ART-CLASSIF",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "classificacao",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O código de classificação tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Artigo.classificacao tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "paisOrigem",
+          "tipo": "texto",
+          "descricao": "País de origem do artigo (código ISO 3166-1 alfa-2)",
+          "nomesAlternativos": ["Item country of origin"],
+          "regras": [
+            {
+              "id": "RP-ART-PAIS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "paisOrigem",
+                "operador": "PATTERN",
+                "valor": "^[A-Z]{2}$",
+                "mensagem": "O país de origem tem de ser um código ISO 3166-1 de duas letras."
+              },
+              "descricao": "Artigo.paisOrigem segue o padrão ^[A-Z]{2}$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "AtributoArtigo",
+      "descricao": "Propriedade adicional de um artigo, como um par nome e valor.",
+      "propriedades": [
+        {
+          "nome": "nome",
+          "tipo": "texto",
+          "descricao": "Nome ou tipo da propriedade adicional",
+          "nomesAlternativos": ["AdditionalItemProperty Name"],
+          "regras": [
+            {
+              "id": "RP-ATRIB-NOME",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nome",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O nome da propriedade adicional tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "AtributoArtigo.nome tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "valor",
+          "tipo": "texto",
+          "descricao": "Valor da propriedade adicional",
+          "nomesAlternativos": ["Item attribute value"],
+          "regras": [
+            {
+              "id": "RP-ATRIB-VALOR",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "valor",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O valor da propriedade adicional tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "AtributoArtigo.valor tem entre 1 e 200 caracteres"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sm": [
+    {
+      "nome": "Metainformacao",
+      "descricao": "Metainformação do próprio modelo: origem, versão da fonte, entidade de origem, utilização e domínio.",
+      "propriedades": [
+        {
+          "nome": "origemModelo",
+          "tipo": "texto",
+          "descricao": "Fonte do modelo de dados (norma, sistema ou repositório)"
+        },
+        {"nome": "versaoOrigem", "tipo": "texto", "descricao": "Versão da fonte usada"},
+        {
+          "nome": "referenciaOrigem",
+          "tipo": "texto",
+          "descricao": "Identificador da entidade na fonte (ex.: BG-0 Invoice, Device)"
+        },
+        {"nome": "utilizacao", "tipo": "texto", "descricao": "Finalidade ou contexto de utilização do modelo"},
+        {"nome": "dominio", "tipo": "texto", "descricao": "Domínio a que o modelo pertence"},
+        {"nome": "observacoes", "tipo": "texto", "descricao": "Outra metainformação relevante sobre o modelo"}
+      ]
+    },
+    {
+      "nome": "CabecalhoDocumento",
+      "descricao": "Identificação do documento de faturação: número, data, tipo, moedas, datas de IVA e de vencimento, e especificação.",
+      "propriedades": [
+        {
+          "nome": "numero",
+          "tipo": "texto",
+          "descricao": "Número de referência do documento, atribuído pelo fornecedor",
+          "nomesAlternativos": ["Invoice number"],
+          "regras": [
+            {
+              "id": "RP-DOC-NUMERO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "numero",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O número do documento tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "CabecalhoDocumento.numero tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "dataEmissao",
+          "tipo": "data",
+          "descricao": "Data de emissão do documento",
+          "nomesAlternativos": ["Invoice issue date", "IssueDate"]
+        },
+        {
+          "nome": "tipoDocumento",
+          "tipo": "texto",
+          "descricao": "Código do tipo funcional do documento (UNCL 1001 ou código AT)",
+          "nomesAlternativos": ["Invoice type code", "InvoiceTypeCode", "CreditNoteTypeCode"],
+          "regras": [
+            {
+              "id": "RP-DOC-TIPO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "tipoDocumento",
+                "operador": "IN",
+                "valor": [
+                  "380",
+                  "381",
+                  "383",
+                  "386",
+                  "389",
+                  "FT",
+                  "FS",
+                  "FR",
+                  "ND",
+                  "NC",
+                  "RP",
+                  "RE",
+                  "CS",
+                  "LD",
+                  "RA"
+                ],
+                "mensagem": "O tipo de documento tem de ser um destes: 380, 381, 383, 386, 389, FT, FS, FR, ND, NC, RP, RE, CS, LD, RA."
+              },
+              "descricao": "CabecalhoDocumento.tipoDocumento ∈ {380, 381, 383, 386, 389, FT, FS, FR, ND, NC, RP, RE, CS, LD, RA}"
+            }
+          ]
+        },
+        {
+          "nome": "moeda",
+          "tipo": "texto",
+          "descricao": "Moeda em que estão os montantes do documento (ISO 4217 alfa-3)",
+          "nomesAlternativos": ["Invoice currency code", "DocumentCurrencyCode"],
+          "regras": [
+            {
+              "id": "RP-DOC-MOEDA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "moeda",
+                "operador": "PATTERN",
+                "valor": "^[A-Z]{3}$",
+                "mensagem": "A moeda do documento tem de ser um código ISO 4217 de três letras."
+              },
+              "descricao": "CabecalhoDocumento.moeda segue o padrão ^[A-Z]{3}$"
+            }
+          ]
+        },
+        {
+          "nome": "moedaIva",
+          "tipo": "texto",
+          "descricao": "Moeda usada para a contabilidade e as declarações de IVA no país do vendedor",
+          "nomesAlternativos": ["TaxCurrencyCode"],
+          "regras": [
+            {
+              "id": "RP-DOC-MOEDAIVA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "moedaIva",
+                "operador": "PATTERN",
+                "valor": "^[A-Z]{3}$",
+                "mensagem": "A moeda contabilística do IVA tem de ser um código ISO 4217 de três letras."
+              },
+              "descricao": "CabecalhoDocumento.moedaIva segue o padrão ^[A-Z]{3}$"
+            }
+          ]
+        },
+        {
+          "nome": "dataIva",
+          "tipo": "data",
+          "descricao": "Data em que o IVA se torna exigível, quando difere da data de emissão",
+          "nomesAlternativos": ["Value added tax point date", "TaxPointDate"]
+        },
+        {
+          "nome": "codigoDataIva",
+          "tipo": "texto",
+          "descricao": "Código da data em que o IVA se torna exigível",
+          "nomesAlternativos": ["Value added tax point date code", "DescriptionCode"],
+          "regras": [
+            {
+              "id": "RP-DOC-CODDATAIVA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "codigoDataIva",
+                "operador": "IN",
+                "valor": ["3", "35", "432"],
+                "mensagem": "O código da data de IVA tem de ser 3, 35 ou 432."
+              },
+              "descricao": "CabecalhoDocumento.codigoDataIva ∈ {3, 35, 432}"
+            }
+          ]
+        },
+        {
+          "nome": "dataVencimento",
+          "tipo": "data",
+          "descricao": "Data de vencimento do pagamento",
+          "nomesAlternativos": ["Payment due date", "DueDate", "PaymentDueDate"]
+        },
+        {
+          "nome": "referenciaCliente",
+          "tipo": "texto",
+          "descricao": "Referência atribuída pelo cliente",
+          "nomesAlternativos": ["BuyerReference"],
+          "regras": [
+            {
+              "id": "RP-DOC-REFCLIENTE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "referenciaCliente",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "A referência do cliente tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "CabecalhoDocumento.referenciaCliente tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "numeroCompromisso",
+          "tipo": "texto",
+          "descricao": "Número do compromisso orçamental do adquirente público",
+          "nomesAlternativos": ["AccountingCost"],
+          "regras": [
+            {
+              "id": "RP-DOC-COMPROMISSO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "numeroCompromisso",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O número do compromisso tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "CabecalhoDocumento.numeroCompromisso tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "condicoesPagamento",
+          "tipo": "texto",
+          "descricao": "Descrição das condições de pagamento",
+          "nomesAlternativos": ["Payment terms"],
+          "regras": [
+            {
+              "id": "RP-DOC-CONDPAG",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "condicoesPagamento",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "As condições de pagamento têm de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "CabecalhoDocumento.condicoesPagamento tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "tipoProcesso",
+          "tipo": "texto",
+          "descricao": "Tipo de processo de negócio em que o documento se insere",
+          "nomesAlternativos": ["ProfileID", "Business process type"],
+          "regras": [
+            {
+              "id": "RP-DOC-PROCESSO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "tipoProcesso",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O tipo de processo tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "CabecalhoDocumento.tipoProcesso tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "identificadorEspecificacao",
+          "tipo": "texto",
+          "descricao": "Identificador da customização CIUS-PT seguida, que permite ao recetor validar o documento",
+          "nomesAlternativos": ["Specification identifier", "CustomizationID"],
+          "regras": [
+            {
+              "id": "RP-DOC-ESPEC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "identificadorEspecificacao",
+                "operador": "PATTERN",
+                "valor": "^urn:cen\\.eu:en16931:2017#compliant#urn:feap\\.gov\\.pt:CIUS-PT:.{1,10}$",
+                "mensagem": "O identificador da especificação tem de ser urn:cen.eu:en16931:2017#compliant#urn:feap.gov.pt:CIUS-PT: seguido da versão."
+              },
+              "descricao": "CabecalhoDocumento.identificadorEspecificacao segue o padrão ^urn:cen\\.eu:en16931:2017#compliant#urn:feap\\.gov\\.pt:CIUS-PT:.{1,10}$"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-DOC-DATAIVA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "mutuamenteExclusivos",
+              "argumentos": [
+                {"caminho": "dataIva"},
+                {"caminho": "codigoDataIva"}
+              ]
+            },
+            "mensagem": "A data de IVA e o código da data de IVA não podem vir os dois no mesmo documento."
+          },
+          "descricao": "mutuamenteExclusivos(CabecalhoDocumento.dataIva, CabecalhoDocumento.codigoDataIva)"
+        }
+      ]
+    },
+    {
+      "nome": "ReferenciasDocumento",
+      "descricao": "Referências a outros documentos e processos do adquirente: projeto, contrato, encomenda, avisos e acordo-quadro.",
+      "propriedades": [
+        {
+          "nome": "projeto",
+          "tipo": "texto",
+          "descricao": "Número do projeto",
+          "nomesAlternativos": ["Project reference"],
+          "regras": [
+            {
+              "id": "RP-REF-PROJETO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "projeto",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "A referência do projeto tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.projeto tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "contrato",
+          "tipo": "texto",
+          "descricao": "Número do contrato",
+          "nomesAlternativos": ["Contract reference"],
+          "regras": [
+            {
+              "id": "RP-REF-CONTRATO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "contrato",
+                "operador": "LENGTH",
+                "valor": [1, 20],
+                "mensagem": "A referência do contrato tem de ter entre 1 e 20 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.contrato tem entre 1 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "encomenda",
+          "tipo": "texto",
+          "descricao": "Número da nota de encomenda do adquirente",
+          "nomesAlternativos": ["Purchase order reference"],
+          "regras": [
+            {
+              "id": "RP-REF-ENCOMENDA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "encomenda",
+                "operador": "LENGTH",
+                "valor": [1, 20],
+                "mensagem": "A referência da encomenda tem de ter entre 1 e 20 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.encomenda tem entre 1 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "ordemVenda",
+          "tipo": "texto",
+          "descricao": "Número da ordem de venda emitida pelo fornecedor",
+          "nomesAlternativos": ["Sales order reference"],
+          "regras": [
+            {
+              "id": "RP-REF-ORDEMVENDA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "ordemVenda",
+                "operador": "LENGTH",
+                "valor": [1, 20],
+                "mensagem": "A referência da ordem de venda tem de ter entre 1 e 20 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.ordemVenda tem entre 1 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "avisoRececao",
+          "tipo": "texto",
+          "descricao": "Número do aviso de receção",
+          "nomesAlternativos": ["Receiving advice reference"],
+          "regras": [
+            {
+              "id": "RP-REF-RECECAO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "avisoRececao",
+                "operador": "LENGTH",
+                "valor": [1, 20],
+                "mensagem": "A referência do aviso de receção tem de ter entre 1 e 20 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.avisoRececao tem entre 1 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "avisoEnvio",
+          "tipo": "texto",
+          "descricao": "Referência do aviso de expedição",
+          "nomesAlternativos": ["Despatch advice reference"],
+          "regras": [
+            {
+              "id": "RP-REF-ENVIO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "avisoEnvio",
+                "operador": "LENGTH",
+                "valor": [1, 20],
+                "mensagem": "A referência do aviso de expedição tem de ter entre 1 e 20 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.avisoEnvio tem entre 1 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "acordoQuadro",
+          "tipo": "texto",
+          "descricao": "Número do acordo-quadro ou do lote do concurso",
+          "nomesAlternativos": ["Tender or lot reference"],
+          "regras": [
+            {
+              "id": "RP-REF-ACORDO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "acordoQuadro",
+                "operador": "LENGTH",
+                "valor": [1, 20],
+                "mensagem": "A referência do acordo-quadro tem de ter entre 1 e 20 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.acordoQuadro tem entre 1 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "processoRegisto",
+          "tipo": "texto",
+          "descricao": "Identificador do processo de registo de entrada do documento no adquirente",
+          "nomesAlternativos": ["Invoiced object identifier"],
+          "regras": [
+            {
+              "id": "RP-REF-PROCESSO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "processoRegisto",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O identificador do processo de registo tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "ReferenciasDocumento.processoRegisto tem entre 1 e 50 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "NotaDocumento",
+      "descricao": "Nota em texto livre sobre o documento, com o assunto, se houver.",
+      "propriedades": [
+        {"nome": "assunto", "tipo": "texto", "descricao": "Assunto da nota"},
+        {
+          "nome": "texto",
+          "tipo": "texto",
+          "descricao": "Texto da nota, com informação não estruturada sobre o documento",
+          "nomesAlternativos": ["Note"],
+          "regras": [
+            {
+              "id": "RP-NOTA-TEXTO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "texto",
+                "operador": "LENGTH",
+                "valor": [1, 500],
+                "mensagem": "A nota tem de ter entre 1 e 500 caracteres."
+              },
+              "descricao": "NotaDocumento.texto tem entre 1 e 500 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "DocumentosAnteriores",
+      "descricao": "Coleção das referências a documentos anteriores (faturas retificadas ou corrigidas).",
+      "composicao": [
+        {"usm": "ReferenciaDocumento", "cardinalidade": "0..*"}
+      ]
+    },
+    {
+      "nome": "Fornecedor",
+      "descricao": "Quem fornece e fatura: identificação fiscal, morada, contactos e dados legais.",
+      "composicao": [
+        {"usm": "SujeitoPassivo", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"},
+        {"usm": "ComplementoMorada", "cardinalidade": "0..1"},
+        {"usm": "ContactoTelefonico", "cardinalidade": "0..1"},
+        {"usm": "Contacto", "cardinalidade": "0..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "registoFiscal",
+          "tipo": "texto",
+          "descricao": "Identificação do local do fornecedor para fins fiscais ou referência ao seu estatuto fiscal",
+          "nomesAlternativos": ["Seller tax registration identifier"],
+          "regras": [
+            {
+              "id": "RP-FORN-REGFISCAL",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "registoFiscal",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O registo fiscal do fornecedor tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Fornecedor.registoFiscal tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "capitalSocial",
+          "tipo": "texto",
+          "descricao": "Informação sobre o capital social e a forma jurídica do fornecedor",
+          "nomesAlternativos": ["CompanyLegalForm"],
+          "regras": [
+            {
+              "id": "RP-FORN-CAPITAL",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "capitalSocial",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A informação de capital social tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "Fornecedor.capitalSocial tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "enderecoEletronico",
+          "tipo": "texto",
+          "descricao": "Endereço eletrónico de receção de documentos do fornecedor",
+          "nomesAlternativos": ["Seller electronic address", "EndpointID"],
+          "regras": [
+            {
+              "id": "RP-FORN-ENDELET",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "enderecoEletronico",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O endereço eletrónico do fornecedor tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Fornecedor.enderecoEletronico tem entre 1 e 50 caracteres"
+            },
+            {
+              "id": "RP-TESTE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "enderecoEletronico",
+                "operador": "NOT_EQUALS",
+                "valor": "email@gmail.com",
+                "mensagem": "O email deve ser diferente de email@gmail.com"
+              },
+              "descricao": "Fornecedor.enderecoEletronico ≠ email@gmail.com"
+            }
+          ]
+        },
+        {
+          "nome": "pontoContacto",
+          "tipo": "texto",
+          "descricao": "Pessoa ou serviço de contacto do fornecedor",
+          "nomesAlternativos": ["Seller contact point"],
+          "regras": [
+            {
+              "id": "RP-FORN-CONTACTO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "pontoContacto",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O ponto de contacto do fornecedor tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "Fornecedor.pontoContacto tem entre 1 e 200 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Adquirente",
+      "descricao": "Quem adquire e recebe o documento: identificação fiscal, morada e contactos.",
+      "composicao": [
+        {"usm": "SujeitoPassivo", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"},
+        {"usm": "ComplementoMorada", "cardinalidade": "0..1"},
+        {"usm": "ContactoTelefonico", "cardinalidade": "0..1"},
+        {"usm": "Contacto", "cardinalidade": "0..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "enderecoEletronico",
+          "tipo": "texto",
+          "descricao": "Endereço eletrónico de receção de documentos do adquirente",
+          "nomesAlternativos": ["Buyer electronic address", "EndpointID"],
+          "regras": [
+            {
+              "id": "RP-ADQ-ENDELET",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "enderecoEletronico",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O endereço eletrónico do adquirente tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "Adquirente.enderecoEletronico tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "pontoContacto",
+          "tipo": "texto",
+          "descricao": "Pessoa ou serviço de contacto do adquirente",
+          "nomesAlternativos": ["Buyer contact point"],
+          "regras": [
+            {
+              "id": "RP-ADQ-CONTACTO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "pontoContacto",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O ponto de contacto do adquirente tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "Adquirente.pontoContacto tem entre 1 e 200 caracteres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "RecebedorPagamento",
+      "descricao": "Entidade que recebe o pagamento, quando é diferente do fornecedor.",
+      "composicao": [
+        {"usm": "SujeitoPassivo", "cardinalidade": "1..1"}
+      ]
+    },
+    {
+      "nome": "RepresentanteFiscal",
+      "descricao": "Representante do fornecedor para efeitos fiscais: identificação e morada.",
+      "composicao": [
+        {"usm": "SujeitoPassivo", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"},
+        {"usm": "ComplementoMorada", "cardinalidade": "0..1"}
+      ]
+    },
+    {
+      "nome": "LocalEntrega",
+      "descricao": "Local e data em que os bens ou serviços são entregues.",
+      "composicao": [
+        {"usm": "Morada", "cardinalidade": "0..1"},
+        {"usm": "ComplementoMorada", "cardinalidade": "0..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "nomeLocal",
+          "tipo": "texto",
+          "descricao": "Nome da parte ou do local de entrega",
+          "nomesAlternativos": ["Deliver to party name"],
+          "regras": [
+            {
+              "id": "RP-LENT-NOME",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nomeLocal",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O nome do local de entrega tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "LocalEntrega.nomeLocal tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "identificadorLocal",
+          "tipo": "texto",
+          "descricao": "Identificador do local onde os bens ou serviços são entregues",
+          "nomesAlternativos": ["Deliver to location identifier"],
+          "regras": [
+            {
+              "id": "RP-LENT-IDLOCAL",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "identificadorLocal",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O identificador do local de entrega tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "LocalEntrega.identificadorLocal tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "dataEntrega",
+          "tipo": "data",
+          "descricao": "Data efetiva da entrega",
+          "nomesAlternativos": ["Actual delivery date"]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-LENT-IDENT",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "localEntregaIdentificado",
+              "argumentos": [
+                {"caminho": "nomeLocal"},
+                {"caminho": "identificadorLocal"},
+                {"caminho": "dataEntrega"},
+                {"caminho": "Morada.rua"}
+              ]
+            },
+            "mensagem": "A informação de entrega tem de indicar a data, o identificador do local, a morada ou o nome do local."
+          },
+          "descricao": "localEntregaIdentificado(LocalEntrega.nomeLocal, LocalEntrega.identificadorLocal, LocalEntrega.dataEntrega, LocalEntrega.Morada.rua)"
+        }
+      ]
+    },
+    {
+      "nome": "PeriodoFaturacao",
+      "descricao": "Período a que a faturação diz respeito.",
+      "composicao": [
+        {"usm": "Periodo", "cardinalidade": "1..1"}
+      ]
+    },
+    {
+      "nome": "Pagamento",
+      "descricao": "Instruções de pagamento: meio de pagamento, referência e dados de transferência, cartão ou débito direto.",
+      "composicao": [
+        {"usm": "ContaBancaria", "cardinalidade": "0..*"},
+        {"usm": "CartaoPagamento", "cardinalidade": "0..1"},
+        {"usm": "DebitoDireto", "cardinalidade": "0..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "meioPagamento",
+          "tipo": "texto",
+          "descricao": "Código do meio de pagamento (UNCL 4461 ou código nacional)",
+          "nomesAlternativos": ["Payment means type code", "PaymentMeansCode"],
+          "regras": [
+            {
+              "id": "RP-PAG-MEIO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "meioPagamento",
+                "operador": "IN",
+                "valor": [
+                  "30",
+                  "48",
+                  "49",
+                  "57",
+                  "58",
+                  "59",
+                  "CC",
+                  "CD",
+                  "CH",
+                  "CI",
+                  "CO",
+                  "CS",
+                  "DE",
+                  "LC",
+                  "MB",
+                  "NU",
+                  "OU",
+                  "PR",
+                  "TB",
+                  "TR"
+                ],
+                "mensagem": "O meio de pagamento tem de ser um código UNCL 4461 admitido (30, 48, 49, 57, 58, 59) ou um destes: CC, CD, CH, CI, CO, CS, DE, LC, MB, NU, OU, PR, TB, TR."
+              },
+              "descricao": "Pagamento.meioPagamento ∈ {30, 48, 49, 57, 58, 59, CC, CD, CH, CI, CO, CS, DE, LC, MB, NU, OU, PR, TB, TR}"
+            }
+          ]
+        },
+        {
+          "nome": "detalhePagamento",
+          "tipo": "texto",
+          "descricao": "Descrição do pagamento (ex.: pagamento por ATM)",
+          "regras": [
+            {
+              "id": "RP-PAG-DETALHE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "detalhePagamento",
+                "operador": "LENGTH",
+                "valor": [1, 150],
+                "mensagem": "A descrição do pagamento tem de ter entre 1 e 150 caracteres."
+              },
+              "descricao": "Pagamento.detalhePagamento tem entre 1 e 150 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "referenciaPagamento",
+          "tipo": "texto",
+          "descricao": "Referência de pagamento por ATM ou DUC",
+          "nomesAlternativos": ["PaymentID"],
+          "regras": [
+            {
+              "id": "RP-PAG-REF",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "referenciaPagamento",
+                "operador": "PATTERN",
+                "valor": "^#REFERENCE@(ATM|DUC)PAYMENT#.{1,20}#$",
+                "mensagem": "A referência de pagamento tem de ter a forma #REFERENCE@ATMPAYMENT#…# ou #REFERENCE@DUCPAYMENT#…#, com 1 a 20 caracteres."
+              },
+              "descricao": "Pagamento.referenciaPagamento segue o padrão ^#REFERENCE@(ATM|DUC)PAYMENT#.{1,20}#$"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-PAG-IBAN",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "meioPagamento", "operador": "IN", "valor": ["30", "58"]}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "colecaoNaoVazia",
+              "argumentos": [
+                {"caminho": "ContaBancaria.iban"}
+              ]
+            },
+            "mensagem": "No pagamento por transferência bancária (30 ou 58), é obrigatório indicar o IBAN da conta."
+          },
+          "descricao": "Se Pagamento.meioPagamento ∈ {30, 58} → colecaoNaoVazia(Pagamento.ContaBancaria.iban)"
+        }
+      ]
+    },
+    {
+      "nome": "DescontoEncargoDocumento",
+      "descricao": "Desconto ou encargo ao nível do documento, com a categoria de IVA que lhe é aplicada.",
+      "composicao": [
+        {"usm": "DescontoEncargo", "cardinalidade": "1..1"},
+        {"usm": "CategoriaIva", "cardinalidade": "1..1"}
+      ]
+    },
+    {
+      "nome": "Totais",
+      "descricao": "Totais monetários do documento: soma das linhas, descontos, encargos, IVA, total e valor a pagar.",
+      "propriedades": [
+        {
+          "nome": "somaLinhas",
+          "tipo": "decimal",
+          "descricao": "Soma dos montantes líquidos das linhas, sem imposto",
+          "nomesAlternativos": ["Sum of Invoice line net amount", "LineExtensionAmount"]
+        },
+        {
+          "nome": "totalDescontos",
+          "tipo": "decimal",
+          "descricao": "Soma dos descontos ao nível do documento",
+          "nomesAlternativos": ["AllowanceTotalAmount"],
+          "regras": [
+            {
+              "id": "RP-TOT-DESC-POS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "totalDescontos",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O total dos descontos não pode ser negativo."
+              },
+              "descricao": "Totais.totalDescontos ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "totalEncargos",
+          "tipo": "decimal",
+          "descricao": "Soma dos encargos ao nível do documento",
+          "nomesAlternativos": ["ChargeTotalAmount"],
+          "regras": [
+            {
+              "id": "RP-TOT-ENC-POS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "totalEncargos",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O total dos encargos não pode ser negativo."
+              },
+              "descricao": "Totais.totalEncargos ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "totalSemIva",
+          "tipo": "decimal",
+          "descricao": "Total do documento sem IVA",
+          "nomesAlternativos": ["Invoice total amount without VAT", "TaxExclusiveAmount"],
+          "regras": [
+            {
+              "id": "RP-TOT-SEMIVA-POS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "totalSemIva",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O total sem IVA não pode ser negativo."
+              },
+              "descricao": "Totais.totalSemIva ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "totalIva",
+          "tipo": "decimal",
+          "descricao": "Total do IVA do documento",
+          "nomesAlternativos": ["Total VAT amount", "TaxAmount"]
+        },
+        {
+          "nome": "totalIvaMoedaContabilistica",
+          "tipo": "decimal",
+          "descricao": "Total do IVA na moeda aceite ou exigida no país do fornecedor"
+        },
+        {
+          "nome": "totalComIva",
+          "tipo": "decimal",
+          "descricao": "Total do documento com IVA",
+          "nomesAlternativos": ["Invoice total amount with VAT", "TaxInclusiveAmount"],
+          "regras": [
+            {
+              "id": "RP-TOT-COMIVA-POS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "totalComIva",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O total com IVA não pode ser negativo."
+              },
+              "descricao": "Totais.totalComIva ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "valorPago",
+          "tipo": "decimal",
+          "descricao": "Soma dos montantes já pagos, a deduzir do valor a pagar",
+          "nomesAlternativos": ["Paid amount", "PrepaidAmount"],
+          "regras": [
+            {
+              "id": "RP-TOT-PAGO-POS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "valorPago",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O valor já pago não pode ser negativo."
+              },
+              "descricao": "Totais.valorPago ≥ 0"
+            }
+          ]
+        },
+        {
+          "nome": "arredondamento",
+          "tipo": "decimal",
+          "descricao": "Montante de arredondamento aplicado ao total com IVA",
+          "nomesAlternativos": ["Rounding amount", "PayableRoundingAmount"]
+        },
+        {
+          "nome": "valorPagar",
+          "tipo": "decimal",
+          "descricao": "Valor a pagar",
+          "nomesAlternativos": ["Amount due for payment", "PayableAmount"],
+          "regras": [
+            {
+              "id": "RP-TOT-PAGAR-POS",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "valorPagar",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O valor a pagar não pode ser negativo."
+              },
+              "descricao": "Totais.valorPagar ≥ 0"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-TOT-COMIVA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaParcelasIgualA",
+              "argumentos": [
+                {"caminho": "totalSemIva"},
+                {"caminho": "totalIva"},
+                {"caminho": "totalComIva"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O total com IVA tem de ser igual ao total sem IVA mais o total do IVA, com uma tolerância de 1,00 €."
+          },
+          "descricao": "somaParcelasIgualA(Totais.totalSemIva, Totais.totalIva, Totais.totalComIva, 1)"
+        },
+        {
+          "id": "RP-TOT-SEMIVA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "saldoIgualA",
+              "argumentos": [
+                {"caminho": "somaLinhas"},
+                {"caminho": "totalDescontos"},
+                {"caminho": "totalEncargos"},
+                {"caminho": "totalSemIva"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O total sem IVA tem de ser igual à soma das linhas, menos os descontos e mais os encargos, com uma tolerância de 1,00 €."
+          },
+          "descricao": "saldoIgualA(Totais.somaLinhas, Totais.totalDescontos, Totais.totalEncargos, Totais.totalSemIva, 1)"
+        },
+        {
+          "id": "RP-TOT-PAGAR",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "saldoIgualA",
+              "argumentos": [
+                {"caminho": "totalComIva"},
+                {"caminho": "valorPago"},
+                {"caminho": "arredondamento"},
+                {"caminho": "valorPagar"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O valor a pagar tem de ser igual ao total com IVA, menos o valor já pago e mais o arredondamento, com uma tolerância de 1,00 €."
+          },
+          "descricao": "saldoIgualA(Totais.totalComIva, Totais.valorPago, Totais.arredondamento, Totais.valorPagar, 1)"
+        }
+      ]
+    },
+    {
+      "nome": "DecomposicaoIva",
+      "descricao": "Subtotal de IVA por categoria e taxa: base tributável, imposto e categoria.",
+      "composicao": [
+        {"usm": "CategoriaIva", "cardinalidade": "1..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "baseTributavel",
+          "tipo": "decimal",
+          "descricao": "Base de incidência da taxa de IVA neste subtotal",
+          "nomesAlternativos": ["VAT category taxable amount", "TaxableAmount"]
+        },
+        {
+          "nome": "montanteImposto",
+          "tipo": "decimal",
+          "descricao": "Imposto calculado sobre a base de incidência",
+          "nomesAlternativos": ["VAT category tax amount", "TaxAmount"]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-DECOMP-IMPOSTO",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "produtoPercentualIgualA",
+              "argumentos": [
+                {"caminho": "baseTributavel"},
+                {"caminho": "CategoriaIva.taxa"},
+                {"caminho": "montanteImposto"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O imposto do subtotal tem de ser igual à base tributável vezes a taxa, com uma tolerância de 1,00 €."
+          },
+          "descricao": "produtoPercentualIgualA(DecomposicaoIva.baseTributavel, DecomposicaoIva.CategoriaIva.taxa, DecomposicaoIva.montanteImposto, 1)"
+        },
+        {
+          "id": "RIR-DECOMP-ISENTO",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "CategoriaIva.codigoCategoria", "operador": "IN", "valor": ["E", "ISE"]}
+          ],
+          "restricao": {
+            "propriedade": "montanteImposto",
+            "operador": "EQUALS",
+            "valor": 0,
+            "mensagem": "Num subtotal isento de IVA, o imposto tem de ser 0."
+          },
+          "descricao": "Se DecomposicaoIva.CategoriaIva.codigoCategoria ∈ {E, ISE} → DecomposicaoIva.montanteImposto = 0"
+        },
+        {
+          "id": "RIR-DECOMP-ISENCAO",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "CategoriaIva.codigoCategoria", "operador": "IN", "valor": ["E", "ISE"]}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "algumPresente",
+              "argumentos": [
+                {"caminho": "CategoriaIva.motivoIsencao"},
+                {"caminho": "CategoriaIva.codigoMotivoIsencao"}
+              ]
+            },
+            "mensagem": "Um subtotal isento de IVA tem de indicar o motivo de isenção ou o seu código."
+          },
+          "descricao": "Se DecomposicaoIva.CategoriaIva.codigoCategoria ∈ {E, ISE} → algumPresente(DecomposicaoIva.CategoriaIva.motivoIsencao, DecomposicaoIva.CategoriaIva.codigoMotivoIsencao)"
+        },
+        {
+          "id": "RIR-DECOMP-SEM-ISENCAO",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {
+              "propriedade": "CategoriaIva.codigoCategoria",
+              "operador": "IN",
+              "valor": ["S", "NOR", "AA", "RED", "INT"]
+            }
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "nenhumPresente",
+              "argumentos": [
+                {"caminho": "CategoriaIva.motivoIsencao"},
+                {"caminho": "CategoriaIva.codigoMotivoIsencao"}
+              ]
+            },
+            "mensagem": "Um subtotal de taxa normal, intermédia ou reduzida não pode ter motivo de isenção."
+          },
+          "descricao": "Se DecomposicaoIva.CategoriaIva.codigoCategoria ∈ {S, NOR, AA, RED, INT} → nenhumPresente(DecomposicaoIva.CategoriaIva.motivoIsencao, DecomposicaoIva.CategoriaIva.codigoMotivoIsencao)"
+        }
+      ]
+    },
+    {
+      "nome": "DocumentoSuporte",
+      "descricao": "Documento de suporte anexado ou referenciado: referência, descrição, localização externa ou ficheiro embebido.",
+      "propriedades": [
+        {
+          "nome": "referencia",
+          "tipo": "texto",
+          "descricao": "Identificador do documento de suporte",
+          "nomesAlternativos": ["Supporting document reference"],
+          "regras": [
+            {
+              "id": "RP-SUP-REF",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "referencia",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "A referência do documento de suporte tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "DocumentoSuporte.referencia tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "descricao",
+          "tipo": "texto",
+          "descricao": "Descrição do documento de suporte",
+          "nomesAlternativos": ["DocumentDescription"],
+          "regras": [
+            {
+              "id": "RP-SUP-DESC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "descricao",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A descrição do documento de suporte tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "DocumentoSuporte.descricao tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "localizacaoExterna",
+          "tipo": "texto",
+          "descricao": "Endereço (URI) de um documento guardado externamente",
+          "nomesAlternativos": ["External document location", "URI"],
+          "regras": [
+            {
+              "id": "RP-SUP-URI",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "localizacaoExterna",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "A localização externa tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "DocumentoSuporte.localizacaoExterna tem entre 1 e 200 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "anexo",
+          "tipo": "texto",
+          "descricao": "Conteúdo do documento anexado, codificado em base 64",
+          "nomesAlternativos": ["Attached document", "EmbeddedDocumentBinaryObject"],
+          "regras": [
+            {
+              "id": "RP-SUP-ANEXO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "anexo",
+                "operador": "LENGTH",
+                "valor": [1, 6826666],
+                "mensagem": "O anexo não pode exceder 5 MB (6 826 666 caracteres em base 64)."
+              },
+              "descricao": "DocumentoSuporte.anexo tem entre 1 e 6826666 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "tipoMime",
+          "tipo": "texto",
+          "descricao": "Tipo MIME do documento anexado",
+          "nomesAlternativos": ["mimeCode"],
+          "regras": [
+            {
+              "id": "RP-SUP-MIME",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "tipoMime",
+                "operador": "IN",
+                "valor": [
+                  "text/plain",
+                  "image/png",
+                  "image/jpeg",
+                  "application/pdf",
+                  "application/msword",
+                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                  "application/vnd.ms-excel",
+                  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                  "application/xml",
+                  "text/xml",
+                  "text/csv"
+                ],
+                "mensagem": "O tipo do anexo tem de ser texto, PNG, JPEG, PDF, Word, Excel, XML ou CSV."
+              },
+              "descricao": "DocumentoSuporte.tipoMime ∈ {text/plain, image/png, image/jpeg, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/xml, text/xml, text/csv}"
+            }
+          ]
+        },
+        {
+          "nome": "nomeFicheiro",
+          "tipo": "texto",
+          "descricao": "Nome do ficheiro anexado",
+          "nomesAlternativos": ["filename"],
+          "regras": [
+            {
+              "id": "RP-SUP-FICHEIRO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nomeFicheiro",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O nome do ficheiro anexado tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "DocumentoSuporte.nomeFicheiro tem entre 1 e 50 caracteres"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-SUP-CONTEUDO",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "algumPresente",
+              "argumentos": [
+                {"caminho": "localizacaoExterna"},
+                {"caminho": "anexo"}
+              ]
+            },
+            "mensagem": "Um documento de suporte tem de indicar a localização externa, o anexo ou ambos."
+          },
+          "descricao": "algumPresente(DocumentoSuporte.localizacaoExterna, DocumentoSuporte.anexo)"
+        },
+        {
+          "id": "RIR-SUP-MIME",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {
+              "operador": "FUNCTION",
+              "chamada": {
+                "funcao": "existe",
+                "argumentos": [
+                  {"caminho": "anexo"}
+                ]
+              }
+            }
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "existe",
+              "argumentos": [
+                {"caminho": "tipoMime"}
+              ]
+            },
+            "mensagem": "Um documento anexado tem de indicar o tipo MIME."
+          },
+          "descricao": "Se existe(DocumentoSuporte.anexo) → existe(DocumentoSuporte.tipoMime)"
+        },
+        {
+          "id": "RIR-SUP-FICHEIRO",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {
+              "operador": "FUNCTION",
+              "chamada": {
+                "funcao": "existe",
+                "argumentos": [
+                  {"caminho": "anexo"}
+                ]
+              }
+            }
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "existe",
+              "argumentos": [
+                {"caminho": "nomeFicheiro"}
+              ]
+            },
+            "mensagem": "Um documento anexado tem de indicar o nome do ficheiro."
+          },
+          "descricao": "Se existe(DocumentoSuporte.anexo) → existe(DocumentoSuporte.nomeFicheiro)"
+        }
+      ]
+    },
+    {
+      "nome": "LinhaDocumento",
+      "descricao": "Linha do documento: bem ou serviço faturado, com quantidade, preço, descontos, encargos, IVA e montante líquido.",
+      "composicao": [
+        {"usm": "Artigo", "cardinalidade": "1..1"},
+        {"usm": "Preco", "cardinalidade": "1..1"},
+        {"usm": "CategoriaIva", "cardinalidade": "1..1"},
+        {"usm": "Periodo", "cardinalidade": "0..1"},
+        {"usm": "DescontoEncargo", "papel": "Desconto", "cardinalidade": "0..*"},
+        {"usm": "DescontoEncargo", "papel": "Encargo", "cardinalidade": "0..*"},
+        {"usm": "AtributoArtigo", "cardinalidade": "0..*"}
+      ],
+      "propriedades": [
+        {
+          "nome": "identificador",
+          "tipo": "texto",
+          "descricao": "Identificador único da linha no documento, atribuído pelo fornecedor",
+          "nomesAlternativos": ["Invoice line identifier"],
+          "regras": [
+            {
+              "id": "RP-LIN-ID",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "identificador",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O identificador da linha tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "LinhaDocumento.identificador tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "nota",
+          "tipo": "texto",
+          "descricao": "Observação em texto livre sobre a linha",
+          "nomesAlternativos": ["Invoice line note"],
+          "regras": [
+            {
+              "id": "RP-LIN-NOTA",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "nota",
+                "operador": "LENGTH",
+                "valor": [1, 500],
+                "mensagem": "A nota da linha tem de ter entre 1 e 500 caracteres."
+              },
+              "descricao": "LinhaDocumento.nota tem entre 1 e 500 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "identificadorObjeto",
+          "tipo": "texto",
+          "descricao": "Identificador do objeto em que a linha se baseia, dado pelo fornecedor",
+          "nomesAlternativos": ["Invoice line object identifier"],
+          "regras": [
+            {
+              "id": "RP-LIN-OBJETO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "identificadorObjeto",
+                "operador": "LENGTH",
+                "valor": [1, 50],
+                "mensagem": "O identificador do objeto da linha tem de ter entre 1 e 50 caracteres."
+              },
+              "descricao": "LinhaDocumento.identificadorObjeto tem entre 1 e 50 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "quantidade",
+          "tipo": "decimal",
+          "descricao": "Quantidade faturada do bem ou serviço",
+          "nomesAlternativos": ["Invoiced quantity", "InvoicedQuantity", "CreditedQuantity"]
+        },
+        {
+          "nome": "unidadeMedida",
+          "tipo": "texto",
+          "descricao": "Unidade de medida da quantidade faturada (UN/ECE Rec. 20 e 21)",
+          "nomesAlternativos": ["Invoiced quantity unit of measure code", "unitCode"],
+          "regras": [
+            {
+              "id": "RP-LIN-UNIDADE",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "unidadeMedida",
+                "operador": "PATTERN",
+                "valor": "^[A-Z0-9]{1,3}$",
+                "mensagem": "A unidade de medida tem de ser um código UN/ECE Rec. 20 (1 a 3 letras ou algarismos)."
+              },
+              "descricao": "LinhaDocumento.unidadeMedida segue o padrão ^[A-Z0-9]{1,3}$"
+            }
+          ]
+        },
+        {
+          "nome": "montanteLiquido",
+          "tipo": "decimal",
+          "descricao": "Montante da linha sem IVA, já com os descontos e encargos da linha",
+          "nomesAlternativos": ["Invoice line net amount", "LineExtensionAmount"]
+        },
+        {
+          "nome": "referenciaLinhaEncomenda",
+          "tipo": "texto",
+          "descricao": "Referência da linha da nota de encomenda do cliente",
+          "nomesAlternativos": ["Referenced purchase order line reference"],
+          "regras": [
+            {
+              "id": "RP-LIN-REFENC",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "referenciaLinhaEncomenda",
+                "operador": "LENGTH",
+                "valor": [1, 20],
+                "mensagem": "A referência da linha de encomenda tem de ter entre 1 e 20 caracteres."
+              },
+              "descricao": "LinhaDocumento.referenciaLinhaEncomenda tem entre 1 e 20 caracteres"
+            }
+          ]
+        },
+        {
+          "nome": "numeroCompromisso",
+          "tipo": "texto",
+          "descricao": "Número do compromisso associado à linha",
+          "nomesAlternativos": ["AccountingCost"],
+          "regras": [
+            {
+              "id": "RP-LIN-COMPROMISSO",
+              "natureza": "plausibilidade",
+              "restricao": {
+                "propriedade": "numeroCompromisso",
+                "operador": "LENGTH",
+                "valor": [1, 200],
+                "mensagem": "O número do compromisso da linha tem de ter entre 1 e 200 caracteres."
+              },
+              "descricao": "LinhaDocumento.numeroCompromisso tem entre 1 e 200 caracteres"
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-LIN-MONTANTE",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "montanteLinhaCoerente",
+              "argumentos": [
+                {"caminho": "quantidade"},
+                {"caminho": "Preco.precoLiquido"},
+                {"caminho": "Preco.quantidadeBase"},
+                {"caminho": "Desconto.montante"},
+                {"caminho": "Encargo.montante"},
+                {"caminho": "montanteLiquido"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O montante da linha tem de ser igual a quantidade × preço / quantidade base, menos os descontos e mais os encargos da linha, com uma tolerância de 1,00 €."
+          },
+          "descricao": "montanteLinhaCoerente(LinhaDocumento.quantidade, LinhaDocumento.Preco.precoLiquido, LinhaDocumento.Preco.quantidadeBase, LinhaDocumento.Desconto.montante, LinhaDocumento.Encargo.montante, LinhaDocumento.montanteLiquido, 1)"
+        },
+        {
+          "id": "RIR-LIN-ISENCAO",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "CategoriaIva.codigoCategoria", "operador": "IN", "valor": ["E", "ISE"]}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "algumPresente",
+              "argumentos": [
+                {"caminho": "CategoriaIva.motivoIsencao"},
+                {"caminho": "CategoriaIva.codigoMotivoIsencao"}
+              ]
+            },
+            "mensagem": "Uma linha isenta de IVA tem de indicar o motivo de isenção ou o seu código."
+          },
+          "descricao": "Se LinhaDocumento.CategoriaIva.codigoCategoria ∈ {E, ISE} → algumPresente(LinhaDocumento.CategoriaIva.motivoIsencao, LinhaDocumento.CategoriaIva.codigoMotivoIsencao)"
+        },
+        {
+          "id": "RIR-LIN-SEM-ISENCAO",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {
+              "propriedade": "CategoriaIva.codigoCategoria",
+              "operador": "IN",
+              "valor": ["S", "NOR", "AA", "RED", "INT"]
+            }
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "nenhumPresente",
+              "argumentos": [
+                {"caminho": "CategoriaIva.motivoIsencao"},
+                {"caminho": "CategoriaIva.codigoMotivoIsencao"}
+              ]
+            },
+            "mensagem": "Uma linha de taxa normal, intermédia ou reduzida não pode ter motivo de isenção."
+          },
+          "descricao": "Se LinhaDocumento.CategoriaIva.codigoCategoria ∈ {S, NOR, AA, RED, INT} → nenhumPresente(LinhaDocumento.CategoriaIva.motivoIsencao, LinhaDocumento.CategoriaIva.codigoMotivoIsencao)"
+        }
+      ]
+    }
+  ],
+  "hlm": [
+    {
+      "nome": "DocumentoFaturacao",
+      "descricao": "Documento de faturação eletrónica CIUS-PT (fatura, nota de crédito, nota de débito, adiantamento, autofaturação): partes, referências, linhas, descontos, encargos, IVA e totais.",
+      "notas": "O nome Fatura já está ocupado por outro HLM, com outra estrutura; este é o BG-0 do modelo semântico EN 16931 / CIUS-PT.",
+      "composicao": [
+        {"sm": "CabecalhoDocumento", "cardinalidade": "1..1"},
+        {"sm": "ReferenciasDocumento", "cardinalidade": "0..1"},
+        {"sm": "NotaDocumento", "cardinalidade": "0..*"},
+        {"sm": "DocumentosAnteriores", "cardinalidade": "0..1"},
+        {"sm": "Fornecedor", "cardinalidade": "1..1"},
+        {"sm": "Adquirente", "cardinalidade": "1..1"},
+        {"sm": "RecebedorPagamento", "cardinalidade": "0..1"},
+        {"sm": "RepresentanteFiscal", "cardinalidade": "0..1"},
+        {"sm": "LocalEntrega", "cardinalidade": "0..*"},
+        {"sm": "PeriodoFaturacao", "cardinalidade": "0..1"},
+        {"sm": "Pagamento", "cardinalidade": "0..1"},
+        {"sm": "DescontoEncargoDocumento", "papel": "Desconto", "cardinalidade": "0..*"},
+        {"sm": "DescontoEncargoDocumento", "papel": "Encargo", "cardinalidade": "0..*"},
+        {"sm": "Totais", "cardinalidade": "1..1"},
+        {"sm": "DecomposicaoIva", "cardinalidade": "1..*"},
+        {"sm": "DocumentoSuporte", "cardinalidade": "0..*"},
+        {"sm": "LinhaDocumento", "cardinalidade": "1..*"},
+        {"sm": "Metainformacao", "papel": "Metainformacao", "cardinalidade": "0..1"}
+      ],
+      "regras": [
+        {
+          "id": "RP-SOMA-LINHAS",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaIgualATolerancia",
+              "argumentos": [
+                {"caminho": "LinhaDocumento.montanteLiquido"},
+                {"caminho": "Totais.somaLinhas"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "A soma dos montantes das linhas tem de ser igual à soma dos montantes líquidos de todas as linhas, com uma tolerância de 1,00 €."
+          },
+          "descricao": "somaIgualATolerancia(LinhaDocumento.montanteLiquido, Totais.somaLinhas, 1)"
+        },
+        {
+          "id": "RP-SOMA-DESCONTOS",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaIgualATolerancia",
+              "argumentos": [
+                {"caminho": "Desconto.DescontoEncargo.montante"},
+                {"caminho": "Totais.totalDescontos"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O total dos descontos tem de ser igual à soma dos descontos ao nível do documento, com uma tolerância de 1,00 €."
+          },
+          "descricao": "somaIgualATolerancia(Desconto.DescontoEncargo.montante, Totais.totalDescontos, 1)"
+        },
+        {
+          "id": "RP-SOMA-ENCARGOS",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaIgualATolerancia",
+              "argumentos": [
+                {"caminho": "Encargo.DescontoEncargo.montante"},
+                {"caminho": "Totais.totalEncargos"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O total dos encargos tem de ser igual à soma dos encargos ao nível do documento, com uma tolerância de 1,00 €."
+          },
+          "descricao": "somaIgualATolerancia(Encargo.DescontoEncargo.montante, Totais.totalEncargos, 1)"
+        },
+        {
+          "id": "RP-SOMA-IVA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaIgualATolerancia",
+              "argumentos": [
+                {"caminho": "DecomposicaoIva.montanteImposto"},
+                {"caminho": "Totais.totalIva"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "O total do IVA tem de ser igual à soma dos impostos da decomposição do IVA, com uma tolerância de 1,00 €."
+          },
+          "descricao": "somaIgualATolerancia(DecomposicaoIva.montanteImposto, Totais.totalIva, 1)"
+        },
+        {
+          "id": "RP-IVA-BASE",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "baseTributavelCoerente",
+              "argumentos": [
+                {"caminho": "DecomposicaoIva"},
+                {"caminho": "LinhaDocumento"},
+                {"caminho": "Desconto"},
+                {"caminho": "Encargo"},
+                {"literal": 1.0}
+              ]
+            },
+            "mensagem": "A base tributável de cada subtotal de IVA tem de ser igual à soma das linhas, mais os encargos e menos os descontos da mesma categoria e taxa, com uma tolerância de 1,00 €."
+          },
+          "descricao": "baseTributavelCoerente(DecomposicaoIva, LinhaDocumento, Desconto, Encargo, 1)"
+        },
+        {
+          "id": "RP-IVA-DECOMP",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "categoriasIvaDecompostas",
+              "argumentos": [
+                {"caminho": "LinhaDocumento.CategoriaIva.codigoCategoria"},
+                {"caminho": "Desconto.CategoriaIva.codigoCategoria"},
+                {"caminho": "Encargo.CategoriaIva.codigoCategoria"},
+                {"caminho": "DecomposicaoIva.CategoriaIva.codigoCategoria"}
+              ]
+            },
+            "mensagem": "Cada categoria de IVA usada nas linhas, nos descontos ou nos encargos tem de aparecer na decomposição do IVA."
+          },
+          "descricao": "categoriasIvaDecompostas(LinhaDocumento.CategoriaIva.codigoCategoria, Desconto.CategoriaIva.codigoCategoria, Encargo.CategoriaIva.codigoCategoria, DecomposicaoIva.CategoriaIva.codigoCategoria)"
+        },
+        {
+          "id": "RP-LIN-UNICAS",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "valoresTextoUnicos",
+              "argumentos": [
+                {"caminho": "LinhaDocumento.identificador"}
+              ]
+            },
+            "mensagem": "Os identificadores das linhas não se podem repetir no documento."
+          },
+          "descricao": "valoresTextoUnicos(LinhaDocumento.identificador)"
+        },
+        {
+          "id": "RP-LENT-MORADA",
+          "natureza": "plausibilidade",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "colecaoNaoVazia",
+              "argumentos": [
+                {"caminho": "LocalEntrega.Morada.rua"}
+              ]
+            },
+            "mensagem": "O documento tem de indicar pelo menos uma morada de entrega."
+          },
+          "descricao": "colecaoNaoVazia(LocalEntrega.Morada.rua)"
+        },
+        {
+          "id": "RIR-PAGAMENTO-PRAZO",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "Totais.valorPagar", "operador": "GT", "valor": 0}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "algumPresente",
+              "argumentos": [
+                {"caminho": "CabecalhoDocumento.dataVencimento"},
+                {"caminho": "CabecalhoDocumento.condicoesPagamento"}
+              ]
+            },
+            "mensagem": "Com valor a pagar positivo, é obrigatório indicar a data de vencimento ou as condições de pagamento."
+          },
+          "descricao": "Se Totais.valorPagar > 0 → algumPresente(CabecalhoDocumento.dataVencimento, CabecalhoDocumento.condicoesPagamento)"
+        },
+        {
+          "id": "RIR-REFANT-ND",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "CabecalhoDocumento.tipoDocumento", "operador": "IN", "valor": ["383", "ND"]}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "colecaoNaoVazia",
+              "argumentos": [
+                {"caminho": "DocumentosAnteriores.ReferenciaDocumento.numero"}
+              ]
+            },
+            "mensagem": "Uma nota de débito tem de referenciar o documento anterior a que respeita."
+          },
+          "descricao": "Se CabecalhoDocumento.tipoDocumento ∈ {383, ND} → colecaoNaoVazia(DocumentosAnteriores.ReferenciaDocumento.numero)"
+        },
+        {
+          "id": "RIR-REFANT-NC",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {"propriedade": "CabecalhoDocumento.tipoDocumento", "operador": "IN", "valor": ["381", "NC"]}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "colecaoNaoVazia",
+              "argumentos": [
+                {"caminho": "DocumentosAnteriores.ReferenciaDocumento.numero"}
+              ]
+            },
+            "mensagem": "Uma nota de crédito tem de referenciar a fatura original."
+          },
+          "descricao": "Se CabecalhoDocumento.tipoDocumento ∈ {381, NC} → colecaoNaoVazia(DocumentosAnteriores.ReferenciaDocumento.numero)"
+        },
+        {
+          "id": "RIR-TOT-DESCONTOS",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {
+              "operador": "FUNCTION",
+              "chamada": {
+                "funcao": "colecaoNaoVazia",
+                "argumentos": [
+                  {"caminho": "Desconto.DescontoEncargo.montante"}
+                ]
+              }
+            }
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "existe",
+              "argumentos": [
+                {"caminho": "Totais.totalDescontos"}
+              ]
+            },
+            "mensagem": "Se houver descontos ao nível do documento, o total dos descontos é obrigatório."
+          },
+          "descricao": "Se colecaoNaoVazia(Desconto.DescontoEncargo.montante) → existe(Totais.totalDescontos)"
+        },
+        {
+          "id": "RIR-TOT-ENCARGOS",
+          "natureza": "inferencia_restritiva",
+          "condicao": [
+            {
+              "operador": "FUNCTION",
+              "chamada": {
+                "funcao": "colecaoNaoVazia",
+                "argumentos": [
+                  {"caminho": "Encargo.DescontoEncargo.montante"}
+                ]
+              }
+            }
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "existe",
+              "argumentos": [
+                {"caminho": "Totais.totalEncargos"}
+              ]
+            },
+            "mensagem": "Se houver encargos ao nível do documento, o total dos encargos é obrigatório."
+          },
+          "descricao": "Se colecaoNaoVazia(Encargo.DescontoEncargo.montante) → existe(Totais.totalEncargos)"
+        }
+      ]
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "FaturaCiusPt",
+      "hlm": "DocumentoFaturacao",
+      "descricao": "Fatura eletrónica CIUS-PT para entidades públicas (380) e documentos com a mesma estrutura: nota de débito (383), fatura de adiantamento (386) e autofaturação (389).",
+      "obrigatorias": [
+        "CabecalhoDocumento.numero",
+        "CabecalhoDocumento.dataEmissao",
+        "CabecalhoDocumento.tipoDocumento",
+        "CabecalhoDocumento.moeda",
+        "CabecalhoDocumento.identificadorEspecificacao",
+        "Fornecedor.SujeitoPassivo.nome",
+        "Fornecedor.SujeitoPassivo.identificadorIva",
+        "Fornecedor.Morada.rua",
+        "Fornecedor.Morada.localidade",
+        "Fornecedor.Morada.codigoPostal",
+        "Fornecedor.Morada.pais",
+        "Adquirente.SujeitoPassivo.nome",
+        "Adquirente.SujeitoPassivo.identificadorIva",
+        "Adquirente.Morada.pais",
+        "DocumentosAnteriores.ReferenciaDocumento.numero",
+        "RecebedorPagamento.SujeitoPassivo.nome",
+        "RepresentanteFiscal.SujeitoPassivo.nome",
+        "RepresentanteFiscal.SujeitoPassivo.identificadorIva",
+        "RepresentanteFiscal.Morada.pais",
+        "LocalEntrega.Morada.rua",
+        "LocalEntrega.Morada.localidade",
+        "LocalEntrega.Morada.codigoPostal",
+        "LocalEntrega.Morada.pais",
+        "Pagamento.meioPagamento",
+        "Pagamento.ContaBancaria.iban",
+        "Pagamento.CartaoPagamento.numeroConta",
+        "Desconto.DescontoEncargo.montante",
+        "Desconto.CategoriaIva.codigoCategoria",
+        "Desconto.CategoriaIva.taxa",
+        "Encargo.DescontoEncargo.montante",
+        "Encargo.CategoriaIva.codigoCategoria",
+        "Encargo.CategoriaIva.taxa",
+        "Totais.somaLinhas",
+        "Totais.totalSemIva",
+        "Totais.totalIva",
+        "Totais.totalComIva",
+        "Totais.valorPagar",
+        "DecomposicaoIva.baseTributavel",
+        "DecomposicaoIva.montanteImposto",
+        "DecomposicaoIva.CategoriaIva.codigoCategoria",
+        "DecomposicaoIva.CategoriaIva.taxa",
+        "DocumentoSuporte.referencia",
+        "NotaDocumento.texto",
+        "LinhaDocumento.identificador",
+        "LinhaDocumento.quantidade",
+        "LinhaDocumento.unidadeMedida",
+        "LinhaDocumento.montanteLiquido",
+        "LinhaDocumento.Artigo.nome",
+        "LinhaDocumento.Preco.precoLiquido",
+        "LinhaDocumento.CategoriaIva.codigoCategoria",
+        "LinhaDocumento.CategoriaIva.taxa",
+        "LinhaDocumento.Desconto.montante",
+        "LinhaDocumento.Encargo.montante",
+        "LinhaDocumento.AtributoArtigo.nome",
+        "LinhaDocumento.AtributoArtigo.valor"
+      ],
+      "permitidas": [
+        "CabecalhoDocumento.moedaIva",
+        "CabecalhoDocumento.dataIva",
+        "CabecalhoDocumento.codigoDataIva",
+        "CabecalhoDocumento.dataVencimento",
+        "CabecalhoDocumento.referenciaCliente",
+        "CabecalhoDocumento.numeroCompromisso",
+        "CabecalhoDocumento.condicoesPagamento",
+        "CabecalhoDocumento.tipoProcesso",
+        "ReferenciasDocumento.*",
+        "NotaDocumento.assunto",
+        "DocumentosAnteriores.ReferenciaDocumento.dataEmissao",
+        "Fornecedor.SujeitoPassivo.nomeComercial",
+        "Fornecedor.SujeitoPassivo.identificador",
+        "Fornecedor.SujeitoPassivo.identificadorRegisto",
+        "Fornecedor.Morada.freguesia",
+        "Fornecedor.ComplementoMorada.*",
+        "Fornecedor.ContactoTelefonico.telefone",
+        "Fornecedor.Contacto.email",
+        "Fornecedor.registoFiscal",
+        "Fornecedor.capitalSocial",
+        "Fornecedor.enderecoEletronico",
+        "Fornecedor.pontoContacto",
+        "Adquirente.SujeitoPassivo.nomeComercial",
+        "Adquirente.SujeitoPassivo.identificador",
+        "Adquirente.SujeitoPassivo.identificadorRegisto",
+        "Adquirente.Morada.rua",
+        "Adquirente.Morada.localidade",
+        "Adquirente.Morada.codigoPostal",
+        "Adquirente.Morada.freguesia",
+        "Adquirente.ComplementoMorada.*",
+        "Adquirente.ContactoTelefonico.telefone",
+        "Adquirente.Contacto.email",
+        "Adquirente.enderecoEletronico",
+        "Adquirente.pontoContacto",
+        "RecebedorPagamento.SujeitoPassivo.identificador",
+        "RecebedorPagamento.SujeitoPassivo.identificadorRegisto",
+        "RepresentanteFiscal.Morada.rua",
+        "RepresentanteFiscal.Morada.localidade",
+        "RepresentanteFiscal.Morada.codigoPostal",
+        "RepresentanteFiscal.Morada.freguesia",
+        "RepresentanteFiscal.ComplementoMorada.*",
+        "LocalEntrega.nomeLocal",
+        "LocalEntrega.identificadorLocal",
+        "LocalEntrega.dataEntrega",
+        "LocalEntrega.Morada.freguesia",
+        "LocalEntrega.ComplementoMorada.*",
+        "PeriodoFaturacao.*",
+        "Pagamento.detalhePagamento",
+        "Pagamento.referenciaPagamento",
+        "Pagamento.ContaBancaria.nomeConta",
+        "Pagamento.ContaBancaria.bic",
+        "Pagamento.CartaoPagamento.titular",
+        "Pagamento.DebitoDireto.*",
+        "Desconto.DescontoEncargo.montanteBase",
+        "Desconto.DescontoEncargo.percentagem",
+        "Desconto.DescontoEncargo.motivo",
+        "Desconto.DescontoEncargo.codigoMotivo",
+        "Encargo.DescontoEncargo.montanteBase",
+        "Encargo.DescontoEncargo.percentagem",
+        "Encargo.DescontoEncargo.motivo",
+        "Encargo.DescontoEncargo.codigoMotivo",
+        "Totais.totalDescontos",
+        "Totais.totalEncargos",
+        "Totais.totalIvaMoedaContabilistica",
+        "Totais.valorPago",
+        "Totais.arredondamento",
+        "DecomposicaoIva.CategoriaIva.motivoIsencao",
+        "DecomposicaoIva.CategoriaIva.codigoMotivoIsencao",
+        "DocumentoSuporte.descricao",
+        "DocumentoSuporte.localizacaoExterna",
+        "DocumentoSuporte.anexo",
+        "DocumentoSuporte.tipoMime",
+        "DocumentoSuporte.nomeFicheiro",
+        "LinhaDocumento.nota",
+        "LinhaDocumento.identificadorObjeto",
+        "LinhaDocumento.referenciaLinhaEncomenda",
+        "LinhaDocumento.numeroCompromisso",
+        "LinhaDocumento.Periodo.*",
+        "LinhaDocumento.Desconto.montanteBase",
+        "LinhaDocumento.Desconto.percentagem",
+        "LinhaDocumento.Desconto.motivo",
+        "LinhaDocumento.Desconto.codigoMotivo",
+        "LinhaDocumento.Encargo.montanteBase",
+        "LinhaDocumento.Encargo.percentagem",
+        "LinhaDocumento.Encargo.motivo",
+        "LinhaDocumento.Encargo.codigoMotivo",
+        "LinhaDocumento.Preco.descontoPreco",
+        "LinhaDocumento.Preco.precoBruto",
+        "LinhaDocumento.Preco.quantidadeBase",
+        "LinhaDocumento.Preco.unidadeQuantidadeBase",
+        "LinhaDocumento.CategoriaIva.motivoIsencao",
+        "LinhaDocumento.CategoriaIva.codigoMotivoIsencao",
+        "LinhaDocumento.Artigo.descricao",
+        "LinhaDocumento.Artigo.codigo",
+        "LinhaDocumento.Artigo.codigoComprador",
+        "LinhaDocumento.Artigo.codigoBarras",
+        "LinhaDocumento.Artigo.classificacao",
+        "LinhaDocumento.Artigo.paisOrigem",
+        "Metainformacao.*"
+      ]
+    },
+    {
+      "nome": "NotaCreditoCiusPt",
+      "hlm": "DocumentoFaturacao",
+      "descricao": "Nota de crédito CIUS-PT (381), incluindo a nota de crédito de rappel; o modelo UBL da nota de crédito não tem a data efetiva de entrega.",
+      "obrigatorias": [
+        "CabecalhoDocumento.numero",
+        "CabecalhoDocumento.dataEmissao",
+        "CabecalhoDocumento.tipoDocumento",
+        "CabecalhoDocumento.moeda",
+        "CabecalhoDocumento.identificadorEspecificacao",
+        "Fornecedor.SujeitoPassivo.nome",
+        "Fornecedor.SujeitoPassivo.identificadorIva",
+        "Fornecedor.Morada.rua",
+        "Fornecedor.Morada.localidade",
+        "Fornecedor.Morada.codigoPostal",
+        "Fornecedor.Morada.pais",
+        "Adquirente.SujeitoPassivo.nome",
+        "Adquirente.SujeitoPassivo.identificadorIva",
+        "Adquirente.Morada.pais",
+        "DocumentosAnteriores.ReferenciaDocumento.numero",
+        "RecebedorPagamento.SujeitoPassivo.nome",
+        "RepresentanteFiscal.SujeitoPassivo.nome",
+        "RepresentanteFiscal.SujeitoPassivo.identificadorIva",
+        "RepresentanteFiscal.Morada.pais",
+        "LocalEntrega.Morada.rua",
+        "LocalEntrega.Morada.localidade",
+        "LocalEntrega.Morada.codigoPostal",
+        "LocalEntrega.Morada.pais",
+        "Pagamento.meioPagamento",
+        "Pagamento.ContaBancaria.iban",
+        "Pagamento.CartaoPagamento.numeroConta",
+        "Desconto.DescontoEncargo.montante",
+        "Desconto.CategoriaIva.codigoCategoria",
+        "Desconto.CategoriaIva.taxa",
+        "Encargo.DescontoEncargo.montante",
+        "Encargo.CategoriaIva.codigoCategoria",
+        "Encargo.CategoriaIva.taxa",
+        "Totais.somaLinhas",
+        "Totais.totalSemIva",
+        "Totais.totalIva",
+        "Totais.totalComIva",
+        "Totais.valorPagar",
+        "DecomposicaoIva.baseTributavel",
+        "DecomposicaoIva.montanteImposto",
+        "DecomposicaoIva.CategoriaIva.codigoCategoria",
+        "DecomposicaoIva.CategoriaIva.taxa",
+        "DocumentoSuporte.referencia",
+        "NotaDocumento.texto",
+        "LinhaDocumento.identificador",
+        "LinhaDocumento.quantidade",
+        "LinhaDocumento.unidadeMedida",
+        "LinhaDocumento.montanteLiquido",
+        "LinhaDocumento.Artigo.nome",
+        "LinhaDocumento.Preco.precoLiquido",
+        "LinhaDocumento.CategoriaIva.codigoCategoria",
+        "LinhaDocumento.CategoriaIva.taxa",
+        "LinhaDocumento.Desconto.montante",
+        "LinhaDocumento.Encargo.montante",
+        "LinhaDocumento.AtributoArtigo.nome",
+        "LinhaDocumento.AtributoArtigo.valor"
+      ],
+      "permitidas": [
+        "CabecalhoDocumento.moedaIva",
+        "CabecalhoDocumento.dataIva",
+        "CabecalhoDocumento.codigoDataIva",
+        "CabecalhoDocumento.dataVencimento",
+        "CabecalhoDocumento.referenciaCliente",
+        "CabecalhoDocumento.numeroCompromisso",
+        "CabecalhoDocumento.condicoesPagamento",
+        "CabecalhoDocumento.tipoProcesso",
+        "ReferenciasDocumento.*",
+        "NotaDocumento.assunto",
+        "DocumentosAnteriores.ReferenciaDocumento.dataEmissao",
+        "Fornecedor.SujeitoPassivo.nomeComercial",
+        "Fornecedor.SujeitoPassivo.identificador",
+        "Fornecedor.SujeitoPassivo.identificadorRegisto",
+        "Fornecedor.Morada.freguesia",
+        "Fornecedor.ComplementoMorada.*",
+        "Fornecedor.ContactoTelefonico.telefone",
+        "Fornecedor.Contacto.email",
+        "Fornecedor.registoFiscal",
+        "Fornecedor.capitalSocial",
+        "Fornecedor.enderecoEletronico",
+        "Fornecedor.pontoContacto",
+        "Adquirente.SujeitoPassivo.nomeComercial",
+        "Adquirente.SujeitoPassivo.identificador",
+        "Adquirente.SujeitoPassivo.identificadorRegisto",
+        "Adquirente.Morada.rua",
+        "Adquirente.Morada.localidade",
+        "Adquirente.Morada.codigoPostal",
+        "Adquirente.Morada.freguesia",
+        "Adquirente.ComplementoMorada.*",
+        "Adquirente.ContactoTelefonico.telefone",
+        "Adquirente.Contacto.email",
+        "Adquirente.enderecoEletronico",
+        "Adquirente.pontoContacto",
+        "RecebedorPagamento.SujeitoPassivo.identificador",
+        "RecebedorPagamento.SujeitoPassivo.identificadorRegisto",
+        "RepresentanteFiscal.Morada.rua",
+        "RepresentanteFiscal.Morada.localidade",
+        "RepresentanteFiscal.Morada.codigoPostal",
+        "RepresentanteFiscal.Morada.freguesia",
+        "RepresentanteFiscal.ComplementoMorada.*",
+        "LocalEntrega.nomeLocal",
+        "LocalEntrega.identificadorLocal",
+        "LocalEntrega.Morada.freguesia",
+        "LocalEntrega.ComplementoMorada.*",
+        "PeriodoFaturacao.*",
+        "Pagamento.detalhePagamento",
+        "Pagamento.referenciaPagamento",
+        "Pagamento.ContaBancaria.nomeConta",
+        "Pagamento.ContaBancaria.bic",
+        "Pagamento.CartaoPagamento.titular",
+        "Pagamento.DebitoDireto.*",
+        "Desconto.DescontoEncargo.montanteBase",
+        "Desconto.DescontoEncargo.percentagem",
+        "Desconto.DescontoEncargo.motivo",
+        "Desconto.DescontoEncargo.codigoMotivo",
+        "Encargo.DescontoEncargo.montanteBase",
+        "Encargo.DescontoEncargo.percentagem",
+        "Encargo.DescontoEncargo.motivo",
+        "Encargo.DescontoEncargo.codigoMotivo",
+        "Totais.totalDescontos",
+        "Totais.totalEncargos",
+        "Totais.totalIvaMoedaContabilistica",
+        "Totais.valorPago",
+        "Totais.arredondamento",
+        "DecomposicaoIva.CategoriaIva.motivoIsencao",
+        "DecomposicaoIva.CategoriaIva.codigoMotivoIsencao",
+        "DocumentoSuporte.descricao",
+        "DocumentoSuporte.localizacaoExterna",
+        "DocumentoSuporte.anexo",
+        "DocumentoSuporte.tipoMime",
+        "DocumentoSuporte.nomeFicheiro",
+        "LinhaDocumento.nota",
+        "LinhaDocumento.identificadorObjeto",
+        "LinhaDocumento.referenciaLinhaEncomenda",
+        "LinhaDocumento.numeroCompromisso",
+        "LinhaDocumento.Periodo.*",
+        "LinhaDocumento.Desconto.montanteBase",
+        "LinhaDocumento.Desconto.percentagem",
+        "LinhaDocumento.Desconto.motivo",
+        "LinhaDocumento.Desconto.codigoMotivo",
+        "LinhaDocumento.Encargo.montanteBase",
+        "LinhaDocumento.Encargo.percentagem",
+        "LinhaDocumento.Encargo.motivo",
+        "LinhaDocumento.Encargo.codigoMotivo",
+        "LinhaDocumento.Preco.descontoPreco",
+        "LinhaDocumento.Preco.precoBruto",
+        "LinhaDocumento.Preco.quantidadeBase",
+        "LinhaDocumento.Preco.unidadeQuantidadeBase",
+        "LinhaDocumento.CategoriaIva.motivoIsencao",
+        "LinhaDocumento.CategoriaIva.codigoMotivoIsencao",
+        "LinhaDocumento.Artigo.descricao",
+        "LinhaDocumento.Artigo.codigo",
+        "LinhaDocumento.Artigo.codigoComprador",
+        "LinhaDocumento.Artigo.codigoBarras",
+        "LinhaDocumento.Artigo.classificacao",
+        "LinhaDocumento.Artigo.paisOrigem",
+        "Metainformacao.*"
+      ]
+    },
+    {
+      "nome": "TESTE",
+      "hlm": "DocumentoFaturacao",
+      "descricao": "TESTES",
+      "obrigatorias": [
+        "LinhaDocumento.Encargo.montante",
+        "LinhaDocumento.Encargo.montanteBase",
+        "LinhaDocumento.Encargo.motivo"
+      ],
+      "permitidas": ["Metainformacao.origemModelo", "Metainformacao.referenciaOrigem"]
+    }
+  ],
+  "perfis": [
+    {
+      "nome": "EmissaoFaturaCiusPt",
+      "projecao": "FaturaCiusPt",
+      "descricao": "Emissão de fatura eletrónica (380) em Portugal, em euros, por um fornecedor com NIF português.",
+      "fixa": [
+        {
+          "propriedade": "CabecalhoDocumento.tipoDocumento",
+          "valor": "380"
+        },
+        {
+          "propriedade": "CabecalhoDocumento.moeda",
+          "valor": "EUR"
+        },
+        {
+          "propriedade": "Fornecedor.Morada.pais",
+          "valor": "PT"
+        }
+      ]
+    },
+    {
+      "nome": "EmissaoFaturaIsenta",
+      "projecao": "FaturaCiusPt",
+      "descricao": "Fatura isenta de IVA (380, em euros, em Portugal): o motivo de isenção é exigido linha a linha e no subtotal (RIR-LIN-ISENCAO, RIR-DECOMP-ISENCAO).",
+      "fixa": [
+        {
+          "propriedade": "CabecalhoDocumento.tipoDocumento",
+          "valor": "380"
+        },
+        {
+          "propriedade": "CabecalhoDocumento.moeda",
+          "valor": "EUR"
+        },
+        {
+          "propriedade": "Fornecedor.Morada.pais",
+          "valor": "PT"
+        }
+      ]
+    },
+    {
+      "nome": "EmissaoNotaDebito",
+      "projecao": "FaturaCiusPt",
+      "descricao": "Emissão de nota de débito (383) em euros, que referencia o documento anterior.",
+      "fixa": [
+        {
+          "propriedade": "CabecalhoDocumento.tipoDocumento",
+          "valor": "383"
+        },
+        {
+          "propriedade": "CabecalhoDocumento.moeda",
+          "valor": "EUR"
+        },
+        {
+          "propriedade": "Fornecedor.Morada.pais",
+          "valor": "PT"
+        }
+      ]
+    },
+    {
+      "nome": "EmissaoFaturaAdiantamento",
+      "projecao": "FaturaCiusPt",
+      "descricao": "Emissão de fatura de adiantamento (386) em euros.",
+      "fixa": [
+        {
+          "propriedade": "CabecalhoDocumento.tipoDocumento",
+          "valor": "386"
+        },
+        {
+          "propriedade": "CabecalhoDocumento.moeda",
+          "valor": "EUR"
+        },
+        {
+          "propriedade": "Fornecedor.Morada.pais",
+          "valor": "PT"
+        }
+      ]
+    },
+    {
+      "nome": "EmissaoAutofaturacao",
+      "projecao": "FaturaCiusPt",
+      "descricao": "Emissão de autofaturação (389) em euros.",
+      "fixa": [
+        {
+          "propriedade": "CabecalhoDocumento.tipoDocumento",
+          "valor": "389"
+        },
+        {
+          "propriedade": "CabecalhoDocumento.moeda",
+          "valor": "EUR"
+        },
+        {
+          "propriedade": "Fornecedor.Morada.pais",
+          "valor": "PT"
+        }
+      ]
+    },
+    {
+      "nome": "EmissaoNotaCredito",
+      "projecao": "NotaCreditoCiusPt",
+      "descricao": "Nota de crédito (381) em euros, que referencia a fatura original.",
+      "fixa": [
+        {
+          "propriedade": "CabecalhoDocumento.tipoDocumento",
+          "valor": "381"
+        },
+        {
+          "propriedade": "CabecalhoDocumento.moeda",
+          "valor": "EUR"
+        },
+        {
+          "propriedade": "Fornecedor.Morada.pais",
+          "valor": "PT"
+        }
+      ]
+    },
+    {
+      "nome": "PERFILTESTE",
+      "projecao": "TESTE",
+      "descricao": "Cenário de teste",
+      "fixa": [
+        {
+          "propriedade": "CabecalhoDocumento.tipoDocumento",
+          "valor": "381"
+        },
+        {
+          "propriedade": "CabecalhoDocumento.moeda",
+          "valor": "EUR"
+        },
+        {
+          "propriedade": "Fornecedor.Morada.pais",
+          "valor": "PT"
+        }
+      ]
+    }
+  ]
+}

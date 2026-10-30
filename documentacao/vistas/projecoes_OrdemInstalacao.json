@@ -1,0 +1,164 @@
+{
+  "vista": "projecoes",
+  "titulo": "Matriz de projeções do HLM OrdemInstalacao",
+  "hlm": "OrdemInstalacao",
+  "projecoes": [
+    {
+      "nome": "OrdemCompleta",
+      "descricao": "Ordem de instalação com requerente e locais completos."
+    }
+  ],
+  "linhas": [
+    {
+      "caminho": "Pedido.numeroOrdem",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Pedido.dataPedido",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.consentimentoComercial",
+      "celulas": {
+        "OrdemCompleta": "P"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.Entidade.nif",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.Entidade.nome",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.Morada.rua",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.Morada.codigoPostal",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.Morada.localidade",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.Morada.freguesia",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Requerente.Morada.pais",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.indicacaoAcesso",
+      "celulas": {
+        "OrdemCompleta": "P"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.latitude",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.longitude",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.altitude",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.InformacaoGeografica.sistemaReferencia",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.Morada.rua",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.Morada.codigoPostal",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.Morada.localidade",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.Morada.freguesia",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    },
+    {
+      "caminho": "Localizacao.Morada.pais",
+      "celulas": {
+        "OrdemCompleta": "O"
+      },
+      "difere": false
+    }
+  ],
+  "perfis": [
+    {
+      "perfil": "OrdensCorrentes",
+      "projecao": "OrdemCompleta",
+      "descricao": "Ordens de instalação correntes.",
+      "fixa": []
+    }
+  ],
+  "parametros": {
+    "hlm": "OrdemInstalacao"
+  }
+}

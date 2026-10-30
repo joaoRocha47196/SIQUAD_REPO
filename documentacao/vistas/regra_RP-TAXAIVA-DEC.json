@@ -1,0 +1,176 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-TAXAIVA-DEC",
+  "regra": {
+    "id": "RP-TAXAIVA-DEC",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Linha.taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+    "alcance": "USM Linha.taxaIVA",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "taxaIVA",
+      "chave": "Propriedade:USM:Linha.taxaIVA",
+      "dono": "Linha"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "PATTERN",
+      "mensagem": "A taxa de IVA tem no máximo duas casas decimais.",
+      "texto": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+      "caminho": "taxaIVA",
+      "propriedade": "USM:Linha.taxaIVA",
+      "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "A taxa de IVA tem no máximo duas casas decimais.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "PATTERN",
+    "mensagem": "A taxa de IVA tem no máximo duas casas decimais.",
+    "texto": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+    "caminho": "taxaIVA",
+    "propriedade": "USM:Linha.taxaIVA",
+    "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Taxa de IVA aplicada à linha (%)"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Linha.taxaIVA",
+    "nome": "taxaIVA",
+    "dono": "Linha",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Taxa de IVA aplicada à linha (%)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-TAXAIVA-DEC",
+        "rotulo": "RP",
+        "texto": "RP-TAXAIVA-DEC",
+        "detalhe": "Linha.taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.taxaIVA",
+        "detalhe": "Taxa de IVA aplicada à linha (%)"
+      },
+      {
+        "chave": "Restricao:RP-TAXAIVA-DEC",
+        "rotulo": "Restricao",
+        "texto": "RP-TAXAIVA-DEC#restricao",
+        "detalhe": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-TAXAIVA-DEC",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-TAXAIVA-DEC",
+        "para": "Restricao:RP-TAXAIVA-DEC",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-TAXAIVA-DEC",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "RESTRINGE",
+        "texto": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "nome": "taxaIVA",
+        "dono": "Linha",
+        "descricao": "Taxa de IVA aplicada à linha (%)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-TAXAIVA-DEC"
+  }
+}

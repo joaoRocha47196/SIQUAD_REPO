@@ -1,0 +1,186 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-TIPOIVA",
+  "regra": {
+    "id": "RP-TIPOIVA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+    "alcance": "USM Linha.tipoIVA",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "tipoIVA",
+      "chave": "Propriedade:USM:Linha.tipoIVA",
+      "dono": "Linha"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.",
+      "texto": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+      "caminho": "tipoIVA",
+      "propriedade": "USM:Linha.tipoIVA",
+      "valor": [
+        "ISENTA",
+        "REDUZIDA",
+        "INTERMEDIA",
+        "NORMAL"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Linha.tipoIVA",
+      "nome": "tipoIVA",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal.",
+    "texto": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+    "caminho": "tipoIVA",
+    "propriedade": "USM:Linha.tipoIVA",
+    "valor": [
+      "ISENTA",
+      "REDUZIDA",
+      "INTERMEDIA",
+      "NORMAL"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+    "alvo": {
+      "chave": "USM:Linha.tipoIVA",
+      "nome": "tipoIVA",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Tipo de taxa de IVA aplicada à linha"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Linha.tipoIVA",
+    "nome": "tipoIVA",
+    "dono": "Linha",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Tipo de taxa de IVA aplicada à linha",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-TIPOIVA",
+        "rotulo": "RP",
+        "texto": "RP-TIPOIVA",
+        "detalhe": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.tipoIVA",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.tipoIVA",
+        "detalhe": "Tipo de taxa de IVA aplicada à linha"
+      },
+      {
+        "chave": "Restricao:RP-TIPOIVA",
+        "rotulo": "Restricao",
+        "texto": "RP-TIPOIVA#restricao",
+        "detalhe": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-TIPOIVA",
+        "para": "Propriedade:USM:Linha.tipoIVA",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-TIPOIVA",
+        "para": "Restricao:RP-TIPOIVA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-TIPOIVA",
+        "para": "Propriedade:USM:Linha.tipoIVA",
+        "tipo": "RESTRINGE",
+        "texto": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Linha.tipoIVA",
+        "rotulo": "Propriedade",
+        "nome": "tipoIVA",
+        "dono": "Linha",
+        "descricao": "Tipo de taxa de IVA aplicada à linha",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.tipoIVA",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-TIPOIVA"
+  }
+}

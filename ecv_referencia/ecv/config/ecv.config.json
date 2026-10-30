@@ -1,0 +1,270 @@
+{
+  "descricao": "Configuração única da ECV de referência: o vocabulário fechado (tipos base, operadores, tipos de regra, cardinalidades, níveis), as convenções de nomes, as cores das vistas, os caminhos dos ficheiros e os valores assumidos (Neo4j, servidor, limiares das vistas). É lida pelo módulo ecv/config; nenhum destes valores está repetido no código.",
+  "versao": "2.0.0",
+  "tiposBase": {
+    "texto": {"descricao": "Cadeia de caracteres."},
+    "inteiro": {"descricao": "Número inteiro."},
+    "decimal": {"descricao": "Número com parte decimal."},
+    "data": {"descricao": "Data no formato AAAA-MM-DD (comparável como texto)."},
+    "booleano": {"descricao": "Verdadeiro ou falso."}
+  },
+  "formasValor": {
+    "valor": "um valor simples (texto, número, data ou booleano)",
+    "lista": "lista não vazia de valores simples",
+    "intervalo": "[mínimo, máximo], com mínimo <= máximo",
+    "numero": "um número (ou uma data, sobre propriedades do tipo data)",
+    "padrao": "expressão regular",
+    "comprimento": "inteiro >= 0, ou [mínimo, máximo]",
+    "texto": "texto não vazio",
+    "chamada": "{\"funcao\": nome, \"argumentos\": [{\"caminho\": …} | {\"literal\": …}]}"
+  },
+  "operadores": {
+    "EQUALS": {
+      "grupo": "igualdade e pertença",
+      "forma": "valor",
+      "simbolo": "=",
+      "descricao": "o valor é igual ao esperado",
+      "contexto": true
+    },
+    "NOT_EQUALS": {
+      "grupo": "igualdade e pertença",
+      "forma": "valor",
+      "simbolo": "≠",
+      "descricao": "o valor é diferente do indicado",
+      "contexto": true
+    },
+    "IN": {
+      "grupo": "igualdade e pertença",
+      "forma": "lista",
+      "simbolo": "∈",
+      "descricao": "o valor é um dos da lista",
+      "contexto": false
+    },
+    "RANGE": {
+      "grupo": "intervalo e comparação",
+      "forma": "intervalo",
+      "simbolo": "entre",
+      "descricao": "o valor está entre o mínimo e o máximo (inclusive)",
+      "contexto": false
+    },
+    "LT": {
+      "grupo": "intervalo e comparação",
+      "forma": "numero",
+      "simbolo": "<",
+      "descricao": "o valor é menor",
+      "contexto": true
+    },
+    "LTE": {
+      "grupo": "intervalo e comparação",
+      "forma": "numero",
+      "simbolo": "≤",
+      "descricao": "o valor é menor ou igual",
+      "contexto": true
+    },
+    "GT": {
+      "grupo": "intervalo e comparação",
+      "forma": "numero",
+      "simbolo": ">",
+      "descricao": "o valor é maior",
+      "contexto": true
+    },
+    "GTE": {
+      "grupo": "intervalo e comparação",
+      "forma": "numero",
+      "simbolo": "≥",
+      "descricao": "o valor é maior ou igual",
+      "contexto": true
+    },
+    "PATTERN": {
+      "grupo": "padrão",
+      "forma": "padrao",
+      "simbolo": "segue o padrão",
+      "descricao": "o valor segue a expressão regular",
+      "contexto": false
+    },
+    "CONTAINS": {
+      "grupo": "texto",
+      "forma": "texto",
+      "simbolo": "contém",
+      "descricao": "o texto contém o indicado",
+      "contexto": false
+    },
+    "STARTS_WITH": {
+      "grupo": "texto",
+      "forma": "texto",
+      "simbolo": "começa por",
+      "descricao": "o texto começa pelo indicado",
+      "contexto": false
+    },
+    "ENDS_WITH": {
+      "grupo": "texto",
+      "forma": "texto",
+      "simbolo": "termina em",
+      "descricao": "o texto termina no indicado",
+      "contexto": false
+    },
+    "LENGTH": {
+      "grupo": "texto",
+      "forma": "comprimento",
+      "simbolo": "tem comprimento",
+      "descricao": "o texto tem o comprimento indicado (ou dentro do intervalo)",
+      "contexto": false
+    },
+    "FUNCTION": {
+      "grupo": "função",
+      "forma": "chamada",
+      "simbolo": "função",
+      "descricao": "verificação delegada numa função declarada, sem contexto externo",
+      "contexto": false
+    },
+    "EXT_FUNCTION": {
+      "grupo": "função",
+      "forma": "chamada",
+      "simbolo": "função com contexto externo",
+      "descricao": "verificação delegada numa função que depende de contextos externos",
+      "contexto": false
+    }
+  },
+  "operadoresFuncao": ["FUNCTION", "EXT_FUNCTION"],
+  "operadoresPorTipo": {
+    "texto": ["EQUALS", "NOT_EQUALS", "IN", "PATTERN", "LENGTH", "CONTAINS", "STARTS_WITH", "ENDS_WITH"],
+    "inteiro": ["EQUALS", "NOT_EQUALS", "IN", "RANGE", "LT", "LTE", "GT", "GTE", "PATTERN"],
+    "decimal": ["EQUALS", "NOT_EQUALS", "IN", "RANGE", "LT", "LTE", "GT", "GTE", "PATTERN"],
+    "data": ["EQUALS", "NOT_EQUALS", "RANGE", "LT", "LTE", "GT", "GTE"],
+    "booleano": ["EQUALS"]
+  },
+  "operadoresSelecao": ["EQUALS", "IN"],
+  "tiposRegra": {
+    "RE": {
+      "natureza": null,
+      "nome": "regra estrutural",
+      "restricao": false,
+      "condicao": false,
+      "mensagem": null,
+      "descricao": "Diz que propriedades são obrigatórias, permitidas ou excluídas numa utilização. Não é declarada como regra: exprime-se pelas projeções."
+    },
+    "RP": {
+      "natureza": "plausibilidade",
+      "nome": "regra de plausibilidade",
+      "restricao": true,
+      "condicao": false,
+      "mensagem": "restricao",
+      "descricao": "Valores que a propriedade pode tomar, sempre, sem depender de outras propriedades. Tem uma restrição e não tem condição."
+    },
+    "RIR": {
+      "natureza": "inferencia_restritiva",
+      "nome": "regra de inferência restritiva",
+      "restricao": true,
+      "condicao": true,
+      "mensagem": "restricao",
+      "descricao": "Restrição que só se aplica quando a condição de aplicabilidade se verifica (os fatores discriminantes). Tem condição e restrição."
+    },
+    "RIC": {
+      "natureza": "inferencia_conclusiva",
+      "nome": "regra de inferência conclusiva",
+      "restricao": false,
+      "condicao": true,
+      "mensagem": "regra",
+      "descricao": "Quando a condição se verifica, produz uma conclusão (ação ou estado) com a sua mensagem. Não restringe: não há não conformidade."
+    }
+  },
+  "formasRestricao": {
+    "tipificada": "um alvo, um operador do catálogo e os valores esperados",
+    "funcao": "uma chamada a uma função declarada (FUNCTION ou EXT_FUNCTION)"
+  },
+  "tiposConclusao": {"ACAO": "Ação", "ESTADO": "Estado"},
+  "cardinalidades": {
+    "0..1": {"minimo": 0, "maximo": "1", "leitura": "opcional"},
+    "1..1": {"minimo": 1, "maximo": "1", "leitura": "singular"},
+    "0..*": {"minimo": 0, "maximo": "*", "leitura": "repetível (coleção), pode faltar"},
+    "1..*": {"minimo": 1, "maximo": "*", "leitura": "repetível (coleção), pelo menos uma"}
+  },
+  "niveis": {
+    "HLM": {"nome": "modelo de alto nível", "compoe": ["SM"], "temPropriedades": false},
+    "SM": {"nome": "submodelo", "compoe": ["SM", "USM"], "temPropriedades": true},
+    "USM": {"nome": "submodelo universal", "compoe": [], "temPropriedades": true}
+  },
+  "metainformacao": {
+    "descricao": "SM genérico de metainformação que um HLM principal pode compor (cardinalidade 0..1, papel Metainformacao): de onde vem o modelo, para que é usado e outra informação sobre o próprio modelo. Não é conhecimento de validação do domínio, mas pode ter regras (ex.: origem dentro de uma lista).",
+    "nome": "Metainformacao",
+    "cardinalidade": "0..1",
+    "propriedades": [
+      {
+        "nome": "origemModelo",
+        "tipo": "texto",
+        "descricao": "Fonte do modelo de dados (norma, sistema ou repositório)"
+      },
+      {"nome": "versaoOrigem", "tipo": "texto", "descricao": "Versão da fonte usada"},
+      {
+        "nome": "referenciaOrigem",
+        "tipo": "texto",
+        "descricao": "Identificador da entidade na fonte (ex.: BG-0 Invoice, Device)"
+      },
+      {"nome": "utilizacao", "tipo": "texto", "descricao": "Finalidade ou contexto de utilização do modelo"},
+      {"nome": "dominio", "tipo": "texto", "descricao": "Domínio a que o modelo pertence"},
+      {"nome": "observacoes", "tipo": "texto", "descricao": "Outra metainformação relevante sobre o modelo"}
+    ]
+  },
+  "funcoes": {
+    "papeisParametro": {"alvo": "argumento que é um caminho na instância", "parametro": "argumento literal"},
+    "retornos": ["booleano"]
+  },
+  "nomes": {
+    "modelo": "^[A-Z][A-Za-z0-9]*$",
+    "propriedade": "^[a-z][A-Za-z0-9]*$",
+    "funcao": "^[a-z][A-Za-z0-9]*$",
+    "contexto": "^[a-z][A-Za-z0-9]*$",
+    "regra": "^(RP|RIR|RIC)-[A-Z0-9]+(-[A-Z0-9]+)*$",
+    "data": "^\\d{4}-\\d{2}-\\d{2}"
+  },
+  "cores": {
+    "HLM": "#8B1E3F",
+    "SM": "#0072B2",
+    "USM": "#0E7C7B",
+    "Propriedade": "#1B1B1B",
+    "RP": "#009E73",
+    "RIR": "#E69F00",
+    "RIC": "#D55E00",
+    "funcao": "#6A3D9A",
+    "condicao": "#CC79A7",
+    "projecao": "#7F7F7F",
+    "externo": "#8C6D1F",
+    "amarelo": "#F0E442",
+    "erro": "#C0392B"
+  },
+  "caminhos": {
+    "modeloGrafo": "ecv/4_graph/graph_model.json",
+    "esquemaDeclaracao": "specs/declaracao/ecv.schema.json",
+    "exemplos": "specs/exemplos",
+    "padraoDeclaracoes": "*.ecv.json",
+    "specs": "specs",
+    "specsInternas": "ecv/1_ecv_builder/specs/ecv_specs.md",
+    "processoConstrucao": "ecv/1_ecv_builder/build_process.json",
+    "promptsPassos": "ecv/1_ecv_builder/prompts",
+    "operacoes": "ecv/2_amendments/operations.json",
+    "promptsAlteracoes": "ecv/2_amendments/prompts",
+    "cargaCypher": "ecv/4_graph/cypher",
+    "cypherViewModels": "ecv/5_views/viewmodels/cypher",
+    "exemplosValidacao": "ecv/6_validation/examples",
+    "implementacoesFuncoes": "ecv/6_validation/functions",
+    "promptsValidacao": "ecv/6_validation/prompts",
+    "dominios": "dominios",
+    "raizDados": "..",
+    "catalogoVistas": "documentacao/catalogo_vistas.json",
+    "saidaVistas": "documentacao/vistas",
+    "documentacao": "documentacao",
+    "registos": "registos",
+    "pedidosGlobais": "pedidos"
+  },
+  "neo4j": {
+    "uri": "bolt://localhost:7687",
+    "utilizador": "neo4j",
+    "senha": "ecvreferencia",
+    "base": null,
+    "versaoMinima": "5.23",
+    "variaveisAmbiente": {"uri": "NEO4J_URI", "utilizador": "NEO4J_USER", "senha": "NEO4J_PASSWORD", "base": "NEO4J_DATABASE"}
+  },
+  "ingestao": {"umHlmPorDeclaracao": true, "conflitos": "rejeitar", "loteUnwind": 500},
+  "vistas": {"decisaoMinimoRIR": 2, "rirInlineMaximo": 6, "candidatosPerfilMinimoRIR": 3},
+  "servidor": {"endereco": "127.0.0.1", "porta": 8000, "linhasRegistoEmMemoria": 500}
+}

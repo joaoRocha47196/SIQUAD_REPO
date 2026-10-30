@@ -1,0 +1,14 @@
+{
+ "id": "009-instancia",
+ "tipo": "instancia",
+ "titulo": "Instância de teste INTANCIA DE TESTES",
+ "passo": null,
+ "estado": "pendente",
+ "criado": "2026-10-30T15:30:37",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "perfil": "EmissaoAutofaturacao",
+ "hlm": "",
+ "nome": "INTANCIA DE TESTES",
+ "pedido": "Quero criar uma isntancia de testes para este perfil, a instnacia deve falhar em apenas algumas regras e passar a outras"
+}

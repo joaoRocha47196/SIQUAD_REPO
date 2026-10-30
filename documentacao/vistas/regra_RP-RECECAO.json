@@ -1,0 +1,182 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-RECECAO",
+  "regra": {
+    "id": "RP-RECECAO",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Diagnostico.taxaRececao entre 0 e 100",
+    "alcance": "USM Diagnostico.taxaRececao",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "taxaRececao",
+      "chave": "Propriedade:USM:Diagnostico.taxaRececao",
+      "dono": "Diagnostico"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "A taxa de receção é uma percentagem entre 0 e 100.",
+      "texto": "taxaRececao entre 0 e 100",
+      "caminho": "taxaRececao",
+      "propriedade": "USM:Diagnostico.taxaRececao",
+      "valor": [
+        0,
+        100
+      ],
+      "minimo": 0,
+      "maximo": 100
+    },
+    "mensagem": "A taxa de receção é uma percentagem entre 0 e 100.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Diagnostico.taxaRececao",
+      "nome": "taxaRececao",
+      "dono": "Diagnostico"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "A taxa de receção é uma percentagem entre 0 e 100.",
+    "texto": "taxaRececao entre 0 e 100",
+    "caminho": "taxaRececao",
+    "propriedade": "USM:Diagnostico.taxaRececao",
+    "valor": [
+      0,
+      100
+    ],
+    "minimo": 0,
+    "maximo": 100,
+    "descricao": "taxaRececao entre 0 e 100",
+    "alvo": {
+      "chave": "USM:Diagnostico.taxaRececao",
+      "nome": "taxaRececao",
+      "dono": "Diagnostico",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Taxa de receção de mensagens (%)"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Diagnostico.taxaRececao",
+    "nome": "taxaRececao",
+    "dono": "Diagnostico",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Taxa de receção de mensagens (%)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-RECECAO",
+        "rotulo": "RP",
+        "texto": "RP-RECECAO",
+        "detalhe": "Diagnostico.taxaRececao entre 0 e 100"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.taxaRececao",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.taxaRececao",
+        "detalhe": "Taxa de receção de mensagens (%)"
+      },
+      {
+        "chave": "Restricao:RP-RECECAO",
+        "rotulo": "Restricao",
+        "texto": "RP-RECECAO#restricao",
+        "detalhe": "taxaRececao entre 0 e 100"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-RECECAO",
+        "para": "Propriedade:USM:Diagnostico.taxaRececao",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-RECECAO",
+        "para": "Restricao:RP-RECECAO",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-RECECAO",
+        "para": "Propriedade:USM:Diagnostico.taxaRececao",
+        "tipo": "RESTRINGE",
+        "texto": "taxaRececao entre 0 e 100"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Diagnostico.taxaRececao",
+        "rotulo": "Propriedade",
+        "nome": "taxaRececao",
+        "dono": "Diagnostico",
+        "descricao": "Taxa de receção de mensagens (%)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Diagnostico",
+        "rotulo": "SM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.taxaRececao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Diagnostico",
+        "para": "USM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-RECECAO"
+  }
+}

@@ -1,0 +1,15 @@
+{
+ "id": "001-passo-G",
+ "tipo": "passo",
+ "titulo": "Fase G: Geração da declaração completa",
+ "passo": "G",
+ "estado": "pendente",
+ "criado": "2026-10-30T03:12:26",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "biblioteca",
+ "tamanho": {
+  "caracteres": 138465,
+  "tokensEstimados": 34616,
+  "linhas": 2129
+ }
+}

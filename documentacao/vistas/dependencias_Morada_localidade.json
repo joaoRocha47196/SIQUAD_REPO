@@ -1,0 +1,2013 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de Morada.localidade",
+  "propriedade": {
+    "chave": "USM:Morada.localidade",
+    "nome": "localidade",
+    "dono": "Morada",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Localidade da morada (em maiúsculas, sem acentos)"
+  },
+  "plausiveis": [],
+  "rp": [],
+  "valores": [
+    {
+      "valor": "LISBOA",
+      "plausivel": true,
+      "regras": [
+        "RIR-CP-LX-AJUDA",
+        "RIR-CP-LX-ALCANTARA",
+        "RIR-CP-LX-ALVALADE",
+        "RIR-CP-LX-AREEIRO",
+        "RIR-CP-LX-ARROIOS",
+        "RIR-CP-LX-AVENIDAS-NOVAS",
+        "RIR-CP-LX-BEATO",
+        "RIR-CP-LX-BELEM",
+        "RIR-CP-LX-BENFICA",
+        "RIR-CP-LX-CAMPO-DE-OURIQUE",
+        "RIR-CP-LX-CAMPOLIDE",
+        "RIR-CP-LX-CARNIDE",
+        "RIR-CP-LX-ESTRELA",
+        "RIR-CP-LX-LUMIAR",
+        "RIR-CP-LX-MARVILA",
+        "RIR-CP-LX-MISERICORDIA",
+        "RIR-CP-LX-OLIVAIS",
+        "RIR-CP-LX-PARQUE-DAS-NACOES",
+        "RIR-CP-LX-PENHA-DE-FRANCA",
+        "RIR-CP-LX-SANTA-CLARA",
+        "RIR-CP-LX-SANTA-MARIA-MAIOR",
+        "RIR-CP-LX-SANTO-ANTONIO",
+        "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+        "RIR-CP-LX-SAO-VICENTE"
+      ],
+      "afetadas": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ],
+      "semRegras": false
+    }
+  ],
+  "outrosTermos": [],
+  "regras": [
+    {
+      "id": "RIR-CP-LX-AJUDA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": "Mapeamento conhecido (códigos postais por freguesia de Lisboa) convertido em RIR: uma regra por freguesia. A vista de decisão sobre Morada.codigoPostal reconstrói a tabela.",
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Ajuda (Lisboa) começa por 1300 ou 1349.",
+        "texto": "codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1300|1349)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "AJUDA",
+          "contexto": null,
+          "texto": "freguesia = AJUDA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Ajuda (Lisboa) começa por 1300 ou 1349.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-ALCANTARA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Alcantara (Lisboa) começa por 1300 ou 1350.",
+        "texto": "codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1300|1350)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "ALCANTARA",
+          "contexto": null,
+          "texto": "freguesia = ALCANTARA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Alcantara (Lisboa) começa por 1300 ou 1350.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-ALVALADE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Alvalade (Lisboa) começa por 1700 ou 1749.",
+        "texto": "codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1700|1749)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "ALVALADE",
+          "contexto": null,
+          "texto": "freguesia = ALVALADE",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Alvalade (Lisboa) começa por 1700 ou 1749.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-AREEIRO",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Areeiro (Lisboa) começa por 1000 ou 1049.",
+        "texto": "codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1000|1049)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "AREEIRO",
+          "contexto": null,
+          "texto": "freguesia = AREEIRO",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Areeiro (Lisboa) começa por 1000 ou 1049.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-ARROIOS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169.",
+        "texto": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1150|1169)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "ARROIOS",
+          "contexto": null,
+          "texto": "freguesia = ARROIOS",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-AVENIDAS-NOVAS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Avenidas Novas (Lisboa) começa por 1050 ou 1069.",
+        "texto": "codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1050|1069)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "AVENIDAS_NOVAS",
+          "contexto": null,
+          "texto": "freguesia = AVENIDAS_NOVAS",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Avenidas Novas (Lisboa) começa por 1050 ou 1069.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-BEATO",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Beato (Lisboa) começa por 1900 ou 1949.",
+        "texto": "codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1900|1949)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "BEATO",
+          "contexto": null,
+          "texto": "freguesia = BEATO",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Beato (Lisboa) começa por 1900 ou 1949.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-BELEM",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Belem (Lisboa) começa por 1400 ou 1449.",
+        "texto": "codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1400|1449)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "BELEM",
+          "contexto": null,
+          "texto": "freguesia = BELEM",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Belem (Lisboa) começa por 1400 ou 1449.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-BENFICA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Benfica (Lisboa) começa por 1500 ou 1549.",
+        "texto": "codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1500|1549)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "BENFICA",
+          "contexto": null,
+          "texto": "freguesia = BENFICA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Benfica (Lisboa) começa por 1500 ou 1549.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Campo de Ourique (Lisboa) começa por 1250 ou 1350.",
+        "texto": "codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1250|1350)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "CAMPO_DE_OURIQUE",
+          "contexto": null,
+          "texto": "freguesia = CAMPO_DE_OURIQUE",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Campo de Ourique (Lisboa) começa por 1250 ou 1350.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-CAMPOLIDE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Campolide (Lisboa) começa por 1070 ou 1099.",
+        "texto": "codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1070|1099)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "CAMPOLIDE",
+          "contexto": null,
+          "texto": "freguesia = CAMPOLIDE",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Campolide (Lisboa) começa por 1070 ou 1099.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-CARNIDE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Carnide (Lisboa) começa por 1600 ou 1649.",
+        "texto": "codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1600|1649)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "CARNIDE",
+          "contexto": null,
+          "texto": "freguesia = CARNIDE",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Carnide (Lisboa) começa por 1600 ou 1649.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-ESTRELA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Estrela (Lisboa) começa por 1200 ou 1249.",
+        "texto": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1200|1249)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "ESTRELA",
+          "contexto": null,
+          "texto": "freguesia = ESTRELA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Estrela (Lisboa) começa por 1200 ou 1249.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-LUMIAR",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Lumiar (Lisboa) começa por 1600 ou 1750.",
+        "texto": "codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1600|1750)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "LUMIAR",
+          "contexto": null,
+          "texto": "freguesia = LUMIAR",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Lumiar (Lisboa) começa por 1600 ou 1750.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-MARVILA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Marvila (Lisboa) começa por 1800 ou 1949.",
+        "texto": "codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1800|1949)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "MARVILA",
+          "contexto": null,
+          "texto": "freguesia = MARVILA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Marvila (Lisboa) começa por 1800 ou 1949.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-MISERICORDIA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Misericordia (Lisboa) começa por 1200 ou 1249.",
+        "texto": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1200|1249)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "MISERICORDIA",
+          "contexto": null,
+          "texto": "freguesia = MISERICORDIA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Misericordia (Lisboa) começa por 1200 ou 1249.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-OLIVAIS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Olivais (Lisboa) começa por 1800 ou 1885.",
+        "texto": "codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1800|1885)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "OLIVAIS",
+          "contexto": null,
+          "texto": "freguesia = OLIVAIS",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Olivais (Lisboa) começa por 1800 ou 1885.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-PARQUE-DAS-NACOES",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Parque das Nacoes (Lisboa) começa por 1990 ou 1998.",
+        "texto": "codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1990|1998)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "PARQUE_DAS_NACOES",
+          "contexto": null,
+          "texto": "freguesia = PARQUE_DAS_NACOES",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Parque das Nacoes (Lisboa) começa por 1990 ou 1998.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-PENHA-DE-FRANCA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Penha de Franca (Lisboa) começa por 1170 ou 1199.",
+        "texto": "codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1170|1199)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "PENHA_DE_FRANCA",
+          "contexto": null,
+          "texto": "freguesia = PENHA_DE_FRANCA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Penha de Franca (Lisboa) começa por 1170 ou 1199.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-SANTA-CLARA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Santa Clara (Lisboa) começa por 1750 ou 1769.",
+        "texto": "codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1750|1769)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "SANTA_CLARA",
+          "contexto": null,
+          "texto": "freguesia = SANTA_CLARA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Santa Clara (Lisboa) começa por 1750 ou 1769.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Santa Maria Maior (Lisboa) começa por 1100 ou 1149.",
+        "texto": "codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1100|1149)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "SANTA_MARIA_MAIOR",
+          "contexto": null,
+          "texto": "freguesia = SANTA_MARIA_MAIOR",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Santa Maria Maior (Lisboa) começa por 1100 ou 1149.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-SANTO-ANTONIO",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Santo Antonio (Lisboa) começa por 1250 ou 1269.",
+        "texto": "codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1250|1269)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "SANTO_ANTONIO",
+          "contexto": null,
+          "texto": "freguesia = SANTO_ANTONIO",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Santo Antonio (Lisboa) começa por 1250 ou 1269.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Sao Domingos de Benfica (Lisboa) começa por 1500 ou 1600.",
+        "texto": "codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1500|1600)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "SAO_DOMINGOS_DE_BENFICA",
+          "contexto": null,
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Sao Domingos de Benfica (Lisboa) começa por 1500 ou 1600.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    },
+    {
+      "id": "RIR-CP-LX-SAO-VICENTE",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+      "alcance": "USM Morada",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Morada",
+        "chave": "USM:Morada",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O código postal de uma morada da freguesia Sao Vicente (Lisboa) começa por 1100 ou 1170.",
+        "texto": "codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+        "caminho": "codigoPostal",
+        "propriedade": "USM:Morada.codigoPostal",
+        "valor": "^(1100|1170)-[0-9]{3}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "pais",
+          "propriedade": "USM:Morada.pais",
+          "operador": "EQUALS",
+          "valor": "PT",
+          "contexto": null,
+          "texto": "pais = PT",
+          "nome": "pais",
+          "foco": false
+        },
+        {
+          "ordem": 1,
+          "forma": "tipificado",
+          "caminho": "localidade",
+          "propriedade": "USM:Morada.localidade",
+          "operador": "EQUALS",
+          "valor": "LISBOA",
+          "contexto": null,
+          "texto": "localidade = LISBOA",
+          "nome": "localidade",
+          "foco": true
+        },
+        {
+          "ordem": 2,
+          "forma": "tipificado",
+          "caminho": "freguesia",
+          "propriedade": "USM:Morada.freguesia",
+          "operador": "EQUALS",
+          "valor": "SAO_VICENTE",
+          "contexto": null,
+          "texto": "freguesia = SAO_VICENTE",
+          "nome": "freguesia",
+          "foco": false
+        }
+      ],
+      "mensagem": "O código postal de uma morada da freguesia Sao Vicente (Lisboa) começa por 1100 ou 1170.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Morada.codigoPostal",
+        "nome": "codigoPostal",
+        "dono": "Morada"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Morada.codigoPostal",
+          "nome": "codigoPostal",
+          "caminho": "codigoPostal"
+        }
+      ]
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": "USM:Morada.codigoPostal",
+      "nome": "codigoPostal",
+      "caminho": "codigoPostal",
+      "regras": [
+        "RIR-CP-LX-AJUDA",
+        "RIR-CP-LX-ALCANTARA",
+        "RIR-CP-LX-ALVALADE",
+        "RIR-CP-LX-AREEIRO",
+        "RIR-CP-LX-ARROIOS",
+        "RIR-CP-LX-AVENIDAS-NOVAS",
+        "RIR-CP-LX-BEATO",
+        "RIR-CP-LX-BELEM",
+        "RIR-CP-LX-BENFICA",
+        "RIR-CP-LX-CAMPO-DE-OURIQUE",
+        "RIR-CP-LX-CAMPOLIDE",
+        "RIR-CP-LX-CARNIDE",
+        "RIR-CP-LX-ESTRELA",
+        "RIR-CP-LX-LUMIAR",
+        "RIR-CP-LX-MARVILA",
+        "RIR-CP-LX-MISERICORDIA",
+        "RIR-CP-LX-OLIVAIS",
+        "RIR-CP-LX-PARQUE-DAS-NACOES",
+        "RIR-CP-LX-PENHA-DE-FRANCA",
+        "RIR-CP-LX-SANTA-CLARA",
+        "RIR-CP-LX-SANTA-MARIA-MAIOR",
+        "RIR-CP-LX-SANTO-ANTONIO",
+        "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+        "RIR-CP-LX-SAO-VICENTE"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "USM:Morada.localidade"
+  }
+}

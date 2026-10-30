@@ -1,0 +1,14 @@
+{
+ "id": "007-instancia",
+ "tipo": "instancia",
+ "titulo": "Instância de teste passar_algumas_regras",
+ "passo": null,
+ "estado": "pendente",
+ "criado": "2026-10-30T14:57:29",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "perfil": "EmissaoAutofaturacao",
+ "hlm": "",
+ "nome": "passar_algumas_regras",
+ "pedido": "Passar algumas regras"
+}

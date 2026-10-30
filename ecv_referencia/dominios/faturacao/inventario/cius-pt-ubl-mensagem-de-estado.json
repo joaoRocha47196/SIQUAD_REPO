@@ -1,0 +1,628 @@
+{
+ "fonte": {
+  "id": "cius-pt-ubl-mensagem-de-estado",
+  "nome": "Modelo UBL 2.1 CIUS-PT anotado: Mensagem de estado",
+  "tipo": "modelo sintático (XML anotado)",
+  "ficheiro": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml",
+  "adaptador": "cius_pt.ubl",
+  "papel": "sintaxe UBL da mensagem de estado (resposta do adquirente)",
+  "caminho": "data/CIS_PT_SCHEMATRON/Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml",
+  "extraido": "2026-10-29T19:09:50"
+ },
+ "contagens": {
+  "grupos": 20,
+  "elementos": 26,
+  "regras": 0,
+  "regrasPorCategoria": {}
+ },
+ "grupos": [
+  {
+   "id": "/DocumentStatus",
+   "nome": "DocumentStatus",
+   "descricao": "Documento UBL DocumentStatus",
+   "nomeOrigem": "",
+   "pai": null,
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/CustomizationID",
+    "/DocumentStatus/ID",
+    "/DocumentStatus/IssueDate",
+    "/DocumentStatus/IssueTime",
+    "/DocumentStatus/Note"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty",
+   "nome": "SenderParty",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus",
+   "cardinalidade": "1..1",
+   "elementos": [],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyName",
+   "nome": "PartyName",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/SenderParty",
+   "cardinalidade": "0..1",
+   "elementos": [
+    "/DocumentStatus/SenderParty/PartyName/Name"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PostalAddress",
+   "nome": "PostalAddress",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/SenderParty",
+   "cardinalidade": "1..1",
+   "elementos": [],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PostalAddress/Country",
+   "nome": "Country",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/SenderParty/PostalAddress",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/SenderParty/PostalAddress/Country/IdentificationCode"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyTaxScheme",
+   "nome": "PartyTaxScheme",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/SenderParty",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/SenderParty/PartyTaxScheme/CompanyID"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyTaxScheme/TaxScheme",
+   "nome": "TaxScheme",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/SenderParty/PartyTaxScheme",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/SenderParty/PartyTaxScheme/TaxScheme/ID"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyLegalEntity",
+   "nome": "PartyLegalEntity",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/SenderParty",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/SenderParty/PartyLegalEntity/RegistrationName",
+    "/DocumentStatus/SenderParty/PartyLegalEntity/CompanyID"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/Contact",
+   "nome": "Contact",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/SenderParty",
+   "cardinalidade": "0..1",
+   "elementos": [
+    "/DocumentStatus/SenderParty/Contact/ElectronicMail"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty",
+   "nome": "ReceiverParty",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus",
+   "cardinalidade": "1..1",
+   "elementos": [],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyName",
+   "nome": "PartyName",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/ReceiverParty",
+   "cardinalidade": "0..1",
+   "elementos": [
+    "/DocumentStatus/ReceiverParty/PartyName/Name"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PostalAddress",
+   "nome": "PostalAddress",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/ReceiverParty",
+   "cardinalidade": "1..1",
+   "elementos": [],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PostalAddress/Country",
+   "nome": "Country",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/ReceiverParty/PostalAddress",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/ReceiverParty/PostalAddress/Country/IdentificationCode"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyTaxScheme",
+   "nome": "PartyTaxScheme",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/ReceiverParty",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/ReceiverParty/PartyTaxScheme/CompanyID"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyTaxScheme/TaxScheme",
+   "nome": "TaxScheme",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/ReceiverParty/PartyTaxScheme",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/ReceiverParty/PartyTaxScheme/TaxScheme/ID"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyLegalEntity",
+   "nome": "PartyLegalEntity",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/ReceiverParty",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/ReceiverParty/PartyLegalEntity/RegistrationName",
+    "/DocumentStatus/ReceiverParty/PartyLegalEntity/CompanyID"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/Contact",
+   "nome": "Contact",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/ReceiverParty",
+   "cardinalidade": "0..1",
+   "elementos": [
+    "/DocumentStatus/ReceiverParty/Contact/ElectronicMail"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse",
+   "nome": "DocumentResponse",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus",
+   "cardinalidade": "0..1",
+   "elementos": [],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/Response",
+   "nome": "Response",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/DocumentResponse",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/DocumentResponse/Response/ResponseCode",
+    "/DocumentStatus/DocumentResponse/Response/Description"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/DocumentReference",
+   "nome": "DocumentReference",
+   "descricao": "",
+   "nomeOrigem": "",
+   "pai": "/DocumentStatus/DocumentResponse",
+   "cardinalidade": "1..1",
+   "elementos": [
+    "/DocumentStatus/DocumentResponse/DocumentReference/ID",
+    "/DocumentStatus/DocumentResponse/DocumentReference/UUID",
+    "/DocumentStatus/DocumentResponse/DocumentReference/IssueDate",
+    "/DocumentStatus/DocumentResponse/DocumentReference/DocumentTypeCode",
+    "/DocumentStatus/DocumentResponse/DocumentReference/DocumentStatusCode"
+   ],
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  }
+ ],
+ "elementos": [
+  {
+   "id": "/DocumentStatus/CustomizationID",
+   "nome": "CustomizationID",
+   "descricao": "ID Costumização [Predefinição: urn:feap.gov.pt:MSGSTS_CIUS-PT: seguido do identificador da versão]",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ID",
+   "nome": "ID",
+   "descricao": "Número de referência deste documento emitido pelo emissor desta mensagem",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/IssueDate",
+   "nome": "IssueDate",
+   "descricao": "Data de emissão da mensagem de estado [AAAA-MM-DD]",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/IssueTime",
+   "nome": "IssueTime",
+   "descricao": "Hora de emissão da mensagem de estado [HH:MM:SS]",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "0..1",
+   "grupo": "/DocumentStatus",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/Note",
+   "nome": "Note",
+   "descricao": "Notas textuais que permitem ao emissor enviar informação não estruturada relativa ao documento",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..*",
+   "grupo": "/DocumentStatus",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyName/Name",
+   "nome": "Name",
+   "descricao": "Nome do emissor da mensagem de estado.",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/SenderParty/PartyName",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PostalAddress/Country/IdentificationCode",
+   "nome": "IdentificationCode",
+   "descricao": "Código identificador do país da morada do emissor da mensagem de estado de acordo com os códigos ISO 3166-1 alfa-2.",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/SenderParty/PostalAddress/Country",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyTaxScheme/CompanyID",
+   "nome": "CompanyID",
+   "descricao": "Número de identificação fiscal do emissor da mensagem de estado precedido do código do país, segundo o código ISO 3166-1 alfa-2",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/SenderParty/PartyTaxScheme",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyTaxScheme/TaxScheme/ID",
+   "nome": "ID",
+   "descricao": "O valor do ID corresponde à lista de códigos UN/ECE 5153, da Comissão Económica das Nações Unidas para a Europa. [Predefinição: VAT]",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/SenderParty/PartyTaxScheme/TaxScheme",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyLegalEntity/RegistrationName",
+   "nome": "RegistrationName",
+   "descricao": "Identificação do emissor da mensagem de estado na IRN",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/SenderParty/PartyLegalEntity",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/PartyLegalEntity/CompanyID",
+   "nome": "CompanyID",
+   "descricao": "Número de Identificação do emissor da mensagem de estado na conservatória",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "0..1",
+   "grupo": "/DocumentStatus/SenderParty/PartyLegalEntity",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/SenderParty/Contact/ElectronicMail",
+   "nome": "ElectronicMail",
+   "descricao": "Endereço de correio eletrónico do emissor da mensagem de estado.",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/SenderParty/Contact",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyName/Name",
+   "nome": "Name",
+   "descricao": "Nome do receptor da mensagem de estado.",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/ReceiverParty/PartyName",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PostalAddress/Country/IdentificationCode",
+   "nome": "IdentificationCode",
+   "descricao": "Código identificador do país da morada do receptor da mensagem de estado de acordo com os códigos ISO 3166-1 alfa-2",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/ReceiverParty/PostalAddress/Country",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyTaxScheme/CompanyID",
+   "nome": "CompanyID",
+   "descricao": "Número de identificação fiscal do receptor da mensagem de estado precedido do código do país, segundo o código ISO 3166-1 alfa-2",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/ReceiverParty/PartyTaxScheme",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyTaxScheme/TaxScheme/ID",
+   "nome": "ID",
+   "descricao": "O valor do ID corresponde à lista de códigos UN/ECE 5153, da Comissão Económica das Nações Unidas para a Europa. [Predefinição: VAT]",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/ReceiverParty/PartyTaxScheme/TaxScheme",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyLegalEntity/RegistrationName",
+   "nome": "RegistrationName",
+   "descricao": "Identificação do receptor da mensagem de estado na IRN",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/ReceiverParty/PartyLegalEntity",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/PartyLegalEntity/CompanyID",
+   "nome": "CompanyID",
+   "descricao": "Número de Identificação do receptor da mensagem de estado na conservatória",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "0..1",
+   "grupo": "/DocumentStatus/ReceiverParty/PartyLegalEntity",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/ReceiverParty/Contact/ElectronicMail",
+   "nome": "ElectronicMail",
+   "descricao": "Endereço de correio eletrónico do receptor da mensagem de estado.",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/ReceiverParty/Contact",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/Response/ResponseCode",
+   "nome": "ResponseCode",
+   "descricao": "Código da resposta",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/DocumentResponse/Response",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/Response/Description",
+   "nome": "Description",
+   "descricao": "Nota textual, que permite discriminar o(s) erro(s), ou o(s) aviso(s) ou a(s) informação (ões).",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "0..*",
+   "grupo": "/DocumentStatus/DocumentResponse/Response",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "atributos no modelo: languageID=",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/DocumentReference/ID",
+   "nome": "ID",
+   "descricao": "Número de referência do documento que deu origem a esta mensagem.",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/DocumentResponse/DocumentReference",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/DocumentReference/UUID",
+   "nome": "UUID",
+   "descricao": "Número de referência universal do documento (UUID)",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "0..1",
+   "grupo": "/DocumentStatus/DocumentResponse/DocumentReference",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/DocumentReference/IssueDate",
+   "nome": "IssueDate",
+   "descricao": "Data de emissão do documento.[AAAA-MM-DD]",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/DocumentResponse/DocumentReference",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/DocumentReference/DocumentTypeCode",
+   "nome": "DocumentTypeCode",
+   "descricao": "Código que identifica o tipo funcional do documento, segundo a lista de códigos UNCL1001 (http://www.unece.org/trade/untdid/d98a/uncl/uncl1001.htm) [FE: 380 / ND: 383] / NC: 381",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "1..1",
+   "grupo": "/DocumentStatus/DocumentResponse/DocumentReference",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "atributos no modelo: listID=UNCL1001",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  },
+  {
+   "id": "/DocumentStatus/DocumentResponse/DocumentReference/DocumentStatusCode",
+   "nome": "DocumentStatusCode",
+   "descricao": "Código do estado do documento, na prespectiva do cliente referenciado no mesmo.",
+   "tipo": null,
+   "tipoOrigem": null,
+   "cardinalidade": "0..1",
+   "grupo": "/DocumentStatus/DocumentResponse/DocumentReference",
+   "nomesAlternativos": [],
+   "valoresAdmitidos": null,
+   "regras": [],
+   "notas": "",
+   "origem": "Mensagem de estado CIUS-PT_UBL2.1_V1.0.0.xml"
+  }
+ ],
+ "regras": []
+}

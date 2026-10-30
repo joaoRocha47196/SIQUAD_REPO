@@ -1,0 +1,251 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-RELOGIO",
+  "regra": {
+    "id": "RP-RELOGIO",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "desfasamentoInferiorA(Medicao.dataMedicao, 300)",
+    "alcance": "USM Medicao.dataMedicao",
+    "notas": null,
+    "contextosExternos": [
+      "relogioServidor"
+    ],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "dataMedicao",
+      "chave": "Propriedade:USM:Medicao.dataMedicao",
+      "dono": "Medicao"
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "EXT_FUNCTION",
+      "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).",
+      "texto": "desfasamentoInferiorA(dataMedicao, 300)",
+      "chamada": {
+        "funcao": "desfasamentoInferiorA",
+        "chamada": "desfasamentoInferiorA(dataMedicao, 300)",
+        "operador": "EXT_FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.",
+        "argumentos": [
+          {
+            "caminho": "dataMedicao",
+            "alvo": "USM:Medicao.dataMedicao",
+            "nomeAlvo": "dataMedicao",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          }
+        ],
+        "contextos": [
+          "relogioServidor"
+        ]
+      }
+    },
+    "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "USM:Medicao.dataMedicao",
+      "nome": "dataMedicao",
+      "funcao": "desfasamentoInferiorA"
+    },
+    "funcoes": [
+      "desfasamentoInferiorA"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "EXT_FUNCTION",
+    "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).",
+    "texto": "desfasamentoInferiorA(dataMedicao, 300)",
+    "chamada": {
+      "funcao": "desfasamentoInferiorA",
+      "chamada": "desfasamentoInferiorA(dataMedicao, 300)",
+      "operador": "EXT_FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.",
+      "argumentos": [
+        {
+          "caminho": "dataMedicao",
+          "alvo": "USM:Medicao.dataMedicao",
+          "nomeAlvo": "dataMedicao",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        }
+      ],
+      "contextos": [
+        "relogioServidor"
+      ]
+    },
+    "descricao": "desfasamentoInferiorA(dataMedicao, 300)",
+    "funcao": {
+      "nome": "desfasamentoInferiorA",
+      "descricao": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.",
+      "parametros": [
+        {
+          "nome": "instante",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Instante da leitura (data e hora)."
+        },
+        {
+          "nome": "s",
+          "tipo": "inteiro",
+          "papel": "parametro",
+          "descricao": "Tolerância, em segundos."
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": [
+        {
+          "nome": "relogioServidor",
+          "tipo": "data",
+          "descricao": "Instante atual do servidor que recebe as leituras (data e hora ISO 8601).",
+          "fonte": "Relógio do servidor da plataforma IoT."
+        }
+      ]
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Medicao.dataMedicao",
+    "nome": "dataMedicao",
+    "dono": "Medicao",
+    "nivelDono": "USM",
+    "tipo": "data",
+    "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-RELOGIO",
+        "rotulo": "RP",
+        "texto": "RP-RELOGIO",
+        "detalhe": "desfasamentoInferiorA(Medicao.dataMedicao, 300)"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.dataMedicao",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.dataMedicao",
+        "detalhe": "Instante em que a medição foi feita (data e hora ISO 8601)"
+      },
+      {
+        "chave": "Restricao:RP-RELOGIO",
+        "rotulo": "Restricao",
+        "texto": "RP-RELOGIO#restricao",
+        "detalhe": "desfasamentoInferiorA(dataMedicao, 300)"
+      },
+      {
+        "chave": "Funcao:desfasamentoInferiorA",
+        "rotulo": "Funcao",
+        "texto": "desfasamentoInferiorA",
+        "detalhe": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor."
+      },
+      {
+        "chave": "ContextoExterno:relogioServidor",
+        "rotulo": "ContextoExterno",
+        "texto": "relogioServidor",
+        "detalhe": "Instante atual do servidor que recebe as leituras (data e hora ISO 8601)."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-RELOGIO",
+        "para": "Propriedade:USM:Medicao.dataMedicao",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-RELOGIO",
+        "para": "Restricao:RP-RELOGIO",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-RELOGIO",
+        "para": "Funcao:desfasamentoInferiorA",
+        "tipo": "CHAMA",
+        "texto": "desfasamentoInferiorA(dataMedicao, 300)"
+      },
+      {
+        "de": "Funcao:desfasamentoInferiorA",
+        "para": "Propriedade:USM:Medicao.dataMedicao",
+        "tipo": "LE",
+        "texto": "argumento: dataMedicao"
+      },
+      {
+        "de": "Funcao:desfasamentoInferiorA",
+        "para": "ContextoExterno:relogioServidor",
+        "tipo": "DEPENDE_DE",
+        "texto": null
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Medicao.dataMedicao",
+        "rotulo": "Propriedade",
+        "nome": "dataMedicao",
+        "dono": "Medicao",
+        "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+        "tipoBase": "data"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.dataMedicao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-RELOGIO"
+  }
+}

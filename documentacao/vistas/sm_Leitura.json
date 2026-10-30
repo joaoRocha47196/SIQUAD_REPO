@@ -1,0 +1,1129 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo SM Leitura",
+  "nivel": "SM",
+  "nome": "Leitura",
+  "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "SM",
+    "nome": "Leitura",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+    "propriedades": [],
+    "filhos": [
+      {
+        "nivel": "USM",
+        "nome": "Medicao",
+        "papel": "Medicao",
+        "cardinalidade": "1..1",
+        "caminho": "Medicao",
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "propriedades": [
+          {
+            "chave": "USM:Medicao.unidadeMedida",
+            "nome": "unidadeMedida",
+            "dono": "Medicao",
+            "nivelDono": "USM",
+            "tipo": "texto",
+            "descricao": "Unidade de medida associada ao valor medido",
+            "caminho": "Medicao.unidadeMedida",
+            "nomesAlternativos": [
+              "unit"
+            ],
+            "discriminante": true
+          },
+          {
+            "chave": "USM:Medicao.valor",
+            "nome": "valor",
+            "dono": "Medicao",
+            "nivelDono": "USM",
+            "tipo": "decimal",
+            "descricao": "Valor medido, na unidade indicada",
+            "caminho": "Medicao.valor",
+            "nomesAlternativos": [
+              "value",
+              "reading"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "USM:Medicao.dataMedicao",
+            "nome": "dataMedicao",
+            "dono": "Medicao",
+            "nivelDono": "USM",
+            "tipo": "data",
+            "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+            "caminho": "Medicao.dataMedicao",
+            "nomesAlternativos": [
+              "timestamp",
+              "measuredAt"
+            ],
+            "discriminante": true
+          }
+        ],
+        "filhos": [],
+        "usadoPor": [
+          "Dispositivo"
+        ]
+      },
+      {
+        "nivel": "USM",
+        "nome": "Instalacao",
+        "papel": "Instalacao",
+        "cardinalidade": "1..1",
+        "caminho": "Instalacao",
+        "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+        "propriedades": [
+          {
+            "chave": "USM:Instalacao.ambiente",
+            "nome": "ambiente",
+            "dono": "Instalacao",
+            "nivelDono": "USM",
+            "tipo": "texto",
+            "descricao": "Ambiente onde o dispositivo está instalado",
+            "caminho": "Instalacao.ambiente",
+            "nomesAlternativos": [
+              "environment"
+            ],
+            "discriminante": true
+          }
+        ],
+        "filhos": [],
+        "usadoPor": [
+          "Dispositivo"
+        ]
+      },
+      {
+        "nivel": "USM",
+        "nome": "Assinatura",
+        "papel": "Assinatura",
+        "cardinalidade": "0..1",
+        "caminho": "Assinatura",
+        "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+        "propriedades": [
+          {
+            "chave": "USM:Assinatura.mensagem",
+            "nome": "mensagem",
+            "dono": "Assinatura",
+            "nivelDono": "USM",
+            "tipo": "texto",
+            "descricao": "Conteúdo assinado, tal como enviado pelo dispositivo",
+            "caminho": "Assinatura.mensagem",
+            "nomesAlternativos": [
+              "payload"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "USM:Assinatura.assinatura",
+            "nome": "assinatura",
+            "dono": "Assinatura",
+            "nivelDono": "USM",
+            "tipo": "texto",
+            "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+            "caminho": "Assinatura.assinatura",
+            "nomesAlternativos": [
+              "signature"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": [],
+        "usadoPor": [
+          "Dispositivo"
+        ]
+      }
+    ],
+    "usadoPor": [
+      "Dispositivo"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "SM",
+    "nome": "Leitura",
+    "caminho": "",
+    "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+    "regras": [],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Medicao",
+      "nivel": "USM",
+      "papel": "Medicao",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "USM",
+          "nome": "Medicao",
+          "papel": "Medicao",
+          "caminho": "Medicao",
+          "cardinalidade": "1..1",
+          "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+          "regras": [],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "unidadeMedida",
+          "caminho": "Medicao.unidadeMedida",
+          "descricao": "Unidade de medida associada ao valor medido",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "unit"
+          ],
+          "chave": "USM:Medicao.unidadeMedida",
+          "dono": "Medicao",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-UNIDADE",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+              "alcance": "USM Medicao.unidadeMedida",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "unidadeMedida",
+                "chave": "Propriedade:USM:Medicao.unidadeMedida",
+                "dono": "Medicao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+                "texto": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+                "caminho": "unidadeMedida",
+                "propriedade": "USM:Medicao.unidadeMedida",
+                "valor": [
+                  "°C",
+                  "K",
+                  "°F",
+                  "%",
+                  "hPa",
+                  "bar",
+                  "m/s",
+                  "km/h"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Medicao.unidadeMedida",
+                "nome": "unidadeMedida",
+                "dono": "Medicao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Medicao.unidadeMedida"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "valor",
+          "caminho": "Medicao.valor",
+          "descricao": "Valor medido, na unidade indicada",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "value",
+            "reading"
+          ],
+          "chave": "USM:Medicao.valor",
+          "dono": "Medicao",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-VALOR-FISICO",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Medicao.valor entre -273.15 e 2400",
+              "alcance": "USM Medicao.valor",
+              "notas": "Conjunto de gamas fisicamente admissíveis do domínio; a gama de cada combinação é inferida (RIR-*).",
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "valor",
+                "chave": "Propriedade:USM:Medicao.valor",
+                "dono": "Medicao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "RANGE",
+                "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.",
+                "texto": "valor entre -273.15 e 2400",
+                "caminho": "valor",
+                "propriedade": "USM:Medicao.valor",
+                "valor": [
+                  -273.15,
+                  2400
+                ],
+                "minimo": -273.15,
+                "maximo": 2400
+              },
+              "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Medicao.valor",
+                "nome": "valor",
+                "dono": "Medicao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Medicao.valor"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "dataMedicao",
+          "caminho": "Medicao.dataMedicao",
+          "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "timestamp",
+            "measuredAt"
+          ],
+          "chave": "USM:Medicao.dataMedicao",
+          "dono": "Medicao",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-RELOGIO",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "desfasamentoInferiorA(Medicao.dataMedicao, 300)",
+              "alcance": "USM Medicao.dataMedicao",
+              "notas": null,
+              "contextosExternos": [
+                "relogioServidor"
+              ],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "dataMedicao",
+                "chave": "Propriedade:USM:Medicao.dataMedicao",
+                "dono": "Medicao"
+              },
+              "restricao": {
+                "forma": "funcao",
+                "operador": "EXT_FUNCTION",
+                "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).",
+                "texto": "desfasamentoInferiorA(dataMedicao, 300)",
+                "chamada": {
+                  "funcao": "desfasamentoInferiorA",
+                  "chamada": "desfasamentoInferiorA(dataMedicao, 300)",
+                  "operador": "EXT_FUNCTION",
+                  "termo": null,
+                  "descricaoFuncao": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.",
+                  "argumentos": [
+                    {
+                      "caminho": "dataMedicao",
+                      "alvo": "USM:Medicao.dataMedicao",
+                      "nomeAlvo": "dataMedicao",
+                      "rotuloAlvo": "Propriedade",
+                      "colecao": false
+                    }
+                  ],
+                  "contextos": [
+                    "relogioServidor"
+                  ]
+                }
+              },
+              "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).",
+              "funcao": true,
+              "categoria": "FN",
+              "alvo": {
+                "chave": "USM:Medicao.dataMedicao",
+                "nome": "dataMedicao",
+                "funcao": "desfasamentoInferiorA"
+              },
+              "funcoes": [
+                "desfasamentoInferiorA"
+              ],
+              "ocorrencias": [
+                "Medicao.dataMedicao"
+              ]
+            },
+            {
+              "id": "RIC-MED-DIFERIDA",
+              "tipo": "RIC",
+              "natureza": "inferencia_conclusiva",
+              "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+              "alcance": "USM Medicao.dataMedicao",
+              "notas": "Contexto externo usado diretamente num termo da condição (sem função): dataMedicao < dataDeHoje.",
+              "contextosExternos": [
+                "dataDeHoje"
+              ],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "dataMedicao",
+                "chave": "Propriedade:USM:Medicao.dataMedicao",
+                "dono": "Medicao"
+              },
+              "condicao": [
+                {
+                  "ordem": 0,
+                  "forma": "tipificado",
+                  "caminho": "dataMedicao",
+                  "propriedade": "USM:Medicao.dataMedicao",
+                  "operador": "LT",
+                  "valor": null,
+                  "contexto": "dataDeHoje",
+                  "texto": "dataMedicao < dataDeHoje (contexto externo)",
+                  "nome": "dataMedicao"
+                }
+              ],
+              "mensagem": "Estado DIFERIDA: a leitura foi medida antes de hoje e chega com atraso; deve ser tratada como dado histórico.",
+              "conclusao": {
+                "tipo": "ESTADO",
+                "valor": "DIFERIDA"
+              },
+              "funcao": false,
+              "categoria": "RIC",
+              "alvo": null,
+              "funcoes": [],
+              "ocorrencias": [
+                "Medicao.dataMedicao"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "unidadeMedida",
+        "valor",
+        "dataMedicao"
+      ]
+    },
+    {
+      "nome": "Instalacao",
+      "nivel": "USM",
+      "papel": "Instalacao",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "USM",
+          "nome": "Instalacao",
+          "papel": "Instalacao",
+          "caminho": "Instalacao",
+          "cardinalidade": "1..1",
+          "descricao": "Local de instalação do dispositivo, caracterizado pelo ambiente.",
+          "regras": [],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "ambiente",
+          "caminho": "Instalacao.ambiente",
+          "descricao": "Ambiente onde o dispositivo está instalado",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "environment"
+          ],
+          "chave": "USM:Instalacao.ambiente",
+          "dono": "Instalacao",
+          "discriminante": true,
+          "regras": [
+            {
+              "id": "RP-AMBIENTE",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+              "alcance": "USM Instalacao.ambiente",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "ambiente",
+                "chave": "Propriedade:USM:Instalacao.ambiente",
+                "dono": "Instalacao"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "IN",
+                "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+                "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+                "caminho": "ambiente",
+                "propriedade": "USM:Instalacao.ambiente",
+                "valor": [
+                  "REFRIGERACAO",
+                  "ESTUFA",
+                  "ARMAZEM",
+                  "SERVIDORES",
+                  "EXTERIOR",
+                  "INCINERADORA",
+                  "LABORATORIO"
+                ],
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Instalacao.ambiente",
+                "nome": "ambiente",
+                "dono": "Instalacao"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Instalacao.ambiente"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "ambiente"
+      ]
+    },
+    {
+      "nome": "Assinatura",
+      "nivel": "USM",
+      "papel": "Assinatura",
+      "cardinalidade": "0..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "USM",
+          "nome": "Assinatura",
+          "papel": "Assinatura",
+          "caminho": "Assinatura",
+          "cardinalidade": "0..1",
+          "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+          "regras": [
+            {
+              "id": "RP-ASSINATURA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)",
+              "alcance": "USM Assinatura",
+              "notas": null,
+              "contextosExternos": [
+                "chaveDispositivo"
+              ],
+              "viveEm": {
+                "rotulo": "USM",
+                "nome": "Assinatura",
+                "chave": "USM:Assinatura",
+                "dono": null
+              },
+              "restricao": {
+                "forma": "funcao",
+                "operador": "EXT_FUNCTION",
+                "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+                "texto": "assinaturaValida(mensagem, assinatura)",
+                "chamada": {
+                  "funcao": "assinaturaValida",
+                  "chamada": "assinaturaValida(mensagem, assinatura)",
+                  "operador": "EXT_FUNCTION",
+                  "termo": null,
+                  "descricaoFuncao": "Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.",
+                  "argumentos": [
+                    {
+                      "caminho": "mensagem",
+                      "alvo": "USM:Assinatura.mensagem",
+                      "nomeAlvo": "mensagem",
+                      "rotuloAlvo": "Propriedade",
+                      "colecao": false
+                    },
+                    {
+                      "caminho": "assinatura",
+                      "alvo": "USM:Assinatura.assinatura",
+                      "nomeAlvo": "assinatura",
+                      "rotuloAlvo": "Propriedade",
+                      "colecao": false
+                    }
+                  ],
+                  "contextos": [
+                    "chaveDispositivo"
+                  ]
+                }
+              },
+              "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+              "funcao": true,
+              "categoria": "FN",
+              "alvo": {
+                "chave": "USM:Assinatura.mensagem",
+                "nome": "mensagem, assinatura",
+                "funcao": "assinaturaValida"
+              },
+              "funcoes": [
+                "assinaturaValida"
+              ],
+              "ocorrencias": [
+                "Assinatura"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "mensagem",
+          "caminho": "Assinatura.mensagem",
+          "descricao": "Conteúdo assinado, tal como enviado pelo dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "payload"
+          ],
+          "chave": "USM:Assinatura.mensagem",
+          "dono": "Assinatura",
+          "discriminante": false,
+          "regras": [],
+          "rir": []
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "assinatura",
+          "caminho": "Assinatura.assinatura",
+          "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "signature"
+          ],
+          "chave": "USM:Assinatura.assinatura",
+          "dono": "Assinatura",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-ASSIN-FORMA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+              "alcance": "USM Assinatura.assinatura",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "assinatura",
+                "chave": "Propriedade:USM:Assinatura.assinatura",
+                "dono": "Assinatura"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+                "texto": "assinatura segue o padrão ^[0-9a-f]{64}$",
+                "caminho": "assinatura",
+                "propriedade": "USM:Assinatura.assinatura",
+                "valor": "^[0-9a-f]{64}$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Assinatura.assinatura",
+                "nome": "assinatura",
+                "dono": "Assinatura"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "Assinatura.assinatura"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "mensagem",
+        "assinatura"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Dispositivo"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Dispositivo",
+            "papel": "Leitura",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Leitura"
+          }
+        ],
+        "texto": "Dispositivo › Leitura"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-AMBIENTE",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Instalacao.ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+      "alcance": "USM Instalacao.ambiente",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "ambiente",
+        "chave": "Propriedade:USM:Instalacao.ambiente",
+        "dono": "Instalacao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+        "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}",
+        "caminho": "ambiente",
+        "propriedade": "USM:Instalacao.ambiente",
+        "valor": [
+          "REFRIGERACAO",
+          "ESTUFA",
+          "ARMAZEM",
+          "SERVIDORES",
+          "EXTERIOR",
+          "INCINERADORA",
+          "LABORATORIO"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O ambiente tem de ser refrigeração, estufa, armazém, sala de servidores, exterior, incineradora ou laboratório.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Instalacao.ambiente",
+        "nome": "ambiente",
+        "dono": "Instalacao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Instalacao.ambiente"
+      ]
+    },
+    {
+      "id": "RP-ASSIN-FORMA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+      "alcance": "USM Assinatura.assinatura",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "assinatura",
+        "chave": "Propriedade:USM:Assinatura.assinatura",
+        "dono": "Assinatura"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+        "texto": "assinatura segue o padrão ^[0-9a-f]{64}$",
+        "caminho": "assinatura",
+        "propriedade": "USM:Assinatura.assinatura",
+        "valor": "^[0-9a-f]{64}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Assinatura.assinatura",
+        "nome": "assinatura",
+        "dono": "Assinatura"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Assinatura.assinatura"
+      ]
+    },
+    {
+      "id": "RP-ASSINATURA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)",
+      "alcance": "USM Assinatura",
+      "notas": null,
+      "contextosExternos": [
+        "chaveDispositivo"
+      ],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Assinatura",
+        "chave": "USM:Assinatura",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+        "texto": "assinaturaValida(mensagem, assinatura)",
+        "chamada": {
+          "funcao": "assinaturaValida",
+          "chamada": "assinaturaValida(mensagem, assinatura)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.",
+          "argumentos": [
+            {
+              "caminho": "mensagem",
+              "alvo": "USM:Assinatura.mensagem",
+              "nomeAlvo": "mensagem",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            },
+            {
+              "caminho": "assinatura",
+              "alvo": "USM:Assinatura.assinatura",
+              "nomeAlvo": "assinatura",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "chaveDispositivo"
+          ]
+        }
+      },
+      "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:Assinatura.mensagem",
+        "nome": "mensagem, assinatura",
+        "funcao": "assinaturaValida"
+      },
+      "funcoes": [
+        "assinaturaValida"
+      ],
+      "ocorrencias": [
+        "Assinatura"
+      ]
+    },
+    {
+      "id": "RP-RELOGIO",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "desfasamentoInferiorA(Medicao.dataMedicao, 300)",
+      "alcance": "USM Medicao.dataMedicao",
+      "notas": null,
+      "contextosExternos": [
+        "relogioServidor"
+      ],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "dataMedicao",
+        "chave": "Propriedade:USM:Medicao.dataMedicao",
+        "dono": "Medicao"
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).",
+        "texto": "desfasamentoInferiorA(dataMedicao, 300)",
+        "chamada": {
+          "funcao": "desfasamentoInferiorA",
+          "chamada": "desfasamentoInferiorA(dataMedicao, 300)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.",
+          "argumentos": [
+            {
+              "caminho": "dataMedicao",
+              "alvo": "USM:Medicao.dataMedicao",
+              "nomeAlvo": "dataMedicao",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "relogioServidor"
+          ]
+        }
+      },
+      "mensagem": "O instante da leitura está adiantado em relação ao relógio do servidor (relógio do dispositivo desacertado).",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:Medicao.dataMedicao",
+        "nome": "dataMedicao",
+        "funcao": "desfasamentoInferiorA"
+      },
+      "funcoes": [
+        "desfasamentoInferiorA"
+      ],
+      "ocorrencias": [
+        "Medicao.dataMedicao"
+      ]
+    },
+    {
+      "id": "RP-UNIDADE",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+      "alcance": "USM Medicao.unidadeMedida",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "unidadeMedida",
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "dono": "Medicao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "IN",
+        "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+        "texto": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+        "caminho": "unidadeMedida",
+        "propriedade": "USM:Medicao.unidadeMedida",
+        "valor": [
+          "°C",
+          "K",
+          "°F",
+          "%",
+          "hPa",
+          "bar",
+          "m/s",
+          "km/h"
+        ],
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Medicao.unidadeMedida",
+        "nome": "unidadeMedida",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Medicao.unidadeMedida"
+      ]
+    },
+    {
+      "id": "RP-VALOR-FISICO",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Medicao.valor entre -273.15 e 2400",
+      "alcance": "USM Medicao.valor",
+      "notas": "Conjunto de gamas fisicamente admissíveis do domínio; a gama de cada combinação é inferida (RIR-*).",
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "valor",
+        "chave": "Propriedade:USM:Medicao.valor",
+        "dono": "Medicao"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "RANGE",
+        "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.",
+        "texto": "valor entre -273.15 e 2400",
+        "caminho": "valor",
+        "propriedade": "USM:Medicao.valor",
+        "valor": [
+          -273.15,
+          2400
+        ],
+        "minimo": -273.15,
+        "maximo": 2400
+      },
+      "mensagem": "O valor medido está fora do intervalo que qualquer sensor do domínio pode produzir.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Medicao.valor",
+        "nome": "valor",
+        "dono": "Medicao"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "Medicao.valor"
+      ]
+    },
+    {
+      "id": "RIC-MED-DIFERIDA",
+      "tipo": "RIC",
+      "natureza": "inferencia_conclusiva",
+      "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+      "alcance": "USM Medicao.dataMedicao",
+      "notas": "Contexto externo usado diretamente num termo da condição (sem função): dataMedicao < dataDeHoje.",
+      "contextosExternos": [
+        "dataDeHoje"
+      ],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "dataMedicao",
+        "chave": "Propriedade:USM:Medicao.dataMedicao",
+        "dono": "Medicao"
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "dataMedicao",
+          "propriedade": "USM:Medicao.dataMedicao",
+          "operador": "LT",
+          "valor": null,
+          "contexto": "dataDeHoje",
+          "texto": "dataMedicao < dataDeHoje (contexto externo)",
+          "nome": "dataMedicao"
+        }
+      ],
+      "mensagem": "Estado DIFERIDA: a leitura foi medida antes de hoje e chega com atraso; deve ser tratada como dado histórico.",
+      "conclusao": {
+        "tipo": "ESTADO",
+        "valor": "DIFERIDA"
+      },
+      "funcao": false,
+      "categoria": "RIC",
+      "alvo": null,
+      "funcoes": [],
+      "ocorrencias": [
+        "Medicao.dataMedicao"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 6,
+    "RIR": 0,
+    "RIC": 1,
+    "FN": 2
+  },
+  "funcoes": [
+    {
+      "nome": "assinaturaValida",
+      "descricao": "Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.",
+      "parametros": [
+        {
+          "nome": "mensagem",
+          "tipo": "texto",
+          "papel": "alvo"
+        },
+        {
+          "nome": "assinatura",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "contextos": [
+        "chaveDispositivo"
+      ],
+      "regras": [
+        "RP-ASSINATURA"
+      ]
+    },
+    {
+      "nome": "desfasamentoInferiorA",
+      "descricao": "Verdadeira quando o instante indicado não está adiantado mais de s segundos em relação ao relógio do servidor.",
+      "parametros": [
+        {
+          "nome": "instante",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Instante da leitura (data e hora)."
+        },
+        {
+          "nome": "s",
+          "tipo": "inteiro",
+          "papel": "parametro",
+          "descricao": "Tolerância, em segundos."
+        }
+      ],
+      "contextos": [
+        "relogioServidor"
+      ],
+      "regras": [
+        "RP-RELOGIO"
+      ]
+    }
+  ],
+  "contextos": [
+    {
+      "nome": "chaveDispositivo",
+      "tipo": "texto",
+      "descricao": "Chave secreta com que cada dispositivo assina as suas mensagens (HMAC-SHA256).",
+      "fonte": "Cofre de chaves da plataforma IoT, consultado pelo identificador do dispositivo.",
+      "regras": [
+        "RP-ASSINATURA"
+      ],
+      "fixadoPor": [
+        {
+          "perfil": "TesteRefrigeracao",
+          "valor": "chave-de-teste-0001"
+        }
+      ]
+    },
+    {
+      "nome": "dataDeHoje",
+      "tipo": "data",
+      "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+      "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível.",
+      "regras": [
+        "RIC-MED-DIFERIDA"
+      ],
+      "fixadoPor": [
+        {
+          "perfil": "AuditoriaSetembro2026",
+          "valor": "2026-09-30"
+        },
+        {
+          "perfil": "TesteRefrigeracao",
+          "valor": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "nome": "relogioServidor",
+      "tipo": "data",
+      "descricao": "Instante atual do servidor que recebe as leituras (data e hora ISO 8601).",
+      "fonte": "Relógio do servidor da plataforma IoT.",
+      "regras": [
+        "RP-RELOGIO"
+      ],
+      "fixadoPor": [
+        {
+          "perfil": "TesteRefrigeracao",
+          "valor": "2026-09-30T12:00:00Z"
+        }
+      ]
+    }
+  ],
+  "parametros": {
+    "nivel": "SM",
+    "nome": "Leitura",
+    "regras": true
+  }
+}

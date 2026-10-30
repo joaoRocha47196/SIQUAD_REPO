@@ -1,0 +1,230 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-ORDEM-DATA",
+  "regra": {
+    "id": "RP-ORDEM-DATA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "naoPosteriorAHoje(Pedido.dataPedido)",
+    "alcance": "SM Pedido.dataPedido",
+    "notas": null,
+    "contextosExternos": [
+      "dataDeHoje"
+    ],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "dataPedido",
+      "chave": "Propriedade:SM:Pedido.dataPedido",
+      "dono": "Pedido"
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "EXT_FUNCTION",
+      "mensagem": "A data do pedido não pode ser posterior à data de hoje.",
+      "texto": "naoPosteriorAHoje(dataPedido)",
+      "chamada": {
+        "funcao": "naoPosteriorAHoje",
+        "chamada": "naoPosteriorAHoje(dataPedido)",
+        "operador": "EXT_FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+        "argumentos": [
+          {
+            "caminho": "dataPedido",
+            "alvo": "SM:Pedido.dataPedido",
+            "nomeAlvo": "dataPedido",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          }
+        ],
+        "contextos": [
+          "dataDeHoje"
+        ]
+      }
+    },
+    "mensagem": "A data do pedido não pode ser posterior à data de hoje.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "SM:Pedido.dataPedido",
+      "nome": "dataPedido",
+      "funcao": "naoPosteriorAHoje"
+    },
+    "funcoes": [
+      "naoPosteriorAHoje"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "EXT_FUNCTION",
+    "mensagem": "A data do pedido não pode ser posterior à data de hoje.",
+    "texto": "naoPosteriorAHoje(dataPedido)",
+    "chamada": {
+      "funcao": "naoPosteriorAHoje",
+      "chamada": "naoPosteriorAHoje(dataPedido)",
+      "operador": "EXT_FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "argumentos": [
+        {
+          "caminho": "dataPedido",
+          "alvo": "SM:Pedido.dataPedido",
+          "nomeAlvo": "dataPedido",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        }
+      ],
+      "contextos": [
+        "dataDeHoje"
+      ]
+    },
+    "descricao": "naoPosteriorAHoje(dataPedido)",
+    "funcao": {
+      "nome": "naoPosteriorAHoje",
+      "descricao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "parametros": [
+        {
+          "nome": "data",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Data que não pode estar no futuro."
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": [
+        {
+          "nome": "dataDeHoje",
+          "tipo": "data",
+          "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+          "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível."
+        }
+      ]
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Pedido.dataPedido",
+    "nome": "dataPedido",
+    "dono": "Pedido",
+    "nivelDono": "SM",
+    "tipo": "data",
+    "descricao": "Data em que a instalação foi pedida",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "OrdemInstalacao"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-ORDEM-DATA",
+        "rotulo": "RP",
+        "texto": "RP-ORDEM-DATA",
+        "detalhe": "naoPosteriorAHoje(Pedido.dataPedido)"
+      },
+      {
+        "chave": "Propriedade:SM:Pedido.dataPedido",
+        "rotulo": "Propriedade",
+        "texto": "SM:Pedido.dataPedido",
+        "detalhe": "Data em que a instalação foi pedida"
+      },
+      {
+        "chave": "Restricao:RP-ORDEM-DATA",
+        "rotulo": "Restricao",
+        "texto": "RP-ORDEM-DATA#restricao",
+        "detalhe": "naoPosteriorAHoje(dataPedido)"
+      },
+      {
+        "chave": "Funcao:naoPosteriorAHoje",
+        "rotulo": "Funcao",
+        "texto": "naoPosteriorAHoje",
+        "detalhe": "Verdadeira quando a data indicada não é posterior à data de hoje."
+      },
+      {
+        "chave": "ContextoExterno:dataDeHoje",
+        "rotulo": "ContextoExterno",
+        "texto": "dataDeHoje",
+        "detalhe": "Data atual no momento da avaliação (AAAA-MM-DD)."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-ORDEM-DATA",
+        "para": "Propriedade:SM:Pedido.dataPedido",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-ORDEM-DATA",
+        "para": "Restricao:RP-ORDEM-DATA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-ORDEM-DATA",
+        "para": "Funcao:naoPosteriorAHoje",
+        "tipo": "CHAMA",
+        "texto": "naoPosteriorAHoje(dataPedido)"
+      },
+      {
+        "de": "Funcao:naoPosteriorAHoje",
+        "para": "Propriedade:SM:Pedido.dataPedido",
+        "tipo": "LE",
+        "texto": "argumento: dataPedido"
+      },
+      {
+        "de": "Funcao:naoPosteriorAHoje",
+        "para": "ContextoExterno:dataDeHoje",
+        "tipo": "DEPENDE_DE",
+        "texto": null
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Pedido.dataPedido",
+        "rotulo": "Propriedade",
+        "nome": "dataPedido",
+        "dono": "Pedido",
+        "descricao": "Data em que a instalação foi pedida",
+        "tipoBase": "data"
+      },
+      {
+        "chave": "SM:Pedido",
+        "rotulo": "SM",
+        "nome": "Pedido",
+        "dono": null,
+        "descricao": "Dados do pedido de instalação: número e data.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Pedido",
+        "para": "Propriedade:SM:Pedido.dataPedido",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Pedido",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Pedido",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-ORDEM-DATA"
+  }
+}

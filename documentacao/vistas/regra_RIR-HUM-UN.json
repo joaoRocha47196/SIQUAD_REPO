@@ -1,0 +1,273 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-HUM-UN",
+  "regra": {
+    "id": "RIR-HUM-UN",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}",
+    "alcance": "HLM Dispositivo",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "HLM",
+      "nome": "Dispositivo",
+      "chave": "HLM:Dispositivo",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "Uma humidade tem de ser medida em %.",
+      "texto": "Leitura.Medicao.unidadeMedida ∈ {%}",
+      "caminho": "Leitura.Medicao.unidadeMedida",
+      "propriedade": "USM:Medicao.unidadeMedida",
+      "valor": [
+        "%"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "HUMIDADE",
+        "contexto": null,
+        "texto": "tipoDispositivo = HUMIDADE",
+        "nome": "tipoDispositivo"
+      }
+    ],
+    "mensagem": "Uma humidade tem de ser medida em %.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Medicao.unidadeMedida",
+      "nome": "unidadeMedida",
+      "dono": "Medicao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "Uma humidade tem de ser medida em %.",
+    "texto": "Leitura.Medicao.unidadeMedida ∈ {%}",
+    "caminho": "Leitura.Medicao.unidadeMedida",
+    "propriedade": "USM:Medicao.unidadeMedida",
+    "valor": [
+      "%"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "Leitura.Medicao.unidadeMedida ∈ {%}",
+    "alvo": {
+      "chave": "USM:Medicao.unidadeMedida",
+      "nome": "unidadeMedida",
+      "dono": "Medicao",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Unidade de medida associada ao valor medido"
+    }
+  },
+  "condicao": {
+    "descricao": "Identificacao.tipoDispositivo = HUMIDADE",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Identificacao.tipoDispositivo",
+        "propriedade": "SM:Identificacao.tipoDispositivo",
+        "operador": "EQUALS",
+        "valor": "HUMIDADE",
+        "contexto": null,
+        "texto": "tipoDispositivo = HUMIDADE",
+        "nome": "tipoDispositivo",
+        "alvo": {
+          "chave": "SM:Identificacao.tipoDispositivo",
+          "nome": "tipoDispositivo",
+          "dono": "Identificacao",
+          "nivelDono": "SM",
+          "tipo": "texto",
+          "descricao": "Grandeza medida pelo dispositivo"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "HLM",
+    "nome": "Dispositivo",
+    "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+    "chave": "HLM:Dispositivo",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-HUM-UN",
+        "rotulo": "RIR",
+        "texto": "RIR-HUM-UN",
+        "detalhe": "Se Identificacao.tipoDispositivo = HUMIDADE → Leitura.Medicao.unidadeMedida ∈ {%}"
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "texto": "Dispositivo",
+        "detalhe": "Dispositivo IoT: identificação, leitura, localização e diagnóstico."
+      },
+      {
+        "chave": "Restricao:RIR-HUM-UN",
+        "rotulo": "Restricao",
+        "texto": "RIR-HUM-UN#restricao",
+        "detalhe": "Leitura.Medicao.unidadeMedida ∈ {%}"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.unidadeMedida",
+        "detalhe": "Unidade de medida associada ao valor medido"
+      },
+      {
+        "chave": "Condicao:RIR-HUM-UN",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-HUM-UN#condicao",
+        "detalhe": "Identificacao.tipoDispositivo = HUMIDADE"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "texto": "SM:Identificacao.tipoDispositivo",
+        "detalhe": "Grandeza medida pelo dispositivo"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-HUM-UN",
+        "para": "HLM:Dispositivo",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-HUM-UN",
+        "para": "Restricao:RIR-HUM-UN",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-HUM-UN",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "RESTRINGE",
+        "texto": "Leitura.Medicao.unidadeMedida ∈ {%}"
+      },
+      {
+        "de": "R:RIR-HUM-UN",
+        "para": "Condicao:RIR-HUM-UN",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-HUM-UN",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoDispositivo = HUMIDADE"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "nome": "unidadeMedida",
+        "dono": "Medicao",
+        "descricao": "Unidade de medida associada ao valor medido",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "rotulo": "Propriedade",
+        "nome": "tipoDispositivo",
+        "dono": "Identificacao",
+        "descricao": "Grandeza medida pelo dispositivo",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Identificacao",
+        "rotulo": "SM",
+        "nome": "Identificacao",
+        "dono": null,
+        "descricao": "Identificação do dispositivo: identificador, fabricante, estado e grandeza medida.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Identificacao",
+        "para": "Propriedade:SM:Identificacao.tipoDispositivo",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Identificacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Identificacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-HUM-UN"
+  }
+}

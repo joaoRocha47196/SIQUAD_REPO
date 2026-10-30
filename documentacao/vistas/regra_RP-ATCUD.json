@@ -1,0 +1,278 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-ATCUD",
+  "regra": {
+    "id": "RP-ATCUD",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "atcudValido(Cabecalho.atcud, Cabecalho.serie)",
+    "alcance": "SM Cabecalho",
+    "notas": null,
+    "contextosExternos": [
+      "seriesComunicadasAT"
+    ],
+    "viveEm": {
+      "rotulo": "SM",
+      "nome": "Cabecalho",
+      "chave": "SM:Cabecalho",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "EXT_FUNCTION",
+      "mensagem": "O ATCUD não pertence a uma série comunicada à AT.",
+      "texto": "atcudValido(atcud, serie)",
+      "chamada": {
+        "funcao": "atcudValido",
+        "chamada": "atcudValido(atcud, serie)",
+        "operador": "EXT_FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.",
+        "argumentos": [
+          {
+            "caminho": "atcud",
+            "alvo": "SM:Cabecalho.atcud",
+            "nomeAlvo": "atcud",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          },
+          {
+            "caminho": "serie",
+            "alvo": "SM:Cabecalho.serie",
+            "nomeAlvo": "serie",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          }
+        ],
+        "contextos": [
+          "seriesComunicadasAT"
+        ]
+      }
+    },
+    "mensagem": "O ATCUD não pertence a uma série comunicada à AT.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "SM:Cabecalho.atcud",
+      "nome": "atcud, serie",
+      "funcao": "atcudValido"
+    },
+    "funcoes": [
+      "atcudValido"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "EXT_FUNCTION",
+    "mensagem": "O ATCUD não pertence a uma série comunicada à AT.",
+    "texto": "atcudValido(atcud, serie)",
+    "chamada": {
+      "funcao": "atcudValido",
+      "chamada": "atcudValido(atcud, serie)",
+      "operador": "EXT_FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.",
+      "argumentos": [
+        {
+          "caminho": "atcud",
+          "alvo": "SM:Cabecalho.atcud",
+          "nomeAlvo": "atcud",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        },
+        {
+          "caminho": "serie",
+          "alvo": "SM:Cabecalho.serie",
+          "nomeAlvo": "serie",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        }
+      ],
+      "contextos": [
+        "seriesComunicadasAT"
+      ]
+    },
+    "descricao": "atcudValido(atcud, serie)",
+    "funcao": {
+      "nome": "atcudValido",
+      "descricao": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.",
+      "parametros": [
+        {
+          "nome": "atcud",
+          "tipo": "texto",
+          "papel": "alvo"
+        },
+        {
+          "nome": "serie",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": [
+        {
+          "nome": "seriesComunicadasAT",
+          "tipo": "texto",
+          "descricao": "Séries de documentos comunicadas à AT, cada uma com o respetivo código de validação.",
+          "fonte": "Portal das Finanças (AT), sincronizado pelo sistema de faturação."
+        }
+      ]
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "rotulo": "SM",
+    "nome": "Cabecalho",
+    "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+    "chave": "SM:Cabecalho",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-ATCUD",
+        "rotulo": "RP",
+        "texto": "RP-ATCUD",
+        "detalhe": "atcudValido(Cabecalho.atcud, Cabecalho.serie)"
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "texto": "Cabecalho",
+        "detalhe": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento."
+      },
+      {
+        "chave": "Restricao:RP-ATCUD",
+        "rotulo": "Restricao",
+        "texto": "RP-ATCUD#restricao",
+        "detalhe": "atcudValido(atcud, serie)"
+      },
+      {
+        "chave": "Funcao:atcudValido",
+        "rotulo": "Funcao",
+        "texto": "atcudValido",
+        "detalhe": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação."
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.atcud",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.atcud",
+        "detalhe": "Código único do documento (ATCUD)"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.serie",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.serie",
+        "detalhe": "Série do documento, comunicada à AT"
+      },
+      {
+        "chave": "ContextoExterno:seriesComunicadasAT",
+        "rotulo": "ContextoExterno",
+        "texto": "seriesComunicadasAT",
+        "detalhe": "Séries de documentos comunicadas à AT, cada uma com o respetivo código de validação."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-ATCUD",
+        "para": "SM:Cabecalho",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-ATCUD",
+        "para": "Restricao:RP-ATCUD",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-ATCUD",
+        "para": "Funcao:atcudValido",
+        "tipo": "CHAMA",
+        "texto": "atcudValido(atcud, serie)"
+      },
+      {
+        "de": "Funcao:atcudValido",
+        "para": "Propriedade:SM:Cabecalho.atcud",
+        "tipo": "LE",
+        "texto": "argumento: atcud"
+      },
+      {
+        "de": "Funcao:atcudValido",
+        "para": "Propriedade:SM:Cabecalho.serie",
+        "tipo": "LE",
+        "texto": "argumento: serie"
+      },
+      {
+        "de": "Funcao:atcudValido",
+        "para": "ContextoExterno:seriesComunicadasAT",
+        "tipo": "DEPENDE_DE",
+        "texto": null
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.atcud",
+        "rotulo": "Propriedade",
+        "nome": "atcud",
+        "dono": "Cabecalho",
+        "descricao": "Código único do documento (ATCUD)",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.serie",
+        "rotulo": "Propriedade",
+        "nome": "serie",
+        "dono": "Cabecalho",
+        "descricao": "Série do documento, comunicada à AT",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.atcud",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.serie",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-ATCUD"
+  }
+}

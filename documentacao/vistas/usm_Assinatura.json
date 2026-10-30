@@ -1,0 +1,389 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo USM Assinatura",
+  "nivel": "USM",
+  "nome": "Assinatura",
+  "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "USM",
+    "nome": "Assinatura",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+    "propriedades": [
+      {
+        "chave": "USM:Assinatura.mensagem",
+        "nome": "mensagem",
+        "dono": "Assinatura",
+        "nivelDono": "USM",
+        "tipo": "texto",
+        "descricao": "Conteúdo assinado, tal como enviado pelo dispositivo",
+        "caminho": "mensagem",
+        "nomesAlternativos": [
+          "payload"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "USM:Assinatura.assinatura",
+        "nome": "assinatura",
+        "dono": "Assinatura",
+        "nivelDono": "USM",
+        "tipo": "texto",
+        "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+        "caminho": "assinatura",
+        "nomesAlternativos": [
+          "signature"
+        ],
+        "discriminante": false
+      }
+    ],
+    "filhos": [],
+    "usadoPor": [
+      "Dispositivo"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "USM",
+    "nome": "Assinatura",
+    "caminho": "",
+    "descricao": "Assinatura digital de uma mensagem enviada por um dispositivo.",
+    "regras": [
+      {
+        "id": "RP-ASSINATURA",
+        "tipo": "RP",
+        "natureza": "plausibilidade",
+        "descricao": "assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)",
+        "alcance": "USM Assinatura",
+        "notas": null,
+        "contextosExternos": [
+          "chaveDispositivo"
+        ],
+        "viveEm": {
+          "rotulo": "USM",
+          "nome": "Assinatura",
+          "chave": "USM:Assinatura",
+          "dono": null
+        },
+        "restricao": {
+          "forma": "funcao",
+          "operador": "EXT_FUNCTION",
+          "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+          "texto": "assinaturaValida(mensagem, assinatura)",
+          "chamada": {
+            "funcao": "assinaturaValida",
+            "chamada": "assinaturaValida(mensagem, assinatura)",
+            "operador": "EXT_FUNCTION",
+            "termo": null,
+            "descricaoFuncao": "Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.",
+            "argumentos": [
+              {
+                "caminho": "mensagem",
+                "alvo": "USM:Assinatura.mensagem",
+                "nomeAlvo": "mensagem",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              },
+              {
+                "caminho": "assinatura",
+                "alvo": "USM:Assinatura.assinatura",
+                "nomeAlvo": "assinatura",
+                "rotuloAlvo": "Propriedade",
+                "colecao": false
+              }
+            ],
+            "contextos": [
+              "chaveDispositivo"
+            ]
+          }
+        },
+        "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+        "funcao": true,
+        "categoria": "FN",
+        "alvo": {
+          "chave": "USM:Assinatura.mensagem",
+          "nome": "mensagem, assinatura",
+          "funcao": "assinaturaValida"
+        },
+        "funcoes": [
+          "assinaturaValida"
+        ],
+        "ocorrencias": [
+          "Assinatura"
+        ]
+      }
+    ],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Assinatura",
+      "nivel": "USM",
+      "proprio": true,
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "mensagem",
+          "caminho": "mensagem",
+          "descricao": "Conteúdo assinado, tal como enviado pelo dispositivo",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "payload"
+          ],
+          "chave": "USM:Assinatura.mensagem",
+          "dono": "Assinatura",
+          "discriminante": false,
+          "regras": [],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "assinatura",
+          "caminho": "assinatura",
+          "descricao": "Assinatura HMAC-SHA256 da mensagem, em hexadecimal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "signature"
+          ],
+          "chave": "USM:Assinatura.assinatura",
+          "dono": "Assinatura",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-ASSIN-FORMA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+              "alcance": "USM Assinatura.assinatura",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "assinatura",
+                "chave": "Propriedade:USM:Assinatura.assinatura",
+                "dono": "Assinatura"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+                "texto": "assinatura segue o padrão ^[0-9a-f]{64}$",
+                "caminho": "assinatura",
+                "propriedade": "USM:Assinatura.assinatura",
+                "valor": "^[0-9a-f]{64}$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Assinatura.assinatura",
+                "nome": "assinatura",
+                "dono": "Assinatura"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "assinatura"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "mensagem",
+        "assinatura"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Dispositivo"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Dispositivo",
+            "papel": "Leitura",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Leitura",
+            "papel": "Assinatura",
+            "cardinalidade": "0..1"
+          },
+          {
+            "rotulo": "USM",
+            "nome": "Assinatura"
+          }
+        ],
+        "texto": "Dispositivo › Leitura › Assinatura"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-ASSIN-FORMA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Assinatura.assinatura segue o padrão ^[0-9a-f]{64}$",
+      "alcance": "USM Assinatura.assinatura",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "assinatura",
+        "chave": "Propriedade:USM:Assinatura.assinatura",
+        "dono": "Assinatura"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+        "texto": "assinatura segue o padrão ^[0-9a-f]{64}$",
+        "caminho": "assinatura",
+        "propriedade": "USM:Assinatura.assinatura",
+        "valor": "^[0-9a-f]{64}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "A assinatura tem de ter 64 caracteres hexadecimais (HMAC-SHA256).",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Assinatura.assinatura",
+        "nome": "assinatura",
+        "dono": "Assinatura"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "assinatura"
+      ]
+    },
+    {
+      "id": "RP-ASSINATURA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "assinaturaValida(Assinatura.mensagem, Assinatura.assinatura)",
+      "alcance": "USM Assinatura",
+      "notas": null,
+      "contextosExternos": [
+        "chaveDispositivo"
+      ],
+      "viveEm": {
+        "rotulo": "USM",
+        "nome": "Assinatura",
+        "chave": "USM:Assinatura",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+        "texto": "assinaturaValida(mensagem, assinatura)",
+        "chamada": {
+          "funcao": "assinaturaValida",
+          "chamada": "assinaturaValida(mensagem, assinatura)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.",
+          "argumentos": [
+            {
+              "caminho": "mensagem",
+              "alvo": "USM:Assinatura.mensagem",
+              "nomeAlvo": "mensagem",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            },
+            {
+              "caminho": "assinatura",
+              "alvo": "USM:Assinatura.assinatura",
+              "nomeAlvo": "assinatura",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "chaveDispositivo"
+          ]
+        }
+      },
+      "mensagem": "A assinatura não corresponde à mensagem e à chave do dispositivo.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:Assinatura.mensagem",
+        "nome": "mensagem, assinatura",
+        "funcao": "assinaturaValida"
+      },
+      "funcoes": [
+        "assinaturaValida"
+      ],
+      "ocorrencias": [
+        "Assinatura"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 2,
+    "RIR": 0,
+    "RIC": 0,
+    "FN": 1
+  },
+  "funcoes": [
+    {
+      "nome": "assinaturaValida",
+      "descricao": "Verdadeira quando a assinatura (HMAC-SHA256) corresponde à mensagem e à chave do dispositivo.",
+      "parametros": [
+        {
+          "nome": "mensagem",
+          "tipo": "texto",
+          "papel": "alvo"
+        },
+        {
+          "nome": "assinatura",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "contextos": [
+        "chaveDispositivo"
+      ],
+      "regras": [
+        "RP-ASSINATURA"
+      ]
+    }
+  ],
+  "contextos": [
+    {
+      "nome": "chaveDispositivo",
+      "tipo": "texto",
+      "descricao": "Chave secreta com que cada dispositivo assina as suas mensagens (HMAC-SHA256).",
+      "fonte": "Cofre de chaves da plataforma IoT, consultado pelo identificador do dispositivo.",
+      "regras": [
+        "RP-ASSINATURA"
+      ],
+      "fixadoPor": [
+        {
+          "perfil": "TesteRefrigeracao",
+          "valor": "chave-de-teste-0001"
+        }
+      ]
+    }
+  ],
+  "parametros": {
+    "nivel": "USM",
+    "nome": "Assinatura",
+    "regras": true
+  }
+}

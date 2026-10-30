@@ -1,0 +1,194 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-UNIDADE",
+  "regra": {
+    "id": "RP-UNIDADE",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+    "alcance": "USM Medicao.unidadeMedida",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "unidadeMedida",
+      "chave": "Propriedade:USM:Medicao.unidadeMedida",
+      "dono": "Medicao"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+      "texto": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+      "caminho": "unidadeMedida",
+      "propriedade": "USM:Medicao.unidadeMedida",
+      "valor": [
+        "°C",
+        "K",
+        "°F",
+        "%",
+        "hPa",
+        "bar",
+        "m/s",
+        "km/h"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Medicao.unidadeMedida",
+      "nome": "unidadeMedida",
+      "dono": "Medicao"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "A unidade de medida não pertence ao conjunto de valores plausíveis.",
+    "texto": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+    "caminho": "unidadeMedida",
+    "propriedade": "USM:Medicao.unidadeMedida",
+    "valor": [
+      "°C",
+      "K",
+      "°F",
+      "%",
+      "hPa",
+      "bar",
+      "m/s",
+      "km/h"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}",
+    "alvo": {
+      "chave": "USM:Medicao.unidadeMedida",
+      "nome": "unidadeMedida",
+      "dono": "Medicao",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Unidade de medida associada ao valor medido"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Medicao.unidadeMedida",
+    "nome": "unidadeMedida",
+    "dono": "Medicao",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Unidade de medida associada ao valor medido",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-UNIDADE",
+        "rotulo": "RP",
+        "texto": "RP-UNIDADE",
+        "detalhe": "Medicao.unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.unidadeMedida",
+        "detalhe": "Unidade de medida associada ao valor medido"
+      },
+      {
+        "chave": "Restricao:RP-UNIDADE",
+        "rotulo": "Restricao",
+        "texto": "RP-UNIDADE#restricao",
+        "detalhe": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-UNIDADE",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-UNIDADE",
+        "para": "Restricao:RP-UNIDADE",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-UNIDADE",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "RESTRINGE",
+        "texto": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Medicao.unidadeMedida",
+        "rotulo": "Propriedade",
+        "nome": "unidadeMedida",
+        "dono": "Medicao",
+        "descricao": "Unidade de medida associada ao valor medido",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.unidadeMedida",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-UNIDADE"
+  }
+}

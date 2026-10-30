@@ -1,0 +1,182 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-TAXAIVA",
+  "regra": {
+    "id": "RP-TAXAIVA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Linha.taxaIVA entre 0 e 100",
+    "alcance": "USM Linha.taxaIVA",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "taxaIVA",
+      "chave": "Propriedade:USM:Linha.taxaIVA",
+      "dono": "Linha"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "A taxa de IVA tem de estar entre 0 e 100.",
+      "texto": "taxaIVA entre 0 e 100",
+      "caminho": "taxaIVA",
+      "propriedade": "USM:Linha.taxaIVA",
+      "valor": [
+        0,
+        100
+      ],
+      "minimo": 0,
+      "maximo": 100
+    },
+    "mensagem": "A taxa de IVA tem de estar entre 0 e 100.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "A taxa de IVA tem de estar entre 0 e 100.",
+    "texto": "taxaIVA entre 0 e 100",
+    "caminho": "taxaIVA",
+    "propriedade": "USM:Linha.taxaIVA",
+    "valor": [
+      0,
+      100
+    ],
+    "minimo": 0,
+    "maximo": 100,
+    "descricao": "taxaIVA entre 0 e 100",
+    "alvo": {
+      "chave": "USM:Linha.taxaIVA",
+      "nome": "taxaIVA",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Taxa de IVA aplicada à linha (%)"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Linha.taxaIVA",
+    "nome": "taxaIVA",
+    "dono": "Linha",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Taxa de IVA aplicada à linha (%)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-TAXAIVA",
+        "rotulo": "RP",
+        "texto": "RP-TAXAIVA",
+        "detalhe": "Linha.taxaIVA entre 0 e 100"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.taxaIVA",
+        "detalhe": "Taxa de IVA aplicada à linha (%)"
+      },
+      {
+        "chave": "Restricao:RP-TAXAIVA",
+        "rotulo": "Restricao",
+        "texto": "RP-TAXAIVA#restricao",
+        "detalhe": "taxaIVA entre 0 e 100"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-TAXAIVA",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-TAXAIVA",
+        "para": "Restricao:RP-TAXAIVA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-TAXAIVA",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "RESTRINGE",
+        "texto": "taxaIVA entre 0 e 100"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Linha.taxaIVA",
+        "rotulo": "Propriedade",
+        "nome": "taxaIVA",
+        "dono": "Linha",
+        "descricao": "Taxa de IVA aplicada à linha (%)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.taxaIVA",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-TAXAIVA"
+  }
+}

@@ -1,0 +1,49 @@
+{
+ "dominio": "faturacao",
+ "passos": {
+  "0": {
+   "estado": "aceite",
+   "atualizado": "2026-10-29T19:09:50",
+   "resumo": [
+    "cius-pt-schematron: 0 grupos, 0 elementos, 1154 regras",
+    "cius-pt-ubl-fatura: 85 grupos, 156 elementos, 0 regras",
+    "cius-pt-ubl-nota-de-credito: 84 grupos, 154 elementos, 0 regras",
+    "cius-pt-ubl-mensagem-de-estado: 20 grupos, 26 elementos, 0 regras",
+    "fm-dart: 14 grupos, 136 elementos, 1 regras",
+    "fm-registos: 6 grupos, 109 elementos, 50 regras",
+    "cius-pt-guia: 33 grupos, 164 elementos, 0 regras"
+   ]
+  },
+  "A": {
+   "estado": "em revisão",
+   "atualizado": "2026-10-30T14:44:30"
+  },
+  "B": {
+   "estado": "em revisão",
+   "atualizado": "2026-10-30T15:16:54"
+  },
+  "C": {
+   "estado": "em revisão",
+   "atualizado": "2026-10-30T15:24:30"
+  },
+  "D": {
+   "estado": "por iniciar"
+  },
+  "E": {
+   "estado": "por iniciar"
+  },
+  "F": {
+   "estado": "em revisão",
+   "atualizado": "2026-10-30T15:33:06"
+  },
+  "G": {
+   "estado": "em curso",
+   "pedidos": [
+    "001-passo-G",
+    "003-passo-G"
+   ],
+   "atualizado": "2026-10-30T01:34:52",
+   "verificacao": "0 declaração(ões); 0 erro(s), 0 aviso(s); cobertura em falta: 1614"
+  }
+ }
+}

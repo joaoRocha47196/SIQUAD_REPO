@@ -1,0 +1,161 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-TOTAL",
+  "regra": {
+    "id": "RP-TOTAL",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Cabecalho.totalFatura ≥ 0",
+    "alcance": "SM Cabecalho.totalFatura",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "totalFatura",
+      "chave": "Propriedade:SM:Cabecalho.totalFatura",
+      "dono": "Cabecalho"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "GTE",
+      "mensagem": "O total da fatura não pode ser negativo.",
+      "texto": "totalFatura ≥ 0",
+      "caminho": "totalFatura",
+      "propriedade": "SM:Cabecalho.totalFatura",
+      "valor": 0,
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O total da fatura não pode ser negativo.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "SM:Cabecalho.totalFatura",
+      "nome": "totalFatura",
+      "dono": "Cabecalho"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "GTE",
+    "mensagem": "O total da fatura não pode ser negativo.",
+    "texto": "totalFatura ≥ 0",
+    "caminho": "totalFatura",
+    "propriedade": "SM:Cabecalho.totalFatura",
+    "valor": 0,
+    "minimo": null,
+    "maximo": null,
+    "descricao": "totalFatura ≥ 0",
+    "alvo": {
+      "chave": "SM:Cabecalho.totalFatura",
+      "nome": "totalFatura",
+      "dono": "Cabecalho",
+      "nivelDono": "SM",
+      "tipo": "decimal",
+      "descricao": "Total do documento, em euros"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Cabecalho.totalFatura",
+    "nome": "totalFatura",
+    "dono": "Cabecalho",
+    "nivelDono": "SM",
+    "tipo": "decimal",
+    "descricao": "Total do documento, em euros",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-TOTAL",
+        "rotulo": "RP",
+        "texto": "RP-TOTAL",
+        "detalhe": "Cabecalho.totalFatura ≥ 0"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.totalFatura",
+        "detalhe": "Total do documento, em euros"
+      },
+      {
+        "chave": "Restricao:RP-TOTAL",
+        "rotulo": "Restricao",
+        "texto": "RP-TOTAL#restricao",
+        "detalhe": "totalFatura ≥ 0"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-TOTAL",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-TOTAL",
+        "para": "Restricao:RP-TOTAL",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-TOTAL",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "RESTRINGE",
+        "texto": "totalFatura ≥ 0"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "nome": "totalFatura",
+        "dono": "Cabecalho",
+        "descricao": "Total do documento, em euros",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-TOTAL"
+  }
+}

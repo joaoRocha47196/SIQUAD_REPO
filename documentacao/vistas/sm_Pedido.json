@@ -1,0 +1,369 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo SM Pedido",
+  "nivel": "SM",
+  "nome": "Pedido",
+  "descricao": "Dados do pedido de instalação: número e data.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "SM",
+    "nome": "Pedido",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Dados do pedido de instalação: número e data.",
+    "propriedades": [
+      {
+        "chave": "SM:Pedido.numeroOrdem",
+        "nome": "numeroOrdem",
+        "dono": "Pedido",
+        "nivelDono": "SM",
+        "tipo": "texto",
+        "descricao": "Número da ordem de instalação",
+        "caminho": "numeroOrdem",
+        "nomesAlternativos": [
+          "orderId"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "SM:Pedido.dataPedido",
+        "nome": "dataPedido",
+        "dono": "Pedido",
+        "nivelDono": "SM",
+        "tipo": "data",
+        "descricao": "Data em que a instalação foi pedida",
+        "caminho": "dataPedido",
+        "nomesAlternativos": [
+          "requestDate"
+        ],
+        "discriminante": false
+      }
+    ],
+    "filhos": [],
+    "usadoPor": [
+      "OrdemInstalacao"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "SM",
+    "nome": "Pedido",
+    "caminho": "",
+    "descricao": "Dados do pedido de instalação: número e data.",
+    "regras": [],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Pedido",
+      "nivel": "SM",
+      "proprio": true,
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "numeroOrdem",
+          "caminho": "numeroOrdem",
+          "descricao": "Número da ordem de instalação",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "orderId"
+          ],
+          "chave": "SM:Pedido.numeroOrdem",
+          "dono": "Pedido",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-ORDEM-NUM",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Pedido.numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+              "alcance": "SM Pedido.numeroOrdem",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "numeroOrdem",
+                "chave": "Propriedade:SM:Pedido.numeroOrdem",
+                "dono": "Pedido"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "O número da ordem tem a forma OI-AAAA-NNNNN.",
+                "texto": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+                "caminho": "numeroOrdem",
+                "propriedade": "SM:Pedido.numeroOrdem",
+                "valor": "^OI-[0-9]{4}-[0-9]{5}$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O número da ordem tem a forma OI-AAAA-NNNNN.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "SM:Pedido.numeroOrdem",
+                "nome": "numeroOrdem",
+                "dono": "Pedido"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "numeroOrdem"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "dataPedido",
+          "caminho": "dataPedido",
+          "descricao": "Data em que a instalação foi pedida",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "requestDate"
+          ],
+          "chave": "SM:Pedido.dataPedido",
+          "dono": "Pedido",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-ORDEM-DATA",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "naoPosteriorAHoje(Pedido.dataPedido)",
+              "alcance": "SM Pedido.dataPedido",
+              "notas": null,
+              "contextosExternos": [
+                "dataDeHoje"
+              ],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "dataPedido",
+                "chave": "Propriedade:SM:Pedido.dataPedido",
+                "dono": "Pedido"
+              },
+              "restricao": {
+                "forma": "funcao",
+                "operador": "EXT_FUNCTION",
+                "mensagem": "A data do pedido não pode ser posterior à data de hoje.",
+                "texto": "naoPosteriorAHoje(dataPedido)",
+                "chamada": {
+                  "funcao": "naoPosteriorAHoje",
+                  "chamada": "naoPosteriorAHoje(dataPedido)",
+                  "operador": "EXT_FUNCTION",
+                  "termo": null,
+                  "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+                  "argumentos": [
+                    {
+                      "caminho": "dataPedido",
+                      "alvo": "SM:Pedido.dataPedido",
+                      "nomeAlvo": "dataPedido",
+                      "rotuloAlvo": "Propriedade",
+                      "colecao": false
+                    }
+                  ],
+                  "contextos": [
+                    "dataDeHoje"
+                  ]
+                }
+              },
+              "mensagem": "A data do pedido não pode ser posterior à data de hoje.",
+              "funcao": true,
+              "categoria": "FN",
+              "alvo": {
+                "chave": "SM:Pedido.dataPedido",
+                "nome": "dataPedido",
+                "funcao": "naoPosteriorAHoje"
+              },
+              "funcoes": [
+                "naoPosteriorAHoje"
+              ],
+              "ocorrencias": [
+                "dataPedido"
+              ]
+            }
+          ],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "numeroOrdem",
+        "dataPedido"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "OrdemInstalacao"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "OrdemInstalacao",
+            "papel": "Pedido",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Pedido"
+          }
+        ],
+        "texto": "OrdemInstalacao › Pedido"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-ORDEM-DATA",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "naoPosteriorAHoje(Pedido.dataPedido)",
+      "alcance": "SM Pedido.dataPedido",
+      "notas": null,
+      "contextosExternos": [
+        "dataDeHoje"
+      ],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "dataPedido",
+        "chave": "Propriedade:SM:Pedido.dataPedido",
+        "dono": "Pedido"
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "EXT_FUNCTION",
+        "mensagem": "A data do pedido não pode ser posterior à data de hoje.",
+        "texto": "naoPosteriorAHoje(dataPedido)",
+        "chamada": {
+          "funcao": "naoPosteriorAHoje",
+          "chamada": "naoPosteriorAHoje(dataPedido)",
+          "operador": "EXT_FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+          "argumentos": [
+            {
+              "caminho": "dataPedido",
+              "alvo": "SM:Pedido.dataPedido",
+              "nomeAlvo": "dataPedido",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": [
+            "dataDeHoje"
+          ]
+        }
+      },
+      "mensagem": "A data do pedido não pode ser posterior à data de hoje.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "SM:Pedido.dataPedido",
+        "nome": "dataPedido",
+        "funcao": "naoPosteriorAHoje"
+      },
+      "funcoes": [
+        "naoPosteriorAHoje"
+      ],
+      "ocorrencias": [
+        "dataPedido"
+      ]
+    },
+    {
+      "id": "RP-ORDEM-NUM",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Pedido.numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+      "alcance": "SM Pedido.numeroOrdem",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "numeroOrdem",
+        "chave": "Propriedade:SM:Pedido.numeroOrdem",
+        "dono": "Pedido"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O número da ordem tem a forma OI-AAAA-NNNNN.",
+        "texto": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$",
+        "caminho": "numeroOrdem",
+        "propriedade": "SM:Pedido.numeroOrdem",
+        "valor": "^OI-[0-9]{4}-[0-9]{5}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O número da ordem tem a forma OI-AAAA-NNNNN.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "SM:Pedido.numeroOrdem",
+        "nome": "numeroOrdem",
+        "dono": "Pedido"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "numeroOrdem"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 2,
+    "RIR": 0,
+    "RIC": 0,
+    "FN": 1
+  },
+  "funcoes": [
+    {
+      "nome": "naoPosteriorAHoje",
+      "descricao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "parametros": [
+        {
+          "nome": "data",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Data que não pode estar no futuro."
+        }
+      ],
+      "contextos": [
+        "dataDeHoje"
+      ],
+      "regras": [
+        "RP-ORDEM-DATA"
+      ]
+    }
+  ],
+  "contextos": [
+    {
+      "nome": "dataDeHoje",
+      "tipo": "data",
+      "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+      "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível.",
+      "regras": [
+        "RP-ORDEM-DATA"
+      ],
+      "fixadoPor": [
+        {
+          "perfil": "AuditoriaSetembro2026",
+          "valor": "2026-09-30"
+        },
+        {
+          "perfil": "TesteRefrigeracao",
+          "valor": "2026-09-30"
+        }
+      ]
+    }
+  ],
+  "parametros": {
+    "nivel": "SM",
+    "nome": "Pedido",
+    "regras": true
+  }
+}

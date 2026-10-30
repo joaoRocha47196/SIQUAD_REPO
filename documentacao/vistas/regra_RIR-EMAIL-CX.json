@@ -1,0 +1,306 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-EMAIL-CX",
+  "regra": {
+    "id": "RIR-EMAIL-CX",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Emitente.Entidade.nome = Companhia X → Emitente.Contacto.email termina em \"@companhiax.com\"",
+    "alcance": "SM Emitente",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "SM",
+      "nome": "Emitente",
+      "chave": "SM:Emitente",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "ENDS_WITH",
+      "mensagem": "O email de um emitente da Companhia X tem de terminar em @companhiax.com.",
+      "texto": "Contacto.email termina em \"@companhiax.com\"",
+      "caminho": "Contacto.email",
+      "propriedade": "USM:Contacto.email",
+      "valor": "@companhiax.com",
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Entidade.nome",
+        "propriedade": "USM:Entidade.nome",
+        "operador": "EQUALS",
+        "valor": "Companhia X",
+        "contexto": null,
+        "texto": "nome = Companhia X",
+        "nome": "nome"
+      }
+    ],
+    "mensagem": "O email de um emitente da Companhia X tem de terminar em @companhiax.com.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Contacto.email",
+      "nome": "email",
+      "dono": "Contacto"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "ENDS_WITH",
+    "mensagem": "O email de um emitente da Companhia X tem de terminar em @companhiax.com.",
+    "texto": "Contacto.email termina em \"@companhiax.com\"",
+    "caminho": "Contacto.email",
+    "propriedade": "USM:Contacto.email",
+    "valor": "@companhiax.com",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "Contacto.email termina em \"@companhiax.com\"",
+    "alvo": {
+      "chave": "USM:Contacto.email",
+      "nome": "email",
+      "dono": "Contacto",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Endereço de correio eletrónico"
+    }
+  },
+  "condicao": {
+    "descricao": "Entidade.nome = Companhia X",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Entidade.nome",
+        "propriedade": "USM:Entidade.nome",
+        "operador": "EQUALS",
+        "valor": "Companhia X",
+        "contexto": null,
+        "texto": "nome = Companhia X",
+        "nome": "nome",
+        "alvo": {
+          "chave": "USM:Entidade.nome",
+          "nome": "nome",
+          "dono": "Entidade",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Nome ou denominação social"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "SM",
+    "nome": "Emitente",
+    "descricao": "Quem emite o documento: identificação, morada e contacto.",
+    "chave": "SM:Emitente",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-EMAIL-CX",
+        "rotulo": "RIR",
+        "texto": "RIR-EMAIL-CX",
+        "detalhe": "Se Emitente.Entidade.nome = Companhia X → Emitente.Contacto.email termina em \"@companhiax.com\""
+      },
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "texto": "Emitente",
+        "detalhe": "Quem emite o documento: identificação, morada e contacto."
+      },
+      {
+        "chave": "Restricao:RIR-EMAIL-CX",
+        "rotulo": "Restricao",
+        "texto": "RIR-EMAIL-CX#restricao",
+        "detalhe": "Contacto.email termina em \"@companhiax.com\""
+      },
+      {
+        "chave": "Propriedade:USM:Contacto.email",
+        "rotulo": "Propriedade",
+        "texto": "USM:Contacto.email",
+        "detalhe": "Endereço de correio eletrónico"
+      },
+      {
+        "chave": "Condicao:RIR-EMAIL-CX",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-EMAIL-CX#condicao",
+        "detalhe": "Entidade.nome = Companhia X"
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nome",
+        "rotulo": "Propriedade",
+        "texto": "USM:Entidade.nome",
+        "detalhe": "Nome ou denominação social"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-EMAIL-CX",
+        "para": "SM:Emitente",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-EMAIL-CX",
+        "para": "Restricao:RIR-EMAIL-CX",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-EMAIL-CX",
+        "para": "Propriedade:USM:Contacto.email",
+        "tipo": "RESTRINGE",
+        "texto": "Contacto.email termina em \"@companhiax.com\""
+      },
+      {
+        "de": "R:RIR-EMAIL-CX",
+        "para": "Condicao:RIR-EMAIL-CX",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-EMAIL-CX",
+        "para": "Propriedade:USM:Entidade.nome",
+        "tipo": "TERMO",
+        "texto": "termo 1: nome = Companhia X"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "dono": null,
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Contacto.email",
+        "rotulo": "Propriedade",
+        "nome": "email",
+        "dono": "Contacto",
+        "descricao": "Endereço de correio eletrónico",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nome",
+        "rotulo": "Propriedade",
+        "nome": "nome",
+        "dono": "Entidade",
+        "descricao": "Nome ou denominação social",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Contacto",
+        "rotulo": "USM",
+        "nome": "Contacto",
+        "dono": null,
+        "descricao": "Contacto eletrónico de uma entidade.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Entidade",
+        "rotulo": "USM",
+        "nome": "Entidade",
+        "dono": null,
+        "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cliente",
+        "rotulo": "SM",
+        "nome": "Cliente",
+        "dono": null,
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Emitente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Emitente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "USM:Contacto",
+        "para": "Propriedade:USM:Contacto.email",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Entidade",
+        "para": "Propriedade:USM:Entidade.nome",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Contacto",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Contacto",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Cliente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cliente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Requerente",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-EMAIL-CX"
+  }
+}

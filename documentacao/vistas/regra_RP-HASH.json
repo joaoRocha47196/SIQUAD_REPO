@@ -1,0 +1,370 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-HASH",
+  "regra": {
+    "id": "RP-HASH",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)",
+    "alcance": "SM Cabecalho",
+    "notas": null,
+    "contextosExternos": [
+      "hashAnterior"
+    ],
+    "viveEm": {
+      "rotulo": "SM",
+      "nome": "Cabecalho",
+      "chave": "SM:Cabecalho",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "EXT_FUNCTION",
+      "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior.",
+      "texto": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+      "chamada": {
+        "funcao": "hashEncadeadoValido",
+        "chamada": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+        "operador": "EXT_FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.",
+        "argumentos": [
+          {
+            "caminho": "numero",
+            "alvo": "SM:Cabecalho.numero",
+            "nomeAlvo": "numero",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          },
+          {
+            "caminho": "dataEmissao",
+            "alvo": "SM:Cabecalho.dataEmissao",
+            "nomeAlvo": "dataEmissao",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          },
+          {
+            "caminho": "totalFatura",
+            "alvo": "SM:Cabecalho.totalFatura",
+            "nomeAlvo": "totalFatura",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          },
+          {
+            "caminho": "hash",
+            "alvo": "SM:Cabecalho.hash",
+            "nomeAlvo": "hash",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          }
+        ],
+        "contextos": [
+          "hashAnterior"
+        ]
+      }
+    },
+    "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "SM:Cabecalho.numero",
+      "nome": "numero, dataEmissao, totalFatura, hash",
+      "funcao": "hashEncadeadoValido"
+    },
+    "funcoes": [
+      "hashEncadeadoValido"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "EXT_FUNCTION",
+    "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior.",
+    "texto": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+    "chamada": {
+      "funcao": "hashEncadeadoValido",
+      "chamada": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+      "operador": "EXT_FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.",
+      "argumentos": [
+        {
+          "caminho": "numero",
+          "alvo": "SM:Cabecalho.numero",
+          "nomeAlvo": "numero",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        },
+        {
+          "caminho": "dataEmissao",
+          "alvo": "SM:Cabecalho.dataEmissao",
+          "nomeAlvo": "dataEmissao",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        },
+        {
+          "caminho": "totalFatura",
+          "alvo": "SM:Cabecalho.totalFatura",
+          "nomeAlvo": "totalFatura",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        },
+        {
+          "caminho": "hash",
+          "alvo": "SM:Cabecalho.hash",
+          "nomeAlvo": "hash",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        }
+      ],
+      "contextos": [
+        "hashAnterior"
+      ]
+    },
+    "descricao": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)",
+    "funcao": {
+      "nome": "hashEncadeadoValido",
+      "descricao": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.",
+      "parametros": [
+        {
+          "nome": "numero",
+          "tipo": "texto",
+          "papel": "alvo"
+        },
+        {
+          "nome": "dataEmissao",
+          "tipo": "data",
+          "papel": "alvo"
+        },
+        {
+          "nome": "totalFatura",
+          "tipo": "decimal",
+          "papel": "alvo"
+        },
+        {
+          "nome": "hash",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": [
+        {
+          "nome": "hashAnterior",
+          "tipo": "texto",
+          "descricao": "Hash do último documento emitido na mesma série, que encadeia o documento atual.",
+          "fonte": "Sistema de faturação do emitente."
+        }
+      ]
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "rotulo": "SM",
+    "nome": "Cabecalho",
+    "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+    "chave": "SM:Cabecalho",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-HASH",
+        "rotulo": "RP",
+        "texto": "RP-HASH",
+        "detalhe": "hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)"
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "texto": "Cabecalho",
+        "detalhe": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento."
+      },
+      {
+        "chave": "Restricao:RP-HASH",
+        "rotulo": "Restricao",
+        "texto": "RP-HASH#restricao",
+        "detalhe": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)"
+      },
+      {
+        "chave": "Funcao:hashEncadeadoValido",
+        "rotulo": "Funcao",
+        "texto": "hashEncadeadoValido",
+        "detalhe": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série."
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.numero",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.numero",
+        "detalhe": "Número do documento (série/sequência)"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.dataEmissao",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.dataEmissao",
+        "detalhe": "Data de emissão do documento"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.totalFatura",
+        "detalhe": "Total do documento, em euros"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.hash",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.hash",
+        "detalhe": "Hash do documento, encadeado com o anterior da série"
+      },
+      {
+        "chave": "ContextoExterno:hashAnterior",
+        "rotulo": "ContextoExterno",
+        "texto": "hashAnterior",
+        "detalhe": "Hash do último documento emitido na mesma série, que encadeia o documento atual."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-HASH",
+        "para": "SM:Cabecalho",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-HASH",
+        "para": "Restricao:RP-HASH",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-HASH",
+        "para": "Funcao:hashEncadeadoValido",
+        "tipo": "CHAMA",
+        "texto": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)"
+      },
+      {
+        "de": "Funcao:hashEncadeadoValido",
+        "para": "Propriedade:SM:Cabecalho.numero",
+        "tipo": "LE",
+        "texto": "argumento: numero"
+      },
+      {
+        "de": "Funcao:hashEncadeadoValido",
+        "para": "Propriedade:SM:Cabecalho.dataEmissao",
+        "tipo": "LE",
+        "texto": "argumento: dataEmissao"
+      },
+      {
+        "de": "Funcao:hashEncadeadoValido",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "LE",
+        "texto": "argumento: totalFatura"
+      },
+      {
+        "de": "Funcao:hashEncadeadoValido",
+        "para": "Propriedade:SM:Cabecalho.hash",
+        "tipo": "LE",
+        "texto": "argumento: hash"
+      },
+      {
+        "de": "Funcao:hashEncadeadoValido",
+        "para": "ContextoExterno:hashAnterior",
+        "tipo": "DEPENDE_DE",
+        "texto": null
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.numero",
+        "rotulo": "Propriedade",
+        "nome": "numero",
+        "dono": "Cabecalho",
+        "descricao": "Número do documento (série/sequência)",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.dataEmissao",
+        "rotulo": "Propriedade",
+        "nome": "dataEmissao",
+        "dono": "Cabecalho",
+        "descricao": "Data de emissão do documento",
+        "tipoBase": "data"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "nome": "totalFatura",
+        "dono": "Cabecalho",
+        "descricao": "Total do documento, em euros",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.hash",
+        "rotulo": "Propriedade",
+        "nome": "hash",
+        "dono": "Cabecalho",
+        "descricao": "Hash do documento, encadeado com o anterior da série",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.numero",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.dataEmissao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.hash",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-HASH"
+  }
+}

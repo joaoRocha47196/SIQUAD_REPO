@@ -1,0 +1,306 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-EMAIL-CY",
+  "regra": {
+    "id": "RIR-EMAIL-CY",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Emitente.Entidade.nome = Companhia Y → Emitente.Contacto.email termina em \"@companhia-y.pt\"",
+    "alcance": "SM Emitente",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "SM",
+      "nome": "Emitente",
+      "chave": "SM:Emitente",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "ENDS_WITH",
+      "mensagem": "O email de um emitente da Companhia Y tem de terminar em @companhia-y.pt.",
+      "texto": "Contacto.email termina em \"@companhia-y.pt\"",
+      "caminho": "Contacto.email",
+      "propriedade": "USM:Contacto.email",
+      "valor": "@companhia-y.pt",
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Entidade.nome",
+        "propriedade": "USM:Entidade.nome",
+        "operador": "EQUALS",
+        "valor": "Companhia Y",
+        "contexto": null,
+        "texto": "nome = Companhia Y",
+        "nome": "nome"
+      }
+    ],
+    "mensagem": "O email de um emitente da Companhia Y tem de terminar em @companhia-y.pt.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Contacto.email",
+      "nome": "email",
+      "dono": "Contacto"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "ENDS_WITH",
+    "mensagem": "O email de um emitente da Companhia Y tem de terminar em @companhia-y.pt.",
+    "texto": "Contacto.email termina em \"@companhia-y.pt\"",
+    "caminho": "Contacto.email",
+    "propriedade": "USM:Contacto.email",
+    "valor": "@companhia-y.pt",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "Contacto.email termina em \"@companhia-y.pt\"",
+    "alvo": {
+      "chave": "USM:Contacto.email",
+      "nome": "email",
+      "dono": "Contacto",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Endereço de correio eletrónico"
+    }
+  },
+  "condicao": {
+    "descricao": "Entidade.nome = Companhia Y",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Entidade.nome",
+        "propriedade": "USM:Entidade.nome",
+        "operador": "EQUALS",
+        "valor": "Companhia Y",
+        "contexto": null,
+        "texto": "nome = Companhia Y",
+        "nome": "nome",
+        "alvo": {
+          "chave": "USM:Entidade.nome",
+          "nome": "nome",
+          "dono": "Entidade",
+          "nivelDono": "USM",
+          "tipo": "texto",
+          "descricao": "Nome ou denominação social"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "SM",
+    "nome": "Emitente",
+    "descricao": "Quem emite o documento: identificação, morada e contacto.",
+    "chave": "SM:Emitente",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-EMAIL-CY",
+        "rotulo": "RIR",
+        "texto": "RIR-EMAIL-CY",
+        "detalhe": "Se Emitente.Entidade.nome = Companhia Y → Emitente.Contacto.email termina em \"@companhia-y.pt\""
+      },
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "texto": "Emitente",
+        "detalhe": "Quem emite o documento: identificação, morada e contacto."
+      },
+      {
+        "chave": "Restricao:RIR-EMAIL-CY",
+        "rotulo": "Restricao",
+        "texto": "RIR-EMAIL-CY#restricao",
+        "detalhe": "Contacto.email termina em \"@companhia-y.pt\""
+      },
+      {
+        "chave": "Propriedade:USM:Contacto.email",
+        "rotulo": "Propriedade",
+        "texto": "USM:Contacto.email",
+        "detalhe": "Endereço de correio eletrónico"
+      },
+      {
+        "chave": "Condicao:RIR-EMAIL-CY",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-EMAIL-CY#condicao",
+        "detalhe": "Entidade.nome = Companhia Y"
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nome",
+        "rotulo": "Propriedade",
+        "texto": "USM:Entidade.nome",
+        "detalhe": "Nome ou denominação social"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-EMAIL-CY",
+        "para": "SM:Emitente",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-EMAIL-CY",
+        "para": "Restricao:RIR-EMAIL-CY",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-EMAIL-CY",
+        "para": "Propriedade:USM:Contacto.email",
+        "tipo": "RESTRINGE",
+        "texto": "Contacto.email termina em \"@companhia-y.pt\""
+      },
+      {
+        "de": "R:RIR-EMAIL-CY",
+        "para": "Condicao:RIR-EMAIL-CY",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-EMAIL-CY",
+        "para": "Propriedade:USM:Entidade.nome",
+        "tipo": "TERMO",
+        "texto": "termo 1: nome = Companhia Y"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "dono": null,
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Contacto.email",
+        "rotulo": "Propriedade",
+        "nome": "email",
+        "dono": "Contacto",
+        "descricao": "Endereço de correio eletrónico",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nome",
+        "rotulo": "Propriedade",
+        "nome": "nome",
+        "dono": "Entidade",
+        "descricao": "Nome ou denominação social",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Contacto",
+        "rotulo": "USM",
+        "nome": "Contacto",
+        "dono": null,
+        "descricao": "Contacto eletrónico de uma entidade.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Entidade",
+        "rotulo": "USM",
+        "nome": "Entidade",
+        "dono": null,
+        "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cliente",
+        "rotulo": "SM",
+        "nome": "Cliente",
+        "dono": null,
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Emitente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Emitente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "USM:Contacto",
+        "para": "Propriedade:USM:Contacto.email",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "USM:Entidade",
+        "para": "Propriedade:USM:Entidade.nome",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Contacto",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Contacto",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Cliente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cliente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Requerente",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-EMAIL-CY"
+  }
+}

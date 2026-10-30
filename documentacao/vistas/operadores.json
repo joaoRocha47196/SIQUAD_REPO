@@ -1,0 +1,1483 @@
+{
+  "vista": "operadores",
+  "titulo": "Verificações por operador e enumerados",
+  "operadores": [
+    {
+      "operador": "ENDS_WITH",
+      "restricoes": [
+        {
+          "regra": "RIR-EMAIL-CX",
+          "texto": "Contacto.email termina em \"@companhiax.com\""
+        },
+        {
+          "regra": "RIR-EMAIL-CY",
+          "texto": "Contacto.email termina em \"@companhia-y.pt\""
+        }
+      ],
+      "termos": []
+    },
+    {
+      "operador": "EQUALS",
+      "restricoes": [
+        {
+          "regra": "RIR-IVA-INT",
+          "texto": "taxaIVA = 13"
+        },
+        {
+          "regra": "RIR-IVA-ISE",
+          "texto": "taxaIVA = 0"
+        },
+        {
+          "regra": "RIR-IVA-NOR",
+          "texto": "taxaIVA = 23"
+        },
+        {
+          "regra": "RIR-IVA-RED",
+          "texto": "taxaIVA = 6"
+        },
+        {
+          "regra": "RIR-LX-LOCALIDADE",
+          "texto": "Morada.localidade = LISBOA"
+        }
+      ],
+      "termos": [
+        {
+          "regra": "RIR-CP-ES",
+          "texto": "pais = ES"
+        },
+        {
+          "regra": "RIR-CP-GB",
+          "texto": "pais = GB"
+        },
+        {
+          "regra": "RIR-CP-LX-AJUDA",
+          "texto": "freguesia = AJUDA"
+        },
+        {
+          "regra": "RIR-CP-LX-AJUDA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-AJUDA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-ALCANTARA",
+          "texto": "freguesia = ALCANTARA"
+        },
+        {
+          "regra": "RIR-CP-LX-ALCANTARA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-ALCANTARA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-ALVALADE",
+          "texto": "freguesia = ALVALADE"
+        },
+        {
+          "regra": "RIR-CP-LX-ALVALADE",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-ALVALADE",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-AREEIRO",
+          "texto": "freguesia = AREEIRO"
+        },
+        {
+          "regra": "RIR-CP-LX-AREEIRO",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-AREEIRO",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-ARROIOS",
+          "texto": "freguesia = ARROIOS"
+        },
+        {
+          "regra": "RIR-CP-LX-ARROIOS",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-ARROIOS",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "texto": "freguesia = AVENIDAS_NOVAS"
+        },
+        {
+          "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-BEATO",
+          "texto": "freguesia = BEATO"
+        },
+        {
+          "regra": "RIR-CP-LX-BEATO",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-BEATO",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-BELEM",
+          "texto": "freguesia = BELEM"
+        },
+        {
+          "regra": "RIR-CP-LX-BELEM",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-BELEM",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-BENFICA",
+          "texto": "freguesia = BENFICA"
+        },
+        {
+          "regra": "RIR-CP-LX-BENFICA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-BENFICA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "texto": "freguesia = CAMPO_DE_OURIQUE"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPOLIDE",
+          "texto": "freguesia = CAMPOLIDE"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPOLIDE",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPOLIDE",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-CARNIDE",
+          "texto": "freguesia = CARNIDE"
+        },
+        {
+          "regra": "RIR-CP-LX-CARNIDE",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-CARNIDE",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-ESTRELA",
+          "texto": "freguesia = ESTRELA"
+        },
+        {
+          "regra": "RIR-CP-LX-ESTRELA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-ESTRELA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-LUMIAR",
+          "texto": "freguesia = LUMIAR"
+        },
+        {
+          "regra": "RIR-CP-LX-LUMIAR",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-LUMIAR",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-MARVILA",
+          "texto": "freguesia = MARVILA"
+        },
+        {
+          "regra": "RIR-CP-LX-MARVILA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-MARVILA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-MISERICORDIA",
+          "texto": "freguesia = MISERICORDIA"
+        },
+        {
+          "regra": "RIR-CP-LX-MISERICORDIA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-MISERICORDIA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-OLIVAIS",
+          "texto": "freguesia = OLIVAIS"
+        },
+        {
+          "regra": "RIR-CP-LX-OLIVAIS",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-OLIVAIS",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "texto": "freguesia = PARQUE_DAS_NACOES"
+        },
+        {
+          "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "texto": "freguesia = PENHA_DE_FRANCA"
+        },
+        {
+          "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-CLARA",
+          "texto": "freguesia = SANTA_CLARA"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-CLARA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-CLARA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "texto": "freguesia = SANTA_MARIA_MAIOR"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTO-ANTONIO",
+          "texto": "freguesia = SANTO_ANTONIO"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTO-ANTONIO",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTO-ANTONIO",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "texto": "freguesia = SAO_DOMINGOS_DE_BENFICA"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-VICENTE",
+          "texto": "freguesia = SAO_VICENTE"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-VICENTE",
+          "texto": "localidade = LISBOA"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-VICENTE",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-CP-PT",
+          "texto": "pais = PT"
+        },
+        {
+          "regra": "RIR-EMAIL-CX",
+          "texto": "nome = Companhia X"
+        },
+        {
+          "regra": "RIR-EMAIL-CY",
+          "texto": "nome = Companhia Y"
+        },
+        {
+          "regra": "RIR-FS",
+          "texto": "tipoDocumento = FS"
+        },
+        {
+          "regra": "RIR-FS-LIN",
+          "texto": "tipoDocumento = FS"
+        },
+        {
+          "regra": "RIR-FS-NUM",
+          "texto": "tipoDocumento = FS"
+        },
+        {
+          "regra": "RIR-HUM",
+          "texto": "tipoDispositivo = HUMIDADE"
+        },
+        {
+          "regra": "RIR-HUM",
+          "texto": "unidadeMedida = %"
+        },
+        {
+          "regra": "RIR-HUM-ARMAZEM",
+          "texto": "ambiente = ARMAZEM"
+        },
+        {
+          "regra": "RIR-HUM-ARMAZEM",
+          "texto": "tipoDispositivo = HUMIDADE"
+        },
+        {
+          "regra": "RIR-HUM-ARMAZEM",
+          "texto": "unidadeMedida = %"
+        },
+        {
+          "regra": "RIR-HUM-ESTUFA",
+          "texto": "ambiente = ESTUFA"
+        },
+        {
+          "regra": "RIR-HUM-ESTUFA",
+          "texto": "tipoDispositivo = HUMIDADE"
+        },
+        {
+          "regra": "RIR-HUM-ESTUFA",
+          "texto": "unidadeMedida = %"
+        },
+        {
+          "regra": "RIR-HUM-EXTERIOR",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-HUM-EXTERIOR",
+          "texto": "tipoDispositivo = HUMIDADE"
+        },
+        {
+          "regra": "RIR-HUM-EXTERIOR",
+          "texto": "unidadeMedida = %"
+        },
+        {
+          "regra": "RIR-HUM-REFRIG",
+          "texto": "ambiente = REFRIGERACAO"
+        },
+        {
+          "regra": "RIR-HUM-REFRIG",
+          "texto": "tipoDispositivo = HUMIDADE"
+        },
+        {
+          "regra": "RIR-HUM-REFRIG",
+          "texto": "unidadeMedida = %"
+        },
+        {
+          "regra": "RIR-HUM-SERVIDORES",
+          "texto": "ambiente = SERVIDORES"
+        },
+        {
+          "regra": "RIR-HUM-SERVIDORES",
+          "texto": "tipoDispositivo = HUMIDADE"
+        },
+        {
+          "regra": "RIR-HUM-SERVIDORES",
+          "texto": "unidadeMedida = %"
+        },
+        {
+          "regra": "RIR-HUM-UN",
+          "texto": "tipoDispositivo = HUMIDADE"
+        },
+        {
+          "regra": "RIR-IVA-INT",
+          "texto": "tipoIVA = INTERMEDIA"
+        },
+        {
+          "regra": "RIR-IVA-ISE",
+          "texto": "tipoIVA = ISENTA"
+        },
+        {
+          "regra": "RIR-IVA-NOR",
+          "texto": "tipoIVA = NORMAL"
+        },
+        {
+          "regra": "RIR-IVA-RED",
+          "texto": "tipoIVA = REDUZIDA"
+        },
+        {
+          "regra": "RIR-PRES-BAR",
+          "texto": "tipoDispositivo = PRESSAO"
+        },
+        {
+          "regra": "RIR-PRES-BAR",
+          "texto": "unidadeMedida = bar"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-BAR",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-BAR",
+          "texto": "tipoDispositivo = PRESSAO"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-BAR",
+          "texto": "unidadeMedida = bar"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-HPA",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-HPA",
+          "texto": "tipoDispositivo = PRESSAO"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-HPA",
+          "texto": "unidadeMedida = hPa"
+        },
+        {
+          "regra": "RIR-PRES-HPA",
+          "texto": "tipoDispositivo = PRESSAO"
+        },
+        {
+          "regra": "RIR-PRES-HPA",
+          "texto": "unidadeMedida = hPa"
+        },
+        {
+          "regra": "RIR-PRES-UN",
+          "texto": "tipoDispositivo = PRESSAO"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-CELSIUS",
+          "texto": "ambiente = ARMAZEM"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-CELSIUS",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-CELSIUS",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+          "texto": "ambiente = ARMAZEM"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+          "texto": "unidadeMedida = °F"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-KELVIN",
+          "texto": "ambiente = ARMAZEM"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-KELVIN",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-KELVIN",
+          "texto": "unidadeMedida = K"
+        },
+        {
+          "regra": "RIR-TEMP-C",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-C",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-CAMARA-CELSIUS",
+          "texto": "ambiente = CAMARA_FRIGORIFICA"
+        },
+        {
+          "regra": "RIR-TEMP-CAMARA-CELSIUS",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-CAMARA-CELSIUS",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-CELSIUS",
+          "texto": "ambiente = ESTUFA"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-CELSIUS",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-CELSIUS",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+          "texto": "ambiente = ESTUFA"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+          "texto": "unidadeMedida = °F"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-KELVIN",
+          "texto": "ambiente = ESTUFA"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-KELVIN",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-KELVIN",
+          "texto": "unidadeMedida = K"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-CELSIUS",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-CELSIUS",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-CELSIUS",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+          "texto": "unidadeMedida = °F"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-KELVIN",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-KELVIN",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-KELVIN",
+          "texto": "unidadeMedida = K"
+        },
+        {
+          "regra": "RIR-TEMP-F",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-F",
+          "texto": "unidadeMedida = °F"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-CELSIUS",
+          "texto": "ambiente = INCINERADORA"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-CELSIUS",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-CELSIUS",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-FAHRENHEIT",
+          "texto": "ambiente = INCINERADORA"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-FAHRENHEIT",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-FAHRENHEIT",
+          "texto": "unidadeMedida = °F"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-KELVIN",
+          "texto": "ambiente = INCINERADORA"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-KELVIN",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-KELVIN",
+          "texto": "unidadeMedida = K"
+        },
+        {
+          "regra": "RIR-TEMP-K",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-K",
+          "texto": "unidadeMedida = K"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-CELSIUS",
+          "texto": "ambiente = REFRIGERACAO"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-CELSIUS",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-CELSIUS",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-FAHRENHEIT",
+          "texto": "ambiente = REFRIGERACAO"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-FAHRENHEIT",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-FAHRENHEIT",
+          "texto": "unidadeMedida = °F"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-KELVIN",
+          "texto": "ambiente = REFRIGERACAO"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-KELVIN",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-KELVIN",
+          "texto": "unidadeMedida = K"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-CELSIUS",
+          "texto": "ambiente = SERVIDORES"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-CELSIUS",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-CELSIUS",
+          "texto": "unidadeMedida = °C"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+          "texto": "ambiente = SERVIDORES"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+          "texto": "unidadeMedida = °F"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-KELVIN",
+          "texto": "ambiente = SERVIDORES"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-KELVIN",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-KELVIN",
+          "texto": "unidadeMedida = K"
+        },
+        {
+          "regra": "RIR-TEMP-UN",
+          "texto": "tipoDispositivo = TEMPERATURA"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-KMH",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-KMH",
+          "texto": "tipoDispositivo = VELOCIDADE"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-KMH",
+          "texto": "unidadeMedida = km/h"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-MS",
+          "texto": "ambiente = EXTERIOR"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-MS",
+          "texto": "tipoDispositivo = VELOCIDADE"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-MS",
+          "texto": "unidadeMedida = m/s"
+        },
+        {
+          "regra": "RIR-VEL-KMH",
+          "texto": "tipoDispositivo = VELOCIDADE"
+        },
+        {
+          "regra": "RIR-VEL-KMH",
+          "texto": "unidadeMedida = km/h"
+        },
+        {
+          "regra": "RIR-VEL-MS",
+          "texto": "tipoDispositivo = VELOCIDADE"
+        },
+        {
+          "regra": "RIR-VEL-MS",
+          "texto": "unidadeMedida = m/s"
+        },
+        {
+          "regra": "RIR-VEL-UN",
+          "texto": "tipoDispositivo = VELOCIDADE"
+        }
+      ]
+    },
+    {
+      "operador": "EXT_FUNCTION",
+      "restricoes": [
+        {
+          "regra": "RP-ASSINATURA",
+          "texto": "assinaturaValida(mensagem, assinatura)"
+        },
+        {
+          "regra": "RP-ATCUD",
+          "texto": "atcudValido(atcud, serie)"
+        },
+        {
+          "regra": "RP-DATAEMISSAO",
+          "texto": "naoPosteriorAHoje(dataEmissao)"
+        },
+        {
+          "regra": "RP-HASH",
+          "texto": "hashEncadeadoValido(numero, dataEmissao, totalFatura, hash)"
+        },
+        {
+          "regra": "RP-MANUT-FUTURA",
+          "texto": "naoPosteriorAHoje(dataUltimaManutencao)"
+        },
+        {
+          "regra": "RP-ORDEM-DATA",
+          "texto": "naoPosteriorAHoje(dataPedido)"
+        },
+        {
+          "regra": "RP-RELOGIO",
+          "texto": "desfasamentoInferiorA(dataMedicao, 300)"
+        }
+      ],
+      "termos": [
+        {
+          "regra": "RIC-MANUT",
+          "texto": "excedeDiasDesdeHoje(dataUltimaManutencao, 7)"
+        }
+      ]
+    },
+    {
+      "operador": "FUNCTION",
+      "restricoes": [
+        {
+          "regra": "RIR-FS-LIN",
+          "texto": "contagemInferiorA(Linhas.Linha, 11)"
+        },
+        {
+          "regra": "RP-AREA",
+          "texto": "dentroDe(latitude, longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])"
+        },
+        {
+          "regra": "RP-LIN-MAX",
+          "texto": "contagemInferiorA(Linha, 100)"
+        },
+        {
+          "regra": "RP-LIN-NUM",
+          "texto": "valoresUnicos(Linha.numero)"
+        },
+        {
+          "regra": "RP-LIN-SEQ",
+          "texto": "valoresConsecutivos(Linha.numero)"
+        },
+        {
+          "regra": "RP-NIF-DC",
+          "texto": "digitoControloValido(nif)"
+        },
+        {
+          "regra": "RP-ORDEM-MAX",
+          "texto": "contagemInferiorA(Localizacao, 21)"
+        },
+        {
+          "regra": "RP-SOMA",
+          "texto": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)"
+        }
+      ],
+      "termos": [
+        {
+          "regra": "RIR-LX-LOCALIDADE",
+          "texto": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)])"
+        }
+      ]
+    },
+    {
+      "operador": "GT",
+      "restricoes": [],
+      "termos": [
+        {
+          "regra": "RIR-FT-NIF",
+          "texto": "totalFatura > 1000"
+        }
+      ]
+    },
+    {
+      "operador": "GTE",
+      "restricoes": [
+        {
+          "regra": "RP-LIN-NUMPOS",
+          "texto": "numero ≥ 1"
+        },
+        {
+          "regra": "RP-MANUT-DATA",
+          "texto": "dataUltimaManutencao ≥ 2000-01-01"
+        },
+        {
+          "regra": "RP-TOTAL",
+          "texto": "totalFatura ≥ 0"
+        },
+        {
+          "regra": "RP-VALOR",
+          "texto": "valor ≥ 0"
+        }
+      ],
+      "termos": []
+    },
+    {
+      "operador": "IN",
+      "restricoes": [
+        {
+          "regra": "RIR-HUM-UN",
+          "texto": "Leitura.Medicao.unidadeMedida ∈ {%}"
+        },
+        {
+          "regra": "RIR-PRES-UN",
+          "texto": "Leitura.Medicao.unidadeMedida ∈ {hPa, bar}"
+        },
+        {
+          "regra": "RIR-TEMP-UN",
+          "texto": "Leitura.Medicao.unidadeMedida ∈ {°C, K, °F}"
+        },
+        {
+          "regra": "RIR-VEL-UN",
+          "texto": "Leitura.Medicao.unidadeMedida ∈ {m/s, km/h}"
+        },
+        {
+          "regra": "RP-AMBIENTE",
+          "texto": "ambiente ∈ {REFRIGERACAO, ESTUFA, ARMAZEM, SERVIDORES, EXTERIOR, INCINERADORA, LABORATORIO}"
+        },
+        {
+          "regra": "RP-ESTADO",
+          "texto": "estado ∈ {ATIVO, INATIVO, MANUTENCAO}"
+        },
+        {
+          "regra": "RP-FREGUESIA",
+          "texto": "freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}"
+        },
+        {
+          "regra": "RP-PAIS",
+          "texto": "pais ∈ {PT, ES, GB}"
+        },
+        {
+          "regra": "RP-SRC",
+          "texto": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}"
+        },
+        {
+          "regra": "RP-TIPODISP",
+          "texto": "tipoDispositivo ∈ {TEMPERATURA, HUMIDADE, PRESSAO, VELOCIDADE}"
+        },
+        {
+          "regra": "RP-TIPODOC",
+          "texto": "tipoDocumento ∈ {FT, FS, FR, NC, ND}"
+        },
+        {
+          "regra": "RP-TIPOIVA",
+          "texto": "tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}"
+        },
+        {
+          "regra": "RP-UNIDADE",
+          "texto": "unidadeMedida ∈ {°C, K, °F, %, hPa, bar, m/s, km/h}"
+        }
+      ],
+      "termos": []
+    },
+    {
+      "operador": "LENGTH",
+      "restricoes": [
+        {
+          "regra": "RP-FABRICANTE",
+          "texto": "fabricante tem entre 2 e 50 caracteres"
+        }
+      ],
+      "termos": []
+    },
+    {
+      "operador": "LT",
+      "restricoes": [],
+      "termos": [
+        {
+          "regra": "RIC-MED-DIFERIDA",
+          "texto": "dataMedicao < dataDeHoje (contexto externo)"
+        }
+      ]
+    },
+    {
+      "operador": "LTE",
+      "restricoes": [
+        {
+          "regra": "RIR-FS",
+          "texto": "totalFatura ≤ 1000"
+        }
+      ],
+      "termos": []
+    },
+    {
+      "operador": "NOT_EQUALS",
+      "restricoes": [
+        {
+          "regra": "RIR-FT-NIF",
+          "texto": "Cliente.Entidade.nif ≠ 999999990"
+        }
+      ],
+      "termos": []
+    },
+    {
+      "operador": "PATTERN",
+      "restricoes": [
+        {
+          "regra": "RIR-CP-ES",
+          "texto": "codigoPostal segue o padrão ^[0-5][0-9]{4}$"
+        },
+        {
+          "regra": "RIR-CP-GB",
+          "texto": "codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$"
+        },
+        {
+          "regra": "RIR-CP-LX-AJUDA",
+          "texto": "codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-ALCANTARA",
+          "texto": "codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-ALVALADE",
+          "texto": "codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-AREEIRO",
+          "texto": "codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-ARROIOS",
+          "texto": "codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "texto": "codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-BEATO",
+          "texto": "codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-BELEM",
+          "texto": "codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-BENFICA",
+          "texto": "codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "texto": "codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-CAMPOLIDE",
+          "texto": "codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-CARNIDE",
+          "texto": "codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-ESTRELA",
+          "texto": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-LUMIAR",
+          "texto": "codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-MARVILA",
+          "texto": "codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-MISERICORDIA",
+          "texto": "codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-OLIVAIS",
+          "texto": "codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "texto": "codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "texto": "codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-CLARA",
+          "texto": "codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "texto": "codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-SANTO-ANTONIO",
+          "texto": "codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "texto": "codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-LX-SAO-VICENTE",
+          "texto": "codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$"
+        },
+        {
+          "regra": "RIR-CP-PT",
+          "texto": "codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$"
+        },
+        {
+          "regra": "RP-ASSIN-FORMA",
+          "texto": "assinatura segue o padrão ^[0-9a-f]{64}$"
+        },
+        {
+          "regra": "RP-CP",
+          "texto": "codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$"
+        },
+        {
+          "regra": "RP-EMAIL",
+          "texto": "email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$"
+        },
+        {
+          "regra": "RP-IDENT",
+          "texto": "identificador segue o padrão ^[A-Z]+-[0-9]{4}$"
+        },
+        {
+          "regra": "RP-LIN-DESC",
+          "texto": "descricao segue o padrão ^.{1,200}$"
+        },
+        {
+          "regra": "RP-NIF",
+          "texto": "nif segue o padrão ^[0-9]{9}$"
+        },
+        {
+          "regra": "RP-ORDEM-NUM",
+          "texto": "numeroOrdem segue o padrão ^OI-[0-9]{4}-[0-9]{5}$"
+        },
+        {
+          "regra": "RP-TAXAIVA-DEC",
+          "texto": "taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+        },
+        {
+          "regra": "RP-VALOR-DEC",
+          "texto": "valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$"
+        }
+      ],
+      "termos": []
+    },
+    {
+      "operador": "RANGE",
+      "restricoes": [
+        {
+          "regra": "RIR-HUM",
+          "texto": "Leitura.Medicao.valor entre 0 e 100"
+        },
+        {
+          "regra": "RIR-HUM-ARMAZEM",
+          "texto": "Leitura.Medicao.valor entre 30 e 60"
+        },
+        {
+          "regra": "RIR-HUM-ESTUFA",
+          "texto": "Leitura.Medicao.valor entre 60 e 90"
+        },
+        {
+          "regra": "RIR-HUM-EXTERIOR",
+          "texto": "Leitura.Medicao.valor entre 0 e 100"
+        },
+        {
+          "regra": "RIR-HUM-REFRIG",
+          "texto": "Leitura.Medicao.valor entre 80 e 95"
+        },
+        {
+          "regra": "RIR-HUM-SERVIDORES",
+          "texto": "Leitura.Medicao.valor entre 40 e 60"
+        },
+        {
+          "regra": "RIR-PRES-BAR",
+          "texto": "Leitura.Medicao.valor entre 0.3 e 1.1"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-BAR",
+          "texto": "Leitura.Medicao.valor entre 950 e 1050"
+        },
+        {
+          "regra": "RIR-PRES-EXTERIOR-HPA",
+          "texto": "Leitura.Medicao.valor entre 950 e 1050"
+        },
+        {
+          "regra": "RIR-PRES-HPA",
+          "texto": "Leitura.Medicao.valor entre 300 e 1100"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-CELSIUS",
+          "texto": "Leitura.Medicao.valor entre 5 e 30"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-FAHRENHEIT",
+          "texto": "Leitura.Medicao.valor entre 41 e 86"
+        },
+        {
+          "regra": "RIR-TEMP-ARMAZEM-KELVIN",
+          "texto": "Leitura.Medicao.valor entre 278.15 e 303.15"
+        },
+        {
+          "regra": "RIR-TEMP-C",
+          "texto": "Leitura.Medicao.valor entre -60 e 1300"
+        },
+        {
+          "regra": "RIR-TEMP-CAMARA-CELSIUS",
+          "texto": "Leitura.Medicao.valor entre -25 e -18"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-CELSIUS",
+          "texto": "Leitura.Medicao.valor entre 15 e 45"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-FAHRENHEIT",
+          "texto": "Leitura.Medicao.valor entre 59 e 113"
+        },
+        {
+          "regra": "RIR-TEMP-ESTUFA-KELVIN",
+          "texto": "Leitura.Medicao.valor entre 288.15 e 318.15"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-CELSIUS",
+          "texto": "Leitura.Medicao.valor entre -20 e 50"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-FAHRENHEIT",
+          "texto": "Leitura.Medicao.valor entre -4 e 122"
+        },
+        {
+          "regra": "RIR-TEMP-EXTERIOR-KELVIN",
+          "texto": "Leitura.Medicao.valor entre 253.15 e 323.15"
+        },
+        {
+          "regra": "RIR-TEMP-F",
+          "texto": "Leitura.Medicao.valor entre -76 e 2372"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-CELSIUS",
+          "texto": "Leitura.Medicao.valor entre 200 e 1200"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-FAHRENHEIT",
+          "texto": "Leitura.Medicao.valor entre 392 e 2192"
+        },
+        {
+          "regra": "RIR-TEMP-INCIN-KELVIN",
+          "texto": "Leitura.Medicao.valor entre 473.15 e 1473.15"
+        },
+        {
+          "regra": "RIR-TEMP-K",
+          "texto": "Leitura.Medicao.valor entre 213.15 e 1573.15"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-CELSIUS",
+          "texto": "Leitura.Medicao.valor entre -30 e 0"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-FAHRENHEIT",
+          "texto": "Leitura.Medicao.valor entre -22 e 32"
+        },
+        {
+          "regra": "RIR-TEMP-REFRIG-KELVIN",
+          "texto": "Leitura.Medicao.valor entre 243.15 e 273.15"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-CELSIUS",
+          "texto": "Leitura.Medicao.valor entre 18 e 27"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-FAHRENHEIT",
+          "texto": "Leitura.Medicao.valor entre 64.4 e 80.6"
+        },
+        {
+          "regra": "RIR-TEMP-SERVIDORES-KELVIN",
+          "texto": "Leitura.Medicao.valor entre 291.15 e 300.15"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-KMH",
+          "texto": "Leitura.Medicao.valor entre 0 e 144"
+        },
+        {
+          "regra": "RIR-VEL-EXTERIOR-MS",
+          "texto": "Leitura.Medicao.valor entre 0 e 40"
+        },
+        {
+          "regra": "RIR-VEL-KMH",
+          "texto": "Leitura.Medicao.valor entre 0 e 270"
+        },
+        {
+          "regra": "RIR-VEL-MS",
+          "texto": "Leitura.Medicao.valor entre 0 e 75"
+        },
+        {
+          "regra": "RP-ALT",
+          "texto": "altitude entre -500 e 9000"
+        },
+        {
+          "regra": "RP-BATERIA",
+          "texto": "nivelBateria entre 0 e 100"
+        },
+        {
+          "regra": "RP-LAT",
+          "texto": "latitude entre -90 e 90"
+        },
+        {
+          "regra": "RP-LATENCIA",
+          "texto": "latencia entre 0 e 60000"
+        },
+        {
+          "regra": "RP-LON",
+          "texto": "longitude entre -180 e 180"
+        },
+        {
+          "regra": "RP-RECECAO",
+          "texto": "taxaRececao entre 0 e 100"
+        },
+        {
+          "regra": "RP-SINAL",
+          "texto": "sinalRede entre -140 e 0"
+        },
+        {
+          "regra": "RP-TAXAIVA",
+          "texto": "taxaIVA entre 0 e 100"
+        },
+        {
+          "regra": "RP-VALOR-FISICO",
+          "texto": "valor entre -273.15 e 2400"
+        }
+      ],
+      "termos": [
+        {
+          "regra": "RIC-MANUT",
+          "texto": "nivelBateria entre 0 e 10"
+        },
+        {
+          "regra": "RIC-REDE",
+          "texto": "latencia entre 500 e 10000"
+        },
+        {
+          "regra": "RIC-REDE",
+          "texto": "sinalRede entre -120 e -100"
+        },
+        {
+          "regra": "RIC-REDE",
+          "texto": "taxaRececao entre 0 e 50"
+        }
+      ]
+    },
+    {
+      "operador": "STARTS_WITH",
+      "restricoes": [
+        {
+          "regra": "RIR-FS-NUM",
+          "texto": "numero começa por \"FS\""
+        }
+      ],
+      "termos": []
+    }
+  ],
+  "enumerados": [
+    {
+      "propriedade": "SM:Cabecalho.tipoDocumento",
+      "valores": [
+        "FT",
+        "FS",
+        "FR",
+        "NC",
+        "ND"
+      ]
+    },
+    {
+      "propriedade": "SM:Identificacao.estado",
+      "valores": [
+        "ATIVO",
+        "INATIVO",
+        "MANUTENCAO"
+      ]
+    },
+    {
+      "propriedade": "SM:Identificacao.tipoDispositivo",
+      "valores": [
+        "TEMPERATURA",
+        "HUMIDADE",
+        "PRESSAO",
+        "VELOCIDADE"
+      ]
+    },
+    {
+      "propriedade": "USM:InformacaoGeografica.sistemaReferencia",
+      "valores": [
+        "WGS84",
+        "ETRS89",
+        "PT-TM06"
+      ]
+    },
+    {
+      "propriedade": "USM:Instalacao.ambiente",
+      "valores": [
+        "REFRIGERACAO",
+        "ESTUFA",
+        "ARMAZEM",
+        "SERVIDORES",
+        "EXTERIOR",
+        "INCINERADORA",
+        "LABORATORIO"
+      ]
+    },
+    {
+      "propriedade": "USM:Linha.tipoIVA",
+      "valores": [
+        "ISENTA",
+        "REDUZIDA",
+        "INTERMEDIA",
+        "NORMAL"
+      ]
+    },
+    {
+      "propriedade": "USM:Medicao.unidadeMedida",
+      "valores": [
+        "°C",
+        "K",
+        "°F",
+        "%",
+        "hPa",
+        "bar",
+        "m/s",
+        "km/h"
+      ]
+    },
+    {
+      "propriedade": "USM:Morada.freguesia",
+      "valores": [
+        "AJUDA",
+        "ALCANTARA",
+        "ALVALADE",
+        "AREEIRO",
+        "ARROIOS",
+        "AVENIDAS_NOVAS",
+        "BEATO",
+        "BELEM",
+        "BENFICA",
+        "CAMPO_DE_OURIQUE",
+        "CAMPOLIDE",
+        "CARNIDE",
+        "ESTRELA",
+        "LUMIAR",
+        "MARVILA",
+        "MISERICORDIA",
+        "OLIVAIS",
+        "PARQUE_DAS_NACOES",
+        "PENHA_DE_FRANCA",
+        "SANTA_CLARA",
+        "SANTA_MARIA_MAIOR",
+        "SANTO_ANTONIO",
+        "SAO_DOMINGOS_DE_BENFICA",
+        "SAO_VICENTE"
+      ]
+    },
+    {
+      "propriedade": "USM:Morada.pais",
+      "valores": [
+        "PT",
+        "ES",
+        "GB"
+      ]
+    }
+  ],
+  "parametros": {}
+}

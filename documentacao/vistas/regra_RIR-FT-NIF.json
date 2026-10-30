@@ -1,0 +1,306 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-FT-NIF",
+  "regra": {
+    "id": "RIR-FT-NIF",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Cabecalho.totalFatura > 1000 → Cliente.Entidade.nif ≠ 999999990",
+    "alcance": "HLM Fatura",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "HLM",
+      "nome": "Fatura",
+      "chave": "HLM:Fatura",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "NOT_EQUALS",
+      "mensagem": "Uma fatura acima de 1000 euros tem de identificar o NIF do cliente (não pode usar o NIF de consumidor final 999999990).",
+      "texto": "Cliente.Entidade.nif ≠ 999999990",
+      "caminho": "Cliente.Entidade.nif",
+      "propriedade": "USM:Entidade.nif",
+      "valor": "999999990",
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Cabecalho.totalFatura",
+        "propriedade": "SM:Cabecalho.totalFatura",
+        "operador": "GT",
+        "valor": 1000,
+        "contexto": null,
+        "texto": "totalFatura > 1000",
+        "nome": "totalFatura"
+      }
+    ],
+    "mensagem": "Uma fatura acima de 1000 euros tem de identificar o NIF do cliente (não pode usar o NIF de consumidor final 999999990).",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "USM:Entidade.nif",
+      "nome": "nif",
+      "dono": "Entidade"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "NOT_EQUALS",
+    "mensagem": "Uma fatura acima de 1000 euros tem de identificar o NIF do cliente (não pode usar o NIF de consumidor final 999999990).",
+    "texto": "Cliente.Entidade.nif ≠ 999999990",
+    "caminho": "Cliente.Entidade.nif",
+    "propriedade": "USM:Entidade.nif",
+    "valor": "999999990",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "Cliente.Entidade.nif ≠ 999999990",
+    "alvo": {
+      "chave": "USM:Entidade.nif",
+      "nome": "nif",
+      "dono": "Entidade",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Número de identificação fiscal"
+    }
+  },
+  "condicao": {
+    "descricao": "Cabecalho.totalFatura > 1000",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "Cabecalho.totalFatura",
+        "propriedade": "SM:Cabecalho.totalFatura",
+        "operador": "GT",
+        "valor": 1000,
+        "contexto": null,
+        "texto": "totalFatura > 1000",
+        "nome": "totalFatura",
+        "alvo": {
+          "chave": "SM:Cabecalho.totalFatura",
+          "nome": "totalFatura",
+          "dono": "Cabecalho",
+          "nivelDono": "SM",
+          "tipo": "decimal",
+          "descricao": "Total do documento, em euros"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "HLM",
+    "nome": "Fatura",
+    "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+    "chave": "HLM:Fatura",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-FT-NIF",
+        "rotulo": "RIR",
+        "texto": "RIR-FT-NIF",
+        "detalhe": "Se Cabecalho.totalFatura > 1000 → Cliente.Entidade.nif ≠ 999999990"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "texto": "Fatura",
+        "detalhe": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas."
+      },
+      {
+        "chave": "Restricao:RIR-FT-NIF",
+        "rotulo": "Restricao",
+        "texto": "RIR-FT-NIF#restricao",
+        "detalhe": "Cliente.Entidade.nif ≠ 999999990"
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nif",
+        "rotulo": "Propriedade",
+        "texto": "USM:Entidade.nif",
+        "detalhe": "Número de identificação fiscal"
+      },
+      {
+        "chave": "Condicao:RIR-FT-NIF",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-FT-NIF#condicao",
+        "detalhe": "Cabecalho.totalFatura > 1000"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.totalFatura",
+        "detalhe": "Total do documento, em euros"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-FT-NIF",
+        "para": "HLM:Fatura",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-FT-NIF",
+        "para": "Restricao:RIR-FT-NIF",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-FT-NIF",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "RESTRINGE",
+        "texto": "Cliente.Entidade.nif ≠ 999999990"
+      },
+      {
+        "de": "R:RIR-FT-NIF",
+        "para": "Condicao:RIR-FT-NIF",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-FT-NIF",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "TERMO",
+        "texto": "termo 1: totalFatura > 1000"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:USM:Entidade.nif",
+        "rotulo": "Propriedade",
+        "nome": "nif",
+        "dono": "Entidade",
+        "descricao": "Número de identificação fiscal",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.totalFatura",
+        "rotulo": "Propriedade",
+        "nome": "totalFatura",
+        "dono": "Cabecalho",
+        "descricao": "Total do documento, em euros",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Entidade",
+        "rotulo": "USM",
+        "nome": "Entidade",
+        "dono": null,
+        "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Cliente",
+        "rotulo": "SM",
+        "nome": "Cliente",
+        "dono": null,
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Emitente",
+        "rotulo": "SM",
+        "nome": "Emitente",
+        "dono": null,
+        "descricao": "Quem emite o documento: identificação, morada e contacto.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Entidade",
+        "para": "Propriedade:USM:Entidade.nif",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.totalFatura",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cliente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Emitente",
+        "para": "USM:Entidade",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Entidade",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cliente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Cliente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Requerente",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Emitente",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Emitente",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-FT-NIF"
+  }
+}

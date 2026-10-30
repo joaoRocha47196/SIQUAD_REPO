@@ -1,0 +1,11 @@
+{
+ "id": "003-funcao",
+ "tipo": "funcao",
+ "titulo": "Implementar a função nenhumPresente",
+ "passo": null,
+ "estado": "pendente",
+ "criado": "2026-10-30T14:49:52",
+ "ficheiroResposta": "resposta.py",
+ "funcao": "nenhumPresente",
+ "ficheiro": "f_nenhum_presente.py"
+}

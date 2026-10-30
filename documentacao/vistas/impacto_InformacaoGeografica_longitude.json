@@ -1,0 +1,59 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de longitude (InformacaoGeografica)",
+  "propriedade": "USM:InformacaoGeografica.longitude",
+  "nome": "longitude",
+  "regras": [
+    {
+      "id": "RP-AREA",
+      "tipo": "RP",
+      "descricao": "dentroDe(InformacaoGeografica.latitude, InformacaoGeografica.longitude, [(38.8, -9.25), (38.8, -9.05), (38.68, -9.05), (38.68, -9.25)])",
+      "papeis": [
+        "argumento de dentroDe (restricao)"
+      ]
+    },
+    {
+      "id": "RP-LON",
+      "tipo": "RP",
+      "descricao": "InformacaoGeografica.longitude entre -180 e 180",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIR-LX-LOCALIDADE",
+      "tipo": "RIR",
+      "descricao": "Se dentroDe(Localizacao.InformacaoGeografica.latitude, Localizacao.InformacaoGeografica.longitude, [(38.796, -9.23), (38.796, -9.09), (38.69, -9.09), (38.69, -9.23)]) → Localizacao.Morada.localidade = LISBOA",
+      "papeis": [
+        "argumento de dentroDe (termo)"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 2,
+    "RIR": 1,
+    "RIC": 0
+  },
+  "projecoes": [
+    {
+      "projecao": "DispositivoProducao",
+      "tipo": "obrigatoria",
+      "caminho": "Localizacao.InformacaoGeografica.longitude"
+    },
+    {
+      "projecao": "DispositivoTeste",
+      "tipo": "permitida",
+      "caminho": "Localizacao.InformacaoGeografica.longitude"
+    },
+    {
+      "projecao": "OrdemCompleta",
+      "tipo": "obrigatoria",
+      "caminho": "Localizacao.InformacaoGeografica.longitude"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "USM:InformacaoGeografica.longitude"
+  }
+}

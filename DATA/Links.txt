@@ -1,0 +1,21 @@
+
+SAF-T PT (Standard Audit File for Tax purposes) - Versão Portuguesa
+https://info.portaldasfinancas.gov.pt/pt/apoio_ao_contribuinte/Negocios/Faturacao/SAF_T_PT/SAF_T_PT_Versao_PT/Paginas/default.aspx?utm_source=chatgpt.com
+BEM-VINDO AO VALIDADOR DE FICHEIROS SAF-T(PT) VERSÃO 1.03_01
+Link XSD http://info.portaldasfinancas.gov.pt/apps/saft-pt03/SAFTPT1.03_01.xsd
+
+
+Cis-pt schematron
+https://info.portaldasfinancas.gov.pt/pt/apoio_ao_contribuinte/Negocios/Faturacao/Regras_mecanismos_comunicacao/e_Fatura/e_Fatura_Comunicacao_elementos_docs_faturacao_2022_seguintes/Paginas/default.aspx?
+cis-pt
+
+
+-------------------------------------------------
+Dta model device
+https://github.com/smart-data-models/dataModel.Device/tree/df7f550484674e0bc7d1bb0af9dc7eb54088672f
+Thing description
+https://www.w3.org/TR/wot-thing-description/?utm_source=chatgpt.com
+
+A ideia nao é copiares tudo ppor igual mas sim que consigas extrair a nformação sem te preocupares com detalhes expecificos dos formatos
+e das tecnologias e que para o modelo consigas fazer a submoduliração criando modelos atomicos possivlemente reutlizlaveis
+

@@ -1,0 +1,391 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo USM Entidade",
+  "nivel": "USM",
+  "nome": "Entidade",
+  "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+  "comRegras": true,
+  "especifico": true,
+  "arvore": {
+    "nivel": "USM",
+    "nome": "Entidade",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+    "propriedades": [
+      {
+        "chave": "USM:Entidade.nif",
+        "nome": "nif",
+        "dono": "Entidade",
+        "nivelDono": "USM",
+        "tipo": "texto",
+        "descricao": "Número de identificação fiscal",
+        "caminho": "nif",
+        "nomesAlternativos": [
+          "taxId",
+          "VATNumber"
+        ],
+        "discriminante": false
+      },
+      {
+        "chave": "USM:Entidade.nome",
+        "nome": "nome",
+        "dono": "Entidade",
+        "nivelDono": "USM",
+        "tipo": "texto",
+        "descricao": "Nome ou denominação social",
+        "caminho": "nome",
+        "nomesAlternativos": [
+          "name",
+          "denominacao"
+        ],
+        "discriminante": true
+      }
+    ],
+    "filhos": [],
+    "usadoPor": [
+      "Fatura",
+      "OrdemInstalacao"
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "USM",
+    "nome": "Entidade",
+    "caminho": "",
+    "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+    "regras": [],
+    "rir": []
+  },
+  "blocos": [
+    {
+      "nome": "Entidade",
+      "nivel": "USM",
+      "proprio": true,
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "nif",
+          "caminho": "nif",
+          "descricao": "Número de identificação fiscal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "taxId",
+            "VATNumber"
+          ],
+          "chave": "USM:Entidade.nif",
+          "dono": "Entidade",
+          "discriminante": false,
+          "regras": [
+            {
+              "id": "RP-NIF",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+              "alcance": "USM Entidade.nif",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "nif",
+                "chave": "Propriedade:USM:Entidade.nif",
+                "dono": "Entidade"
+              },
+              "restricao": {
+                "forma": "tipificada",
+                "operador": "PATTERN",
+                "mensagem": "O NIF tem de ter nove algarismos.",
+                "texto": "nif segue o padrão ^[0-9]{9}$",
+                "caminho": "nif",
+                "propriedade": "USM:Entidade.nif",
+                "valor": "^[0-9]{9}$",
+                "minimo": null,
+                "maximo": null
+              },
+              "mensagem": "O NIF tem de ter nove algarismos.",
+              "funcao": false,
+              "categoria": "RP",
+              "alvo": {
+                "chave": "USM:Entidade.nif",
+                "nome": "nif",
+                "dono": "Entidade"
+              },
+              "funcoes": [],
+              "ocorrencias": [
+                "nif"
+              ]
+            },
+            {
+              "id": "RP-NIF-DC",
+              "tipo": "RP",
+              "natureza": "plausibilidade",
+              "descricao": "digitoControloValido(Entidade.nif)",
+              "alcance": "USM Entidade.nif",
+              "notas": null,
+              "contextosExternos": [],
+              "viveEm": {
+                "rotulo": "Propriedade",
+                "nome": "nif",
+                "chave": "Propriedade:USM:Entidade.nif",
+                "dono": "Entidade"
+              },
+              "restricao": {
+                "forma": "funcao",
+                "operador": "FUNCTION",
+                "mensagem": "O dígito de controlo do NIF não está correto.",
+                "texto": "digitoControloValido(nif)",
+                "chamada": {
+                  "funcao": "digitoControloValido",
+                  "chamada": "digitoControloValido(nif)",
+                  "operador": "FUNCTION",
+                  "termo": null,
+                  "descricaoFuncao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+                  "argumentos": [
+                    {
+                      "caminho": "nif",
+                      "alvo": "USM:Entidade.nif",
+                      "nomeAlvo": "nif",
+                      "rotuloAlvo": "Propriedade",
+                      "colecao": false
+                    }
+                  ],
+                  "contextos": []
+                }
+              },
+              "mensagem": "O dígito de controlo do NIF não está correto.",
+              "funcao": true,
+              "categoria": "FN",
+              "alvo": {
+                "chave": "USM:Entidade.nif",
+                "nome": "nif",
+                "funcao": "digitoControloValido"
+              },
+              "funcoes": [
+                "digitoControloValido"
+              ],
+              "ocorrencias": [
+                "nif"
+              ]
+            }
+          ],
+          "rir": []
+        },
+        {
+          "profundidade": 1,
+          "tipo": "Propriedade",
+          "nome": "nome",
+          "caminho": "nome",
+          "descricao": "Nome ou denominação social",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "name",
+            "denominacao"
+          ],
+          "chave": "USM:Entidade.nome",
+          "dono": "Entidade",
+          "discriminante": true,
+          "regras": [],
+          "rir": []
+        }
+      ],
+      "resumoPropriedades": [
+        "nif",
+        "nome"
+      ]
+    }
+  ],
+  "usadoPor": {
+    "hlm": [
+      "Fatura",
+      "OrdemInstalacao"
+    ],
+    "caminhos": [
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Fatura",
+            "papel": "Cliente",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Cliente",
+            "papel": "Entidade",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "USM",
+            "nome": "Entidade"
+          }
+        ],
+        "texto": "Fatura › Cliente › Entidade"
+      },
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "Fatura",
+            "papel": "Emitente",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Emitente",
+            "papel": "Entidade",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "USM",
+            "nome": "Entidade"
+          }
+        ],
+        "texto": "Fatura › Emitente › Entidade"
+      },
+      {
+        "passos": [
+          {
+            "rotulo": "HLM",
+            "nome": "OrdemInstalacao",
+            "papel": "Requerente",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "SM",
+            "nome": "Cliente",
+            "papel": "Entidade",
+            "cardinalidade": "1..1"
+          },
+          {
+            "rotulo": "USM",
+            "nome": "Entidade"
+          }
+        ],
+        "texto": "OrdemInstalacao › Cliente (papel Requerente) › Entidade"
+      }
+    ]
+  },
+  "regras": [
+    {
+      "id": "RP-NIF",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+      "alcance": "USM Entidade.nif",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "nif",
+        "chave": "Propriedade:USM:Entidade.nif",
+        "dono": "Entidade"
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "PATTERN",
+        "mensagem": "O NIF tem de ter nove algarismos.",
+        "texto": "nif segue o padrão ^[0-9]{9}$",
+        "caminho": "nif",
+        "propriedade": "USM:Entidade.nif",
+        "valor": "^[0-9]{9}$",
+        "minimo": null,
+        "maximo": null
+      },
+      "mensagem": "O NIF tem de ter nove algarismos.",
+      "funcao": false,
+      "categoria": "RP",
+      "alvo": {
+        "chave": "USM:Entidade.nif",
+        "nome": "nif",
+        "dono": "Entidade"
+      },
+      "funcoes": [],
+      "ocorrencias": [
+        "nif"
+      ]
+    },
+    {
+      "id": "RP-NIF-DC",
+      "tipo": "RP",
+      "natureza": "plausibilidade",
+      "descricao": "digitoControloValido(Entidade.nif)",
+      "alcance": "USM Entidade.nif",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "Propriedade",
+        "nome": "nif",
+        "chave": "Propriedade:USM:Entidade.nif",
+        "dono": "Entidade"
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "FUNCTION",
+        "mensagem": "O dígito de controlo do NIF não está correto.",
+        "texto": "digitoControloValido(nif)",
+        "chamada": {
+          "funcao": "digitoControloValido",
+          "chamada": "digitoControloValido(nif)",
+          "operador": "FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+          "argumentos": [
+            {
+              "caminho": "nif",
+              "alvo": "USM:Entidade.nif",
+              "nomeAlvo": "nif",
+              "rotuloAlvo": "Propriedade",
+              "colecao": false
+            }
+          ],
+          "contextos": []
+        }
+      },
+      "mensagem": "O dígito de controlo do NIF não está correto.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "USM:Entidade.nif",
+        "nome": "nif",
+        "funcao": "digitoControloValido"
+      },
+      "funcoes": [
+        "digitoControloValido"
+      ],
+      "ocorrencias": [
+        "nif"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 2,
+    "RIR": 0,
+    "RIC": 0,
+    "FN": 1
+  },
+  "funcoes": [
+    {
+      "nome": "digitoControloValido",
+      "descricao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+      "parametros": [
+        {
+          "nome": "nif",
+          "tipo": "texto",
+          "papel": "alvo"
+        }
+      ],
+      "contextos": [],
+      "regras": [
+        "RP-NIF-DC"
+      ]
+    }
+  ],
+  "contextos": [],
+  "parametros": {
+    "nivel": "USM",
+    "nome": "Entidade",
+    "regras": true
+  }
+}

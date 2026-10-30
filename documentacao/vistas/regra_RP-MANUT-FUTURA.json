@@ -1,0 +1,245 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-MANUT-FUTURA",
+  "regra": {
+    "id": "RP-MANUT-FUTURA",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)",
+    "alcance": "USM Diagnostico.dataUltimaManutencao",
+    "notas": null,
+    "contextosExternos": [
+      "dataDeHoje"
+    ],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "dataUltimaManutencao",
+      "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+      "dono": "Diagnostico"
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "EXT_FUNCTION",
+      "mensagem": "A data da última manutenção não pode ser posterior à data de hoje.",
+      "texto": "naoPosteriorAHoje(dataUltimaManutencao)",
+      "chamada": {
+        "funcao": "naoPosteriorAHoje",
+        "chamada": "naoPosteriorAHoje(dataUltimaManutencao)",
+        "operador": "EXT_FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+        "argumentos": [
+          {
+            "caminho": "dataUltimaManutencao",
+            "alvo": "USM:Diagnostico.dataUltimaManutencao",
+            "nomeAlvo": "dataUltimaManutencao",
+            "rotuloAlvo": "Propriedade",
+            "colecao": false
+          }
+        ],
+        "contextos": [
+          "dataDeHoje"
+        ]
+      }
+    },
+    "mensagem": "A data da última manutenção não pode ser posterior à data de hoje.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "USM:Diagnostico.dataUltimaManutencao",
+      "nome": "dataUltimaManutencao",
+      "funcao": "naoPosteriorAHoje"
+    },
+    "funcoes": [
+      "naoPosteriorAHoje"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "EXT_FUNCTION",
+    "mensagem": "A data da última manutenção não pode ser posterior à data de hoje.",
+    "texto": "naoPosteriorAHoje(dataUltimaManutencao)",
+    "chamada": {
+      "funcao": "naoPosteriorAHoje",
+      "chamada": "naoPosteriorAHoje(dataUltimaManutencao)",
+      "operador": "EXT_FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "argumentos": [
+        {
+          "caminho": "dataUltimaManutencao",
+          "alvo": "USM:Diagnostico.dataUltimaManutencao",
+          "nomeAlvo": "dataUltimaManutencao",
+          "rotuloAlvo": "Propriedade",
+          "colecao": false
+        }
+      ],
+      "contextos": [
+        "dataDeHoje"
+      ]
+    },
+    "descricao": "naoPosteriorAHoje(dataUltimaManutencao)",
+    "funcao": {
+      "nome": "naoPosteriorAHoje",
+      "descricao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "parametros": [
+        {
+          "nome": "data",
+          "tipo": "data",
+          "papel": "alvo",
+          "descricao": "Data que não pode estar no futuro."
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": [
+        {
+          "nome": "dataDeHoje",
+          "tipo": "data",
+          "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+          "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível."
+        }
+      ]
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+    "nome": "dataUltimaManutencao",
+    "dono": "Diagnostico",
+    "nivelDono": "USM",
+    "tipo": "data",
+    "descricao": "Data da última manutenção",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-MANUT-FUTURA",
+        "rotulo": "RP",
+        "texto": "RP-MANUT-FUTURA",
+        "detalhe": "naoPosteriorAHoje(Diagnostico.dataUltimaManutencao)"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.dataUltimaManutencao",
+        "detalhe": "Data da última manutenção"
+      },
+      {
+        "chave": "Restricao:RP-MANUT-FUTURA",
+        "rotulo": "Restricao",
+        "texto": "RP-MANUT-FUTURA#restricao",
+        "detalhe": "naoPosteriorAHoje(dataUltimaManutencao)"
+      },
+      {
+        "chave": "Funcao:naoPosteriorAHoje",
+        "rotulo": "Funcao",
+        "texto": "naoPosteriorAHoje",
+        "detalhe": "Verdadeira quando a data indicada não é posterior à data de hoje."
+      },
+      {
+        "chave": "ContextoExterno:dataDeHoje",
+        "rotulo": "ContextoExterno",
+        "texto": "dataDeHoje",
+        "detalhe": "Data atual no momento da avaliação (AAAA-MM-DD)."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-MANUT-FUTURA",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-MANUT-FUTURA",
+        "para": "Restricao:RP-MANUT-FUTURA",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-MANUT-FUTURA",
+        "para": "Funcao:naoPosteriorAHoje",
+        "tipo": "CHAMA",
+        "texto": "naoPosteriorAHoje(dataUltimaManutencao)"
+      },
+      {
+        "de": "Funcao:naoPosteriorAHoje",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "LE",
+        "texto": "argumento: dataUltimaManutencao"
+      },
+      {
+        "de": "Funcao:naoPosteriorAHoje",
+        "para": "ContextoExterno:dataDeHoje",
+        "tipo": "DEPENDE_DE",
+        "texto": null
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "rotulo": "Propriedade",
+        "nome": "dataUltimaManutencao",
+        "dono": "Diagnostico",
+        "descricao": "Data da última manutenção",
+        "tipoBase": "data"
+      },
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Diagnostico",
+        "rotulo": "SM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.dataUltimaManutencao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Diagnostico",
+        "para": "USM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-MANUT-FUTURA"
+  }
+}

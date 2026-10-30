@@ -1,0 +1,182 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-SINAL",
+  "regra": {
+    "id": "RP-SINAL",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Diagnostico.sinalRede entre -140 e 0",
+    "alcance": "USM Diagnostico.sinalRede",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "sinalRede",
+      "chave": "Propriedade:USM:Diagnostico.sinalRede",
+      "dono": "Diagnostico"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "RANGE",
+      "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.",
+      "texto": "sinalRede entre -140 e 0",
+      "caminho": "sinalRede",
+      "propriedade": "USM:Diagnostico.sinalRede",
+      "valor": [
+        -140,
+        0
+      ],
+      "minimo": -140,
+      "maximo": 0
+    },
+    "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Diagnostico.sinalRede",
+      "nome": "sinalRede",
+      "dono": "Diagnostico"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "RANGE",
+    "mensagem": "A intensidade do sinal de rede (dBm) tem de estar entre -140 e 0.",
+    "texto": "sinalRede entre -140 e 0",
+    "caminho": "sinalRede",
+    "propriedade": "USM:Diagnostico.sinalRede",
+    "valor": [
+      -140,
+      0
+    ],
+    "minimo": -140,
+    "maximo": 0,
+    "descricao": "sinalRede entre -140 e 0",
+    "alvo": {
+      "chave": "USM:Diagnostico.sinalRede",
+      "nome": "sinalRede",
+      "dono": "Diagnostico",
+      "nivelDono": "USM",
+      "tipo": "decimal",
+      "descricao": "Intensidade do sinal de rede (dBm)"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Diagnostico.sinalRede",
+    "nome": "sinalRede",
+    "dono": "Diagnostico",
+    "nivelDono": "USM",
+    "tipo": "decimal",
+    "descricao": "Intensidade do sinal de rede (dBm)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-SINAL",
+        "rotulo": "RP",
+        "texto": "RP-SINAL",
+        "detalhe": "Diagnostico.sinalRede entre -140 e 0"
+      },
+      {
+        "chave": "Propriedade:USM:Diagnostico.sinalRede",
+        "rotulo": "Propriedade",
+        "texto": "USM:Diagnostico.sinalRede",
+        "detalhe": "Intensidade do sinal de rede (dBm)"
+      },
+      {
+        "chave": "Restricao:RP-SINAL",
+        "rotulo": "Restricao",
+        "texto": "RP-SINAL#restricao",
+        "detalhe": "sinalRede entre -140 e 0"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-SINAL",
+        "para": "Propriedade:USM:Diagnostico.sinalRede",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-SINAL",
+        "para": "Restricao:RP-SINAL",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-SINAL",
+        "para": "Propriedade:USM:Diagnostico.sinalRede",
+        "tipo": "RESTRINGE",
+        "texto": "sinalRede entre -140 e 0"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Diagnostico.sinalRede",
+        "rotulo": "Propriedade",
+        "nome": "sinalRede",
+        "dono": "Diagnostico",
+        "descricao": "Intensidade do sinal de rede (dBm)",
+        "tipoBase": "decimal"
+      },
+      {
+        "chave": "USM:Diagnostico",
+        "rotulo": "USM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Estado técnico do dispositivo: bateria, manutenção e rede.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Diagnostico",
+        "rotulo": "SM",
+        "nome": "Diagnostico",
+        "dono": null,
+        "descricao": "Diagnóstico técnico do dispositivo.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Diagnostico",
+        "para": "Propriedade:USM:Diagnostico.sinalRede",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Diagnostico",
+        "para": "USM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Diagnostico",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Diagnostico",
+        "cardinalidade": "0..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-SINAL"
+  }
+}

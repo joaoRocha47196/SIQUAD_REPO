@@ -1,0 +1,573 @@
+{
+  "$schema": "ecv.schema.json",
+  "declaracao": {
+    "nome": "Esqueleto da Declaração ECV",
+    "versao": "1.0.0",
+    "descricao": "Uma ocorrência de cada construção possível, com nomes neutros. É uma declaração válida: pode ser verificada, materializada e vista. Cada entidade tem 'notas' a dizer o que exemplifica.",
+    "dominios": ["esqueleto"],
+    "hlm": "HlmExemplo"
+  },
+  "contextosExternos": [
+    {
+      "nome": "dataDeHoje",
+      "tipo": "data",
+      "descricao": "Data atual no momento da avaliação.",
+      "fonte": "Relógio do motor (ou fixada num perfil).",
+      "notas": "Contexto externo usado por uma função (excedeDias) e diretamente num termo (RIC-B-ATRASO)."
+    },
+    {
+      "nome": "chaveSecreta",
+      "tipo": "texto",
+      "descricao": "Valor secreto obtido de um sistema externo.",
+      "fonte": "Cofre de chaves.",
+      "notas": "Contexto externo só usado por uma função (assinaturaOk); fixado no perfil PerfilEstatico."
+    }
+  ],
+  "funcoes": [
+    {
+      "nome": "somaIgualA",
+      "descricao": "Verdadeira quando a soma dos valores da coleção é igual ao total.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<decimal>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores de uma coleção."
+        },
+        {"nome": "total", "tipo": "decimal", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano",
+      "notas": "FUNCTION: só valores do modelo. Um alvo coleção (atravessa uma composição repetível) e um alvo simples."
+    },
+    {
+      "nome": "contagemInferiorA",
+      "descricao": "Verdadeira quando a coleção tem menos de n instâncias.",
+      "parametros": [
+        {"nome": "instancias", "tipo": "modelo", "papel": "alvo", "colecao": true},
+        {"nome": "n", "tipo": "inteiro", "papel": "parametro", "descricao": "Valor declarado na regra."}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano",
+      "notas": "Alvo que termina num modelo (as instâncias) e um parâmetro literal."
+    },
+    {
+      "nome": "excedeDias",
+      "descricao": "Verdadeira quando passaram mais de n dias desde a data até hoje.",
+      "parametros": [
+        {"nome": "data", "tipo": "data", "papel": "alvo"},
+        {"nome": "n", "tipo": "inteiro", "papel": "parametro"}
+      ],
+      "contextosExternos": ["dataDeHoje"],
+      "retorno": "booleano",
+      "notas": "EXT_FUNCTION: depende de um contexto externo; usada num termo de condição."
+    },
+    {
+      "nome": "assinaturaOk",
+      "descricao": "Verdadeira quando a assinatura corresponde ao texto e à chave secreta.",
+      "parametros": [
+        {"nome": "texto", "tipo": "texto", "papel": "alvo"},
+        {"nome": "assinatura", "tipo": "texto", "papel": "alvo"}
+      ],
+      "contextosExternos": ["chaveSecreta"],
+      "retorno": "booleano",
+      "notas": "EXT_FUNCTION usada numa restrição (RP com dois alvos)."
+    }
+  ],
+  "usm": [
+    {
+      "nome": "UsmA",
+      "descricao": "USM com uma propriedade de cada tipo base e regras na propriedade e no modelo.",
+      "propriedades": [
+        {
+          "nome": "codigo",
+          "tipo": "texto",
+          "descricao": "Texto com formato fixo",
+          "nomesAlternativos": ["code", "cod"],
+          "regras": [
+            {
+              "id": "RP-A-CODIGO",
+              "natureza": "plausibilidade",
+              "descricao": "UsmA.codigo segue o padrão ^[A-Z]{2}-[0-9]{3}$",
+              "restricao": {
+                "propriedade": "codigo",
+                "operador": "PATTERN",
+                "valor": "^[A-Z]{2}-[0-9]{3}$",
+                "mensagem": "O código tem a forma AA-999."
+              },
+              "notas": "RP tipificada na propriedade: PATTERN."
+            },
+            {
+              "id": "RP-A-CODIGO-TAM",
+              "natureza": "plausibilidade",
+              "descricao": "UsmA.codigo tem 6 caracteres",
+              "restricao": {
+                "propriedade": "codigo",
+                "operador": "LENGTH",
+                "valor": 6,
+                "mensagem": "O código tem 6 caracteres."
+              },
+              "notas": "LENGTH com um inteiro (também aceita [mínimo, máximo])."
+            }
+          ]
+        },
+        {
+          "nome": "categoria",
+          "tipo": "texto",
+          "descricao": "Enumerado: o seu Conjunto de Regras de Plausibilidade é uma lista fechada",
+          "regras": [
+            {
+              "id": "RP-A-CATEGORIA",
+              "natureza": "plausibilidade",
+              "descricao": "UsmA.categoria ∈ {X, Y, Z}",
+              "restricao": {
+                "propriedade": "categoria",
+                "operador": "IN",
+                "valor": ["X", "Y", "Z"],
+                "mensagem": "A categoria tem de ser X, Y ou Z."
+              },
+              "notas": "RP IN: os valores plausíveis, usados como fatores discriminantes nas condições."
+            }
+          ]
+        },
+        {
+          "nome": "quantidade",
+          "tipo": "inteiro",
+          "descricao": "Número inteiro",
+          "regras": [
+            {
+              "id": "RP-A-QUANTIDADE",
+              "natureza": "plausibilidade",
+              "descricao": "UsmA.quantidade ≥ 0",
+              "restricao": {
+                "propriedade": "quantidade",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "A quantidade não pode ser negativa."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "medida",
+          "tipo": "decimal",
+          "descricao": "Número decimal",
+          "regras": [
+            {
+              "id": "RP-A-MEDIDA",
+              "natureza": "plausibilidade",
+              "descricao": "UsmA.medida entre 0 e 1000",
+              "restricao": {
+                "propriedade": "medida",
+                "operador": "RANGE",
+                "valor": [0, 1000],
+                "mensagem": "A medida tem de estar entre 0 e 1000."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "dataRegisto",
+          "tipo": "data",
+          "descricao": "Data (AAAA-MM-DD)",
+          "regras": [
+            {
+              "id": "RP-A-DATA",
+              "natureza": "plausibilidade",
+              "descricao": "UsmA.dataRegisto > 2000-01-01",
+              "restricao": {
+                "propriedade": "dataRegisto",
+                "operador": "GT",
+                "valor": "2000-01-01",
+                "mensagem": "A data tem de ser posterior a 2000-01-01."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "ativo",
+          "tipo": "booleano",
+          "descricao": "Verdadeiro ou falso",
+          "notas": "Propriedade sem regras (aparece na vista de lacunas)."
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-A-MEDIDA-X",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se UsmA.categoria = X e UsmA.quantidade > 10 → UsmA.medida ≤ 100",
+          "condicao": [
+            {"propriedade": "categoria", "operador": "EQUALS", "valor": "X"},
+            {"propriedade": "quantidade", "operador": "GT", "valor": 10}
+          ],
+          "restricao": {
+            "propriedade": "medida",
+            "operador": "LTE",
+            "valor": 100,
+            "mensagem": "Na categoria X com mais de 10 unidades, a medida não passa de 100."
+          },
+          "notas": "RIR no USM: condição com dois termos (E), restrição tipificada com um alvo."
+        },
+        {
+          "id": "RIR-A-CODIGO-Y",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se UsmA.categoria ∈ {Y, Z} → UsmA.codigo começa por \"YZ\"",
+          "condicao": [
+            {"propriedade": "categoria", "operador": "IN", "valor": ["Y", "Z"]}
+          ],
+          "restricao": {
+            "propriedade": "codigo",
+            "operador": "STARTS_WITH",
+            "valor": "YZ",
+            "mensagem": "Nas categorias Y e Z o código começa por YZ."
+          },
+          "notas": "IN numa condição: disjunção dentro da mesma propriedade (o único OU admitido)."
+        },
+        {
+          "id": "RIC-A-INATIVO",
+          "natureza": "inferencia_conclusiva",
+          "descricao": "Se UsmA.ativo = falso e UsmA.quantidade < 1 → informa Estado ESGOTADO",
+          "condicao": [
+            {"propriedade": "ativo", "operador": "EQUALS", "valor": false},
+            {"propriedade": "quantidade", "operador": "LT", "valor": 1}
+          ],
+          "mensagem": "Estado ESGOTADO: o item está inativo e sem quantidade.",
+          "conclusao": {"tipo": "ESTADO", "valor": "ESGOTADO"},
+          "notas": "RIC: condição + mensagem de conclusão + conclusão estruturada; sem restrição."
+        }
+      ]
+    },
+    {
+      "nome": "UsmB",
+      "descricao": "USM com texto, data e regras com funções e contexto externo.",
+      "propriedades": [
+        {
+          "nome": "texto",
+          "tipo": "texto",
+          "descricao": "Texto assinado",
+          "regras": [
+            {
+              "id": "RP-B-TEXTO",
+              "natureza": "plausibilidade",
+              "descricao": "UsmB.texto contém \":\"",
+              "restricao": {
+                "propriedade": "texto",
+                "operador": "CONTAINS",
+                "valor": ":",
+                "mensagem": "O texto tem de conter ':'."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "assinatura",
+          "tipo": "texto",
+          "descricao": "Assinatura do texto",
+          "regras": [
+            {
+              "id": "RP-B-ASSIN-FIM",
+              "natureza": "plausibilidade",
+              "descricao": "UsmB.assinatura termina em \"=\"",
+              "restricao": {
+                "propriedade": "assinatura",
+                "operador": "ENDS_WITH",
+                "valor": "=",
+                "mensagem": "A assinatura termina em '='."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "dataEvento",
+          "tipo": "data",
+          "descricao": "Data do evento",
+          "regras": [
+            {
+              "id": "RIC-B-ATRASO",
+              "natureza": "inferencia_conclusiva",
+              "descricao": "Se UsmB.dataEvento < dataDeHoje (contexto externo) → informa Estado HISTORICO",
+              "condicao": [
+                {"propriedade": "dataEvento", "operador": "LT", "contexto": "dataDeHoje"}
+              ],
+              "mensagem": "Estado HISTORICO: o evento é anterior a hoje.",
+              "conclusao": {"tipo": "ESTADO", "valor": "HISTORICO"},
+              "contextosExternos": ["dataDeHoje"],
+              "notas": "Termo que compara a propriedade com um contexto externo (sem função). Uma RIC pode viver numa propriedade quando só lê essa propriedade."
+            }
+          ]
+        },
+        {
+          "nome": "estado",
+          "tipo": "texto",
+          "descricao": "Estado do evento",
+          "regras": [
+            {
+              "id": "RP-B-ESTADO",
+              "natureza": "plausibilidade",
+              "descricao": "UsmB.estado ∈ {ABERTO, FECHADO}",
+              "restricao": {
+                "propriedade": "estado",
+                "operador": "IN",
+                "valor": ["ABERTO", "FECHADO"],
+                "mensagem": "O estado é ABERTO ou FECHADO."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RP-B-ASSINATURA",
+          "natureza": "plausibilidade",
+          "descricao": "assinaturaOk(UsmB.texto, UsmB.assinatura)",
+          "restricao": {
+            "operador": "EXT_FUNCTION",
+            "chamada": {
+              "funcao": "assinaturaOk",
+              "argumentos": [
+                {"caminho": "texto"},
+                {"caminho": "assinatura"}
+              ]
+            },
+            "mensagem": "A assinatura não corresponde ao texto."
+          },
+          "contextosExternos": ["chaveSecreta"],
+          "notas": "RP cuja restrição é uma função (EXT_FUNCTION): os alvos são os argumentos; vive no USM porque lê duas propriedades."
+        },
+        {
+          "id": "RIR-B-FECHO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se excedeDias(UsmB.dataEvento, 30) → UsmB.estado = FECHADO",
+          "condicao": [
+            {
+              "operador": "EXT_FUNCTION",
+              "chamada": {
+                "funcao": "excedeDias",
+                "argumentos": [
+                  {"caminho": "dataEvento"},
+                  {"literal": 30}
+                ]
+              }
+            }
+          ],
+          "restricao": {
+            "propriedade": "estado",
+            "operador": "EQUALS",
+            "valor": "FECHADO",
+            "mensagem": "Um evento com mais de 30 dias tem de estar FECHADO."
+          },
+          "contextosExternos": ["dataDeHoje"],
+          "notas": "Função usada num termo da condição (e não na restrição)."
+        }
+      ]
+    },
+    {
+      "nome": "UsmItem",
+      "descricao": "Elemento de uma coleção (composto com cardinalidade 1..*).",
+      "propriedades": [
+        {"nome": "numero", "tipo": "inteiro", "descricao": "Número do item"},
+        {"nome": "montante", "tipo": "decimal", "descricao": "Montante do item"}
+      ]
+    }
+  ],
+  "sm": [
+    {
+      "nome": "SmComposto",
+      "descricao": "SM que compõe USM (um deles duas vezes, com papéis) e tem uma propriedade residual.",
+      "composicao": [
+        {"usm": "UsmA", "cardinalidade": "1..1"},
+        {"usm": "UsmB", "papel": "Origem", "cardinalidade": "1..1"},
+        {"usm": "UsmB", "papel": "Destino", "cardinalidade": "0..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "observacao",
+          "tipo": "texto",
+          "descricao": "Propriedade residual: só faz sentido neste SM",
+          "regras": [
+            {
+              "id": "RP-SM-OBS",
+              "natureza": "plausibilidade",
+              "descricao": "SmComposto.observacao tem entre 0 e 500 caracteres",
+              "restricao": {
+                "propriedade": "observacao",
+                "operador": "LENGTH",
+                "valor": [0, 500],
+                "mensagem": "A observação tem no máximo 500 caracteres."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-SM-DESTINO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se SmComposto.Origem.estado = FECHADO → SmComposto.Destino.estado ≠ ABERTO",
+          "condicao": [
+            {"propriedade": "Origem.estado", "operador": "EQUALS", "valor": "FECHADO"}
+          ],
+          "restricao": {
+            "propriedade": "Destino.estado",
+            "operador": "NOT_EQUALS",
+            "valor": "ABERTO",
+            "mensagem": "Se a origem está fechada, o destino não pode estar aberto."
+          },
+          "notas": "Regra no SM que relaciona duas ocorrências do mesmo USM, distinguidas pelo papel."
+        }
+      ],
+      "notas": "'papel' dá o segmento do caminho (Origem.estado, Destino.estado); por omissão é o nome do USM."
+    },
+    {
+      "nome": "SmColecao",
+      "descricao": "SM que existe para reunir uma coleção de UsmItem.",
+      "composicao": [
+        {"usm": "UsmItem", "cardinalidade": "1..*"}
+      ],
+      "regras": [
+        {
+          "id": "RP-COL-MAX",
+          "natureza": "plausibilidade",
+          "descricao": "contagemInferiorA(SmColecao.UsmItem, 50)",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "contagemInferiorA",
+              "argumentos": [
+                {"caminho": "UsmItem"},
+                {"literal": 50}
+              ]
+            },
+            "mensagem": "A coleção tem 50 ou mais itens."
+          },
+          "notas": "RP sobre a coleção: vive no SM que declara a cardinalidade."
+        }
+      ]
+    },
+    {
+      "nome": "SmResidual",
+      "descricao": "SM só com propriedades residuais (sem composição).",
+      "propriedades": [
+        {
+          "nome": "tipoDocumento",
+          "tipo": "texto",
+          "descricao": "Tipo do documento",
+          "regras": [
+            {
+              "id": "RP-SMR-TIPO",
+              "natureza": "plausibilidade",
+              "descricao": "SmResidual.tipoDocumento ∈ {NORMAL, SIMPLES}",
+              "restricao": {
+                "propriedade": "tipoDocumento",
+                "operador": "IN",
+                "valor": ["NORMAL", "SIMPLES"],
+                "mensagem": "O tipo é NORMAL ou SIMPLES."
+              }
+            }
+          ]
+        },
+        {"nome": "total", "tipo": "decimal", "descricao": "Total do documento"}
+      ]
+    }
+  ],
+  "hlm": [
+    {
+      "nome": "HlmExemplo",
+      "descricao": "HLM: só composição de SM (nunca propriedades próprias).",
+      "composicao": [
+        {"sm": "SmResidual", "cardinalidade": "1..1"},
+        {"sm": "SmComposto", "cardinalidade": "1..1"},
+        {"sm": "SmColecao", "papel": "Itens", "cardinalidade": "1..1"}
+      ],
+      "regras": [
+        {
+          "id": "RP-H-SOMA",
+          "natureza": "plausibilidade",
+          "descricao": "somaIgualA(Itens.UsmItem.montante, SmResidual.total)",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaIgualA",
+              "argumentos": [
+                {"caminho": "Itens.UsmItem.montante"},
+                {"caminho": "SmResidual.total"}
+              ]
+            },
+            "mensagem": "O total não corresponde à soma dos montantes."
+          },
+          "notas": "RP no HLM: lê a coleção e o documento, que só se encontram no HLM."
+        },
+        {
+          "id": "RIR-H-SIMPLES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se SmResidual.tipoDocumento = SIMPLES → contagemInferiorA(Itens.UsmItem, 11)",
+          "condicao": [
+            {"propriedade": "SmResidual.tipoDocumento", "operador": "EQUALS", "valor": "SIMPLES"}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "contagemInferiorA",
+              "argumentos": [
+                {"caminho": "Itens.UsmItem"},
+                {"literal": 11}
+              ]
+            },
+            "mensagem": "Um documento simples tem no máximo 10 itens."
+          },
+          "notas": "RIR cuja restrição é uma função."
+        },
+        {
+          "id": "RIC-H-REVER",
+          "natureza": "inferencia_conclusiva",
+          "descricao": "Se SmResidual.total ≥ 10000 e SmComposto.UsmA.categoria = Z → informa Ação REVER",
+          "condicao": [
+            {"propriedade": "SmResidual.total", "operador": "GTE", "valor": 10000},
+            {"propriedade": "SmComposto.UsmA.categoria", "operador": "EQUALS", "valor": "Z"}
+          ],
+          "mensagem": "Ação REVER: documento de valor elevado na categoria Z.",
+          "conclusao": {"tipo": "ACAO", "valor": "REVER"},
+          "notas": "RIC no HLM (lê dois SM)."
+        }
+      ]
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "ProjecaoCompleta",
+      "hlm": "HlmExemplo",
+      "descricao": "Tudo obrigatório, exceto o destino, que é permitido.",
+      "obrigatorias": ["SmResidual.*", "SmComposto.UsmA.*", "SmComposto.Origem.*", "SmComposto.observacao", "Itens.*"],
+      "permitidas": ["SmComposto.Destino.*"],
+      "notas": "'X.*' expande para todas as propriedades abaixo de X; caminho sem '*' indica uma propriedade."
+    },
+    {
+      "nome": "ProjecaoMinima",
+      "hlm": "HlmExemplo",
+      "descricao": "Só o documento e os itens.",
+      "obrigatorias": ["SmResidual.*", "Itens.*"],
+      "permitidas": ["SmComposto.UsmA.categoria"],
+      "notas": "O que não é obrigatório nem permitido está implicitamente proibido."
+    }
+  ],
+  "perfis": [
+    {
+      "nome": "PerfilDinamico",
+      "projecao": "ProjecaoCompleta",
+      "descricao": "Nada fixado: todas as condições são avaliadas com os valores da instância.",
+      "fixa": []
+    },
+    {
+      "nome": "PerfilEstatico",
+      "projecao": "ProjecaoMinima",
+      "descricao": "Valores conhecidos à partida: uma propriedade e dois contextos externos.",
+      "fixa": [
+        {"propriedade": "SmResidual.tipoDocumento", "valor": "SIMPLES"},
+        {"contexto": "dataDeHoje", "valor": "2026-09-30"},
+        {"contexto": "chaveSecreta", "valor": "segredo-de-teste"}
+      ],
+      "notas": "Fixar tipoDocumento resolve a condição de RIR-H-SIMPLES antes da execução (sempre aplicável). Também mostra o aviso I10: RIR-A-MEDIDA-X lê quantidade, que esta projeção não inclui nem o perfil fixa."
+    }
+  ]
+}

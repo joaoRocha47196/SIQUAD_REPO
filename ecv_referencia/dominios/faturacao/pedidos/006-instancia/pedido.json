@@ -1,0 +1,14 @@
+{
+ "id": "006-instancia",
+ "tipo": "instancia",
+ "titulo": "Instância de teste ENTREGA_TST_SOME_RULES",
+ "passo": null,
+ "estado": "pendente",
+ "criado": "2026-10-30T14:55:31",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "perfil": "EmissaoAutofaturacao",
+ "hlm": "",
+ "nome": "ENTREGA_TST_SOME_RULES",
+ "pedido": "Passar a algumas regras"
+}

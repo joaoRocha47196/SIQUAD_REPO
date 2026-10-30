@@ -1,0 +1,527 @@
+{
+  "descricao": "Processo de construção da Declaração ECV a partir de fontes de dados existentes: a extração determinística (fase 0), a geração da declaração completa num só pedido ao LLM (fase G, com a especificação completa e todo o inventário) e a revisão por camadas (passos A a F), em que cada camada é revista e corrigida por pedidos de alterações em linguagem natural, operações, tabelas CSV ou informação de outras fontes. É lida pelo módulo 1_ecv_builder e pela documentação técnica.",
+  "versao": "2.0.0",
+  "ciclo": {
+    "descricao": "A fase G gera as declarações completas; os passos A a F reveem-nas por camadas, pela ordem. Na aplicação web, tudo está no separador Declaração; na linha de comandos, em python -m ecv passo …",
+    "etapas": [
+      {
+        "id": "preparar",
+        "nome": "Preparar o pedido de geração",
+        "quem": "código",
+        "fase": "G",
+        "descricao": "Cria o pedido ao LLM da fase G, em dominios/<d>/pedidos/<n>-passo-G/prompt.md. O prompt junta o papel e os princípios, a especificação completa da ECV, o procedimento de cada camada (estrutura, projeções, plausibilidade, inferência, funções, perfis), os modelos e as funções de referência, os dados do domínio, todo o inventário e o formato da resposta.",
+        "web": "Declaração › G › Preparar pedido",
+        "cli": "python -m ecv passo preparar <dominio> G"
+      },
+      {
+        "id": "responder",
+        "nome": "Responder",
+        "quem": "LLM",
+        "fase": "G",
+        "descricao": "O LLM lê prompt.md e responde com as declarações completas, o mapeamento e notas (resposta.json na pasta do pedido: escrita no repositório ou colada na página do pedido).",
+        "web": "Pedidos › pedido › Guardar resposta",
+        "cli": "python -m ecv pedidos responder <dominio> <pedido> <resposta.json>"
+      },
+      {
+        "id": "registar",
+        "nome": "Registar",
+        "quem": "código",
+        "fase": "G",
+        "descricao": "Confirma a forma da resposta, cria as declarações (completando os modelos reutilizados com as regras que já têm), grava o mapeamento, deriva as descrições e verifica.",
+        "web": "Pedidos › pedido › Registar",
+        "cli": "python -m ecv passo registar <dominio> G"
+      },
+      {
+        "id": "rever",
+        "nome": "Rever uma camada",
+        "quem": "pessoa",
+        "fase": "A a F",
+        "descricao": "Cada passo A a F revê uma camada: as vistas da camada, o inventário e o mapeamento, as verificações da camada e as perguntas de revisão.",
+        "web": "Declaração › passo, Vistas, Inventário",
+        "cli": "python -m ecv passo verificar <dominio> <passo>"
+      },
+      {
+        "id": "alterar",
+        "nome": "Alterar ou acrescentar",
+        "quem": "pessoa, LLM e código",
+        "fase": "A a F",
+        "descricao": "O que tem de mudar ou faltar escreve-se em linguagem natural (pedido ao LLM, que pode levar informação de outra fonte: texto, tabela, documento), como operações, ou como uma tabela CSV de mapeamentos conhecidos (uma RIR por linha). As operações aplicam-se de forma determinística e volta-se a verificar.",
+        "web": "Alterações",
+        "cli": "python -m ecv alteracoes pedir|aplicar <dominio> …"
+      },
+      {
+        "id": "aceitar",
+        "nome": "Aceitar",
+        "quem": "pessoa",
+        "fase": "G e A a F",
+        "descricao": "Marca a fase G ou a camada como aceite (só sem erros e, numa camada, com a cobertura completa) e liberta a seguinte.",
+        "web": "Declaração › passo › Aceitar",
+        "cli": "python -m ecv passo aceitar <dominio> <passo>"
+      }
+    ]
+  },
+  "principiosComuns": [
+    "A fonte interpreta-se, não se copia: extrai-se a lógica de estruturação e de validação, sem depender do formato (XML, schematron, JSON Schema, classes, registos) nem dos nomes técnicos.",
+    "A modularização da fonte não é para seguir à regra: os grupos da fonte são pistas, não submodelos.",
+    "Cada decisão fica rastreável: cada elemento e cada regra da fonte têm, no mapeamento, o destino na declaração ou o motivo por que foram descartados.",
+    "Antes de criar, procura-se: um modelo, uma propriedade, uma função ou um contexto que já exista no grafo (ou noutra declaração do domínio) reutiliza-se.",
+    "Uma declaração descreve um só HLM e é completa: os modelos partilhados repetem-se, iguais, em cada declaração que os usa.",
+    "Nomes em português, sem acentos: modelos em PascalCase, propriedades, funções e contextos em camelCase, regras TIPO-ASSUNTO[-QUALIFICADOR]; os nomes da fonte ficam em nomesAlternativos.",
+    "Só se usa o vocabulário fechado da configuração (tipos base, operadores, cardinalidades, tipos de regra)."
+  ],
+  "fases": [
+    {
+      "id": "0",
+      "nome": "Extração",
+      "objetivo": "Passar cada fonte para o formato interno (inventário), independente do formato da fonte.",
+      "pergunta": "Que grupos, elementos e regras declara cada fonte, e de onde vem cada um?",
+      "quem": "código (adaptadores determinísticos)",
+      "entradas": [
+        "as fontes do domínio (dominios/<d>/dominio.json)"
+      ],
+      "saida": "dominios/<d>/inventario/<fonte>.json: grupos, elementos (nome, descrição, tipo base, cardinalidade, grupo, valores admitidos, regras referidas, origem) e regras (texto, categoria, natureza provável, gravidade, contexto, elementos, expressão, origem)",
+      "adaptadores": {
+        "cius_pt.guia": "PDF do modelo semântico CIUS-PT: BG e BT com a designação, o tipo, as cardinalidades e as regras referidas",
+        "cius_pt.schematron": "schematron CIUS-PT: cada asserção, com a expressão da ligação UBL, a gravidade e os BT referidos",
+        "cius_pt.ubl": "modelo UBL anotado (XML com comentários de cardinalidade e descrições em português)",
+        "fm.dart": "classes Dart: campos, tipos, obrigatoriedade (required) e referências entre classes",
+        "fm.registos": "desenho de registos (xlsx): campos, comprimentos, tipos e observações",
+        "json_schema.smart_data_models": "JSON Schema (Smart Data Models): modelos, definições comuns, propriedades, enum, gamas, formatos e required"
+      },
+      "comando": "python -m ecv inventario extrair <dominio>",
+      "verificacoes": [
+        "cada grupo, elemento e regra tem id, nome (ou texto) e origem",
+        "os elementos referidos pelas regras existem no inventário da mesma família de fontes (aviso)"
+      ],
+      "vistas": [
+        "Inventário: grupos, elementos e regras por fonte, com contagens por categoria"
+      ],
+      "revisao": [
+        "Falta alguma fonte? Alguma fonte foi mal lida (campos sem nome, descrições cortadas)?",
+        "As categorias das regras fazem sentido? (são só pistas para os passos B a E)"
+      ]
+    },
+    {
+      "id": "G",
+      "tipo": "geracao",
+      "nome": "Geração da declaração completa",
+      "objetivo": "Produzir, num só pedido, as declarações completas do domínio (estrutura, projeções, regras de plausibilidade e de inferência, funções, contextos externos e perfis) e o mapeamento de cada elemento e de cada regra das fontes.",
+      "pergunta": "Que declarações ECV descrevem o domínio, e onde fica cada item do inventário?",
+      "entradas": "todos os inventários do domínio (grupos, elementos e regras); as utilizações, os cenários e os mapeamentos conhecidos do domínio; os modelos e as funções das declarações de referência; as notas de revisão",
+      "prompt": "G_geracao.md",
+      "formatoResposta": {
+        "descricao": "Um objeto JSON com as declarações completas (uma por HLM, com todas as secções: contextosExternos, funcoes, usm, sm, hlm, projecoes, perfis), o mapeamento de cada elemento e de cada regra das fontes, e notas para a revisão.",
+        "exemplo": {
+          "declaracoes": [
+            {
+              "declaracao": {
+                "nome": "…",
+                "versao": "0.1.0",
+                "descricao": "…",
+                "dominios": [
+                  "…"
+                ],
+                "hlm": "Fatura"
+              },
+              "contextosExternos": [],
+              "funcoes": [],
+              "usm": [],
+              "sm": [],
+              "hlm": [],
+              "projecoes": [],
+              "perfis": []
+            }
+          ],
+          "mapeamento": [
+            {
+              "fonte": "cius-pt-guia",
+              "origem": "BT-27",
+              "decisao": "mapeado",
+              "destino": "HLM:Fatura/Fornecedor.Entidade.nome",
+              "nota": ""
+            },
+            {
+              "fonte": "fm-dart",
+              "origem": "Article.internalId",
+              "decisao": "descartado",
+              "motivo": "identificador técnico da aplicação"
+            },
+            {
+              "fonte": "cius-pt-schematron",
+              "origem": "BR-CO-10",
+              "decisao": "mapeado",
+              "destino": "Regra:RP-SOMA-LINHAS"
+            }
+          ],
+          "notas": [
+            "…o que a pessoa deve confirmar na revisão (decisões duvidosas, regras descartadas por falta de informação)"
+          ]
+        }
+      },
+      "aplicacao": "As declarações substituem as do domínio (dominios/<d>/declaracoes/<hlm>.ecv.json) e o mapeamento substitui o anterior; os modelos reutilizados das declarações de referência recebem as regras que já têm.",
+      "verificacoes": [
+        "todas as verificações das specs e os invariantes I1 a I13"
+      ],
+      "verificacoesDoPasso": [
+        "cobertura de todos os elementos e de todas as regras do inventário (informativa: a cobertura de cada camada é exigida na revisão dessa camada)",
+        "destinos do mapeamento existem nas declarações",
+        "modelos partilhados iguais em todas as declarações",
+        "fusão das declarações do domínio entre si e com as de referência"
+      ],
+      "vistas": [
+        "hlm_<HLM>",
+        "regras_<HLM>",
+        "/mapeamento/<dominio>"
+      ],
+      "revisao": [
+        "As declarações cobrem as entidades do domínio?",
+        "Há partes do inventário por mapear que deviam estar nas declarações?"
+      ],
+      "alteracoes": [],
+      "aceitacao": "sem erros de verificação e sem conflitos de fusão (a cobertura completa exige-se na revisão de cada camada)"
+    },
+    {
+      "id": "A",
+      "tipo": "revisao",
+      "nome": "Estrutura (ECM)",
+      "camada": "Decidir os HLM, SM e USM do domínio, as propriedades de cada modelo e as composições (papel e cardinalidade), submodularizando em modelos atómicos e reutilizáveis; acrescentar aos HLM principais o SM de metainformação.",
+      "objetivo": "Rever a estrutura (ECM): os HLM, SM e USM, as propriedades, as composições e o mapeamento dos elementos.",
+      "pergunta": "Que entidades o domínio instancia, de que partes se compõem e que informação canónica as partes reutilizam?",
+      "entradas": "os elementos do inventário e o seu mapeamento; os modelos de referência",
+      "principios": [
+        "HLM: a entidade que o domínio instancia e trata como um todo (uma fatura, uma nota de crédito, um dispositivo). Só compõe SM; não tem propriedades.",
+        "USM: informação canónica, igual em qualquer domínio (morada, contacto, identificação fiscal, coordenadas, montante com moeda). É dono das suas propriedades. Um grupo da fonte que se repete em vários contextos (morada do fornecedor, do cliente, de entrega) é UM USM, composto várias vezes com papéis diferentes.",
+        "SM: agrupa USM com uma finalidade no domínio (Fornecedor, Cliente, Linhas, Totais). Pode ter propriedades residuais (as que só fazem sentido ali). Uma lista da fonte (0..N, 1..N) é uma composição repetível de um SM de coleção ou de um USM.",
+        "Propriedade: atómica, com tipo base; o significado vem da descrição da fonte, reescrita em português claro; os nomes da fonte que valem em qualquer ocorrência ficam em nomesAlternativos; os códigos que identificam uma ocorrência (BT-27, BT-44) ficam no mapeamento, por caminho.",
+        "Atomicidade: um USM tem uma só razão para existir; se um grupo da fonte mistura conceitos (identificação + morada + contacto), divide-se.",
+        "Reutilização: antes de criar um USM, procurar no grafo um com as mesmas propriedades (pela pesquisa de semelhantes); se existir, reutiliza-se, mesmo que venha de outro domínio.",
+        "Fontes que se completam: elementos de fontes diferentes com o mesmo significado (BT-44 'Nome do cliente' e Client.name do FM) são UMA propriedade; a diferença fica em nomesAlternativos.",
+        "Metainformação: cada HLM principal compõe o SM Metainformacao (0..1, propriedades da configuração), com a origem do modelo de dados."
+      ],
+      "comoProceder": [
+        "Compreensão global: lê os grupos e os elementos de todas as fontes; identifica que entidades cada fonte descreve e como os grupos se relacionam (contenção, repetição, referência); nota onde fontes diferentes descrevem a mesma informação.",
+        "Agrupamento semântico: junta os elementos por conceito (identificação, morada, contacto, montante, período, referência a outro documento), atravessando grupos e fontes; um elemento pertence a um só conceito.",
+        "USM atómicos e reutilizáveis: cada conceito canónico é um USM; o mesmo conceito em vários contextos (morada do fornecedor, do cliente, de entrega) é UM USM, composto várias vezes com papéis diferentes. Antes de criar um USM, procura nos modelos existentes um equivalente e reutiliza-o com o mesmo nome e a mesma definição.",
+        "SM com finalidade: os conjuntos com papel no domínio (Fornecedor, Cliente, Linhas, Totais, Pagamento) são SM que compõem USM; as propriedades que só fazem sentido ali são residuais do SM; uma coleção de linhas é um SM de coleção (no plural) que compõe o USM da linha com 1..*.",
+        "HLM: só as entidades de topo que o domínio instancia; cada HLM tem a sua declaração.",
+        "Composições: a cardinalidade (da fonte; na dúvida, a mais permissiva) e o papel (quando o mesmo modelo aparece mais de uma vez no mesmo nó, ou quando o papel dá o significado).",
+        "Metainformação: cada HLM principal compõe o SM Metainformacao (0..1), com as propriedades do vocabulário.",
+        "Propriedades: nome em camelCase português, tipo base, descrição reescrita; em nomesAlternativos os nomes da fonte que valem em qualquer ocorrência; os códigos que identificam uma ocorrência (BT-27, BT-44) ficam no mapeamento. Um modelo reutilizado não recebe nomes alternativos novos.",
+        "Mapeamento de cada elemento: mapeado (destino HLM:<Hlm>/<caminho>), fundido (o mesmo significado que outro elemento já mapeado) ou descartado (com o motivo)."
+      ],
+      "verificacoes": [
+        "S-SCHEMA",
+        "S-DECL",
+        "S-MOD",
+        "S-COMP",
+        "S-PROP",
+        "I1",
+        "I2"
+      ],
+      "verificacoesDoPasso": [
+        "cobertura: todos os elementos do inventário estão mapeados ou descartados com motivo",
+        "destinos do mapeamento existem nas declarações",
+        "modelos semelhantes a outros já existentes no grafo (aviso: reutilizar?)",
+        "modelos partilhados iguais em todas as declarações"
+      ],
+      "vistas": [
+        "hlm_<HLM>",
+        "sm_<SM>",
+        "usm_<USM>",
+        "/mapeamento/<dominio>",
+        "/pesquisa"
+      ],
+      "revisao": [
+        "Os HLM são as entidades certas (nem a mais, nem a menos)?",
+        "Cada USM é atómico e reutilizável? Há algum que devia ser dividido ou fundido com outro?",
+        "Os modelos partilhados estão reutilizados (e não duplicados com outro nome)?",
+        "As cardinalidades e os papéis estão certos?",
+        "Há elementos da fonte descartados que deviam estar no modelo?",
+        "Os nomes e as descrições são claros?"
+      ],
+      "alteracoes": [
+        "criar_modelo",
+        "remover_modelo",
+        "renomear_modelo",
+        "alterar_modelo",
+        "adicionar_propriedade",
+        "remover_propriedade",
+        "mover_propriedade",
+        "renomear_propriedade",
+        "alterar_propriedade",
+        "compor",
+        "remover_composicao",
+        "alterar_composicao",
+        "fundir_modelos",
+        "extrair_usm",
+        "criar_hlm",
+        "remover_hlm",
+        "mapear"
+      ],
+      "aceitacao": "sem erros de verificação; todos os elementos mapeados ou descartados; a pessoa responde sim às perguntas de revisão"
+    },
+    {
+      "id": "B",
+      "tipo": "revisao",
+      "nome": "Projeções (RE)",
+      "camada": "Declarar as utilizações de cada HLM (projeções) com as propriedades obrigatórias e permitidas: as regras estruturais.",
+      "objetivo": "Rever as projeções (RE) de cada HLM: as obrigatórias e as permitidas de cada utilização.",
+      "pergunta": "Em cada utilização do HLM, que informação é obrigatória, que é permitida e que é excluída?",
+      "entradas": "as regras de presença e de cardinalidade; as utilizações do domínio",
+      "principios": [
+        "A obrigatoriedade de uma propriedade numa utilização exprime-se na projeção, não numa regra.",
+        "Uma projeção por utilização real (fatura eletrónica CIUS-PT, nota de crédito, exportação FM); não se inventam utilizações.",
+        "Caminhos a partir do HLM; X.* para tudo abaixo de X; um caminho não pode ser obrigatório e permitido ao mesmo tempo.",
+        "Regras de presença condicionais ('se existir X, então Y é obrigatório') não são projeções: são RIR (com uma função de presença)."
+      ],
+      "comoProceder": [
+        "Para cada HLM, uma projeção por utilização real do domínio (as utilizações estão nos dados).",
+        "Cada regra de presença ou de cardinalidade da fonte torna a propriedade obrigatória (OBRIGATORIA) numa ou mais projeções; o que não é obrigatório mas pode estar presente é permitido; o resto fica excluído (não se declara).",
+        "Caminhos a partir do HLM; X.* quando tudo abaixo de X tem o mesmo tratamento.",
+        "Uma regra de presença condicional (\"se…, então… é obrigatório\") não é uma projeção: é uma RIR com uma função de presença (ver funções).",
+        "Mapeamento de cada regra tratada: destino Projecao:<Nome>/<caminho>, ou descartada com o motivo."
+      ],
+      "verificacoes": [
+        "S-PROJ",
+        "I9"
+      ],
+      "verificacoesDoPasso": [
+        "cobertura das regras de presença e cardinalidade",
+        "propriedades nunca projetadas (vista lacunas)"
+      ],
+      "vistas": [
+        "projecoes_<HLM>",
+        "lacunas_<HLM>"
+      ],
+      "revisao": [
+        "Cada utilização real tem a sua projeção?",
+        "As obrigatórias coincidem com o que a fonte obriga?",
+        "Há propriedades que nenhuma projeção usa (lacunas)? Deviam existir?"
+      ],
+      "alteracoes": [
+        "definir_projecao",
+        "remover_projecao",
+        "mapear"
+      ],
+      "aceitacao": "sem erros de verificação; regras de presença e cardinalidade mapeadas ou descartadas; a pessoa responde sim às perguntas de revisão"
+    },
+    {
+      "id": "C",
+      "tipo": "revisao",
+      "nome": "Plausibilidade (RP)",
+      "camada": "Declarar os valores que cada propriedade pode tomar, sempre: formatos, listas de valores, gamas.",
+      "objetivo": "Rever as regras de plausibilidade (RP): os valores que cada propriedade pode tomar, sempre.",
+      "pergunta": "Que valores são possíveis para cada propriedade, independentemente de qualquer outra?",
+      "entradas": "as regras de formato, valores e gama; os valores admitidos dos elementos",
+      "principios": [
+        "Uma RP vive na propriedade que restringe e só a lê.",
+        "Um enumerado é uma RP IN; um formato é PATTERN ou LENGTH; uma gama é RANGE (ou LT/GT).",
+        "Se a lista ou a gama depende de outra propriedade, não é plausibilidade: é uma RIR (na RP fica só o conjunto de todos os valores possíveis).",
+        "A mensagem de não conformidade está na restrição, em português, e diz o que falhou e o que se espera.",
+        "Uma regra de formato que é igual em várias propriedades do mesmo USM declara-se uma vez em cada propriedade; uma regra igual em vários USM é sinal de um USM a reutilizar."
+      ],
+      "comoProceder": [
+        "Para cada regra de formato, de valores ou de gama, e para cada elemento com valores admitidos, encontra a propriedade a que se refere.",
+        "Se a regra vale sempre, é uma RP na propriedade: restrição com o operador do catálogo (IN, PATTERN, LENGTH, RANGE, LT, GT, …), o valor na forma que o operador exige e a mensagem de não conformidade em português. Se depende de outra informação, é uma RIR (e a RP fica com o conjunto de todos os valores possíveis).",
+        "Junta regras da fonte que dizem o mesmo sobre a mesma propriedade numa só RP (registando todas no mapeamento).",
+        "Identificador RP-<ASSUNTO>[-<QUALIFICADOR>], único. Não escrevas a descrição: é derivada.",
+        "Mapeamento de cada regra: destino Regra:<id>, ou descartada com o motivo."
+      ],
+      "verificacoes": [
+        "S-REGRA",
+        "S-RESTR",
+        "S-VALOR",
+        "I3",
+        "I4",
+        "I5",
+        "I12"
+      ],
+      "verificacoesDoPasso": [
+        "cobertura das regras de formato, valores e gama",
+        "propriedades com valores admitidos na fonte e sem RP (aviso)"
+      ],
+      "vistas": [
+        "regras_<HLM> (agrupar por natureza)",
+        "operadores",
+        "coerencia"
+      ],
+      "revisao": [
+        "Cada propriedade tem os valores possíveis certos?",
+        "Alguma RP depende, afinal, de outra propriedade (devia ser RIR)?",
+        "As mensagens são claras?"
+      ],
+      "alteracoes": [
+        "adicionar_regra",
+        "substituir_regra",
+        "remover_regra",
+        "mover_regra",
+        "mapear"
+      ],
+      "aceitacao": "sem erros de verificação; regras de formato, valores e gama mapeadas ou descartadas; a pessoa responde sim às perguntas de revisão"
+    },
+    {
+      "id": "D",
+      "tipo": "revisao",
+      "nome": "Inferência (RIR e RIC)",
+      "camada": "Declarar as regras que só se aplicam quando outra informação tem um dado valor (RIR) e as que concluem um estado ou uma ação (RIC), incluindo os mapeamentos conhecidos (tabelas de decisão).",
+      "objetivo": "Rever as regras de inferência (RIR e RIC): os fatores discriminantes, as restrições e as conclusões.",
+      "pergunta": "Que restrições dependem de fatores discriminantes, e que conclusões se tiram da informação?",
+      "entradas": "as regras condicionais e de exclusão; os mapeamentos conhecidos",
+      "principios": [
+        "Uma RIR tem condição (termos com E) e uma restrição com um só alvo; não há OU entre termos (usa-se IN, ou regras separadas).",
+        "A condição não lê o alvo da restrição.",
+        "A regra vive no menor nó que contém tudo o que lê (alcance).",
+        "Os valores dos termos têm de ser plausíveis (I7): se a RP não os admite, corrigir a RP ou a regra.",
+        "Uma regra que, satisfeita a condição, comunica um estado ou uma ação, e não restringe nada, é uma RIC.",
+        "Um mapeamento conhecido (tabela de decisão) dá uma RIR por combinação: confirma-se na vista de decisão.",
+        "Uma regra condicional cuja restrição não cabe num operador do catálogo (presença de uma propriedade, comparação entre duas propriedades, contagem) usa uma função: um termo e/ou uma restrição por função."
+      ],
+      "comoProceder": [
+        "Para cada regra condicional ou de exclusão, identifica os fatores discriminantes (o que decide se a regra se aplica) e o alvo (o que é restringido).",
+        "RIR: condição (termos com E; vários valores do mesmo fator com IN) + restrição com um só alvo; uma regra com OU entre fatores diferentes divide-se em várias RIR.",
+        "RIC: satisfeita a condição, comunica um estado ou uma ação: condição + mensagem + conclusão {tipo: ACAO | ESTADO, valor}.",
+        "A regra vive no menor nó que contém tudo o que lê; os caminhos são relativos a esse nó.",
+        "Os valores dos termos pertencem aos valores plausíveis da propriedade (as RP).",
+        "Um mapeamento conhecido (tabela de decisão do domínio) dá uma RIR por combinação de valores.",
+        "Se a restrição não cabe num operador do catálogo (\"então Y tem de existir\", \"Y maior que Z\", contagens), usa uma função (ver funções).",
+        "Mapeamento de cada regra: destino Regra:<id>, ou descartada com o motivo."
+      ],
+      "verificacoes": [
+        "S-REGRA",
+        "S-TERMO",
+        "I3",
+        "I4",
+        "I5",
+        "I6",
+        "I7",
+        "I8",
+        "I12"
+      ],
+      "verificacoesDoPasso": [
+        "cobertura das regras condicionais e de exclusão",
+        "coerência (regras incompatíveis, condições repetidas)"
+      ],
+      "vistas": [
+        "decisao_<propriedade>",
+        "dependencias_<propriedade>",
+        "regras_<HLM>",
+        "coerencia"
+      ],
+      "revisao": [
+        "A matriz de decisão de cada alvo está completa (sem células vazias que deviam ter regra)?",
+        "Há regras incompatíveis ou repetidas?",
+        "Cada regra vive no nó certo?"
+      ],
+      "alteracoes": [
+        "adicionar_regra",
+        "substituir_regra",
+        "remover_regra",
+        "mover_regra",
+        "mapear"
+      ],
+      "aceitacao": "sem erros de verificação; regras condicionais e de exclusão mapeadas ou descartadas; coerência sem incompatibilidades por explicar; a pessoa responde sim às perguntas de revisão"
+    },
+    {
+      "id": "E",
+      "tipo": "revisao",
+      "nome": "Funções e contextos externos",
+      "camada": "Declarar as verificações que não se exprimem com o catálogo (somas, totais, coerência entre coleções, dígitos de controlo, comparações com valores externos) como funções declaradas, os contextos externos de que dependem e as regras que as chamam.",
+      "objetivo": "Rever as funções, os contextos externos e as regras que os chamam.",
+      "pergunta": "Que verificações precisam de uma função, de que propriedades e de que valores externos?",
+      "entradas": "as regras de cálculo e cruzadas; as funções de referência",
+      "principios": [
+        "Uma função declara-se uma vez (nome, 'Verdadeira quando…', parâmetros alvo e literais, contextos externos, retorno booleano) e chama-se de forma estruturada.",
+        "Uma função genérica (somaIgualA, contagemInferiorA) reutiliza-se em várias regras e domínios; procurar antes de criar.",
+        "Um argumento que atravessa uma coleção tem de passar por uma composição repetível.",
+        "EXT_FUNCTION só para funções com contextos externos; FUNCTION para as restantes.",
+        "Um contexto externo (a data de hoje, o hash anterior, uma tabela externa) declara-se com tipo, descrição e fonte.",
+        "As regras condicionais que não cabem no catálogo (presença condicional, comparação entre propriedades) exprimem-se com uma função: a RIR tem um termo e/ou uma restrição por função."
+      ],
+      "comoProceder": [
+        "Para cada regra de cálculo ou cruzada (somas, totais, contagens, coerência entre linhas e totais, dígitos de controlo, comparações com valores externos) e para cada regra condicional que não cabe no catálogo, decide a função que a exprime.",
+        "Procura primeiro nas funções existentes: uma função genérica reutiliza-se. Só depois declara uma nova: nome em camelCase, descrição \"Verdadeira quando…\", parâmetros (alvo, com coleção quando atravessa uma lista; ou literal), contextos externos, retorno booleano.",
+        "Declara os contextos externos de que as funções dependem (tipo, descrição, fonte).",
+        "A regra que chama a função é uma RP (restrição por função) ou uma RIR (termo e/ou restrição por função), no menor nó que contém os alvos; operador EXT_FUNCTION se a função tem contextos externos, FUNCTION se não.",
+        "Mapeamento de cada regra."
+      ],
+      "verificacoes": [
+        "S-FUNC",
+        "S-CTX",
+        "S-CHAMADA",
+        "I3",
+        "I5",
+        "I11",
+        "I13"
+      ],
+      "verificacoesDoPasso": [
+        "cobertura das regras de cálculo e cruzadas",
+        "funções semelhantes a outras já existentes no grafo (aviso)"
+      ],
+      "vistas": [
+        "regras_<HLM> (agrupar por natureza: funções e contextos)",
+        "regra_<ID>"
+      ],
+      "revisao": [
+        "Cada função é genérica e tem uma descrição que diz quando é verdadeira?",
+        "Os argumentos apontam para as propriedades certas?",
+        "Os contextos externos têm a fonte certa?"
+      ],
+      "alteracoes": [
+        "definir_funcao",
+        "remover_funcao",
+        "definir_contexto",
+        "remover_contexto",
+        "adicionar_regra",
+        "substituir_regra",
+        "remover_regra",
+        "mapear"
+      ],
+      "aceitacao": "sem erros de verificação; regras de cálculo e cruzadas mapeadas ou descartadas; a pessoa responde sim às perguntas de revisão"
+    },
+    {
+      "id": "F",
+      "tipo": "revisao",
+      "nome": "Perfis de execução",
+      "camada": "Declarar os cenários de utilização: que projeção se usa e que valores (propriedades e contextos externos) são conhecidos antes da execução, para tornar a seleção estática.",
+      "objetivo": "Rever os perfis de execução: a projeção e os valores fixados de cada cenário.",
+      "pergunta": "Em que cenários se valida, e o que se sabe antes de começar?",
+      "entradas": "as utilizações e os cenários; as propriedades candidatas a fixar",
+      "principios": [
+        "Um perfil usa uma projeção e fixa valores conhecidos antes da execução.",
+        "Fixar um fator discriminante torna estática a seleção das regras que dele dependem; os valores fixados têm de ser plausíveis.",
+        "Uma regra cuja condição lê propriedades nem projetadas nem fixadas não é avaliável no perfil (I10): corrigir a projeção ou o perfil."
+      ],
+      "comoProceder": [
+        "Para cada cenário real do domínio (nos dados), um perfil que usa a projeção da utilização.",
+        "Fixa no perfil os valores conhecidos antes de validar (o tipo de documento, a moeda, o país, o ambiente de instalação, a data de referência): propriedades (caminho a partir do HLM) e contextos externos.",
+        "Prefere fixar as propriedades lidas nas condições de muitas RIR: a seleção das regras fica estática.",
+        "Nenhuma regra fica não avaliável: se a condição lê uma propriedade nem projetada nem fixada, fixa-a ou acrescenta-a à projeção."
+      ],
+      "verificacoes": [
+        "S-PERFIL",
+        "I9",
+        "I10"
+      ],
+      "verificacoesDoPasso": [
+        "regras não avaliáveis por perfil"
+      ],
+      "vistas": [
+        "perfil_<Perfil>",
+        "candidatos_perfil",
+        "projecoes_<HLM>"
+      ],
+      "revisao": [
+        "Cada cenário real tem o seu perfil?",
+        "As regras ficam no estado esperado (sempre, nunca, dinâmica)?",
+        "Há regras não avaliáveis?"
+      ],
+      "alteracoes": [
+        "definir_perfil",
+        "remover_perfil",
+        "definir_projecao",
+        "mapear"
+      ],
+      "aceitacao": "sem erros de verificação; nenhuma regra não avaliável por explicar; a pessoa responde sim às perguntas de revisão"
+    }
+  ]
+}

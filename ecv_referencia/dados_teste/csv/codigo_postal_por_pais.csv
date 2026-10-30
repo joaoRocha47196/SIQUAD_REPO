@@ -1,0 +1,7 @@
+pais;codigoPostal;mensagem
+PT;^[0-9]{4}-[0-9]{3}$;Em Portugal o código postal tem a forma 0000-000
+ES;^[0-9]{5}$;Em Espanha o código postal tem 5 algarismos
+FR;^[0-9]{5}$;Em França o código postal tem 5 algarismos
+DE;^[0-9]{5}$;Na Alemanha o código postal tem 5 algarismos
+NL;^[0-9]{4} ?[A-Z]{2}$;Nos Países Baixos o código postal tem 4 algarismos e 2 letras
+GB;^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$;No Reino Unido o código postal segue o formato postcode

@@ -1,0 +1,1295 @@
+{
+  "$schema": "../declaracao/ecv.schema.json",
+  "declaracao": {
+    "nome": "ECV de referência: Fatura",
+    "versao": "1.0.0",
+    "descricao": "Exemplo da faturação: o HLM Fatura, com cabeçalho, emitente, cliente e linhas (coleção), e todas as regras, funções, contextos externos, projeções e perfis que lhe dizem respeito. Inclui, repetidos, os modelos partilhados com outros HLM (USM Morada e Entidade, SM Cliente).",
+    "dominios": ["faturação"],
+    "hlm": "Fatura"
+  },
+  "contextosExternos": [
+    {
+      "nome": "dataDeHoje",
+      "tipo": "data",
+      "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+      "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível."
+    },
+    {
+      "nome": "hashAnterior",
+      "tipo": "texto",
+      "descricao": "Hash do último documento emitido na mesma série, que encadeia o documento atual.",
+      "fonte": "Sistema de faturação do emitente."
+    },
+    {
+      "nome": "seriesComunicadasAT",
+      "tipo": "texto",
+      "descricao": "Séries de documentos comunicadas à AT, cada uma com o respetivo código de validação.",
+      "fonte": "Portal das Finanças (AT), sincronizado pelo sistema de faturação."
+    }
+  ],
+  "funcoes": [
+    {
+      "nome": "naoPosteriorAHoje",
+      "descricao": "Verdadeira quando a data indicada não é posterior à data de hoje.",
+      "parametros": [
+        {"nome": "data", "tipo": "data", "papel": "alvo", "descricao": "Data que não pode estar no futuro."}
+      ],
+      "contextosExternos": ["dataDeHoje"],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "valoresUnicos",
+      "descricao": "Verdadeira quando nenhum valor da coleção se repete.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<inteiro>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores de uma propriedade em todas as instâncias da coleção."
+        }
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "valoresConsecutivos",
+      "descricao": "Verdadeira quando os valores da coleção começam em 1 e não têm falhas.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<inteiro>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores de uma propriedade em todas as instâncias da coleção."
+        }
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "contagemInferiorA",
+      "descricao": "Verdadeira quando a coleção tem menos de n instâncias.",
+      "parametros": [
+        {
+          "nome": "instancias",
+          "tipo": "modelo",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Instâncias de um modelo composto com cardinalidade repetível."
+        },
+        {
+          "nome": "n",
+          "tipo": "inteiro",
+          "papel": "parametro",
+          "descricao": "Limite exclusivo do número de instâncias."
+        }
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "somaIgualA",
+      "descricao": "Verdadeira quando a soma dos valores da coleção, arredondada ao cêntimo, é igual ao total.",
+      "parametros": [
+        {
+          "nome": "valores",
+          "tipo": "lista<decimal>",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Valores a somar."
+        },
+        {"nome": "total", "tipo": "decimal", "papel": "alvo", "descricao": "Total declarado."}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "digitoControloValido",
+      "descricao": "Verdadeira quando o dígito de controlo (módulo 11) do NIF está correto.",
+      "parametros": [
+        {"nome": "nif", "tipo": "texto", "papel": "alvo"}
+      ],
+      "contextosExternos": [],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "hashEncadeadoValido",
+      "descricao": "Verdadeira quando o hash do documento deriva do número, da data, do total e do hash do documento anterior da série.",
+      "parametros": [
+        {"nome": "numero", "tipo": "texto", "papel": "alvo"},
+        {"nome": "dataEmissao", "tipo": "data", "papel": "alvo"},
+        {"nome": "totalFatura", "tipo": "decimal", "papel": "alvo"},
+        {"nome": "hash", "tipo": "texto", "papel": "alvo"}
+      ],
+      "contextosExternos": ["hashAnterior"],
+      "retorno": "booleano"
+    },
+    {
+      "nome": "atcudValido",
+      "descricao": "Verdadeira quando o ATCUD pertence a uma série comunicada à AT e corresponde ao seu código de validação.",
+      "parametros": [
+        {"nome": "atcud", "tipo": "texto", "papel": "alvo"},
+        {"nome": "serie", "tipo": "texto", "papel": "alvo"}
+      ],
+      "contextosExternos": ["seriesComunicadasAT"],
+      "retorno": "booleano"
+    }
+  ],
+  "usm": [
+    {
+      "nome": "Morada",
+      "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+      "propriedades": [
+        {"nome": "rua", "tipo": "texto", "descricao": "Arruamento e número de porta"},
+        {
+          "nome": "codigoPostal",
+          "tipo": "texto",
+          "descricao": "Código postal da morada",
+          "nomesAlternativos": ["zipCode", "postalCode", "CP"],
+          "regras": [
+            {
+              "id": "RP-CP",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.codigoPostal segue o padrão ^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+              "restricao": {
+                "propriedade": "codigoPostal",
+                "operador": "PATTERN",
+                "valor": "^([1-9][0-9]{3}-[0-9]{3}|[0-5][0-9]{4}|[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2})$",
+                "mensagem": "O código postal não tem nenhum dos formatos possíveis (português, espanhol ou britânico)."
+              },
+              "notas": "Plausibilidade: os formatos possíveis {PT, ES, GB}. Qual se aplica decide-se por inferência (RIR-CP-PT/ES/GB)."
+            }
+          ]
+        },
+        {
+          "nome": "localidade",
+          "tipo": "texto",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)"
+        },
+        {
+          "nome": "freguesia",
+          "tipo": "texto",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "regras": [
+            {
+              "id": "RP-FREGUESIA",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.freguesia ∈ {AJUDA, ALCANTARA, ALVALADE, AREEIRO, ARROIOS, AVENIDAS_NOVAS, BEATO, BELEM, BENFICA, CAMPO_DE_OURIQUE, CAMPOLIDE, CARNIDE, ESTRELA, LUMIAR, MARVILA, MISERICORDIA, OLIVAIS, PARQUE_DAS_NACOES, PENHA_DE_FRANCA, SANTA_CLARA, SANTA_MARIA_MAIOR, SANTO_ANTONIO, SAO_DOMINGOS_DE_BENFICA, SAO_VICENTE}",
+              "restricao": {
+                "propriedade": "freguesia",
+                "operador": "IN",
+                "valor": [
+                  "AJUDA",
+                  "ALCANTARA",
+                  "ALVALADE",
+                  "AREEIRO",
+                  "ARROIOS",
+                  "AVENIDAS_NOVAS",
+                  "BEATO",
+                  "BELEM",
+                  "BENFICA",
+                  "CAMPO_DE_OURIQUE",
+                  "CAMPOLIDE",
+                  "CARNIDE",
+                  "ESTRELA",
+                  "LUMIAR",
+                  "MARVILA",
+                  "MISERICORDIA",
+                  "OLIVAIS",
+                  "PARQUE_DAS_NACOES",
+                  "PENHA_DE_FRANCA",
+                  "SANTA_CLARA",
+                  "SANTA_MARIA_MAIOR",
+                  "SANTO_ANTONIO",
+                  "SAO_DOMINGOS_DE_BENFICA",
+                  "SAO_VICENTE"
+                ],
+                "mensagem": "A freguesia não pertence às freguesias de Lisboa conhecidas."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "pais",
+          "tipo": "texto",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "nomesAlternativos": ["country", "countryCode"],
+          "regras": [
+            {
+              "id": "RP-PAIS",
+              "natureza": "plausibilidade",
+              "descricao": "Morada.pais ∈ {PT, ES, GB}",
+              "restricao": {
+                "propriedade": "pais",
+                "operador": "IN",
+                "valor": ["PT", "ES", "GB"],
+                "mensagem": "O país tem de ser PT, ES ou GB."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-CP-PT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT → Morada.codigoPostal segue o padrão ^[1-9][0-9]{3}-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[1-9][0-9]{3}-[0-9]{3}$",
+            "mensagem": "O código postal português tem de ter o formato 0000-000, sem começar por zero."
+          }
+        },
+        {
+          "id": "RIR-CP-ES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = ES → Morada.codigoPostal segue o padrão ^[0-5][0-9]{4}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "ES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[0-5][0-9]{4}$",
+            "mensagem": "O código postal espanhol tem de ter cinco algarismos, a começar por 0 a 5."
+          }
+        },
+        {
+          "id": "RIR-CP-GB",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = GB → Morada.codigoPostal segue o padrão ^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "GB"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^[A-Z]{1,2}[0-9][0-9A-Z]? [0-9][A-Z]{2}$",
+            "mensagem": "O código postal britânico tem de ter a forma de um postcode (ex.: SW1A 1AA)."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AJUDA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AJUDA → Morada.codigoPostal segue o padrão ^(1300|1349)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AJUDA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1349)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Ajuda (Lisboa) começa por 1300 ou 1349."
+          },
+          "notas": "Mapeamento conhecido (códigos postais por freguesia de Lisboa) convertido em RIR: uma regra por freguesia. A vista de decisão sobre Morada.codigoPostal reconstrói a tabela."
+        },
+        {
+          "id": "RIR-CP-LX-ALCANTARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALCANTARA → Morada.codigoPostal segue o padrão ^(1300|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALCANTARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1300|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alcantara (Lisboa) começa por 1300 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ALVALADE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ALVALADE → Morada.codigoPostal segue o padrão ^(1700|1749)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ALVALADE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1700|1749)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Alvalade (Lisboa) começa por 1700 ou 1749."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AREEIRO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AREEIRO → Morada.codigoPostal segue o padrão ^(1000|1049)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AREEIRO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1000|1049)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Areeiro (Lisboa) começa por 1000 ou 1049."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ARROIOS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ARROIOS → Morada.codigoPostal segue o padrão ^(1150|1169)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ARROIOS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1150|1169)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Arroios (Lisboa) começa por 1150 ou 1169."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-AVENIDAS-NOVAS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = AVENIDAS_NOVAS → Morada.codigoPostal segue o padrão ^(1050|1069)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "AVENIDAS_NOVAS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1050|1069)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Avenidas Novas (Lisboa) começa por 1050 ou 1069."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BEATO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BEATO → Morada.codigoPostal segue o padrão ^(1900|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BEATO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1900|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Beato (Lisboa) começa por 1900 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BELEM",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BELEM → Morada.codigoPostal segue o padrão ^(1400|1449)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BELEM"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1400|1449)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Belem (Lisboa) começa por 1400 ou 1449."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = BENFICA → Morada.codigoPostal segue o padrão ^(1500|1549)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1549)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Benfica (Lisboa) começa por 1500 ou 1549."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPO-DE-OURIQUE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPO_DE_OURIQUE → Morada.codigoPostal segue o padrão ^(1250|1350)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPO_DE_OURIQUE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1350)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campo de Ourique (Lisboa) começa por 1250 ou 1350."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CAMPOLIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CAMPOLIDE → Morada.codigoPostal segue o padrão ^(1070|1099)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CAMPOLIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1070|1099)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Campolide (Lisboa) começa por 1070 ou 1099."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-CARNIDE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = CARNIDE → Morada.codigoPostal segue o padrão ^(1600|1649)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "CARNIDE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1649)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Carnide (Lisboa) começa por 1600 ou 1649."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-ESTRELA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = ESTRELA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "ESTRELA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Estrela (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-LUMIAR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = LUMIAR → Morada.codigoPostal segue o padrão ^(1600|1750)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "LUMIAR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1600|1750)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Lumiar (Lisboa) começa por 1600 ou 1750."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MARVILA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MARVILA → Morada.codigoPostal segue o padrão ^(1800|1949)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MARVILA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1949)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Marvila (Lisboa) começa por 1800 ou 1949."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-MISERICORDIA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = MISERICORDIA → Morada.codigoPostal segue o padrão ^(1200|1249)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "MISERICORDIA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1200|1249)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Misericordia (Lisboa) começa por 1200 ou 1249."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-OLIVAIS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = OLIVAIS → Morada.codigoPostal segue o padrão ^(1800|1885)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "OLIVAIS"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1800|1885)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Olivais (Lisboa) começa por 1800 ou 1885."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PARQUE-DAS-NACOES",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PARQUE_DAS_NACOES → Morada.codigoPostal segue o padrão ^(1990|1998)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PARQUE_DAS_NACOES"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1990|1998)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Parque das Nacoes (Lisboa) começa por 1990 ou 1998."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-PENHA-DE-FRANCA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = PENHA_DE_FRANCA → Morada.codigoPostal segue o padrão ^(1170|1199)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "PENHA_DE_FRANCA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1170|1199)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Penha de Franca (Lisboa) começa por 1170 ou 1199."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-CLARA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_CLARA → Morada.codigoPostal segue o padrão ^(1750|1769)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_CLARA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1750|1769)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Clara (Lisboa) começa por 1750 ou 1769."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTA-MARIA-MAIOR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTA_MARIA_MAIOR → Morada.codigoPostal segue o padrão ^(1100|1149)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTA_MARIA_MAIOR"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1149)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santa Maria Maior (Lisboa) começa por 1100 ou 1149."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SANTO-ANTONIO",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SANTO_ANTONIO → Morada.codigoPostal segue o padrão ^(1250|1269)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SANTO_ANTONIO"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1250|1269)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Santo Antonio (Lisboa) começa por 1250 ou 1269."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-DOMINGOS-DE-BENFICA",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_DOMINGOS_DE_BENFICA → Morada.codigoPostal segue o padrão ^(1500|1600)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_DOMINGOS_DE_BENFICA"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1500|1600)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Domingos de Benfica (Lisboa) começa por 1500 ou 1600."
+          }
+        },
+        {
+          "id": "RIR-CP-LX-SAO-VICENTE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Morada.pais = PT e Morada.localidade = LISBOA e Morada.freguesia = SAO_VICENTE → Morada.codigoPostal segue o padrão ^(1100|1170)-[0-9]{3}$",
+          "condicao": [
+            {"propriedade": "pais", "operador": "EQUALS", "valor": "PT"},
+            {"propriedade": "localidade", "operador": "EQUALS", "valor": "LISBOA"},
+            {"propriedade": "freguesia", "operador": "EQUALS", "valor": "SAO_VICENTE"}
+          ],
+          "restricao": {
+            "propriedade": "codigoPostal",
+            "operador": "PATTERN",
+            "valor": "^(1100|1170)-[0-9]{3}$",
+            "mensagem": "O código postal de uma morada da freguesia Sao Vicente (Lisboa) começa por 1100 ou 1170."
+          }
+        }
+      ]
+    },
+    {
+      "nome": "Entidade",
+      "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+      "propriedades": [
+        {
+          "nome": "nif",
+          "tipo": "texto",
+          "descricao": "Número de identificação fiscal",
+          "nomesAlternativos": ["taxId", "VATNumber"],
+          "regras": [
+            {
+              "id": "RP-NIF",
+              "natureza": "plausibilidade",
+              "descricao": "Entidade.nif segue o padrão ^[0-9]{9}$",
+              "restricao": {
+                "propriedade": "nif",
+                "operador": "PATTERN",
+                "valor": "^[0-9]{9}$",
+                "mensagem": "O NIF tem de ter nove algarismos."
+              }
+            },
+            {
+              "id": "RP-NIF-DC",
+              "natureza": "plausibilidade",
+              "descricao": "digitoControloValido(Entidade.nif)",
+              "restricao": {
+                "operador": "FUNCTION",
+                "chamada": {
+                  "funcao": "digitoControloValido",
+                  "argumentos": [
+                    {"caminho": "nif"}
+                  ]
+                },
+                "mensagem": "O dígito de controlo do NIF não está correto."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "nome",
+          "tipo": "texto",
+          "descricao": "Nome ou denominação social",
+          "nomesAlternativos": ["name", "denominacao"]
+        }
+      ]
+    },
+    {
+      "nome": "Contacto",
+      "descricao": "Contacto eletrónico de uma entidade.",
+      "propriedades": [
+        {
+          "nome": "email",
+          "tipo": "texto",
+          "descricao": "Endereço de correio eletrónico",
+          "nomesAlternativos": ["eMail", "correioEletronico"],
+          "regras": [
+            {
+              "id": "RP-EMAIL",
+              "natureza": "plausibilidade",
+              "descricao": "Contacto.email segue o padrão ^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+              "restricao": {
+                "propriedade": "email",
+                "operador": "PATTERN",
+                "valor": "^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z0-9-]+)+$",
+                "mensagem": "O email tem de ter uma parte local e um domínio com pelo menos um ponto, sem espaços nem maiúsculas."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Linha",
+      "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+      "propriedades": [
+        {
+          "nome": "numero",
+          "tipo": "inteiro",
+          "descricao": "Número da linha no documento",
+          "nomesAlternativos": ["lineNumber"],
+          "regras": [
+            {
+              "id": "RP-LIN-NUMPOS",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.numero ≥ 1",
+              "restricao": {
+                "propriedade": "numero",
+                "operador": "GTE",
+                "valor": 1,
+                "mensagem": "O número da linha tem de ser igual ou superior a 1."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "descricao",
+          "tipo": "texto",
+          "descricao": "Descrição do bem ou serviço",
+          "nomesAlternativos": ["description"],
+          "regras": [
+            {
+              "id": "RP-LIN-DESC",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.descricao segue o padrão ^.{1,200}$",
+              "restricao": {
+                "propriedade": "descricao",
+                "operador": "PATTERN",
+                "valor": "^.{1,200}$",
+                "mensagem": "A descrição da linha tem de ter entre 1 e 200 caracteres."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "valor",
+          "tipo": "decimal",
+          "descricao": "Valor da linha, em euros",
+          "nomesAlternativos": ["amount"],
+          "regras": [
+            {
+              "id": "RP-VALOR",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.valor ≥ 0",
+              "restricao": {
+                "propriedade": "valor",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O valor da linha não pode ser negativo."
+              }
+            },
+            {
+              "id": "RP-VALOR-DEC",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.valor segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+              "restricao": {
+                "propriedade": "valor",
+                "operador": "PATTERN",
+                "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+                "mensagem": "O valor da linha tem no máximo duas casas decimais."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "tipoIVA",
+          "tipo": "texto",
+          "descricao": "Tipo de taxa de IVA aplicada à linha",
+          "nomesAlternativos": ["taxType"],
+          "regras": [
+            {
+              "id": "RP-TIPOIVA",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.tipoIVA ∈ {ISENTA, REDUZIDA, INTERMEDIA, NORMAL}",
+              "restricao": {
+                "propriedade": "tipoIVA",
+                "operador": "IN",
+                "valor": ["ISENTA", "REDUZIDA", "INTERMEDIA", "NORMAL"],
+                "mensagem": "O tipo de IVA tem de ser isenta, reduzida, intermédia ou normal."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "taxaIVA",
+          "tipo": "decimal",
+          "descricao": "Taxa de IVA aplicada à linha (%)",
+          "nomesAlternativos": ["taxPercentage"],
+          "regras": [
+            {
+              "id": "RP-TAXAIVA",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.taxaIVA entre 0 e 100",
+              "restricao": {
+                "propriedade": "taxaIVA",
+                "operador": "RANGE",
+                "valor": [0, 100],
+                "mensagem": "A taxa de IVA tem de estar entre 0 e 100."
+              }
+            },
+            {
+              "id": "RP-TAXAIVA-DEC",
+              "natureza": "plausibilidade",
+              "descricao": "Linha.taxaIVA segue o padrão ^[0-9]+(\\.[0-9]{1,2})?$",
+              "restricao": {
+                "propriedade": "taxaIVA",
+                "operador": "PATTERN",
+                "valor": "^[0-9]+(\\.[0-9]{1,2})?$",
+                "mensagem": "A taxa de IVA tem no máximo duas casas decimais."
+              }
+            }
+          ]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-IVA-ISE",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Linha.tipoIVA = ISENTA → Linha.taxaIVA = 0",
+          "condicao": [
+            {"propriedade": "tipoIVA", "operador": "EQUALS", "valor": "ISENTA"}
+          ],
+          "restricao": {
+            "propriedade": "taxaIVA",
+            "operador": "EQUALS",
+            "valor": 0,
+            "mensagem": "Uma linha isenta tem de ter taxa de IVA 0."
+          }
+        },
+        {
+          "id": "RIR-IVA-RED",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Linha.tipoIVA = REDUZIDA → Linha.taxaIVA = 6",
+          "condicao": [
+            {"propriedade": "tipoIVA", "operador": "EQUALS", "valor": "REDUZIDA"}
+          ],
+          "restricao": {
+            "propriedade": "taxaIVA",
+            "operador": "EQUALS",
+            "valor": 6,
+            "mensagem": "Uma linha com taxa reduzida tem de ter taxa de IVA 6."
+          }
+        },
+        {
+          "id": "RIR-IVA-INT",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Linha.tipoIVA = INTERMEDIA → Linha.taxaIVA = 13",
+          "condicao": [
+            {"propriedade": "tipoIVA", "operador": "EQUALS", "valor": "INTERMEDIA"}
+          ],
+          "restricao": {
+            "propriedade": "taxaIVA",
+            "operador": "EQUALS",
+            "valor": 13,
+            "mensagem": "Uma linha com taxa intermédia tem de ter taxa de IVA 13."
+          }
+        },
+        {
+          "id": "RIR-IVA-NOR",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Linha.tipoIVA = NORMAL → Linha.taxaIVA = 23",
+          "condicao": [
+            {"propriedade": "tipoIVA", "operador": "EQUALS", "valor": "NORMAL"}
+          ],
+          "restricao": {
+            "propriedade": "taxaIVA",
+            "operador": "EQUALS",
+            "valor": 23,
+            "mensagem": "Uma linha com taxa normal tem de ter taxa de IVA 23."
+          }
+        }
+      ]
+    }
+  ],
+  "sm": [
+    {
+      "nome": "Cabecalho",
+      "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+      "propriedades": [
+        {
+          "nome": "numero",
+          "tipo": "texto",
+          "descricao": "Número do documento (série/sequência)",
+          "nomesAlternativos": ["invoiceNo"]
+        },
+        {
+          "nome": "serie",
+          "tipo": "texto",
+          "descricao": "Série do documento, comunicada à AT",
+          "nomesAlternativos": ["series"]
+        },
+        {
+          "nome": "atcud",
+          "tipo": "texto",
+          "descricao": "Código único do documento (ATCUD)",
+          "nomesAlternativos": ["ATCUD"]
+        },
+        {
+          "nome": "tipoDocumento",
+          "tipo": "texto",
+          "descricao": "Tipo de documento fiscal",
+          "nomesAlternativos": ["invoiceType"],
+          "regras": [
+            {
+              "id": "RP-TIPODOC",
+              "natureza": "plausibilidade",
+              "descricao": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+              "restricao": {
+                "propriedade": "tipoDocumento",
+                "operador": "IN",
+                "valor": ["FT", "FS", "FR", "NC", "ND"],
+                "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "dataEmissao",
+          "tipo": "data",
+          "descricao": "Data de emissão do documento",
+          "nomesAlternativos": ["invoiceDate"],
+          "regras": [
+            {
+              "id": "RP-DATAEMISSAO",
+              "natureza": "plausibilidade",
+              "descricao": "naoPosteriorAHoje(Cabecalho.dataEmissao)",
+              "restricao": {
+                "operador": "EXT_FUNCTION",
+                "chamada": {
+                  "funcao": "naoPosteriorAHoje",
+                  "argumentos": [
+                    {"caminho": "dataEmissao"}
+                  ]
+                },
+                "mensagem": "A data de emissão não pode ser posterior à data de hoje."
+              },
+              "contextosExternos": ["dataDeHoje"]
+            }
+          ]
+        },
+        {
+          "nome": "totalFatura",
+          "tipo": "decimal",
+          "descricao": "Total do documento, em euros",
+          "nomesAlternativos": ["grossTotal"],
+          "regras": [
+            {
+              "id": "RP-TOTAL",
+              "natureza": "plausibilidade",
+              "descricao": "Cabecalho.totalFatura ≥ 0",
+              "restricao": {
+                "propriedade": "totalFatura",
+                "operador": "GTE",
+                "valor": 0,
+                "mensagem": "O total da fatura não pode ser negativo."
+              }
+            }
+          ]
+        },
+        {
+          "nome": "hash",
+          "tipo": "texto",
+          "descricao": "Hash do documento, encadeado com o anterior da série",
+          "nomesAlternativos": ["hashDocumento"]
+        }
+      ],
+      "regras": [
+        {
+          "id": "RIR-FS",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.totalFatura ≤ 1000",
+          "condicao": [
+            {"propriedade": "tipoDocumento", "operador": "EQUALS", "valor": "FS"}
+          ],
+          "restricao": {
+            "propriedade": "totalFatura",
+            "operador": "LTE",
+            "valor": 1000,
+            "mensagem": "Uma fatura simplificada não pode ultrapassar 1000 euros."
+          }
+        },
+        {
+          "id": "RIR-FS-NUM",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\"",
+          "condicao": [
+            {"propriedade": "tipoDocumento", "operador": "EQUALS", "valor": "FS"}
+          ],
+          "restricao": {
+            "propriedade": "numero",
+            "operador": "STARTS_WITH",
+            "valor": "FS",
+            "mensagem": "O número de uma fatura simplificada tem de começar por FS."
+          }
+        },
+        {
+          "id": "RP-HASH",
+          "natureza": "plausibilidade",
+          "descricao": "hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)",
+          "restricao": {
+            "operador": "EXT_FUNCTION",
+            "chamada": {
+              "funcao": "hashEncadeadoValido",
+              "argumentos": [
+                {"caminho": "numero"},
+                {"caminho": "dataEmissao"},
+                {"caminho": "totalFatura"},
+                {"caminho": "hash"}
+              ]
+            },
+            "mensagem": "O hash do documento não corresponde ao encadeamento com o documento anterior."
+          },
+          "contextosExternos": ["hashAnterior"]
+        },
+        {
+          "id": "RP-ATCUD",
+          "natureza": "plausibilidade",
+          "descricao": "atcudValido(Cabecalho.atcud, Cabecalho.serie)",
+          "restricao": {
+            "operador": "EXT_FUNCTION",
+            "chamada": {
+              "funcao": "atcudValido",
+              "argumentos": [
+                {"caminho": "atcud"},
+                {"caminho": "serie"}
+              ]
+            },
+            "mensagem": "O ATCUD não pertence a uma série comunicada à AT."
+          },
+          "contextosExternos": ["seriesComunicadasAT"]
+        }
+      ],
+      "notas": "SM só com propriedades residuais (não compõe USM): o cabeçalho só faz sentido no documento fiscal."
+    },
+    {
+      "nome": "Emitente",
+      "descricao": "Quem emite o documento: identificação, morada e contacto.",
+      "composicao": [
+        {"usm": "Entidade", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"},
+        {"usm": "Contacto", "cardinalidade": "1..1"}
+      ],
+      "regras": [
+        {
+          "id": "RIR-EMAIL-CX",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Emitente.Entidade.nome = Companhia X → Emitente.Contacto.email termina em \"@companhiax.com\"",
+          "condicao": [
+            {"propriedade": "Entidade.nome", "operador": "EQUALS", "valor": "Companhia X"}
+          ],
+          "restricao": {
+            "propriedade": "Contacto.email",
+            "operador": "ENDS_WITH",
+            "valor": "@companhiax.com",
+            "mensagem": "O email de um emitente da Companhia X tem de terminar em @companhiax.com."
+          }
+        },
+        {
+          "id": "RIR-EMAIL-CY",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Emitente.Entidade.nome = Companhia Y → Emitente.Contacto.email termina em \"@companhia-y.pt\"",
+          "condicao": [
+            {"propriedade": "Entidade.nome", "operador": "EQUALS", "valor": "Companhia Y"}
+          ],
+          "restricao": {
+            "propriedade": "Contacto.email",
+            "operador": "ENDS_WITH",
+            "valor": "@companhia-y.pt",
+            "mensagem": "O email de um emitente da Companhia Y tem de terminar em @companhia-y.pt."
+          }
+        }
+      ]
+    },
+    {
+      "nome": "Cliente",
+      "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+      "composicao": [
+        {"usm": "Entidade", "cardinalidade": "1..1"},
+        {"usm": "Morada", "cardinalidade": "1..1"}
+      ],
+      "propriedades": [
+        {
+          "nome": "consentimentoComercial",
+          "tipo": "booleano",
+          "descricao": "Consentimento do cliente para comunicações comerciais",
+          "nomesAlternativos": ["marketingConsent"],
+          "notas": "Propriedade residual: não é canónica (uma pessoa existe sem consentimento) nem é do HLM (é de quem compra)."
+        }
+      ],
+      "notas": "Na Secção ECM da tese corresponde ao 'SM Cliente Comprador', reutilizado pela Fatura e pela Ordem de Instalação."
+    },
+    {
+      "nome": "Linhas",
+      "descricao": "Coleção das linhas do documento.",
+      "composicao": [
+        {"usm": "Linha", "cardinalidade": "1..*"}
+      ],
+      "regras": [
+        {
+          "id": "RP-LIN-NUM",
+          "natureza": "plausibilidade",
+          "descricao": "valoresUnicos(Linhas.Linha.numero)",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "valoresUnicos",
+              "argumentos": [
+                {"caminho": "Linha.numero"}
+              ]
+            },
+            "mensagem": "Existem linhas com o mesmo número."
+          }
+        },
+        {
+          "id": "RP-LIN-SEQ",
+          "natureza": "plausibilidade",
+          "descricao": "valoresConsecutivos(Linhas.Linha.numero)",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "valoresConsecutivos",
+              "argumentos": [
+                {"caminho": "Linha.numero"}
+              ]
+            },
+            "mensagem": "A numeração das linhas tem de começar em 1 e não ter falhas."
+          }
+        },
+        {
+          "id": "RP-LIN-MAX",
+          "natureza": "plausibilidade",
+          "descricao": "contagemInferiorA(Linhas.Linha, 100)",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "contagemInferiorA",
+              "argumentos": [
+                {"caminho": "Linha"},
+                {"literal": 100}
+              ]
+            },
+            "mensagem": "A fatura tem 100 ou mais linhas."
+          }
+        }
+      ],
+      "notas": "SM que existe para reunir uma coleção: nome no plural; o elemento (USM Linha) no singular."
+    }
+  ],
+  "hlm": [
+    {
+      "nome": "Fatura",
+      "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+      "composicao": [
+        {"sm": "Cabecalho", "cardinalidade": "1..1"},
+        {"sm": "Emitente", "cardinalidade": "1..1"},
+        {"sm": "Cliente", "cardinalidade": "1..1"},
+        {"sm": "Linhas", "cardinalidade": "1..1"}
+      ],
+      "regras": [
+        {
+          "id": "RP-SOMA",
+          "natureza": "plausibilidade",
+          "descricao": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "somaIgualA",
+              "argumentos": [
+                {"caminho": "Linhas.Linha.valor"},
+                {"caminho": "Cabecalho.totalFatura"}
+              ]
+            },
+            "mensagem": "O total da fatura não corresponde à soma dos valores das linhas."
+          }
+        },
+        {
+          "id": "RIR-FS-LIN",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Cabecalho.tipoDocumento = FS → contagemInferiorA(Linhas.Linha, 11)",
+          "condicao": [
+            {"propriedade": "Cabecalho.tipoDocumento", "operador": "EQUALS", "valor": "FS"}
+          ],
+          "restricao": {
+            "operador": "FUNCTION",
+            "chamada": {
+              "funcao": "contagemInferiorA",
+              "argumentos": [
+                {"caminho": "Linhas.Linha"},
+                {"literal": 11}
+              ]
+            },
+            "mensagem": "Uma fatura simplificada não pode ter mais de 10 linhas."
+          }
+        },
+        {
+          "id": "RIR-FT-NIF",
+          "natureza": "inferencia_restritiva",
+          "descricao": "Se Cabecalho.totalFatura > 1000 → Cliente.Entidade.nif ≠ 999999990",
+          "condicao": [
+            {"propriedade": "Cabecalho.totalFatura", "operador": "GT", "valor": 1000}
+          ],
+          "restricao": {
+            "propriedade": "Cliente.Entidade.nif",
+            "operador": "NOT_EQUALS",
+            "valor": "999999990",
+            "mensagem": "Uma fatura acima de 1000 euros tem de identificar o NIF do cliente (não pode usar o NIF de consumidor final 999999990)."
+          }
+        }
+      ]
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "FaturaSimplificada",
+      "hlm": "Fatura",
+      "descricao": "Fatura simplificada: dispensa a identificação do cliente.",
+      "obrigatorias": ["Cabecalho.*", "Emitente.*", "Linhas.*"],
+      "permitidas": []
+    },
+    {
+      "nome": "FaturaAT",
+      "hlm": "Fatura",
+      "descricao": "Fatura para submissão à AT: exige o cliente.",
+      "obrigatorias": ["Cabecalho.*", "Emitente.*", "Cliente.Entidade.*", "Cliente.Morada.*", "Linhas.*"],
+      "permitidas": ["Cliente.consentimentoComercial"]
+    }
+  ],
+  "perfis": [
+    {
+      "nome": "EmissaoSimplificada",
+      "projecao": "FaturaSimplificada",
+      "descricao": "Emissão de faturas simplificadas: o tipo de documento é conhecido.",
+      "fixa": [
+        {"propriedade": "Cabecalho.tipoDocumento", "valor": "FS"}
+      ],
+      "notas": "Seleção estática: RIR-FS, RIR-FS-NUM e RIR-FS-LIN passam a ser sempre aplicadas."
+    },
+    {
+      "nome": "SubmissaoAT",
+      "projecao": "FaturaAT",
+      "descricao": "Submissão à AT: nenhum valor conhecido à partida (seleção dinâmica).",
+      "fixa": []
+    },
+    {
+      "nome": "AuditoriaSetembro2026",
+      "projecao": "FaturaAT",
+      "descricao": "Auditoria reprodutível: a data de hoje é fixada.",
+      "fixa": [
+        {"contexto": "dataDeHoje", "valor": "2026-09-30"}
+      ],
+      "notas": "Perfil que injeta um contexto externo: as regras que dependem de dataDeHoje usam este valor."
+    }
+  ]
+}

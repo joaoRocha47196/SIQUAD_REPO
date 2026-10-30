@@ -1,0 +1,15 @@
+{
+ "id": "003-passo-G",
+ "tipo": "passo",
+ "titulo": "Fase G: Geração da declaração completa",
+ "passo": "G",
+ "estado": "pendente",
+ "criado": "2026-10-30T01:34:52",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "tamanho": {
+  "caracteres": 1172656,
+  "tokensEstimados": 293164,
+  "linhas": 19677
+ }
+}

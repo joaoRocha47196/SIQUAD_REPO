@@ -1,0 +1,200 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-SRC",
+  "regra": {
+    "id": "RP-SRC",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+    "alcance": "USM InformacaoGeografica.sistemaReferencia",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "sistemaReferencia",
+      "chave": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+      "dono": "InformacaoGeografica"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.",
+      "texto": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+      "caminho": "sistemaReferencia",
+      "propriedade": "USM:InformacaoGeografica.sistemaReferencia",
+      "valor": [
+        "WGS84",
+        "ETRS89",
+        "PT-TM06"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:InformacaoGeografica.sistemaReferencia",
+      "nome": "sistemaReferencia",
+      "dono": "InformacaoGeografica"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "O sistema de referência tem de ser WGS84, ETRS89 ou PT-TM06.",
+    "texto": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+    "caminho": "sistemaReferencia",
+    "propriedade": "USM:InformacaoGeografica.sistemaReferencia",
+    "valor": [
+      "WGS84",
+      "ETRS89",
+      "PT-TM06"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}",
+    "alvo": {
+      "chave": "USM:InformacaoGeografica.sistemaReferencia",
+      "nome": "sistemaReferencia",
+      "dono": "InformacaoGeografica",
+      "nivelDono": "USM",
+      "tipo": "texto",
+      "descricao": "Sistema de referência das coordenadas"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+    "nome": "sistemaReferencia",
+    "dono": "InformacaoGeografica",
+    "nivelDono": "USM",
+    "tipo": "texto",
+    "descricao": "Sistema de referência das coordenadas",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo",
+      "OrdemInstalacao"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-SRC",
+        "rotulo": "RP",
+        "texto": "RP-SRC",
+        "detalhe": "InformacaoGeografica.sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}"
+      },
+      {
+        "chave": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+        "rotulo": "Propriedade",
+        "texto": "USM:InformacaoGeografica.sistemaReferencia",
+        "detalhe": "Sistema de referência das coordenadas"
+      },
+      {
+        "chave": "Restricao:RP-SRC",
+        "rotulo": "Restricao",
+        "texto": "RP-SRC#restricao",
+        "detalhe": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-SRC",
+        "para": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-SRC",
+        "para": "Restricao:RP-SRC",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-SRC",
+        "para": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+        "tipo": "RESTRINGE",
+        "texto": "sistemaReferencia ∈ {WGS84, ETRS89, PT-TM06}"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+        "rotulo": "Propriedade",
+        "nome": "sistemaReferencia",
+        "dono": "InformacaoGeografica",
+        "descricao": "Sistema de referência das coordenadas",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "USM:InformacaoGeografica",
+        "rotulo": "USM",
+        "nome": "InformacaoGeografica",
+        "dono": null,
+        "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Localizacao",
+        "rotulo": "SM",
+        "nome": "Localizacao",
+        "dono": null,
+        "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:OrdemInstalacao",
+        "rotulo": "HLM",
+        "nome": "OrdemInstalacao",
+        "dono": null,
+        "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:InformacaoGeografica",
+        "para": "Propriedade:USM:InformacaoGeografica.sistemaReferencia",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Localizacao",
+        "para": "USM:InformacaoGeografica",
+        "tipo": "COMPOSTO_POR",
+        "papel": "InformacaoGeografica",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Localizacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Localizacao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:OrdemInstalacao",
+        "para": "SM:Localizacao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Localizacao",
+        "cardinalidade": "1..*"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-SRC"
+  }
+}

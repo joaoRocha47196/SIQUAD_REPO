@@ -1,0 +1,27 @@
+{
+  "descricao": "Leitura de humidade no perfil TesteRefrigeracao: o ambiente, a data de hoje, o relógio e a chave vêm do perfil; a humidade está acima do intervalo de refrigeração e a localização não traz morada (fora da projeção de teste).",
+  "perfil": "TesteRefrigeracao",
+  "contextos": {},
+  "instancia": {
+    "Identificacao": {
+      "identificador": "HUM-0007",
+      "estado": "ATIVO",
+      "tipoDispositivo": "HUMIDADE"
+    },
+    "Leitura": {
+      "Medicao": {
+        "unidadeMedida": "%",
+        "valor": 97,
+        "dataMedicao": "2026-09-30T11:59:30Z"
+      }
+    },
+    "Localizacao": {
+      "InformacaoGeografica": {
+        "latitude": 38.75,
+        "longitude": -9.15,
+        "altitude": 90,
+        "sistemaReferencia": "WGS84"
+      }
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-TIPODOC",
+  "regra": {
+    "id": "RP-TIPODOC",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+    "alcance": "SM Cabecalho.tipoDocumento",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "tipoDocumento",
+      "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+      "dono": "Cabecalho"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "IN",
+      "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND.",
+      "texto": "tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+      "caminho": "tipoDocumento",
+      "propriedade": "SM:Cabecalho.tipoDocumento",
+      "valor": [
+        "FT",
+        "FS",
+        "FR",
+        "NC",
+        "ND"
+      ],
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "SM:Cabecalho.tipoDocumento",
+      "nome": "tipoDocumento",
+      "dono": "Cabecalho"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "IN",
+    "mensagem": "O tipo de documento tem de ser FT, FS, FR, NC ou ND.",
+    "texto": "tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+    "caminho": "tipoDocumento",
+    "propriedade": "SM:Cabecalho.tipoDocumento",
+    "valor": [
+      "FT",
+      "FS",
+      "FR",
+      "NC",
+      "ND"
+    ],
+    "minimo": null,
+    "maximo": null,
+    "descricao": "tipoDocumento ∈ {FT, FS, FR, NC, ND}",
+    "alvo": {
+      "chave": "SM:Cabecalho.tipoDocumento",
+      "nome": "tipoDocumento",
+      "dono": "Cabecalho",
+      "nivelDono": "SM",
+      "tipo": "texto",
+      "descricao": "Tipo de documento fiscal"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+    "nome": "tipoDocumento",
+    "dono": "Cabecalho",
+    "nivelDono": "SM",
+    "tipo": "texto",
+    "descricao": "Tipo de documento fiscal",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-TIPODOC",
+        "rotulo": "RP",
+        "texto": "RP-TIPODOC",
+        "detalhe": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.tipoDocumento",
+        "detalhe": "Tipo de documento fiscal"
+      },
+      {
+        "chave": "Restricao:RP-TIPODOC",
+        "rotulo": "Restricao",
+        "texto": "RP-TIPODOC#restricao",
+        "detalhe": "tipoDocumento ∈ {FT, FS, FR, NC, ND}"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-TIPODOC",
+        "para": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-TIPODOC",
+        "para": "Restricao:RP-TIPODOC",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-TIPODOC",
+        "para": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "tipo": "RESTRINGE",
+        "texto": "tipoDocumento ∈ {FT, FS, FR, NC, ND}"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "rotulo": "Propriedade",
+        "nome": "tipoDocumento",
+        "dono": "Cabecalho",
+        "descricao": "Tipo de documento fiscal",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-TIPODOC"
+  }
+}

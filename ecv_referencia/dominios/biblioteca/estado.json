@@ -1,0 +1,39 @@
+{
+ "dominio": "biblioteca",
+ "passos": {
+  "0": {
+   "estado": "aceite",
+   "atualizado": "2026-10-30T15:04:18",
+   "resumo": [
+    "descricao-biblioteca: 6 grupos, 31 elementos, 18 regras"
+   ]
+  },
+  "G": {
+   "estado": "em curso",
+   "pedidos": [
+    "001-passo-G",
+    "002-passo-G"
+   ],
+   "atualizado": "2026-10-30T15:04:37",
+   "verificacao": "0 declaração(ões); 0 erro(s), 0 aviso(s); cobertura em falta: 49"
+  },
+  "A": {
+   "estado": "por iniciar"
+  },
+  "B": {
+   "estado": "por iniciar"
+  },
+  "C": {
+   "estado": "por iniciar"
+  },
+  "D": {
+   "estado": "por iniciar"
+  },
+  "E": {
+   "estado": "por iniciar"
+  },
+  "F": {
+   "estado": "por iniciar"
+  }
+ }
+}

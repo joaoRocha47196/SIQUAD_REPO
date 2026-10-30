@@ -1,0 +1,202 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIC-MED-DIFERIDA",
+  "regra": {
+    "id": "RIC-MED-DIFERIDA",
+    "tipo": "RIC",
+    "natureza": "inferencia_conclusiva",
+    "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+    "alcance": "USM Medicao.dataMedicao",
+    "notas": "Contexto externo usado diretamente num termo da condição (sem função): dataMedicao < dataDeHoje.",
+    "contextosExternos": [
+      "dataDeHoje"
+    ],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "dataMedicao",
+      "chave": "Propriedade:USM:Medicao.dataMedicao",
+      "dono": "Medicao"
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "dataMedicao",
+        "propriedade": "USM:Medicao.dataMedicao",
+        "operador": "LT",
+        "valor": null,
+        "contexto": "dataDeHoje",
+        "texto": "dataMedicao < dataDeHoje (contexto externo)",
+        "nome": "dataMedicao"
+      }
+    ],
+    "mensagem": "Estado DIFERIDA: a leitura foi medida antes de hoje e chega com atraso; deve ser tratada como dado histórico.",
+    "conclusao": {
+      "tipo": "ESTADO",
+      "valor": "DIFERIDA"
+    },
+    "funcao": false,
+    "categoria": "RIC",
+    "alvo": null,
+    "funcoes": []
+  },
+  "restricao": null,
+  "condicao": {
+    "descricao": "dataMedicao < dataDeHoje (contexto externo)",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "dataMedicao",
+        "propriedade": "USM:Medicao.dataMedicao",
+        "operador": "LT",
+        "valor": null,
+        "contexto": "dataDeHoje",
+        "texto": "dataMedicao < dataDeHoje (contexto externo)",
+        "nome": "dataMedicao",
+        "alvo": {
+          "chave": "USM:Medicao.dataMedicao",
+          "nome": "dataMedicao",
+          "dono": "Medicao",
+          "nivelDono": "USM",
+          "tipo": "data",
+          "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)"
+        },
+        "contextoInfo": {
+          "nome": "dataDeHoje",
+          "tipo": "data",
+          "descricao": "Data atual no momento da avaliação (AAAA-MM-DD).",
+          "fonte": "Relógio do motor de avaliação; pode ser fixada por um perfil para tornar a avaliação reprodutível."
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "chave": "Propriedade:USM:Medicao.dataMedicao",
+    "nome": "dataMedicao",
+    "dono": "Medicao",
+    "nivelDono": "USM",
+    "tipo": "data",
+    "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Dispositivo"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIC-MED-DIFERIDA",
+        "rotulo": "RIC",
+        "texto": "RIC-MED-DIFERIDA",
+        "detalhe": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA"
+      },
+      {
+        "chave": "Propriedade:USM:Medicao.dataMedicao",
+        "rotulo": "Propriedade",
+        "texto": "USM:Medicao.dataMedicao",
+        "detalhe": "Instante em que a medição foi feita (data e hora ISO 8601)"
+      },
+      {
+        "chave": "Condicao:RIC-MED-DIFERIDA",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIC-MED-DIFERIDA#condicao",
+        "detalhe": "dataMedicao < dataDeHoje (contexto externo)"
+      },
+      {
+        "chave": "ContextoExterno:dataDeHoje",
+        "rotulo": "ContextoExterno",
+        "texto": "dataDeHoje",
+        "detalhe": "Data atual no momento da avaliação (AAAA-MM-DD)."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIC-MED-DIFERIDA",
+        "para": "Propriedade:USM:Medicao.dataMedicao",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIC-MED-DIFERIDA",
+        "para": "Condicao:RIC-MED-DIFERIDA",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIC-MED-DIFERIDA",
+        "para": "Propriedade:USM:Medicao.dataMedicao",
+        "tipo": "TERMO",
+        "texto": "termo 1: dataMedicao < dataDeHoje (contexto externo)"
+      },
+      {
+        "de": "Condicao:RIC-MED-DIFERIDA",
+        "para": "ContextoExterno:dataDeHoje",
+        "tipo": "DEPENDE_DE",
+        "texto": "termo 1"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Medicao.dataMedicao",
+        "rotulo": "Propriedade",
+        "nome": "dataMedicao",
+        "dono": "Medicao",
+        "descricao": "Instante em que a medição foi feita (data e hora ISO 8601)",
+        "tipoBase": "data"
+      },
+      {
+        "chave": "USM:Medicao",
+        "rotulo": "USM",
+        "nome": "Medicao",
+        "dono": null,
+        "descricao": "Leitura de um sensor: unidade, valor medido e instante da medição.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Leitura",
+        "rotulo": "SM",
+        "nome": "Leitura",
+        "dono": null,
+        "descricao": "Uma leitura: a medição, o local onde foi feita e, se existir, a assinatura da mensagem.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Dispositivo",
+        "rotulo": "HLM",
+        "nome": "Dispositivo",
+        "dono": null,
+        "descricao": "Dispositivo IoT: identificação, leitura, localização e diagnóstico.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Medicao",
+        "para": "Propriedade:USM:Medicao.dataMedicao",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Leitura",
+        "para": "USM:Medicao",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Medicao",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "HLM:Dispositivo",
+        "para": "SM:Leitura",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Leitura",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIC-MED-DIFERIDA"
+  }
+}

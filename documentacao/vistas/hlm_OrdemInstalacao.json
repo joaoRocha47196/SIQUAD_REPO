@@ -1,0 +1,772 @@
+{
+  "vista": "modelo",
+  "titulo": "Modelo HLM OrdemInstalacao",
+  "nivel": "HLM",
+  "nome": "OrdemInstalacao",
+  "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+  "comRegras": false,
+  "especifico": false,
+  "arvore": {
+    "nivel": "HLM",
+    "nome": "OrdemInstalacao",
+    "papel": null,
+    "cardinalidade": null,
+    "caminho": "",
+    "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar.",
+    "propriedades": [],
+    "filhos": [
+      {
+        "nivel": "SM",
+        "nome": "Pedido",
+        "papel": "Pedido",
+        "cardinalidade": "1..1",
+        "caminho": "Pedido",
+        "descricao": "Dados do pedido de instalação: número e data.",
+        "propriedades": [
+          {
+            "chave": "SM:Pedido.numeroOrdem",
+            "nome": "numeroOrdem",
+            "dono": "Pedido",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Número da ordem de instalação",
+            "caminho": "Pedido.numeroOrdem",
+            "nomesAlternativos": [
+              "orderId"
+            ],
+            "discriminante": false
+          },
+          {
+            "chave": "SM:Pedido.dataPedido",
+            "nome": "dataPedido",
+            "dono": "Pedido",
+            "nivelDono": "SM",
+            "tipo": "data",
+            "descricao": "Data em que a instalação foi pedida",
+            "caminho": "Pedido.dataPedido",
+            "nomesAlternativos": [
+              "requestDate"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": []
+      },
+      {
+        "nivel": "SM",
+        "nome": "Cliente",
+        "papel": "Requerente",
+        "cardinalidade": "1..1",
+        "caminho": "Requerente",
+        "descricao": "Quem adquire os bens ou serviços (cliente comprador).",
+        "propriedades": [
+          {
+            "chave": "SM:Cliente.consentimentoComercial",
+            "nome": "consentimentoComercial",
+            "dono": "Cliente",
+            "nivelDono": "SM",
+            "tipo": "booleano",
+            "descricao": "Consentimento do cliente para comunicações comerciais",
+            "caminho": "Requerente.consentimentoComercial",
+            "nomesAlternativos": [
+              "marketingConsent"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "Entidade",
+            "papel": "Entidade",
+            "cardinalidade": "1..1",
+            "caminho": "Requerente.Entidade",
+            "descricao": "Pessoa singular ou coletiva identificada pelo NIF.",
+            "propriedades": [
+              {
+                "chave": "USM:Entidade.nif",
+                "nome": "nif",
+                "dono": "Entidade",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Número de identificação fiscal",
+                "caminho": "Requerente.Entidade.nif",
+                "nomesAlternativos": [
+                  "taxId",
+                  "VATNumber"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Entidade.nome",
+                "nome": "nome",
+                "dono": "Entidade",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Nome ou denominação social",
+                "caminho": "Requerente.Entidade.nome",
+                "nomesAlternativos": [
+                  "name",
+                  "denominacao"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Morada",
+            "papel": "Morada",
+            "cardinalidade": "1..1",
+            "caminho": "Requerente.Morada",
+            "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+            "propriedades": [
+              {
+                "chave": "USM:Morada.rua",
+                "nome": "rua",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Arruamento e número de porta",
+                "caminho": "Requerente.Morada.rua",
+                "nomesAlternativos": [],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.codigoPostal",
+                "nome": "codigoPostal",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Código postal da morada",
+                "caminho": "Requerente.Morada.codigoPostal",
+                "nomesAlternativos": [
+                  "zipCode",
+                  "postalCode",
+                  "CP"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.localidade",
+                "nome": "localidade",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+                "caminho": "Requerente.Morada.localidade",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.freguesia",
+                "nome": "freguesia",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+                "caminho": "Requerente.Morada.freguesia",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.pais",
+                "nome": "pais",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "País da morada (código ISO de duas letras)",
+                "caminho": "Requerente.Morada.pais",
+                "nomesAlternativos": [
+                  "country",
+                  "countryCode"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      },
+      {
+        "nivel": "SM",
+        "nome": "Localizacao",
+        "papel": "Localizacao",
+        "cardinalidade": "1..*",
+        "caminho": "Localizacao",
+        "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso.",
+        "propriedades": [
+          {
+            "chave": "SM:Localizacao.indicacaoAcesso",
+            "nome": "indicacaoAcesso",
+            "dono": "Localizacao",
+            "nivelDono": "SM",
+            "tipo": "texto",
+            "descricao": "Indicação de acesso ao local (texto livre, ex.: portão lateral, chave no cofre)",
+            "caminho": "Localizacao.indicacaoAcesso",
+            "nomesAlternativos": [
+              "accessNotes"
+            ],
+            "discriminante": false
+          }
+        ],
+        "filhos": [
+          {
+            "nivel": "USM",
+            "nome": "InformacaoGeografica",
+            "papel": "InformacaoGeografica",
+            "cardinalidade": "1..1",
+            "caminho": "Localizacao.InformacaoGeografica",
+            "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência.",
+            "propriedades": [
+              {
+                "chave": "USM:InformacaoGeografica.latitude",
+                "nome": "latitude",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Latitude, em graus decimais",
+                "caminho": "Localizacao.InformacaoGeografica.latitude",
+                "nomesAlternativos": [
+                  "lat"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:InformacaoGeografica.longitude",
+                "nome": "longitude",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Longitude, em graus decimais",
+                "caminho": "Localizacao.InformacaoGeografica.longitude",
+                "nomesAlternativos": [
+                  "lon",
+                  "lng"
+                ],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:InformacaoGeografica.altitude",
+                "nome": "altitude",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "decimal",
+                "descricao": "Altitude, em metros",
+                "caminho": "Localizacao.InformacaoGeografica.altitude",
+                "nomesAlternativos": [
+                  "alt",
+                  "elevation"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:InformacaoGeografica.sistemaReferencia",
+                "nome": "sistemaReferencia",
+                "dono": "InformacaoGeografica",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Sistema de referência das coordenadas",
+                "caminho": "Localizacao.InformacaoGeografica.sistemaReferencia",
+                "nomesAlternativos": [
+                  "crs",
+                  "datum"
+                ],
+                "discriminante": false
+              }
+            ],
+            "filhos": []
+          },
+          {
+            "nivel": "USM",
+            "nome": "Morada",
+            "papel": "Morada",
+            "cardinalidade": "1..1",
+            "caminho": "Localizacao.Morada",
+            "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país.",
+            "propriedades": [
+              {
+                "chave": "USM:Morada.rua",
+                "nome": "rua",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Arruamento e número de porta",
+                "caminho": "Localizacao.Morada.rua",
+                "nomesAlternativos": [],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.codigoPostal",
+                "nome": "codigoPostal",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Código postal da morada",
+                "caminho": "Localizacao.Morada.codigoPostal",
+                "nomesAlternativos": [
+                  "zipCode",
+                  "postalCode",
+                  "CP"
+                ],
+                "discriminante": false
+              },
+              {
+                "chave": "USM:Morada.localidade",
+                "nome": "localidade",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+                "caminho": "Localizacao.Morada.localidade",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.freguesia",
+                "nome": "freguesia",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+                "caminho": "Localizacao.Morada.freguesia",
+                "nomesAlternativos": [],
+                "discriminante": true
+              },
+              {
+                "chave": "USM:Morada.pais",
+                "nome": "pais",
+                "dono": "Morada",
+                "nivelDono": "USM",
+                "tipo": "texto",
+                "descricao": "País da morada (código ISO de duas letras)",
+                "caminho": "Localizacao.Morada.pais",
+                "nomesAlternativos": [
+                  "country",
+                  "countryCode"
+                ],
+                "discriminante": true
+              }
+            ],
+            "filhos": []
+          }
+        ]
+      }
+    ]
+  },
+  "raiz": {
+    "profundidade": 0,
+    "tipo": "HLM",
+    "nome": "OrdemInstalacao",
+    "caminho": "",
+    "descricao": "Ordem de instalação de equipamento: quem a pede e onde instalar."
+  },
+  "blocos": [
+    {
+      "nome": "Pedido",
+      "nivel": "SM",
+      "papel": "Pedido",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Pedido",
+          "papel": "Pedido",
+          "caminho": "Pedido",
+          "cardinalidade": "1..1",
+          "descricao": "Dados do pedido de instalação: número e data."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "numeroOrdem",
+          "caminho": "Pedido.numeroOrdem",
+          "descricao": "Número da ordem de instalação",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "orderId"
+          ],
+          "chave": "SM:Pedido.numeroOrdem",
+          "dono": "Pedido",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "dataPedido",
+          "caminho": "Pedido.dataPedido",
+          "descricao": "Data em que a instalação foi pedida",
+          "tipoBase": "data",
+          "nomesAlternativos": [
+            "requestDate"
+          ],
+          "chave": "SM:Pedido.dataPedido",
+          "dono": "Pedido",
+          "discriminante": false
+        }
+      ],
+      "resumoPropriedades": [
+        "numeroOrdem",
+        "dataPedido"
+      ]
+    },
+    {
+      "nome": "Cliente",
+      "nivel": "SM",
+      "papel": "Requerente",
+      "cardinalidade": "1..1",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Cliente",
+          "papel": "Requerente",
+          "caminho": "Requerente",
+          "cardinalidade": "1..1",
+          "descricao": "Quem adquire os bens ou serviços (cliente comprador)."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "consentimentoComercial",
+          "caminho": "Requerente.consentimentoComercial",
+          "descricao": "Consentimento do cliente para comunicações comerciais",
+          "tipoBase": "booleano",
+          "nomesAlternativos": [
+            "marketingConsent"
+          ],
+          "chave": "SM:Cliente.consentimentoComercial",
+          "dono": "Cliente",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Entidade",
+          "papel": "Entidade",
+          "caminho": "Requerente.Entidade",
+          "cardinalidade": "1..1",
+          "descricao": "Pessoa singular ou coletiva identificada pelo NIF."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "nif",
+          "caminho": "Requerente.Entidade.nif",
+          "descricao": "Número de identificação fiscal",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "taxId",
+            "VATNumber"
+          ],
+          "chave": "USM:Entidade.nif",
+          "dono": "Entidade",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "nome",
+          "caminho": "Requerente.Entidade.nome",
+          "descricao": "Nome ou denominação social",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "name",
+            "denominacao"
+          ],
+          "chave": "USM:Entidade.nome",
+          "dono": "Entidade",
+          "discriminante": true
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Morada",
+          "papel": "Morada",
+          "caminho": "Requerente.Morada",
+          "cardinalidade": "1..1",
+          "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "rua",
+          "caminho": "Requerente.Morada.rua",
+          "descricao": "Arruamento e número de porta",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.rua",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "codigoPostal",
+          "caminho": "Requerente.Morada.codigoPostal",
+          "descricao": "Código postal da morada",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "zipCode",
+            "postalCode",
+            "CP"
+          ],
+          "chave": "USM:Morada.codigoPostal",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "localidade",
+          "caminho": "Requerente.Morada.localidade",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.localidade",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "freguesia",
+          "caminho": "Requerente.Morada.freguesia",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.freguesia",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "pais",
+          "caminho": "Requerente.Morada.pais",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "country",
+            "countryCode"
+          ],
+          "chave": "USM:Morada.pais",
+          "dono": "Morada",
+          "discriminante": true
+        }
+      ],
+      "resumoPropriedades": [
+        "consentimentoComercial",
+        "nif",
+        "nome",
+        "rua",
+        "codigoPostal",
+        "localidade",
+        "freguesia",
+        "pais"
+      ]
+    },
+    {
+      "nome": "Localizacao",
+      "nivel": "SM",
+      "papel": "Localizacao",
+      "cardinalidade": "1..*",
+      "linhas": [
+        {
+          "profundidade": 1,
+          "tipo": "SM",
+          "nome": "Localizacao",
+          "papel": "Localizacao",
+          "caminho": "Localizacao",
+          "cardinalidade": "1..*",
+          "descricao": "Localização de um equipamento: coordenadas, morada e indicação de acesso."
+        },
+        {
+          "profundidade": 2,
+          "tipo": "Propriedade",
+          "nome": "indicacaoAcesso",
+          "caminho": "Localizacao.indicacaoAcesso",
+          "descricao": "Indicação de acesso ao local (texto livre, ex.: portão lateral, chave no cofre)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "accessNotes"
+          ],
+          "chave": "SM:Localizacao.indicacaoAcesso",
+          "dono": "Localizacao",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "InformacaoGeografica",
+          "papel": "InformacaoGeografica",
+          "caminho": "Localizacao.InformacaoGeografica",
+          "cardinalidade": "1..1",
+          "descricao": "Coordenadas geográficas de um ponto e o respetivo sistema de referência."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "latitude",
+          "caminho": "Localizacao.InformacaoGeografica.latitude",
+          "descricao": "Latitude, em graus decimais",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "lat"
+          ],
+          "chave": "USM:InformacaoGeografica.latitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "longitude",
+          "caminho": "Localizacao.InformacaoGeografica.longitude",
+          "descricao": "Longitude, em graus decimais",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "lon",
+            "lng"
+          ],
+          "chave": "USM:InformacaoGeografica.longitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "altitude",
+          "caminho": "Localizacao.InformacaoGeografica.altitude",
+          "descricao": "Altitude, em metros",
+          "tipoBase": "decimal",
+          "nomesAlternativos": [
+            "alt",
+            "elevation"
+          ],
+          "chave": "USM:InformacaoGeografica.altitude",
+          "dono": "InformacaoGeografica",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "sistemaReferencia",
+          "caminho": "Localizacao.InformacaoGeografica.sistemaReferencia",
+          "descricao": "Sistema de referência das coordenadas",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "crs",
+            "datum"
+          ],
+          "chave": "USM:InformacaoGeografica.sistemaReferencia",
+          "dono": "InformacaoGeografica",
+          "discriminante": false
+        },
+        {
+          "profundidade": 2,
+          "tipo": "USM",
+          "nome": "Morada",
+          "papel": "Morada",
+          "caminho": "Localizacao.Morada",
+          "cardinalidade": "1..1",
+          "descricao": "Morada postal: arruamento, código postal, localidade, freguesia e país."
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "rua",
+          "caminho": "Localizacao.Morada.rua",
+          "descricao": "Arruamento e número de porta",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.rua",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "codigoPostal",
+          "caminho": "Localizacao.Morada.codigoPostal",
+          "descricao": "Código postal da morada",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "zipCode",
+            "postalCode",
+            "CP"
+          ],
+          "chave": "USM:Morada.codigoPostal",
+          "dono": "Morada",
+          "discriminante": false
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "localidade",
+          "caminho": "Localizacao.Morada.localidade",
+          "descricao": "Localidade da morada (em maiúsculas, sem acentos)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.localidade",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "freguesia",
+          "caminho": "Localizacao.Morada.freguesia",
+          "descricao": "Freguesia da morada (só para moradas em Lisboa)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [],
+          "chave": "USM:Morada.freguesia",
+          "dono": "Morada",
+          "discriminante": true
+        },
+        {
+          "profundidade": 3,
+          "tipo": "Propriedade",
+          "nome": "pais",
+          "caminho": "Localizacao.Morada.pais",
+          "descricao": "País da morada (código ISO de duas letras)",
+          "tipoBase": "texto",
+          "nomesAlternativos": [
+            "country",
+            "countryCode"
+          ],
+          "chave": "USM:Morada.pais",
+          "dono": "Morada",
+          "discriminante": true
+        }
+      ],
+      "resumoPropriedades": [
+        "indicacaoAcesso",
+        "latitude",
+        "longitude",
+        "altitude",
+        "sistemaReferencia",
+        "rua",
+        "codigoPostal",
+        "localidade",
+        "freguesia",
+        "pais"
+      ]
+    }
+  ],
+  "projecoes": [
+    {
+      "nome": "OrdemCompleta",
+      "descricao": "Ordem de instalação com requerente e locais completos.",
+      "perfis": [
+        "OrdensCorrentes"
+      ]
+    }
+  ],
+  "parametros": {
+    "nivel": "HLM",
+    "nome": "OrdemInstalacao"
+  }
+}

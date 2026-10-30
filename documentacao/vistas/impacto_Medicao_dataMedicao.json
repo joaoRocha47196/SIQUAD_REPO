@@ -1,0 +1,47 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de dataMedicao (Medicao)",
+  "propriedade": "USM:Medicao.dataMedicao",
+  "nome": "dataMedicao",
+  "regras": [
+    {
+      "id": "RP-RELOGIO",
+      "tipo": "RP",
+      "descricao": "desfasamentoInferiorA(Medicao.dataMedicao, 300)",
+      "papeis": [
+        "argumento de desfasamentoInferiorA (restricao)",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIC-MED-DIFERIDA",
+      "tipo": "RIC",
+      "descricao": "Se Medicao.dataMedicao < dataDeHoje (contexto externo) → informa Estado DIFERIDA",
+      "papeis": [
+        "termo da condição",
+        "vive na propriedade"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 1,
+    "RIR": 0,
+    "RIC": 1
+  },
+  "projecoes": [
+    {
+      "projecao": "DispositivoProducao",
+      "tipo": "obrigatoria",
+      "caminho": "Leitura.Medicao.dataMedicao"
+    },
+    {
+      "projecao": "DispositivoTeste",
+      "tipo": "obrigatoria",
+      "caminho": "Leitura.Medicao.dataMedicao"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "USM:Medicao.dataMedicao"
+  }
+}

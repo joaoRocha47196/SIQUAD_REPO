@@ -1,0 +1,215 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-LIN-MAX",
+  "regra": {
+    "id": "RP-LIN-MAX",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "contagemInferiorA(Linhas.Linha, 100)",
+    "alcance": "SM Linhas",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "SM",
+      "nome": "Linhas",
+      "chave": "SM:Linhas",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "funcao",
+      "operador": "FUNCTION",
+      "mensagem": "A fatura tem 100 ou mais linhas.",
+      "texto": "contagemInferiorA(Linha, 100)",
+      "chamada": {
+        "funcao": "contagemInferiorA",
+        "chamada": "contagemInferiorA(Linha, 100)",
+        "operador": "FUNCTION",
+        "termo": null,
+        "descricaoFuncao": "Verdadeira quando a coleção tem menos de n instâncias.",
+        "argumentos": [
+          {
+            "caminho": "Linha",
+            "alvo": "Linha",
+            "nomeAlvo": "Linha",
+            "rotuloAlvo": "USM",
+            "colecao": true
+          }
+        ],
+        "contextos": []
+      }
+    },
+    "mensagem": "A fatura tem 100 ou mais linhas.",
+    "funcao": true,
+    "categoria": "FN",
+    "alvo": {
+      "chave": "Linha",
+      "nome": "Linha",
+      "funcao": "contagemInferiorA"
+    },
+    "funcoes": [
+      "contagemInferiorA"
+    ]
+  },
+  "restricao": {
+    "forma": "funcao",
+    "operador": "FUNCTION",
+    "mensagem": "A fatura tem 100 ou mais linhas.",
+    "texto": "contagemInferiorA(Linha, 100)",
+    "chamada": {
+      "funcao": "contagemInferiorA",
+      "chamada": "contagemInferiorA(Linha, 100)",
+      "operador": "FUNCTION",
+      "termo": null,
+      "descricaoFuncao": "Verdadeira quando a coleção tem menos de n instâncias.",
+      "argumentos": [
+        {
+          "caminho": "Linha",
+          "alvo": "Linha",
+          "nomeAlvo": "Linha",
+          "rotuloAlvo": "USM",
+          "colecao": true
+        }
+      ],
+      "contextos": []
+    },
+    "descricao": "contagemInferiorA(Linha, 100)",
+    "funcao": {
+      "nome": "contagemInferiorA",
+      "descricao": "Verdadeira quando a coleção tem menos de n instâncias.",
+      "parametros": [
+        {
+          "nome": "instancias",
+          "tipo": "modelo",
+          "papel": "alvo",
+          "colecao": true,
+          "descricao": "Instâncias de um modelo composto com cardinalidade repetível."
+        },
+        {
+          "nome": "n",
+          "tipo": "inteiro",
+          "papel": "parametro",
+          "descricao": "Limite exclusivo do número de instâncias."
+        }
+      ],
+      "retorno": "booleano",
+      "contextos": []
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "rotulo": "SM",
+    "nome": "Linhas",
+    "descricao": "Coleção das linhas do documento.",
+    "chave": "SM:Linhas",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-LIN-MAX",
+        "rotulo": "RP",
+        "texto": "RP-LIN-MAX",
+        "detalhe": "contagemInferiorA(Linhas.Linha, 100)"
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "texto": "Linhas",
+        "detalhe": "Coleção das linhas do documento."
+      },
+      {
+        "chave": "Restricao:RP-LIN-MAX",
+        "rotulo": "Restricao",
+        "texto": "RP-LIN-MAX#restricao",
+        "detalhe": "contagemInferiorA(Linha, 100)"
+      },
+      {
+        "chave": "Funcao:contagemInferiorA",
+        "rotulo": "Funcao",
+        "texto": "contagemInferiorA",
+        "detalhe": "Verdadeira quando a coleção tem menos de n instâncias."
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "texto": "Linha",
+        "detalhe": "Linha de um documento: um bem ou serviço, com valor e IVA."
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-LIN-MAX",
+        "para": "SM:Linhas",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-LIN-MAX",
+        "para": "Restricao:RP-LIN-MAX",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-LIN-MAX",
+        "para": "Funcao:contagemInferiorA",
+        "tipo": "CHAMA",
+        "texto": "contagemInferiorA(Linha, 100)"
+      },
+      {
+        "de": "Funcao:contagemInferiorA",
+        "para": "USM:Linha",
+        "tipo": "LE",
+        "texto": "argumento: Linha (coleção)"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-LIN-MAX"
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RIR-FS-NUM",
+  "regra": {
+    "id": "RIR-FS-NUM",
+    "tipo": "RIR",
+    "natureza": "inferencia_restritiva",
+    "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\"",
+    "alcance": "SM Cabecalho",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "SM",
+      "nome": "Cabecalho",
+      "chave": "SM:Cabecalho",
+      "dono": null
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "STARTS_WITH",
+      "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+      "texto": "numero começa por \"FS\"",
+      "caminho": "numero",
+      "propriedade": "SM:Cabecalho.numero",
+      "valor": "FS",
+      "minimo": null,
+      "maximo": null
+    },
+    "condicao": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "tipoDocumento",
+        "propriedade": "SM:Cabecalho.tipoDocumento",
+        "operador": "EQUALS",
+        "valor": "FS",
+        "contexto": null,
+        "texto": "tipoDocumento = FS",
+        "nome": "tipoDocumento"
+      }
+    ],
+    "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+    "funcao": false,
+    "categoria": "RIR",
+    "alvo": {
+      "chave": "SM:Cabecalho.numero",
+      "nome": "numero",
+      "dono": "Cabecalho"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "STARTS_WITH",
+    "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+    "texto": "numero começa por \"FS\"",
+    "caminho": "numero",
+    "propriedade": "SM:Cabecalho.numero",
+    "valor": "FS",
+    "minimo": null,
+    "maximo": null,
+    "descricao": "numero começa por \"FS\"",
+    "alvo": {
+      "chave": "SM:Cabecalho.numero",
+      "nome": "numero",
+      "dono": "Cabecalho",
+      "nivelDono": "SM",
+      "tipo": "texto",
+      "descricao": "Número do documento (série/sequência)"
+    }
+  },
+  "condicao": {
+    "descricao": "tipoDocumento = FS",
+    "termos": [
+      {
+        "ordem": 0,
+        "forma": "tipificado",
+        "caminho": "tipoDocumento",
+        "propriedade": "SM:Cabecalho.tipoDocumento",
+        "operador": "EQUALS",
+        "valor": "FS",
+        "contexto": null,
+        "texto": "tipoDocumento = FS",
+        "nome": "tipoDocumento",
+        "alvo": {
+          "chave": "SM:Cabecalho.tipoDocumento",
+          "nome": "tipoDocumento",
+          "dono": "Cabecalho",
+          "nivelDono": "SM",
+          "tipo": "texto",
+          "descricao": "Tipo de documento fiscal"
+        }
+      }
+    ]
+  },
+  "viveEm": {
+    "rotulo": "SM",
+    "nome": "Cabecalho",
+    "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+    "chave": "SM:Cabecalho",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RIR-FS-NUM",
+        "rotulo": "RIR",
+        "texto": "RIR-FS-NUM",
+        "detalhe": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\""
+      },
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "texto": "Cabecalho",
+        "detalhe": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento."
+      },
+      {
+        "chave": "Restricao:RIR-FS-NUM",
+        "rotulo": "Restricao",
+        "texto": "RIR-FS-NUM#restricao",
+        "detalhe": "numero começa por \"FS\""
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.numero",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.numero",
+        "detalhe": "Número do documento (série/sequência)"
+      },
+      {
+        "chave": "Condicao:RIR-FS-NUM",
+        "rotulo": "CondicaoAplicabilidade",
+        "texto": "RIR-FS-NUM#condicao",
+        "detalhe": "tipoDocumento = FS"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "rotulo": "Propriedade",
+        "texto": "SM:Cabecalho.tipoDocumento",
+        "detalhe": "Tipo de documento fiscal"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RIR-FS-NUM",
+        "para": "SM:Cabecalho",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RIR-FS-NUM",
+        "para": "Restricao:RIR-FS-NUM",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RIR-FS-NUM",
+        "para": "Propriedade:SM:Cabecalho.numero",
+        "tipo": "RESTRINGE",
+        "texto": "numero começa por \"FS\""
+      },
+      {
+        "de": "R:RIR-FS-NUM",
+        "para": "Condicao:RIR-FS-NUM",
+        "tipo": "CONDICIONADA_POR",
+        "texto": null
+      },
+      {
+        "de": "Condicao:RIR-FS-NUM",
+        "para": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "tipo": "TERMO",
+        "texto": "termo 1: tipoDocumento = FS"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "SM:Cabecalho",
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "dono": null,
+        "descricao": "Cabeçalho do documento: identificação, série, tipo, data, total e encadeamento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.numero",
+        "rotulo": "Propriedade",
+        "nome": "numero",
+        "dono": "Cabecalho",
+        "descricao": "Número do documento (série/sequência)",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "rotulo": "Propriedade",
+        "nome": "tipoDocumento",
+        "dono": "Cabecalho",
+        "descricao": "Tipo de documento fiscal",
+        "tipoBase": "texto"
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Cabecalho",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Cabecalho",
+        "cardinalidade": "1..1"
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.numero",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Cabecalho",
+        "para": "Propriedade:SM:Cabecalho.tipoDocumento",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RIR-FS-NUM"
+  }
+}

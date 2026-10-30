@@ -1,0 +1,201 @@
+{
+ "descricao": "Instância de teste do perfil EmissaoAutofaturacao (projeção FaturaCiusPt) do HLM DocumentoFaturacao. Pretende-se testar uma combinação de regras aprovadas e falhadas. Devem falhar: RP-IVA-DECOMP, porque a categoria RED utilizada numa linha não aparece na decomposição do IVA; RP-LENT-MORADA, porque a morada do local de entrega não está preenchida; RP-LIN-UNICAS, porque existem duas linhas com o mesmo identificador; RP-SOMA-DESCONTOS, porque o total de descontos não corresponde à soma dos descontos; RP-SOMA-IVA, porque o total de IVA não corresponde à soma dos impostos decompostos; RP-DOC-DATAIVA, porque dataIva e codigoDataIva estão simultaneamente preenchidos; RP-CP, porque o código postal do adquirente é inválido; RP-DE-JUSTIFICADO, porque um desconto não apresenta motivo nem código de motivo. As restantes regras aplicáveis devem ser satisfeitas.",
+ "perfil": "EmissaoAutofaturacao",
+ "contextos": {},
+ "instancia": {
+  "CabecalhoDocumento": {
+   "numero": "AF-2026-001",
+   "dataEmissao": "2026-10-30",
+   "tipoDocumento": "389",
+   "moeda": "EUR",
+   "moedaIva": "EUR",
+   "dataIva": "2026-10-30",
+   "codigoDataIva": "3",
+   "dataVencimento": "2026-11-29",
+   "referenciaCliente": "REF-CLIENTE-2026-001",
+   "numeroCompromisso": "COMP-2026-001",
+   "condicoesPagamento": "Pagamento a 30 dias após a emissão da fatura.",
+   "tipoProcesso": "AUTOFATURACAO",
+   "identificadorEspecificacao": "urn:cen.eu:en16931:2017#compliant#urn:feap.gov.pt:CIUS-PT:2.1"
+  },
+  "Fornecedor": {
+   "registoFiscal": "Sociedade por quotas",
+   "capitalSocial": "Capital social de 50000 EUR, sociedade por quotas.",
+   "enderecoEletronico": "fornecedor@example.pt",
+   "pontoContacto": "Departamento Financeiro",
+   "SujeitoPassivo": {
+    "nome": "Fornecedor Exemplo Lda",
+    "nomeComercial": "Fornecedor Exemplo",
+    "identificador": "GLN1234567890123",
+    "identificadorRegisto": "NIPC123456789",
+    "identificadorIva": "PT123456789"
+   },
+   "Morada": {
+    "rua": "Rua do Comércio 100",
+    "codigoPostal": "1000-001",
+    "localidade": "LISBOA",
+    "freguesia": "AREEIRO",
+    "pais": "PT"
+   },
+   "ComplementoMorada": {
+    "linha2": "Edifício A",
+    "linha3": "Piso 2",
+    "regiao": "Lisboa"
+   },
+   "ContactoTelefonico": {
+    "telefone": "+351 210000001"
+   },
+   "Contacto": {
+    "email": "financeiro@fornecedor.pt"
+   }
+  },
+  "Adquirente": {
+   "enderecoEletronico": "adquirente@example.pt",
+   "pontoContacto": "Departamento de Compras",
+   "SujeitoPassivo": {
+    "nome": "Adquirente Exemplo SA",
+    "nomeComercial": "Adquirente Exemplo",
+    "identificador": "GLN9876543210987",
+    "identificadorRegisto": "NIPC987654321",
+    "identificadorIva": "PT987654321"
+   },
+   "Morada": {
+    "rua": "Avenida da Liberdade 200",
+    "codigoPostal": "9999-999",
+    "localidade": "LISBOA",
+    "freguesia": "SANTO_ANTONIO",
+    "pais": "PT"
+   },
+   "ComplementoMorada": {
+    "linha2": "Edifício B",
+    "linha3": "Piso 3",
+    "regiao": "Lisboa"
+   },
+   "ContactoTelefonico": {
+    "telefone": "+351 210000002"
+   },
+   "Contacto": {
+    "email": "compras@adquirente.pt"
+   }
+  },
+  "LocalEntrega": [
+   {
+    "nomeLocal": "Armazém Central",
+    "identificadorLocal": "LOC-001",
+    "dataEntrega": "2026-10-30",
+    "Morada": {
+     "rua": "",
+     "codigoPostal": "",
+     "localidade": "",
+     "freguesia": "",
+     "pais": "PT"
+    }
+   }
+  ],
+  "Desconto": [
+   {
+    "DescontoEncargo": {
+     "montante": 10.0,
+     "montanteBase": 100.0,
+     "percentagem": 10.0,
+     "motivo": "",
+     "codigoMotivo": ""
+    },
+    "CategoriaIva": {
+     "codigoCategoria": "NOR",
+     "taxa": 23.0
+    }
+   }
+  ],
+  "Encargo": [
+   {
+    "DescontoEncargo": {
+     "montante": 5.0,
+     "montanteBase": 100.0,
+     "percentagem": 5.0,
+     "motivo": "Encargo de transporte",
+     "codigoMotivo": "FC"
+    },
+    "CategoriaIva": {
+     "codigoCategoria": "NOR",
+     "taxa": 23.0
+    }
+   }
+  ],
+  "Totais": {
+   "somaLinhas": 200.0,
+   "totalDescontos": 15.0,
+   "totalEncargos": 5.0,
+   "totalSemIva": 190.0,
+   "totalIva": 43.0,
+   "totalComIva": 233.0,
+   "valorPago": 0.0,
+   "arredondamento": 0.0,
+   "valorPagar": 233.0
+  },
+  "DecomposicaoIva": [
+   {
+    "baseTributavel": 195.0,
+    "montanteImposto": 44.85,
+    "CategoriaIva": {
+     "codigoCategoria": "NOR",
+     "taxa": 23.0
+    }
+   }
+  ],
+  "LinhaDocumento": [
+   {
+    "identificador": "LIN-001",
+    "quantidade": 2.0,
+    "unidadeMedida": "UN",
+    "montanteLiquido": 100.0,
+    "Artigo": {
+     "nome": "Equipamento informático",
+     "descricao": "Equipamento informático para utilização profissional.",
+     "codigo": "ART-001",
+     "codigoComprador": "CLI-001",
+     "codigoBarras": "5601234567890",
+     "classificacao": "30200000",
+     "paisOrigem": "PT"
+    },
+    "Preco": {
+     "precoLiquido": 100.0,
+     "descontoPreco": 0.0,
+     "precoBruto": 100.0,
+     "quantidadeBase": 1.0,
+     "unidadeQuantidadeBase": "UN"
+    },
+    "CategoriaIva": {
+     "codigoCategoria": "NOR",
+     "taxa": 23.0
+    }
+   },
+   {
+    "identificador": "LIN-001",
+    "quantidade": 1.0,
+    "unidadeMedida": "UN",
+    "montanteLiquido": 100.0,
+    "Artigo": {
+     "nome": "Serviço de instalação",
+     "descricao": "Serviço de instalação do equipamento.",
+     "codigo": "ART-002",
+     "codigoComprador": "CLI-002",
+     "codigoBarras": "5609876543210",
+     "classificacao": "51600000",
+     "paisOrigem": "PT"
+    },
+    "Preco": {
+     "precoLiquido": 100.0,
+     "descontoPreco": 0.0,
+     "precoBruto": 100.0,
+     "quantidadeBase": 1.0,
+     "unidadeQuantidadeBase": "UN"
+    },
+    "CategoriaIva": {
+     "codigoCategoria": "RED",
+     "taxa": 6.0
+    }
+   }
+  ]
+ }
+}

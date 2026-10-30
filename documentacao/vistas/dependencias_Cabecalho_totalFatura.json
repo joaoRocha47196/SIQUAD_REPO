@@ -1,0 +1,94 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de Cabecalho.totalFatura",
+  "propriedade": {
+    "chave": "SM:Cabecalho.totalFatura",
+    "nome": "totalFatura",
+    "dono": "Cabecalho",
+    "nivelDono": "SM",
+    "tipo": "decimal",
+    "descricao": "Total do documento, em euros"
+  },
+  "plausiveis": [],
+  "rp": [
+    {
+      "id": "RP-TOTAL",
+      "texto": "Cabecalho.totalFatura ≥ 0"
+    }
+  ],
+  "valores": [],
+  "outrosTermos": [
+    "RIR-FT-NIF"
+  ],
+  "regras": [
+    {
+      "id": "RIR-FT-NIF",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Cabecalho.totalFatura > 1000 → Cliente.Entidade.nif ≠ 999999990",
+      "alcance": "HLM Fatura",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "chave": "HLM:Fatura",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "NOT_EQUALS",
+        "mensagem": "Uma fatura acima de 1000 euros tem de identificar o NIF do cliente (não pode usar o NIF de consumidor final 999999990).",
+        "texto": "Cliente.Entidade.nif ≠ 999999990",
+        "caminho": "Cliente.Entidade.nif",
+        "propriedade": "USM:Entidade.nif",
+        "valor": "999999990",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Cabecalho.totalFatura",
+          "propriedade": "SM:Cabecalho.totalFatura",
+          "operador": "GT",
+          "valor": 1000,
+          "contexto": null,
+          "texto": "totalFatura > 1000",
+          "nome": "totalFatura",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma fatura acima de 1000 euros tem de identificar o NIF do cliente (não pode usar o NIF de consumidor final 999999990).",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "USM:Entidade.nif",
+        "nome": "nif",
+        "dono": "Entidade"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "USM:Entidade.nif",
+          "nome": "nif",
+          "caminho": "Cliente.Entidade.nif"
+        }
+      ]
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": "USM:Entidade.nif",
+      "nome": "nif",
+      "caminho": "Cliente.Entidade.nif",
+      "regras": [
+        "RIR-FT-NIF"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "SM:Cabecalho.totalFatura"
+  }
+}

@@ -1,0 +1,17 @@
+{
+ "id": "011-instancia",
+ "tipo": "instancia",
+ "titulo": "Instância de teste INTANCIA DE TESTES",
+ "passo": null,
+ "estado": "aplicado",
+ "criado": "2026-10-30T15:45:35",
+ "ficheiroResposta": "resposta.json",
+ "dominio": "faturacao",
+ "perfil": "PERFILTESTE",
+ "hlm": "",
+ "nome": "INTANCIA DE TESTES",
+ "pedido": "Passar a algumas regras",
+ "respondido": "2026-10-30T15:47:21",
+ "aplicado": "2026-10-30T15:47:23",
+ "resumo": "instância gravada em dominios\\faturacao\\instancias\\intancia_de_testes.json; válida (conforme: 3, fora da projeção: 303, ausente: 7)"
+}

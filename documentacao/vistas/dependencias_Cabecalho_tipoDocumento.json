@@ -1,0 +1,296 @@
+{
+  "vista": "dependencias",
+  "titulo": "Dependências de validade de Cabecalho.tipoDocumento",
+  "propriedade": {
+    "chave": "SM:Cabecalho.tipoDocumento",
+    "nome": "tipoDocumento",
+    "dono": "Cabecalho",
+    "nivelDono": "SM",
+    "tipo": "texto",
+    "descricao": "Tipo de documento fiscal"
+  },
+  "plausiveis": [
+    "FT",
+    "FS",
+    "FR",
+    "NC",
+    "ND"
+  ],
+  "rp": [
+    {
+      "id": "RP-TIPODOC",
+      "texto": "Cabecalho.tipoDocumento ∈ {FT, FS, FR, NC, ND}"
+    }
+  ],
+  "valores": [
+    {
+      "valor": "FT",
+      "plausivel": true,
+      "regras": [],
+      "afetadas": [],
+      "semRegras": true
+    },
+    {
+      "valor": "FS",
+      "plausivel": true,
+      "regras": [
+        "RIR-FS",
+        "RIR-FS-LIN",
+        "RIR-FS-NUM"
+      ],
+      "afetadas": [
+        {
+          "chave": "SM:Cabecalho.totalFatura",
+          "nome": "totalFatura",
+          "caminho": "totalFatura"
+        },
+        {
+          "chave": "Linha",
+          "nome": "Linha",
+          "caminho": "Linhas.Linha"
+        },
+        {
+          "chave": "SM:Cabecalho.numero",
+          "nome": "numero",
+          "caminho": "numero"
+        }
+      ],
+      "semRegras": false
+    },
+    {
+      "valor": "FR",
+      "plausivel": true,
+      "regras": [],
+      "afetadas": [],
+      "semRegras": true
+    },
+    {
+      "valor": "NC",
+      "plausivel": true,
+      "regras": [],
+      "afetadas": [],
+      "semRegras": true
+    },
+    {
+      "valor": "ND",
+      "plausivel": true,
+      "regras": [],
+      "afetadas": [],
+      "semRegras": true
+    }
+  ],
+  "outrosTermos": [],
+  "regras": [
+    {
+      "id": "RIR-FS",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.totalFatura ≤ 1000",
+      "alcance": "SM Cabecalho",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "chave": "SM:Cabecalho",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "LTE",
+        "mensagem": "Uma fatura simplificada não pode ultrapassar 1000 euros.",
+        "texto": "totalFatura ≤ 1000",
+        "caminho": "totalFatura",
+        "propriedade": "SM:Cabecalho.totalFatura",
+        "valor": 1000,
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoDocumento",
+          "propriedade": "SM:Cabecalho.tipoDocumento",
+          "operador": "EQUALS",
+          "valor": "FS",
+          "contexto": null,
+          "texto": "tipoDocumento = FS",
+          "nome": "tipoDocumento",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma fatura simplificada não pode ultrapassar 1000 euros.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "SM:Cabecalho.totalFatura",
+        "nome": "totalFatura",
+        "dono": "Cabecalho"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "SM:Cabecalho.totalFatura",
+          "nome": "totalFatura",
+          "caminho": "totalFatura"
+        }
+      ]
+    },
+    {
+      "id": "RIR-FS-LIN",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → contagemInferiorA(Linhas.Linha, 11)",
+      "alcance": "HLM Fatura",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "chave": "HLM:Fatura",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "funcao",
+        "operador": "FUNCTION",
+        "mensagem": "Uma fatura simplificada não pode ter mais de 10 linhas.",
+        "texto": "contagemInferiorA(Linhas.Linha, 11)",
+        "chamada": {
+          "funcao": "contagemInferiorA",
+          "chamada": "contagemInferiorA(Linhas.Linha, 11)",
+          "operador": "FUNCTION",
+          "termo": null,
+          "descricaoFuncao": "Verdadeira quando a coleção tem menos de n instâncias.",
+          "argumentos": [
+            {
+              "caminho": "Linhas.Linha",
+              "alvo": "Linha",
+              "nomeAlvo": "Linha",
+              "rotuloAlvo": "USM",
+              "colecao": true
+            }
+          ],
+          "contextos": []
+        }
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "Cabecalho.tipoDocumento",
+          "propriedade": "SM:Cabecalho.tipoDocumento",
+          "operador": "EQUALS",
+          "valor": "FS",
+          "contexto": null,
+          "texto": "tipoDocumento = FS",
+          "nome": "tipoDocumento",
+          "foco": true
+        }
+      ],
+      "mensagem": "Uma fatura simplificada não pode ter mais de 10 linhas.",
+      "funcao": true,
+      "categoria": "FN",
+      "alvo": {
+        "chave": "Linha",
+        "nome": "Linha",
+        "funcao": "contagemInferiorA"
+      },
+      "funcoes": [
+        "contagemInferiorA"
+      ],
+      "alvos": [
+        {
+          "chave": "Linha",
+          "nome": "Linha",
+          "caminho": "Linhas.Linha"
+        }
+      ]
+    },
+    {
+      "id": "RIR-FS-NUM",
+      "tipo": "RIR",
+      "natureza": "inferencia_restritiva",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.numero começa por \"FS\"",
+      "alcance": "SM Cabecalho",
+      "notas": null,
+      "contextosExternos": [],
+      "viveEm": {
+        "rotulo": "SM",
+        "nome": "Cabecalho",
+        "chave": "SM:Cabecalho",
+        "dono": null
+      },
+      "restricao": {
+        "forma": "tipificada",
+        "operador": "STARTS_WITH",
+        "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+        "texto": "numero começa por \"FS\"",
+        "caminho": "numero",
+        "propriedade": "SM:Cabecalho.numero",
+        "valor": "FS",
+        "minimo": null,
+        "maximo": null
+      },
+      "condicao": [
+        {
+          "ordem": 0,
+          "forma": "tipificado",
+          "caminho": "tipoDocumento",
+          "propriedade": "SM:Cabecalho.tipoDocumento",
+          "operador": "EQUALS",
+          "valor": "FS",
+          "contexto": null,
+          "texto": "tipoDocumento = FS",
+          "nome": "tipoDocumento",
+          "foco": true
+        }
+      ],
+      "mensagem": "O número de uma fatura simplificada tem de começar por FS.",
+      "funcao": false,
+      "categoria": "RIR",
+      "alvo": {
+        "chave": "SM:Cabecalho.numero",
+        "nome": "numero",
+        "dono": "Cabecalho"
+      },
+      "funcoes": [],
+      "alvos": [
+        {
+          "chave": "SM:Cabecalho.numero",
+          "nome": "numero",
+          "caminho": "numero"
+        }
+      ]
+    }
+  ],
+  "afetadas": [
+    {
+      "chave": "SM:Cabecalho.totalFatura",
+      "nome": "totalFatura",
+      "caminho": "totalFatura",
+      "regras": [
+        "RIR-FS"
+      ]
+    },
+    {
+      "chave": "Linha",
+      "nome": "Linha",
+      "caminho": "Linhas.Linha",
+      "regras": [
+        "RIR-FS-LIN"
+      ]
+    },
+    {
+      "chave": "SM:Cabecalho.numero",
+      "nome": "numero",
+      "caminho": "numero",
+      "regras": [
+        "RIR-FS-NUM"
+      ]
+    }
+  ],
+  "parametros": {
+    "propriedade": "SM:Cabecalho.tipoDocumento"
+  }
+}

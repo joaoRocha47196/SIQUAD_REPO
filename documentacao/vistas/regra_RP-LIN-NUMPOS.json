@@ -1,0 +1,176 @@
+{
+  "vista": "regra",
+  "titulo": "Regra RP-LIN-NUMPOS",
+  "regra": {
+    "id": "RP-LIN-NUMPOS",
+    "tipo": "RP",
+    "natureza": "plausibilidade",
+    "descricao": "Linha.numero ≥ 1",
+    "alcance": "USM Linha.numero",
+    "notas": null,
+    "contextosExternos": [],
+    "viveEm": {
+      "rotulo": "Propriedade",
+      "nome": "numero",
+      "chave": "Propriedade:USM:Linha.numero",
+      "dono": "Linha"
+    },
+    "restricao": {
+      "forma": "tipificada",
+      "operador": "GTE",
+      "mensagem": "O número da linha tem de ser igual ou superior a 1.",
+      "texto": "numero ≥ 1",
+      "caminho": "numero",
+      "propriedade": "USM:Linha.numero",
+      "valor": 1,
+      "minimo": null,
+      "maximo": null
+    },
+    "mensagem": "O número da linha tem de ser igual ou superior a 1.",
+    "funcao": false,
+    "categoria": "RP",
+    "alvo": {
+      "chave": "USM:Linha.numero",
+      "nome": "numero",
+      "dono": "Linha"
+    },
+    "funcoes": []
+  },
+  "restricao": {
+    "forma": "tipificada",
+    "operador": "GTE",
+    "mensagem": "O número da linha tem de ser igual ou superior a 1.",
+    "texto": "numero ≥ 1",
+    "caminho": "numero",
+    "propriedade": "USM:Linha.numero",
+    "valor": 1,
+    "minimo": null,
+    "maximo": null,
+    "descricao": "numero ≥ 1",
+    "alvo": {
+      "chave": "USM:Linha.numero",
+      "nome": "numero",
+      "dono": "Linha",
+      "nivelDono": "USM",
+      "tipo": "inteiro",
+      "descricao": "Número da linha no documento"
+    }
+  },
+  "condicao": null,
+  "viveEm": {
+    "chave": "Propriedade:USM:Linha.numero",
+    "nome": "numero",
+    "dono": "Linha",
+    "nivelDono": "USM",
+    "tipo": "inteiro",
+    "descricao": "Número da linha no documento",
+    "rotulo": "Propriedade",
+    "hlm": [
+      "Fatura"
+    ]
+  },
+  "subgrafoRegra": {
+    "nos": [
+      {
+        "chave": "R:RP-LIN-NUMPOS",
+        "rotulo": "RP",
+        "texto": "RP-LIN-NUMPOS",
+        "detalhe": "Linha.numero ≥ 1"
+      },
+      {
+        "chave": "Propriedade:USM:Linha.numero",
+        "rotulo": "Propriedade",
+        "texto": "USM:Linha.numero",
+        "detalhe": "Número da linha no documento"
+      },
+      {
+        "chave": "Restricao:RP-LIN-NUMPOS",
+        "rotulo": "Restricao",
+        "texto": "RP-LIN-NUMPOS#restricao",
+        "detalhe": "numero ≥ 1"
+      }
+    ],
+    "arestas": [
+      {
+        "de": "R:RP-LIN-NUMPOS",
+        "para": "Propriedade:USM:Linha.numero",
+        "tipo": "ASSOCIADA_A",
+        "texto": "vive em (alcance)"
+      },
+      {
+        "de": "R:RP-LIN-NUMPOS",
+        "para": "Restricao:RP-LIN-NUMPOS",
+        "tipo": "RESTRITA_POR",
+        "texto": null
+      },
+      {
+        "de": "Restricao:RP-LIN-NUMPOS",
+        "para": "Propriedade:USM:Linha.numero",
+        "tipo": "RESTRINGE",
+        "texto": "numero ≥ 1"
+      }
+    ]
+  },
+  "subgrafoModelos": {
+    "nos": [
+      {
+        "chave": "Propriedade:USM:Linha.numero",
+        "rotulo": "Propriedade",
+        "nome": "numero",
+        "dono": "Linha",
+        "descricao": "Número da linha no documento",
+        "tipoBase": "inteiro"
+      },
+      {
+        "chave": "USM:Linha",
+        "rotulo": "USM",
+        "nome": "Linha",
+        "dono": null,
+        "descricao": "Linha de um documento: um bem ou serviço, com valor e IVA.",
+        "tipoBase": null
+      },
+      {
+        "chave": "SM:Linhas",
+        "rotulo": "SM",
+        "nome": "Linhas",
+        "dono": null,
+        "descricao": "Coleção das linhas do documento.",
+        "tipoBase": null
+      },
+      {
+        "chave": "HLM:Fatura",
+        "rotulo": "HLM",
+        "nome": "Fatura",
+        "dono": null,
+        "descricao": "Documento fiscal de venda: cabeçalho, emitente, cliente e linhas.",
+        "tipoBase": null
+      }
+    ],
+    "arestas": [
+      {
+        "de": "USM:Linha",
+        "para": "Propriedade:USM:Linha.numero",
+        "tipo": "CONTEM",
+        "papel": null,
+        "cardinalidade": null
+      },
+      {
+        "de": "SM:Linhas",
+        "para": "USM:Linha",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linha",
+        "cardinalidade": "1..*"
+      },
+      {
+        "de": "HLM:Fatura",
+        "para": "SM:Linhas",
+        "tipo": "COMPOSTO_POR",
+        "papel": "Linhas",
+        "cardinalidade": "1..1"
+      }
+    ]
+  },
+  "parametros": {
+    "id": "RP-LIN-NUMPOS"
+  }
+}

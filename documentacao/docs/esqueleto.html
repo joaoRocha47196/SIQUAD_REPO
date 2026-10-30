@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Esqueleto da declaração · documentação ECV</title><style>
+:root{--hlm:#8B1E3F;--sm:#0072B2;--usm:#0E7C7B;--rp:#009E73;--rir:#E69F00;--ric:#D55E00;--accent:#5a1a2f;--line:#dedede;--soft:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,"DejaVu Sans",sans-serif;font-size:13.5px;line-height:1.5;color:#1b1b1b;background:#fff;display:flex}
+aside{width:270px;min-width:270px;height:100vh;position:sticky;top:0;overflow-y:auto;background:#f7f5f6;border-right:1px solid #e2dcdf;padding:14px 12px;font-size:12.5px}
+aside .brand{font-weight:bold;color:var(--accent);font-size:15px;margin-bottom:10px;display:block;text-decoration:none}
+aside h4{margin:14px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a6b77}
+aside a{display:block;color:#333;text-decoration:none;padding:1px 4px;border-radius:3px}
+aside a:hover{background:#ece4e8}
+aside a.current{background:var(--accent);color:#fff}
+aside a.sub{padding-left:16px;font-size:12px;color:#555}
+aside a.sub.current{color:#fff}
+main{flex:1;min-width:0;padding:22px 34px 60px;max-width:1300px}
+h1{color:var(--accent);font-size:22px;margin:0 0 6px}
+h2{color:var(--accent);font-size:17px;margin:28px 0 8px;border-bottom:1px solid #eee;padding-bottom:3px}
+h3{font-size:14.5px;margin:20px 0 6px}
+h4,h5,h6{font-size:13.5px;margin:14px 0 4px}
+.crumbs{font-size:12px;color:var(--soft);margin-bottom:8px}
+.crumbs a{color:var(--soft)}
+.summary{font-size:14px;color:#333;background:#faf7f8;border-left:4px solid var(--accent);padding:10px 14px;margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:12.8px}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+thead th{border-bottom:2px solid #444;background:#fff}
+code{font-family:"DejaVu Sans Mono",Menlo,monospace;font-size:12px;background:#f4f4f4;padding:0 3px;border-radius:3px}
+pre.code{background:#f6f6f6;border:1px solid #e6e6e6;border-radius:6px;padding:10px;overflow:auto;font-size:12px;max-height:520px}
+pre.code code{background:none;padding:0}
+pre.mermaid{background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;text-align:center}
+blockquote{border-left:3px solid #ccc;margin:8px 0;padding:2px 12px;color:#444}
+.diagram{overflow-x:auto;border:1px solid #eee;border-radius:8px;padding:6px;background:#fff;margin:8px 0 14px}
+.diagram svg a:hover rect{stroke-width:3.2}
+.note{color:var(--soft);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13.5px}
+dl.io{display:grid;grid-template-columns:150px 1fr;gap:4px 14px;margin:8px 0 14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+dl.io dt{font-weight:bold;color:var(--accent)}dl.io dd{margin:0}
+details>summary{cursor:pointer;font-weight:bold;color:var(--accent)}
+</style></head><body><aside><a class="brand" href="index.html">ECV · documentação técnica</a><h4>Visão geral</h4><a class="" href="index.html">O sistema</a><a class="" href="configuracao.html">Configuração</a><a class="" href="glossario.html">Glossário</a><a class="" href="readme.html">README do repositório</a><h4>Specs</h4><a class="" href="specs.html">Specs</a><a class="sub" href="entidades.html">Entidades (índice)</a><a class="sub" href="entidade_HLM.html">HLM</a><a class="sub" href="entidade_SM.html">SM</a><a class="sub" href="entidade_USM.html">USM</a><a class="sub" href="entidade_Propriedade.html">Propriedade</a><a class="sub" href="entidade_Composicao.html">Composicao</a><a class="sub" href="entidade_Regra.html">Regra</a><a class="sub" href="entidade_RP.html">RP</a><a class="sub" href="entidade_RIR.html">RIR</a><a class="sub" href="entidade_RIC.html">RIC</a><a class="sub" href="entidade_Restricao.html">Restricao</a><a class="sub" href="entidade_CondicaoAplicabilidade.html">CondicaoAplicabilidade</a><a class="sub" href="entidade_Funcao.html">Funcao</a><a class="sub" href="entidade_ContextoExterno.html">ContextoExterno</a><a class="sub" href="entidade_RE_Projecao.html">RE_Projecao</a><a class="sub" href="entidade_Perfil.html">Perfil</a><a class="sub" href="transversal_Caminhos.html">Caminhos</a><a class="sub" href="transversal_Catalogo.html">Catalogo</a><a class="sub" href="transversal_Nomenclatura.html">Nomenclatura</a><a class="sub" href="verificacao.html">Verificacao</a><a class="" href="declaracao.html">Declaração ECV</a><a class="sub" href="esquema.html">JSON Schema</a><a class="current sub" href="esqueleto.html">Esqueleto</a><a class="" href="exemplos.html">Exemplos</a><h4>Transformação</h4><a class="" href="transformacao.html">Geração e revisão por camadas</a><a class="" href="especificacao_interna.html">Especificação interna</a><a class="" href="pedidos.html">Pedidos ao LLM</a><a class="sub" href="passo_0.html">0 · Extração</a><a class="sub" href="passo_A.html">A · Estrutura (ECM)</a><a class="sub" href="passo_B.html">B · Projeções (RE)</a><a class="sub" href="passo_C.html">C · Plausibilidade (RP)</a><a class="sub" href="passo_D.html">D · Inferência (RIR e RIC)</a><a class="sub" href="passo_E.html">E · Funções e contextos externos</a><a class="sub" href="passo_F.html">F · Perfis de execução</a><a class="" href="alteracoes.html">Alterações (operações, texto, CSV)</a><a class="" href="extracao.html">Extração e inventário</a><a class="" href="dados.html">Dados de origem</a><a class="sub" href="dominio_biblioteca.html">Domínio Biblioteca municipal</a><a class="sub" href="dominio_faturacao.html">Domínio Faturação</a><a class="sub" href="dominio_iot.html">Domínio Dispositivos IoT</a><a class="" href="dominios.html">Domínios</a><h4>Ingestão e grafo</h4><a class="" href="ingestao.html">Ingestão</a><a class="sub" href="fusao.html">Fusão</a><a class="" href="grafo.html">Grafo: modelo e armazenamento</a><a class="" href="base_dados.html">Base de dados da aplicação</a><a class="sub" href="no_HLM.html">nó HLM</a><a class="sub" href="no_SM.html">nó SM</a><a class="sub" href="no_USM.html">nó USM</a><a class="sub" href="no_Propriedade.html">nó Propriedade</a><a class="sub" href="no_RP.html">nó RP</a><a class="sub" href="no_RIR.html">nó RIR</a><a class="sub" href="no_RIC.html">nó RIC</a><a class="sub" href="no_Restricao.html">nó Restricao</a><a class="sub" href="no_CondicaoAplicabilidade.html">nó CondicaoAplicabilidade</a><a class="sub" href="no_Funcao.html">nó Funcao</a><a class="sub" href="no_ContextoExterno.html">nó ContextoExterno</a><a class="sub" href="no_Projecao.html">nó Projecao</a><a class="sub" href="no_Perfil.html">nó Perfil</a><a class="sub" href="no_Declaracao.html">nó Declaracao</a><a class="sub" href="aresta_COMPOSTO_POR.html">aresta COMPOSTO_POR</a><a class="sub" href="aresta_CONTEM.html">aresta CONTEM</a><a class="sub" href="aresta_ASSOCIADA_A.html">aresta ASSOCIADA_A</a><a class="sub" href="aresta_RESTRITA_POR.html">aresta RESTRITA_POR</a><a class="sub" href="aresta_CONDICIONADA_POR.html">aresta CONDICIONADA_POR</a><a class="sub" href="aresta_RESTRINGE.html">aresta RESTRINGE</a><a class="sub" href="aresta_TERMO.html">aresta TERMO</a><a class="sub" href="aresta_CHAMA.html">aresta CHAMA</a><a class="sub" href="aresta_LE.html">aresta LE</a><a class="sub" href="aresta_DEPENDE_DE.html">aresta DEPENDE_DE</a><a class="sub" href="aresta_PROJETA.html">aresta PROJETA</a><a class="sub" href="aresta_OBRIGATORIA.html">aresta OBRIGATORIA</a><a class="sub" href="aresta_PERMITIDA.html">aresta PERMITIDA</a><a class="sub" href="aresta_USA.html">aresta USA</a><a class="sub" href="aresta_FIXA.html">aresta FIXA</a><a class="sub" href="aresta_DESCREVE.html">aresta DESCREVE</a><h4>Vistas</h4><a class="" href="vistas.html">Vistas: índice e navegação</a><a class="sub" href="vista_indice.html">Índice das vistas</a><a class="sub" href="vista_modelo_hlm.html">Vista do modelo (HLM)</a><a class="sub" href="vista_modelo_regras.html">Vista do modelo com regras</a><a class="sub" href="vista_modelo_especifico.html">Vista de um modelo específico (SM ou USM)</a><a class="sub" href="vista_projecoes.html">Matriz de projeções</a><a class="sub" href="vista_decisao.html">Vista de decisão (matriz e árvore)</a><a class="sub" href="vista_dependencias.html">Análise de dependência de validade</a><a class="sub" href="vista_impacto.html">Impacto de uma alteração</a><a class="sub" href="vista_regra.html">Ficha de uma regra</a><a class="sub" href="vista_perfil.html">Perfil de execução: seleção estática</a><a class="sub" href="vista_candidatos_perfil.html">Propriedades candidatas a fixar num perfil</a><a class="sub" href="vista_coerencia.html">Coerência entre regras</a><a class="sub" href="vista_lacunas.html">Lacunas de um HLM</a><a class="sub" href="vista_operadores.html">Verificações por operador e enumerados</a><a class="sub" href="vista_validacao.html">Validação de uma instância</a><a class="" href="viewmodels.html">ViewModels</a><a class="" href="apresentacao.html">Cores</a><h4>Aplicação web</h4><a class="" href="aplicacao.html">Separadores e arquitetura</a><a class="" href="rotas.html">Rotas e registo</a><a class="" href="funcoes.html">Funções</a><h4>Código</h4><a class="" href="codigo.html">Módulos e dependências</a><a class="sub" href="modulo_transformer.html">0 · transformer</a><a class="sub" href="modulo_ecv_builder.html">1 · ecv_builder</a><a class="sub" href="modulo_amendments.html">2 · amendments</a><a class="sub" href="modulo_ingestion.html">3 · ingestion</a><a class="sub" href="modulo_graph.html">4 · graph</a><a class="sub" href="modulo_views.html">5 · views</a><a class="sub" href="modulo_validation.html">6 · validation</a><a class="sub" href="modulo_webapp.html">7 · webapp</a><a class="sub" href="modulo_config.html">config</a><a class="sub" href="modulo_shared.html">shared</a><a class="sub" href="modulo_tools.html">tools</a><a class="" href="testes.html">Testes</a></aside><main><div class="crumbs"><a href="index.html">Visão geral</a> › <a href="specs.html">Specs</a></div><h1>Esqueleto da declaração</h1><div class="summary">Uma ocorrência de cada construção possível, com nomes neutros.</div><pre class="code"><code>{
+ &quot;$schema&quot;: &quot;ecv.schema.json&quot;,
+ &quot;declaracao&quot;: {
+  &quot;nome&quot;: &quot;Esqueleto da Declaração ECV&quot;,
+  &quot;versao&quot;: &quot;1.0.0&quot;,
+  &quot;descricao&quot;: &quot;Uma ocorrência de cada construção possível, com nomes neutros. É uma declaração válida: pode ser verificada, materializada e vista. Cada entidade tem &#x27;notas&#x27; a dizer o que exemplifica.&quot;,
+  &quot;dominios&quot;: [
+   &quot;esqueleto&quot;
+  ],
+  &quot;hlm&quot;: &quot;HlmExemplo&quot;
+ },
+ &quot;contextosExternos&quot;: [
+  {
+   &quot;nome&quot;: &quot;dataDeHoje&quot;,
+   &quot;tipo&quot;: &quot;data&quot;,
+   &quot;descricao&quot;: &quot;Data atual no momento da avaliação.&quot;,
+   &quot;fonte&quot;: &quot;Relógio do motor (ou fixada num perfil).&quot;,
+   &quot;notas&quot;: &quot;Contexto externo usado por uma função (excedeDias) e diretamente num termo (RIC-B-ATRASO).&quot;
+  },
+  {
+   &quot;nome&quot;: &quot;chaveSecreta&quot;,
+   &quot;tipo&quot;: &quot;texto&quot;,
+   &quot;descricao&quot;: &quot;Valor secreto obtido de um sistema externo.&quot;,
+   &quot;fonte&quot;: &quot;Cofre de chaves.&quot;,
+   &quot;notas&quot;: &quot;Contexto externo só usado por uma função (assinaturaOk); fixado no perfil PerfilEstatico.&quot;
+  }
+ ],
+ &quot;funcoes&quot;: [
+  {
+   &quot;nome&quot;: &quot;somaIgualA&quot;,
+   &quot;descricao&quot;: &quot;Verdadeira quando a soma dos valores da coleção é igual ao total.&quot;,
+   &quot;parametros&quot;: [
+    {
+     &quot;nome&quot;: &quot;valores&quot;,
+     &quot;tipo&quot;: &quot;lista&lt;decimal&gt;&quot;,
+     &quot;papel&quot;: &quot;alvo&quot;,
+     &quot;colecao&quot;: true,
+     &quot;descricao&quot;: &quot;Valores de uma coleção.&quot;
+    },
+    {
+     &quot;nome&quot;: &quot;total&quot;,
+     &quot;tipo&quot;: &quot;decimal&quot;,
+     &quot;papel&quot;: &quot;alvo&quot;
+    }
+   ],
+   &quot;contextosExternos&quot;: [],
+   &quot;retorno&quot;: &quot;booleano&quot;,
+   &quot;notas&quot;: &quot;FUNCTION: só valores do modelo. Um alvo coleção (atravessa uma composição repetível) e um alvo simples.&quot;
+  },
+  {
+   &quot;nome&quot;: &quot;contagemInferiorA&quot;,
+   &quot;descricao&quot;: &quot;Verdadeira quando a coleção tem menos de n instâncias.&quot;,
+   &quot;parametros&quot;: [
+    {
+     &quot;nome&quot;: &quot;instancias&quot;,
+     &quot;tipo&quot;: &quot;modelo&quot;,
+     &quot;papel&quot;: &quot;alvo&quot;,
+     &quot;colecao&quot;: true
+    },
+    {
+     &quot;nome&quot;: &quot;n&quot;,
+     &quot;tipo&quot;: &quot;inteiro&quot;,
+     &quot;papel&quot;: &quot;parametro&quot;,
+     &quot;descricao&quot;: &quot;Valor declarado na regra.&quot;
+    }
+   ],
+   &quot;contextosExternos&quot;: [],
+   &quot;retorno&quot;: &quot;booleano&quot;,
+   &quot;notas&quot;: &quot;Alvo que termina num modelo (as instâncias) e um parâmetro literal.&quot;
+  },
+  {
+   &quot;nome&quot;: &quot;excedeDias&quot;,
+   &quot;descricao&quot;: &quot;Verdadeira quando passaram mais de n dias desde a data até hoje.&quot;,
+   &quot;parametros&quot;: [
+    {
+     &quot;nome&quot;: &quot;data&quot;,
+     &quot;tipo&quot;: &quot;data&quot;,
+     &quot;papel&quot;: &quot;alvo&quot;
+    },
+    {
+     &quot;nome&quot;: &quot;n&quot;,
+     &quot;tipo&quot;: &quot;inteiro&quot;,
+     &quot;papel&quot;: &quot;parametro&quot;
+    }
+   ],
+   &quot;contextosExternos&quot;: [
+    &quot;dataDeHoje&quot;
+   ],
+   &quot;retorno&quot;: &quot;booleano&quot;,
+   &quot;notas&quot;: &quot;EXT_FUNCTION: depende de um contexto externo; usada num termo de condição.&quot;
+  },
+  {
+   &quot;nome&quot;: &quot;assinaturaOk&quot;,
+   &quot;descricao&quot;: &quot;Verdadeira quando a assinatura corresponde ao texto e à chave secreta.&quot;,
+   &quot;parametros&quot;: [
+    {
+     &quot;nome&quot;: &quot;texto&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;papel&quot;: &quot;alvo&quot;
+    },
+    {
+     &quot;nome&quot;: &quot;assinatura&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;papel&quot;: &quot;alvo&quot;
+    }
+   ],
+   &quot;contextosExternos&quot;: [
+    &quot;chaveSecreta&quot;
+   ],
+   &quot;retorno&quot;: &quot;booleano&quot;,
+   &quot;notas&quot;: &quot;EXT_FUNCTION usada numa restrição (RP com dois alvos).&quot;
+  }
+ ],
+ &quot;usm&quot;: [
+  {
+   &quot;nome&quot;: &quot;UsmA&quot;,
+   &quot;descricao&quot;: &quot;USM com uma propriedade de cada tipo base e regras na propriedade e no modelo.&quot;,
+   &quot;propriedades&quot;: [
+    {
+     &quot;nome&quot;: &quot;codigo&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;descricao&quot;: &quot;Texto com formato fixo&quot;,
+     &quot;nomesAlternativos&quot;: [
+      &quot;code&quot;,
+      &quot;cod&quot;
+     ],
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-A-CODIGO&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmA.codigo segue o padrão ^[A-Z]{2}-[0-9]{3}$&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;codigo&quot;,
+        &quot;operador&quot;: &quot;PATTERN&quot;,
+        &quot;valor&quot;: &quot;^[A-Z]{2}-[0-9]{3}$&quot;,
+        &quot;mensagem&quot;: &quot;O código tem a forma AA-999.&quot;
+       },
+       &quot;notas&quot;: &quot;RP tipificada na propriedade: PATTERN.&quot;
+      },
+      {
+       &quot;id&quot;: &quot;RP-A-CODIGO-TAM&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmA.codigo tem 6 caracteres&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;codigo&quot;,
+        &quot;operador&quot;: &quot;LENGTH&quot;,
+        &quot;valor&quot;: 6,
+        &quot;mensagem&quot;: &quot;O código tem 6 caracteres.&quot;
+       },
+       &quot;notas&quot;: &quot;LENGTH com um inteiro (também aceita [mínimo, máximo]).&quot;
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;categoria&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;descricao&quot;: &quot;Enumerado: o seu Conjunto de Regras de Plausibilidade é uma lista fechada&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-A-CATEGORIA&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmA.categoria ∈ {X, Y, Z}&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;categoria&quot;,
+        &quot;operador&quot;: &quot;IN&quot;,
+        &quot;valor&quot;: [
+         &quot;X&quot;,
+         &quot;Y&quot;,
+         &quot;Z&quot;
+        ],
+        &quot;mensagem&quot;: &quot;A categoria tem de ser X, Y ou Z.&quot;
+       },
+       &quot;notas&quot;: &quot;RP IN: os valores plausíveis, usados como fatores discriminantes nas condições.&quot;
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;quantidade&quot;,
+     &quot;tipo&quot;: &quot;inteiro&quot;,
+     &quot;descricao&quot;: &quot;Número inteiro&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-A-QUANTIDADE&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmA.quantidade ≥ 0&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;quantidade&quot;,
+        &quot;operador&quot;: &quot;GTE&quot;,
+        &quot;valor&quot;: 0,
+        &quot;mensagem&quot;: &quot;A quantidade não pode ser negativa.&quot;
+       }
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;medida&quot;,
+     &quot;tipo&quot;: &quot;decimal&quot;,
+     &quot;descricao&quot;: &quot;Número decimal&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-A-MEDIDA&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmA.medida entre 0 e 1000&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;medida&quot;,
+        &quot;operador&quot;: &quot;RANGE&quot;,
+        &quot;valor&quot;: [
+         0,
+         1000
+        ],
+        &quot;mensagem&quot;: &quot;A medida tem de estar entre 0 e 1000.&quot;
+       }
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;dataRegisto&quot;,
+     &quot;tipo&quot;: &quot;data&quot;,
+     &quot;descricao&quot;: &quot;Data (AAAA-MM-DD)&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-A-DATA&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmA.dataRegisto &gt; 2000-01-01&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;dataRegisto&quot;,
+        &quot;operador&quot;: &quot;GT&quot;,
+        &quot;valor&quot;: &quot;2000-01-01&quot;,
+        &quot;mensagem&quot;: &quot;A data tem de ser posterior a 2000-01-01.&quot;
+       }
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;ativo&quot;,
+     &quot;tipo&quot;: &quot;booleano&quot;,
+     &quot;descricao&quot;: &quot;Verdadeiro ou falso&quot;,
+     &quot;notas&quot;: &quot;Propriedade sem regras (aparece na vista de lacunas).&quot;
+    }
+   ],
+   &quot;regras&quot;: [
+    {
+     &quot;id&quot;: &quot;RIR-A-MEDIDA-X&quot;,
+     &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+     &quot;descricao&quot;: &quot;Se UsmA.categoria = X e UsmA.quantidade &gt; 10 → UsmA.medida ≤ 100&quot;,
+     &quot;condicao&quot;: [
+      {
+       &quot;propriedade&quot;: &quot;categoria&quot;,
+       &quot;operador&quot;: &quot;EQUALS&quot;,
+       &quot;valor&quot;: &quot;X&quot;
+      },
+      {
+       &quot;propriedade&quot;: &quot;quantidade&quot;,
+       &quot;operador&quot;: &quot;GT&quot;,
+       &quot;valor&quot;: 10
+      }
+     ],
+     &quot;restricao&quot;: {
+      &quot;propriedade&quot;: &quot;medida&quot;,
+      &quot;operador&quot;: &quot;LTE&quot;,
+      &quot;valor&quot;: 100,
+      &quot;mensagem&quot;: &quot;Na categoria X com mais de 10 unidades, a medida não passa de 100.&quot;
+     },
+     &quot;notas&quot;: &quot;RIR no USM: condição com dois termos (E), restrição tipificada com um alvo.&quot;
+    },
+    {
+     &quot;id&quot;: &quot;RIR-A-CODIGO-Y&quot;,
+     &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+     &quot;descricao&quot;: &quot;Se UsmA.categoria ∈ {Y, Z} → UsmA.codigo começa por \&quot;YZ\&quot;&quot;,
+     &quot;condicao&quot;: [
+      {
+       &quot;propriedade&quot;: &quot;categoria&quot;,
+       &quot;operador&quot;: &quot;IN&quot;,
+       &quot;valor&quot;: [
+        &quot;Y&quot;,
+        &quot;Z&quot;
+       ]
+      }
+     ],
+     &quot;restricao&quot;: {
+      &quot;propriedade&quot;: &quot;codigo&quot;,
+      &quot;operador&quot;: &quot;STARTS_WITH&quot;,
+      &quot;valor&quot;: &quot;YZ&quot;,
+      &quot;mensagem&quot;: &quot;Nas categorias Y e Z o código começa por YZ.&quot;
+     },
+     &quot;notas&quot;: &quot;IN numa condição: disjunção dentro da mesma propriedade (o único OU admitido).&quot;
+    },
+    {
+     &quot;id&quot;: &quot;RIC-A-INATIVO&quot;,
+     &quot;natureza&quot;: &quot;inferencia_conclusiva&quot;,
+     &quot;descricao&quot;: &quot;Se UsmA.ativo = falso e UsmA.quantidade &lt; 1 → informa Estado ESGOTADO&quot;,
+     &quot;condicao&quot;: [
+      {
+       &quot;propriedade&quot;: &quot;ativo&quot;,
+       &quot;operador&quot;: &quot;EQUALS&quot;,
+       &quot;valor&quot;: false
+      },
+      {
+       &quot;propriedade&quot;: &quot;quantidade&quot;,
+       &quot;operador&quot;: &quot;LT&quot;,
+       &quot;valor&quot;: 1
+      }
+     ],
+     &quot;mensagem&quot;: &quot;Estado ESGOTADO: o item está inativo e sem quantidade.&quot;,
+     &quot;conclusao&quot;: {
+      &quot;tipo&quot;: &quot;ESTADO&quot;,
+      &quot;valor&quot;: &quot;ESGOTADO&quot;
+     },
+     &quot;notas&quot;: &quot;RIC: condição + mensagem de conclusão + conclusão estruturada; sem restrição.&quot;
+    }
+   ]
+  },
+  {
+   &quot;nome&quot;: &quot;UsmB&quot;,
+   &quot;descricao&quot;: &quot;USM com texto, data e regras com funções e contexto externo.&quot;,
+   &quot;propriedades&quot;: [
+    {
+     &quot;nome&quot;: &quot;texto&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;descricao&quot;: &quot;Texto assinado&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-B-TEXTO&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmB.texto contém \&quot;:\&quot;&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;texto&quot;,
+        &quot;operador&quot;: &quot;CONTAINS&quot;,
+        &quot;valor&quot;: &quot;:&quot;,
+        &quot;mensagem&quot;: &quot;O texto tem de conter &#x27;:&#x27;.&quot;
+       }
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;assinatura&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;descricao&quot;: &quot;Assinatura do texto&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-B-ASSIN-FIM&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmB.assinatura termina em \&quot;=\&quot;&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;assinatura&quot;,
+        &quot;operador&quot;: &quot;ENDS_WITH&quot;,
+        &quot;valor&quot;: &quot;=&quot;,
+        &quot;mensagem&quot;: &quot;A assinatura termina em &#x27;=&#x27;.&quot;
+       }
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;dataEvento&quot;,
+     &quot;tipo&quot;: &quot;data&quot;,
+     &quot;descricao&quot;: &quot;Data do evento&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RIC-B-ATRASO&quot;,
+       &quot;natureza&quot;: &quot;inferencia_conclusiva&quot;,
+       &quot;descricao&quot;: &quot;Se UsmB.dataEvento &lt; dataDeHoje (contexto externo) → informa Estado HISTORICO&quot;,
+       &quot;condicao&quot;: [
+        {
+         &quot;propriedade&quot;: &quot;dataEvento&quot;,
+         &quot;operador&quot;: &quot;LT&quot;,
+         &quot;contexto&quot;: &quot;dataDeHoje&quot;
+        }
+       ],
+       &quot;mensagem&quot;: &quot;Estado HISTORICO: o evento é anterior a hoje.&quot;,
+       &quot;conclusao&quot;: {
+        &quot;tipo&quot;: &quot;ESTADO&quot;,
+        &quot;valor&quot;: &quot;HISTORICO&quot;
+       },
+       &quot;contextosExternos&quot;: [
+        &quot;dataDeHoje&quot;
+       ],
+       &quot;notas&quot;: &quot;Termo que compara a propriedade com um contexto externo (sem função). Uma RIC pode viver numa propriedade quando só lê essa propriedade.&quot;
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;estado&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;descricao&quot;: &quot;Estado do evento&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-B-ESTADO&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;UsmB.estado ∈ {ABERTO, FECHADO}&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;estado&quot;,
+        &quot;operador&quot;: &quot;IN&quot;,
+        &quot;valor&quot;: [
+         &quot;ABERTO&quot;,
+         &quot;FECHADO&quot;
+        ],
+        &quot;mensagem&quot;: &quot;O estado é ABERTO ou FECHADO.&quot;
+       }
+      }
+     ]
+    }
+   ],
+   &quot;regras&quot;: [
+    {
+     &quot;id&quot;: &quot;RP-B-ASSINATURA&quot;,
+     &quot;natureza&quot;: &quot;plausibilidade&quot;,
+     &quot;descricao&quot;: &quot;assinaturaOk(UsmB.texto, UsmB.assinatura)&quot;,
+     &quot;restricao&quot;: {
+      &quot;operador&quot;: &quot;EXT_FUNCTION&quot;,
+      &quot;chamada&quot;: {
+       &quot;funcao&quot;: &quot;assinaturaOk&quot;,
+       &quot;argumentos&quot;: [
+        {
+         &quot;caminho&quot;: &quot;texto&quot;
+        },
+        {
+         &quot;caminho&quot;: &quot;assinatura&quot;
+        }
+       ]
+      },
+      &quot;mensagem&quot;: &quot;A assinatura não corresponde ao texto.&quot;
+     },
+     &quot;contextosExternos&quot;: [
+      &quot;chaveSecreta&quot;
+     ],
+     &quot;notas&quot;: &quot;RP cuja restrição é uma função (EXT_FUNCTION): os alvos são os argumentos; vive no USM porque lê duas propriedades.&quot;
+    },
+    {
+     &quot;id&quot;: &quot;RIR-B-FECHO&quot;,
+     &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+     &quot;descricao&quot;: &quot;Se excedeDias(UsmB.dataEvento, 30) → UsmB.estado = FECHADO&quot;,
+     &quot;condicao&quot;: [
+      {
+       &quot;operador&quot;: &quot;EXT_FUNCTION&quot;,
+       &quot;chamada&quot;: {
+        &quot;funcao&quot;: &quot;excedeDias&quot;,
+        &quot;argumentos&quot;: [
+         {
+          &quot;caminho&quot;: &quot;dataEvento&quot;
+         },
+         {
+          &quot;literal&quot;: 30
+         }
+        ]
+       }
+      }
+     ],
+     &quot;restricao&quot;: {
+      &quot;propriedade&quot;: &quot;estado&quot;,
+      &quot;operador&quot;: &quot;EQUALS&quot;,
+      &quot;valor&quot;: &quot;FECHADO&quot;,
+      &quot;mensagem&quot;: &quot;Um evento com mais de 30 dias tem de estar FECHADO.&quot;
+     },
+     &quot;contextosExternos&quot;: [
+      &quot;dataDeHoje&quot;
+     ],
+     &quot;notas&quot;: &quot;Função usada num termo da condição (e não na restrição).&quot;
+    }
+   ]
+  },
+  {
+   &quot;nome&quot;: &quot;UsmItem&quot;,
+   &quot;descricao&quot;: &quot;Elemento de uma coleção (composto com cardinalidade 1..*).&quot;,
+   &quot;propriedades&quot;: [
+    {
+     &quot;nome&quot;: &quot;numero&quot;,
+     &quot;tipo&quot;: &quot;inteiro&quot;,
+     &quot;descricao&quot;: &quot;Número do item&quot;
+    },
+    {
+     &quot;nome&quot;: &quot;montante&quot;,
+     &quot;tipo&quot;: &quot;decimal&quot;,
+     &quot;descricao&quot;: &quot;Montante do item&quot;
+    }
+   ]
+  }
+ ],
+ &quot;sm&quot;: [
+  {
+   &quot;nome&quot;: &quot;SmComposto&quot;,
+   &quot;descricao&quot;: &quot;SM que compõe USM (um deles duas vezes, com papéis) e tem uma propriedade residual.&quot;,
+   &quot;composicao&quot;: [
+    {
+     &quot;usm&quot;: &quot;UsmA&quot;,
+     &quot;cardinalidade&quot;: &quot;1..1&quot;
+    },
+    {
+     &quot;usm&quot;: &quot;UsmB&quot;,
+     &quot;papel&quot;: &quot;Origem&quot;,
+     &quot;cardinalidade&quot;: &quot;1..1&quot;
+    },
+    {
+     &quot;usm&quot;: &quot;UsmB&quot;,
+     &quot;papel&quot;: &quot;Destino&quot;,
+     &quot;cardinalidade&quot;: &quot;0..1&quot;
+    }
+   ],
+   &quot;propriedades&quot;: [
+    {
+     &quot;nome&quot;: &quot;observacao&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;descricao&quot;: &quot;Propriedade residual: só faz sentido neste SM&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-SM-OBS&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;SmComposto.observacao tem entre 0 e 500 caracteres&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;observacao&quot;,
+        &quot;operador&quot;: &quot;LENGTH&quot;,
+        &quot;valor&quot;: [
+         0,
+         500
+        ],
+        &quot;mensagem&quot;: &quot;A observação tem no máximo 500 caracteres.&quot;
+       }
+      }
+     ]
+    }
+   ],
+   &quot;regras&quot;: [
+    {
+     &quot;id&quot;: &quot;RIR-SM-DESTINO&quot;,
+     &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+     &quot;descricao&quot;: &quot;Se SmComposto.Origem.estado = FECHADO → SmComposto.Destino.estado ≠ ABERTO&quot;,
+     &quot;condicao&quot;: [
+      {
+       &quot;propriedade&quot;: &quot;Origem.estado&quot;,
+       &quot;operador&quot;: &quot;EQUALS&quot;,
+       &quot;valor&quot;: &quot;FECHADO&quot;
+      }
+     ],
+     &quot;restricao&quot;: {
+      &quot;propriedade&quot;: &quot;Destino.estado&quot;,
+      &quot;operador&quot;: &quot;NOT_EQUALS&quot;,
+      &quot;valor&quot;: &quot;ABERTO&quot;,
+      &quot;mensagem&quot;: &quot;Se a origem está fechada, o destino não pode estar aberto.&quot;
+     },
+     &quot;notas&quot;: &quot;Regra no SM que relaciona duas ocorrências do mesmo USM, distinguidas pelo papel.&quot;
+    }
+   ],
+   &quot;notas&quot;: &quot;&#x27;papel&#x27; dá o segmento do caminho (Origem.estado, Destino.estado); por omissão é o nome do USM.&quot;
+  },
+  {
+   &quot;nome&quot;: &quot;SmColecao&quot;,
+   &quot;descricao&quot;: &quot;SM que existe para reunir uma coleção de UsmItem.&quot;,
+   &quot;composicao&quot;: [
+    {
+     &quot;usm&quot;: &quot;UsmItem&quot;,
+     &quot;cardinalidade&quot;: &quot;1..*&quot;
+    }
+   ],
+   &quot;regras&quot;: [
+    {
+     &quot;id&quot;: &quot;RP-COL-MAX&quot;,
+     &quot;natureza&quot;: &quot;plausibilidade&quot;,
+     &quot;descricao&quot;: &quot;contagemInferiorA(SmColecao.UsmItem, 50)&quot;,
+     &quot;restricao&quot;: {
+      &quot;operador&quot;: &quot;FUNCTION&quot;,
+      &quot;chamada&quot;: {
+       &quot;funcao&quot;: &quot;contagemInferiorA&quot;,
+       &quot;argumentos&quot;: [
+        {
+         &quot;caminho&quot;: &quot;UsmItem&quot;
+        },
+        {
+         &quot;literal&quot;: 50
+        }
+       ]
+      },
+      &quot;mensagem&quot;: &quot;A coleção tem 50 ou mais itens.&quot;
+     },
+     &quot;notas&quot;: &quot;RP sobre a coleção: vive no SM que declara a cardinalidade.&quot;
+    }
+   ]
+  },
+  {
+   &quot;nome&quot;: &quot;SmResidual&quot;,
+   &quot;descricao&quot;: &quot;SM só com propriedades residuais (sem composição).&quot;,
+   &quot;propriedades&quot;: [
+    {
+     &quot;nome&quot;: &quot;tipoDocumento&quot;,
+     &quot;tipo&quot;: &quot;texto&quot;,
+     &quot;descricao&quot;: &quot;Tipo do documento&quot;,
+     &quot;regras&quot;: [
+      {
+       &quot;id&quot;: &quot;RP-SMR-TIPO&quot;,
+       &quot;natureza&quot;: &quot;plausibilidade&quot;,
+       &quot;descricao&quot;: &quot;SmResidual.tipoDocumento ∈ {NORMAL, SIMPLES}&quot;,
+       &quot;restricao&quot;: {
+        &quot;propriedade&quot;: &quot;tipoDocumento&quot;,
+        &quot;operador&quot;: &quot;IN&quot;,
+        &quot;valor&quot;: [
+         &quot;NORMAL&quot;,
+         &quot;SIMPLES&quot;
+        ],
+        &quot;mensagem&quot;: &quot;O tipo é NORMAL ou SIMPLES.&quot;
+       }
+      }
+     ]
+    },
+    {
+     &quot;nome&quot;: &quot;total&quot;,
+     &quot;tipo&quot;: &quot;decimal&quot;,
+     &quot;descricao&quot;: &quot;Total do documento&quot;
+    }
+   ]
+  }
+ ],
+ &quot;hlm&quot;: [
+  {
+   &quot;nome&quot;: &quot;HlmExemplo&quot;,
+   &quot;descricao&quot;: &quot;HLM: só composição de SM (nunca propriedades próprias).&quot;,
+   &quot;composicao&quot;: [
+    {
+     &quot;sm&quot;: &quot;SmResidual&quot;,
+     &quot;cardinalidade&quot;: &quot;1..1&quot;
+    },
+    {
+     &quot;sm&quot;: &quot;SmComposto&quot;,
+     &quot;cardinalidade&quot;: &quot;1..1&quot;
+    },
+    {
+     &quot;sm&quot;: &quot;SmColecao&quot;,
+     &quot;papel&quot;: &quot;Itens&quot;,
+     &quot;cardinalidade&quot;: &quot;1..1&quot;
+    }
+   ],
+   &quot;regras&quot;: [
+    {
+     &quot;id&quot;: &quot;RP-H-SOMA&quot;,
+     &quot;natureza&quot;: &quot;plausibilidade&quot;,
+     &quot;descricao&quot;: &quot;somaIgualA(Itens.UsmItem.montante, SmResidual.total)&quot;,
+     &quot;restricao&quot;: {
+      &quot;operador&quot;: &quot;FUNCTION&quot;,
+      &quot;chamada&quot;: {
+       &quot;funcao&quot;: &quot;somaIgualA&quot;,
+       &quot;argumentos&quot;: [
+        {
+         &quot;caminho&quot;: &quot;Itens.UsmItem.montante&quot;
+        },
+        {
+         &quot;caminho&quot;: &quot;SmResidual.total&quot;
+        }
+       ]
+      },
+      &quot;mensagem&quot;: &quot;O total não corresponde à soma dos montantes.&quot;
+     },
+     &quot;notas&quot;: &quot;RP no HLM: lê a coleção e o documento, que só se encontram no HLM.&quot;
+    },
+    {
+     &quot;id&quot;: &quot;RIR-H-SIMPLES&quot;,
+     &quot;natureza&quot;: &quot;inferencia_restritiva&quot;,
+     &quot;descricao&quot;: &quot;Se SmResidual.tipoDocumento = SIMPLES → contagemInferiorA(Itens.UsmItem, 11)&quot;,
+     &quot;condicao&quot;: [
+      {
+       &quot;propriedade&quot;: &quot;SmResidual.tipoDocumento&quot;,
+       &quot;operador&quot;: &quot;EQUALS&quot;,
+       &quot;valor&quot;: &quot;SIMPLES&quot;
+      }
+     ],
+     &quot;restricao&quot;: {
+      &quot;operador&quot;: &quot;FUNCTION&quot;,
+      &quot;chamada&quot;: {
+       &quot;funcao&quot;: &quot;contagemInferiorA&quot;,
+       &quot;argumentos&quot;: [
+        {
+         &quot;caminho&quot;: &quot;Itens.UsmItem&quot;
+        },
+        {
+         &quot;literal&quot;: 11
+        }
+       ]
+      },
+      &quot;mensagem&quot;: &quot;Um documento simples tem no máximo 10 itens.&quot;
+     },
+     &quot;notas&quot;: &quot;RIR cuja restrição é uma função.&quot;
+    },
+    {
+     &quot;id&quot;: &quot;RIC-H-REVER&quot;,
+     &quot;natureza&quot;: &quot;inferencia_conclusiva&quot;,
+     &quot;descricao&quot;: &quot;Se SmResidual.total ≥ 10000 e SmComposto.UsmA.categoria = Z → informa Ação REVER&quot;,
+     &quot;condicao&quot;: [
+      {
+       &quot;propriedade&quot;: &quot;SmResidual.total&quot;,
+       &quot;operador&quot;: &quot;GTE&quot;,
+       &quot;valor&quot;: 10000
+      },
+      {
+       &quot;propriedade&quot;: &quot;SmComposto.UsmA.categoria&quot;,
+       &quot;operador&quot;: &quot;EQUALS&quot;,
+       &quot;valor&quot;: &quot;Z&quot;
+      }
+     ],
+     &quot;mensagem&quot;: &quot;Ação REVER: documento de valor elevado na categoria Z.&quot;,
+     &quot;conclusao&quot;: {
+      &quot;tipo&quot;: &quot;ACAO&quot;,
+      &quot;valor&quot;: &quot;REVER&quot;
+     },
+     &quot;notas&quot;: &quot;RIC no HLM (lê dois SM).&quot;
+    }
+   ]
+  }
+ ],
+ &quot;projecoes&quot;: [
+  {
+   &quot;nome&quot;: &quot;ProjecaoCompleta&quot;,
+   &quot;hlm&quot;: &quot;HlmExemplo&quot;,
+   &quot;descricao&quot;: &quot;Tudo obrigatório, exceto o destino, que é permitido.&quot;,
+   &quot;obrigatorias&quot;: [
+    &quot;SmResidual.*&quot;,
+    &quot;SmComposto.UsmA.*&quot;,
+    &quot;SmComposto.Origem.*&quot;,
+    &quot;SmComposto.observacao&quot;,
+    &quot;Itens.*&quot;
+   ],
+   &quot;permitidas&quot;: [
+    &quot;SmComposto.Destino.*&quot;
+   ],
+   &quot;notas&quot;: &quot;&#x27;X.*&#x27; expande para todas as propriedades abaixo de X; caminho sem &#x27;*&#x27; indica uma propriedade.&quot;
+  },
+  {
+   &quot;nome&quot;: &quot;ProjecaoMinima&quot;,
+   &quot;hlm&quot;: &quot;HlmExemplo&quot;,
+   &quot;descricao&quot;: &quot;Só o documento e os itens.&quot;,
+   &quot;obrigatorias&quot;: [
+    &quot;SmResidual.*&quot;,
+    &quot;Itens.*&quot;
+   ],
+   &quot;permitidas&quot;: [
+    &quot;SmComposto.UsmA.categoria&quot;
+   ],
+   &quot;notas&quot;: &quot;O que não é obrigatório nem permitido está implicitamente proibido.&quot;
+  }
+ ],
+ &quot;perfis&quot;: [
+  {
+   &quot;nome&quot;: &quot;PerfilDinamico&quot;,
+   &quot;projecao&quot;: &quot;ProjecaoCompleta&quot;,
+   &quot;descricao&quot;: &quot;Nada fixado: todas as condições são avaliadas com os valores da instância.&quot;,
+   &quot;fixa&quot;: []
+  },
+  {
+   &quot;nome&quot;: &quot;PerfilEstatico&quot;,
+   &quot;projecao&quot;: &quot;ProjecaoMinima&quot;,
+   &quot;descricao&quot;: &quot;Valores conhecidos à partida: uma propriedade e dois contextos externos.&quot;,
+   &quot;fixa&quot;: [
+    {
+     &quot;propriedade&quot;: &quot;SmResidual.tipoDocumento&quot;,
+     &quot;valor&quot;: &quot;SIMPLES&quot;
+    },
+    {
+     &quot;contexto&quot;: &quot;dataDeHoje&quot;,
+     &quot;valor&quot;: &quot;2026-09-30&quot;
+    },
+    {
+     &quot;contexto&quot;: &quot;chaveSecreta&quot;,
+     &quot;valor&quot;: &quot;segredo-de-teste&quot;
+    }
+   ],
+   &quot;notas&quot;: &quot;Fixar tipoDocumento resolve a condição de RIR-H-SIMPLES antes da execução (sempre aplicável). Também mostra o aviso I10: RIR-A-MEDIDA-X lê quantidade, que esta projeção não inclui nem o perfil fixa.&quot;
+  }
+ ]
+}</code></pre></main></body></html>

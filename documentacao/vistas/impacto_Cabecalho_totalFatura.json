@@ -1,0 +1,70 @@
+{
+  "vista": "impacto",
+  "titulo": "Impacto de uma alteração de totalFatura (Cabecalho)",
+  "propriedade": "SM:Cabecalho.totalFatura",
+  "nome": "totalFatura",
+  "regras": [
+    {
+      "id": "RP-HASH",
+      "tipo": "RP",
+      "descricao": "hashEncadeadoValido(Cabecalho.numero, Cabecalho.dataEmissao, Cabecalho.totalFatura, Cabecalho.hash)",
+      "papeis": [
+        "argumento de hashEncadeadoValido (restricao)"
+      ]
+    },
+    {
+      "id": "RP-SOMA",
+      "tipo": "RP",
+      "descricao": "somaIgualA(Linhas.Linha.valor, Cabecalho.totalFatura)",
+      "papeis": [
+        "argumento de somaIgualA (restricao)"
+      ]
+    },
+    {
+      "id": "RP-TOTAL",
+      "tipo": "RP",
+      "descricao": "Cabecalho.totalFatura ≥ 0",
+      "papeis": [
+        "alvo da restrição",
+        "vive na propriedade"
+      ]
+    },
+    {
+      "id": "RIR-FS",
+      "tipo": "RIR",
+      "descricao": "Se Cabecalho.tipoDocumento = FS → Cabecalho.totalFatura ≤ 1000",
+      "papeis": [
+        "alvo da restrição"
+      ]
+    },
+    {
+      "id": "RIR-FT-NIF",
+      "tipo": "RIR",
+      "descricao": "Se Cabecalho.totalFatura > 1000 → Cliente.Entidade.nif ≠ 999999990",
+      "papeis": [
+        "termo da condição"
+      ]
+    }
+  ],
+  "contagem": {
+    "RP": 3,
+    "RIR": 2,
+    "RIC": 0
+  },
+  "projecoes": [
+    {
+      "projecao": "FaturaAT",
+      "tipo": "obrigatoria",
+      "caminho": "Cabecalho.totalFatura"
+    },
+    {
+      "projecao": "FaturaSimplificada",
+      "tipo": "obrigatoria",
+      "caminho": "Cabecalho.totalFatura"
+    }
+  ],
+  "perfis": [],
+  "parametros": {
+    "propriedade": "SM:Cabecalho.totalFatura"
+  }
+}
